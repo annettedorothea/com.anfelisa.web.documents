@@ -1,0 +1,37 @@
+multiplechoice
+
+target ES6
+
+actions {
+	ShowFalseMultipleChoice executes ShowFalseMultipleChoice
+	ShowCorrectMultipleChoice executes ShowCorrectMultipleChoice
+	DisplayNextQuestion executes DisplayNextQuestion
+}
+commands {
+	ShowFalseMultipleChoice {
+		on last publishes (ShowFalseMultipleChoice ) triggers (common.SaveResult)
+		on notLast publishes (ShowFalseMultipleChoice EnableNextButton )
+	}
+	ShowCorrectMultipleChoice {
+		on last publishes (ShowCorrectMultipleChoice ) triggers (common.SaveResult)
+		on notLast publishes (ShowCorrectMultipleChoice EnableNextButton)
+	}
+	DisplayNextQuestion {
+		on go publishes (DisplayNextQuestion)
+	}
+}
+events {
+	ShowFalseMultipleChoice listenedToBy (MultipleChoice.showFalse MultipleChoice.showCorrecture)
+	ShowCorrectMultipleChoice listenedToBy (MultipleChoice.showCorrect MultipleChoice.showCorrecture)
+	EnableNextButton listenedToBy (MultipleChoice.enableNextButton)
+	DisplayNextQuestion listenedToBy (MultipleChoice.displayNextQuestion)
+}
+views {
+	MultipleChoice {
+		showCorrecture
+		showFalse
+		showCorrect
+		enableNextButton
+		displayNextQuestion
+	}
+}

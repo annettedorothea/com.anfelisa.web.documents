@@ -1,0 +1,49 @@
+<form class="form-horizontal">
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+            <h4>{{texts.courseList}}</h4>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-responsive">
+                    <tr>
+                        <th></th>
+                        <th>{{texts.courseName}}</th>
+                    </tr>
+                    {{#courseList}}
+                    <tr>
+                        <td class="text-center">
+                            <input type="checkbox" class="courseSelection" value="{{courseId}}">
+                        </td>
+                        <td>{{name}}</td>
+                    </tr>
+                    {{/courseList}}
+                    {{^courseList}}
+                    <tr>
+                        <td colspan="6">{{texts.noCoursesFound}}</td>
+                    </tr>
+                    {{/courseList}}
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+            <button class="btn btn-default" type="button" onclick="new SaveCourseSelectionAction().apply()">
+                {{texts.save}}
+            </button>
+            <button class="btn btn-default" type="button" onclick="new RouteAction( {'hash' : 'profile'}).apply()">
+                {{texts.cancel}}
+            </button>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,1 @@
+<button id='showWord' class='btn btn-blue' onclick='new ShowWordAction().apply()'>{{texts.show}}</button>

@@ -1,0 +1,2 @@
+<button id='known' class='btn btn-green' onclick='new RateWordAction({knewIt: true}).apply();'>{{texts.knewItTest}}</button>
+<button id='notKnown' class='btn btn-red' onclick='new RateWordAction({knewIt: false}).apply();'>{{texts.didNotKnowTest}}</button>

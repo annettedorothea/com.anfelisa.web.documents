@@ -1,0 +1,109 @@
+<form class="form-horizontal">
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+            <h4>{{texts.boxConfig}}</h4>
+        </div>
+    </div>
+
+	<div class="form-group" id="boxIdDiv">
+	    <label for="boxId" class="col-sm-3 control-label">* {{texts.boxId}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="boxId" placeholder="{{texts.boxId}}" value="{{boxId}}" onblur="new ValidateRequiredFieldAction({id : 'boxId'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.boxIdNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	{{#boxOfCourseList}}
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<h4 class="panel-title">{{texts.boxId}}: {{boxId}}</h4>
+			<h4 class="panel-title">{{texts.courseId}}: {{courseId}}</h4>
+			<h4 class="panel-title">{{texts.autoAdd}}: {{autoAdd}}</h4>
+	    </div>
+	    <div class="panel-body">
+			{{texts.boxId}}: {{boxId}}<br>
+			{{texts.courseId}}: {{courseId}}<br>
+			{{texts.autoAdd}}: {{autoAdd}}<br>
+	    </div>
+	</div>
+	{{/boxOfCourseList}}
+	{{^boxOfCourseList}}
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	        <h3 class="panel-title">{{texts.emptyBoxOfCourseList}}</h3>
+	    </div>
+	</div>
+	{{/boxOfCourseList}}
+	
+	<div class="table-responsive">
+	    <table class="table table-bordered table-hover table-responsive">
+	        <tr>
+				<th>{{texts.boxId}}</th>
+				<th>{{texts.courseId}}</th>
+				<th>{{texts.autoAdd}}</th>
+	        </tr>
+	        {{#boxOfCourseList}}
+	        <tr>
+				<td>{{boxId}}</td>
+				<td>{{courseId}}</td>
+				<td>{{autoAdd}}</td>
+	        </tr>
+	        {{/boxOfCourseList}}
+	        {{^boxOfCourseList}}
+	        <tr>
+	            <td colspan="3">{{texts.emptyBoxOfCourseList}}</td>
+	        </tr>
+	        {{/boxOfCourseList}}
+	    </table>
+	</div>
+	
+	
+	{{#existingItems}}
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<h4 class="panel-title">{{texts.boxId}}: {{boxId}}</h4>
+			<h4 class="panel-title">{{texts.courseId}}: {{courseId}}</h4>
+			<h4 class="panel-title">{{texts.autoAdd}}: {{autoAdd}}</h4>
+	    </div>
+	    <div class="panel-body">
+			{{texts.boxId}}: {{boxId}}<br>
+			{{texts.courseId}}: {{courseId}}<br>
+			{{texts.autoAdd}}: {{autoAdd}}<br>
+	    </div>
+	</div>
+	{{/existingItems}}
+	{{^existingItems}}
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	        <h3 class="panel-title">{{texts.emptyExistingItems}}</h3>
+	    </div>
+	</div>
+	{{/existingItems}}
+	
+	<div class="table-responsive">
+	    <table class="table table-bordered table-hover table-responsive">
+	        <tr>
+				<th>{{texts.boxId}}</th>
+				<th>{{texts.courseId}}</th>
+				<th>{{texts.autoAdd}}</th>
+	        </tr>
+	        {{#existingItems}}
+	        <tr>
+				<td>{{boxId}}</td>
+				<td>{{courseId}}</td>
+				<td>{{autoAdd}}</td>
+	        </tr>
+	        {{/existingItems}}
+	        {{^existingItems}}
+	        <tr>
+	            <td colspan="3">{{texts.emptyExistingItems}}</td>
+	        </tr>
+	        {{/existingItems}}
+	    </table>
+	</div>
+	
+	
+	
+</form>

@@ -1,0 +1,80 @@
+card
+
+target ES6
+
+actions {
+	ShowNextCardItem executes ShowNextCardItem
+	CheckIfComplexCardIsFinished executes CheckIfComplexCardIsFinished
+	FinishCard executes FinishCard
+	ScoreCard executes ScoreCard
+	RemoveCardFromBox executes RemoveCardFromBox
+}
+
+commands {
+	ShowNextCardItem {
+		on showWanted publishes (
+			ShowWanted
+			ShowScoreButtons
+		)
+		on showNextLine publishes (
+			ShowNextLine
+		) triggers (
+			CheckIfComplexCardIsFinished
+		)
+		on showNextWord publishes (
+			ShowNextWord
+		) triggers (
+			CheckIfComplexCardIsFinished
+		)
+	}
+	CheckIfComplexCardIsFinished {
+		on complexCardIsFinished publishes (
+			ShowScoreButtons
+		)
+		on complexCardIsNotFinished publishes (
+		)
+	}
+	FinishCard {
+		on cardFinished triggers (
+			common.SaveResult
+		)
+	}
+	ScoreCard {
+		on scored triggers (
+			common.Route
+		)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	RemoveCardFromBox {
+		on scored triggers (
+			common.Route
+		)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+}
+
+events {
+	ShowWanted listenedToBy (
+		Card.showWanted
+	)
+	ShowNextLine listenedToBy (
+		Card.showNextLine
+	)
+	ShowNextWord listenedToBy (
+		Card.showNextWord
+	)
+	ShowScoreButtons listenedToBy (
+		Card.showScoreButtons
+	)
+	
+}
+
+views {
+	Card {
+		showScoreButtons
+		showWanted
+		showNextLine
+		showNextWord
+	}
+	
+}

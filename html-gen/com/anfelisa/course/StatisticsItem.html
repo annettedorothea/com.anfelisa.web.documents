@@ -1,0 +1,75 @@
+<form class="form-horizontal">
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+            <h4>{{texts.statisticsItem}}</h4>
+        </div>
+    </div>
+
+	<div class="form-group" id="typeDiv">
+	    <label for="type" class="col-sm-3 control-label">* {{texts.type}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="type" placeholder="{{texts.type}}" value="{{type}}" onblur="new ValidateRequiredFieldAction({id : 'type'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.typeNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="isBoxDiv">
+	    <label for="isBox" class="col-sm-3 control-label">* {{texts.isBox}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="isBox" placeholder="{{texts.isBox}}" value="{{isBox}}" onblur="new ValidateRequiredFieldAction({id : 'isBox'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.isBoxNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="countDiv">
+	    <label for="count" class="col-sm-3 control-label">* {{texts.count}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="count" placeholder="{{texts.count}}" value="{{count}}" onblur="new ValidateRequiredFieldAction({id : 'count'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.countNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="dayDiv">
+	    <label for="day" class="col-sm-3 control-label">* {{texts.day}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="day" placeholder="{{texts.day}}" value="{{day}}" onblur="new ValidateRequiredFieldAction({id : 'day'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.dayNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="nameDiv">
+	    <label for="name" class="col-sm-3 control-label">* {{texts.name}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="name" placeholder="{{texts.name}}" value="{{name}}" onblur="new ValidateRequiredFieldAction({id : 'name'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.nameNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="pointsDiv">
+	    <label for="points" class="col-sm-3 control-label">* {{texts.points}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="points" placeholder="{{texts.points}}" value="{{points}}" onblur="new ValidateRequiredFieldAction({id : 'points'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.pointsNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="maxPointsDiv">
+	    <label for="maxPoints" class="col-sm-3 control-label">* {{texts.maxPoints}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="maxPoints" placeholder="{{texts.maxPoints}}" value="{{maxPoints}}" onblur="new ValidateRequiredFieldAction({id : 'maxPoints'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.maxPointsNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="rateDiv">
+	    <label for="rate" class="col-sm-3 control-label">* {{texts.rate}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="rate" placeholder="{{texts.rate}}" value="{{rate}}" onblur="new ValidateRequiredFieldAction({id : 'rate'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.rateNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	
+</form>

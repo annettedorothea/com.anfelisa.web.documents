@@ -1,0 +1,67 @@
+<form class="form-horizontal">
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+            <h4>{{texts.result}}</h4>
+        </div>
+    </div>
+
+	<div class="form-group" id="resultIdDiv">
+	    <label for="resultId" class="col-sm-3 control-label">* {{texts.resultId}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="resultId" placeholder="{{texts.resultId}}" value="{{resultId}}" onblur="new ValidateRequiredFieldAction({id : 'resultId'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.resultIdNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="usernameDiv">
+	    <label for="username" class="col-sm-3 control-label">* {{texts.username}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="username" placeholder="{{texts.username}}" value="{{username}}" onblur="new ValidateRequiredFieldAction({id : 'username'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.usernameNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="testIdDiv">
+	    <label for="testId" class="col-sm-3 control-label">* {{texts.testId}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="testId" placeholder="{{texts.testId}}" value="{{testId}}" onblur="new ValidateRequiredFieldAction({id : 'testId'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.testIdNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="dateDiv">
+	    <label for="date" class="col-sm-3 control-label">* {{texts.date}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="date" placeholder="{{texts.date}}" value="{{date}}" onblur="new ValidateRequiredFieldAction({id : 'date'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.dateNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="jsonDiv">
+	    <label for="json" class="col-sm-3 control-label">* {{texts.json}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="json" placeholder="{{texts.json}}" value="{{json}}" onblur="new ValidateRequiredFieldAction({id : 'json'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.jsonNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="pointsDiv">
+	    <label for="points" class="col-sm-3 control-label">* {{texts.points}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="points" placeholder="{{texts.points}}" value="{{points}}" onblur="new ValidateRequiredFieldAction({id : 'points'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.pointsNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="maxPointsDiv">
+	    <label for="maxPoints" class="col-sm-3 control-label">* {{texts.maxPoints}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="maxPoints" placeholder="{{texts.maxPoints}}" value="{{maxPoints}}" onblur="new ValidateRequiredFieldAction({id : 'maxPoints'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.maxPointsNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	
+</form>

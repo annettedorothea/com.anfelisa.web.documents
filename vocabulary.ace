@@ -1,0 +1,131 @@
+vocabulary
+
+target ES6 
+
+actions {
+	CorrectWord executes CorrectWord
+	IsTestFinished executes IsTestFinished
+	IsRatedTestFinished executes IsRatedTestFinished
+	ShowNextWordOfTest executes ShowNextWordOfTest
+	ShowWord executes ShowWord
+	StartTest executes StartTest
+	RateWord executes RateWord
+	RepeatComplexCard executes RepeatComplexCard
+}
+
+commands {
+	CorrectWord {
+		on wordIsCorrectAndFinished publishes (
+			WordIsCorrectAndFinished
+		) triggers (
+			IsTestFinished
+		)
+		on wordIsCorrectAndNotFinished publishes (
+			WordIsCorrectAndNotFinished
+		) triggers (
+			IsTestFinished
+		)
+		on wordIsNotCorrect publishes (
+			WordIsNotCorrect
+		) triggers (
+			IsTestFinished
+		)
+	}
+	IsTestFinished {
+		on testFailed triggers (
+			common.SaveResult
+		)
+		on testFinishedSuccessfully triggers (
+			common.SaveResult
+		)
+		on goOnWithTest publishes (
+			DisplayNextWordButton
+		)
+	}
+	IsRatedTestFinished {
+		on testFailed triggers (
+			common.SaveResult
+		)
+		on testFinishedSuccessfully triggers (
+			common.SaveResult
+		)
+		on goOnWithTest triggers (
+			ShowNextWordOfTest
+		)
+	}
+	ShowNextWordOfTest {
+		on showNextWordOfTest publishes (
+			ShowNextWordOfTest
+		)
+	}
+	ShowWord {
+		on showWord publishes (
+			ShowWord
+		)
+	}
+	StartTest {
+		on testStarted publishes (
+			TestStarted
+		) triggers (
+			ShowNextWordOfTest
+		)
+	} 
+	RateWord {
+		on wordIsCorrectAndFinished publishes (
+			WordIsCorrectAndFinished
+		) triggers (
+			IsRatedTestFinished
+		)
+		on wordIsCorrectAndNotFinished publishes (
+			WordIsCorrectAndNotFinished
+		) triggers (
+			IsRatedTestFinished
+		)
+		on wordIsNotCorrect publishes (
+			WordIsNotCorrect
+		) triggers (
+			IsRatedTestFinished
+		)
+	}
+	RepeatComplexCard {
+		on go triggers (common.Route)
+	}
+}
+
+events {
+	WordIsCorrectAndFinished listenedToBy (
+		Vocabulary.wordIsCorrectAndFinished
+	)
+	WordIsCorrectAndNotFinished listenedToBy (
+		Vocabulary.wordIsCorrectAndNotFinished
+	)
+	WordIsNotCorrect listenedToBy (
+		Vocabulary.wordIsNotCorrect
+	)
+	DisplayNextWordButton listenedToBy (
+		Vocabulary.displayNextWordButton
+	)
+	ShowNextWordOfTest listenedToBy (
+		Vocabulary.showNextWordOfTest
+	)
+	ShowWord listenedToBy (
+		Vocabulary.showWord
+	)
+	TestStarted listenedToBy (
+		Vocabulary.testStarted
+	)
+}
+
+views {
+	Vocabulary {
+		wordIsCorrectAndFinished
+		wordIsCorrectAndNotFinished
+		wordIsNotCorrect
+		showWord
+		goOnWithNextWord
+		updateTestState
+		displayNextWordButton
+		showNextWordOfTest
+		testStarted
+	}
+}

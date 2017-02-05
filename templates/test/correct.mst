@@ -1,0 +1,1 @@
+<button id='correctButton' class='btn btn-red' onclick='new CorrectWordAction().apply()'>{{texts.correct}}</button>

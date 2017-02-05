@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Anfelisa</title>
+
+	<meta charset="utf-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="favicon/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="favicon/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="favicon/manifest.json">
+	<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="theme-color" content="#ff0000">
+
+	<link rel="stylesheet" type="text/css" href="css/anfelisa.css">
+
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+    <!--
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    -->
+
+    <script type="text/javascript" src="lib/jquery-3.1.1.js"></script>
+	<script type="text/javascript" src="lib/bootstrap.js"></script>
+	<script type="text/javascript" src="lib/mustache.js"></script>
+	<script type="text/javascript" src="lib/mousetrap.min.js"></script>
+
+	<script type="text/javascript" src="lib/bootbox.min.js"></script>
+
+    <script type="text/javascript" src="lib/md5.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/cookie-bar/1/cookiebar-latest.min.js"></script>
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="lib/anfelisa_min.js"></script>
+
+	<script>
+
+		$(document).ready(function() {
+
+			if (window.navigator.userAgent.indexOf("MSIE ") > 0 || window.navigator.userAgent.indexOf("Edge") > 0) {
+				return;
+			}
+
+			$.ajaxSetup({ cache: false });
+
+			$(document).ajaxStart(function() {
+				$('.ajax-busy').show();
+			}).ajaxStop(function() {
+				$('.ajax-busy').hide();
+			});
+
+            if (screen.width < 992 ){
+                $('div.header div.container').addClass('container-fluid').removeClass('container');
+                $('div.main-pane').addClass('container-fluid').removeClass('container');
+            } else {
+                $('div.header div.form-inline').addClass('pull-right');
+                var random = Math.random();
+                var index = Math.floor(random * 5);
+                if (index === 0) {
+                    $('body').addClass('water');
+                } else if (index === 1) {
+                    $('body').addClass('flower');
+                } else if (index === 2) {
+                    $('body').addClass('grass');
+                } else if (index === 3) {
+                    $('body').addClass('sunflowers');
+                } else if (index === 4) {
+                    $('body').addClass('sea');
+                }
+            }
+		});
+
+		var focusedElement = null;
+
+		function insertSpecialCharacter(character) {
+			if (focusedElement != null) {
+				focusedElement.val(focusedElement.val() + character);
+				focusedElement.focus();
+			}
+		}
+
+		function toggleVisibilityOfRow(elementId) {
+			var div = document.getElementById(elementId);
+			if (div.style.display !== 'none') {
+				div.style.display = 'none';
+			}
+			else {
+				div.style.display = 'table-row';
+			}
+		}
+
+	</script>
+</head>
+
+<body>
+	<div class="container-fluid header-margin"></div>
+
+    <div class="header container-fluid">
+        <div class="container">
+            <div class="row">
+                <h1 class="col-md-6 col-lg-3 hidden-xs hidden-sm visible-md-* visible-lg-*"><i class="fa fa-pencil-square"></i> Anfelisa</h1>
+                <div class="col-md-6 col-lg-9 login-logout-pane">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container main-pane">
+        <div class="row">
+            <div class="col-md-4 col-lg-4">
+                <div class="navigation">
+                    <div class="course-navigation">
+                    </div>
+                    <div class="box-navigation">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-8">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-10 col-md-11 col-lg-11">
+                            <div class="breadcrumbs" class="pull-left">
+                            </div>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 ajax-busy">
+                            <i class="fa fa-spinner fa-pulse fa-2x fa-fw pull-right" style="display: block;"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="notifications col-xs-12 col-sm-12 col-md-11 col-lg-11"></div>
+                    </div>
+                    <div class="row">
+                        <div class="content-pane col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            Anfelisa funktioniert nur mit
+                            <a href="https://www.mozilla.org/de/firefox/new/" target="firefox">Firefox</a>,
+                            <a href="https://www.google.de/chrome/browser/desktop/" target="chrome">Chrome</a> oder
+                            <a href="http://www.apple.com/de/safari/" target="safari">Safari</a>,
+                            allerdings nicht mit dem Internet Explorer oder Microsoft Edge.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container main-pane hidden-xs hidden-sm">
+        <div class="row collapse" id="replayDiv">
+            <div class="col-md-12 container">
+                <h1>Replay</h1>
+                <div class="row">
+                    <div class="col-md-12 form-inline" style="display: flex; justify-content: center;">
+                        <div class="form-group">
+                            <button class="btn btn-default"
+                                    onclick="ACEController.replay()">Replay
+                            </button>
+                            <button class="btn btn-default"
+                                    onclick="ACEController.e2e()">E2E
+                            </button>
+                            <input type="text" class="form-control mousetrap" id="pauseInMillisInput"
+                                   placeholder="Pause in ms">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-inline" style="display: flex; justify-content: center; margin-top: 20px;">
+                        <div class="form-group">
+                            <button class="btn btn-default" onclick="ACEController.downloadTimeline()">download
+                                scenario
+                            </button>
+							<span class="btn btn-default btn-file">upload scenario
+								<input id="uploadTimelineInputField" class="form-control" type='file' accept='text/json'
+									   onchange='ACEController.uploadTimeline(event)'>
+							</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+					<table class="table table-condensed table-bordered col-md-12" id="replayResultDiv"
+						   style="font-size: 10px; margin-top: 20px; table-layout:fixed;">
+						<tr>
+							<td width="25%"><h4>Original Expected Timeline</h4></td>
+							<td width="25%"><h4>Expected Timeline</h4></td>
+							<td width="25%"><h4>Actual Timeline</h4></td>
+							<td width="25%"><h4>Original Actual Timeline</h4></td>
+						</tr>
+					</table>
+            	</div>
+            </div>
+        </div>
+    </div>
+
+	<div class="container hidden-md hidden-lg visible-xs-* visible-sm-*">
+		<div class="row">
+			<div class="col-md-12">
+				Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Annette Pohl - Koblenz | Version 1.0.0 - Dev
+			</div>
+		</div>
+	</div>
+    <div class="container-fluid footer hidden-xs hidden-sm visible-md-* visible-lg-*">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Impressum</h1>
+                </div>
+                <div class="col-md-4">
+                    <address>
+                        <p>
+                            Annette Pohl<br /> St.-Josef-Str. 20<br /> 56068 Koblenz<br />
+                        </p>
+                        <p>
+                            0261 1393793 <br /> info@anfelisa.com
+                        </p>
+                    </address>
+                </div>
+                <div class="col-md-4">
+                    <p>Version 1.0.0</p>
+                    <p>Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Annette Pohl - Koblenz</p>
+                    <ul class="alt">
+                        <li><a href="http://artboom.de/" target="artboom">artboom</a></li>
+                        <li><a href="http://fortawesome.github.io/Font-Awesome/"
+                               target="fa">Font Awesome</a></li>
+                    </ul>
+                    <ul class="alt">
+                        <li><a data-toggle="collapse" href="#replayDiv" aria-expanded="false" aria-controls="replayDiv">
+                            ACE
+                        </a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="alt">
+                        <li><a target="xtext" href="http://www.eclipse.org/Xtext/">Xtext</a></li>
+                        <li><a href="http://getbootstrap.com/" target="bootstrap">Bootstrap</a></li>
+                        <li><a target="jquery" href="http://jquery.com/">jQuery</a></li>
+                        <li><a target="mustache" href="http://mustache.github.io/">mustache</a></li>
+                        <li><a target="postgresql" href="http://www.postgresql.org/">PostgreSQL</a></li>
+                        <li><a target="dropwizard" href="http://www.dropwizard.io/">Dropwizard</a></li>
+                        <li><a href="http://www.supermemo.com/english/ol/sm2.htm" target="sm2">Algorithm SM-2 &copy; Copyright SuperMemo World</a></li>
+                        <li><a href="https://craig.is/killing/mice" target="mousetrap">Mousetrap</a></li>
+                        <li><a href="https://github.com/sytelus/CryptoJS" target="crypto-js">CryptoJS</a></li>
+                        <li><a href="http://bootboxjs.com/" target="bootbox">Bootbox</a></li>
+                        <li><a href="http://cookie-bar.eu/" target="cookiebar">cookieBAR</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

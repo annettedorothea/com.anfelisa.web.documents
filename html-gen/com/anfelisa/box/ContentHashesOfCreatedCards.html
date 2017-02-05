@@ -1,0 +1,35 @@
+<form class="form-horizontal">
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+            <h4>{{texts.contentHashesOfCreatedCards}}</h4>
+        </div>
+    </div>
+
+	<div class="form-group" id="testIdDiv">
+	    <label for="testId" class="col-sm-3 control-label">* {{texts.testId}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="testId" placeholder="{{texts.testId}}" value="{{testId}}" onblur="new ValidateRequiredFieldAction({id : 'testId'}).apply()">
+	        <span class="help-block notEmpty" style="display: none">{{texts.testIdNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="contentHashesOfCreatedCardsDiv">
+	    <label for="contentHashesOfCreatedCards" class="col-sm-3 control-label">{{texts.contentHashesOfCreatedCards}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="contentHashesOfCreatedCards" placeholder="{{texts.contentHashesOfCreatedCards}}" value="{{contentHashesOfCreatedCards}}">
+	        <span class="help-block notEmpty" style="display: none">{{texts.contentHashesOfCreatedCardsNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="contentHashesOfObsoleteCardsDiv">
+	    <label for="contentHashesOfObsoleteCards" class="col-sm-3 control-label">{{texts.contentHashesOfObsoleteCards}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="contentHashesOfObsoleteCards" placeholder="{{texts.contentHashesOfObsoleteCards}}" value="{{contentHashesOfObsoleteCards}}">
+	        <span class="help-block notEmpty" style="display: none">{{texts.contentHashesOfObsoleteCardsNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	
+</form>

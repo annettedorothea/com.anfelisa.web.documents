@@ -1,0 +1,142 @@
+common
+
+target ES6
+
+actions {
+	Init executes Init
+	Route executes Route
+	RouteHome executes Route
+	Login executes Login
+	Logout executes Logout
+	SaveResult executes SaveResult
+	ValidateRequiredField executes ValidateRequiredField
+	OpenReallyDeleteDialog executes OpenReallyDeleteDialog
+	CloseAllDialogs executes CloseAllDialogs
+	SwitchLanguage executes SwitchLanguage
+	RenderLogin executes RenderLogin
+	RenderLogout executes RenderLogout
+	RenderHome executes RenderHome
+}
+
+commands {
+	Init {
+		on publicCourses publishes ( InitOK ) triggers ( navigation.ReadPublicCourses RenderLogin RenderHome )
+		on publicLessons publishes (InitOK ) triggers ( navigation.ReadPublicLessons RenderLogin)
+		on publicTests publishes (InitOK ) triggers ( navigation.ReadPublicTests RenderLogin)
+		on publicTest publishes (InitOK ) triggers ( navigation.ReadPublicTest RenderLogin)
+		on privateCourses publishes (InitOK ) triggers ( navigation.ReadPrivateCourses navigation.ReadStatistics navigation.ReadBoxes RenderLogout)
+		on privateLessons publishes (InitOK ) triggers ( navigation.ReadPrivateLessons navigation.ReadBoxes RenderLogout)
+		on privateTests publishes (InitOK ) triggers ( navigation.ReadPrivateTests navigation.ReadBoxes RenderLogout)
+		on privateTest publishes (InitOK ) triggers ( navigation.ReadPrivateTest navigation.ReadBoxes RenderLogout) 
+		on result publishes (InitOK ) triggers ( navigation.ReadResult navigation.ReadBoxes RenderLogout)
+		on box publishes (InitOK ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadNextCard RenderLogout)
+		on profile publishes (InitOK ) triggers ( profile.OpenProfile navigation.ReadPrivateCourses navigation.ReadBoxes RenderLogout)
+		on profileCourses publishes (InitOK ) triggers ( profile.OpenCourseSelection navigation.ReadPrivateCourses navigation.ReadBoxes RenderLogout)
+		on profileBoxCreate publishes(InitOK) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenBoxCreation RenderLogout)
+		on profileBoxEdit publishes(InitOK) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadBox RenderLogout)
+		on profileCourseAdd publishes(InitOK) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadCourses RenderLogout)
+		on profilePassword publishes(InitOK) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenChangePassword RenderLogout)
+		on forgotPassword publishes (InitOK) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenForgotPassword)
+		on newPassword publishes (InitOK) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenNewPassword)
+		on register publishes (InitOK) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenRegistration)
+		on confirmEmail triggers (profile.ConfirmEmail) 
+	}
+	RenderLogin {
+		on ok publishes (RenderLogin)
+	}
+	RenderLogout {
+		on ok publishes (RenderLogout)
+	}
+	Route {
+		on ok publishes ( UpdateHash ) triggers ( Init )
+	}
+	Login {
+		on ok publishes (UserLoggedIn) triggers ( Route )
+		on error publishes ( ServerError ) triggers ( RouteHome )
+	}
+	Logout {
+		on ok publishes (UserLoggedOut) triggers ( Route )
+	}
+	SaveResult {
+		on noCredentials publishes (
+			RenderResult
+		)
+		on resultSaved triggers (
+			Route
+		)
+		on serverError publishes (
+			common.ServerError
+		)
+	}
+	ValidateRequiredField {
+		on fieldEmpty publishes ( FieldEmpty )
+		on fieldNotEmpty publishes ( FieldNotEmpty )
+	}
+	OpenReallyDeleteDialog {
+		on removeCourseFromUser publishes (DisplayRemoveCourseFromUserDialog)
+		on deleteBox publishes (DisplayDeleteBoxDialog)
+		on removedCard publishes (DisplayRemoveCardFromBoxDialog)
+	}
+	CloseAllDialogs {
+		on ok 
+	}
+	SwitchLanguage {
+		on ok publishes (SwitchLanguage) triggers (Init)
+	}
+	RenderHome {
+		on ok publishes (RenderHome)
+	}
+}
+
+events {
+	InitOK listenedToBy ( Common.initLanguageInLocalStorage Common.initSchemaInLocalStorage )
+	ServerError listenedToBy ( Error.renderServerError )
+	Error listenedToBy ( Error.renderError )
+	Message listenedToBy (Message.renderMessage)
+	UpdateHash listenedToBy ( Common.updateHash )
+	UserLoggedIn listenedToBy ( Common.initUserInLocalStorage )
+	UserLoggedOut listenedToBy ( Common.removeUserFromLocalStorage navigation.Boxes.hideBoxes )
+	RenderResult listenedToBy ( Test.renderResult )
+	FieldEmpty listenedToBy ( Validation.fieldEmpty ) 
+	FieldNotEmpty listenedToBy ( Validation.fieldNotEmpty )
+	DisplayRemoveCourseFromUserDialog listenedToBy (ReallyDeleteDialog.displayRemoveCourseFromUserDialog)
+	DisplayDeleteBoxDialog listenedToBy (ReallyDeleteDialog.displayDeleteBoxDialog)
+	DisplayRemoveCardFromBoxDialog listenedToBy (ReallyDeleteDialog.displayRemoveCardFromBoxDialog)
+	SwitchLanguage listenedToBy (Common.initLanguageInLocalStorage)
+	RenderLogin listenedToBy (Header.renderLogin)
+	RenderLogout listenedToBy (Header.renderLogout)
+	RenderHome listenedToBy (navigation.Content.renderPublicCourses)
+} 
+
+views {
+	Error {
+		renderError
+		renderServerError
+	}
+	Message {
+		renderMessage
+	}
+	Common {
+		initLanguageInLocalStorage
+		initSchemaInLocalStorage
+		updateHash
+		initUserInLocalStorage
+		removeUserFromLocalStorage
+	}
+	Header {
+		renderLogin
+		renderLogout
+	}
+	Test {
+		renderResult
+	}
+	Validation {
+		fieldEmpty
+		fieldNotEmpty
+	}
+	ReallyDeleteDialog {
+		displayRemoveCourseFromUserDialog
+		displayDeleteBoxDialog
+		displayRemoveCardFromBoxDialog
+	}
+}

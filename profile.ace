@@ -1,0 +1,162 @@
+profile
+
+target ES6
+
+actions {
+	OpenProfile executes OpenProfile
+	SaveProfile executes SaveProfile
+	OpenCourseSelection executes OpenCourseSelection
+	SaveCourseSelection executes SaveCourseSelection
+	RemoveCourse executes RemoveCourse
+	SaveBox executes SaveBox
+	DeleteBox executes DeleteBox
+	LoadBox executes LoadBox
+	OpenBoxCreation executes OpenBoxCreation
+	LoadCourses executes LoadCourses
+	SaveBoxConfig executes SaveBoxConfig
+	FillBoxWithCards executes FillBoxWithCards
+	UpdatePassword executes UpdatePassword
+	OpenChangePassword executes OpenChangePassword
+	ValidatePassword executes ValidatePassword
+	OpenForgotPassword executes OpenForgotPassword
+	SubmitForgotPasswordRequest executes SubmitForgotPasswordRequest
+	OpenNewPassword executes OpenNewPassword
+	SubmitNewPassword executes SubmitNewPassword
+	OpenRegistration executes OpenRegistration
+	SubmitRegistration executes SubmitRegistration
+	CheckUsername  executes CheckUsername
+	ConfirmEmail executes ConfirmEmail
+}
+commands {
+	OpenProfile {
+		on userInfoRead publishes (UserInfoLoaded)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	SaveProfile {
+		on saved triggers (common.Route)
+		on dataInvalid publishes ( common.Error )
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	OpenCourseSelection {
+		on coursesRead publishes ( CoursesLoaded )
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	SaveCourseSelection {
+		on saved triggers (common.Route)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	RemoveCourse {
+		on deleted triggers (common.Route)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	SaveBox {
+		on saved triggers (common.Route)
+		on dataInvalid publishes ( common.Error )
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	DeleteBox {
+		on deleted triggers (common.Route)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	LoadBox {
+		on loaded publishes ( RenderBox )
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	OpenBoxCreation {
+		on ok publishes (RenderBox)
+	}
+	LoadCourses {
+		on loaded publishes ( RenderCourseToBox )
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	SaveBoxConfig {
+		on saved triggers (FillBoxWithCards)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	FillBoxWithCards {
+		on filled triggers (common.Route)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	OpenChangePassword {
+		on ok publishes (RenderChangePassword)
+	}
+	UpdatePassword {
+		on dataInvalid publishes (common.Error)
+		on mismatch publishes (common.Error)
+		on saved publishes (common.UserLoggedIn) triggers (common.Route)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	SubmitNewPassword {
+		on dataInvalid publishes (common.Error)
+		on mismatch publishes (common.Error)
+		on saved publishes (common.UserLoggedIn) triggers (common.Route)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	ValidatePassword {
+		on empty publishes (PasswordEmpty)
+		on ok publishes (PasswordsOK)
+		on mismatch publishes (PasswordsMismatch)
+	}
+	OpenForgotPassword {
+		on ok publishes (RenderForgotPassword)
+	}
+	OpenNewPassword {
+		on ok publishes (RenderNewPassword)
+	}
+	SubmitForgotPasswordRequest {
+		on dataInvalid publishes (common.Error)
+		on ok publishes (common.Message)
+	}
+	OpenRegistration {
+		on ok publishes (RenderRegistration)
+	}
+	SubmitRegistration {
+		on dataInvalid publishes (common.Error)
+		on mismatch publishes (common.Error)
+		on saved publishes (common.UserLoggedIn) triggers (common.Route)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+	CheckUsername {
+		on empty publishes (common.FieldEmpty)
+		on available publishes (UsernameIsAvailable)
+		on notAvailable publishes (UsernameIsNotAvailable)
+	}
+	ConfirmEmail {
+		on saved publishes (common.UserLoggedIn) triggers (common.Route)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
+}
+events {
+	UserInfoLoaded listenedToBy ( UserInfo.renderUserInfo )
+	CoursesLoaded listenedToBy ( UserInfo.renderCourseSelection )
+	RenderBox listenedToBy ( UserInfo.renderBox )
+	RenderCourseToBox listenedToBy ( UserInfo.renderCourseToBox )
+	RenderChangePassword listenedToBy (UserInfo.renderPasswordChange)
+	PasswordsOK listenedToBy (UserInfo.passwordOK)
+	PasswordsMismatch listenedToBy (UserInfo.passwordMismatch)
+	RenderForgotPassword listenedToBy (UserInfo.renderForgotPassword)
+	RenderNewPassword listenedToBy (UserInfo.renderNewPassword)
+	RenderRegistration listenedToBy (UserInfo.renderRegistration)
+	UsernameIsAvailable listenedToBy (UserInfo.renderUsernameIsAvailable)
+	UsernameIsNotAvailable listenedToBy (UserInfo.renderUsernameIsNotAvailable)
+	PasswordEmpty listenedToBy (UserInfo.passwordEmpty)
+}
+views {
+	UserInfo {
+		renderUserInfo
+		renderCourseSelection
+		boxCreated
+		boxEdited
+		renderBox
+		renderCourseToBox
+		renderPasswordChange
+		passwordOK
+		passwordMismatch
+		passwordEmpty
+		renderForgotPassword
+		renderNewPassword
+		renderRegistration
+		renderUsernameIsAvailable
+		renderUsernameIsNotAvailable
+	}
+}

@@ -1,0 +1,76 @@
+<form class="form-horizontal">
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+            <h4>{{texts.statisticsItemList}}</h4>
+        </div>
+    </div>
+
+	{{#statisticsItemList}}
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<h4 class="panel-title">{{texts.type}}: {{type}}</h4>
+			<h4 class="panel-title">{{texts.isBox}}: {{isBox}}</h4>
+			<h4 class="panel-title">{{texts.count}}: {{count}}</h4>
+			<h4 class="panel-title">{{texts.day}}: {{day}}</h4>
+			<h4 class="panel-title">{{texts.name}}: {{name}}</h4>
+			<h4 class="panel-title">{{texts.points}}: {{points}}</h4>
+			<h4 class="panel-title">{{texts.maxPoints}}: {{maxPoints}}</h4>
+			<h4 class="panel-title">{{texts.rate}}: {{rate}}</h4>
+	    </div>
+	    <div class="panel-body">
+			{{texts.type}}: {{type}}<br>
+			{{texts.isBox}}: {{isBox}}<br>
+			{{texts.count}}: {{count}}<br>
+			{{texts.day}}: {{day}}<br>
+			{{texts.name}}: {{name}}<br>
+			{{texts.points}}: {{points}}<br>
+			{{texts.maxPoints}}: {{maxPoints}}<br>
+			{{texts.rate}}: {{rate}}<br>
+	    </div>
+	</div>
+	{{/statisticsItemList}}
+	{{^statisticsItemList}}
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	        <h3 class="panel-title">{{texts.emptyStatisticsItemList}}</h3>
+	    </div>
+	</div>
+	{{/statisticsItemList}}
+	
+	<div class="table-responsive">
+	    <table class="table table-bordered table-hover table-responsive">
+	        <tr>
+				<th>{{texts.type}}</th>
+				<th>{{texts.isBox}}</th>
+				<th>{{texts.count}}</th>
+				<th>{{texts.day}}</th>
+				<th>{{texts.name}}</th>
+				<th>{{texts.points}}</th>
+				<th>{{texts.maxPoints}}</th>
+				<th>{{texts.rate}}</th>
+	        </tr>
+	        {{#statisticsItemList}}
+	        <tr>
+				<td>{{type}}</td>
+				<td>{{isBox}}</td>
+				<td>{{count}}</td>
+				<td>{{day}}</td>
+				<td>{{name}}</td>
+				<td>{{points}}</td>
+				<td>{{maxPoints}}</td>
+				<td>{{rate}}</td>
+	        </tr>
+	        {{/statisticsItemList}}
+	        {{^statisticsItemList}}
+	        <tr>
+	            <td colspan="8">{{texts.emptyStatisticsItemList}}</td>
+	        </tr>
+	        {{/statisticsItemList}}
+	    </table>
+	</div>
+	
+	
+	
+</form>

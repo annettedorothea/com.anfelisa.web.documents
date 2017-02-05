@@ -1,0 +1,88 @@
+<form class="form-horizontal">
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+            <h4>{{texts.cardContent}}</h4>
+        </div>
+    </div>
+
+	<div class="form-group" id="complexDiv">
+	    <label for="complex" class="col-sm-3 control-label">{{texts.complex}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="complex" placeholder="{{texts.complex}}" value="{{complex}}">
+	        <span class="help-block notEmpty" style="display: none">{{texts.complexNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="givenDiv">
+	    <label for="given" class="col-sm-3 control-label">{{texts.given}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="given" placeholder="{{texts.given}}" value="{{given}}">
+	        <span class="help-block notEmpty" style="display: none">{{texts.givenNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="largeDiv">
+	    <label for="large" class="col-sm-3 control-label">{{texts.large}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="large" placeholder="{{texts.large}}" value="{{large}}">
+	        <span class="help-block notEmpty" style="display: none">{{texts.largeNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="wantedDiv">
+	    <label for="wanted" class="col-sm-3 control-label">{{texts.wanted}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="wanted" placeholder="{{texts.wanted}}" value="{{wanted}}">
+	        <span class="help-block notEmpty" style="display: none">{{texts.wantedNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	<div class="form-group" id="headerDiv">
+	    <label for="header" class="col-sm-3 control-label">{{texts.header}}</label>
+	    <div class="col-sm-9">
+	        <input type="text" class="form-control" id="header" placeholder="{{texts.header}}" value="{{header}}">
+	        <span class="help-block notEmpty" style="display: none">{{texts.headerNotEmpty}}</span>
+	    </div>
+	</div>
+	
+	{{#lines}}
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<h4 class="panel-title">{{texts.words}}: {{words}}</h4>
+	    </div>
+	    <div class="panel-body">
+			{{texts.words}}: {{words}}<br>
+	    </div>
+	</div>
+	{{/lines}}
+	{{^lines}}
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	        <h3 class="panel-title">{{texts.emptyLines}}</h3>
+	    </div>
+	</div>
+	{{/lines}}
+	
+	<div class="table-responsive">
+	    <table class="table table-bordered table-hover table-responsive">
+	        <tr>
+				<th>{{texts.words}}</th>
+	        </tr>
+	        {{#lines}}
+	        <tr>
+				<td>{{words}}</td>
+	        </tr>
+	        {{/lines}}
+	        {{^lines}}
+	        <tr>
+	            <td colspan="1">{{texts.emptyLines}}</td>
+	        </tr>
+	        {{/lines}}
+	    </table>
+	</div>
+	
+	
+	
+</form>

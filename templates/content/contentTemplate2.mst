@@ -1,0 +1,2 @@
+<h2>{{courseName}}</h2>
+<p>{{courseDescription}}</p>
