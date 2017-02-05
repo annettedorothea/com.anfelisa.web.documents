@@ -15,6 +15,7 @@ actions {
 	ReadStatistics executes ReadStatistics
 	ReadBoxes executes ReadBoxes
 	ReadNextCard executes ReadNextCard
+	ReadReinforceCards executes ReadReinforceCards
 }
 
 commands {
@@ -66,6 +67,10 @@ commands {
 		on ok publishes (NextCardRead )
 		on error publishes ( common.ServerError ) 
 	}
+	ReadReinforceCards {
+		on ok publishes (card.SaveReinforceCards) triggers (card.DisplayNextReinforceCard)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+	}
 }
 
 events {
@@ -110,6 +115,8 @@ views {
 		renderResult
 		renderStatistics
 		renderCard
+		renderNextReinforceCard
+		renderReinforceFinished
 	}
 	Breadcrumbs {
 		renderPublicCoursesBreadcrumbs

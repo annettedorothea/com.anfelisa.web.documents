@@ -9,9 +9,9 @@
   "finishedHeader" : "Fertig!",
   "finishedText" : "Du hast alle Karten für heute fertig!",
   "perfect" : "Perfekt (q)",
-  "scarcely" : "Knapp nicht (w)",
+  "scarcely" : "Knapp (w)",
   "knewIt" : "Gewusst (a)",
-  "didNotKnow" : "Nicht gewusst (s)",
+  "didNotKnow" : "Nicht (s)",
   "withEffort" : "Mit Mühe (y)",
   "noIdea" : "Kein Plan (x)",
   "username" : "Benutzername",
@@ -65,5 +65,8 @@
   "finishCardButton1Text" : "Nicht gut",
   "repeatCardButtonText" : "Wiederholen",
   "reallyRemoveCardFromBox" : "Wirklich diese Karte aussortieren?",
-  "removeCardFromBox" : "Aussortieren"
+  "removeCardFromBox" : "Aussortieren",
+  "reinforce" : "Festigen",
+  "reinforceCardsCount" : "Anzahl der Karten zum Festigen",
+  "reinforcecFinishedText" : "Du hast alle Karten für heute gefestigt."
 }

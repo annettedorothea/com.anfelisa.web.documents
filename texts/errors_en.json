@@ -32,5 +32,6 @@
   "registerUserFailed" : "Failed to register user.",
   "confirmEmailFailed" : "Failed to confirm email.",
   "fillBoxWithCardsFailed" : "Failed to fill box with cards.",
-  "removeFromBoxFailed" : "Failed to remove card."
+  "removeFromBoxFailed" : "Failed to remove card.",
+  "readReinforceCardsFailed" : "Failed to load reinforce cards."
 }

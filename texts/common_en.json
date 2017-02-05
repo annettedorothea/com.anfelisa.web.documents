@@ -11,7 +11,7 @@
   "perfect" : "Perfect (q)",
   "scarcely" : "Scarcely (w)",
   "knewIt" : "Knew it (a)",
-  "didNotKnow" : "Did not know (s)",
+  "didNotKnow" : "Not (s)",
   "withEffort" : "With effort (y)",
   "noIdea" : "No idea (x)",
   "username" : "Username",
@@ -65,5 +65,8 @@
   "finishCardButton1Text" : "Not good",
   "repeatCardButtonText" : "Repeat",
   "reallyRemoveCardFromBox" : "Really remove this card from box?",
-  "removeCardFromBox" : "Remove"
+  "removeCardFromBox" : "Remove",
+  "reinforce" : "Reinforce",
+  "reinforceCardsCount" : "Reinforce cards count",
+  "reinforcecFinishedText" : "Reinforcing finished."
 }

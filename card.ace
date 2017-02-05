@@ -8,6 +8,8 @@ actions {
 	FinishCard executes FinishCard
 	ScoreCard executes ScoreCard
 	RemoveCardFromBox executes RemoveCardFromBox
+	DisplayNextReinforceCard executes DisplayNextReinforceCard
+	ScoreReinforcedCard executes ScoreReinforcedCard
 }
 
 commands {
@@ -51,6 +53,14 @@ commands {
 		)
 		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
+	DisplayNextReinforceCard {
+		on next publishes (DisplayNextReinforceCard)
+		on finished publishes (DisplayReinforceFinished)
+	}
+	ScoreReinforcedCard {
+		on keep publishes (KeepCardInReinforceCardList) triggers (DisplayNextReinforceCard)
+		on remove publishes (RemoveCardFromReinforceCardList) triggers (DisplayNextReinforceCard)
+	}
 }
 
 events {
@@ -66,7 +76,21 @@ events {
 	ShowScoreButtons listenedToBy (
 		Card.showScoreButtons
 	)
-	
+	SaveReinforceCards listenedToBy (
+		Reinforce.saveReinforceCardList
+	)
+	DisplayNextReinforceCard listenedToBy (
+		navigation.Content.renderNextReinforceCard
+	)
+	DisplayReinforceFinished listenedToBy (
+		navigation.Content.renderReinforceFinished
+	)
+	RemoveCardFromReinforceCardList listenedToBy (
+		Reinforce.removeCardFromReinforceCardList
+	)
+	KeepCardInReinforceCardList listenedToBy (
+		Reinforce.keepCardInReinforceCardList
+	)
 }
 
 views {
@@ -75,6 +99,11 @@ views {
 		showWanted
 		showNextLine
 		showNextWord
+	}
+	Reinforce {
+		saveReinforceCardList
+		removeCardFromReinforceCardList
+		keepCardInReinforceCardList
 	}
 	
 }

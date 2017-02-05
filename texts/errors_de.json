@@ -32,5 +32,6 @@
   "registerUserFailed" : "Das Registieren des Benutzers schlug fehl.",
   "confirmEmailFailed" : "Das Bestätigen der Email-Adresse schlug fehl.",
   "fillBoxWithCardsFailed" : "Das Füllen der Lern-Box mit den Karten schlug fehl.",
-  "removeFromBoxFailed" : "Die Karte konnte nicht entfernt werden."
+  "removeFromBoxFailed" : "Die Karte konnte nicht entfernt werden.",
+  "readReinforceCardsFailed" : "Die Karten zum Festigen konnten nicht geladen werden."
 }

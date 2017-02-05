@@ -30,6 +30,7 @@ commands {
 		on privateTest publishes (InitOK ) triggers ( navigation.ReadPrivateTest navigation.ReadBoxes RenderLogout) 
 		on result publishes (InitOK ) triggers ( navigation.ReadResult navigation.ReadBoxes RenderLogout)
 		on box publishes (InitOK ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadNextCard RenderLogout)
+		on reinforce publishes (InitOK ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadReinforceCards RenderLogout)
 		on profile publishes (InitOK ) triggers ( profile.OpenProfile navigation.ReadPrivateCourses navigation.ReadBoxes RenderLogout)
 		on profileCourses publishes (InitOK ) triggers ( profile.OpenCourseSelection navigation.ReadPrivateCourses navigation.ReadBoxes RenderLogout)
 		on profileBoxCreate publishes(InitOK) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenBoxCreation RenderLogout)

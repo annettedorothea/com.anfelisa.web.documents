@@ -13,6 +13,7 @@ class AbstractInitCommand extends Command {
         this.privateTest = "privateTest";
         this.result = "result";
         this.box = "box";
+        this.reinforce = "reinforce";
         this.profile = "profile";
         this.profileCourses = "profileCourses";
         this.profileBoxCreate = "profileBoxCreate";
@@ -86,6 +87,13 @@ class AbstractInitCommand extends Command {
         	promises.push(new TriggerAction(new ReadPrivateCoursesAction(this.commandData)).publish());
         	promises.push(new TriggerAction(new ReadBoxesAction(this.commandData)).publish());
         	promises.push(new TriggerAction(new ReadNextCardAction(this.commandData)).publish());
+        	promises.push(new TriggerAction(new RenderLogoutAction(this.commandData)).publish());
+        	break;
+        case this.reinforce:
+        	promises.push(new InitOKEvent(this.commandData).publish());
+        	promises.push(new TriggerAction(new ReadPrivateCoursesAction(this.commandData)).publish());
+        	promises.push(new TriggerAction(new ReadBoxesAction(this.commandData)).publish());
+        	promises.push(new TriggerAction(new ReadReinforceCardsAction(this.commandData)).publish());
         	promises.push(new TriggerAction(new RenderLogoutAction(this.commandData)).publish());
         	break;
         case this.profile:

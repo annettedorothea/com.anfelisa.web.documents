@@ -211,6 +211,46 @@ class ContentView {
         }
     };
 
+    static renderNextReinforceCard(eventData) {
+        var data = ReinforceCardList.reinforceCardList[0];
+        data.texts = Texts.common;
+        $.get('templates/breadcrumbs/breadcrumbsTemplateBox.mst', function(template) {
+            var rendered = Mustache.render(template, data);
+            $('.breadcrumbs').html(rendered);
+        });
+
+        Mousetrap.unbind('q');
+        Mousetrap.unbind('a');
+        Mousetrap.unbind('y');
+        Mousetrap.unbind('w');
+        Mousetrap.unbind('s');
+        Mousetrap.unbind('x');
+
+        data.reinforceCardsCount = ReinforceCardList.reinforceCardList.length;
+        console.dir(data);
+
+        $.get('templates/card/reinforceCardTemplate.mst', function(template) {
+            var rendered = Mustache.render(template, data);
+            $('.content-pane').html(rendered);
+        });
+    };
+
+    static renderReinforceFinished(eventData) {
+        var data = {};
+        data.texts = Texts.common;
+        $.get('templates/breadcrumbs/breadcrumbsTemplateBox.mst', function(template) {
+            var rendered = Mustache.render(template, data);
+            $('.breadcrumbs').html(rendered);
+        });
+
+        console.dir(data);
+
+        $.get('templates/card/reinforceFinishedTemplate.mst', function(template) {
+            var rendered = Mustache.render(template, data);
+            $('.content-pane').html(rendered);
+        });
+    };
+
 }
 
 /*                    S.D.G.                    */
