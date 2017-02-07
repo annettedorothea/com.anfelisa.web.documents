@@ -226,8 +226,14 @@ class ContentView {
         Mousetrap.unbind('s');
         Mousetrap.unbind('x');
 
+        Mousetrap.bind('enter', function () {
+            $(".ccard").click()
+        });
+        Mousetrap.bind('enter', function () {
+            $(".card").click()
+        });
+
         data.reinforceCardsCount = ReinforceCardList.reinforceCardList.length;
-        console.dir(data);
 
         $.get('templates/card/reinforceCardTemplate.mst', function(template) {
             var rendered = Mustache.render(template, data);
@@ -242,8 +248,6 @@ class ContentView {
             var rendered = Mustache.render(template, data);
             $('.breadcrumbs').html(rendered);
         });
-
-        console.dir(data);
 
         $.get('templates/card/reinforceFinishedTemplate.mst', function(template) {
             var rendered = Mustache.render(template, data);
