@@ -3,7 +3,7 @@
 class RouteHomeAction extends AbstractRouteHomeAction {
 
     captureActionParam() {
-        this.actionParam.username = localStorage.username;
+        this.actionParam.username = CommonView.getUsername();
     }
 
     initActionData() {
@@ -16,7 +16,6 @@ class RouteHomeAction extends AbstractRouteHomeAction {
     }
 
     releaseActionParam() {
-   		localStorage.username = this.actionParam.username;
     }
 }
 

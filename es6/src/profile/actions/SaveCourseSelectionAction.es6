@@ -3,9 +3,9 @@
 class SaveCourseSelectionAction extends AbstractSaveCourseSelectionAction {
 
     captureActionParam() {
-		this.actionParam.username = localStorage.username;
-		this.actionParam.password = localStorage.password;
-		this.actionParam.schema = localStorage.schema;
+		this.actionParam.username = CommonView.getUsername();
+		this.actionParam.password = CommonView.getPassword();
+		this.actionParam.schema = CommonView.getSchema();
 		this.actionParam.courseIdList = $("input:checkbox:checked").map(function() {return this.value;}).get();
     }
 
@@ -17,9 +17,6 @@ class SaveCourseSelectionAction extends AbstractSaveCourseSelectionAction {
     }
 
     releaseActionParam() {
-		localStorage.username = this.actionParam.username;
-		localStorage.password = this.actionParam.password;
-		localStorage.schema = this.actionParam.schema;
     }
 }
 

@@ -2,7 +2,7 @@
 
 class ContentView {
     static renderPublicCourses(eventData) {
-        $.get('templates/content/contentTemplate1_' + eventData.language + '.mst', function(template) {
+        $.get('templates/content/contentTemplate1_' + CommonView.getLanguage() + '.mst', function(template) {
             var rendered = Mustache.render(template, eventData.data);
             $('.content-pane').html(rendered);
         });

@@ -3,7 +3,7 @@
 class CheckUsernameAction extends AbstractCheckUsernameAction {
 
     captureActionParam() {
-        this.actionParam.schema = localStorage.schema;
+        this.actionParam.schema = CommonView.getSchema();
 		this.actionParam.username = jQuery("#username").val().trim();
     }
 
@@ -13,7 +13,6 @@ class CheckUsernameAction extends AbstractCheckUsernameAction {
     }
 
     releaseActionParam() {
-   		localStorage.schema = this.actionParam.schema;
 		jQuery("#username").val(this.actionData.username);
     }
 }

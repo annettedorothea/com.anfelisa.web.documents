@@ -3,7 +3,7 @@
 class ReadPublicTestAction extends AbstractReadPublicTestAction {
 
     captureActionParam() {
-        this.actionParam.schema = localStorage.schema;
+        this.actionParam.schema = CommonView.getSchema();
     }
 
     initActionData() {
@@ -12,7 +12,6 @@ class ReadPublicTestAction extends AbstractReadPublicTestAction {
     }
 
     releaseActionParam() {
-   		localStorage.schema = this.actionParam.schema;
     }
 }
 

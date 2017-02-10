@@ -3,7 +3,7 @@
 class RenderLogoutAction extends AbstractRenderLogoutAction {
 
     captureActionParam() {
-        this.actionParam.username = localStorage.username;
+        this.actionParam.username = CommonView.getUsername();
     }
 
     initActionData() {
@@ -11,7 +11,6 @@ class RenderLogoutAction extends AbstractRenderLogoutAction {
     }
 
     releaseActionParam() {
-   		localStorage.username = this.actionParam.username;
     }
 }
 

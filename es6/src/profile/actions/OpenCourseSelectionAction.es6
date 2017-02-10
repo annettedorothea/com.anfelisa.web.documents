@@ -3,9 +3,9 @@
 class OpenCourseSelectionAction extends AbstractOpenCourseSelectionAction {
 
     captureActionParam() {
-		this.actionParam.username = localStorage.username;
-		this.actionParam.password = localStorage.password;
-		this.actionParam.schema = localStorage.schema;
+		this.actionParam.username = CommonView.getUsername();
+		this.actionParam.password = CommonView.getPassword();
+		this.actionParam.schema = CommonView.getSchema();
     }
 
     initActionData() {
@@ -15,9 +15,6 @@ class OpenCourseSelectionAction extends AbstractOpenCourseSelectionAction {
     }
 
     releaseActionParam() {
-		localStorage.username = this.actionParam.username;
-		localStorage.password = this.actionParam.password;
-		localStorage.schema = this.actionParam.schema;
     }
 }
 

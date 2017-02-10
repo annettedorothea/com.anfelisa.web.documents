@@ -3,8 +3,8 @@
 class SubmitRegistrationAction extends AbstractSubmitRegistrationAction {
 
     captureActionParam() {
-		this.actionParam.schema = localStorage.schema;
-		this.actionParam.language = localStorage.language;
+		this.actionParam.schema = CommonView.getSchema();
+		this.actionParam.language = CommonView.getLanguage();
 		this.actionParam.username = jQuery("#username").val().trim();
 		this.actionParam.usernameExists = jQuery(".usernameNotAvailable").is(':visible');
 		this.actionParam.name = jQuery("#name").val().trim();
@@ -27,13 +27,10 @@ class SubmitRegistrationAction extends AbstractSubmitRegistrationAction {
     }
 
     releaseActionParam() {
-		localStorage.schema = this.actionParam.schema;
-		localStorage.language = this.actionParam.language;
 		jQuery("#username").val(this.actionData.username);
 		jQuery("#name").val(this.actionData.name);
 		jQuery("#prename").val(this.actionData.prename);
 		jQuery("#email").val(this.actionData.email);
-    	// release action params during replay
     }
 }
 

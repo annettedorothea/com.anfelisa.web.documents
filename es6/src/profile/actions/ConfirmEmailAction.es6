@@ -3,7 +3,7 @@
 class ConfirmEmailAction extends AbstractConfirmEmailAction {
 
     captureActionParam() {
-        this.actionParam.schema = localStorage.schema;
+        this.actionParam.schema = CommonView.getSchema();
     }
 
     initActionData() {
@@ -13,7 +13,6 @@ class ConfirmEmailAction extends AbstractConfirmEmailAction {
     }
 
     releaseActionParam() {
-   		localStorage.schema = this.actionParam.schema;
     }
 }
 

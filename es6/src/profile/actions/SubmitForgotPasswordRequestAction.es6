@@ -3,8 +3,8 @@
 class SubmitForgotPasswordRequestAction extends AbstractSubmitForgotPasswordRequestAction {
 
     captureActionParam() {
-		this.actionParam.schema = localStorage.schema;
-		this.actionParam.language = localStorage.language;
+		this.actionParam.schema = CommonView.getSchema();
+		this.actionParam.language = CommonView.getLanguage();
 		this.actionParam.username = jQuery("#username").val().trim();
     }
 
@@ -15,8 +15,6 @@ class SubmitForgotPasswordRequestAction extends AbstractSubmitForgotPasswordRequ
     }
 
     releaseActionParam() {
-		localStorage.schema = this.actionParam.schema;
-		localStorage.language = this.actionParam.language;
 		jQuery("#username").val(this.actionData.username);
     }
 }

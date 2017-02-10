@@ -3,9 +3,9 @@
 class UpdatePasswordAction extends AbstractUpdatePasswordAction {
 
     captureActionParam() {
-		this.actionParam.username = localStorage.username;
-		this.actionParam.password = localStorage.password;
-		this.actionParam.schema = localStorage.schema;
+		this.actionParam.username = CommonView.getUsername();
+		this.actionParam.password = CommonView.getPassword();
+		this.actionParam.schema = CommonView.getSchema();
 		this.actionParam.newPassword = CryptoJS.MD5(jQuery("#password").val().trim()).toString(CryptoJS.enc.Base64);
 		this.actionParam.passwordRepetition = CryptoJS.MD5(jQuery("#passwordRepetition").val().trim()).toString(CryptoJS.enc.Base64);
 		this.actionParam.newPasswordEmpty = jQuery("#password").val().trim().length === 0;
@@ -23,9 +23,6 @@ class UpdatePasswordAction extends AbstractUpdatePasswordAction {
     }
 
     releaseActionParam() {
-		localStorage.username = this.actionParam.username;
-		localStorage.password = this.actionParam.password;
-		localStorage.schema = this.actionParam.schema;
     }
 }
 

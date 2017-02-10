@@ -3,10 +3,10 @@
 class SaveResultAction extends AbstractSaveResultAction {
 
 	captureActionParam() {
-		this.actionParam.username = localStorage.username;
-		this.actionParam.password = localStorage.password;
-		this.actionParam.schema = localStorage.schema;
-		this.actionParam.language = localStorage.language;
+		this.actionParam.username = CommonView.getUsername();
+		this.actionParam.password = CommonView.getPassword();
+		this.actionParam.schema = CommonView.getSchema();
+		this.actionParam.language = CommonView.getLanguage();
 		this.actionParam.hash = window.location.hash.substring(1);
 	}
 
@@ -74,10 +74,6 @@ class SaveResultAction extends AbstractSaveResultAction {
 	}
 
 	releaseActionParam() {
-		localStorage.username = this.actionParam.username;
-		localStorage.password = this.actionParam.password;
-		localStorage.schema = this.actionParam.schema;
-		localStorage.language = this.actionParam.language;
 		window.location.hash = this.actionParam.hash;
 	}
 }

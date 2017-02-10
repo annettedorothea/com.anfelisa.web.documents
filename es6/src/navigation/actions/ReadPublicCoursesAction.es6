@@ -3,7 +3,7 @@
 class ReadPublicCoursesAction extends AbstractReadPublicCoursesAction {
 
     captureActionParam() {
-        this.actionParam.schema = localStorage.schema;
+        this.actionParam.schema = CommonView.getSchema();
     }
 
     initActionData() {
@@ -12,7 +12,6 @@ class ReadPublicCoursesAction extends AbstractReadPublicCoursesAction {
     }
 
     releaseActionParam() {
-   		localStorage.schema = this.actionParam.schema;
     }
 }
 

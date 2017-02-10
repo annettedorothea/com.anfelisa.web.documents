@@ -3,9 +3,9 @@
 class SaveBoxConfigAction extends AbstractSaveBoxConfigAction {
 
     captureActionParam() {
-		this.actionParam.username = localStorage.username;
-		this.actionParam.password = localStorage.password;
-		this.actionParam.schema = localStorage.schema;
+		this.actionParam.username = CommonView.getUsername();
+		this.actionParam.password = CommonView.getPassword();
+		this.actionParam.schema = CommonView.getSchema();
 	    var boxId = this.actionParam.boxId;
 		this.actionParam.boxOfCourseList = $("select").map(function() { return { autoAdd: this.value, courseId: this.id, boxId: boxId};}).get();
     }
@@ -19,9 +19,6 @@ class SaveBoxConfigAction extends AbstractSaveBoxConfigAction {
     }
 
     releaseActionParam() {
-		localStorage.username = this.actionParam.username;
-		localStorage.password = this.actionParam.password;
-		localStorage.schema = this.actionParam.schema;
     }
 }
 
