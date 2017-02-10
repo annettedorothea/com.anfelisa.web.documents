@@ -35,6 +35,8 @@
 
     <script type="text/javascript" src="lib/md5.js"></script>
 
+    <script type="text/javascript" src="lib/promise.min.js"></script>
+
     <script type="text/javascript" src="//cdn.jsdelivr.net/cookie-bar/1/cookiebar-latest.min.js"></script>
 
 
@@ -48,7 +50,11 @@
 
 	<script>
 
-		$(document).ready(function() {
+        if (!window.Promise) {
+            window.Promise = Promise;
+        }
+
+        $(document).ready(function() {
 
 			if (window.navigator.userAgent.indexOf("MSIE ") > 0 || window.navigator.userAgent.indexOf("Edge") > 0) {
 				return;
@@ -225,7 +231,7 @@
                     </address>
                 </div>
                 <div class="col-md-4">
-                    <p>Version 1.0.1</p>
+                    <p>Version 1.0.2</p>
                     <p>Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Annette Pohl - Koblenz</p>
                     <ul class="alt">
                         <li><a href="http://artboom.de/" target="artboom">artboom</a></li>
