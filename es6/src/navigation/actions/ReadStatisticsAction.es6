@@ -5,7 +5,6 @@ class ReadStatisticsAction extends AbstractReadStatisticsAction {
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();
 		this.actionParam.password = CommonView.getPassword();
-		this.actionParam.schema = CommonView.getSchema();
 		this.actionParam.language = CommonView.getLanguage();
 		this.actionParam.year = $(".year").val();
 		this.actionParam.month = $(".month").val();
@@ -19,7 +18,6 @@ class ReadStatisticsAction extends AbstractReadStatisticsAction {
     initActionData() {
 		this.actionData.username = this.actionParam.username;
 		this.actionData.password = this.actionParam.password;
-		this.actionData.schema = this.actionParam.schema;
 		this.actionData.language = this.actionParam.language;
 		this.actionData.year = this.actionParam.year ;
 		this.actionData.month = this.actionParam.month ;

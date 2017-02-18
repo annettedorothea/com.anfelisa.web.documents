@@ -5,7 +5,6 @@ class SaveResultAction extends AbstractSaveResultAction {
 	captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();
 		this.actionParam.password = CommonView.getPassword();
-		this.actionParam.schema = CommonView.getSchema();
 		this.actionParam.language = CommonView.getLanguage();
 		this.actionParam.hash = window.location.hash.substring(1);
 	}
@@ -13,7 +12,6 @@ class SaveResultAction extends AbstractSaveResultAction {
 	initActionData() {
 		this.actionData.username = this.actionParam.username;
 		this.actionData.password = this.actionParam.password;
-		this.actionData.schema = this.actionParam.schema;
 		this.actionData.language = this.actionParam.language;
 		this.actionData.hash = this.actionParam.hash;
 		var json = {};

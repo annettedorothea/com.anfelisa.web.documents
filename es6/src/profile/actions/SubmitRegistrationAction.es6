@@ -3,7 +3,6 @@
 class SubmitRegistrationAction extends AbstractSubmitRegistrationAction {
 
     captureActionParam() {
-		this.actionParam.schema = CommonView.getSchema();
 		this.actionParam.language = CommonView.getLanguage();
 		this.actionParam.username = jQuery("#username").val().trim();
 		this.actionParam.usernameExists = jQuery(".usernameNotAvailable").is(':visible');
@@ -15,7 +14,6 @@ class SubmitRegistrationAction extends AbstractSubmitRegistrationAction {
     }
 
     initActionData() {
-		this.actionData.schema = this.actionParam.schema;
 		this.actionData.language = this.actionParam.language;
 		this.actionData.username = this.actionParam.username;
 		this.actionData.usernameExists = this.actionParam.usernameExists;

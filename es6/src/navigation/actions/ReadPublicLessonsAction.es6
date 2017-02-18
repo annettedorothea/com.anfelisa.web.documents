@@ -3,11 +3,9 @@
 class ReadPublicLessonsAction extends AbstractReadPublicLessonsAction {
 
     captureActionParam() {
-        this.actionParam.schema = CommonView.getSchema();
     }
 
     initActionData() {
-   		this.actionData.schema = this.actionParam.schema;
     	this.actionData.courseId = this.actionParam.courseId;
     }
 

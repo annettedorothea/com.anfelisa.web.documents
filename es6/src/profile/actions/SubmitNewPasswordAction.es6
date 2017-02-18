@@ -3,7 +3,6 @@
 class SubmitNewPasswordAction extends AbstractSubmitNewPasswordAction {
 
     captureActionParam() {
-		this.actionParam.schema = CommonView.getSchema();
 		this.actionParam.username = jQuery("#username").val().trim();
 		this.actionParam.password = jQuery("#oldPassword").val().trim();
 		this.actionParam.newPassword = CryptoJS.MD5(jQuery("#password").val().trim()).toString(CryptoJS.enc.Base64);
@@ -15,7 +14,6 @@ class SubmitNewPasswordAction extends AbstractSubmitNewPasswordAction {
 		this.actionData.password = this.actionParam.password;
 		this.actionData.newPassword = this.actionParam.newPassword;
 		this.actionData.passwordRepetition = this.actionParam.passwordRepetition;
-   		this.actionData.schema = this.actionParam.schema;
     }
 
     releaseActionParam() {

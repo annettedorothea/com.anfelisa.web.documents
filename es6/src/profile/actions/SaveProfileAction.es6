@@ -5,7 +5,6 @@ class SaveProfileAction extends AbstractSaveProfileAction {
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();
 		this.actionParam.password = CommonView.getPassword();
-		this.actionParam.schema = CommonView.getSchema();
 		this.actionParam.name = jQuery("#name").val().trim();
 		this.actionParam.prename = jQuery("#prename").val().trim();
 		this.actionParam.email = jQuery("#email").val().trim();
@@ -14,7 +13,6 @@ class SaveProfileAction extends AbstractSaveProfileAction {
     initActionData() {
 		this.actionData.username = this.actionParam.username;
 		this.actionData.password = this.actionParam.password;
-		this.actionData.schema = this.actionParam.schema;
 		this.actionData.name = this.actionParam.name;
 		this.actionData.prename = this.actionParam.prename;
 		this.actionData.email = this.actionParam.email;

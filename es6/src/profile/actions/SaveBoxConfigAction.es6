@@ -5,7 +5,6 @@ class SaveBoxConfigAction extends AbstractSaveBoxConfigAction {
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();
 		this.actionParam.password = CommonView.getPassword();
-		this.actionParam.schema = CommonView.getSchema();
 	    var boxId = this.actionParam.boxId;
 		this.actionParam.boxOfCourseList = $("select").map(function() { return { autoAdd: this.value, courseId: this.id, boxId: boxId};}).get();
     }
@@ -13,7 +12,6 @@ class SaveBoxConfigAction extends AbstractSaveBoxConfigAction {
     initActionData() {
 		this.actionData.username = this.actionParam.username;
 		this.actionData.password = this.actionParam.password;
-		this.actionData.schema = this.actionParam.schema;
         this.actionData.boxId = this.actionParam.boxId;
         this.actionData.boxOfCourseList = this.actionParam.boxOfCourseList;
     }

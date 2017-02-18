@@ -21,14 +21,6 @@ class CommonView {
         });
     };
 
-    static initSchemaInLocalStorage(data) {
-        CommonViewConfig.schema = data.schema;
-        try {
-            localStorage.schema = data.schema;
-        } catch (exception) {
-        }
-    };
-    
     static initUserInLocalStorage(data) {
         CommonViewConfig.username = data.username;
         CommonViewConfig.password = data.password;
@@ -48,19 +40,6 @@ class CommonView {
         } catch (exception) {
         }
     };
-
-    static getSchema() {
-        if (CommonViewConfig.schema) {
-            return CommonViewConfig.schema;
-        }
-        try {
-            if (localStorage.schema) {
-                return localStorage.schema;
-            }
-        } catch (exception) {
-        }
-        return "anfelisa";
-    }
 
     static getUsername() {
         if (CommonViewConfig.username) {

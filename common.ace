@@ -90,7 +90,7 @@ commands {
 }
 
 events {
-	InitOK listenedToBy ( Common.initLanguageInLocalStorage Common.initSchemaInLocalStorage )
+	InitOK listenedToBy ( Common.initLanguageInLocalStorage )
 	ServerError listenedToBy ( Error.renderServerError )
 	Error listenedToBy ( Error.renderError )
 	Message listenedToBy (Message.renderMessage)
@@ -119,7 +119,6 @@ views {
 	}
 	Common {
 		initLanguageInLocalStorage
-		initSchemaInLocalStorage
 		updateHash
 		initUserInLocalStorage
 		removeUserFromLocalStorage
