@@ -94,8 +94,15 @@ class VocabularyView {
         active.removeClass("correct");
         active.removeClass("false");
         active.removeClass("active");
+        let activeDiv = jQuery('.activeDiv');
+        activeDiv.removeClass("activeDiv");
         let nextRandomIndex = jQuery('#' + eventData.nextRandomIndex);
         nextRandomIndex.addClass("active");
+
+        jQuery("div.test-row").addClass("inactiveDiv");
+        nextRandomIndex.parents("div.test-row").addClass("activeDiv");
+        nextRandomIndex.parents("div.test-row").removeClass("inactiveDiv");
+
         eventData.texts = Texts.common;
         if (Vocabulary.testState.testMode === "withTyping") {
             $.get('templates/test/correct.mst', function(template) {

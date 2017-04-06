@@ -1,182 +1,197 @@
 body {
-	background-size: 100% auto;
+    background-size: 100% auto;
 }
 
 body.water {
-	background: url(img/bg_water.jpg) repeat fixed;
+    background: url(img/bg_water.jpg) repeat fixed;
 }
 
 body.flower {
-	background: url(img/bg_flower.jpg) repeat fixed;
+    background: url(img/bg_flower.jpg) repeat fixed;
 }
 
 body.grass {
-	background: url(img/bg_grass.jpg) repeat fixed;
+    background: url(img/bg_grass.jpg) repeat fixed;
 }
 
 body.sunflowers {
-	background: url(img/bg_sunflowers.jpg) repeat fixed;
+    background: url(img/bg_sunflowers.jpg) repeat fixed;
 }
 
 body.sea {
-	background: url(img/bg_sea.jpg) repeat fixed;
+    background: url(img/bg_sea.jpg) repeat fixed;
 }
 
 a {
-	cursor: pointer;
+    cursor: pointer;
 }
-
 
 .btn-green {
-  background: #669E00;
-  color: #fff;
-  border: none;
+    background: #669E00;
+    color: #fff;
+    border: none;
 }
+
 .btn-green:hover, .btn-green:focus {
-  background: #75a719;
-  color: #fff !important;
+    background: #75a719;
+    color: #fff !important;
 }
+
 .btn-green:active {
-  background: #5b8e00;
-  color: #fff !important;
+    background: #5b8e00;
+    color: #fff !important;
 }
 
 .btn-blue {
-  background: #337AB7;
-  color: #fff;
-  border: none;
+    background: #337AB7;
+    color: #fff;
+    border: none;
 }
+
 .btn-blue:hover, .btn-blue:focus {
-  background: #4787be;
-  color: #fff !important;
+    background: #4787be;
+    color: #fff !important;
 }
+
 .btn-blue:active {
-  background: #2d6da4;
-  color: #fff !important;
+    background: #2d6da4;
+    color: #fff !important;
 }
 
 .btn-cyan {
-  background: #2AABD2;
-  color: #fff;
-  border: none;
+    background: #2AABD2;
+    color: #fff;
+    border: none;
 }
+
 .btn-cyan:hover, .btn-cyan:focus {
-  background: #3fb3d6;
-  color: #fff !important;
+    background: #3fb3d6;
+    color: #fff !important;
 }
+
 .btn-cyan:active {
-  background: #2599bd;
-  color: #fff !important;
+    background: #2599bd;
+    color: #fff !important;
 }
 
 .btn-orange {
-  background: #ffa84c;
-  color: #fff;
-  border: none;
+    background: #ffa84c;
+    color: #fff;
+    border: none;
 }
+
 .btn-orange:hover, .btn-orange:focus {
-  background: #ffb05d;
-  color: #fff !important;
+    background: #ffb05d;
+    color: #fff !important;
 }
+
 .btn-orange:active {
-  background: #e59744;
-  color: #fff !important;
+    background: #e59744;
+    color: #fff !important;
 }
 
 .btn-red {
-  background: #E53C16;
-  color: #fff;
-  border: none;
+    background: #E53C16;
+    color: #fff;
+    border: none;
 }
+
 .btn-red:hover, .btn-red:focus {
-  background: #e74f2d;
-  color: #fff !important;
+    background: #e74f2d;
+    color: #fff !important;
 }
+
 .btn-red:active {
-  background: #ce3613;
-  color: #fff !important;
+    background: #ce3613;
+    color: #fff !important;
 }
 
 .btn-pink {
-  background: #FF5DB1;
-  color: #fff;
-  border: none;
+    background: #FF5DB1;
+    color: #fff;
+    border: none;
 }
+
 .btn-pink:hover, .btn-pink:focus {
-  background: #ff6db8;
-  color: #fff !important;
+    background: #ff6db8;
+    color: #fff !important;
 }
+
 .btn-pink:active {
-  background: #e5539f;
-  color: #fff !important;
+    background: #e5539f;
+    color: #fff !important;
 }
 
 i.green {
-	color: #669E00;
+    color: #669E00;
 }
+
 i.blue {
-	color: #337AB7;
+    color: #337AB7;
 }
+
 i.cyan {
-	color: #2AABD2;
+    color: #2AABD2;
 }
+
 i.orange {
-	color: #ffa84c;
+    color: #ffa84c;
 }
+
 i.red {
-	color: #E53C16;
+    color: #E53C16;
 }
+
 i.pink {
-	color: #FF5DB1;
+    color: #FF5DB1;
 }
 
 div.header-margin {
-	background-color: #ffffff;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 999;
-	width: 100%;
-	height: 20px;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 20px;
 }
 
 div.header {
     background-color: #fff;
     margin-bottom: 20px;
     padding: 20px 0;
-	color: #337AB7;
+    color: #337AB7;
 }
 
 div.header h1 {
-	margin: 0;
-	color: #337AB7;
+    margin: 0;
+    color: #337AB7;
 }
 
 div.header a {
-	text-decoration: none;
-	color: #337AB7;
+    text-decoration: none;
+    color: #337AB7;
 }
 
 div.header .login-logout-pane {
-	text-align: right;
+    text-align: right;
 }
 
-
-
-
 .navigation {
-	background-color: #fff;
-	padding: 20px;
+    background-color: #fff;
+    padding: 20px;
 }
 
 .navigation li {
-	line-height: 1em;
+    line-height: 1em;
 }
-.navigation .nav-pills>li.header>a {
+
+.navigation .nav-pills > li.header > a {
     color: #fff;
     background-color: #337ab7;
 }
-.navigation .nav-pills>li.active>a {
+
+.navigation .nav-pills > li.active > a {
     color: #fff;
     background-color: #ffa84c !important;
 }
@@ -185,19 +200,19 @@ div.header .login-logout-pane {
     display: inline;
 }
 
-.navigation .nav>li>a {
-	padding: 5px 15px;
+.navigation .nav > li > a {
+    padding: 5px 15px;
 }
 
 .navigation .my-badge {
-	background-color: #ddd;
-	color: #337ab7;
+    background-color: #ddd;
+    color: #337ab7;
 }
 
 .content {
-	min-height: 600px !important;
-	background-color: #fff;
-	padding: 20px;
+    min-height: 600px !important;
+    background-color: #fff;
+    padding: 20px;
 }
 
 .content div.col-xs-10 div.breadcrumbs a, .content div.col-sm-10 div.breadcrumbs a {
@@ -205,258 +220,266 @@ div.header .login-logout-pane {
 }
 
 #replayDiv {
-	background-color: #fff;
-	padding: 20px;
-	margin: 20px 0;
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
 }
 
-
 .footer {
-	background-color: #222;
-	color: #fff;
-	margin-top: 75px;
-	padding-bottom: 60px;
-	width: 100%;
-	opacity: 0.8;
+    background-color: #222;
+    color: #fff;
+    margin-top: 75px;
+    padding-bottom: 60px;
+    width: 100%;
+    opacity: 0.8;
 }
 
 .footer h1 {
-	font-size: 24px;
+    font-size: 24px;
 }
 
 .footer a {
-	color: #fff;
+    color: #fff;
 }
 
 .footer address p {
-	border-bottom: 1px dotted #CCCCCC;
-	padding-bottom: 4px;
+    border-bottom: 1px dotted #CCCCCC;
+    padding-bottom: 4px;
 }
 
-
-/* clicktext and completion text */ 
+/* clicktext and completion text */
 .test .form-control {
-	width: auto;
-	display: inline;
+    width: auto;
+    display: inline;
 }
 
 .test .displayedSolution {
-	color: #669E00;
-	font-weight: bold;
+    color: #669E00;
+    font-weight: bold;
 }
 
 .test span.solution {
-	display: none;
+    display: none;
 }
 
 .test span.clickText {
-	border: 3px solid #CCC;
-	border-radius: 5px;
-	left: 0;
-	position: relative;
-	top: 0;
-	cursor: pointer;
-	padding: 5px 7px;
-	display: inline-block;
-	cursor: pointer;
-	margin: 1px;
-	white-space: nowrap;
-	display: inline-block;
+    border: 3px solid #CCC;
+    border-radius: 5px;
+    left: 0;
+    position: relative;
+    top: 0;
+    cursor: pointer;
+    padding: 5px 7px;
+    display: inline-block;
+    cursor: pointer;
+    margin: 1px;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .test .specialCharacter button {
-	width: 34px;
+    width: 34px;
 }
 
 .test span.answer {
-	display: none;
+    display: none;
 }
 
 .test input.strike {
-	border-color: #669E00;
+    border-color: #669E00;
 }
 
 .test input.active {
-	border: 3px solid #337AB7;
+    border: 3px solid #337AB7;
 }
 
 .test input.correct.active {
-	border-color: #669E00;
+    border-color: #669E00;
 }
 
 .test input.false.active {
-	border-color: #E53C16;
+    border-color: #E53C16;
+}
+
+@media (max-width: 480px) {
+    .test div.inactiveDiv {
+        display: none;
+    }
+
+    .test div.activeDiv {
+        display: inherit;
+    }
 }
 
 /* new multiple choice */
 .test i.correct {
-	color: #669E00; 
+    color: #669E00;
 }
+
 .test i.false {
-	color: #E53C16; 
+    color: #E53C16;
 }
 
 /* drag box */
 .test span.dragElement {
-	background: none repeat scroll 0 0 #E0E0E0;
-	border: 3px solid #CCC;
-	border-radius: 5px;
-	left: 0;
-	position: relative;
-	top: 0;
-	cursor: pointer;
-	padding: 5px 7px;
-	margin: 2px;
-	display: inline-block;
+    background: none repeat scroll 0 0 #E0E0E0;
+    border: 3px solid #CCC;
+    border-radius: 5px;
+    left: 0;
+    position: relative;
+    top: 0;
+    cursor: pointer;
+    padding: 5px 7px;
+    margin: 2px;
+    display: inline-block;
 }
 
 .test div.dropArea {
-	background: none repeat scroll 0 0 #F5F5F5;
-	border: 3px solid #CCCCCC;
-	border-radius: 5px;
-	left: 0;
-	position: relative;
-	top: 0;
-	cursor: pointer;
-	padding: 5px 7px;
-	display: block;
-	margin: 10px;
-	padding: 3px 7px;
-	font-size: 16px;
-	line-height: 16px;
+    background: none repeat scroll 0 0 #F5F5F5;
+    border: 3px solid #CCCCCC;
+    border-radius: 5px;
+    left: 0;
+    position: relative;
+    top: 0;
+    cursor: pointer;
+    padding: 5px 7px;
+    display: block;
+    margin: 10px;
+    padding: 3px 7px;
+    font-size: 16px;
+    line-height: 16px;
 }
 
 .test div.dragElementStack {
-	width: 550px
+    width: 550px
 }
 
 .test span.correct, .test div.correct {
-	border: 3px solid #669E00;
-	border-radius: 4px 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+    border: 3px solid #669E00;
+    border-radius: 4px 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
 }
 
 .test span.false, .test div.false {
-	border: 3px solid #E53C16;
-	border-radius: 4px 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+    border: 3px solid #E53C16;
+    border-radius: 4px 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
 }
 
 .test span.offTarget {
-	width: 16px;
-	height: 16px;
-	display: inline-block;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
 }
+
 .test span.offTarget i {
-	color: #E53C16
+    color: #E53C16
 }
 
 .test span.strike {
-	width: 16px;
-	height: 16px;
-	display: inline-block;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
 }
+
 .test span.strike i {
-	color: #669E00; 
+    color: #669E00;
 }
 
 .test td.shots {
-	min-width: 70px;
+    min-width: 70px;
 }
 
 .test td.solution {
-	min-width: 100px;
+    min-width: 100px;
 }
 
-
-
-/* tip */ 
+/* tip */
 .test span.tip {
-	display: none;
+    display: none;
 }
 
 .test span.visibleTip {
-	border: 3px solid #ffa84c;
-	border-radius: 4px 4px;
-	display: block;
-	margin: 10px; padding : 3px 7px;
-	clear: both;
-	padding: 3px 7px; clear : both;
-	background-color: #fdb984;
+    border: 3px solid #ffa84c;
+    border-radius: 4px 4px;
+    display: block;
+    margin: 10px;
+    padding: 3px 7px;
+    clear: both;
+    padding: 3px 7px;
+    clear: both;
+    background-color: #fdb984;
 }
-
-
-
-
 
 /* old multiple choice stuff */
-.test span.multipleChoice,span.singleChoice {
-	background: none repeat scroll 0 0 #F5F5F5;
-	border: 3px solid #CCCCCC;
-	border-radius: 5px;
-	left: 0;
-	position: relative;
-	top: 0;
-	cursor: pointer;
-	padding: 5px 7px;
-	display: block;
-	margin: 10px;
-	padding: 3px 7px;
-	font-size: 16px;
-	line-height: 16px;
-	display: block;
-	cursor: pointer;
+.test span.multipleChoice, span.singleChoice {
+    background: none repeat scroll 0 0 #F5F5F5;
+    border: 3px solid #CCCCCC;
+    border-radius: 5px;
+    left: 0;
+    position: relative;
+    top: 0;
+    cursor: pointer;
+    padding: 5px 7px;
+    display: block;
+    margin: 10px;
+    padding: 3px 7px;
+    font-size: 16px;
+    line-height: 16px;
+    display: block;
+    cursor: pointer;
 }
+
 .test span.alignHorizontal {
-	display: inline-block;
-	white-space: nowrap;
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .test span.selectedItem {
-	background-color: #99bcdb;
-	border: 3px solid #337AB7;
+    background-color: #99bcdb;
+    border: 3px solid #337AB7;
 }
 
 .test span.mcCorrect {
-	border: 3px solid #669E00;
+    border: 3px solid #669E00;
 }
 
 .test span.mcFalse {
-	border: 3px solid #E53C16;
+    border: 3px solid #E53C16;
 }
 
 .test span.choiceGroup {
-	margin: 5px;
-	padding: 5px;
-	display: block;
-	clear: both;
+    margin: 5px;
+    padding: 5px;
+    display: block;
+    clear: both;
 }
 
 .test span.choiceQuestion {
-	padding: 3px 7px;
-	margin: 3px;
-	display: block;
-	clear: both;
+    padding: 3px 7px;
+    margin: 3px;
+    display: block;
+    clear: both;
 }
+
 /* old multiple choice stuff */
 
-
 .test table {
-	width: auto;
+    width: auto;
 }
 
 #correctParagraph {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 #correctParagraph button {
-	margin: 5px;
+    margin: 5px;
 }
 
 .test table td {
-	line-height: 34px;
+    line-height: 34px;
 }
 
 .test .test-row {
@@ -465,14 +488,15 @@ div.header .login-logout-pane {
 
 /* boxes and complex card */
 .wanted-word {
-	display:none;
+    display: none;
 }
 
 .quality-buttons {
-	margin-top: 20px;
+    margin-top: 20px;
 }
+
 .quality-buttons div {
-	text-align: center;
+    text-align: center;
 }
 
 .quality-buttons button {
@@ -480,180 +504,192 @@ div.header .login-logout-pane {
 }
 
 .content-pane div.largeCard {
-	height: 240px !important;
+    height: 240px !important;
 }
+
 .content-pane div.card {
-	border: 3px solid #CCCCCC;
-	border-radius: 5px;
-	padding: 20px;
-	font-size: 16px;
-	line-height: 16px;
-	height: 120px;
-	text-align: center;
-	vertical-align: middle;
-	width: 100%;
-	margin-bottom: 4px;
+    border: 3px solid #CCCCCC;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 16px;
+    line-height: 16px;
+    height: 120px;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    margin-bottom: 4px;
 }
 
 .content-pane div.ccard {
-	border: 3px solid #CCCCCC;
-	border-radius: 5px;
-	padding: 20px;
-	font-size: 16px;
-	line-height: 16px;
-	text-align: center;
-	vertical-align: middle;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	margin: 0 0 12px 0;
-	margin-bottom: 4px;
+    border: 3px solid #CCCCCC;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0 0 12px 0;
+    margin-bottom: 4px;
 }
+
 .content-pane div.ccard div.line span.hiddenWord {
-	visibility:hidden;
+    visibility: hidden;
 }
 
 .content-pane div.card div.count, .content-pane div.ccard div.count {
-	float: left;
-	font-size: 50%;
+    float: left;
+    font-size: 50%;
 }
 
 .content-pane div.card div.next, .content-pane div.ccard div.next {
-	float: right;
-	font-size: 50%;
+    float: right;
+    font-size: 50%;
 }
 
 .content-pane div.wanted {
-	cursor: pointer;
-	float: right;
+    cursor: pointer;
+    float: right;
 }
 
 .content-pane div.given {
-	float: left;
+    float: left;
 }
 
 .content-pane div.largeCard .given-word {
-	height: 200px;
+    height: 200px;
 }
 
 .content-pane div.card .given-word {
-	height: 80px;
+    height: 80px;
 }
 
 .content-pane div.ccard .given-word {
-	height: 25px;
+    height: 25px;
 }
 
 .content-pane div.quality5 {
-	border-color: #669E00;
+    border-color: #669E00;
 }
 
 .content-pane div.quality4 {
-	border-color: #337AB7;
+    border-color: #337AB7;
 }
 
 .content-pane div.quality3 {
-	border-color: #2AABD2;
+    border-color: #2AABD2;
 }
 
 .content-pane div.quality2 {
-	border-color: #ffa84c;
+    border-color: #ffa84c;
 }
 
 .content-pane div.quality1 {
-	border-color: #E53C16;
+    border-color: #E53C16;
 }
 
 .content-pane div.quality0 {
-	border-color: #FF5DB1;
+    border-color: #FF5DB1;
 }
 
 .content-pane div.quality {
-	border-color: #646464;
+    border-color: #646464;
 }
 
 .box-score {
-	font-size: 0;
-	height: 22px;
-	width: 100%;
+    font-size: 0;
+    height: 22px;
+    width: 100%;
     margin-top: 20px;
 }
+
 .box-score div.cyan {
-	background-color: #2AABD2;
+    background-color: #2AABD2;
 }
+
 .box-score div.blue {
-	background-color: #337AB7;
+    background-color: #337AB7;
 }
+
 .box-score div.green {
-	background-color: #669E00;
+    background-color: #669E00;
 }
+
 .box-score div.orange {
-	background-color: #ffa84c;
+    background-color: #ffa84c;
 }
+
 .box-score div.red {
-	background-color: #E53C16;
+    background-color: #E53C16;
 }
+
 .box-score div.pink {
-	background-color: #FF5DB1;
+    background-color: #FF5DB1;
 }
+
 .box-score div.grey {
-	background-color: #cccccc;
+    background-color: #cccccc;
 }
+
 .box-score div.white {
-	background-color: #fff;
+    background-color: #fff;
 }
+
 .box-score div {
-	display: inline-block;
-	height: 20px;
-	margin: 0;
-	padding: 0;
+    display: inline-block;
+    height: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .box-details {
-	font-size: 75%;
-	margin: 20px 0;
+    font-size: 75%;
+    margin: 20px 0;
 }
 
 .box-details table {
-	width: 100%;
+    width: 100%;
 }
 
 div.ace {
-	background-color: #fff;
-	padding: 10px;
-	margin-top: 20px;
+    background-color: #fff;
+    padding: 10px;
+    margin-top: 20px;
 }
 
 pre {
-	font-size: 10px;
+    font-size: 10px;
 }
 
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-	padding : 2px;
-	border-top : none;
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    padding: 2px;
+    border-top: none;
 }
 
 .btn-file {
-	position: relative;
-	overflow: hidden;
+    position: relative;
+    overflow: hidden;
 }
+
 .btn-file input[type=file] {
-	position: absolute;
-	top: 0;
-	right: 0;
-	min-width: 100%;
-	min-height: 100%;
-	font-size: 100px;
-	text-align: right;
-	filter: alpha(opacity=0);
-	opacity: 0;
-	outline: none;
-	background: white;
-	cursor: inherit;
-	display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }
 
 .mobile {
@@ -661,21 +697,22 @@ pre {
 }
 
 .statistics {
-	color: #337AB7;
+    color: #337AB7;
 }
 
 .statistics .statHeader {
-	margin-top: 20px;
-	margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 #cookie-bar-button {
-	background-color: #337AB7 !important;
-	text-shadow: none !important;
-	font-weight: normal !important;
-	padding: 6px 12px !important;
+    background-color: #337AB7 !important;
+    text-shadow: none !important;
+    font-weight: normal !important;
+    padding: 6px 12px !important;
 }
+
 #cookie-bar-prompt-content a:hover, #cookie-bar a:hover {
-	text-decoration: none !important;
+    text-decoration: none !important;
 }
 
