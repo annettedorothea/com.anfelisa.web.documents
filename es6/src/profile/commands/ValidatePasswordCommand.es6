@@ -12,8 +12,8 @@ class ValidatePasswordCommand extends AbstractValidatePasswordCommand {
                 this.commandData.outcome = this.empty;
                 this.commandData.emptyIds.push("passwordRepetition");
             }
-            if (this.commandData.outcome != this.empty) {
-                if (this.commandParam.newPassword != this.commandParam.passwordRepetition) {
+            if (this.commandData.outcome !== this.empty) {
+                if (this.commandParam.newPassword !== this.commandParam.passwordRepetition) {
                     this.commandData.outcome = this.mismatch;
                 } else {
                     this.commandData.outcome = this.ok;
