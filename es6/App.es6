@@ -19,4 +19,13 @@ ACEController.verificationCleanupFunction = function (key, value) {
     }
 };
 
+function basicAuth(user, password) {
+    if (user !== undefined && password !== undefined) {
+        const wordArray = CryptoJS.enc.Utf8.parse(user + ':' + password);
+        const hash = CryptoJS.enc.Base64.stringify(wordArray);
+        return "oapBasic " + hash;
+    }
+    return undefined;
+}
+
 /*       S.D.G.       */
