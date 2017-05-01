@@ -5,10 +5,10 @@ class UpdatePasswordAction extends AbstractUpdatePasswordAction {
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();
 		this.actionParam.password = CommonView.getPassword();
-		this.actionParam.newPassword = CryptoJS.MD5(jQuery("#password").val().trim()).toString(CryptoJS.enc.Base64);
-		this.actionParam.passwordRepetition = CryptoJS.MD5(jQuery("#passwordRepetition").val().trim()).toString(CryptoJS.enc.Base64);
-		this.actionParam.newPasswordEmpty = jQuery("#password").val().trim().length === 0;
-		this.actionParam.passwordRepetitionEmpty = jQuery("#passwordRepetition").val().trim().length === 0;
+		this.actionParam.newPassword = CryptoJS.MD5(jQuery("#password").val()).toString();
+		this.actionParam.passwordRepetition = CryptoJS.MD5(jQuery("#passwordRepetition").val().trim()).toString();
+		this.actionParam.newPasswordEmpty = jQuery("#password").val().length === 0;
+		this.actionParam.passwordRepetitionEmpty = jQuery("#passwordRepetition").val().length === 0;
     }
 
     initActionData() {

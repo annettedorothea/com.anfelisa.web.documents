@@ -9,8 +9,8 @@ class SubmitRegistrationAction extends AbstractSubmitRegistrationAction {
 		this.actionParam.name = jQuery("#name").val().trim();
 		this.actionParam.prename = jQuery("#prename").val().trim();
 		this.actionParam.email = jQuery("#email").val().trim();
-		this.actionParam.password = CryptoJS.MD5(jQuery("#password").val().trim()).toString(CryptoJS.enc.Base64);
-		this.actionParam.passwordRepetition = CryptoJS.MD5(jQuery("#passwordRepetition").val().trim()).toString(CryptoJS.enc.Base64);
+		this.actionParam.password = CryptoJS.MD5(jQuery("#password").val()).toString();
+		this.actionParam.passwordRepetition = CryptoJS.MD5(jQuery("#passwordRepetition").val()).toString();
     }
 
     initActionData() {

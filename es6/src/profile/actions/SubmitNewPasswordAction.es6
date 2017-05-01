@@ -5,8 +5,8 @@ class SubmitNewPasswordAction extends AbstractSubmitNewPasswordAction {
     captureActionParam() {
 		this.actionParam.username = jQuery("#username").val().trim();
 		this.actionParam.password = jQuery("#oldPassword").val().trim();
-		this.actionParam.newPassword = CryptoJS.MD5(jQuery("#password").val().trim()).toString(CryptoJS.enc.Base64);
-		this.actionParam.passwordRepetition = CryptoJS.MD5(jQuery("#passwordRepetition").val().trim()).toString(CryptoJS.enc.Base64);
+		this.actionParam.newPassword = CryptoJS.MD5(jQuery("#password").val()).toString();
+		this.actionParam.passwordRepetition = CryptoJS.MD5(jQuery("#passwordRepetition").val()).toString();
     }
 
     initActionData() {

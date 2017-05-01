@@ -4,8 +4,8 @@ class LoginAction extends AbstractLoginAction {
 
     captureActionParam() {
 		this.actionParam.username = $(".username").val();
-		var password = $(".password").val();
-		this.actionParam.password = CryptoJS.MD5(password).toString(CryptoJS.enc.Base64);
+		let password = $(".password").val();
+        this.actionParam.password = CryptoJS.MD5(password).toString();
     }
 
     initActionData() {
