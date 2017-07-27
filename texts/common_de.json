@@ -68,5 +68,8 @@
   "removeCardFromBox" : "Aussortieren",
   "reinforce" : "Festigen",
   "reinforceCardsCount" : "Anzahl der Karten zum Festigen",
-  "reinforcecFinishedText" : "Du hast alle Karten für heute gefestigt."
+  "reinforcecFinishedText" : "Du hast alle Karten für heute gefestigt.",
+  "dayBehindMessage" : "Du bist einen Tag hinterher. Soll Dein Zeitplan neu berechnet werden?",
+  "daysBehindMessage" : "Du bist %number% Tage hinterher. Soll Dein Zeitplan neu berechnet werden?",
+  "yes" : "Ja"
 }

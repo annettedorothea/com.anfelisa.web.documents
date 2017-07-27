@@ -487,6 +487,11 @@ div.header .login-logout-pane {
 }
 
 /* boxes and complex card */
+
+.daysBehindMessage {
+    margin-bottom: 20px;
+}
+
 .wanted-word {
     display: none;
 }

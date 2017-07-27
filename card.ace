@@ -10,6 +10,7 @@ actions {
 	RemoveCardFromBox executes RemoveCardFromBox
 	DisplayNextReinforceCard executes DisplayNextReinforceCard
 	ScoreReinforcedCard executes ScoreReinforcedCard
+	RecalculateScheduledCards executes RecalculateScheduledCards
 }
 
 commands {
@@ -60,6 +61,12 @@ commands {
 	ScoreReinforcedCard {
 		on keep publishes (KeepCardInReinforceCardList) triggers (DisplayNextReinforceCard)
 		on remove publishes (RemoveCardFromReinforceCardList) triggers (DisplayNextReinforceCard)
+	}
+	RecalculateScheduledCards {
+		on ok triggers (
+			navigation.ReadNextCard navigation.ReadBoxes
+		)
+		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 }
 

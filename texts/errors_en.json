@@ -33,5 +33,6 @@
   "confirmEmailFailed" : "Failed to confirm email.",
   "fillBoxWithCardsFailed" : "Failed to fill box with cards.",
   "removeFromBoxFailed" : "Failed to remove card.",
-  "readReinforceCardsFailed" : "Failed to load reinforce cards."
+  "readReinforceCardsFailed" : "Failed to load reinforce cards.",
+  "recalulateScheduledCardsFailed" : "Failed to recalculate schedule."
 }

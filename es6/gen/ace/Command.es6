@@ -10,6 +10,7 @@ class Command {
     execute() {
         throw "no execute method defined for " + this.commandName;
     }
+
     publishEvents() {
         throw "no publishEvents method defined for " + this.commandName;
     }
@@ -42,113 +43,154 @@ class Command {
         });
     }
 
-    httpGet(url, queryParams) {
-        queryParams = this.addUuidToQueryParams(queryParams);
-        return new Promise((resolve, reject) => {
-            let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
-            $.ajax({
-                url: url + this.queryParamString(url, queryParams),
-                type: 'get',
-                beforeSend : function(req) {
-                    if (authorization !== undefined) {
-                        req.setRequestHeader('Authorization', authorization);
+    prepare() {
+        if (ACEController.execution === ACEController.E2E) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: 'api/database/prepare?uuid=' + this.commandParam.uuid,
+                    type: 'put',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    success: function () {
+                        resolve();
+                    },
+                    error: function (jqxhr, textStatus, error) {
+                        reject(error);
                     }
-                },
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                success: function (data) {
-                    resolve(data);
-                },
-                error: function (jqxhr, textStatus, error) {
-                	reject(error);
-                }
+                });
             });
+        } else {
+            return new Promise((resolve) => {
+                resolve();
+            });
+        }
+    }
+
+    httpGet(url, queryParams) {
+        return this.prepare().then(() => {
+	        queryParams = this.addUuidToQueryParams(queryParams);
+	        return new Promise((resolve, reject) => {
+	            let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
+	            $.ajax({
+	                url: url + this.queryParamString(url, queryParams),
+	                type: 'get',
+	                beforeSend : function(req) {
+	                    if (authorization !== undefined) {
+	                        req.setRequestHeader('Authorization', authorization);
+	                    }
+	                },
+	                headers: {
+	                    'Accept': 'application/json',
+	                    'Content-Type': 'application/json'
+	                },
+	                success: function (data) {
+	                    resolve(data);
+	                },
+	                error: function (jqxhr, textStatus, error) {
+	                	reject(error);
+	                }
+	            });
+            });
+        }, (error) => {
+            reject(error);
         });
     }
 
     httpPost(url, queryParams, data) {
-        queryParams = this.addUuidToQueryParams(queryParams);
-        data = this.addUuidToData(data);
-        let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                url: url + this.queryParamString(url, queryParams),
-                type: 'post',
-                data: JSON.stringify(data),
-                beforeSend : function(req) {
-                    if (authorization !== undefined) {
-                        req.setRequestHeader('Authorization', authorization);
-                    }
-                },
-                headers: {
-                    'Accept': 'text/plain',
-                    'Content-Type': 'application/json'
-                },
-                success: function (data) {
-                    resolve(data);
-                },
-                error: function (jqxhr, textStatus, error) {
-                	reject(error);
-                }
-            });
+        return this.prepare().then(() => {
+	        queryParams = this.addUuidToQueryParams(queryParams);
+	        data = this.addUuidToData(data);
+	        let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
+	        return new Promise((resolve, reject) => {
+	            $.ajax({
+	                url: url + this.queryParamString(url, queryParams),
+	                type: 'post',
+	                data: JSON.stringify(data),
+	                beforeSend : function(req) {
+	                    if (authorization !== undefined) {
+	                        req.setRequestHeader('Authorization', authorization);
+	                    }
+	                },
+	                headers: {
+	                    'Accept': 'text/plain',
+	                    'Content-Type': 'application/json'
+	                },
+	                success: function (data) {
+	                    resolve(data);
+	                },
+	                error: function (jqxhr, textStatus, error) {
+	                	reject(error);
+	                }
+	            });
+	        });
+        }, (error) => {
+            reject(error);
         });
     }
 
     httpPut(url, queryParams, data) {
-        queryParams = this.addUuidToQueryParams(queryParams);
-        data = this.addUuidToData(data);
-        let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                url: url + this.queryParamString(url, queryParams),
-                type: 'put',
-                data: JSON.stringify(data),
-                beforeSend : function(req) {
-                    if (authorization !== undefined) {
-                        req.setRequestHeader('Authorization', authorization);
-                    }
-                },
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                success: function () {
-                    resolve();
-                },
-                error: function (jqxhr, textStatus, error) {
-                	reject(error);
-                }
-            });
+        return this.prepare().then(() => {
+	        queryParams = this.addUuidToQueryParams(queryParams);
+	        data = this.addUuidToData(data);
+	        let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
+	        return new Promise((resolve, reject) => {
+	            $.ajax({
+	                url: url + this.queryParamString(url, queryParams),
+	                type: 'put',
+	                data: JSON.stringify(data),
+	                beforeSend : function(req) {
+	                    if (authorization !== undefined) {
+	                        req.setRequestHeader('Authorization', authorization);
+	                    }
+	                },
+	                headers: {
+	                    'Accept': 'application/json',
+	                    'Content-Type': 'application/json'
+	                },
+	                success: function () {
+	                    resolve();
+	                },
+	                error: function (jqxhr, textStatus, error) {
+	                	reject(error);
+	                }
+	            });
+	        });
+        }, (error) => {
+            reject(error);
         });
     }
 
     httpDelete(url, queryParams, data) {
-        queryParams = this.addUuidToQueryParams(queryParams);
-        data = this.addUuidToData(data);
-        let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                url: url + this.queryParamString(url, queryParams),
-                type: 'delete',
-                data: JSON.stringify(data),
-                beforeSend : function(req) {
-                    if (authorization !== undefined) {
-                        req.setRequestHeader('Authorization', authorization);
-                    }
-                },
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                success: function () {
-                    resolve();
-                },
-                error: function (jqxhr, textStatus, error) {
-                	reject(error);
-                }
-            });
+        return this.prepare().then(() => {
+	        queryParams = this.addUuidToQueryParams(queryParams);
+	        data = this.addUuidToData(data);
+	        let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
+	        return new Promise((resolve, reject) => {
+	            $.ajax({
+	                url: url + this.queryParamString(url, queryParams),
+	                type: 'delete',
+	                data: JSON.stringify(data),
+	                beforeSend : function(req) {
+	                    if (authorization !== undefined) {
+	                        req.setRequestHeader('Authorization', authorization);
+	                    }
+	                },
+	                headers: {
+	                    'Accept': 'application/json',
+	                    'Content-Type': 'application/json'
+	                },
+	                success: function () {
+	                    resolve();
+	                },
+	                error: function (jqxhr, textStatus, error) {
+	                	reject(error);
+	                }
+	            });
+	        });
+        }, (error) => {
+            reject(error);
         });
     }
 

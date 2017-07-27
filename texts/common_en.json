@@ -68,5 +68,8 @@
   "removeCardFromBox" : "Remove",
   "reinforce" : "Reinforce",
   "reinforceCardsCount" : "Reinforce cards count",
-  "reinforcecFinishedText" : "Reinforcing finished."
+  "reinforcecFinishedText" : "Reinforcing finished.",
+  "dayBehindMessage" : "You are one day behind. Recalculate your schedule?",
+  "daysBehindMessage" : "You are %numbers% days behind. Recalculate your schedule?",
+  "yes" : "Yes"
 }

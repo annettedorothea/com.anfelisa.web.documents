@@ -157,9 +157,32 @@ class ACEController {
         ACEController.expectedTimeLine = [];
         ACEController.replayTimeLine = [];
         ACEController.pauseInMillis = undefined;
+        ACEController.execution = level;
 
         ACEController.clearReplayResultDiv();
 
+        if (ACEController.execution === ACEController.REPLAY) {
+            ACEController.readTimelineAndCreateReplayActions();
+        } else {
+            $.ajax({
+                url: 'api/database/reset',
+                type: 'delete',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                success: function () {
+                    ACEController.readTimelineAndCreateReplayActions();
+                },
+                error: function (jqxhr, textStatus, error) {
+                    throw error;
+                }
+            });
+        }
+
+    }
+
+    static readTimelineAndCreateReplayActions() {
         var actions = [];
         var completeTimeLine = ACEController.getCompleteTimeline();
         for (let i = 0; i < completeTimeLine.length; i++) {
@@ -177,8 +200,6 @@ class ACEController {
         if (document.getElementById('pauseInMillisInput')) {
             ACEController.pauseInMillis = document.getElementById('pauseInMillisInput').value;
         }
-
-        ACEController.execution = level;
 
         ACEController.applyNextActions();
     }
@@ -244,6 +265,9 @@ class ACEController {
     }
 
     static abstractText(item) {
+        if (item === undefined) {
+            return "undefined";
+        }
         if (item.action) {
             return "A " + item.action.actionName;
         }
