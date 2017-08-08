@@ -71,5 +71,6 @@
   "reinforcecFinishedText" : "Reinforcing finished.",
   "dayBehindMessage" : "You are one day behind. Recalculate your schedule?",
   "daysBehindMessage" : "You are %numbers% days behind. Recalculate your schedule?",
-  "yes" : "Yes"
+  "yes" : "Yes",
+  "warning" : "Attention!"
 }

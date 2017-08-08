@@ -1,6 +1,6 @@
 {
   "name": "anfelisa",
-  "version": "1.0.3",
+  "version": "1.2.0",
   "description": "",
   "scripts": {
     "js" : "babel es6/gen/lib es6/gen/ace es6/gen/app es6/src es6/gen/elr es6/App.es6 --out-file lib/anfelisa.js",

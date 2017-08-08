@@ -1,11 +1,16 @@
 <div class="test">
     <h2 class="boxName">{{boxName}}</h2>
     {{#showDaysBehind}}
-    <div class="row daysBehindMessage">
-        <div class="col-md-12">{{formattedDaysBehindMessage}}</div>
-        <div class="col-md-12">
-            <button class="btn btn-gray" onclick="new RecalculateScheduledCardsAction({boxId: '{{boxId}}', daysBehind: '{{daysBehind}}'}).apply()">
-                {{texts.yes}}</button>
+    <div class="daysBehindMessage">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{texts.warning}}
+            </div>
+            <div class="panel-body">
+                {{formattedDaysBehindMessage}}
+                <button class="btn btn-gray" onclick="new RecalculateScheduledCardsAction({boxId: '{{boxId}}', daysBehind: '{{daysBehind}}'}).apply()">
+                    {{texts.yes}}</button>
+            </div>
         </div>
     </div>
     {{/showDaysBehind}}

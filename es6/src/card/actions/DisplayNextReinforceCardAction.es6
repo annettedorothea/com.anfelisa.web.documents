@@ -10,7 +10,7 @@ class DisplayNextReinforceCardAction extends AbstractDisplayNextReinforceCardAct
     initActionData() {
     	this.actionData.username = this.actionParam.username;
     	this.actionData.password = this.actionParam.password;
-        this.actionData.cardCount = ReinforceCardList.reinforceCardList.length;
+        this.actionData.cardCount = ReinforceCardList.reinforceCardList !== null? ReinforceCardList.reinforceCardList.length : 0;
     }
 
     releaseActionParam() {
