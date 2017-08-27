@@ -20,7 +20,7 @@ class VocabularyView {
         strike.attr("disabled", "disabled");
         VocabularyView.updateTestState(eventData);
     };
-    
+
     static wordIsCorrectAndNotFinished(eventData) {
         Mousetrap.unbind('ctrl+k');
         Mousetrap.unbind('g');
@@ -32,7 +32,7 @@ class VocabularyView {
             "<span class='strike'><i class='fa fa-check-circle-o'></i></span>");
         VocabularyView.updateTestState(eventData);
     };
-    
+
     static wordIsNotCorrect(eventData) {
         Mousetrap.unbind('ctrl+k');
         Mousetrap.unbind('g');
@@ -60,31 +60,29 @@ class VocabularyView {
         jQuery('.active').val(eventData.solution);
         jQuery('#showWord').remove();
         eventData.texts = Texts.common;
-        $.get('templates/test/rate.mst', function(template) {
-            var rendered = Mustache.render(template, eventData);
-            $('#correctParagraph').html(rendered);
-            Mousetrap.bind('g', function () {
-                $("#known").click()
-            });
-            Mousetrap.bind('n', function () {
-                $("#notKnown").click()
-            });
+        const template = $('#rate').html();
+        const rendered = Mustache.render(template, eventData);
+        $('#correctParagraph').html(rendered);
+        Mousetrap.bind('g', function () {
+            $("#known").click()
+        });
+        Mousetrap.bind('n', function () {
+            $("#notKnown").click()
         });
     };
-    
+
     static displayNextWordButton(eventData) {
         jQuery('#correctButton').remove();
         eventData.texts = Texts.common;
-        $.get('templates/test/goOn.mst', function(template) {
-            var rendered = Mustache.render(template, eventData);
-            $('#correctParagraph').html(rendered);
-            jQuery("#nextButton").focus();
-            Mousetrap.bind('ctrl+space', function () {
-                $("#nextButton").click()
-            });
+        const template = $('#goOn').html();
+        const rendered = Mustache.render(template, eventData);
+        $('#correctParagraph').html(rendered);
+        jQuery("#nextButton").focus();
+        Mousetrap.bind('ctrl+space', function () {
+            $("#nextButton").click()
         });
     };
-    
+
     static showNextWordOfTest(eventData) {
         jQuery('#nextButton').remove();
         Mousetrap.unbind('ctrl+space');
@@ -105,12 +103,11 @@ class VocabularyView {
 
         eventData.texts = Texts.common;
         if (Vocabulary.testState.testMode === "withTyping") {
-            $.get('templates/test/correct.mst', function(template) {
-                var rendered = Mustache.render(template, eventData);
-                $('#correctParagraph').html(rendered);
-                Mousetrap.bind('ctrl+k', function () {
-                    $("#correctButton").click()
-                });
+            const template = $('#correct').html();
+            const rendered = Mustache.render(template, eventData);
+            $('#correctParagraph').html(rendered);
+            Mousetrap.bind('ctrl+k', function () {
+                $("#correctButton").click()
             });
 
             let displayedSolution = jQuery('.displayedSolution');
@@ -120,16 +117,15 @@ class VocabularyView {
             nextRandomIndex.removeAttr("disabled");
             nextRandomIndex.focus();
         } else {
-            $.get('templates/test/show.mst', function(template) {
-                var rendered = Mustache.render(template, eventData);
-                $('#correctParagraph').html(rendered);
-                Mousetrap.bind('z', function () {
-                    $("#showWord").click()
-                });
+            const template = $('#show').html();
+            const rendered = Mustache.render(template, eventData);
+            $('#correctParagraph').html(rendered);
+            Mousetrap.bind('z', function () {
+                $("#showWord").click()
             });
         }
     };
-    
+
     static testStarted(eventData) {
         jQuery('#startButton').remove();
         var vocabulary = jQuery('.vocabulary');
@@ -158,7 +154,7 @@ class VocabularyView {
                 }
                 var nextIndex;
                 var smallestPositionInLastIndices = -1;
-                for(var i=0; i<indices.length; i++) {
+                for (var i = 0; i < indices.length; i++) {
                     var currentIndex = indices[i];
                     var positionInLastIndices = Vocabulary.testState.lastIndices.indexOf(currentIndex);
                     if (positionInLastIndices < 0) {
@@ -178,7 +174,7 @@ class VocabularyView {
         };
         vocabulary.addClass("mousetrap");
     };
-    
+
 }
 
 /*                    S.D.G.                    */

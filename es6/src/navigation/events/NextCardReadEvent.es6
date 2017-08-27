@@ -16,7 +16,7 @@ class NextCardReadEvent extends AbstractNextCardReadEvent {
     formatDate(timestamp) {
         if (timestamp) {
             try {
-                var date = new Date(timestamp);
+                const date = new Date(timestamp);
                 return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
             } catch (error) {
                 return undefined;

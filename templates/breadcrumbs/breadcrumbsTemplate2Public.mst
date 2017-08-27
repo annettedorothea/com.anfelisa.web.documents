@@ -1,4 +1,0 @@
-<ol class="breadcrumb">
-    <li><a onclick="new RouteAction( {hash : 'public'}).apply()">{{texts.home}}</a></li>
-    <li><a onclick="new RouteAction({ hash : 'public/{{courseId}}' }).apply()">{{courseName}}</a></li>
-</ol>

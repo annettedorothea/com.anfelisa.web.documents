@@ -3,18 +3,16 @@
 class UserInfoView {
     static renderUserInfo(eventData) {
         eventData.data.texts = Texts.user;
-        $.get('templates/user/profile.mst', function(template) {
-            var rendered = Mustache.render(template, eventData.data);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#profile').html();
+        const rendered = Mustache.render(template, eventData.data);
+        $('.content-pane').html(rendered);
     };
-    
+
     static renderCourseSelection(eventData) {
         eventData.data.texts = Texts.user;
-        $.get('templates/user/courses.mst', function(template) {
-            var rendered = Mustache.render(template, eventData.data);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#courses').html();
+        const rendered = Mustache.render(template, eventData.data);
+        $('.content-pane').html(rendered);
     };
 
     static renderBox(eventData) {
@@ -22,26 +20,23 @@ class UserInfoView {
             eventData.data = {};
         }
         eventData.data.texts = Texts.user;
-        $.get('templates/user/box.mst', function(template) {
-            var rendered = Mustache.render(template, eventData.data);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#box').html();
+        const rendered = Mustache.render(template, eventData.data);
+        $('.content-pane').html(rendered);
     };
 
     static renderCourseToBox(eventData) {
         eventData.data.texts = Texts.user;
-        $.get('templates/user/boxAddCourse.mst', function(template) {
-            var rendered = Mustache.render(template, eventData.data);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#boxAddCourse').html();
+        const rendered = Mustache.render(template, eventData.data);
+        $('.content-pane').html(rendered);
     };
 
     static renderPasswordChange(eventData) {
         eventData.texts = Texts.user;
-        $.get('templates/user/changePassword.mst', function(template) {
-            var rendered = Mustache.render(template, eventData);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#changePassword').html();
+        const rendered = Mustache.render(template, eventData);
+        $('.content-pane').html(rendered);
     };
 
     static passwordOK(eventData) {
@@ -73,26 +68,23 @@ class UserInfoView {
 
     static renderForgotPassword(eventData) {
         eventData.texts = Texts.user;
-        $.get('templates/user/forgotPassword.mst', function(template) {
-            var rendered = Mustache.render(template, eventData);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#forgotPassword').html();
+        const rendered = Mustache.render(template, eventData);
+        $('.content-pane').html(rendered);
     };
 
     static renderNewPassword(eventData) {
         eventData.texts = Texts.user;
-        $.get('templates/user/newPassword.mst', function(template) {
-            var rendered = Mustache.render(template, eventData);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#newPassword').html();
+        const rendered = Mustache.render(template, eventData);
+        $('.content-pane').html(rendered);
     };
 
     static renderRegistration(eventData) {
         eventData.texts = Texts.user;
-        $.get('templates/user/registration.mst', function(template) {
-            var rendered = Mustache.render(template, eventData);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#registration').html();
+        const rendered = Mustache.render(template, eventData);
+        $('.content-pane').html(rendered);
     };
 
     static renderUsernameIsAvailable(eventData) {

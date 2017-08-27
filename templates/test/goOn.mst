@@ -1,1 +1,0 @@
-<button id='nextButton' class='btn btn-green' onclick='new ShowNextWordOfTestAction().apply()'>{{texts.goOn}}</button>

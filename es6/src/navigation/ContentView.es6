@@ -2,51 +2,46 @@
 
 class ContentView {
     static renderPublicCourses(eventData) {
-        $.get('templates/content/contentTemplate1_' + CommonView.getLanguage() + '.mst', function(template) {
-            var rendered = Mustache.render(template, eventData.data);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#contentTemplate1_' + CommonView.getLanguage()).html();
+        const rendered = Mustache.render(template, eventData.data);
+        $('.content-pane').html(rendered);
     };
-    
+
     static renderPublicLessons(eventData) {
-        $.get('templates/content/contentTemplate2.mst', function(template) {
-            var rendered = Mustache.render(template, eventData.data);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#contentTemplate2').html();
+        const rendered = Mustache.render(template, eventData.data);
+        $('.content-pane').html(rendered);
     };
-    
+
     static renderPublicTests(eventData) {
-        $.get('templates/content/contentTemplate3.mst', function(template) {
-            var rendered = Mustache.render(template, eventData.data);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#contentTemplate3').html();
+        const rendered = Mustache.render(template, eventData.data);
+        $('.content-pane').html(rendered);
     };
-    
+
     static renderPublicTest(eventData) {
-        var html = "<div class='test'>" + eventData.data.html + "</div>";
+        const html = "<div class='test'>" + eventData.data.html + "</div>";
         $(".content-pane").html(html);
         eventData.texts = Texts.common;
         //enableDrag();
         $("#startButton").html(Texts.common.withTyping);
         $("#repeatButton").html(Texts.common.asRepetition);
     };
-    
+
     static renderPrivateLessons(eventData) {
-        $.get('templates/content/contentTemplate2.mst', function(template) {
-            var rendered = Mustache.render(template, eventData.data);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#contentTemplate2').html();
+        const rendered = Mustache.render(template, eventData.data);
+        $('.content-pane').html(rendered);
     };
-    
+
     static renderPrivateTests(eventData) {
-        $.get('templates/content/contentTemplate3.mst', function(template) {
-            var rendered = Mustache.render(template, eventData.data);
-            $('.content-pane').html(rendered);
-        });
+        const template = $('#contentTemplate3').html();
+        const rendered = Mustache.render(template, eventData.data);
+        $('.content-pane').html(rendered);
     };
-    
+
     static renderPrivateTest(eventData) {
-        var html = "<div class='test'>" + eventData.data.html + "</div>";
+        const html = "<div class='test'>" + eventData.data.html + "</div>";
         $(".content-pane").html(html);
         //enableDrag();
         eventData.texts = Texts.common;
@@ -57,18 +52,18 @@ class ContentView {
         $("#finishCardButton1").html(Texts.common.finishCardButton1Text);
         $("#repeatCardButton").html(Texts.common.repeatCardButtonText);
     };
-    
+
     static renderResult(eventData) {
-        var jsonString = eventData.data.json;
+        const jsonString = eventData.data.json;
         if (jsonString != null && jsonString.length > 0) {
-            var jsonObject = JSON.parse(jsonString);
+            const jsonObject = JSON.parse(jsonString);
             if ((jQuery(".vocabulary")).length > 0) {
-                for (var i in jsonObject) {
-                    var value = jsonObject[i];
+                for (let i in jsonObject) {
+                    const value = jsonObject[i];
                     if (jQuery("#" + i).hasClass('vocabulary')) {
                         jQuery("#" + i).addClass("strike");
                         jQuery("#" + i).attr("disabled", "disabled");
-                        for (var j = 0; j < value.length; j++) {
+                        for (let j = 0; j < value.length; j++) {
                             if (value[j] == '1') {
                                 jQuery("#" + i + "_shots")
                                     .append(
@@ -81,20 +76,19 @@ class ContentView {
                         }
                     }
                 }
-                $.get('templates/test/result_' + eventData.language + '.mst', function(template) {
-                    var rendered = Mustache.render(template, eventData.data);
-                    $('#correctParagraph').html(rendered);
-                });
+                const template = $('#result_' + eventData.language).html();
+                const rendered = Mustache.render(template, eventData.data);
+                $('#correctParagraph').html(rendered);
             } else if ((jQuery("#questionOverviewList")).length > 0) {
-                for (var i = 1; i <= eventData.data.maxPoints; i++) {
+                for (let i = 1; i <= eventData.data.maxPoints; i++) {
                     $("#" + i).addClass("show");
                     $("#" + i).removeClass("hide");
                     $("#" + i + " button").remove();
-                    var j = 0;
-                    var value = jsonObject[i + ""];
+                    let j = 0;
+                    const value = jsonObject[i + ""];
                     jQuery("#" + i + " i").each(function () {
                         jQuery(this).prop("onclick", null);
-                        var v = value.charAt(j);
+                        const v = value.charAt(j);
                         if (v == 1) {
                             jQuery(this).removeClass("fa fa-circle-o");
                             jQuery(this).addClass("fa fa-check-circle-o");
@@ -113,20 +107,18 @@ class ContentView {
                         j++;
                     });
                 }
-                $.get('templates/test/result_' + eventData.language + '.mst', function(template) {
-                    var rendered = Mustache.render(template, eventData.data);
-                    $('#resultDiv').html(rendered);
-                });
+                const template = $('#result_' + eventData.language).html();
+                const rendered = Mustache.render(template, eventData.data);
+                $('#resultDiv').html(rendered);
             } else if ((jQuery(".ccard")).length > 0) {
                 $(".line").removeClass("hiddenLine");
                 $(".word").removeClass("hiddenWord");
-                $.get('templates/test/result_' + eventData.language + '.mst', function(template) {
-                    var rendered = Mustache.render(template, eventData.data);
-                    $('#correctParagraph').html(rendered);
-                });
+                const template = $('#result_' + eventData.language).html();
+                const rendered = Mustache.render(template, eventData.data);
+                $('#correctParagraph').html(rendered);
             } else {
-                for (var i in jsonObject) {
-                    var value = jsonObject[i];
+                for (let i in jsonObject) {
+                    const value = jsonObject[i];
                     if (jQuery("#" + i).hasClass('clickText')) {
                         jQuery("#" + i).html(value);
                     } else if (jQuery("#" + i).hasClass('completionText')) {
@@ -140,7 +132,7 @@ class ContentView {
                             jQuery("#" + i).addClass("selectedItem");
                         }
                     } else if (jQuery("#" + i).hasClass('dragElement')) {
-                        var splitted = value.split("###");
+                        const splitted = value.split("###");
                         $("#" + i).children('.answer').html(splitted[0]);
                         jQuery("#" + i).css("left", splitted[1]);
                         jQuery("#" + i).css("top", splitted[2]);
@@ -149,7 +141,7 @@ class ContentView {
             }
         }
     };
-    
+
     static renderStatistics(eventData) {
         if (eventData.data === null) {
             eventData.data = {
@@ -157,21 +149,19 @@ class ContentView {
             };
         }
         eventData.data.texts = Texts.common;
-        $.get('templates/user/statisticsTemplate.mst', function(template) {
-            var rendered = Mustache.render(template, eventData.data);
-            $('.content-pane').html(rendered);
-            $(".year").val(eventData.data.year);
-            $(".month").val(eventData.data.month);
-        });
+        const template = $('#statisticsTemplate').html();
+        const rendered = Mustache.render(template, eventData.data);
+        $('.content-pane').html(rendered);
+        $(".year").val(eventData.data.year);
+        $(".month").val(eventData.data.month);
     };
-    
+
     static renderCard(eventData) {
-        var data = eventData.data;
+        let data = eventData.data;
         data.texts = Texts.common;
-        $.get('templates/breadcrumbs/breadcrumbsTemplateBox.mst', function(template) {
-            var rendered = Mustache.render(template, data);
-            $('.breadcrumbs').html(rendered);
-        });
+        const template = $('#breadcrumbsTemplateBox').html();
+        const rendered = Mustache.render(template, data);
+        $('.breadcrumbs').html(rendered);
 
         Mousetrap.unbind('q');
         Mousetrap.unbind('a');
@@ -187,10 +177,9 @@ class ContentView {
         }
         data.texts = Texts.common;
         if (data.cardsForToday > 0 || /*App.cardView.goOnWithNewCards &&*/ data.newCards > 0) {
-            $.get('templates/card/cardTemplate.mst', function(template) {
-                var rendered = Mustache.render(template, data);
-                $('.content-pane').html(rendered);
-            });
+            const template = $('#cardTemplate').html();
+            const rendered = Mustache.render(template, data);
+            $('.content-pane').html(rendered);
             if (data["content"]["complex"]) {
                 Mousetrap.bind('enter', function () {
                     $(".ccard").click()
@@ -204,20 +193,18 @@ class ContentView {
             let activeItem = $('li.active i.fa');
             activeItem.removeClass('fa-pencil-square-o');
             activeItem.addClass('fa-check-square-o');
-            $.get('templates/card/cardTemplateFinished.mst', function(template) {
-                var rendered = Mustache.render(template, data);
-                $('.content-pane').html(rendered);
-            });
+            const template = $('#cardTemplateFinished').html();
+            const rendered = Mustache.render(template, data);
+            $('.content-pane').html(rendered);
         }
     };
 
     static renderNextReinforceCard(eventData) {
-        var data = ReinforceCardList.reinforceCardList[0];
+        let data = ReinforceCardList.reinforceCardList[0];
         data.texts = Texts.common;
-        $.get('templates/breadcrumbs/breadcrumbsTemplateBox.mst', function(template) {
-            var rendered = Mustache.render(template, data);
-            $('.breadcrumbs').html(rendered);
-        });
+        const template = $('#breadcrumbsTemplateBox').html();
+        const rendered = Mustache.render(template, data);
+        $('.breadcrumbs').html(rendered);
 
         Mousetrap.unbind('q');
         Mousetrap.unbind('a');
@@ -235,24 +222,21 @@ class ContentView {
 
         data.reinforceCardsCount = ReinforceCardList.reinforceCardList.length;
 
-        $.get('templates/card/reinforceCardTemplate.mst', function(template) {
-            var rendered = Mustache.render(template, data);
-            $('.content-pane').html(rendered);
-        });
+        const reinforceCardTemplate = $('#reinforceCardTemplate').html();
+        const reinforceCardRendered = Mustache.render(reinforceCardTemplate, data);
+        $('.content-pane').html(reinforceCardRendered);
     };
 
     static renderReinforceFinished(eventData) {
-        var data = {};
+        let data = {};
         data.texts = Texts.common;
-        $.get('templates/breadcrumbs/breadcrumbsTemplateBox.mst', function(template) {
-            var rendered = Mustache.render(template, data);
-            $('.breadcrumbs').html(rendered);
-        });
+        const template = $('#breadcrumbsTemplateBox').html();
+        const rendered = Mustache.render(template, data);
+        $('.breadcrumbs').html(rendered);
 
-        $.get('templates/card/reinforceFinishedTemplate.mst', function(template) {
-            var rendered = Mustache.render(template, data);
-            $('.content-pane').html(rendered);
-        });
+        const reinforceFinishedTemplate = $('#reinforceFinishedTemplate').html();
+        const reinforceFinishedRendered = Mustache.render(reinforceFinishedTemplate, data);
+        $('.content-pane').html(reinforceFinishedRendered);
     };
 
 }

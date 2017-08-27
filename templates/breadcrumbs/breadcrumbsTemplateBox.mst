@@ -1,4 +1,0 @@
-<ol class="breadcrumb">
-    <li><a onclick="new RouteAction( {'hash' : 'private'}).apply()">{{texts.home}}</a></li>
-    <li><a onclick="new RouteAction( {hash : 'box/{{boxId}}'}).apply()">{{boxName}}</a></li>
-</ol>

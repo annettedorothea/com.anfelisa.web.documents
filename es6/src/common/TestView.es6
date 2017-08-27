@@ -2,12 +2,11 @@
 
 class TestView {
     static renderResult(eventData) {
-        $.get('templates/test/result_' + eventData.language + '.mst', function(template) {
-            var rendered = Mustache.render(template, eventData);
-            $('#correctParagraph').html(rendered);
-        });
+        const template = $('#result_' + eventData.language).html();
+        const rendered = Mustache.render(template, eventData);
+        $('#correctParagraph').html(rendered);
     };
-    
+
 }
 
 /*                    S.D.G.                    */
