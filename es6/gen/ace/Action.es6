@@ -39,7 +39,7 @@ class Action {
             }
             this.initActionData();
             ACEController.addItemToTimeLine({action: this});
-            let command = this.getCommand()
+            let command = this.getCommand();
             if (command) {
                 command.executeCommand().then(() => {
                     resolve();

@@ -10,7 +10,7 @@ class ErrorView {
             $(".notifications div").fadeOut("slow", function () {
                 $(".notifications").empty();
             });
-        }, 3000);
+        }, 10000);
     };
 
     static renderError(data) {

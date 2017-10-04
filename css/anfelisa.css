@@ -700,14 +700,11 @@ pre {
     margin-bottom: 10px;
 }
 
-#cookie-bar-button {
-    background-color: #337AB7 !important;
-    text-shadow: none !important;
-    font-weight: normal !important;
-    padding: 6px 12px !important;
-}
-
-#cookie-bar-prompt-content a:hover, #cookie-bar a:hover {
-    text-decoration: none !important;
+.alert pre {
+    padding: 0;
+    color: inherit;
+    background-color: inherit;
+    border: none;
+    font-size: 12px;
 }
 

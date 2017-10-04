@@ -165,7 +165,7 @@ class ACEController {
             ACEController.readTimelineAndCreateReplayActions();
         } else {
             $.ajax({
-                url: 'api/database/reset',
+                url: 'replay/database/reset',
                 type: 'delete',
                 headers: {
                     'Accept': 'application/json',
