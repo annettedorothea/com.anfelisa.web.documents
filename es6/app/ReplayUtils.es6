@@ -137,10 +137,6 @@ class ReplayUtils {
                 table.rows[0].className = 'danger';
             }
         }
-
-        ACEController.actionIsProcessing = false;
-        ACEController.actionQueue = [];
-        ACEController.execution = ACEController.LIVE;
     }
 
     static abstractText(item) {
