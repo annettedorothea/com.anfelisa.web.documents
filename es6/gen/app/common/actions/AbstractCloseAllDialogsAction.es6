@@ -3,7 +3,7 @@
 class AbstractCloseAllDialogsAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'CloseAllDialogsAction');
+        super(actionParam, 'CloseAllDialogsAction', false);
     }
 
 	getCommand() {

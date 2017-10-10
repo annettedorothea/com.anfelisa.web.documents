@@ -3,7 +3,7 @@
 class AbstractConfirmEmailAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'ConfirmEmailAction');
+        super(actionParam, 'ConfirmEmailAction', false);
     }
 
 	getCommand() {

@@ -3,7 +3,7 @@
 class AbstractInitAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'InitAction');
+        super(actionParam, 'InitAction', true);
     }
 
 	getCommand() {

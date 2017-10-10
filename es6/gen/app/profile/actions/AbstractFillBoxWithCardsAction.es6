@@ -3,7 +3,7 @@
 class AbstractFillBoxWithCardsAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'FillBoxWithCardsAction');
+        super(actionParam, 'FillBoxWithCardsAction', false);
     }
 
 	getCommand() {

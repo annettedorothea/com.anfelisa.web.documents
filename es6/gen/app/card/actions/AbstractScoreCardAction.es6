@@ -3,7 +3,7 @@
 class AbstractScoreCardAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'ScoreCardAction');
+        super(actionParam, 'ScoreCardAction', false);
     }
 
 	getCommand() {

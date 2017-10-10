@@ -3,7 +3,7 @@
 class AbstractReadResultAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'ReadResultAction');
+        super(actionParam, 'ReadResultAction', false);
     }
 
 	getCommand() {

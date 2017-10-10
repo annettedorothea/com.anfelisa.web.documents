@@ -3,7 +3,7 @@
 class AbstractStartTestAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'StartTestAction');
+        super(actionParam, 'StartTestAction', false);
     }
 
 	getCommand() {

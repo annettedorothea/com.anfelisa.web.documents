@@ -3,7 +3,7 @@
 class AbstractSubmitRegistrationAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'SubmitRegistrationAction');
+        super(actionParam, 'SubmitRegistrationAction', false);
     }
 
 	getCommand() {

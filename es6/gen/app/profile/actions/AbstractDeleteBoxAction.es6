@@ -3,7 +3,7 @@
 class AbstractDeleteBoxAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'DeleteBoxAction');
+        super(actionParam, 'DeleteBoxAction', false);
     }
 
 	getCommand() {

@@ -3,7 +3,7 @@
 class AbstractValidatePasswordAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'ValidatePasswordAction');
+        super(actionParam, 'ValidatePasswordAction', false);
     }
 
 	getCommand() {

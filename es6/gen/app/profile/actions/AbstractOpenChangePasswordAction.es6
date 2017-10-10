@@ -3,7 +3,7 @@
 class AbstractOpenChangePasswordAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'OpenChangePasswordAction');
+        super(actionParam, 'OpenChangePasswordAction', false);
     }
 
 	getCommand() {

@@ -3,7 +3,7 @@
 class AbstractSaveResultAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'SaveResultAction');
+        super(actionParam, 'SaveResultAction', false);
     }
 
 	getCommand() {

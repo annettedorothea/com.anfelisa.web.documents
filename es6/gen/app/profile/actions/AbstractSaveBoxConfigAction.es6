@@ -3,7 +3,7 @@
 class AbstractSaveBoxConfigAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'SaveBoxConfigAction');
+        super(actionParam, 'SaveBoxConfigAction', false);
     }
 
 	getCommand() {

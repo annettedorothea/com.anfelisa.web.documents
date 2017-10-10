@@ -3,7 +3,7 @@
 class AbstractCheckIfComplexCardIsFinishedAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'CheckIfComplexCardIsFinishedAction');
+        super(actionParam, 'CheckIfComplexCardIsFinishedAction', false);
     }
 
 	getCommand() {

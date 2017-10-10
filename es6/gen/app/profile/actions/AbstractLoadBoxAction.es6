@@ -3,7 +3,7 @@
 class AbstractLoadBoxAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'LoadBoxAction');
+        super(actionParam, 'LoadBoxAction', false);
     }
 
 	getCommand() {

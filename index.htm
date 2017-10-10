@@ -20,12 +20,6 @@
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
-    <!--
-	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-    -->
-
     <script type="text/javascript" src="lib/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="lib/bootstrap.js"></script>
     <script type="text/javascript" src="lib/mustache.js"></script>
@@ -35,74 +29,7 @@
 
     <script type="text/javascript" src="lib/crypto-js.js"></script>
 
-    <script type="text/javascript" src="lib/promise.min.js"></script>
 
-
-    <script type="text/javascript" src="lib/anfelisa_min.js"></script>
-
-    <script>
-
-        if (!window.Promise) {
-            window.Promise = Promise;
-        }
-
-        $(document).ready(function () {
-
-            if (window.navigator.userAgent.indexOf("MSIE ") > 0 || window.navigator.userAgent.indexOf("Edge") > 0) {
-                return;
-            }
-
-            $.ajaxSetup({cache: false});
-
-            $('.ajax-busy').hide();
-
-            $(document).ajaxStart(function () {
-                $('.ajax-busy').show();
-            }).ajaxStop(function () {
-                $('.ajax-busy').hide();
-            });
-
-            if (screen.width < 992) {
-                $('div.header div.container').addClass('container-fluid').removeClass('container');
-                $('div.main-pane').addClass('container-fluid').removeClass('container');
-            } else {
-                $('div.header div.form-inline').addClass('pull-right');
-                var random = Math.random();
-                var index = Math.floor(random * 5);
-                if (index === 0) {
-                    $('body').addClass('water');
-                } else if (index === 1) {
-                    $('body').addClass('flower');
-                } else if (index === 2) {
-                    $('body').addClass('grass');
-                } else if (index === 3) {
-                    $('body').addClass('sunflowers');
-                } else if (index === 4) {
-                    $('body').addClass('sea');
-                }
-            }
-        });
-
-        var focusedElement = null;
-
-        function insertSpecialCharacter(character) {
-            if (focusedElement != null) {
-                focusedElement.val(focusedElement.val() + character);
-                focusedElement.focus();
-            }
-        }
-
-        function toggleVisibilityOfRow(elementId) {
-            var div = document.getElementById(elementId);
-            if (div.style.display !== 'none') {
-                div.style.display = 'none';
-            }
-            else {
-                div.style.display = 'table-row';
-            }
-        }
-
-    </script>
 </head>
 
 <body>
@@ -111,8 +38,10 @@
 <div class="header container-fluid">
     <div class="container">
         <div class="row">
-            <h1 class="col-md-6 col-lg-3 hidden-xs hidden-sm visible-md-* visible-lg-*"><i
-                    class="fa fa-pencil-square"></i> Anfelisa</h1>
+            <a onclick="new RouteHomeAction().apply()">
+                <h1 class="col-md-6 col-lg-3 hidden-xs hidden-sm visible-md-* visible-lg-*"><i
+                        class="fa fa-pencil-square"></i> Anfelisa</h1>
+            </a>
             <div class="col-md-6 col-lg-9 login-logout-pane">
             </div>
         </div>
@@ -132,11 +61,11 @@
             <div class="content">
                 <div class="row">
                     <div class="col-xs-10 col-sm-10 col-md-11 col-lg-11">
-                        <div class="breadcrumbs" class="pull-left">
+                        <div class="breadcrumbs pull-left">
                         </div>
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 ajax-busy">
-                        <i class="fa fa-spinner fa-pulse fa-2x fa-fw pull-right" style="display: block;"></i>
+                        <i class="fa fa-spinner fa-pulse fa-2x fa-fw pull-right"></i>
                     </div>
                 </div>
                 <div class="row">
@@ -164,10 +93,10 @@
                 <div class="col-md-12 form-inline" style="display: flex; justify-content: center;">
                     <div class="form-group">
                         <button class="btn btn-default"
-                                onclick="ACEController.replay()">Replay
+                                onclick="ReplayUtils.replay()">Replay
                         </button>
                         <button class="btn btn-default"
-                                onclick="ACEController.e2e()">E2E
+                                onclick="ReplayUtils.e2e()">E2E
                         </button>
                         <input type="text" class="form-control mousetrap" id="pauseInMillisInput"
                                placeholder="Pause in ms">
@@ -177,12 +106,12 @@
             <div class="row">
                 <div class="col-md-12 form-inline" style="display: flex; justify-content: center; margin-top: 20px;">
                     <div class="form-group">
-                        <button class="btn btn-default" onclick="ACEController.downloadTimeline()">download
+                        <button class="btn btn-default" onclick="ReplayUtils.downloadTimeline()">download
                             scenario
                         </button>
                         <span class="btn btn-default btn-file">upload scenario
 								<input id="uploadTimelineInputField" class="form-control" type='file' accept='text/json'
-                                       onchange='ACEController.uploadTimeline(event)'>
+                                       onchange='ReplayUtils.uploadTimeline(event)'>
 							</span>
                     </div>
                 </div>
@@ -205,7 +134,7 @@
 <div class="container hidden-md hidden-lg visible-xs-* visible-sm-*">
     <div class="row">
         <div class="col-md-12">
-            Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Annette Pohl - Koblenz | Version 1.2.2
+            Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Annette Pohl - Koblenz | Version 1.3.0
         </div>
     </div>
 </div>
@@ -226,7 +155,7 @@
                 </address>
             </div>
             <div class="col-md-4">
-                <p>Version 1.2.2/p>
+                <p>Version 1.3.0</p>
                 <p>Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Annette Pohl - Koblenz</p>
                 <ul class="alt">
                     <li><a href="http://artboom.de/" target="artboom">artboom</a></li>
@@ -261,6 +190,7 @@
 
 
 </body>
+
 <!-- navigation -->
 
 <script id="publicCoursesTemplate" type="x-tmpl-mustache">
@@ -1447,6 +1377,9 @@
         </div>
     </div>
 </script>
+
+
+<script type="text/javascript" src="lib/anfelisa_min.js"></script>
 
 
 </html>

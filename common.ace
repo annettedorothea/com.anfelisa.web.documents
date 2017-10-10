@@ -3,7 +3,7 @@ common
 target ES6
 
 actions {
-	Init executes Init
+	init Init executes Init
 	Route executes Route
 	RouteHome executes Route
 	Login executes Login

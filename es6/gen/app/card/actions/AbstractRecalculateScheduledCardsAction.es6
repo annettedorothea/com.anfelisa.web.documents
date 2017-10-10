@@ -3,7 +3,7 @@
 class AbstractRecalculateScheduledCardsAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'RecalculateScheduledCardsAction');
+        super(actionParam, 'RecalculateScheduledCardsAction', false);
     }
 
 	getCommand() {

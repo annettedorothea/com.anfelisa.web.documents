@@ -3,7 +3,7 @@
 class AbstractCheckUsernameAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'CheckUsernameAction');
+        super(actionParam, 'CheckUsernameAction', false);
     }
 
 	getCommand() {

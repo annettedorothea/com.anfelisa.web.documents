@@ -3,7 +3,7 @@
 class AbstractRemoveCourseAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'RemoveCourseAction');
+        super(actionParam, 'RemoveCourseAction', false);
     }
 
 	getCommand() {

@@ -3,7 +3,7 @@
 class AbstractIsTestFinishedAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'IsTestFinishedAction');
+        super(actionParam, 'IsTestFinishedAction', false);
     }
 
 	getCommand() {

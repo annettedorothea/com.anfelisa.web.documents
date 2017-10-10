@@ -30,7 +30,7 @@ class Command {
                     reject(error + " when executing command " + this.commandName);
                 });
             } else {
-                let timelineCommand = ACEController.getCommandByUuid(this.commandParam.uuid);
+                const timelineCommand = ACEController.getCommandByUuid(this.commandParam.uuid);
                 this.commandData = timelineCommand.commandData;
                 ACEController.addItemToTimeLine({command: this});
                 this.publishEvents().then(() => {
@@ -43,156 +43,40 @@ class Command {
         });
     }
 
-    prepare() {
-        if (ACEController.execution === ACEController.E2E) {
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: 'replay/database/prepare?uuid=' + this.commandParam.uuid,
-                    type: 'put',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    success: function () {
-                        resolve();
-                    },
-                    error: function (jqxhr, textStatus, error) {
-                        reject(error);
-                    }
-                });
-            });
-        } else {
-            return new Promise((resolve) => {
-                resolve();
-            });
-        }
-    }
-
     httpGet(url, queryParams) {
-        return this.prepare().then(() => {
-	        queryParams = this.addUuidToQueryParams(queryParams);
-	        return new Promise((resolve, reject) => {
-	            let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
-				const adjustedUrl = this.url(url);
-	            $.ajax({
-	                url: adjustedUrl + this.queryParamString(adjustedUrl, queryParams),
-	                type: 'get',
-	                beforeSend : function(req) {
-	                    if (authorization !== undefined) {
-	                        req.setRequestHeader('Authorization', authorization);
-	                    }
-	                },
-	                headers: {
-	                    'Accept': 'application/json',
-	                    'Content-Type': 'application/json'
-	                },
-	                success: function (data) {
-	                    resolve(data);
-	                },
-	                error: function (jqxhr, textStatus, error) {
-	                    reject(`GET failed with ${jqxhr.status}: ${jqxhr.statusText} - ${jqxhr.responseText}`);
-	                }
-	            });
-            });
+        return ReplayUtils.prepareAction(this.commandParam.uuid).then(() => {
+            queryParams = this.addUuidToQueryParams(queryParams);
+            return AppUtils.httpGet(url, queryParams, this.commandParam);
         }, (error) => {
             reject(error);
         });
     }
 
     httpPost(url, queryParams, data) {
-        return this.prepare().then(() => {
-	        queryParams = this.addUuidToQueryParams(queryParams);
-	        data = this.addUuidToData(data);
-	        let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
-	        return new Promise((resolve, reject) => {
-				const adjustedUrl = this.url(url);
-	            $.ajax({
-	                url: adjustedUrl + this.queryParamString(adjustedUrl, queryParams),
-	                type: 'post',
-	                data: JSON.stringify(data),
-	                beforeSend : function(req) {
-	                    if (authorization !== undefined) {
-	                        req.setRequestHeader('Authorization', authorization);
-	                    }
-	                },
-	                headers: {
-	                    'Accept': 'text/plain',
-	                    'Content-Type': 'application/json'
-	                },
-	                success: function (data) {
-	                    resolve(data);
-	                },
-	                error: function (jqxhr, textStatus, error) {
-	                    reject(`POST failed with ${jqxhr.status}: ${jqxhr.statusText} - ${jqxhr.responseText}`);
-	                }
-	            });
-	        });
+        return ReplayUtils.prepareAction(this.commandParam.uuid).then(() => {
+            queryParams = this.addUuidToQueryParams(queryParams);
+            data = this.addUuidToData(data);
+            return AppUtils.httpPost(url, queryParams, data, this.commandParam);
         }, (error) => {
             reject(error);
         });
     }
 
     httpPut(url, queryParams, data) {
-        return this.prepare().then(() => {
-	        queryParams = this.addUuidToQueryParams(queryParams);
-	        data = this.addUuidToData(data);
-	        let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
-	        return new Promise((resolve, reject) => {
-				const adjustedUrl = this.url(url);
-	            $.ajax({
-	                url: adjustedUrl + this.queryParamString(adjustedUrl, queryParams),
-	                type: 'put',
-	                data: JSON.stringify(data),
-	                beforeSend : function(req) {
-	                    if (authorization !== undefined) {
-	                        req.setRequestHeader('Authorization', authorization);
-	                    }
-	                },
-	                headers: {
-	                    'Accept': 'application/json',
-	                    'Content-Type': 'application/json'
-	                },
-	                success: function () {
-	                    resolve();
-	                },
-	                error: function (jqxhr, textStatus, error) {
-	                    reject(`PUT failed with ${jqxhr.status}: ${jqxhr.statusText} - ${jqxhr.responseText}`);
-	                }
-	            });
-	        });
+        return ReplayUtils.prepareAction(this.commandParam.uuid).then(() => {
+            queryParams = this.addUuidToQueryParams(queryParams);
+            data = this.addUuidToData(data);
+            return AppUtils.httpPut(url, queryParams, data, this.commandParam);
         }, (error) => {
             reject(error);
         });
     }
 
     httpDelete(url, queryParams, data) {
-        return this.prepare().then(() => {
-	        queryParams = this.addUuidToQueryParams(queryParams);
-	        data = this.addUuidToData(data);
-	        let authorization = basicAuth(this.commandParam.username, this.commandParam.password);
-	        return new Promise((resolve, reject) => {
-				const adjustedUrl = this.url(url);
-	            $.ajax({
-	                url: adjustedUrl + this.queryParamString(adjustedUrl, queryParams),
-	                type: 'delete',
-	                data: JSON.stringify(data),
-	                beforeSend : function(req) {
-	                    if (authorization !== undefined) {
-	                        req.setRequestHeader('Authorization', authorization);
-	                    }
-	                },
-	                headers: {
-	                    'Accept': 'application/json',
-	                    'Content-Type': 'application/json'
-	                },
-	                success: function () {
-	                    resolve();
-	                },
-	                error: function (jqxhr, textStatus, error) {
-	                    reject(`DELETE failed with ${jqxhr.status}: ${jqxhr.statusText} - ${jqxhr.responseText}`);
-	                }
-	            });
-	        });
+        return ReplayUtils.prepareAction(this.commandParam.uuid).then(() => {
+            queryParams = this.addUuidToQueryParams(queryParams);
+            data = this.addUuidToData(data);
+            return AppUtils.httpDelete(url, queryParams, data, this.commandParam);
         }, (error) => {
             reject(error);
         });
@@ -220,29 +104,6 @@ class Command {
         }
         return data;
     }
-
-    queryParamString(url, queryParams) {
-        let queryString = "";
-        if (queryParams && queryParams.length > 0) {
-            for (let i = 0; i < queryParams.length; i++) {
-                if (url.indexOf('?') < 0 && i === 0) {
-                    queryString += '?'
-                } else {
-                    queryString += '&'
-                }
-                queryString += queryParams[i].key + "=" + queryParams[i].value;
-            }
-        }
-        return queryString;
-    }
-    
-    url(url) {
-		if (ACEController.execution !== ACEController.E2E) {
-			return url;
-		} else {
-			return url.replace('api', 'replay');
-		}
-	}
 
 }
 

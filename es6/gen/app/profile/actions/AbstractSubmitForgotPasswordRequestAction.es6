@@ -3,7 +3,7 @@
 class AbstractSubmitForgotPasswordRequestAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'SubmitForgotPasswordRequestAction');
+        super(actionParam, 'SubmitForgotPasswordRequestAction', false);
     }
 
 	getCommand() {

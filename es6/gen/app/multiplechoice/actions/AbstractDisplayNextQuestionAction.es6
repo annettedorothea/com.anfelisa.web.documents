@@ -3,7 +3,7 @@
 class AbstractDisplayNextQuestionAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'DisplayNextQuestionAction');
+        super(actionParam, 'DisplayNextQuestionAction', false);
     }
 
 	getCommand() {

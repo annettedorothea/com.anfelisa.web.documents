@@ -1,13 +1,15 @@
 'use strict';
 
 class Action {
-    constructor(actionParam, actionName) {
+    constructor(actionParam, actionName, isInitAction) {
         if (actionParam === undefined) {
             actionParam = {};
         }
         this.actionParam = JSON.parse(JSON.stringify(actionParam));
         this.actionName = actionName;
         this.actionData = {};
+        this.isInitAction = isInitAction === true;
+        
     }
 
     captureActionParam() {

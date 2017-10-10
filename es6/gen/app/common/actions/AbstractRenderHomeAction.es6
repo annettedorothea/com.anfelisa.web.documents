@@ -3,7 +3,7 @@
 class AbstractRenderHomeAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'RenderHomeAction');
+        super(actionParam, 'RenderHomeAction', false);
     }
 
 	getCommand() {

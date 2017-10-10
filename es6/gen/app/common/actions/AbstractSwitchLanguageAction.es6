@@ -3,7 +3,7 @@
 class AbstractSwitchLanguageAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'SwitchLanguageAction');
+        super(actionParam, 'SwitchLanguageAction', false);
     }
 
 	getCommand() {

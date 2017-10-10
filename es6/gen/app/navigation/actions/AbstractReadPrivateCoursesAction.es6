@@ -3,7 +3,7 @@
 class AbstractReadPrivateCoursesAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'ReadPrivateCoursesAction');
+        super(actionParam, 'ReadPrivateCoursesAction', false);
     }
 
 	getCommand() {

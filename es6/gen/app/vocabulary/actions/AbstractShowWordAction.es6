@@ -3,7 +3,7 @@
 class AbstractShowWordAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'ShowWordAction');
+        super(actionParam, 'ShowWordAction', false);
     }
 
 	getCommand() {

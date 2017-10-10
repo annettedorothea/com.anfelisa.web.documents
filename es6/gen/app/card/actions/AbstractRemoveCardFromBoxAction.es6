@@ -3,7 +3,7 @@
 class AbstractRemoveCardFromBoxAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'RemoveCardFromBoxAction');
+        super(actionParam, 'RemoveCardFromBoxAction', false);
     }
 
 	getCommand() {

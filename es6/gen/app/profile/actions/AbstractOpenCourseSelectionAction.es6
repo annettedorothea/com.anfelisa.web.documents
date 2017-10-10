@@ -3,7 +3,7 @@
 class AbstractOpenCourseSelectionAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'OpenCourseSelectionAction');
+        super(actionParam, 'OpenCourseSelectionAction', false);
     }
 
 	getCommand() {

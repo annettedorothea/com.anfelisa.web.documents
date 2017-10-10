@@ -3,7 +3,7 @@
 class AbstractLoadCoursesAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'LoadCoursesAction');
+        super(actionParam, 'LoadCoursesAction', false);
     }
 
 	getCommand() {

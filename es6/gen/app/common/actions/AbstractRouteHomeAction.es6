@@ -3,7 +3,7 @@
 class AbstractRouteHomeAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'RouteHomeAction');
+        super(actionParam, 'RouteHomeAction', false);
     }
 
 	getCommand() {

@@ -3,7 +3,7 @@
 class AbstractOpenBoxCreationAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'OpenBoxCreationAction');
+        super(actionParam, 'OpenBoxCreationAction', false);
     }
 
 	getCommand() {

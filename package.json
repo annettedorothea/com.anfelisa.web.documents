@@ -3,7 +3,7 @@
   "version": "1.2.2",
   "description": "",
   "scripts": {
-    "js" : "babel es6/gen/lib es6/gen/ace es6/gen/app es6/src es6/gen/elr es6/App.es6 --out-file lib/anfelisa.js",
+    "js": "babel es6/gen/lib es6/app/AppUtils.es6 es6/app/ReplayUtils.es6 es6/gen/ace es6/gen/app es6/src es6/gen/elr es6/app/App.es6 --out-file lib/anfelisa.js",
     "min" : "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa_min.js"
   },
   "author": "Annette Pohl",

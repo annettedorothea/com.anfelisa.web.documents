@@ -3,7 +3,7 @@
 class AbstractRepeatComplexCardAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'RepeatComplexCardAction');
+        super(actionParam, 'RepeatComplexCardAction', false);
     }
 
 	getCommand() {

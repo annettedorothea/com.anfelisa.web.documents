@@ -3,7 +3,7 @@
 class AbstractShowCorrectMultipleChoiceAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'ShowCorrectMultipleChoiceAction');
+        super(actionParam, 'ShowCorrectMultipleChoiceAction', false);
     }
 
 	getCommand() {

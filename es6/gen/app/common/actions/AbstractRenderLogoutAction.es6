@@ -3,7 +3,7 @@
 class AbstractRenderLogoutAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'RenderLogoutAction');
+        super(actionParam, 'RenderLogoutAction', false);
     }
 
 	getCommand() {

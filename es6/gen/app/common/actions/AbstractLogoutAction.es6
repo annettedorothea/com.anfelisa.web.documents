@@ -3,7 +3,7 @@
 class AbstractLogoutAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'LogoutAction');
+        super(actionParam, 'LogoutAction', false);
     }
 
 	getCommand() {

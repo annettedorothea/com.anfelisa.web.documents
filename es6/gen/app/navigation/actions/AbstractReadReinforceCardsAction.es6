@@ -3,7 +3,7 @@
 class AbstractReadReinforceCardsAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'ReadReinforceCardsAction');
+        super(actionParam, 'ReadReinforceCardsAction', false);
     }
 
 	getCommand() {

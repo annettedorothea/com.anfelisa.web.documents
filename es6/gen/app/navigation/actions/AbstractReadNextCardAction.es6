@@ -3,7 +3,7 @@
 class AbstractReadNextCardAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'ReadNextCardAction');
+        super(actionParam, 'ReadNextCardAction', false);
     }
 
 	getCommand() {

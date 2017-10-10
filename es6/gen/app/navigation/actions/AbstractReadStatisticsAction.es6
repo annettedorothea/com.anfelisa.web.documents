@@ -3,7 +3,7 @@
 class AbstractReadStatisticsAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'ReadStatisticsAction');
+        super(actionParam, 'ReadStatisticsAction', false);
     }
 
 	getCommand() {

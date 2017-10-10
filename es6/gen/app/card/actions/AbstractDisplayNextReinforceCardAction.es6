@@ -3,7 +3,7 @@
 class AbstractDisplayNextReinforceCardAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'DisplayNextReinforceCardAction');
+        super(actionParam, 'DisplayNextReinforceCardAction', false);
     }
 
 	getCommand() {
