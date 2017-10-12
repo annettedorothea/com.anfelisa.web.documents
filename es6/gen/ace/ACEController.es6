@@ -38,7 +38,6 @@ class ACEController {
         item.timestamp = timestamp.getTime();
         if (ACEController.execution === ACEController.LIVE) {
             ACEController.timeline.push(JSON.parse(JSON.stringify(item)));
-            AppUtils.itemAddedToTimelineCallback(item);
             if (ACEController.timeline.length > ACEController.timelineSize) {
                 let i;
                 for (i = 1; i < ACEController.timeline.length; i++) {
@@ -52,8 +51,10 @@ class ACEController {
                     }
                 }
             }
+            AppUtils.timelineChanged([item]);
         } else {
             ACEController.actualTimeline.push(JSON.parse(JSON.stringify(item)));
+            ReplayUtils.actualTimelineChanged([item]);
         }
     }
 
@@ -72,6 +73,9 @@ class ACEController {
 
     static initTimeline(timelineJson) {
         ACEController.expectedTimeline = timelineJson;
+        ReplayUtils.expectedTimelineChanged(ACEController.expectedTimeline);
+		ACEController.actualTimeline = [];
+		ReplayUtils.actualTimelineChanged([]);
     }
 
     static addActionToQueue(action) {
@@ -88,11 +92,6 @@ class ACEController {
         let action = ACEController.actionQueue.shift();
         if (action) {
             action.applyAction().then(() => {
-                if (ACEController.execution !== ACEController.LIVE) {
-                    const actualIndices = ACEController.getActionIndicesByUuid(action.actionData.uuid, ACEController.actualTimeline);
-                    const expectedIndices = ACEController.getActionIndicesByUuid(action.actionData.uuid, ACEController.expectedTimeline);
-                    ReplayUtils.replayVerification(actualIndices.start, actualIndices.end, expectedIndices.start, expectedIndices.end);
-                }
             }, (error) => {
                 ACEController.actionIsProcessing = false;
                 throw new Error(error + " when applying action " + action.actionName);
@@ -128,6 +127,8 @@ class ACEController {
         ACEController.pauseInMillis = undefined;
         ACEController.execution = level;
         ACEController.pauseInMillis = pauseInMillis;
+        
+        ReplayUtils.actualTimelineChanged([]);
 
         if (ACEController.execution === ACEController.REPLAY) {
             ACEController.readTimelineAndCreateReplayActions();
@@ -150,8 +151,11 @@ class ACEController {
             for (let i = 0; i < ACEController.timeline.length; i++) {
                 let item = ACEController.timeline[i];
                 ACEController.expectedTimeline.push(item);
-            }
+	        	}
         }
+        
+        ReplayUtils.expectedTimelineChanged(ACEController.expectedTimeline);
+        
         for (let i = 0; i < ACEController.expectedTimeline.length; i++) {
             let item = ACEController.expectedTimeline[i];
             if (item.action) {
@@ -173,27 +177,6 @@ class ACEController {
             if (item.command && item.command.commandParam.uuid === uuid) {
                 return item.command;
             }
-        }
-    }
-
-    static getActionIndicesByUuid(uuid, timeline) {
-        let start = -1;
-        let end = -1;
-        for (let i = 0; i < timeline.length; i++) {
-            let item = timeline[i];
-            if (item.action && item.action.actionData.uuid === uuid) {
-                start = i;
-            } else if (start !== -1 && item.action) {
-                end = i - 1;
-                break;
-            }
-        }
-        if (start !== -1 && end === -1) {
-            end = timeline.length;
-        }
-        return {
-            start: start,
-            end: end
         }
     }
 

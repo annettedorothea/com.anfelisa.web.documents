@@ -6,7 +6,7 @@ class AppUtils {
         new InitAction().apply();
     }
 
-    static itemAddedToTimelineCallback(item) {
+    static timelineChanged(item) {
     }
 
     static httpGet(url, queryParams, commandParam) {

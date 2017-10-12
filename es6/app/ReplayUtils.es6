@@ -2,9 +2,10 @@
 
 class ReplayUtils {
 
-    static replayVerification(actualIndex, expectedIndexStart, expectedIndexEnd) {
-		const actualTimelineItems = ACEController.replayTimeline.slice(actualIndex);
-		const expectedTimelineItems = ACEController.timeline.slice(expectedIndexStart, expectedIndexEnd);
+    static actualTimelineChanged(items) {
+    }
+
+    static expectedTimelineChanged(items) {
     }
 
     static resetDatabase() {
@@ -96,8 +97,8 @@ class ReplayUtils {
         ACEController.passed = true;
         if (document.getElementById("replayResultDiv")) {
             let table = document.getElementById("replayResultDiv");
-            for (let i = 0; i < ACEController.expectedTimeLine.length; i++) {
-                let expectedItem = ACEController.expectedTimeLine[i];
+            for (let i = 0; i < ACEController.expectedTimeline.length; i++) {
+                let expectedItem = ACEController.expectedTimeline[i];
                 let actualItem = undefined;
                 if (i < ACEController.actualTimeline.length) {
                     actualItem = ACEController.actualTimeline[i];

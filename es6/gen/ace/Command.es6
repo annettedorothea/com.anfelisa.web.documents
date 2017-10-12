@@ -2,8 +2,8 @@
 
 class Command {
     constructor(commandParam, commandName) {
-        this.commandParam = JSON.parse(JSON.stringify(commandParam));
         this.commandName = commandName;
+        this.commandParam = JSON.parse(JSON.stringify(commandParam));
         this.commandData = {};
     }
 

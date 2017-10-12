@@ -2,11 +2,11 @@
 
 class Action {
     constructor(actionParam, actionName, isInitAction) {
+        this.actionName = actionName;
         if (actionParam === undefined) {
             actionParam = {};
         }
         this.actionParam = JSON.parse(JSON.stringify(actionParam));
-        this.actionName = actionName;
         this.actionData = {};
         this.isInitAction = isInitAction === true;
         
