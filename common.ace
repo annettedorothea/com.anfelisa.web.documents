@@ -1,6 +1,6 @@
 common
 
-target ES6
+target ES6 generateModules
 
 actions {
 	init Init executes Init

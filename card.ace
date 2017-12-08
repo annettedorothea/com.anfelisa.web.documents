@@ -1,6 +1,6 @@
 card
 
-target ES6
+target ES6 generateModules
 
 actions {
 	ShowNextCardItem executes ShowNextCardItem

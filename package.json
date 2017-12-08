@@ -3,13 +3,42 @@
   "version": "1.3.0",
   "description": "",
   "scripts": {
+    "js-bak": "babel es6/gen/lib es6/app/AppUtils.es6 es6/app/ReplayUtils.es6 es6/gen/ace es6/gen/app es6/src es6/gen/elr es6/app/App.es6 --out-file lib/anfelisa.js",
+    "min" : "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa_min.js",
     "js": "babel es6/gen/lib es6/app/AppUtils.es6 es6/app/ReplayUtils.es6 es6/gen/ace es6/gen/app es6/src es6/gen/elr es6/app/App.es6 --out-file lib/anfelisa.js",
-    "min" : "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa_min.js"
+    "uglify": "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa.min.js",
+    "build": "watchify es6/src/app/App.js -o lib/anfelisa.js -dv",
+    "start": "watchify es6/src/app/App.js -o lib/anfelisa.js -dv & live-server --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8880/replay/' --browser='Google Chrome'"
   },
   "author": "Annette Pohl",
   "license": "ISC",
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015",
+            "react"
+          ]
+        }
+      ]
+    ]
+  },
+  "dependencies": {
+    "uuid": "^3.1.0"
+  },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-preset-es2015": "^6.18.0"
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^14.5.0",
+    "http-proxy-middleware": "^0.17.4",
+    "node-sass": "^4.5.3",
+    "serve": "^6.4.1",
+    "uglify-js": "^3.1.6",
+    "watch": "^1.0.2",
+    "watchify": "^3.9.0"
   }
 }

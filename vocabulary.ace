@@ -1,6 +1,6 @@
 vocabulary
 
-target ES6 
+target ES6 generateModules
 
 actions {
 	CorrectWord executes CorrectWord

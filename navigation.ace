@@ -1,6 +1,6 @@
 navigation
 
-target ES6
+target ES6 generateModules
 
 actions {
 	ReadPublicCourses executes ReadPublicCourses
