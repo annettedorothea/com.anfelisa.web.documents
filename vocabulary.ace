@@ -2,6 +2,7 @@ vocabulary
 
 target ES6 generateModules
 
+
 actions {
 	CorrectWord executes CorrectWord
 	IsTestFinished executes IsTestFinished
