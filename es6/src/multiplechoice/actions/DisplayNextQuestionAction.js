@@ -1,6 +1,6 @@
 import AbstractDisplayNextQuestionAction from "../../../gen/multiplechoice/actions/AbstractDisplayNextQuestionAction";
 
-class DisplayNextQuestionAction extends AbstractDisplayNextQuestionAction {
+export default class DisplayNextQuestionAction extends AbstractDisplayNextQuestionAction {
 
     captureActionParam() {
     }

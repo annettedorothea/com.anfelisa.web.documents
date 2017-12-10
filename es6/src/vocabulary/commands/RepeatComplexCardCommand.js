@@ -1,6 +1,6 @@
-'use strict';
+import AbstractRepeatComplexCardCommand from "../../../gen/vocabulary/commands/AbstractRepeatComplexCardCommand";
 
-class RepeatComplexCardCommand extends AbstractRepeatComplexCardCommand {
+export default class RepeatComplexCardCommand extends AbstractRepeatComplexCardCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.hash = this.commandParam.hash;

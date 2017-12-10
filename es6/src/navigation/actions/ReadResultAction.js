@@ -1,6 +1,7 @@
 import AbstractReadResultAction from "../../../gen/navigation/actions/AbstractReadResultAction";
+import CommonView from "../../common/views/CommonView";
 
-class ReadResultAction extends AbstractReadResultAction {
+export default class ReadResultAction extends AbstractReadResultAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

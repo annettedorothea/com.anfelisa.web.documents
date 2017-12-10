@@ -1,6 +1,6 @@
 import AbstractReadPublicCoursesAction from "../../../gen/navigation/actions/AbstractReadPublicCoursesAction";
 
-class ReadPublicCoursesAction extends AbstractReadPublicCoursesAction {
+export default class ReadPublicCoursesAction extends AbstractReadPublicCoursesAction {
 
     captureActionParam() {
     }

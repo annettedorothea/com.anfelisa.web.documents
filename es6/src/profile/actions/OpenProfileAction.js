@@ -1,6 +1,7 @@
-'use strict';
+import AbstractOpenProfileAction from "../../../gen/profile/actions/AbstractOpenProfileAction";
+import CommonView from "../../common/views/CommonView";
 
-class OpenProfileAction extends AbstractOpenProfileAction {
+export default class OpenProfileAction extends AbstractOpenProfileAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

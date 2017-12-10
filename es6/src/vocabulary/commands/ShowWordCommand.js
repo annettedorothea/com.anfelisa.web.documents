@@ -1,6 +1,6 @@
-'use strict';
+import AbstractShowWordCommand from "../../../gen/vocabulary/commands/AbstractShowWordCommand";
 
-class ShowWordCommand extends AbstractShowWordCommand {
+export default class ShowWordCommand extends AbstractShowWordCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.outcome = this.showWord;

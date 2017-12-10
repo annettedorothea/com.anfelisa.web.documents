@@ -1,10 +1,11 @@
-'use strict';
+import AbstractCorrectWordAction from "../../../gen/vocabulary/actions/AbstractCorrectWordAction";
 
-class CorrectWordAction extends AbstractCorrectWordAction {
+export default class CorrectWordAction extends AbstractCorrectWordAction {
 
     captureActionParam() {
-		this.actionParam.answer = jQuery(".active").val().trim();
-		this.actionParam.id = jQuery(".active").attr("id");
+    	let active = jQuery(".active");
+		this.actionParam.answer = active.val().trim();
+		this.actionParam.id = active.attr("id");
     }
 
     initActionData() {

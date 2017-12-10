@@ -1,9 +1,9 @@
-'use strict';
+import AbstractLoadCoursesCommand from "../../../gen/profile/commands/AbstractLoadCoursesCommand";
 
-class LoadCoursesCommand extends AbstractLoadCoursesCommand {
+export default class LoadCoursesCommand extends AbstractLoadCoursesCommand {
     execute() {
         return new Promise((resolve) => {
-            var queryParams = [];
+            let queryParams = [];
             queryParams.push({
                 key: "boxId",
                 value: this.commandParam.boxId

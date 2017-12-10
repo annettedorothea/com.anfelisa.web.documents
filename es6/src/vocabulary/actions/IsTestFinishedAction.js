@@ -1,6 +1,6 @@
-'use strict';
+import AbstractIsTestFinishedAction from "../../../gen/vocabulary/actions/AbstractIsTestFinishedAction";
 
-class IsTestFinishedAction extends AbstractIsTestFinishedAction {
+export default class IsTestFinishedAction extends AbstractIsTestFinishedAction {
 
     captureActionParam() {
     }

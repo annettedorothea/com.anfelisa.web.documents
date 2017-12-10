@@ -1,6 +1,6 @@
-'use strict';
+import AbstractIsRatedTestFinishedCommand from "../../../gen/vocabulary/commands/AbstractIsRatedTestFinishedCommand";
 
-class IsRatedTestFinishedCommand extends AbstractIsRatedTestFinishedCommand {
+export default class IsRatedTestFinishedCommand extends AbstractIsRatedTestFinishedCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.strikeCount = this.commandParam.strikeCount;

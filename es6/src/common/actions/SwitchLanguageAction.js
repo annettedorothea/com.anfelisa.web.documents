@@ -1,6 +1,6 @@
 import AbstractSwitchLanguageAction from "../../../gen/common/actions/AbstractSwitchLanguageAction";
 
-class SwitchLanguageAction extends AbstractSwitchLanguageAction {
+export default class SwitchLanguageAction extends AbstractSwitchLanguageAction {
 
     captureActionParam() {
     }

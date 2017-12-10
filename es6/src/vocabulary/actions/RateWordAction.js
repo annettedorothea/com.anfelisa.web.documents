@@ -1,6 +1,6 @@
-'use strict';
+import AbstractRateWordAction from "../../../gen/vocabulary/actions/AbstractRateWordAction";
 
-class RateWordAction extends AbstractRateWordAction {
+export default class RateWordAction extends AbstractRateWordAction {
 
     captureActionParam() {
     }

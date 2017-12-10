@@ -1,6 +1,6 @@
-'use strict';
+import AbstractOpenProfileCommand from "../../../gen/profile/commands/AbstractOpenProfileCommand";
 
-class OpenProfileCommand extends AbstractOpenProfileCommand {
+export default class OpenProfileCommand extends AbstractOpenProfileCommand {
     execute() {
         return new Promise((resolve) => {
             this.httpGet("api/users/info").then((data) => {

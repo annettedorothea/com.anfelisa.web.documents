@@ -1,6 +1,6 @@
-'use strict';
+import AbstractRateWordCommand from "../../../gen/vocabulary/commands/AbstractRateWordCommand";
 
-class RateWordCommand extends AbstractRateWordCommand {
+export default class RateWordCommand extends AbstractRateWordCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.knewIt = this.commandParam.knewIt;

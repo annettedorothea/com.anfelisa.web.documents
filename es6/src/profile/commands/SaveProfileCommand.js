@@ -1,6 +1,6 @@
-'use strict';
+import AbstractSaveProfileCommand from "../../../gen/profile/commands/AbstractSaveProfileCommand";
 
-class SaveProfileCommand extends AbstractSaveProfileCommand {
+export default class SaveProfileCommand extends AbstractSaveProfileCommand {
     execute() {
         return new Promise((resolve) => {
             if (!this.commandParam.email || !this.commandParam.name || !this.commandParam.prename) {
@@ -8,7 +8,7 @@ class SaveProfileCommand extends AbstractSaveProfileCommand {
                 this.commandData.outcome = this.dataInvalid;
                 resolve();
             } else {
-                var data = {
+                const data = {
                     username: this.commandParam.username,
                     name: this.commandParam.name,
                     prename: this.commandParam.prename,

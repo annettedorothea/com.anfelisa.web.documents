@@ -1,6 +1,7 @@
-'use strict';
+import AbstractFillBoxWithCardsAction from "../../../gen/profile/actions/AbstractFillBoxWithCardsAction";
+import CommonView from "../../common/views/CommonView";
 
-class FillBoxWithCardsAction extends AbstractFillBoxWithCardsAction {
+export default class FillBoxWithCardsAction extends AbstractFillBoxWithCardsAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

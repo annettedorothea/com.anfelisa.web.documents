@@ -1,8 +1,11 @@
-'use strict';
+import AbstractShowNextWordOfTestEvent from "../../../gen/vocabulary/events/AbstractShowNextWordOfTestEvent";
 
-class ShowNextWordOfTestEvent extends AbstractShowNextWordOfTestEvent {
+export default class ShowNextWordOfTestEvent extends AbstractShowNextWordOfTestEvent {
     prepareDataForView() {
         this.eventData = JSON.parse(JSON.stringify(this.eventParam));
+        if (this.eventData.data === undefined) {
+        	this.eventData.data = {};
+        }
     }
 }
 

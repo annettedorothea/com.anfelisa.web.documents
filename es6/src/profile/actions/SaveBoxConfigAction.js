@@ -1,11 +1,12 @@
-'use strict';
+import AbstractSaveBoxConfigAction from "../../../gen/profile/actions/AbstractSaveBoxConfigAction";
+import CommonView from "../../common/views/CommonView";
 
-class SaveBoxConfigAction extends AbstractSaveBoxConfigAction {
+export default class SaveBoxConfigAction extends AbstractSaveBoxConfigAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();
 		this.actionParam.password = CommonView.getPassword();
-	    var boxId = this.actionParam.boxId;
+	    const boxId = this.actionParam.boxId;
 		this.actionParam.boxOfCourseList = $("select").map(function() { return { autoAdd: this.value, courseId: this.id, boxId: boxId};}).get();
     }
 

@@ -1,8 +1,11 @@
-'use strict';
+import AbstractCoursesLoadedEvent from "../../../gen/profile/events/AbstractCoursesLoadedEvent";
 
-class CoursesLoadedEvent extends AbstractCoursesLoadedEvent {
+export default class CoursesLoadedEvent extends AbstractCoursesLoadedEvent {
     prepareDataForView() {
         this.eventData = JSON.parse(JSON.stringify(this.eventParam));
+        if (this.eventData.data === undefined) {
+        	this.eventData.data = {};
+        }
     }
 }
 

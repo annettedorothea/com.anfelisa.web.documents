@@ -1,6 +1,6 @@
 import AbstractInitCommand from "../../../gen/common/commands/AbstractInitCommand";
 
-class InitCommand extends AbstractInitCommand {
+export default class InitCommand extends AbstractInitCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.language = this.commandParam.language;

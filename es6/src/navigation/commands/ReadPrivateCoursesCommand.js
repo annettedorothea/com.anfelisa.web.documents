@@ -1,6 +1,6 @@
 import AbstractReadPrivateCoursesCommand from "../../../gen/navigation/commands/AbstractReadPrivateCoursesCommand";
 
-class ReadPrivateCoursesCommand extends AbstractReadPrivateCoursesCommand {
+export default class ReadPrivateCoursesCommand extends AbstractReadPrivateCoursesCommand {
     execute() {
         return new Promise((resolve) => {
             this.httpGet("api/courses/private").then((data) => {

@@ -1,6 +1,6 @@
 import AbstractCheckIfComplexCardIsFinishedCommand from "../../../gen/card/commands/AbstractCheckIfComplexCardIsFinishedCommand";
 
-class CheckIfComplexCardIsFinishedCommand extends AbstractCheckIfComplexCardIsFinishedCommand {
+export default class CheckIfComplexCardIsFinishedCommand extends AbstractCheckIfComplexCardIsFinishedCommand {
     execute() {
         return new Promise((resolve) => {
             if (this.commandParam.isFinished) {

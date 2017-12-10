@@ -1,6 +1,9 @@
 import uuid from "uuid";
 
-class AppUtils {
+import InitAction from '../common/actions/InitAction';
+import ACEController from "../../gen/ace/ACEController";
+
+export default class AppUtils {
 
     static start() {
         new InitAction().apply();

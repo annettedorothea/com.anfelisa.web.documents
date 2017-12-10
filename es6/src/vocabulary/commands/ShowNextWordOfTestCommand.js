@@ -1,6 +1,6 @@
-'use strict';
+import AbstractShowNextWordOfTestCommand from "../../../gen/vocabulary/commands/AbstractShowNextWordOfTestCommand";
 
-class ShowNextWordOfTestCommand extends AbstractShowNextWordOfTestCommand {
+export default class ShowNextWordOfTestCommand extends AbstractShowNextWordOfTestCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.nextRandomIndex = this.commandParam.nextRandomIndex;

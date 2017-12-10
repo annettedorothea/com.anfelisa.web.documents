@@ -1,6 +1,6 @@
-'use strict';
+import AbstractShowWordAction from "../../../gen/vocabulary/actions/AbstractShowWordAction";
 
-class ShowWordAction extends AbstractShowWordAction {
+export default class ShowWordAction extends AbstractShowWordAction {
 
     captureActionParam() {
     }

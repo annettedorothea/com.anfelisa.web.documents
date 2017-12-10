@@ -1,8 +1,11 @@
-'use strict';
+import AbstractUserInfoLoadedEvent from "../../../gen/profile/events/AbstractUserInfoLoadedEvent";
 
-class UserInfoLoadedEvent extends AbstractUserInfoLoadedEvent {
+export default class UserInfoLoadedEvent extends AbstractUserInfoLoadedEvent {
     prepareDataForView() {
         this.eventData = JSON.parse(JSON.stringify(this.eventParam));
+        if (this.eventData.data === undefined) {
+        	this.eventData.data = {};
+        }
     }
 }
 

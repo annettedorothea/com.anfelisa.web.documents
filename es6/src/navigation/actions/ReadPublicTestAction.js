@@ -1,6 +1,6 @@
 import AbstractReadPublicTestAction from "../../../gen/navigation/actions/AbstractReadPublicTestAction";
 
-class ReadPublicTestAction extends AbstractReadPublicTestAction {
+export default class ReadPublicTestAction extends AbstractReadPublicTestAction {
 
     captureActionParam() {
     }

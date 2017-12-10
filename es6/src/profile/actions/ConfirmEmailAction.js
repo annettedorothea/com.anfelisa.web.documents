@@ -1,6 +1,6 @@
-'use strict';
+import AbstractConfirmEmailAction from "../../../gen/profile/actions/AbstractConfirmEmailAction";
 
-class ConfirmEmailAction extends AbstractConfirmEmailAction {
+export default class ConfirmEmailAction extends AbstractConfirmEmailAction {
 
     captureActionParam() {
     }

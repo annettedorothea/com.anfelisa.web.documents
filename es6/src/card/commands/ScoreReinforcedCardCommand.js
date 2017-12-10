@@ -1,6 +1,6 @@
 import AbstractScoreReinforcedCardCommand from "../../../gen/card/commands/AbstractScoreReinforcedCardCommand";
 
-class ScoreReinforcedCardCommand extends AbstractScoreReinforcedCardCommand {
+export default class ScoreReinforcedCardCommand extends AbstractScoreReinforcedCardCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.quality = this.commandParam.quality;

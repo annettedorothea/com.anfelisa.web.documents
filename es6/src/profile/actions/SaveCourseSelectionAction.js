@@ -1,6 +1,7 @@
-'use strict';
+import AbstractSaveCourseSelectionAction from "../../../gen/profile/actions/AbstractSaveCourseSelectionAction";
+import CommonView from "../../common/views/CommonView";
 
-class SaveCourseSelectionAction extends AbstractSaveCourseSelectionAction {
+export default class SaveCourseSelectionAction extends AbstractSaveCourseSelectionAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

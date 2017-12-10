@@ -1,6 +1,6 @@
-'use strict';
+import AbstractSubmitForgotPasswordRequestCommand from "../../../gen/profile/commands/AbstractSubmitForgotPasswordRequestCommand";
 
-class SubmitForgotPasswordRequestCommand extends AbstractSubmitForgotPasswordRequestCommand {
+export default class SubmitForgotPasswordRequestCommand extends AbstractSubmitForgotPasswordRequestCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.language = this.commandParam.language;
@@ -9,7 +9,7 @@ class SubmitForgotPasswordRequestCommand extends AbstractSubmitForgotPasswordReq
                 this.commandData.outcome = this.dataInvalid;
                 resolve();
             } else {
-                var queryParams = [];
+                let queryParams = [];
                 queryParams.push({
                     key: "username",
                     value: this.commandParam.username

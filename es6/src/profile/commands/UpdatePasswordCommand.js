@@ -1,18 +1,18 @@
-'use strict';
+import AbstractUpdatePasswordCommand from "../../../gen/profile/commands/AbstractUpdatePasswordCommand";
 
-class UpdatePasswordCommand extends AbstractUpdatePasswordCommand {
+export default class UpdatePasswordCommand extends AbstractUpdatePasswordCommand {
     execute() {
         return new Promise((resolve) => {
             if (this.commandParam.newPasswordEmpty || this.commandParam.passwordRepetitionEmpty) {
                 this.commandData.messageKey = "dataInvalid";
                 this.commandData.outcome = this.dataInvalid;
                 resolve();
-            } else if (this.commandParam.newPassword != this.commandParam.passwordRepetition) {
+            } else if (this.commandParam.newPassword !== this.commandParam.passwordRepetition) {
                 this.commandData.messageKey = "passwordMismatch";
                 this.commandData.outcome = this.mismatch;
                 resolve();
             } else {
-                var data = {
+                const data = {
                     password: this.commandParam.newPassword
                 };
                 this.httpPut("api/users/password", [], data).then(() => {

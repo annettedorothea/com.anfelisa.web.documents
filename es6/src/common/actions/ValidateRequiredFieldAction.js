@@ -1,6 +1,6 @@
 import AbstractValidateRequiredFieldAction from "../../../gen/common/actions/AbstractValidateRequiredFieldAction";
 
-class ValidateRequiredFieldAction extends AbstractValidateRequiredFieldAction {
+export default class ValidateRequiredFieldAction extends AbstractValidateRequiredFieldAction {
 
     captureActionParam() {
 		this.actionParam.value = $("#" + this.actionParam.id).val();

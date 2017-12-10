@@ -1,18 +1,18 @@
-'use strict';
+import AbstractSubmitNewPasswordCommand from "../../../gen/profile/commands/AbstractSubmitNewPasswordCommand";
 
-class SubmitNewPasswordCommand extends AbstractSubmitNewPasswordCommand {
+export default class SubmitNewPasswordCommand extends AbstractSubmitNewPasswordCommand {
     execute() {
         return new Promise((resolve) => {
             if (!this.commandParam.newPassword || !this.commandParam.passwordRepetition) {
                 this.commandData.messageKey = "dataInvalid";
                 this.commandData.outcome = this.dataInvalid;
                 resolve();
-            } else if (this.commandParam.newPassword != this.commandParam.passwordRepetition) {
+            } else if (this.commandParam.newPassword !== this.commandParam.passwordRepetition) {
                 this.commandData.messageKey = "passwordMismatch";
                 this.commandData.outcome = this.mismatch;
                 resolve();
             } else {
-                var data = {
+                const data = {
                     password: this.commandParam.newPassword
                 };
                 this.httpPut("api/users/password", [], data).then(() => {

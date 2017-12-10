@@ -1,7 +1,8 @@
+import CommonView from "../views/CommonView";
 
 export default class ErrorView {
     static renderServerError(data) {
-        data.message = Texts.errors[data.messageKey];
+        data.message = CommonView.getTexts().errors[data.messageKey];
         const template = $('#serverErrorTemplate').html();
         const rendered = Mustache.render(template, data);
         $('.notifications').html(rendered);
@@ -13,7 +14,7 @@ export default class ErrorView {
     };
 
     static renderError(data) {
-        data.message = Texts.errors[data.messageKey];
+        data.message = CommonView.getTexts().errors[data.messageKey];
         const template = $('#errorTemplate').html();
         const rendered = Mustache.render(template, data);
         $('.notifications').html(rendered);

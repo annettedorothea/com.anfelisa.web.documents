@@ -1,8 +1,11 @@
-'use strict';
+import AbstractRenderBoxEvent from "../../../gen/profile/events/AbstractRenderBoxEvent";
 
-class RenderBoxEvent extends AbstractRenderBoxEvent {
+export default class RenderBoxEvent extends AbstractRenderBoxEvent {
     prepareDataForView() {
         this.eventData = JSON.parse(JSON.stringify(this.eventParam));
+        if (this.eventData.data === undefined) {
+        	this.eventData.data = {};
+        }
     }
 }
 

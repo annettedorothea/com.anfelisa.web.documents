@@ -1,6 +1,7 @@
-'use strict';
+import AbstractRecalculateScheduledCardsAction from "../../../gen/card/actions/AbstractRecalculateScheduledCardsAction";
+import CommonView from "../../common/views/CommonView";
 
-class RecalculateScheduledCardsAction extends AbstractRecalculateScheduledCardsAction {
+export default class RecalculateScheduledCardsAction extends AbstractRecalculateScheduledCardsAction {
 
     captureActionParam() {
         this.actionParam.username = CommonView.getUsername();

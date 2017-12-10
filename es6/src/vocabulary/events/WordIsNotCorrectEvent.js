@@ -1,8 +1,11 @@
-'use strict';
+import AbstractWordIsNotCorrectEvent from "../../../gen/vocabulary/events/AbstractWordIsNotCorrectEvent";
 
-class WordIsNotCorrectEvent extends AbstractWordIsNotCorrectEvent {
+export default class WordIsNotCorrectEvent extends AbstractWordIsNotCorrectEvent {
     prepareDataForView() {
         this.eventData = JSON.parse(JSON.stringify(this.eventParam));
+        if (this.eventData.data === undefined) {
+        	this.eventData.data = {};
+        }
     }
 }
 

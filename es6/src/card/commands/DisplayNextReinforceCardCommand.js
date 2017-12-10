@@ -1,6 +1,6 @@
 import AbstractDisplayNextReinforceCardCommand from "../../../gen/card/commands/AbstractDisplayNextReinforceCardCommand";
 
-class DisplayNextReinforceCardCommand extends AbstractDisplayNextReinforceCardCommand {
+export default class DisplayNextReinforceCardCommand extends AbstractDisplayNextReinforceCardCommand {
     execute() {
         return new Promise((resolve) => {
             if (this.commandParam.cardCount > 0) {

@@ -1,6 +1,6 @@
-'use strict';
+import AbstractConfirmEmailCommand from "../../../gen/profile/commands/AbstractConfirmEmailCommand";
 
-class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
+export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
     execute() {
         return new Promise((resolve) => {
             this.httpPut("api/users/confirm").then(() => {

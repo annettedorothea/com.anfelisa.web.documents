@@ -1,7 +1,8 @@
+import CommonView from "../views/CommonView";
 
 export default class ReallyDeleteDialogView {
     static displayRemoveCourseFromUserDialog(eventData) {
-        bootbox.confirm(Texts.user.reallyRemoveCourseFromUser, function(result) {
+        bootbox.confirm(CommonView.getTexts().user.reallyRemoveCourseFromUser, function(result) {
             if (result === true) {
                 new RemoveCourseAction( {'courseId' : eventData.courseId} ).apply();
             } else {
@@ -11,7 +12,7 @@ export default class ReallyDeleteDialogView {
     };
 
     static displayDeleteBoxDialog(eventData) {
-        bootbox.confirm(Texts.user.reallyDeleteBox, function(result) {
+        bootbox.confirm(CommonView.getTexts().user.reallyDeleteBox, function(result) {
             if (result === true) {
                 new DeleteBoxAction( {'boxId' : eventData.boxId} ).apply();
             } else {
@@ -21,7 +22,7 @@ export default class ReallyDeleteDialogView {
     };
 
     static displayRemoveCardFromBoxDialog(eventData) {
-        bootbox.confirm(Texts.common.reallyRemoveCardFromBox, function(result) {
+        bootbox.confirm(CommonView.getTexts().common.reallyRemoveCardFromBox, function(result) {
             if (result === true) {
                 new RemoveCardFromBoxAction( {'boxId' : eventData.boxId, 'cardOfBoxId' : eventData.cardOfBoxId} ).apply();
             } else {

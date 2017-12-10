@@ -1,6 +1,7 @@
 import AbstractReadPrivateTestsAction from "../../../gen/navigation/actions/AbstractReadPrivateTestsAction";
+import CommonView from "../../common/views/CommonView";
 
-class ReadPrivateTestsAction extends AbstractReadPrivateTestsAction {
+export default class ReadPrivateTestsAction extends AbstractReadPrivateTestsAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

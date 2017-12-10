@@ -1,6 +1,6 @@
 import AbstractOpenReallyDeleteDialogAction from "../../../gen/common/actions/AbstractOpenReallyDeleteDialogAction";
 
-class OpenReallyDeleteDialogAction extends AbstractOpenReallyDeleteDialogAction {
+export default class OpenReallyDeleteDialogAction extends AbstractOpenReallyDeleteDialogAction {
 
     captureActionParam() {
     }

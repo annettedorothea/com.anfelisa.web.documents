@@ -1,14 +1,17 @@
-'use strict';
+import AbstractUpdatePasswordAction from "../../../gen/profile/actions/AbstractUpdatePasswordAction";
+import CommonView from "../../common/views/CommonView";
 
-class UpdatePasswordAction extends AbstractUpdatePasswordAction {
+export default class UpdatePasswordAction extends AbstractUpdatePasswordAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();
 		this.actionParam.password = CommonView.getPassword();
-		this.actionParam.newPassword = CryptoJS.MD5(jQuery("#password").val()).toString();
-		this.actionParam.passwordRepetition = CryptoJS.MD5(jQuery("#passwordRepetition").val().trim()).toString();
-		this.actionParam.newPasswordEmpty = jQuery("#password").val().length === 0;
-		this.actionParam.passwordRepetitionEmpty = jQuery("#passwordRepetition").val().length === 0;
+		const password = jQuery("#password");
+		const passwordRepetition = jQuery("#passwordRepetition");
+		this.actionParam.newPassword = CryptoJS.MD5(password.val()).toString();
+		this.actionParam.passwordRepetition = CryptoJS.MD5(passwordRepetition.val().trim()).toString();
+		this.actionParam.newPasswordEmpty = password.val().length === 0;
+		this.actionParam.passwordRepetitionEmpty = passwordRepetition.val().length === 0;
     }
 
     initActionData() {

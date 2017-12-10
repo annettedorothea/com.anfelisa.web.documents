@@ -1,6 +1,6 @@
 import AbstractReadStatisticsCommand from "../../../gen/navigation/commands/AbstractReadStatisticsCommand";
 
-class ReadStatisticsCommand extends AbstractReadStatisticsCommand {
+export default class ReadStatisticsCommand extends AbstractReadStatisticsCommand {
     execute() {
         return new Promise((resolve) => {
             let queryParams = [];

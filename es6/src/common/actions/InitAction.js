@@ -1,6 +1,7 @@
 import AbstractInitAction from "../../../gen/common/actions/AbstractInitAction";
+import CommonView from "../views/CommonView";
 
-class InitAction extends AbstractInitAction {
+export default class InitAction extends AbstractInitAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

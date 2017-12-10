@@ -1,6 +1,6 @@
 import AbstractFinishCardCommand from "../../../gen/card/commands/AbstractFinishCardCommand";
 
-class FinishCardCommand extends AbstractFinishCardCommand {
+export default class FinishCardCommand extends AbstractFinishCardCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.points  = this.commandParam.points;

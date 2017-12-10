@@ -1,6 +1,6 @@
-'use strict';
+import AbstractSubmitNewPasswordAction from "../../../gen/profile/actions/AbstractSubmitNewPasswordAction";
 
-class SubmitNewPasswordAction extends AbstractSubmitNewPasswordAction {
+export default class SubmitNewPasswordAction extends AbstractSubmitNewPasswordAction {
 
     captureActionParam() {
 		this.actionParam.username = jQuery("#username").val().trim();

@@ -1,6 +1,7 @@
-'use strict';
+import AbstractDeleteBoxAction from "../../../gen/profile/actions/AbstractDeleteBoxAction";
+import CommonView from "../../common/views/CommonView";
 
-class DeleteBoxAction extends AbstractDeleteBoxAction {
+export default class DeleteBoxAction extends AbstractDeleteBoxAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

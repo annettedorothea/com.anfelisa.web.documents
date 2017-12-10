@@ -1,5 +1,6 @@
+import ACEController from "../../gen/ace/ACEController";
 
-class ReplayUtils {
+export default class ReplayUtils {
 
     static actualTimelineChanged(items) {
     }

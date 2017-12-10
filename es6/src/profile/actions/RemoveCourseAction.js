@@ -1,6 +1,7 @@
-'use strict';
+import AbstractRemoveCourseAction from "../../../gen/profile/actions/AbstractRemoveCourseAction";
+import CommonView from "../../common/views/CommonView";
 
-class RemoveCourseAction extends AbstractRemoveCourseAction {
+export default class RemoveCourseAction extends AbstractRemoveCourseAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

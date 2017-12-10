@@ -1,6 +1,7 @@
-'use strict';
+import AbstractSubmitRegistrationAction from "../../../gen/profile/actions/AbstractSubmitRegistrationAction";
+import CommonView from "../../common/views/CommonView";
 
-class SubmitRegistrationAction extends AbstractSubmitRegistrationAction {
+export default class SubmitRegistrationAction extends AbstractSubmitRegistrationAction {
 
     captureActionParam() {
 		this.actionParam.language = CommonView.getLanguage();

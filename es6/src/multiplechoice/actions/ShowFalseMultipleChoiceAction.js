@@ -1,6 +1,6 @@
 import AbstractShowFalseMultipleChoiceAction from "../../../gen/multiplechoice/actions/AbstractShowFalseMultipleChoiceAction";
 
-class ShowFalseMultipleChoiceAction extends AbstractShowFalseMultipleChoiceAction {
+export default class ShowFalseMultipleChoiceAction extends AbstractShowFalseMultipleChoiceAction {
 
     captureActionParam() {
     }

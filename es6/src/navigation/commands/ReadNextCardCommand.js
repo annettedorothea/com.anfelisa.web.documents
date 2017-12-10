@@ -1,6 +1,6 @@
 import AbstractReadNextCardCommand from "../../../gen/navigation/commands/AbstractReadNextCardCommand";
 
-class ReadNextCardCommand extends AbstractReadNextCardCommand {
+export default class ReadNextCardCommand extends AbstractReadNextCardCommand {
     execute() {
         return new Promise((resolve) => {
             let queryParams = [];

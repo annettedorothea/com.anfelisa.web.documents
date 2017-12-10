@@ -1,6 +1,7 @@
 import AbstractDisplayNextReinforceCardAction from "../../../gen/card/actions/AbstractDisplayNextReinforceCardAction";
+import CommonView from "../../common/views/CommonView";
 
-class DisplayNextReinforceCardAction extends AbstractDisplayNextReinforceCardAction {
+export default class DisplayNextReinforceCardAction extends AbstractDisplayNextReinforceCardAction {
 
     captureActionParam() {
         this.actionParam.username = CommonView.getUsername();

@@ -1,6 +1,6 @@
-'use strict';
+import AbstractOpenChangePasswordCommand from "../../../gen/profile/commands/AbstractOpenChangePasswordCommand";
 
-class OpenChangePasswordCommand extends AbstractOpenChangePasswordCommand {
+export default class OpenChangePasswordCommand extends AbstractOpenChangePasswordCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.outcome = this.ok;

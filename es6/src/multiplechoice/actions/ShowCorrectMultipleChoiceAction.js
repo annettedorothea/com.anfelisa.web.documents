@@ -1,6 +1,6 @@
 import AbstractShowCorrectMultipleChoiceAction from "../../../gen/multiplechoice/actions/AbstractShowCorrectMultipleChoiceAction";
 
-class ShowCorrectMultipleChoiceAction extends AbstractShowCorrectMultipleChoiceAction {
+export default class ShowCorrectMultipleChoiceAction extends AbstractShowCorrectMultipleChoiceAction {
 
     captureActionParam() {
     }

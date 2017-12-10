@@ -1,6 +1,6 @@
 import AbstractShowNextCardItemAction from "../../../gen/card/actions/AbstractShowNextCardItemAction";
 
-class ShowNextCardItemAction extends AbstractShowNextCardItemAction {
+export default class ShowNextCardItemAction extends AbstractShowNextCardItemAction {
 
     captureActionParam() {
     	this.actionParam = {

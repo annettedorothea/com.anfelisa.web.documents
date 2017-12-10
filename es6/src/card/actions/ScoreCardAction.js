@@ -1,6 +1,7 @@
 import AbstractScoreCardAction from "../../../gen/card/actions/AbstractScoreCardAction";
+import CommonView from "../../common/views/CommonView";
 
-class ScoreCardAction extends AbstractScoreCardAction {
+export default class ScoreCardAction extends AbstractScoreCardAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

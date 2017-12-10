@@ -1,6 +1,6 @@
-'use strict';
+import AbstractRenderCourseToBoxEvent from "../../../gen/profile/events/AbstractRenderCourseToBoxEvent";
 
-class RenderCourseToBoxEvent extends AbstractRenderCourseToBoxEvent {
+export default class RenderCourseToBoxEvent extends AbstractRenderCourseToBoxEvent {
     prepareDataForView() {
         this.eventData = JSON.parse(JSON.stringify(this.eventParam));
         this.eventData.data.courseToBoxAdditionList.forEach((item) => {

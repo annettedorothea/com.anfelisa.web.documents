@@ -1,6 +1,6 @@
 import AbstractShowFalseMultipleChoiceCommand from "../../../gen/multiplechoice/commands/AbstractShowFalseMultipleChoiceCommand";
 
-class ShowFalseMultipleChoiceCommand extends AbstractShowFalseMultipleChoiceCommand {
+export default class ShowFalseMultipleChoiceCommand extends AbstractShowFalseMultipleChoiceCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.itemId = this.commandParam.itemId;

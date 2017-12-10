@@ -1,6 +1,6 @@
 import AbstractReadReinforceCardsCommand from "../../../gen/navigation/commands/AbstractReadReinforceCardsCommand";
 
-class ReadReinforceCardsCommand extends AbstractReadReinforceCardsCommand {
+export default class ReadReinforceCardsCommand extends AbstractReadReinforceCardsCommand {
     execute() {
         return new Promise((resolve) => {
             let queryParams = [];

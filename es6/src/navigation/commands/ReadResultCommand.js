@@ -1,6 +1,6 @@
 import AbstractReadResultCommand from "../../../gen/navigation/commands/AbstractReadResultCommand";
 
-class ReadResultCommand extends AbstractReadResultCommand {
+export default class ReadResultCommand extends AbstractReadResultCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.language = this.commandParam.language;

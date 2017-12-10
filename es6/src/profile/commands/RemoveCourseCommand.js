@@ -1,9 +1,9 @@
-'use strict';
+import AbstractRemoveCourseCommand from "../../../gen/profile/commands/AbstractRemoveCourseCommand";
 
-class RemoveCourseCommand extends AbstractRemoveCourseCommand {
+export default class RemoveCourseCommand extends AbstractRemoveCourseCommand {
     execute() {
         return new Promise((resolve) => {
-            var queryParams = [];
+            let queryParams = [];
             queryParams.push({
                 key: "courseId",
                 value: this.commandParam.courseId

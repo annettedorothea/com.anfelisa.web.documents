@@ -1,6 +1,7 @@
 import AbstractReadPrivateCoursesAction from "../../../gen/navigation/actions/AbstractReadPrivateCoursesAction";
+import CommonView from "../../common/views/CommonView";
 
-class ReadPrivateCoursesAction extends AbstractReadPrivateCoursesAction {
+export default class ReadPrivateCoursesAction extends AbstractReadPrivateCoursesAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

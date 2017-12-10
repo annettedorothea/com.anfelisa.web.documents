@@ -1,6 +1,6 @@
-'use strict';
+import AbstractOpenBoxCreationCommand from "../../../gen/profile/commands/AbstractOpenBoxCreationCommand";
 
-class OpenBoxCreationCommand extends AbstractOpenBoxCreationCommand {
+export default class OpenBoxCreationCommand extends AbstractOpenBoxCreationCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.outcome = this.ok;

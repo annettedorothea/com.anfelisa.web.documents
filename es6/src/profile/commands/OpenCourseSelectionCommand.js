@@ -1,6 +1,6 @@
-'use strict';
+import AbstractOpenCourseSelectionCommand from "../../../gen/profile/commands/AbstractOpenCourseSelectionCommand";
 
-class OpenCourseSelectionCommand extends AbstractOpenCourseSelectionCommand {
+export default class OpenCourseSelectionCommand extends AbstractOpenCourseSelectionCommand {
     execute() {
         return new Promise((resolve) => {
             this.httpGet("api/users/courses").then((data) => {

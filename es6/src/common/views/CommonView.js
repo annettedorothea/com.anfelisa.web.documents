@@ -1,7 +1,12 @@
 let Texts = {};
 
 let CommonViewConfig = {};
-class CommonView {
+
+export default class CommonView {
+    static getTexts() {
+        return Texts;
+    }
+
     static initLanguageInLocalStorage(data) {
         CommonViewConfig.language = data.language;
         try {

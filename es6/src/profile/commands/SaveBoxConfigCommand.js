@@ -1,9 +1,9 @@
-'use strict';
+import AbstractSaveBoxConfigCommand from "../../../gen/profile/commands/AbstractSaveBoxConfigCommand";
 
-class SaveBoxConfigCommand extends AbstractSaveBoxConfigCommand {
+export default class SaveBoxConfigCommand extends AbstractSaveBoxConfigCommand {
     execute() {
         return new Promise((resolve) => {
-            var data = {
+            const data = {
                 boxId: this.commandParam.boxId,
                 boxOfCourseList: this.commandParam.boxOfCourseList,
                 username: this.commandParam.username

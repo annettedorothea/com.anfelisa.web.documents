@@ -1,8 +1,11 @@
-'use strict';
+import AbstractShowWordEvent from "../../../gen/vocabulary/events/AbstractShowWordEvent";
 
-class ShowWordEvent extends AbstractShowWordEvent {
+export default class ShowWordEvent extends AbstractShowWordEvent {
     prepareDataForView() {
         this.eventData = JSON.parse(JSON.stringify(this.eventParam));
+        if (this.eventData.data === undefined) {
+        	this.eventData.data = {};
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 import AbstractValidateRequiredFieldCommand from "../../../gen/common/commands/AbstractValidateRequiredFieldCommand";
 
-class ValidateRequiredFieldCommand extends AbstractValidateRequiredFieldCommand {
+export default class ValidateRequiredFieldCommand extends AbstractValidateRequiredFieldCommand {
     execute() {
         return new Promise((resolve) => {
             if (!this.commandParam.value) {

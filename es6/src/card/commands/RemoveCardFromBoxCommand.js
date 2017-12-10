@@ -1,6 +1,6 @@
 import AbstractRemoveCardFromBoxCommand from "../../../gen/card/commands/AbstractRemoveCardFromBoxCommand";
 
-class RemoveCardFromBoxCommand extends AbstractRemoveCardFromBoxCommand {
+export default class RemoveCardFromBoxCommand extends AbstractRemoveCardFromBoxCommand {
     execute() {
         return new Promise((resolve) => {
             let queryParams = [];

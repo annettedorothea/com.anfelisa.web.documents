@@ -1,6 +1,7 @@
-'use strict';
+import AbstractLoadBoxAction from "../../../gen/profile/actions/AbstractLoadBoxAction";
+import CommonView from "../../common/views/CommonView";
 
-class LoadBoxAction extends AbstractLoadBoxAction {
+export default class LoadBoxAction extends AbstractLoadBoxAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

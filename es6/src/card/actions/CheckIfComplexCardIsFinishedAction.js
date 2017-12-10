@@ -1,6 +1,6 @@
 import AbstractCheckIfComplexCardIsFinishedAction from "../../../gen/card/actions/AbstractCheckIfComplexCardIsFinishedAction";
 
-class CheckIfComplexCardIsFinishedAction extends AbstractCheckIfComplexCardIsFinishedAction {
+export default class CheckIfComplexCardIsFinishedAction extends AbstractCheckIfComplexCardIsFinishedAction {
 
     captureActionParam() {
     }

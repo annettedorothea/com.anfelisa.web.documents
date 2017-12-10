@@ -1,6 +1,6 @@
 import AbstractSaveResultCommand from "../../../gen/common/commands/AbstractSaveResultCommand";
 
-class SaveResultCommand extends AbstractSaveResultCommand {
+export default class SaveResultCommand extends AbstractSaveResultCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.language = this.commandParam.language;

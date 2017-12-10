@@ -1,6 +1,7 @@
 import AbstractRemoveCardFromBoxAction from "../../../gen/card/actions/AbstractRemoveCardFromBoxAction";
+import CommonView from "../../common/views/CommonView";
 
-class RemoveCardFromBoxAction extends AbstractRemoveCardFromBoxAction {
+export default class RemoveCardFromBoxAction extends AbstractRemoveCardFromBoxAction {
 
     captureActionParam() {
         this.actionParam.username = CommonView.getUsername();

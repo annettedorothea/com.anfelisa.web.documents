@@ -1,6 +1,7 @@
 import AbstractReadStatisticsAction from "../../../gen/navigation/actions/AbstractReadStatisticsAction";
+import CommonView from "../../common/views/CommonView";
 
-class ReadStatisticsAction extends AbstractReadStatisticsAction {
+export default class ReadStatisticsAction extends AbstractReadStatisticsAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

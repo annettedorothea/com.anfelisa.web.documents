@@ -1,6 +1,6 @@
 import AbstractDisplayNextQuestionCommand from "../../../gen/multiplechoice/commands/AbstractDisplayNextQuestionCommand";
 
-class DisplayNextQuestionCommand extends AbstractDisplayNextQuestionCommand {
+export default class DisplayNextQuestionCommand extends AbstractDisplayNextQuestionCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.multipleChoiceId = this.commandParam.multipleChoiceId;

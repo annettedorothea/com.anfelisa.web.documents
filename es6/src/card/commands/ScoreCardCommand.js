@@ -1,6 +1,6 @@
 import AbstractScoreCardCommand from "../../../gen/card/commands/AbstractScoreCardCommand";
 
-class ScoreCardCommand extends AbstractScoreCardCommand {
+export default class ScoreCardCommand extends AbstractScoreCardCommand {
     execute() {
         return new Promise((resolve) => {
             let queryParams = [];

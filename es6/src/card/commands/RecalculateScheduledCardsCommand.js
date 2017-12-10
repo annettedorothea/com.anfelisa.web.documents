@@ -1,6 +1,6 @@
 import AbstractRecalculateScheduledCardsCommand from "../../../gen/card/commands/AbstractRecalculateScheduledCardsCommand";
 
-class RecalculateScheduledCardsCommand extends AbstractRecalculateScheduledCardsCommand {
+export default class RecalculateScheduledCardsCommand extends AbstractRecalculateScheduledCardsCommand {
     execute() {
         return new Promise((resolve) => {
             let queryParams = [];

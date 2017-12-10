@@ -1,8 +1,11 @@
-'use strict';
+import AbstractRenderForgotPasswordEvent from "../../../gen/profile/events/AbstractRenderForgotPasswordEvent";
 
-class RenderForgotPasswordEvent extends AbstractRenderForgotPasswordEvent {
+export default class RenderForgotPasswordEvent extends AbstractRenderForgotPasswordEvent {
     prepareDataForView() {
         this.eventData = JSON.parse(JSON.stringify(this.eventParam));
+        if (this.eventData.data === undefined) {
+        	this.eventData.data = {};
+        }
     }
 }
 

@@ -1,6 +1,6 @@
-'use strict';
+import AbstractOpenBoxCreationAction from "../../../gen/profile/actions/AbstractOpenBoxCreationAction";
 
-class OpenBoxCreationAction extends AbstractOpenBoxCreationAction {
+export default class OpenBoxCreationAction extends AbstractOpenBoxCreationAction {
 
     captureActionParam() {
     }

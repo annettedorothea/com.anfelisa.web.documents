@@ -1,6 +1,6 @@
 import AbstractShowNextCardItemCommand from "../../../gen/card/commands/AbstractShowNextCardItemCommand";
 
-class ShowNextCardItemCommand extends AbstractShowNextCardItemCommand {
+export default class ShowNextCardItemCommand extends AbstractShowNextCardItemCommand {
     execute() {
         return new Promise((resolve) => {
             if (this.commandParam.flag === 'card') {

@@ -1,6 +1,6 @@
-'use strict';
+import AbstractCheckUsernameCommand from "../../../gen/profile/commands/AbstractCheckUsernameCommand";
 
-class CheckUsernameCommand extends AbstractCheckUsernameCommand {
+export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
     execute() {
         return new Promise((resolve) => {
             if (!this.commandParam.username) {
@@ -8,7 +8,7 @@ class CheckUsernameCommand extends AbstractCheckUsernameCommand {
                 this.commandData.id = "username";
                 resolve();
             } else {
-                var queryParams = [];
+                let queryParams = [];
                 queryParams.push({
                     key: "username",
                     value: this.commandParam.username

@@ -1,6 +1,6 @@
-'use strict';
+import AbstractOpenRegistrationCommand from "../../../gen/profile/commands/AbstractOpenRegistrationCommand";
 
-class OpenRegistrationCommand extends AbstractOpenRegistrationCommand {
+export default class OpenRegistrationCommand extends AbstractOpenRegistrationCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.outcome = this.ok;

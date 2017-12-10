@@ -1,6 +1,6 @@
 import AbstractShowCorrectMultipleChoiceCommand from "../../../gen/multiplechoice/commands/AbstractShowCorrectMultipleChoiceCommand";
 
-class ShowCorrectMultipleChoiceCommand extends AbstractShowCorrectMultipleChoiceCommand {
+export default class ShowCorrectMultipleChoiceCommand extends AbstractShowCorrectMultipleChoiceCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.itemId = this.commandParam.itemId;

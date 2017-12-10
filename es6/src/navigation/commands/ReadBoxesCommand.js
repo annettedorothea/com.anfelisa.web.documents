@@ -1,6 +1,6 @@
 import AbstractReadBoxesCommand from "../../../gen/navigation/commands/AbstractReadBoxesCommand";
 
-class ReadBoxesCommand extends AbstractReadBoxesCommand {
+export default class ReadBoxesCommand extends AbstractReadBoxesCommand {
     execute() {
         return new Promise((resolve) => {
             this.httpGet("api/boxes").then((data) => {

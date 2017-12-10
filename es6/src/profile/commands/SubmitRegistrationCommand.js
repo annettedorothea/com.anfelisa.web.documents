@@ -1,6 +1,6 @@
-'use strict';
+import AbstractSubmitRegistrationCommand from "../../../gen/profile/commands/AbstractSubmitRegistrationCommand";
 
-class SubmitRegistrationCommand extends AbstractSubmitRegistrationCommand {
+export default class SubmitRegistrationCommand extends AbstractSubmitRegistrationCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.language = this.commandParam.language;
@@ -10,12 +10,12 @@ class SubmitRegistrationCommand extends AbstractSubmitRegistrationCommand {
                 this.commandData.messageKey = "dataInvalid";
                 this.commandData.outcome = this.dataInvalid;
                 resolve();
-            } else if (this.commandParam.password != this.commandParam.passwordRepetition) {
+            } else if (this.commandParam.password !== this.commandParam.passwordRepetition) {
                 this.commandData.messageKey = "passwordMismatch";
                 this.commandData.outcome = this.mismatch;
                 resolve();
             } else {
-                var data = {
+                const data = {
                     password: this.commandParam.password,
                     username: this.commandParam.username,
                     email: this.commandParam.email,

@@ -1,6 +1,6 @@
 import AbstractRouteCommand from "../../../gen/common/commands/AbstractRouteCommand";
 
-class RouteCommand extends AbstractRouteCommand {
+export default class RouteCommand extends AbstractRouteCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.hash = this.commandParam.hash;

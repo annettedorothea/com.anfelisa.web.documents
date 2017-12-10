@@ -1,6 +1,6 @@
-'use strict';
+import AbstractCheckUsernameAction from "../../../gen/profile/actions/AbstractCheckUsernameAction";
 
-class CheckUsernameAction extends AbstractCheckUsernameAction {
+export default class CheckUsernameAction extends AbstractCheckUsernameAction {
 
     captureActionParam() {
 		this.actionParam.username = jQuery("#username").val().trim();

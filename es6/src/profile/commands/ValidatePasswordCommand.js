@@ -1,6 +1,6 @@
-'use strict';
+import AbstractValidatePasswordCommand from "../../../gen/profile/commands/AbstractValidatePasswordCommand";
 
-class ValidatePasswordCommand extends AbstractValidatePasswordCommand {
+export default class ValidatePasswordCommand extends AbstractValidatePasswordCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.emptyIds = [];

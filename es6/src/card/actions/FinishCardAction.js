@@ -1,6 +1,6 @@
 import AbstractFinishCardAction from "../../../gen/card/actions/AbstractFinishCardAction";
 
-class FinishCardAction extends AbstractFinishCardAction {
+export default class FinishCardAction extends AbstractFinishCardAction {
 
     captureActionParam() {
     }

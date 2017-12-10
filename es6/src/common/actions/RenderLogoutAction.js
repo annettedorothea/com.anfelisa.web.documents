@@ -1,6 +1,7 @@
 import AbstractRenderLogoutAction from "../../../gen/common/actions/AbstractRenderLogoutAction";
+import CommonView from "../views/CommonView";
 
-class RenderLogoutAction extends AbstractRenderLogoutAction {
+export default class RenderLogoutAction extends AbstractRenderLogoutAction {
 
     captureActionParam() {
         this.actionParam.username = CommonView.getUsername();

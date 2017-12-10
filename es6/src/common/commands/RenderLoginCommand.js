@@ -1,6 +1,6 @@
 import AbstractRenderLoginCommand from "../../../gen/common/commands/AbstractRenderLoginCommand";
 
-class RenderLoginCommand extends AbstractRenderLoginCommand {
+export default class RenderLoginCommand extends AbstractRenderLoginCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.outcome = this.ok;

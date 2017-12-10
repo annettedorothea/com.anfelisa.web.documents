@@ -1,7 +1,8 @@
+import CommonView from "../views/CommonView";
 
 export default class MessageView {
     static renderMessage(eventData) {
-        eventData.message = Texts.common[eventData.messageKey];
+        eventData.message = CommonView.getTexts().common[eventData.messageKey];
         const template = $('#messageTemplate').html();
         const rendered = Mustache.render(template, eventData);
         $('.notifications').html(rendered);

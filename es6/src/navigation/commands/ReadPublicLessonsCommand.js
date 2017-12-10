@@ -1,6 +1,6 @@
 import AbstractReadPublicLessonsCommand from "../../../gen/navigation/commands/AbstractReadPublicLessonsCommand";
 
-class ReadPublicLessonsCommand extends AbstractReadPublicLessonsCommand {
+export default class ReadPublicLessonsCommand extends AbstractReadPublicLessonsCommand {
     execute() {
         return new Promise((resolve) => {
             let queryParams = [];

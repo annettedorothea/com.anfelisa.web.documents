@@ -1,6 +1,7 @@
-'use strict';
+import AbstractLoadCoursesAction from "../../../gen/profile/actions/AbstractLoadCoursesAction";
+import CommonView from "../../common/views/CommonView";
 
-class LoadCoursesAction extends AbstractLoadCoursesAction {
+export default class LoadCoursesAction extends AbstractLoadCoursesAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

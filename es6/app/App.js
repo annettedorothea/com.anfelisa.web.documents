@@ -1,7 +1,5 @@
 'use strict';
 
-console.log("alte APP");
-
 $.ajaxSetup({cache: false});
 
 $('.ajax-busy').hide();

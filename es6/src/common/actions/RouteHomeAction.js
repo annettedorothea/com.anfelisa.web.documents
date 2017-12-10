@@ -1,6 +1,7 @@
 import AbstractRouteHomeAction from "../../../gen/common/actions/AbstractRouteHomeAction";
+import CommonView from "../views/CommonView";
 
-class RouteHomeAction extends AbstractRouteHomeAction {
+export default class RouteHomeAction extends AbstractRouteHomeAction {
 
     captureActionParam() {
         this.actionParam.username = CommonView.getUsername();

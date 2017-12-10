@@ -1,6 +1,6 @@
-'use strict';
+import AbstractStartTestCommand from "../../../gen/vocabulary/commands/AbstractStartTestCommand";
 
-class StartTestCommand extends AbstractStartTestCommand {
+export default class StartTestCommand extends AbstractStartTestCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.wordCount = this.commandParam.wordCount;

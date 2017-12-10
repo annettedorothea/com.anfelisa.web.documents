@@ -1,6 +1,7 @@
 import AbstractReadBoxesAction from "../../../gen/navigation/actions/AbstractReadBoxesAction";
+import CommonView from "../../common/views/CommonView";
 
-class ReadBoxesAction extends AbstractReadBoxesAction {
+export default class ReadBoxesAction extends AbstractReadBoxesAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

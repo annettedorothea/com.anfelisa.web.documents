@@ -1,6 +1,6 @@
 import AbstractCloseAllDialogsAction from "../../../gen/common/actions/AbstractCloseAllDialogsAction";
 
-class CloseAllDialogsAction extends AbstractCloseAllDialogsAction {
+export default class CloseAllDialogsAction extends AbstractCloseAllDialogsAction {
 
     captureActionParam() {
     }

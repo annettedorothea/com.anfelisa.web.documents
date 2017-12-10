@@ -1,6 +1,6 @@
 import AbstractLoginAction from "../../../gen/common/actions/AbstractLoginAction";
 
-class LoginAction extends AbstractLoginAction {
+export default class LoginAction extends AbstractLoginAction {
 
     captureActionParam() {
 		this.actionParam.username = $(".username").val();

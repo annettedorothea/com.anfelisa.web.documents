@@ -1,6 +1,6 @@
-'use strict';
+import AbstractOpenRegistrationAction from "../../../gen/profile/actions/AbstractOpenRegistrationAction";
 
-class OpenRegistrationAction extends AbstractOpenRegistrationAction {
+export default class OpenRegistrationAction extends AbstractOpenRegistrationAction {
 
     captureActionParam() {
     }

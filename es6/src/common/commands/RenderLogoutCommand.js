@@ -1,6 +1,6 @@
 import AbstractRenderLogoutCommand from "../../../gen/common/commands/AbstractRenderLogoutCommand";
 
-class RenderLogoutCommand extends AbstractRenderLogoutCommand {
+export default class RenderLogoutCommand extends AbstractRenderLogoutCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.outcome = this.ok;

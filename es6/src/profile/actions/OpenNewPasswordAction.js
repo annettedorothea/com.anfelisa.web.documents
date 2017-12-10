@@ -1,6 +1,6 @@
-'use strict';
+import AbstractOpenNewPasswordAction from "../../../gen/profile/actions/AbstractOpenNewPasswordAction";
 
-class OpenNewPasswordAction extends AbstractOpenNewPasswordAction {
+export default class OpenNewPasswordAction extends AbstractOpenNewPasswordAction {
 
     captureActionParam() {
     }

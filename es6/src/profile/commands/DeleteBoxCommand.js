@@ -1,9 +1,9 @@
-'use strict';
+import AbstractDeleteBoxCommand from "../../../gen/profile/commands/AbstractDeleteBoxCommand";
 
-class DeleteBoxCommand extends AbstractDeleteBoxCommand {
+export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
     execute() {
         return new Promise((resolve) => {
-            var queryParams = [];
+            let queryParams = [];
             queryParams.push({
                 key: "boxId",
                 value: this.commandParam.boxId

@@ -1,6 +1,7 @@
-'use strict';
+import AbstractSubmitForgotPasswordRequestAction from "../../../gen/profile/actions/AbstractSubmitForgotPasswordRequestAction";
+import CommonView from "../../common/views/CommonView";
 
-class SubmitForgotPasswordRequestAction extends AbstractSubmitForgotPasswordRequestAction {
+export default class SubmitForgotPasswordRequestAction extends AbstractSubmitForgotPasswordRequestAction {
 
     captureActionParam() {
 		this.actionParam.language = CommonView.getLanguage();

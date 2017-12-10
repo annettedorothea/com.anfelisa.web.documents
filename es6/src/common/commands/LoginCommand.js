@@ -1,6 +1,6 @@
 import AbstractLoginCommand from "../../../gen/common/commands/AbstractLoginCommand";
 
-class LoginCommand extends AbstractLoginCommand {
+export default class LoginCommand extends AbstractLoginCommand {
     execute() {
         return new Promise((resolve) => {
             this.httpPost("api/user/login").then((data) => {

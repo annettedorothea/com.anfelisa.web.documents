@@ -1,8 +1,11 @@
-'use strict';
+import AbstractUsernameIsNotAvailableEvent from "../../../gen/profile/events/AbstractUsernameIsNotAvailableEvent";
 
-class UsernameIsNotAvailableEvent extends AbstractUsernameIsNotAvailableEvent {
+export default class UsernameIsNotAvailableEvent extends AbstractUsernameIsNotAvailableEvent {
     prepareDataForView() {
         this.eventData = JSON.parse(JSON.stringify(this.eventParam));
+        if (this.eventData.data === undefined) {
+        	this.eventData.data = {};
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 import AbstractScoreReinforcedCardAction from "../../../gen/card/actions/AbstractScoreReinforcedCardAction";
+import CommonView from "../../common/views/CommonView";
 
-class ScoreReinforcedCardAction extends AbstractScoreReinforcedCardAction {
+export default class ScoreReinforcedCardAction extends AbstractScoreReinforcedCardAction {
 
     captureActionParam() {
         this.actionParam.username = CommonView.getUsername();

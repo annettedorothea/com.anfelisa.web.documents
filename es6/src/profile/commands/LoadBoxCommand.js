@@ -1,9 +1,9 @@
-'use strict';
+import AbstractLoadBoxCommand from "../../../gen/profile/commands/AbstractLoadBoxCommand";
 
-class LoadBoxCommand extends AbstractLoadBoxCommand {
+export default class LoadBoxCommand extends AbstractLoadBoxCommand {
     execute() {
         return new Promise((resolve) => {
-            var queryParams = [];
+            let queryParams = [];
             queryParams.push({
                 key: "boxId",
                 value: this.commandParam.boxId

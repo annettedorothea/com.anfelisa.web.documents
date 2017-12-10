@@ -1,6 +1,6 @@
-'use strict';
+import AbstractCorrectWordCommand from "../../../gen/vocabulary/commands/AbstractCorrectWordCommand";
 
-class CorrectWordCommand extends AbstractCorrectWordCommand {
+export default class CorrectWordCommand extends AbstractCorrectWordCommand {
     execute() {
         return new Promise((resolve) => {
             this.commandData.solution = this.commandParam.solution.trim();

@@ -1,9 +1,9 @@
-'use strict';
+import AbstractFillBoxWithCardsCommand from "../../../gen/profile/commands/AbstractFillBoxWithCardsCommand";
 
-class FillBoxWithCardsCommand extends AbstractFillBoxWithCardsCommand {
+export default class FillBoxWithCardsCommand extends AbstractFillBoxWithCardsCommand {
     execute() {
         return new Promise((resolve) => {
-            var queryParams = [];
+            let queryParams = [];
             queryParams.push({
                 key: "boxId",
                 value: this.commandParam.boxId

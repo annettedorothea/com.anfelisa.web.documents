@@ -1,8 +1,11 @@
-'use strict';
+import AbstractRenderRegistrationEvent from "../../../gen/profile/events/AbstractRenderRegistrationEvent";
 
-class RenderRegistrationEvent extends AbstractRenderRegistrationEvent {
+export default class RenderRegistrationEvent extends AbstractRenderRegistrationEvent {
     prepareDataForView() {
         this.eventData = JSON.parse(JSON.stringify(this.eventParam));
+        if (this.eventData.data === undefined) {
+        	this.eventData.data = {};
+        }
     }
 }
 

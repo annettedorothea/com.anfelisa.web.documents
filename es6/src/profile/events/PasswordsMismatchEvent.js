@@ -1,8 +1,11 @@
-'use strict';
+import AbstractPasswordsMismatchEvent from "../../../gen/profile/events/AbstractPasswordsMismatchEvent";
 
-class PasswordsMismatchEvent extends AbstractPasswordsMismatchEvent {
+export default class PasswordsMismatchEvent extends AbstractPasswordsMismatchEvent {
     prepareDataForView() {
         this.eventData = JSON.parse(JSON.stringify(this.eventParam));
+        if (this.eventData.data === undefined) {
+        	this.eventData.data = {};
+        }
     }
 }
 

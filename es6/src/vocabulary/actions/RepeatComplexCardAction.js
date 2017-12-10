@@ -1,6 +1,6 @@
-'use strict';
+import AbstractRepeatComplexCardAction from "../../../gen/vocabulary/actions/AbstractRepeatComplexCardAction";
 
-class RepeatComplexCardAction extends AbstractRepeatComplexCardAction {
+export default class RepeatComplexCardAction extends AbstractRepeatComplexCardAction {
 
     captureActionParam() {
 		this.actionParam.hash = window.location.hash.substring(1);

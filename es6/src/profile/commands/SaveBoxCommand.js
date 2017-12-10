@@ -1,6 +1,6 @@
-'use strict';
+import AbstractSaveBoxCommand from "../../../gen/profile/commands/AbstractSaveBoxCommand";
 
-class SaveBoxCommand extends AbstractSaveBoxCommand {
+export default class SaveBoxCommand extends AbstractSaveBoxCommand {
     execute() {
         return new Promise((resolve) => {
             if (!this.commandParam.name) {
@@ -8,11 +8,11 @@ class SaveBoxCommand extends AbstractSaveBoxCommand {
                 this.commandData.outcome = this.dataInvalid;
                 resolve();
             } else {
-                var data = {
+                let data = {
                     boxId: this.commandParam.boxId,
                     name: this.commandParam.name,
                     username: this.commandParam.username
-                }
+                };
                 if (this.commandParam.boxId) {
                     this.httpPut("api/boxes/update", [], data).then(() => {
                         this.commandData.outcome = this.saved;

@@ -1,6 +1,6 @@
 import AbstractRouteAction from "../../../gen/common/actions/AbstractRouteAction";
 
-class RouteAction extends AbstractRouteAction {
+export default class RouteAction extends AbstractRouteAction {
 
     captureActionParam() {
     }

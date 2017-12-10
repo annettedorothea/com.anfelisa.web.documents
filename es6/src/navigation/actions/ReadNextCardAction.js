@@ -1,6 +1,7 @@
 import AbstractReadNextCardAction from "../../../gen/navigation/actions/AbstractReadNextCardAction";
+import CommonView from "../../common/views/CommonView";
 
-class ReadNextCardAction extends AbstractReadNextCardAction {
+export default class ReadNextCardAction extends AbstractReadNextCardAction {
 
     captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();

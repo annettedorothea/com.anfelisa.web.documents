@@ -1,6 +1,6 @@
 import AbstractReadPublicTestCommand from "../../../gen/navigation/commands/AbstractReadPublicTestCommand";
 
-class ReadPublicTestCommand extends AbstractReadPublicTestCommand {
+export default class ReadPublicTestCommand extends AbstractReadPublicTestCommand {
     execute() {
         return new Promise((resolve) => {
             let queryParams = [];

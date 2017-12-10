@@ -1,6 +1,7 @@
 import AbstractSaveResultAction from "../../../gen/common/actions/AbstractSaveResultAction";
+import CommonView from "../views/CommonView";
 
-class SaveResultAction extends AbstractSaveResultAction {
+export default class SaveResultAction extends AbstractSaveResultAction {
 
 	captureActionParam() {
 		this.actionParam.username = CommonView.getUsername();
