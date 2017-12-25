@@ -20,9 +20,9 @@
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
-    <script type="text/javascript" src="lib/jquery-3.1.1.js"></script>
-    <script type="text/javascript" src="lib/bootstrap.js"></script>
-    <script type="text/javascript" src="lib/mustache.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/mustache.min.js"></script>
     <script type="text/javascript" src="lib/mousetrap.min.js"></script>
 
     <script type="text/javascript" src="lib/bootbox.min.js"></script>
@@ -94,10 +94,10 @@
                 <div class="col-md-12 form-inline" style="display: flex; justify-content: center;">
                     <div class="form-group">
                         <button class="btn btn-default"
-                                onclick="ReplayUtils.replay()">Replay
+                                onclick="Anfelisa.replay($('#pauseInMillisInput').val())">Replay
                         </button>
                         <button class="btn btn-default"
-                                onclick="ReplayUtils.e2e()">E2E
+                                onclick="Anfelisa.e2e($('#pauseInMillisInput').val())">E2E
                         </button>
                         <input type="text" class="form-control mousetrap" id="pauseInMillisInput"
                                placeholder="Pause in ms">
@@ -135,7 +135,9 @@
 <div class="container hidden-md hidden-lg visible-xs-* visible-sm-*">
     <div class="row">
         <div class="col-md-12">
-            Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Annette Pohl - Koblenz | Version 1.4.0
+            Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Annette Pohl - Koblenz
+            | Version 1.4.0
+            | <a onclick="Anfelisa.reportBug()">Bug melden</a>
         </div>
     </div>
 </div>
@@ -157,6 +159,7 @@
             </div>
             <div class="col-md-4">
                 <p>Version 1.4.0</p>
+                <p><a onclick="Anfelisa.reportBug()">Bug melden</a></p>
                 <p>Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Annette Pohl - Koblenz</p>
                 <ul class="alt">
                     <li><a href="http://artboom.de/" target="artboom">artboom</a></li>
@@ -192,7 +195,7 @@
 
 </body>
 
-<script type="text/javascript" src="lib/anfelisa.js"></script>
+<script type="text/javascript" src="lib/anfelisa.min.js"></script>
 
 <!-- navigation -->
 
@@ -487,7 +490,7 @@
                 <br/>
             </div>
         </div>
-        <div class="row qualitwithTypingy-buttons">
+        <div class="row quality-buttons">
             <div class="col-md-3 col-lg-3 col-md-offset-3 col-lg-offset-3 col-xs-6 col-sm-6">
                 <button class="scoreButton btn btn-cyan"
                         onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 3, boxId : {{boxId}}, cardOfBoxId : {{cardOfBoxId}} })"

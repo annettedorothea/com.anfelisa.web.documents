@@ -1,5 +1,6 @@
 import AbstractSaveResultAction from "../../../gen/common/actions/AbstractSaveResultAction";
 import CommonView from "../views/CommonView";
+import * as VocabularyView from "../../vocabulary/views/VocabularyView";
 
 export default class SaveResultAction extends AbstractSaveResultAction {
 
@@ -60,8 +61,8 @@ export default class SaveResultAction extends AbstractSaveResultAction {
 
 
 		if (allCompletionTexts.length > 0) {
-			this.actionData.points = Vocabulary.testState.points;
-			this.actionData.maxPoints = Vocabulary.testState.maxPoints;
+			this.actionData.points = VocabularyView.Vocabulary.testState.points;
+			this.actionData.maxPoints = VocabularyView.Vocabulary.testState.maxPoints;
 		} else {
 			this.actionData.points = this.actionParam.points;
 			this.actionData.maxPoints = this.actionParam.maxPoints;

@@ -1,5 +1,5 @@
 
-let ReinforceCardList = {};
+export let ReinforceCardList = {};
 
 export default class ReinforceView {
     static saveReinforceCardList(eventData) {

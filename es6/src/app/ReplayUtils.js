@@ -1,4 +1,5 @@
 import ACEController from "../../gen/ace/ACEController";
+import AppUtils from "./AppUtils";
 
 export default class ReplayUtils {
 
@@ -9,51 +10,126 @@ export default class ReplayUtils {
     }
 
     static resetDatabase() {
-        return new Promise((resolve) => {
-            resolve();
-        });
+        return AppUtils.httpDelete('replay/database/reset');
     }
 
     static prepareAction(uuid) {
-		if (ACEController.execution === ACEController.E2E) {
-		    return new Promise((resolve) => {
-		    		// prepare action
-		    		resolve();
-		    });
-		} else {
-		    return new Promise((resolve) => {
-		        resolve();
-		    });
-		}
+        if (ACEController.execution === ACEController.E2E) {
+            return AppUtils.httpPut('replay/database/prepare?uuid=' + uuid);
+        } else {
+            return new Promise((resolve) => {
+                resolve();
+            });
+        }
+    }
+
+    static clearReplayResultDiv() {
+        if (document.getElementById("replayResultDiv")) {
+            let table = document.getElementById("replayResultDiv");
+            let rowCount = table.rows.length;
+            while (--rowCount) {
+                table.deleteRow(rowCount);
+            }
+            table.rows[0].className = '';
+        }
     }
 
     static replay(pauseInMillis) {
+        ReplayUtils.clearReplayResultDiv();
         ACEController.startReplay(ACEController.REPLAY, pauseInMillis)
     }
 
-    static e2e() {
+    static e2e(pauseInMillis) {
+        ReplayUtils.clearReplayResultDiv();
         ACEController.startReplay(ACEController.E2E, pauseInMillis)
     }
-
-	static uploadTimeline() {
-		// upload timeline
-		const json = '';
-        ACEController.initTimeline(JSON.parse(json));
-	}
 
 	static initFinishReplayCallback(callback) {
 	    ReplayUtils.finishReplayCallback = callback;
 	}
 
 	static finishReplay() {
-	    const normalized = ReplayUtils.normalizeTimelines(ACEController.expectedTimeline, ACEController.actualTimeline);
-	    const result = JSON.stringify(normalized.expected, ReplayUtils.itemStringifyReplacer) === JSON.stringify(normalized.actual, ReplayUtils.itemStringifyReplacer);
-	    if (ReplayUtils.finishReplayCallback) {
-	        ReplayUtils.finishReplayCallback(result);
-	    }
+        ACEController.passed = true;
+        if (document.getElementById("replayResultDiv")) {
+            let table = document.getElementById("replayResultDiv");
+            for (let i = 0; i < ACEController.expectedTimeline.length; i++) {
+                let expectedItem = ACEController.expectedTimeline[i];
+                let actualItem = undefined;
+                if (i < ACEController.actualTimeline.length) {
+                    actualItem = ACEController.actualTimeline[i];
+                }
+
+                let rowAbstract = table.insertRow(table.rows.length);
+                rowAbstract.insertCell(0);
+                let original = rowAbstract.insertCell(1);
+                let actual = rowAbstract.insertCell(2);
+                rowAbstract.insertCell(3);
+                original.innerHTML = '<a onclick=\'Anfelisa.toggleVisibilityOfRow("row_' + i + '")\'>' + ReplayUtils.abstractText(expectedItem) + '</a>';
+                actual.innerHTML = '<a onclick=\'Anfelisa.toggleVisibilityOfRow("row_' + i + '")\'>' + ReplayUtils.abstractText(actualItem) + '</a>';
+
+                let row = table.insertRow(table.rows.length);
+                row.id = "row_" + i;
+                row.style = "display: none;";
+                let originalExpectedItemCell = row.insertCell(0);
+                let expectedItemCell = row.insertCell(1);
+                let actualItemCell = row.insertCell(2);
+                let originalActualItemCell = row.insertCell(3);
+                originalExpectedItemCell.innerHTML = '<pre style="font-size: 10px;">' + JSON.stringify(expectedItem, null, 2) + '</pre>';
+                expectedItemCell.innerHTML = '<pre style="font-size: 10px;">' + JSON.stringify(expectedItem, ReplayUtils.itemStringifyReplacer, 2) + '</pre>';
+                actualItemCell.innerHTML = '<pre style="font-size: 10px;">' + JSON.stringify(actualItem, ReplayUtils.itemStringifyReplacer, 2) + '</pre>';
+                originalActualItemCell.innerHTML = '<pre style="font-size: 10px;">' + JSON.stringify(actualItem, null, 2) + '</pre>';
+                if (JSON.stringify(expectedItem, ReplayUtils.itemStringifyReplacer) === JSON.stringify(actualItem, ReplayUtils.itemStringifyReplacer)) {
+                    row.className = 'success';
+                    rowAbstract.className = 'success';
+                } else {
+                    row.className = 'danger';
+                    rowAbstract.className = 'danger';
+                    ACEController.passed = false;
+                }
+            }
+            if (ACEController.passed) {
+                table.rows[0].className = 'success';
+            } else {
+                table.rows[0].className = 'danger';
+            }
+        }
 	}
 
-	static saveScenario(description) {
+    static abstractText(item) {
+        if (item === undefined) {
+            return "undefined";
+        }
+        if (item.action) {
+            return "A " + item.action.actionName;
+        }
+        if (item.command) {
+            return "C " + item.command.commandName;
+        }
+        if (item.event) {
+            const triggerActionName = item.event.eventName === 'TriggerAction' ? " " + item.event.eventParam.actionName : "";
+            return "E " + item.event.eventName + triggerActionName;
+        }
+    }
+
+    static toggleVisibilityOfRow(elementId) {
+        const div = document.getElementById(elementId);
+        if (div.style.display !== 'none') {
+            div.style.display = 'none';
+        }
+        else {
+            div.style.display = 'table-row';
+        }
+    }
+
+    static itemStringifyReplacer(key, value) {
+        if (key === 'timestamp' || key === 'token' || key === 'id' || key === 'next' || key === 'last' || key === 'date' || key === 'day' || key === 'month' || key === 'year') {
+            return undefined;
+        } else {
+            return value;
+        }
+    }
+
+    static saveScenario(description) {
 	    const data = {
 	        description: description,
 	        data: JSON.stringify(ACEController.expectedTimeline)

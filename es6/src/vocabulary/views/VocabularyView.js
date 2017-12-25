@@ -1,6 +1,8 @@
 import CommonView from "../../common/views/CommonView";
 
-export let Vocabulary = {};
+export let Vocabulary = {
+    testState: {}
+};
 
 export default class VocabularyView {
 

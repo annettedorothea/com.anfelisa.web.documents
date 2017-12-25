@@ -1,8 +1,8 @@
 import CommonView from "../../common/views/CommonView";
+import * as ReinforceView from "../../card/views/ReinforceView";
 
 export default class ContentView {
     static renderPublicCourses(eventData) {
-        console.log("Texts", CommonView.getTexts());
         const template = $('#contentTemplate1_' + CommonView.getLanguage()).html();
         const rendered = Mustache.render(template, eventData.data);
         $('.content-pane').html(rendered);
@@ -25,7 +25,6 @@ export default class ContentView {
         $(".content-pane").html(html);
         eventData.texts = CommonView.getTexts().common;
         //enableDrag();
-        console.log("Texts", CommonView.getTexts());
         $("#startButton").html(CommonView.getTexts().common.withTyping);
         $("#repeatButton").html(CommonView.getTexts().common.asRepetition);
     };
@@ -149,7 +148,6 @@ export default class ContentView {
     };
 
     static renderStatistics(eventData) {
-        console.log("Texts", CommonView.getTexts());
         if (eventData.data === null) {
             eventData.data = {
                 statisticsItemList: []
@@ -207,7 +205,7 @@ export default class ContentView {
     };
 
     static renderNextReinforceCard(eventData) {
-        let data = ReinforceCardList.reinforceCardList[0];
+        let data = ReinforceView.ReinforceCardList.reinforceCardList[0];
         data.texts = CommonView.getTexts().common;
         const template = $('#breadcrumbsTemplateBox').html();
         const rendered = Mustache.render(template, data);
@@ -227,7 +225,7 @@ export default class ContentView {
             $(".card").click()
         });
 
-        data.reinforceCardsCount = ReinforceCardList.reinforceCardList.length;
+        data.reinforceCardsCount = ReinforceView.ReinforceCardList.reinforceCardList.length;
 
         const reinforceCardTemplate = $('#reinforceCardTemplate').html();
         const reinforceCardRendered = Mustache.render(reinforceCardTemplate, data);

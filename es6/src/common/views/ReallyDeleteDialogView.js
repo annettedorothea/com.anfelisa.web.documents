@@ -1,4 +1,8 @@
 import CommonView from "../views/CommonView";
+import RemoveCourseAction from "../../profile/actions/RemoveCourseAction";
+import DeleteBoxAction from "../../profile/actions/DeleteBoxAction";
+import CloseAllDialogsAction from "../../common/actions/CloseAllDialogsAction";
+import RemoveCardFromBoxAction from "../../card/actions/RemoveCardFromBoxAction";
 
 export default class ReallyDeleteDialogView {
     static displayRemoveCourseFromUserDialog(eventData) {

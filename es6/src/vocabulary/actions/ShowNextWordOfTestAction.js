@@ -1,10 +1,10 @@
 import AbstractShowNextWordOfTestAction from "../../../gen/vocabulary/actions/AbstractShowNextWordOfTestAction";
-import Vocabulary from "../views/VocabularyView";
+import * as VocabularyView from "../views/VocabularyView";
 
 export default class ShowNextWordOfTestAction extends AbstractShowNextWordOfTestAction {
 
     captureActionParam() {
-		this.actionParam.nextRandomIndex = Vocabulary.testState.nextRandomIndex();
+		this.actionParam.nextRandomIndex = VocabularyView.Vocabulary.testState.nextRandomIndex();
     }
 
     initActionData() {

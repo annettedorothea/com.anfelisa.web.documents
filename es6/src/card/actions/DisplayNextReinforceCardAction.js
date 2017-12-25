@@ -1,5 +1,6 @@
 import AbstractDisplayNextReinforceCardAction from "../../../gen/card/actions/AbstractDisplayNextReinforceCardAction";
 import CommonView from "../../common/views/CommonView";
+import * as ReinforceView from "../views/ReinforceView";
 
 export default class DisplayNextReinforceCardAction extends AbstractDisplayNextReinforceCardAction {
 
@@ -11,7 +12,7 @@ export default class DisplayNextReinforceCardAction extends AbstractDisplayNextR
     initActionData() {
     	this.actionData.username = this.actionParam.username;
     	this.actionData.password = this.actionParam.password;
-        this.actionData.cardCount = ReinforceCardList.reinforceCardList !== null? ReinforceCardList.reinforceCardList.length : 0;
+        this.actionData.cardCount = ReinforceView.ReinforceCardList.reinforceCardList !== null? ReinforceView.ReinforceCardList.reinforceCardList.length : 0;
     }
 
     releaseActionParam() {

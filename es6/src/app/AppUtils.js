@@ -14,7 +14,7 @@ export default class AppUtils {
 
     static httpGet(url, queryParams, commandParam) {
         return new Promise((resolve, reject) => {
-            let authorization = AppUtils.basicAuth(commandParam.username, commandParam.password);
+            let authorization = commandParam ? AppUtils.basicAuth(commandParam.username, commandParam.password) : undefined;
             const adjustedUrl = AppUtils.url(url);
             $.ajax({
                 url: adjustedUrl + AppUtils.queryParamString(adjustedUrl, queryParams),
@@ -40,7 +40,7 @@ export default class AppUtils {
 
     static httpPost(url, queryParams, data, commandParam) {
         return new Promise((resolve, reject) => {
-            let authorization = AppUtils.basicAuth(commandParam.username, commandParam.password);
+            let authorization = commandParam ? AppUtils.basicAuth(commandParam.username, commandParam.password) : undefined;
             const adjustedUrl = AppUtils.url(url);
             $.ajax({
                 url: adjustedUrl + AppUtils.queryParamString(adjustedUrl, queryParams),
@@ -67,7 +67,7 @@ export default class AppUtils {
 
     static httpPut(url, queryParams, data, commandParam) {
         return new Promise((resolve, reject) => {
-            let authorization = AppUtils.basicAuth(commandParam.username, commandParam.password);
+            let authorization = commandParam ? AppUtils.basicAuth(commandParam.username, commandParam.password) : undefined;
             const adjustedUrl = AppUtils.url(url);
             $.ajax({
                 url: adjustedUrl + AppUtils.queryParamString(adjustedUrl, queryParams),
@@ -94,7 +94,7 @@ export default class AppUtils {
 
     static httpDelete(url, queryParams, data, commandParam) {
         return new Promise((resolve, reject) => {
-            let authorization = AppUtils.basicAuth(commandParam.username, commandParam.password);
+            let authorization = commandParam ? AppUtils.basicAuth(commandParam.username, commandParam.password) : undefined;
             const adjustedUrl = AppUtils.url(url);
             $.ajax({
                 url: adjustedUrl + AppUtils.queryParamString(adjustedUrl, queryParams),
