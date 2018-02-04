@@ -11,7 +11,7 @@ export default class AppUtils {
     }
 
     static getClientVersion() {
-        return "1.5.0";
+        return "2.0.0";
     }
 
     static httpGet(url, queryParams, commandParam) {

@@ -142,7 +142,6 @@ export default class ReplayUtils {
             key: "id",
             value: id
         });
-        console.log("queryParams", queryParams);
         return AppUtils.httpGet('api/scenario/single', queryParams);
     }
 
