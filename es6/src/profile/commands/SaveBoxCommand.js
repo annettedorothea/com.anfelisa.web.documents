@@ -2,7 +2,7 @@ import AbstractSaveBoxCommand from "../../../gen/profile/commands/AbstractSaveBo
 
 export default class SaveBoxCommand extends AbstractSaveBoxCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if (!this.commandParam.name) {
                 this.commandData.messageKey = "dataInvalid";
                 this.commandData.outcome = this.dataInvalid;
@@ -19,10 +19,7 @@ export default class SaveBoxCommand extends AbstractSaveBoxCommand {
                         this.commandData.hash = "profile";
                         resolve();
                     }, (error) => {
-                        this.commandData.messageKey = "saveBoxFailed";
-                        this.commandData.error = error;
-                        this.commandData.outcome = this.error;
-                        resolve();
+                        reject(error);
                     });
                 } else {
                     this.httpPost("api/boxes/create", [], data).then(() => {
@@ -30,10 +27,7 @@ export default class SaveBoxCommand extends AbstractSaveBoxCommand {
                         this.commandData.hash = "profile";
                         resolve();
                     }, (error) => {
-                        this.commandData.messageKey = "saveBoxFailed";
-                        this.commandData.error = error;
-                        this.commandData.outcome = this.error;
-                        resolve();
+                        reject(error);
                     });
                 }
             }

@@ -2,7 +2,7 @@ import AbstractReadPublicLessonsCommand from "../../../gen/navigation/commands/A
 
 export default class ReadPublicLessonsCommand extends AbstractReadPublicLessonsCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "courseId",
@@ -13,10 +13,7 @@ export default class ReadPublicLessonsCommand extends AbstractReadPublicLessonsC
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "readPublicLessonsFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                reject(error);
             });
         });
     }

@@ -3,10 +3,40 @@ import AppUtils from "./AppUtils";
 
 export default class ReplayUtils {
 
-    static actualTimelineChanged(items) {
-    }
-
-    static expectedTimelineChanged(items) {
+    static normalizeTimelines(expected, actual) {
+        let normalizedExpected = [];
+        let normalizedActual = [];
+        let expectedIndex = 0;
+        let actualIndex = 0;
+        while (expectedIndex < expected.length) {
+            if (actualIndex >= actual.length) {
+                normalizedExpected.push(expected[expectedIndex]);
+                normalizedActual.push({});
+                expectedIndex++;
+            } else if (expected[expectedIndex].action && actual[actualIndex].action || !expected[expectedIndex].action && !actual[actualIndex].action) {
+                normalizedExpected.push(expected[expectedIndex]);
+                normalizedActual.push(actual[actualIndex]);
+                expectedIndex++;
+                actualIndex++;
+            } else if (expected[expectedIndex].action && !actual[actualIndex].action) {
+                normalizedExpected.push({});
+                normalizedActual.push(actual[actualIndex]);
+                actualIndex++;
+            } else if (!expected[expectedIndex].action && actual[actualIndex].action) {
+                normalizedExpected.push(expected[expectedIndex]);
+                normalizedActual.push({});
+                expectedIndex++;
+            }
+        }
+        while (actualIndex < actual.length) {
+            normalizedExpected.push({});
+            normalizedActual.push(actual[actualIndex]);
+            actualIndex++;
+        }
+        return {
+            expected: normalizedExpected,
+            actual: normalizedActual
+        };
     }
 
     static resetDatabase() {
@@ -23,133 +53,114 @@ export default class ReplayUtils {
         }
     }
 
-    static clearReplayResultDiv() {
-        if (document.getElementById("replayResultDiv")) {
-            let table = document.getElementById("replayResultDiv");
-            let rowCount = table.rows.length;
-            while (--rowCount) {
-                table.deleteRow(rowCount);
-            }
-            table.rows[0].className = '';
-        }
-    }
-
     static replay(pauseInMillis) {
-        ReplayUtils.clearReplayResultDiv();
         ACEController.startReplay(ACEController.REPLAY, pauseInMillis)
     }
 
     static e2e(pauseInMillis) {
-        ReplayUtils.clearReplayResultDiv();
         ACEController.startReplay(ACEController.E2E, pauseInMillis)
     }
 
-	static initFinishReplayCallback(callback) {
-	    ReplayUtils.finishReplayCallback = callback;
-	}
+    static finishReplay() {
+        const normalized = ReplayUtils.normalizeTimelines(ACEController.expectedTimeline, ACEController.actualTimeline);
+        const result = JSON.stringify(normalized.expected, ReplayUtils.itemStringifyReplacer) === JSON.stringify(normalized.actual, ReplayUtils.itemStringifyReplacer);
 
-	static finishReplay() {
-        ACEController.passed = true;
-        if (document.getElementById("replayResultDiv")) {
-            let table = document.getElementById("replayResultDiv");
-            for (let i = 0; i < ACEController.expectedTimeline.length; i++) {
-                let expectedItem = ACEController.expectedTimeline[i];
-                let actualItem = undefined;
-                if (i < ACEController.actualTimeline.length) {
-                    actualItem = ACEController.actualTimeline[i];
-                }
-
-                let rowAbstract = table.insertRow(table.rows.length);
-                rowAbstract.insertCell(0);
-                let original = rowAbstract.insertCell(1);
-                let actual = rowAbstract.insertCell(2);
-                rowAbstract.insertCell(3);
-                original.innerHTML = '<a onclick=\'Anfelisa.toggleVisibilityOfRow("row_' + i + '")\'>' + ReplayUtils.abstractText(expectedItem) + '</a>';
-                actual.innerHTML = '<a onclick=\'Anfelisa.toggleVisibilityOfRow("row_' + i + '")\'>' + ReplayUtils.abstractText(actualItem) + '</a>';
-
-                let row = table.insertRow(table.rows.length);
-                row.id = "row_" + i;
-                row.style = "display: none;";
-                let originalExpectedItemCell = row.insertCell(0);
-                let expectedItemCell = row.insertCell(1);
-                let actualItemCell = row.insertCell(2);
-                let originalActualItemCell = row.insertCell(3);
-                originalExpectedItemCell.innerHTML = '<pre style="font-size: 10px;">' + JSON.stringify(expectedItem, null, 2) + '</pre>';
-                expectedItemCell.innerHTML = '<pre style="font-size: 10px;">' + JSON.stringify(expectedItem, ReplayUtils.itemStringifyReplacer, 2) + '</pre>';
-                actualItemCell.innerHTML = '<pre style="font-size: 10px;">' + JSON.stringify(actualItem, ReplayUtils.itemStringifyReplacer, 2) + '</pre>';
-                originalActualItemCell.innerHTML = '<pre style="font-size: 10px;">' + JSON.stringify(actualItem, null, 2) + '</pre>';
-                if (JSON.stringify(expectedItem, ReplayUtils.itemStringifyReplacer) === JSON.stringify(actualItem, ReplayUtils.itemStringifyReplacer)) {
-                    row.className = 'success';
-                    rowAbstract.className = 'success';
+        if (normalized.expected && normalized.actual) {
+            const size = normalized.expected.length > normalized.actual.length ? normalized.expected.length : normalized.actual.length;
+            for (let i = 0; i < size; i++) {
+                const expected = normalized.expected[i] ? normalized.expected[i] : null;
+                const actual = normalized.actual[i] ? normalized.actual[i] : null;
+                const result = ReplayUtils.compareItems(expected, actual);
+                const item = {
+                    expected,
+                    actual,
+                    result
+                };
+                if (result === true) {
+                    console.log("%cSUCCESS", "color: green;", item);
                 } else {
-                    row.className = 'danger';
-                    rowAbstract.className = 'danger';
-                    ACEController.passed = false;
+                    console.log("%cFAILURE", "color: red;", item);
                 }
             }
-            if (ACEController.passed) {
-                table.rows[0].className = 'success';
-            } else {
-                table.rows[0].className = 'danger';
-            }
         }
-	}
-
-    static abstractText(item) {
-        if (item === undefined) {
-            return "undefined";
+        if (result === true) {
+            console.log("%c===============", "color: green;");
+            console.log("%c=== SUCCESS ===", "color: green;");
+            console.log("%c===============", "color: green;");
+        } else {
+            console.log("%c===============", "color: red;");
+            console.log("%c=== FAILURE ===", "color: red;");
+            console.log("%c===============", "color: red;");
         }
-        if (item.action) {
-            return "A " + item.action.actionName;
-        }
-        if (item.command) {
-            return "C " + item.command.commandName;
-        }
-        if (item.event) {
-            const triggerActionName = item.event.eventName === 'TriggerAction' ? " " + item.event.eventParam.actionName : "";
-            return "E " + item.event.eventName + triggerActionName;
-        }
+		if (ReplayUtils.scenarioConfig.finishReplay) {
+		    ReplayUtils.scenarioConfig.finishReplay(normalized, result);
+		}
     }
 
-    static toggleVisibilityOfRow(elementId) {
-        const div = document.getElementById(elementId);
-        if (div.style.display !== 'none') {
-            div.style.display = 'none';
-        }
-        else {
-            div.style.display = 'table-row';
-        }
+    static compareItems(expected, actual) {
+        return JSON.stringify(expected, ReplayUtils.itemStringifyReplacer) === JSON.stringify(actual, ReplayUtils.itemStringifyReplacer);
     }
+
 
     static itemStringifyReplacer(key, value) {
-        if (key === 'timestamp' || key === 'token' || key === 'id' || key === 'next' || key === 'last' || key === 'date' || key === 'day' || key === 'month' || key === 'year') {
+        if (key === 'timestamp') {
             return undefined;
         } else {
             return value;
         }
     }
 
-    static saveScenario(description) {
-	    const data = {
-	        description: description,
-	        data: JSON.stringify(ACEController.expectedTimeline)
-	    };
-	    return AppUtils.httpPost('api/scenario/create', null, data);
-	}
-	
-	static deleteScenario(id) {
-	    let queryParams = [
-	        {
-	            key: "id",
-	            value: id
-	        }
-	    ];
-	    return AppUtils.httpDelete('api/scenario/delete', queryParams);
-	}
+    static saveScenario(description, creator) {
+        const browser = AppUtils.getBrowserInfo();
+        const data = {
+            description,
+            timeline: JSON.stringify(ACEController.timeline),
+            creator,
+            clientVersion: AppUtils.getClientVersion(),
+            device: browser.name + " " + browser.version
+        };
+        return AppUtils.httpPost('api/scenario/create', null, data);
+    }
 
-	static loadScenarios() {
-	    return AppUtils.httpGet('api/scenario/all');
-	}
+    static deleteScenario(id) {
+        let queryParams = [
+            {
+                key: "id",
+                value: id
+            }
+        ];
+        return AppUtils.httpDelete('api/scenario/delete', queryParams);
+    }
+
+    static loadScenarios() {
+        return AppUtils.httpGet('api/scenario/all');
+    }
+
+    static loadScenario(id) {
+        let queryParams = [];
+        queryParams.push({
+            key: "id",
+            value: id
+        });
+        console.log("queryParams", queryParams);
+        return AppUtils.httpGet('api/scenario/single', queryParams);
+    }
+
+    static saveScenarioResult(normalized, result) {
+        const browser = AppUtils.getBrowserInfo();
+        const data = {
+            description: ReplayUtils.scenarioConfig.description,
+            scenarioId: ReplayUtils.scenarioConfig.scenarioId,
+            timeline: JSON.stringify(normalized),
+            executor: ReplayUtils.scenarioConfig.executor,
+            e2e: ReplayUtils.scenarioConfig.e2e,
+            result,
+            clientVersion: AppUtils.getClientVersion(),
+            device: browser.name + " " + browser.version
+        };
+        return AppUtils.httpPost('api/scenario-result/create', null, data);
+    }
+
 
 }
 

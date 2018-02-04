@@ -8,15 +8,14 @@ export default class AbstractIsTestFinishedAction extends Action {
     }
 
 	getCommand() {
-			return new IsTestFinishedCommand(this.actionData);
+		return new IsTestFinishedCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

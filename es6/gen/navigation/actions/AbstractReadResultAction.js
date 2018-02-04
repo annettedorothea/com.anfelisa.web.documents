@@ -8,15 +8,14 @@ export default class AbstractReadResultAction extends Action {
     }
 
 	getCommand() {
-			return new ReadResultCommand(this.actionData);
+		return new ReadResultCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

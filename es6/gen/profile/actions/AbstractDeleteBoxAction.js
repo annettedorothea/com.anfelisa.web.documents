@@ -8,15 +8,14 @@ export default class AbstractDeleteBoxAction extends Action {
     }
 
 	getCommand() {
-			return new DeleteBoxCommand(this.actionData);
+		return new DeleteBoxCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

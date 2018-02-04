@@ -8,15 +8,14 @@ export default class AbstractOpenBoxCreationAction extends Action {
     }
 
 	getCommand() {
-			return new OpenBoxCreationCommand(this.actionData);
+		return new OpenBoxCreationCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

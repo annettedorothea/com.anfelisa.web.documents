@@ -23,29 +23,29 @@ export default class Command {
                 this.execute().then(() => {
                     ACEController.addItemToTimeLine({command: this});
                     this.publishEvents().then(() => {
-						postUpdateUI();
-						if (ACEController.execution === ACEController.LIVE) {
-						    ACEController.applyNextActions();
-						} else {
-						    setTimeout(ACEController.applyNextActions, ACEController.pauseInMillis);
-						}
-						resolve();
+                        postUpdateUI();
+                        if (ACEController.execution === ACEController.LIVE) {
+                            ACEController.applyNextActions();
+                        } else {
+                            setTimeout(ACEController.applyNextActions, ACEController.pauseInMillis);
+                        }
+                        resolve();
                     }, (error) => {
-                        reject(error + " when publishing events of command " + this.commandName);
+                        reject(error + "\n" + this.commandName);
                     });
                 }, (error) => {
-                    reject(error + " when executing command " + this.commandName);
+                    reject(error + "\n" + this.commandName);
                 });
             } else {
                 const timelineCommand = ACEController.getCommandByUuid(this.commandParam.uuid);
                 this.commandData = timelineCommand.commandData;
                 ACEController.addItemToTimeLine({command: this});
                 this.publishEvents().then(() => {
-					postUpdateUI();
-					setTimeout(ACEController.applyNextActions, ACEController.pauseInMillis);
-					resolve();
+                    postUpdateUI();
+                    setTimeout(ACEController.applyNextActions, ACEController.pauseInMillis);
+                    resolve();
                 }, (error) => {
-                    reject(error + " when publishing events of command " + this.commandName);
+                    reject(error + "\n" + this.commandName);
                 });
             }
         });

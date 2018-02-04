@@ -8,15 +8,14 @@ export default class AbstractStartTestAction extends Action {
     }
 
 	getCommand() {
-			return new StartTestCommand(this.actionData);
+		return new StartTestCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

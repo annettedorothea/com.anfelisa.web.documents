@@ -8,15 +8,14 @@ export default class AbstractReadPublicTestsAction extends Action {
     }
 
 	getCommand() {
-			return new ReadPublicTestsCommand(this.actionData);
+		return new ReadPublicTestsCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

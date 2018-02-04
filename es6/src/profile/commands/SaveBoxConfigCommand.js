@@ -2,7 +2,7 @@ import AbstractSaveBoxConfigCommand from "../../../gen/profile/commands/Abstract
 
 export default class SaveBoxConfigCommand extends AbstractSaveBoxConfigCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             const data = {
                 boxId: this.commandParam.boxId,
                 boxOfCourseList: this.commandParam.boxOfCourseList,
@@ -13,10 +13,7 @@ export default class SaveBoxConfigCommand extends AbstractSaveBoxConfigCommand {
                 this.commandData.boxId = this.commandParam.boxId;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "saveBoxFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                reject(error);
             });
         });
     }

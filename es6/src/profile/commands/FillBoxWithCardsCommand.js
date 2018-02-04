@@ -2,7 +2,7 @@ import AbstractFillBoxWithCardsCommand from "../../../gen/profile/commands/Abstr
 
 export default class FillBoxWithCardsCommand extends AbstractFillBoxWithCardsCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "boxId",
@@ -13,10 +13,7 @@ export default class FillBoxWithCardsCommand extends AbstractFillBoxWithCardsCom
                 this.commandData.hash = "profile";
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "fillBoxWithCardsFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                reject(error);
             });
         });
     }

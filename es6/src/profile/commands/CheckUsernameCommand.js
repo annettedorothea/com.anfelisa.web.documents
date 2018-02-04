@@ -2,7 +2,7 @@ import AbstractCheckUsernameCommand from "../../../gen/profile/commands/Abstract
 
 export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if (!this.commandParam.username) {
                 this.commandData.outcome = this.empty;
                 this.commandData.id = "username";
@@ -21,10 +21,7 @@ export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
                     }
                     resolve();
                 }, (error) => {
-                    this.commandData.messageKey = "checkUsernameFailed";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.error;
-                    resolve();
+                    reject(error);
                 });
             }
         });

@@ -2,7 +2,7 @@ import AbstractSaveResultCommand from "../../../gen/common/commands/AbstractSave
 
 export default class SaveResultCommand extends AbstractSaveResultCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             this.commandData.language = this.commandParam.language;
             if (this.commandParam.username === undefined) {
                 this.commandData.points = this.commandParam.points;
@@ -25,10 +25,7 @@ export default class SaveResultCommand extends AbstractSaveResultCommand {
                     this.commandData.hash = this.commandParam.hash + "/" + data;
                     resolve();
                 }, (error) => {
-                    this.commandData.messageKey = "saveResultFailed";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.serverError;
-                    resolve();
+                    reject(error);
                 });
             }
         });

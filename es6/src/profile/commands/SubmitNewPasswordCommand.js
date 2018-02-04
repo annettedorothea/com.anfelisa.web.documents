@@ -2,7 +2,7 @@ import AbstractSubmitNewPasswordCommand from "../../../gen/profile/commands/Abst
 
 export default class SubmitNewPasswordCommand extends AbstractSubmitNewPasswordCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if (!this.commandParam.newPassword || !this.commandParam.passwordRepetition) {
                 this.commandData.messageKey = "dataInvalid";
                 this.commandData.outcome = this.dataInvalid;
@@ -22,10 +22,7 @@ export default class SubmitNewPasswordCommand extends AbstractSubmitNewPasswordC
                     this.commandData.username = this.commandParam.username;
                     resolve();
                 }, (error) => {
-                    this.commandData.messageKey = "updatePasswordFailed";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.error;
-                    resolve();
+                    reject(error);
                 });
             }
         });

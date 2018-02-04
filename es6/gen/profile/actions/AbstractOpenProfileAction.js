@@ -8,15 +8,14 @@ export default class AbstractOpenProfileAction extends Action {
     }
 
 	getCommand() {
-			return new OpenProfileCommand(this.actionData);
+		return new OpenProfileCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

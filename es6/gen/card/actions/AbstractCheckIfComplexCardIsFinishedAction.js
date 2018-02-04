@@ -8,15 +8,14 @@ export default class AbstractCheckIfComplexCardIsFinishedAction extends Action {
     }
 
 	getCommand() {
-			return new CheckIfComplexCardIsFinishedCommand(this.actionData);
+		return new CheckIfComplexCardIsFinishedCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

@@ -8,15 +8,14 @@ export default class AbstractSaveBoxAction extends Action {
     }
 
 	getCommand() {
-			return new SaveBoxCommand(this.actionData);
+		return new SaveBoxCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

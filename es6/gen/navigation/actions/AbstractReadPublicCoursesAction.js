@@ -8,15 +8,14 @@ export default class AbstractReadPublicCoursesAction extends Action {
     }
 
 	getCommand() {
-			return new ReadPublicCoursesCommand(this.actionData);
+		return new ReadPublicCoursesCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

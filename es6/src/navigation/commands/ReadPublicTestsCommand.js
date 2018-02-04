@@ -2,7 +2,7 @@ import AbstractReadPublicTestsCommand from "../../../gen/navigation/commands/Abs
 
 export default class ReadPublicTestsCommand extends AbstractReadPublicTestsCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "lessonId",
@@ -13,10 +13,7 @@ export default class ReadPublicTestsCommand extends AbstractReadPublicTestsComma
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "readPublicTestsFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                reject(error);
             });
         });
     }

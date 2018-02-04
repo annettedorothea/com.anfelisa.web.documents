@@ -78,55 +78,9 @@
                         <a href="https://www.mozilla.org/de/firefox/new/" target="firefox">Firefox</a>,
                         <a href="https://www.google.de/chrome/browser/desktop/" target="chrome">Chrome</a> oder
                         <a href="http://www.apple.com/de/safari/" target="safari">Safari</a>,
-                        allerdings nicht mit dem Internet Explorer oder Microsoft Edge.
+                        allerdings nicht mit dem Internet Explorer.
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container main-pane hidden-xs hidden-sm">
-    <div class="row collapse" id="replayDiv">
-        <div class="col-md-12 container">
-            <h1>Replay</h1>
-            <div class="row">
-                <div class="col-md-12 form-inline" style="display: flex; justify-content: center;">
-                    <div class="form-group">
-                        <button class="btn btn-default"
-                                onclick="Anfelisa.replay($('#pauseInMillisInput').val())">Replay
-                        </button>
-                        <button class="btn btn-default"
-                                onclick="Anfelisa.e2e($('#pauseInMillisInput').val())">E2E
-                        </button>
-                        <input type="text" class="form-control mousetrap" id="pauseInMillisInput"
-                               placeholder="Pause in ms">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 form-inline" style="display: flex; justify-content: center; margin-top: 20px;">
-                    <div class="form-group">
-                        <button class="btn btn-default" onclick="ReplayUtils.downloadTimeline()">download
-                            scenario
-                        </button>
-                        <span class="btn btn-default btn-file">upload scenario
-								<input id="uploadTimelineInputField" class="form-control" type='file' accept='text/json'
-                                       onchange='ReplayUtils.uploadTimeline(event)'>
-							</span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <table class="table table-condensed table-bordered col-md-12" id="replayResultDiv"
-                       style="font-size: 10px; margin-top: 20px; table-layout:fixed;">
-                    <tr>
-                        <td width="25%"><h4>Original Expected Timeline</h4></td>
-                        <td width="25%"><h4>Expected Timeline</h4></td>
-                        <td width="25%"><h4>Actual Timeline</h4></td>
-                        <td width="25%"><h4>Original Actual Timeline</h4></td>
-                    </tr>
-                </table>
             </div>
         </div>
     </div>
@@ -136,7 +90,7 @@
     <div class="row">
         <div class="col-md-12">
             Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Annette Pohl - Koblenz
-            | Version 1.4.0
+            | Version 2.0.0
             | <a onclick="Anfelisa.reportBug()">Bug melden</a>
         </div>
     </div>
@@ -158,18 +112,13 @@
                 </address>
             </div>
             <div class="col-md-4">
-                <p>Version 1.4.0</p>
+                <p>Version 2.0.0</p>
                 <p><a onclick="Anfelisa.reportBug()">Bug melden</a></p>
                 <p>Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Annette Pohl - Koblenz</p>
                 <ul class="alt">
                     <li><a href="http://artboom.de/" target="artboom">artboom</a></li>
                     <li><a href="http://fortawesome.github.io/Font-Awesome/"
                            target="fa">Font Awesome</a></li>
-                </ul>
-                <ul class="alt">
-                    <li><a data-toggle="collapse" href="#replayDiv" aria-expanded="false" aria-controls="replayDiv">
-                        ACE
-                    </a></li>
                 </ul>
             </div>
             <div class="col-md-4">
@@ -194,8 +143,6 @@
 
 
 </body>
-
-<script type="text/javascript" src="lib/anfelisa.min.js"></script>
 
 <!-- navigation -->
 
@@ -696,21 +643,23 @@
 </script>
 
 <script id="login" type="x-tmpl-mustache">
-    <div class="form-inline">
-        <div class="form-group">
-            <input type="text" class="form-control username" placeholder="{{texts.username}}" onkeydown="if (event.keyCode == 13) Anfelisa.login()" />
-            <input type="password" class="form-control password" placeholder="{{texts.password}}" onkeydown="if (event.keyCode == 13) Anfelisa.login()" />
+    <form>
+        <div class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control username" placeholder="{{texts.username}}" onkeydown="if (event.keyCode == 13) Anfelisa.login()" autocomplete="on" />
+                <input type="password" class="form-control password" placeholder="{{texts.password}}" onkeydown="if (event.keyCode == 13) Anfelisa.login()" autocomplete="on"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-blue login-button" onclick="Anfelisa.login()"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;{{texts.login}}</button>
+                <button class="btn btn-blue login-button" onclick="Anfelisa.route({hash: 'profile/register'})" data-toggle="tooltip" title="{{texts.register}}"><i class="fa fa-pencil"></i></button>
+                <button class="btn btn-blue login-button" onclick="Anfelisa.route({hash: 'profile/forgot-password'})" data-toggle="tooltip" title="{{texts.forgotPassword}}"><i class="fa fa-unlock-alt"></i></button>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-blue login-button" onclick="Anfelisa.switchLanguage( {language: 'de'} )">{{texts.german}}</button>
+                <button class="btn btn-blue login-button" onclick="Anfelisa.switchLanguage( {language: 'en'} )">{{texts.english}}</button>
+            </div>
         </div>
-        <div class="form-group">
-            <button class="btn btn-blue login-button" onclick="Anfelisa.login()"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;{{texts.login}}</button>
-            <button class="btn btn-blue login-button" onclick="Anfelisa.route({hash: 'profile/register'})" data-toggle="tooltip" title="{{texts.register}}"><i class="fa fa-pencil"></i></button>
-            <button class="btn btn-blue login-button" onclick="Anfelisa.route({hash: 'profile/forgot-password'})" data-toggle="tooltip" title="{{texts.forgotPassword}}"><i class="fa fa-unlock-alt"></i></button>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-blue login-button" onclick="Anfelisa.switchLanguage( {language: 'de'} )">{{texts.german}}</button>
-            <button class="btn btn-blue login-button" onclick="Anfelisa.switchLanguage( {language: 'en'} )">{{texts.english}}</button>
-        </div>
-    </div>
+    </form
 </script>
 
 <script id="logout" type="x-tmpl-mustache">
@@ -822,7 +771,7 @@
         <div class="form-group" id="nameDiv">
             <label for="name" class="col-sm-3 control-label">* {{texts.boxName}}</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="name" placeholder="{{texts.boxName}}" value="{{name}}" onblur="Anfelisa.validateRequiredField({id : 'name'})">
+                <input type="text" class="form-control" id="name" placeholder="{{texts.boxName}}" value="{{name}}" onblur="Anfelisa.validateRequiredField({id : 'name'})" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.boxNameNotEmpty}}</span>
             </div>
         </div>
@@ -918,7 +867,7 @@
         <div class="form-group" id="passwordDiv">
             <label for="password" class="col-sm-3 control-label">* {{texts.password}}</label>
             <div class="col-sm-9">
-                <input type="password" class="form-control" id="password" placeholder="{{texts.password}}" onblur="Anfelisa.validatePassword()">
+                <input type="password" class="form-control" id="password" placeholder="{{texts.password}}" onblur="Anfelisa.validatePassword()"  autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.passwordNotEmpty}}</span>
             </div>
         </div>
@@ -926,7 +875,7 @@
         <div class="form-group" id="passwordRepetitionDiv">
             <label for="passwordRepetition" class="col-sm-3 control-label">* {{texts.passwordRepetition}}</label>
             <div class="col-sm-9">
-                <input type="password" class="form-control" id="passwordRepetition" placeholder="{{texts.passwordRepetition}}" onblur="Anfelisa.validatePassword()">
+                <input type="password" class="form-control" id="passwordRepetition" placeholder="{{texts.passwordRepetition}}" onblur="Anfelisa.validatePassword()" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.passwordRepetitionNotEmpty}}</span>
                 <span class="help-block passwordMismatch" style="display: none">{{texts.passwordMismatch}}</span>
             </div>
@@ -968,7 +917,7 @@
                         {{#courseList}}
                         <tr>
                             <td class="text-center">
-                                <input type="checkbox" class="courseSelection" value="{{courseId}}">
+                                <input type="checkbox" class="courseSelection" value="{{courseId}}" autocomplete="off">
                             </td>
                             <td>{{name}}</td>
                         </tr>
@@ -1011,7 +960,7 @@
         <div class="form-group" id="usernameDiv">
             <label for="username" class="col-sm-3 control-label">* {{texts.username}}</label>
             <div class="col-sm-9">
-                <input type="input" class="form-control" id="username" placeholder="{{texts.username}}" onblur="Anfelisa.validateRequiredField({id : 'username'})">
+                <input type="input" class="form-control" id="username" placeholder="{{texts.username}}" onblur="Anfelisa.validateRequiredField({id : 'username'})" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.usernameNotEmpty}}</span>
             </div>
         </div>
@@ -1035,8 +984,8 @@
 <script id="newPassword" type="x-tmpl-mustache">
     <form class="form-horizontal">
 
-        <input type="hidden" value="{{username}}" id="username">
-        <input type="hidden" value="{{password}}" id="oldPassword">
+        <input type="hidden" value="{{username}}" id="username" autocomplete="off">
+        <input type="hidden" value="{{password}}" id="oldPassword" autocomplete="off">
 
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
@@ -1048,7 +997,7 @@
         <div class="form-group" id="passwordDiv">
             <label for="password" class="col-sm-3 control-label">* {{texts.password}}</label>
             <div class="col-sm-9">
-                <input type="password" class="form-control" id="password" placeholder="{{texts.password}}" onblur="Anfelisa.validateRequiredField({id : 'password'});Anfelisa.validatePassword()">
+                <input type="password" class="form-control" id="password" placeholder="{{texts.password}}" onblur="Anfelisa.validateRequiredField({id : 'password'});Anfelisa.validatePassword()" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.passwordNotEmpty}}</span>
             </div>
         </div>
@@ -1056,7 +1005,7 @@
         <div class="form-group" id="passwordRepetitionDiv">
             <label for="passwordRepetition" class="col-sm-3 control-label">* {{texts.passwordRepetition}}</label>
             <div class="col-sm-9">
-                <input type="password" class="form-control" id="passwordRepetition" placeholder="{{texts.passwordRepetition}}" onblur="Anfelisa.validateRequiredField({id : 'passwordRepetition'});Anfelisa.validatePassword()">
+                <input type="password" class="form-control" id="passwordRepetition" placeholder="{{texts.passwordRepetition}}" onblur="Anfelisa.validateRequiredField({id : 'passwordRepetition'});Anfelisa.validatePassword()" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.passwordRepetitionNotEmpty}}</span>
                 <span class="help-block passwordMismatch" style="display: none">{{texts.passwordMismatch}}</span>
             </div>
@@ -1086,14 +1035,14 @@
         <div class="form-group" id="usernameDiv">
             <label for="username" class="col-sm-3 control-label">* {{texts.username}}</label>
             <div class="col-sm-9">
-                <input type="text" disabled="disabled" class="form-control" id="username" placeholder="{{texts.username}}" value="{{username}}">
+                <input type="text" disabled="disabled" class="form-control" id="username" placeholder="{{texts.username}}" value="{{username}}" autocomplete="off">
             </div>
         </div>
 
         <div class="form-group" id="nameDiv">
             <label for="name" class="col-sm-3 control-label">* {{texts.name}}</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="name" placeholder="{{texts.name}}" value="{{name}}" onblur="Anfelisa.validateRequiredField({id : 'name'})">
+                <input type="text" class="form-control" id="name" placeholder="{{texts.name}}" value="{{name}}" onblur="Anfelisa.validateRequiredField({id : 'name'})" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.nameNotEmpty}}</span>
             </div>
         </div>
@@ -1101,7 +1050,7 @@
         <div class="form-group" id="prenameDiv">
             <label for="prename" class="col-sm-3 control-label">* {{texts.prename}}</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="prename" placeholder="{{texts.prename}}" value="{{prename}}" onblur="Anfelisa.validateRequiredField({id : 'prename'})">
+                <input type="text" class="form-control" id="prename" placeholder="{{texts.prename}}" value="{{prename}}" onblur="Anfelisa.validateRequiredField({id : 'prename'})" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.prenameNotEmpty}}</span>
             </div>
         </div>
@@ -1109,7 +1058,7 @@
         <div class="form-group" id="emailDiv">
             <label for="email" class="col-sm-3 control-label">* {{texts.email}}</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="email" placeholder="{{texts.email}}" value="{{email}}" onblur="Anfelisa.validateRequiredField({id : 'email'})">
+                <input type="text" class="form-control" id="email" placeholder="{{texts.email}}" value="{{email}}" onblur="Anfelisa.validateRequiredField({id : 'email'})" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.emailNotEmpty}}</span>
             </div>
         </div>
@@ -1253,7 +1202,7 @@
         <div class="form-group" id="usernameDiv">
             <label for="username" class="col-sm-3 control-label">* {{texts.username}}</label>
             <div class="col-sm-9">
-                <input type="input" class="form-control" id="username" placeholder="{{texts.username}}" onblur="Anfelisa.checkUsername()">
+                <input type="input" class="form-control" id="username" placeholder="{{texts.username}}" onblur="Anfelisa.checkUsername()" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.usernameNotEmpty}}</span>
                 <span class="help-block usernameNotAvailable" style="display: none">{{texts.usernameNotAvailable}}</span>
             </div>
@@ -1262,7 +1211,7 @@
         <div class="form-group" id="passwordDiv">
             <label for="password" class="col-sm-3 control-label">* {{texts.password}}</label>
             <div class="col-sm-9">
-                <input type="password" class="form-control" id="password" placeholder="{{texts.password}}" onblur="Anfelisa.validatePassword()">
+                <input type="password" class="form-control" id="password" placeholder="{{texts.password}}" onblur="Anfelisa.validatePassword()" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.passwordNotEmpty}}</span>
             </div>
         </div>
@@ -1270,7 +1219,7 @@
         <div class="form-group" id="passwordRepetitionDiv">
             <label for="passwordRepetition" class="col-sm-3 control-label">* {{texts.passwordRepetition}}</label>
             <div class="col-sm-9">
-                <input type="password" class="form-control" id="passwordRepetition" placeholder="{{texts.passwordRepetition}}" onblur="Anfelisa.validatePassword()">
+                <input type="password" class="form-control" id="passwordRepetition" placeholder="{{texts.passwordRepetition}}" onblur="Anfelisa.validatePassword()" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.passwordRepetitionNotEmpty}}</span>
                 <span class="help-block passwordMismatch" style="display: none">{{texts.passwordMismatch}}</span>
             </div>
@@ -1279,7 +1228,7 @@
         <div class="form-group" id="nameDiv">
             <label for="name" class="col-sm-3 control-label">* {{texts.name}}</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="name" placeholder="{{texts.name}}" value="{{name}}" onblur="Anfelisa.validateRequiredField({id : 'name'})">
+                <input type="text" class="form-control" id="name" placeholder="{{texts.name}}" value="{{name}}" onblur="Anfelisa.validateRequiredField({id : 'name'})" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.nameNotEmpty}}</span>
             </div>
         </div>
@@ -1287,7 +1236,7 @@
         <div class="form-group" id="prenameDiv">
             <label for="prename" class="col-sm-3 control-label">* {{texts.prename}}</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="prename" placeholder="{{texts.prename}}" value="{{prename}}" onblur="Anfelisa.validateRequiredField({id : 'prename'})">
+                <input type="text" class="form-control" id="prename" placeholder="{{texts.prename}}" value="{{prename}}" onblur="Anfelisa.validateRequiredField({id : 'prename'})" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.prenameNotEmpty}}</span>
             </div>
         </div>
@@ -1295,7 +1244,7 @@
         <div class="form-group" id="emailDiv">
             <label for="email" class="col-sm-3 control-label">* {{texts.email}}</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="email" placeholder="{{texts.email}}" value="{{email}}" onblur="Anfelisa.validateRequiredField({id : 'email'})">
+                <input type="text" class="form-control" id="email" placeholder="{{texts.email}}" value="{{email}}" onblur="Anfelisa.validateRequiredField({id : 'email'})" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.emailNotEmpty}}</span>
             </div>
         </div>
@@ -1384,7 +1333,6 @@
     </div>
 </script>
 
-
-
+<script type="text/javascript" src="lib/anfelisa.js"></script>
 
 </html>

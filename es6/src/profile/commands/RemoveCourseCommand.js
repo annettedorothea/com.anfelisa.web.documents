@@ -2,7 +2,7 @@ import AbstractRemoveCourseCommand from "../../../gen/profile/commands/AbstractR
 
 export default class RemoveCourseCommand extends AbstractRemoveCourseCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "courseId",
@@ -13,10 +13,7 @@ export default class RemoveCourseCommand extends AbstractRemoveCourseCommand {
                 this.commandData.outcome = this.deleted;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "removeCoursesFromUserFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                reject(error);
             });
         });
     }

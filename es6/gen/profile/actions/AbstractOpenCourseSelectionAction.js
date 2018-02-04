@@ -8,15 +8,14 @@ export default class AbstractOpenCourseSelectionAction extends Action {
     }
 
 	getCommand() {
-			return new OpenCourseSelectionCommand(this.actionData);
+		return new OpenCourseSelectionCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

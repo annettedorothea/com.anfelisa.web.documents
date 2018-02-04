@@ -8,15 +8,14 @@ export default class AbstractSubmitForgotPasswordRequestAction extends Action {
     }
 
 	getCommand() {
-			return new SubmitForgotPasswordRequestCommand(this.actionData);
+		return new SubmitForgotPasswordRequestCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

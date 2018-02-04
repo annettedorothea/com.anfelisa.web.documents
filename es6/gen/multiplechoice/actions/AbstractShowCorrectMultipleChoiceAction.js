@@ -8,15 +8,14 @@ export default class AbstractShowCorrectMultipleChoiceAction extends Action {
     }
 
 	getCommand() {
-			return new ShowCorrectMultipleChoiceCommand(this.actionData);
+		return new ShowCorrectMultipleChoiceCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

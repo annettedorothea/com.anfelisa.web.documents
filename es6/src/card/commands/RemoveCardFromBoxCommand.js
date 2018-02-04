@@ -2,7 +2,7 @@ import AbstractRemoveCardFromBoxCommand from "../../../gen/card/commands/Abstrac
 
 export default class RemoveCardFromBoxCommand extends AbstractRemoveCardFromBoxCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "scheduledCardId",
@@ -13,10 +13,7 @@ export default class RemoveCardFromBoxCommand extends AbstractRemoveCardFromBoxC
                 this.commandData.hash = "box/" + this.commandParam.boxId;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "removeFromBoxFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                reject(error);
             });
         });
     }

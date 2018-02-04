@@ -8,15 +8,14 @@ export default class AbstractLogoutAction extends Action {
     }
 
 	getCommand() {
-			return new LogoutCommand(this.actionData);
+		return new LogoutCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

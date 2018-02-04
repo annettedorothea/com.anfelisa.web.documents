@@ -8,15 +8,14 @@ export default class AbstractRepeatComplexCardAction extends Action {
     }
 
 	getCommand() {
-			return new RepeatComplexCardCommand(this.actionData);
+		return new RepeatComplexCardCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

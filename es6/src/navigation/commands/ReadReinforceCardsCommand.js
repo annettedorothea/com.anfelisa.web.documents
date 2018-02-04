@@ -2,7 +2,7 @@ import AbstractReadReinforceCardsCommand from "../../../gen/navigation/commands/
 
 export default class ReadReinforceCardsCommand extends AbstractReadReinforceCardsCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "boxId",
@@ -13,10 +13,12 @@ export default class ReadReinforceCardsCommand extends AbstractReadReinforceCard
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "readReinforceCardsFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                if (error.code === 401) {
+                    this.commandData.outcome = this.unauthorized;
+                    resolve();
+                } else {
+                    reject(error.text);
+                }
             });
         });
     }

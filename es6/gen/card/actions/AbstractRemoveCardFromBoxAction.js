@@ -8,15 +8,14 @@ export default class AbstractRemoveCardFromBoxAction extends Action {
     }
 
 	getCommand() {
-			return new RemoveCardFromBoxCommand(this.actionData);
+		return new RemoveCardFromBoxCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

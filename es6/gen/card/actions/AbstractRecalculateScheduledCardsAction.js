@@ -8,15 +8,14 @@ export default class AbstractRecalculateScheduledCardsAction extends Action {
     }
 
 	getCommand() {
-			return new RecalculateScheduledCardsCommand(this.actionData);
+		return new RecalculateScheduledCardsCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

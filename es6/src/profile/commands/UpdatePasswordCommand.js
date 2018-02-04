@@ -2,7 +2,7 @@ import AbstractUpdatePasswordCommand from "../../../gen/profile/commands/Abstrac
 
 export default class UpdatePasswordCommand extends AbstractUpdatePasswordCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if (this.commandParam.newPasswordEmpty || this.commandParam.passwordRepetitionEmpty) {
                 this.commandData.messageKey = "dataInvalid";
                 this.commandData.outcome = this.dataInvalid;
@@ -22,10 +22,7 @@ export default class UpdatePasswordCommand extends AbstractUpdatePasswordCommand
                     this.commandData.username = this.commandParam.username;
                     resolve();
                 }, (error) => {
-                    this.commandData.messageKey = "updatePasswordFailed";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.error;
-                    resolve();
+                    reject(error);
                 });
             }
         });

@@ -9,16 +9,16 @@ export default class AbstractRenderLoginCommand extends Command {
     }
 
     publishEvents() {
-    	let promises = [];
-    	
-        switch (this.commandData.outcome) {
-        case this.ok:
-        	promises.push(new RenderLoginEvent(this.commandData).publish());
-        	break;
-    	default:
-    		throw 'unhandled outcome: ' + this.commandData.outcome;
-    	}
-    	return Promise.all(promises);
+		let promises = [];
+	    	
+		switch (this.commandData.outcome) {
+		case this.ok:
+			promises.push(new RenderLoginEvent(this.commandData).publish());
+			break;
+		default:
+			throw 'unhandled outcome: ' + this.commandData.outcome;
+		}
+		return Promise.all(promises);
     }
 }
 

@@ -2,7 +2,7 @@ import AbstractReadResultCommand from "../../../gen/navigation/commands/Abstract
 
 export default class ReadResultCommand extends AbstractReadResultCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             this.commandData.language = this.commandParam.language;
             let queryParams = [];
             queryParams.push({
@@ -14,10 +14,12 @@ export default class ReadResultCommand extends AbstractReadResultCommand {
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "readResultFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                if (error.code === 401) {
+                    this.commandData.outcome = this.unauthorized;
+                    resolve();
+                } else {
+                    reject(error.text);
+                }
             });
         });
     }

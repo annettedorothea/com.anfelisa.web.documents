@@ -8,15 +8,14 @@ export default class AbstractLoadCoursesAction extends Action {
     }
 
 	getCommand() {
-			return new LoadCoursesCommand(this.actionData);
+		return new LoadCoursesCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

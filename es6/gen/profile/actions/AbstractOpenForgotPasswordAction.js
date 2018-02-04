@@ -8,15 +8,14 @@ export default class AbstractOpenForgotPasswordAction extends Action {
     }
 
 	getCommand() {
-			return new OpenForgotPasswordCommand(this.actionData);
+		return new OpenForgotPasswordCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

@@ -8,15 +8,14 @@ export default class AbstractCheckUsernameAction extends Action {
     }
 
 	getCommand() {
-			return new CheckUsernameCommand(this.actionData);
+		return new CheckUsernameCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

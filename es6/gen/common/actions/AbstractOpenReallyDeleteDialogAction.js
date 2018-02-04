@@ -8,15 +8,14 @@ export default class AbstractOpenReallyDeleteDialogAction extends Action {
     }
 
 	getCommand() {
-			return new OpenReallyDeleteDialogCommand(this.actionData);
+		return new OpenReallyDeleteDialogCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

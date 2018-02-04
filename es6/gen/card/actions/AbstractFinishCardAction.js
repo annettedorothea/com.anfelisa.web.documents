@@ -8,15 +8,14 @@ export default class AbstractFinishCardAction extends Action {
     }
 
 	getCommand() {
-			return new FinishCardCommand(this.actionData);
+		return new FinishCardCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

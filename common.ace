@@ -1,6 +1,6 @@
 common
 
-target ES6 generateModules
+target ES6
 
 actions {
 	init Init executes Init
@@ -53,7 +53,7 @@ commands {
 	}
 	Login {
 		on ok publishes (UserLoggedIn) triggers ( Route )
-		on error publishes ( ServerError ) triggers ( RouteHome )
+		on unauthorized publishes ( Error ) triggers ( Logout )
 	}
 	Logout {
 		on ok publishes (UserLoggedOut) triggers ( Route )
@@ -64,9 +64,6 @@ commands {
 		)
 		on resultSaved triggers (
 			Route
-		)
-		on serverError publishes (
-			common.ServerError
 		)
 	}
 	ValidateRequiredField {
@@ -91,7 +88,6 @@ commands {
 
 events {
 	InitOK listenedToBy ( Common.initLanguageInLocalStorage )
-	ServerError listenedToBy ( Error.renderServerError )
 	Error listenedToBy ( Error.renderError )
 	Message listenedToBy (Message.renderMessage)
 	UpdateHash listenedToBy ( Common.updateHash )
@@ -112,7 +108,6 @@ events {
 views {
 	Error {
 		renderError
-		renderServerError
 	}
 	Message {
 		renderMessage

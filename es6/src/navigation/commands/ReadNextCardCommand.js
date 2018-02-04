@@ -2,7 +2,7 @@ import AbstractReadNextCardCommand from "../../../gen/navigation/commands/Abstra
 
 export default class ReadNextCardCommand extends AbstractReadNextCardCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "boxId",
@@ -13,10 +13,12 @@ export default class ReadNextCardCommand extends AbstractReadNextCardCommand {
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "readNextCardFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                if (error.code === 401) {
+                    this.commandData.outcome = this.unauthorized;
+                    resolve();
+                } else {
+                    reject(error.text);
+                }
             });
         });
     }

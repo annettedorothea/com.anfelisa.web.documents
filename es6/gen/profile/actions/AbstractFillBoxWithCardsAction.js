@@ -8,15 +8,14 @@ export default class AbstractFillBoxWithCardsAction extends Action {
     }
 
 	getCommand() {
-			return new FillBoxWithCardsCommand(this.actionData);
+		return new FillBoxWithCardsCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

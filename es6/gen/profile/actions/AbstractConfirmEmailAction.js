@@ -8,15 +8,14 @@ export default class AbstractConfirmEmailAction extends Action {
     }
 
 	getCommand() {
-			return new ConfirmEmailCommand(this.actionData);
+		return new ConfirmEmailCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

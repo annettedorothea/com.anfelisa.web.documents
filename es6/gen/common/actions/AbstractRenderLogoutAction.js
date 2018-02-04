@@ -8,15 +8,14 @@ export default class AbstractRenderLogoutAction extends Action {
     }
 
 	getCommand() {
-			return new RenderLogoutCommand(this.actionData);
+		return new RenderLogoutCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

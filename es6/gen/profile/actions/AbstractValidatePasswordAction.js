@@ -8,15 +8,14 @@ export default class AbstractValidatePasswordAction extends Action {
     }
 
 	getCommand() {
-			return new ValidatePasswordCommand(this.actionData);
+		return new ValidatePasswordCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

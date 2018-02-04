@@ -8,15 +8,14 @@ export default class AbstractRemoveCourseAction extends Action {
     }
 
 	getCommand() {
-			return new RemoveCourseCommand(this.actionData);
+		return new RemoveCourseCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

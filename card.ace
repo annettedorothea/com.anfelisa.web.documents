@@ -1,6 +1,6 @@
 card
 
-target ES6 generateModules
+target ES6 
 
 actions {
 	ShowNextCardItem executes ShowNextCardItem
@@ -46,13 +46,11 @@ commands {
 		on scored triggers (
 			common.Route
 		)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 	RemoveCardFromBox {
 		on scored triggers (
 			common.Route
 		)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 	DisplayNextReinforceCard {
 		on next publishes (DisplayNextReinforceCard)
@@ -66,7 +64,6 @@ commands {
 		on ok triggers (
 			navigation.ReadNextCard navigation.ReadBoxes
 		)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 }
 

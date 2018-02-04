@@ -8,15 +8,14 @@ export default class AbstractRateWordAction extends Action {
     }
 
 	getCommand() {
-			return new RateWordCommand(this.actionData);
+		return new RateWordCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

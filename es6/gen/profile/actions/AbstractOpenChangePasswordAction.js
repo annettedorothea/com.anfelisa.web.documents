@@ -8,15 +8,14 @@ export default class AbstractOpenChangePasswordAction extends Action {
     }
 
 	getCommand() {
-			return new OpenChangePasswordCommand(this.actionData);
+		return new OpenChangePasswordCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

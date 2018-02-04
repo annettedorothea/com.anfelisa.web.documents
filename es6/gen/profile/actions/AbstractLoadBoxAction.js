@@ -8,15 +8,14 @@ export default class AbstractLoadBoxAction extends Action {
     }
 
 	getCommand() {
-			return new LoadBoxCommand(this.actionData);
+		return new LoadBoxCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

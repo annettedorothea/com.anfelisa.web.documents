@@ -8,15 +8,14 @@ export default class AbstractReadPrivateTestAction extends Action {
     }
 
 	getCommand() {
-			return new ReadPrivateTestCommand(this.actionData);
+		return new ReadPrivateTestCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

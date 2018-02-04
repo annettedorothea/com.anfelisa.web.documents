@@ -8,15 +8,14 @@ export default class AbstractValidateRequiredFieldAction extends Action {
     }
 
 	getCommand() {
-			return new ValidateRequiredFieldCommand(this.actionData);
+		return new ValidateRequiredFieldCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

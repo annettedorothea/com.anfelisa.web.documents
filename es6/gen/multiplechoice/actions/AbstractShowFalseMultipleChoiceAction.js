@@ -8,15 +8,14 @@ export default class AbstractShowFalseMultipleChoiceAction extends Action {
     }
 
 	getCommand() {
-			return new ShowFalseMultipleChoiceCommand(this.actionData);
+		return new ShowFalseMultipleChoiceCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

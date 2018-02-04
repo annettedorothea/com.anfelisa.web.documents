@@ -8,15 +8,14 @@ export default class AbstractSaveCourseSelectionAction extends Action {
     }
 
 	getCommand() {
-			return new SaveCourseSelectionCommand(this.actionData);
+		return new SaveCourseSelectionCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

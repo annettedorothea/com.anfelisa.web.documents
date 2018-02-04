@@ -2,7 +2,7 @@ import AbstractReadPrivateTestsCommand from "../../../gen/navigation/commands/Ab
 
 export default class ReadPrivateTestsCommand extends AbstractReadPrivateTestsCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "lessonId",
@@ -13,10 +13,12 @@ export default class ReadPrivateTestsCommand extends AbstractReadPrivateTestsCom
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "readPrivateTestsFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                if (error.code === 401) {
+                    this.commandData.outcome = this.unauthorized;
+                    resolve();
+                } else {
+                    reject(error.text);
+                }
             });
         });
     }

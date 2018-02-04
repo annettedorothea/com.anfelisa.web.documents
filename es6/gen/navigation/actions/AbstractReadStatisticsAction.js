@@ -8,15 +8,14 @@ export default class AbstractReadStatisticsAction extends Action {
     }
 
 	getCommand() {
-			return new ReadStatisticsCommand(this.actionData);
+		return new ReadStatisticsCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

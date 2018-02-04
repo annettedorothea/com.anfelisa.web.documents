@@ -8,15 +8,14 @@ export default class AbstractDisplayNextReinforceCardAction extends Action {
     }
 
 	getCommand() {
-			return new DisplayNextReinforceCardCommand(this.actionData);
+		return new DisplayNextReinforceCardCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

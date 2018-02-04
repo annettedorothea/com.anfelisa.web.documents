@@ -8,15 +8,14 @@ export default class AbstractDisplayNextQuestionAction extends Action {
     }
 
 	getCommand() {
-			return new DisplayNextQuestionCommand(this.actionData);
+		return new DisplayNextQuestionCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

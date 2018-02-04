@@ -8,15 +8,14 @@ export default class AbstractReadBoxesAction extends Action {
     }
 
 	getCommand() {
-			return new ReadBoxesCommand(this.actionData);
+		return new ReadBoxesCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

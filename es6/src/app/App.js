@@ -7,6 +7,9 @@ export * from "../../gen/navigation/ActionFunctionExports";
 export * from "../../gen/profile/ActionFunctionExports";
 export * from "../../gen/vocabulary/ActionFunctionExports";
 
+export * from "../../gen/ace/Scenario";
+export * from "../../gen/ace/Bug";
+
 import AppUtils from './AppUtils';
 import ReplayUtils from './ReplayUtils';
 import EventListenerRegistrationCard from "../../gen/card/EventListenerRegistration";

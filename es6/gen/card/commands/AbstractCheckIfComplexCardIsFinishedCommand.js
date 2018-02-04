@@ -10,18 +10,18 @@ export default class AbstractCheckIfComplexCardIsFinishedCommand extends Command
     }
 
     publishEvents() {
-    	let promises = [];
-    	
-        switch (this.commandData.outcome) {
-        case this.complexCardIsFinished:
-        	promises.push(new ShowScoreButtonsEvent(this.commandData).publish());
-        	break;
-        case this.complexCardIsNotFinished:
-        	break;
-    	default:
-    		throw 'unhandled outcome: ' + this.commandData.outcome;
-    	}
-    	return Promise.all(promises);
+		let promises = [];
+	    	
+		switch (this.commandData.outcome) {
+		case this.complexCardIsFinished:
+			promises.push(new ShowScoreButtonsEvent(this.commandData).publish());
+			break;
+		case this.complexCardIsNotFinished:
+			break;
+		default:
+			throw 'unhandled outcome: ' + this.commandData.outcome;
+		}
+		return Promise.all(promises);
     }
 }
 

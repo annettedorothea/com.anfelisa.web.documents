@@ -8,15 +8,14 @@ export default class AbstractLoginAction extends Action {
     }
 
 	getCommand() {
-			return new LoginCommand(this.actionData);
+		return new LoginCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

@@ -11,19 +11,19 @@ export default class AbstractValidateRequiredFieldCommand extends Command {
     }
 
     publishEvents() {
-    	let promises = [];
-    	
-        switch (this.commandData.outcome) {
-        case this.fieldEmpty:
-        	promises.push(new FieldEmptyEvent(this.commandData).publish());
-        	break;
-        case this.fieldNotEmpty:
-        	promises.push(new FieldNotEmptyEvent(this.commandData).publish());
-        	break;
-    	default:
-    		throw 'unhandled outcome: ' + this.commandData.outcome;
-    	}
-    	return Promise.all(promises);
+		let promises = [];
+	    	
+		switch (this.commandData.outcome) {
+		case this.fieldEmpty:
+			promises.push(new FieldEmptyEvent(this.commandData).publish());
+			break;
+		case this.fieldNotEmpty:
+			promises.push(new FieldNotEmptyEvent(this.commandData).publish());
+			break;
+		default:
+			throw 'unhandled outcome: ' + this.commandData.outcome;
+		}
+		return Promise.all(promises);
     }
 }
 

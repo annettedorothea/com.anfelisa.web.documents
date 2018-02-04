@@ -8,15 +8,14 @@ export default class AbstractCloseAllDialogsAction extends Action {
     }
 
 	getCommand() {
-			return new CloseAllDialogsCommand(this.actionData);
+		return new CloseAllDialogsCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

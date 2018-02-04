@@ -8,15 +8,14 @@ export default class AbstractReadReinforceCardsAction extends Action {
     }
 
 	getCommand() {
-			return new ReadReinforceCardsCommand(this.actionData);
+		return new ReadReinforceCardsCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

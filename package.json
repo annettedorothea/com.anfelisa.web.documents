@@ -9,7 +9,7 @@
     "server": "live-server --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8880/replay/' --browser='Google Chrome'",
     "uglify": "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa.min.js",
     "build": "browserify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa.js -dv",
-    "start": "watchify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa.js -dv & live-server --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8880/replay/' --browser='Google Chrome'"
+    "start": "watchify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa.js -dv & live-server --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8085/replay/' --browser='Google Chrome'"
   },
   "author": "Annette Pohl",
   "license": "ISC",

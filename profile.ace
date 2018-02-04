@@ -1,6 +1,6 @@
 profile
 
-target ES6 generateModules
+target ES6
 
 actions {
 	OpenProfile executes OpenProfile
@@ -30,52 +30,45 @@ actions {
 commands {
 	OpenProfile {
 		on userInfoRead publishes (UserInfoLoaded)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+		on error publishes ( common.Error ) triggers ( common.RouteHome )
 	}
 	SaveProfile {
 		on saved triggers (common.Route)
 		on dataInvalid publishes ( common.Error )
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 	OpenCourseSelection {
 		on coursesRead publishes ( CoursesLoaded )
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+		on error publishes ( common.Error ) triggers ( common.RouteHome )
 	}
 	SaveCourseSelection {
 		on saved triggers (common.Route)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 	RemoveCourse {
 		on deleted triggers (common.Route)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 	SaveBox {
 		on saved triggers (common.Route)
 		on dataInvalid publishes ( common.Error )
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 	DeleteBox {
 		on deleted triggers (common.Route)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 	LoadBox {
 		on loaded publishes ( RenderBox )
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+		on error publishes ( common.Error ) triggers ( common.RouteHome )
 	}
 	OpenBoxCreation {
 		on ok publishes (RenderBox)
 	}
 	LoadCourses {
 		on loaded publishes ( RenderCourseToBox )
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+		on error publishes ( common.Error ) triggers ( common.RouteHome )
 	}
 	SaveBoxConfig {
 		on saved triggers (FillBoxWithCards)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 	FillBoxWithCards {
 		on filled triggers (common.Route)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 	OpenChangePassword {
 		on ok publishes (RenderChangePassword)
@@ -84,13 +77,11 @@ commands {
 		on dataInvalid publishes (common.Error)
 		on mismatch publishes (common.Error)
 		on saved publishes (common.UserLoggedIn) triggers (common.Route)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 	SubmitNewPassword {
 		on dataInvalid publishes (common.Error)
 		on mismatch publishes (common.Error)
 		on saved publishes (common.UserLoggedIn) triggers (common.Route)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 	ValidatePassword {
 		on empty publishes (PasswordEmpty)
@@ -114,7 +105,7 @@ commands {
 		on dataInvalid publishes (common.Error)
 		on mismatch publishes (common.Error)
 		on saved publishes (common.UserLoggedIn) triggers (common.Route)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+		on error publishes ( common.Error ) triggers ( common.RouteHome )
 	}
 	CheckUsername {
 		on empty publishes (common.FieldEmpty)
@@ -123,7 +114,6 @@ commands {
 	}
 	ConfirmEmail {
 		on saved publishes (common.UserLoggedIn) triggers (common.Route)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
 	}
 }
 events {

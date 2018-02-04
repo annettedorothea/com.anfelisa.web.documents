@@ -8,15 +8,14 @@ export default class AbstractSwitchLanguageAction extends Action {
     }
 
 	getCommand() {
-			return new SwitchLanguageCommand(this.actionData);
+		return new SwitchLanguageCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

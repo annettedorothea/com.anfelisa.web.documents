@@ -8,15 +8,14 @@ export default class AbstractReadPrivateLessonsAction extends Action {
     }
 
 	getCommand() {
-			return new ReadPrivateLessonsCommand(this.actionData);
+		return new ReadPrivateLessonsCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

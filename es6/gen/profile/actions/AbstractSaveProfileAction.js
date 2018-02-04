@@ -8,15 +8,14 @@ export default class AbstractSaveProfileAction extends Action {
     }
 
 	getCommand() {
-			return new SaveProfileCommand(this.actionData);
+		return new SaveProfileCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

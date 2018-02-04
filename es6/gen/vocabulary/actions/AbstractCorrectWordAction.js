@@ -8,15 +8,14 @@ export default class AbstractCorrectWordAction extends Action {
     }
 
 	getCommand() {
-			return new CorrectWordCommand(this.actionData);
+		return new CorrectWordCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

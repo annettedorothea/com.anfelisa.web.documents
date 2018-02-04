@@ -8,15 +8,14 @@ export default class AbstractScoreReinforcedCardAction extends Action {
     }
 
 	getCommand() {
-			return new ScoreReinforcedCardCommand(this.actionData);
+		return new ScoreReinforcedCardCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

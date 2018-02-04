@@ -8,15 +8,14 @@ export default class AbstractShowWordAction extends Action {
     }
 
 	getCommand() {
-			return new ShowWordCommand(this.actionData);
+		return new ShowWordCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

@@ -9,16 +9,16 @@ export default class AbstractShowWordCommand extends Command {
     }
 
     publishEvents() {
-    	let promises = [];
-    	
-        switch (this.commandData.outcome) {
-        case this.showWord:
-        	promises.push(new ShowWordEvent(this.commandData).publish());
-        	break;
-    	default:
-    		throw 'unhandled outcome: ' + this.commandData.outcome;
-    	}
-    	return Promise.all(promises);
+		let promises = [];
+	    	
+		switch (this.commandData.outcome) {
+		case this.showWord:
+			promises.push(new ShowWordEvent(this.commandData).publish());
+			break;
+		default:
+			throw 'unhandled outcome: ' + this.commandData.outcome;
+		}
+		return Promise.all(promises);
     }
 }
 

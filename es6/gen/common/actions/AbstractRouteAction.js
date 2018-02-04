@@ -8,15 +8,14 @@ export default class AbstractRouteAction extends Action {
     }
 
 	getCommand() {
-			return new RouteCommand(this.actionData);
+		return new RouteCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

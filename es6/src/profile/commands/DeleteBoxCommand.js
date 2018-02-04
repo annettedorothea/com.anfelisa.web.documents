@@ -2,7 +2,7 @@ import AbstractDeleteBoxCommand from "../../../gen/profile/commands/AbstractDele
 
 export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "boxId",
@@ -14,10 +14,7 @@ export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
                 this.commandData.hash = "profile";
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "deleteBoxFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                reject(error);
             });
         });
     }

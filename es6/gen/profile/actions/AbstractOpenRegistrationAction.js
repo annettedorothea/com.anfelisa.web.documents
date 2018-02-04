@@ -8,15 +8,14 @@ export default class AbstractOpenRegistrationAction extends Action {
     }
 
 	getCommand() {
-			return new OpenRegistrationCommand(this.actionData);
+		return new OpenRegistrationCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

@@ -1,6 +1,6 @@
 navigation
 
-target ES6 generateModules
+target ES6
 
 actions {
 	ReadPublicCourses executes ReadPublicCourses
@@ -21,55 +21,51 @@ actions {
 commands {
 	ReadPublicCourses {
 		on ok publishes ( PublicCoursesRead )
-		on error publishes ( common.ServerError )
 	}
 	ReadPublicLessons {
 		on ok publishes ( PublicLessonsRead )
-		on error publishes ( common.ServerError ) 
 	}
 	ReadPublicTests {
 		on ok publishes ( PublicTestsRead )
-		on error publishes ( common.ServerError ) 
 	}
 	ReadPublicTest {
 		on ok publishes ( PublicTestRead )
-		on error publishes ( common.ServerError ) 
 	}
 	ReadPrivateCourses {
 		on ok publishes ( PrivateCoursesRead )
-		on error publishes ( common.ServerError )
+		on unauthorized publishes ( common.Error ) triggers (common.Logout)
 	}
 	ReadPrivateLessons {
 		on ok publishes ( PrivateLessonsRead )
-		on error publishes ( common.ServerError ) 
+		on unauthorized publishes ( common.Error ) triggers (common.Logout)
 	}
 	ReadPrivateTests {
 		on ok publishes ( PrivateTestsRead )
-		on error publishes ( common.ServerError ) 
+		on unauthorized publishes ( common.Error ) triggers (common.Logout)
 	}
 	ReadPrivateTest {
 		on ok publishes ( PrivateTestRead )
-		on error publishes ( common.ServerError ) 
+		on unauthorized publishes ( common.Error ) triggers (common.Logout)
 	}
 	ReadResult {
 		on ok publishes (ResultRead )
-		on error publishes ( common.ServerError ) 
+		on unauthorized publishes ( common.Error ) triggers (common.Logout)
 	}
 	ReadStatistics {
 		on ok publishes ( StatisticsRead )
-		on error publishes ( common.ServerError )
+		on unauthorized publishes ( common.Error ) triggers (common.Logout)
 	}
 	ReadBoxes {
 		on ok publishes ( BoxesRead )
-		on error publishes ( common.ServerError ) 
+		on unauthorized publishes ( common.Error ) triggers (common.Logout)
 	}
 	ReadNextCard {
 		on ok publishes (NextCardRead )
-		on error publishes ( common.ServerError ) 
+		on unauthorized publishes ( common.Error ) triggers (common.Logout)
 	}
 	ReadReinforceCards {
 		on ok publishes (card.SaveReinforceCards) triggers (card.DisplayNextReinforceCard)
-		on error publishes ( common.ServerError ) triggers ( common.RouteHome )
+		on unauthorized publishes ( common.Error ) triggers (common.Logout)
 	}
 }
 

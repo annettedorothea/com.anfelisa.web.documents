@@ -2,16 +2,13 @@ import AbstractReadPublicCoursesCommand from "../../../gen/navigation/commands/A
 
 export default class ReadPublicCoursesCommand extends AbstractReadPublicCoursesCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             this.httpGet("api/courses/public").then((data) => {
                 this.commandData.data = data;
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "readPublicCoursesFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                reject(error);
             });
         });
     }

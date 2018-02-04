@@ -2,7 +2,7 @@ import AbstractSaveCourseSelectionCommand from "../../../gen/profile/commands/Ab
 
 export default class SaveCourseSelectionCommand extends AbstractSaveCourseSelectionCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             const data = {
                 courseIdList: this.commandParam.courseIdList
             };
@@ -11,10 +11,7 @@ export default class SaveCourseSelectionCommand extends AbstractSaveCourseSelect
                 this.commandData.hash = "profile";
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "addCoursesFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                reject(error);
             });
         });
     }

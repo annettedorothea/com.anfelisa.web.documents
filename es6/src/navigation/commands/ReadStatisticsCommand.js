@@ -2,7 +2,7 @@ import AbstractReadStatisticsCommand from "../../../gen/navigation/commands/Abst
 
 export default class ReadStatisticsCommand extends AbstractReadStatisticsCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "month",
@@ -17,10 +17,12 @@ export default class ReadStatisticsCommand extends AbstractReadStatisticsCommand
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "readStatisticsFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                if (error.code === 401) {
+                    this.commandData.outcome = this.unauthorized;
+                    resolve();
+                } else {
+                    reject(error.text);
+                }
             });
         });
     }

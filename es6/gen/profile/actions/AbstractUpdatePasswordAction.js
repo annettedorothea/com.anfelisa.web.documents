@@ -8,15 +8,14 @@ export default class AbstractUpdatePasswordAction extends Action {
     }
 
 	getCommand() {
-			return new UpdatePasswordCommand(this.actionData);
+		return new UpdatePasswordCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

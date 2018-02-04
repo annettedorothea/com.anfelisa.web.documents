@@ -8,15 +8,14 @@ export default class AbstractSubmitRegistrationAction extends Action {
     }
 
 	getCommand() {
-			return new SubmitRegistrationCommand(this.actionData);
+		return new SubmitRegistrationCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

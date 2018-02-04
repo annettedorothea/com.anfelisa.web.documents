@@ -8,15 +8,14 @@ export default class AbstractSubmitNewPasswordAction extends Action {
     }
 
 	getCommand() {
-			return new SubmitNewPasswordCommand(this.actionData);
+		return new SubmitNewPasswordCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

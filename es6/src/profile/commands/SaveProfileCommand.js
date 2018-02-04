@@ -2,7 +2,7 @@ import AbstractSaveProfileCommand from "../../../gen/profile/commands/AbstractSa
 
 export default class SaveProfileCommand extends AbstractSaveProfileCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if (!this.commandParam.email || !this.commandParam.name || !this.commandParam.prename) {
                 this.commandData.messageKey = "dataInvalid";
                 this.commandData.outcome = this.dataInvalid;
@@ -19,10 +19,7 @@ export default class SaveProfileCommand extends AbstractSaveProfileCommand {
                     this.commandData.hash = "profile";
                     resolve();
                 }, (error) => {
-                    this.commandData.messageKey = "saveProfileFailed";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.error;
-                    resolve();
+                    reject(error);
                 });
             }
         });

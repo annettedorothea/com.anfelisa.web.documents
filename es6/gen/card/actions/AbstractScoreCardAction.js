@@ -8,15 +8,14 @@ export default class AbstractScoreCardAction extends Action {
     }
 
 	getCommand() {
-			return new ScoreCardCommand(this.actionData);
+		return new ScoreCardCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

@@ -2,7 +2,7 @@ import AbstractRecalculateScheduledCardsCommand from "../../../gen/card/commands
 
 export default class RecalculateScheduledCardsCommand extends AbstractRecalculateScheduledCardsCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "boxId",
@@ -17,10 +17,7 @@ export default class RecalculateScheduledCardsCommand extends AbstractRecalculat
                 this.commandData.boxId = this.commandParam.boxId;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "recalulateScheduledCardsFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                reject(error);
             });
         });
     }

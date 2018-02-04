@@ -8,15 +8,14 @@ export default class AbstractSaveResultAction extends Action {
     }
 
 	getCommand() {
-			return new SaveResultCommand(this.actionData);
+		return new SaveResultCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

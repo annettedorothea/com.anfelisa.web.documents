@@ -8,15 +8,14 @@ export default class AbstractReadNextCardAction extends Action {
     }
 
 	getCommand() {
-			return new ReadNextCardCommand(this.actionData);
+		return new ReadNextCardCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

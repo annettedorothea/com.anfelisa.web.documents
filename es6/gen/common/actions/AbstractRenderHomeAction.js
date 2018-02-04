@@ -8,15 +8,14 @@ export default class AbstractRenderHomeAction extends Action {
     }
 
 	getCommand() {
-			return new RenderHomeCommand(this.actionData);
+		return new RenderHomeCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

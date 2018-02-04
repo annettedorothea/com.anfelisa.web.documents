@@ -2,7 +2,7 @@ import AbstractScoreCardCommand from "../../../gen/card/commands/AbstractScoreCa
 
 export default class ScoreCardCommand extends AbstractScoreCardCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "scheduledCardId",
@@ -17,10 +17,7 @@ export default class ScoreCardCommand extends AbstractScoreCardCommand {
                 this.commandData.hash = "box/" + this.commandParam.boxId;
                 resolve();
             }, (error) => {
-                this.commandData.messageKey = "scoreCardFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
+                reject(error);
             });
         });
     }

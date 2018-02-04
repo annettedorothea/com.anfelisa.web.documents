@@ -8,15 +8,14 @@ export default class AbstractShowNextCardItemAction extends Action {
     }
 
 	getCommand() {
-			return new ShowNextCardItemCommand(this.actionData);
+		return new ShowNextCardItemCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 

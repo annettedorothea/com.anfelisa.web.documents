@@ -1,6 +1,6 @@
 multiplechoice
 
-target ES6 generateModules
+target ES6
 
 actions {
 	ShowFalseMultipleChoice executes ShowFalseMultipleChoice

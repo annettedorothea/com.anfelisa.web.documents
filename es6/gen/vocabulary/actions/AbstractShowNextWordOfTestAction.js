@@ -8,15 +8,14 @@ export default class AbstractShowNextWordOfTestAction extends Action {
     }
 
 	getCommand() {
-			return new ShowNextWordOfTestCommand(this.actionData);
+		return new ShowNextWordOfTestCommand(this.actionData);
 	}
 
-	
-    preUpdateUI() {
-    }
+	preUpdateUI() {
+	}
 
-    postUpdateUI() {
-    }
+	postUpdateUI() {
+	}
 
 }
 
