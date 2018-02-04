@@ -3,9 +3,7 @@
   "version": "1.3.0",
   "description": "",
   "scripts": {
-    "js-bak": "babel es6/gen/lib es6/app/AppUtils.es6 es6/app/ReplayUtils.es6 es6/gen/ace es6/gen/app es6/src es6/gen/elr es6/app/App.es6 --out-file lib/anfelisa.js",
-    "min" : "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa_min.js",
-    "js": "babel es6/gen es6/src/app/AppUtils.js es6/src/app/ReplayUtils.js es6/src/card es6/src/common es6/src/multiplechoice es6/src/navigation es6/src/profile es6/src/vocabulary es6/src/app/App.js --out-file lib/anfelisa.js",
+    "min" : "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa.min.js",
     "server": "live-server --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8880/replay/' --browser='Google Chrome'",
     "uglify": "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa.min.js",
     "build": "browserify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa.js -dv",
