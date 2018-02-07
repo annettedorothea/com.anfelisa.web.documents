@@ -13,7 +13,7 @@ export default class ReadPublicTestsCommand extends AbstractReadPublicTestsComma
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {
-                reject(error);
+                reject(error.text);
             });
         });
     }

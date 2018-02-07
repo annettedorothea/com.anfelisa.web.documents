@@ -8,7 +8,7 @@ export default class ReadPublicCoursesCommand extends AbstractReadPublicCoursesC
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {
-                reject(error);
+                reject(error.text);
             });
         });
     }

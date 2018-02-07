@@ -221,7 +221,10 @@ export default class AppUtils {
     static displayUnexpectedError(error) {
         const data = {
             message: "Error",
-            error
+            error: {
+                code: -1,
+                text: error
+            }
         };
         ErrorView.renderError(data);
     }

@@ -13,7 +13,7 @@ export default class ReadPublicLessonsCommand extends AbstractReadPublicLessonsC
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {
-                reject(error);
+                reject(error.text);
             });
         });
     }

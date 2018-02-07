@@ -636,11 +636,12 @@
 <script id="errorTemplate" type="x-tmpl-mustache">
     <div class="alert alert-danger" role="alert">
         <h4>{{message}}</h4>
+        <pre>{{error.text}}</pre
     </div>
 </script>
 
 <script id="login" type="x-tmpl-mustache">
-    <form>
+    <div>
         <div class="form-inline">
             <div class="form-group">
                 <input type="text" class="form-control username" placeholder="{{texts.username}}" onkeydown="if (event.keyCode == 13) Anfelisa.login()" autocomplete="on" />
@@ -656,7 +657,7 @@
                 <button class="btn btn-blue login-button" onclick="Anfelisa.switchLanguage( {language: 'en'} )">{{texts.english}}</button>
             </div>
         </div>
-    </form
+    </div
 </script>
 
 <script id="logout" type="x-tmpl-mustache">
@@ -749,7 +750,7 @@
 
 <!-- user -->
 <script id="box" type="x-tmpl-mustache">
-    <form class="form-horizontal">
+    <div class="form-horizontal">
 
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
@@ -785,11 +786,11 @@
             </div>
         </div>
 
-    </form>
+    </div>
 </script>
 
 <script id="boxAddCourse" type="x-tmpl-mustache">
-    <form class="form-horizontal">
+    <div class="form-horizontal">
 
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
@@ -848,11 +849,11 @@
             </div>
         </div>
 
-    </form>
+    </div>
 </script>
 
 <script id="changePassword" type="x-tmpl-mustache">
-    <form class="form-horizontal">
+    <div class="form-horizontal">
 
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
@@ -889,11 +890,11 @@
                 </button>
             </div>
         </div>
-    </form>
+    </div>
 </script>
 
 <script id="courses" type="x-tmpl-mustache">
-    <form class="form-horizontal">
+    <div class="form-horizontal">
 
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
@@ -941,11 +942,11 @@
             </div>
         </div>
 
-    </form>
+    </div>
 </script>
 
 <script id="forgotPassword" type="x-tmpl-mustache">
-    <form class="form-horizontal">
+    <div class="form-horizontal">
 
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
@@ -975,11 +976,11 @@
         </div>
 
 
-    </form>
+    </div>
 </script>
 
 <script id="newPassword" type="x-tmpl-mustache">
-    <form class="form-horizontal">
+    <div class="form-horizontal">
 
         <input type="hidden" value="{{username}}" id="username" autocomplete="off">
         <input type="hidden" value="{{password}}" id="oldPassword" autocomplete="off">
@@ -1016,11 +1017,11 @@
                 </button>
             </div>
         </div>
-    </form>
+    </div>
 </script>
 
 <script id="profile" type="x-tmpl-mustache">
-    <form class="form-horizontal">
+    <div class="form-horizontal">
 
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
@@ -1082,10 +1083,10 @@
         </div>
 
 
-    </form>
+    </div>
 
 
-    <form class="form-horizontal">
+    <div class="form-horizontal">
 
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
@@ -1131,9 +1132,9 @@
             </div>
         </div>
 
-    </form>
+    </div>
 
-    <form class="form-horizontal">
+    <div class="form-horizontal">
 
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
@@ -1183,11 +1184,11 @@
             </div>
         </div>
 
-    </form>
+    </div>
 </script>
 
 <script id="registration" type="x-tmpl-mustache">
-    <form class="form-horizontal">
+    <div class="form-horizontal">
 
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
@@ -1257,7 +1258,7 @@
                 </button>
             </div>
         </div>
-    </form>
+    </div>
 </script>
 
 <script id="statisticsTemplate" type="x-tmpl-mustache">
