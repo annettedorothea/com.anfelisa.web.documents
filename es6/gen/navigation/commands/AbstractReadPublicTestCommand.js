@@ -16,7 +16,7 @@ export default class AbstractReadPublicTestCommand extends Command {
 			promises.push(new PublicTestReadEvent(this.commandData).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('ReadPublicTestCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

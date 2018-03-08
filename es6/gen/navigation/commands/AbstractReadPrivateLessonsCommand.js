@@ -23,7 +23,7 @@ export default class AbstractReadPrivateLessonsCommand extends Command {
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('ReadPrivateLessonsCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

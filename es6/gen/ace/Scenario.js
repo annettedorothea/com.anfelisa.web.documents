@@ -1,47 +1,44 @@
+import AppUtils from "../../src/app/AppUtils";
 import ReplayUtils from "../../src/app/ReplayUtils";
 import ACEController from "./ACEController";
+import Utils from "./Utils";
 
-export function runScenarioE2E(scenarioId, pauseInMillis = 250, description = "unknown", executor = "unknown") {
-    ReplayUtils.loadScenario(scenarioId).then((scenario) => {
+export function runScenario(scenarioId, executor = "unknown", pauseInMillis = 0) {
+    Utils.loadScenario(scenarioId).then((scenario) => {
         ReplayUtils.scenarioConfig = {
             executor,
             scenarioId,
-            description,
-            e2e: true,
-			finishReplay: ReplayUtils.saveScenarioResult
+            saveScenarioResult: true
         };
         ACEController.expectedTimeline = JSON.parse(scenario.timeline);
-        ReplayUtils.e2e(pauseInMillis);
+        Utils.replayE2E(pauseInMillis, scenario.serverTimeline);
     });
 }
 
-export function runScenarioReplay(scenarioId, pauseInMillis = 250, description = "unknown", executor = "unknown") {
-    ReplayUtils.loadScenario(scenarioId).then((scenario) => {
-        ReplayUtils.scenarioConfig = {
-            executor,
-            scenarioId,
-            description,
-            e2e: false,
-			finishReplay: ReplayUtils.saveScenarioResult
-        };
-        ACEController.expectedTimeline = JSON.parse(scenario.timeline);
-        ReplayUtils.replay(pauseInMillis);
+export function runAllScenarios(executor = "unknown", pauseInMillis = 0) {
+    Utils.loadNextScenario(-1).then((scenario) => {
+        if (scenario) {
+            ReplayUtils.scenarioConfig = {
+                executor,
+                scenarioId: scenario.id,
+                saveScenarioResult: true,
+                runAllScenarios: true,
+                pauseInMillis
+            };
+            ACEController.expectedTimeline = JSON.parse(scenario.timeline);
+            Utils.replayE2E(pauseInMillis, scenario.serverTimeline);
+        }
     });
 }
 
 export function saveScenario(description, creator) {
-	ReplayUtils.saveScenario(description, creator).then((id) => {
-	    console.log(`saved scenario with id ${id}`);
-	});
-}
-
-export function displayScenarios() {
-    ReplayUtils.loadScenarios().then((scenarios) => {
-        scenarios.forEach((scenario) => {
-            console.log("scenario", scenario)
-        })
+    Utils.saveScenario(description, creator).then((id) => {
+        console.log(`saved scenario with id ${id}`);
+        ACEController.timeline = [];
+        AppUtils.start();
     });
 }
 
 /*       S.D.G.       */
+
 

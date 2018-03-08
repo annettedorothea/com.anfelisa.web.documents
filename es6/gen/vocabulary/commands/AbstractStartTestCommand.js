@@ -18,7 +18,7 @@ export default class AbstractStartTestCommand extends Command {
 			promises.push(new TriggerAction(new ShowNextWordOfTestAction(this.commandData)).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('StartTestCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

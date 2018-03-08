@@ -31,7 +31,7 @@ export default class AbstractShowNextCardItemCommand extends Command {
 			promises.push(new TriggerAction(new CheckIfComplexCardIsFinishedAction(this.commandData)).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('ShowNextCardItemCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

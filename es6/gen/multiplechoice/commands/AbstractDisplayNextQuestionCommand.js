@@ -16,7 +16,7 @@ export default class AbstractDisplayNextQuestionCommand extends Command {
 			promises.push(new DisplayNextQuestionEvent(this.commandData).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('DisplayNextQuestionCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

@@ -16,7 +16,7 @@ export default class AbstractFillBoxWithCardsCommand extends Command {
 			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('FillBoxWithCardsCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

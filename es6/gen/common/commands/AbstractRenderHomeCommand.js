@@ -16,7 +16,7 @@ export default class AbstractRenderHomeCommand extends Command {
 			promises.push(new RenderHomeEvent(this.commandData).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('RenderHomeCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

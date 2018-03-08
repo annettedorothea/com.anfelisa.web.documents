@@ -16,7 +16,7 @@ export default class AbstractRenderLoginCommand extends Command {
 			promises.push(new RenderLoginEvent(this.commandData).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('RenderLoginCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

@@ -21,7 +21,7 @@ export default class AbstractSaveBoxCommand extends Command {
 			promises.push(new ErrorEvent(this.commandData).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('SaveBoxCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

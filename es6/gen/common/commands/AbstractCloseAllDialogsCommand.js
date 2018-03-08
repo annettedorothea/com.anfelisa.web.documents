@@ -14,7 +14,7 @@ export default class AbstractCloseAllDialogsCommand extends Command {
 		case this.ok:
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('CloseAllDialogsCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

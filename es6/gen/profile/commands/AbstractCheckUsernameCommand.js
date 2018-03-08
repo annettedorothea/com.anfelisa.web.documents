@@ -26,7 +26,7 @@ export default class AbstractCheckUsernameCommand extends Command {
 			promises.push(new UsernameIsNotAvailableEvent(this.commandData).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('CheckUsernameCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

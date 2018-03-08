@@ -26,7 +26,7 @@ export default class AbstractOpenReallyDeleteDialogCommand extends Command {
 			promises.push(new DisplayRemoveCardFromBoxDialogEvent(this.commandData).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('OpenReallyDeleteDialogCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

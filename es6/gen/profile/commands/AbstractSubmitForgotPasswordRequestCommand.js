@@ -21,7 +21,7 @@ export default class AbstractSubmitForgotPasswordRequestCommand extends Command 
 			promises.push(new MessageEvent(this.commandData).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('SubmitForgotPasswordRequestCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

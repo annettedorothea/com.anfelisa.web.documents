@@ -16,7 +16,7 @@ export default class AbstractShowNextWordOfTestCommand extends Command {
 			promises.push(new ShowNextWordOfTestEvent(this.commandData).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('ShowNextWordOfTestCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

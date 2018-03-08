@@ -18,7 +18,7 @@ export default class AbstractLogoutCommand extends Command {
 			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('LogoutCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

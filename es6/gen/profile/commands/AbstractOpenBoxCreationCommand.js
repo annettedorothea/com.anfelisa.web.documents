@@ -16,7 +16,7 @@ export default class AbstractOpenBoxCreationCommand extends Command {
 			promises.push(new RenderBoxEvent(this.commandData).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('OpenBoxCreationCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

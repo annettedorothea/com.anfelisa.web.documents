@@ -16,7 +16,7 @@ export default class AbstractOpenChangePasswordCommand extends Command {
 			promises.push(new RenderChangePasswordEvent(this.commandData).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('OpenChangePasswordCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }

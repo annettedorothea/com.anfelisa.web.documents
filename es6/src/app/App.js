@@ -11,7 +11,6 @@ export * from "../../gen/ace/Scenario";
 export * from "../../gen/ace/Bug";
 
 import AppUtils from './AppUtils';
-import ReplayUtils from './ReplayUtils';
 import EventListenerRegistrationCard from "../../gen/card/EventListenerRegistration";
 import ActionFactoryRegistrationCard from "../../gen/card/ActionFactoryRegistration";
 import EventListenerRegistrationCommon from "../../gen/common/EventListenerRegistration";
@@ -73,23 +72,6 @@ export function insertSpecialCharacter(character) {
 
 export function setFocusedElement(element) {
     focusedElement = element;
-}
-
-export function replay(pauseInMillis) {
-    ReplayUtils.replay(pauseInMillis);
-}
-
-export function e2e(pauseInMillis) {
-    ReplayUtils.e2e(pauseInMillis);
-}
-
-export function toggleVisibilityOfRow(rowId) {
-    ReplayUtils.toggleVisibilityOfRow(rowId);
-}
-
-export function reportBug() {
-    const reporter = CommonView.getUsername();
-    AppUtils.saveBug(new Date(), reporter ? reporter : "anonymous");
 }
 
 EventListenerRegistrationCard.init();

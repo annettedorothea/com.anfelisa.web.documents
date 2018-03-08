@@ -188,7 +188,7 @@ export default class AbstractInitCommand extends Command {
 			promises.push(new TriggerAction(new ConfirmEmailAction(this.commandData)).publish());
 			break;
 		default:
-			throw 'unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('InitCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }
