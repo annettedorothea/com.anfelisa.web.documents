@@ -14,11 +14,11 @@ export default class AppUtils {
     }
 
     static getApiKey() {
-        return "d200cd86-693c-4674-a65d-e9b8d248b230";
+        return "01c064fa-62a1-4bf1-83f9-ec1e754f16ca";
     }
 
     static getAceScenariosBaseUrl() {
-        return "http://127.0.0.1:8070/";
+        return "http://ace.anfelisa.com/";
     }
 
     static httpGet(url, queryParams, commandParam) {
