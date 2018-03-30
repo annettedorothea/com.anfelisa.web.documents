@@ -15,8 +15,6 @@ export default class DisplayNextReinforceCardAction extends AbstractDisplayNextR
         this.actionData.cardCount = ReinforceView.ReinforceCardList.reinforceCardList !== null? ReinforceView.ReinforceCardList.reinforceCardList.length : 0;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

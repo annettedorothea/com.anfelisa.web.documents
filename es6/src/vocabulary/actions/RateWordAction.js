@@ -3,9 +3,6 @@ import * as VocabularyView from "../views/VocabularyView";
 
 export default class RateWordAction extends AbstractRateWordAction {
 
-    captureActionParam() {
-    }
-
     initActionData() {
 		this.actionData.knewIt = this.actionParam.knewIt;
 		this.actionData.id = jQuery(".active").attr("id");
@@ -15,8 +12,6 @@ export default class RateWordAction extends AbstractRateWordAction {
 		this.actionData.strikesOfWord = jQuery("#" + this.actionData.id + "_shots").children(".strike").length;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

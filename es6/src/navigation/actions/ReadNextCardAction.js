@@ -14,8 +14,6 @@ export default class ReadNextCardAction extends AbstractReadNextCardAction {
     	this.actionData.boxId = this.actionParam.boxId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

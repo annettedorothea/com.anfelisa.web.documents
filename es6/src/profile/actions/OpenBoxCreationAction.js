@@ -2,14 +2,6 @@ import AbstractOpenBoxCreationAction from "../../../gen/profile/actions/Abstract
 
 export default class OpenBoxCreationAction extends AbstractOpenBoxCreationAction {
 
-    captureActionParam() {
-    }
-
-    initActionData() {
-    }
-
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

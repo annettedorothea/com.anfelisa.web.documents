@@ -2,14 +2,8 @@ import AbstractOpenReallyDeleteDialogAction from "../../../gen/common/actions/Ab
 
 export default class OpenReallyDeleteDialogAction extends AbstractOpenReallyDeleteDialogAction {
 
-    captureActionParam() {
-    }
-
     initActionData() {
 		this.actionData = JSON.parse(JSON.stringify(this.actionParam));
-    }
-
-    releaseActionParam() {
     }
 }
 

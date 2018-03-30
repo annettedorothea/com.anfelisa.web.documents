@@ -14,8 +14,6 @@ export default class ReadPrivateLessonsAction extends AbstractReadPrivateLessons
 		this.actionData.courseId = this.actionParam.courseId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

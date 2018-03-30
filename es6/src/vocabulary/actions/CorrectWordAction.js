@@ -19,8 +19,6 @@ export default class CorrectWordAction extends AbstractCorrectWordAction {
 		this.actionData.strikesOfWord = jQuery("#" + this.actionData.id + "_shots").children(".strike").length;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

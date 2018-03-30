@@ -2,12 +2,6 @@ import AbstractCloseAllDialogsAction from "../../../gen/common/actions/AbstractC
 
 export default class CloseAllDialogsAction extends AbstractCloseAllDialogsAction {
 
-    captureActionParam() {
-    }
-
-    initActionData() {
-    }
-
     releaseActionParam() {
 		bootbox.hideAll();
     }

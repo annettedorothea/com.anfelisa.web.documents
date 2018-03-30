@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RenderBoxEvent from "../../../src/profile/events/RenderBoxEvent";
+import OpenBoxCreationOkEvent from "../../../src/profile/events/OpenBoxCreationOkEvent";
 
 export default class AbstractOpenBoxCreationCommand extends Command {
     constructor(commandParam) {
@@ -13,7 +13,7 @@ export default class AbstractOpenBoxCreationCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new RenderBoxEvent(this.commandData).publish());
+			promises.push(new OpenBoxCreationOkEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('OpenBoxCreationCommand unhandled outcome: ' + this.commandData.outcome)});

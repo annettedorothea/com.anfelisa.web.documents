@@ -2,99 +2,36 @@ card
 
 target ES6 
 
-actions {
-	ShowNextCardItem executes ShowNextCardItem
-	CheckIfComplexCardIsFinished executes CheckIfComplexCardIsFinished
-	FinishCard executes FinishCard
-	ScoreCard executes ScoreCard
-	RemoveCardFromBox executes RemoveCardFromBox
-	DisplayNextReinforceCard executes DisplayNextReinforceCard
-	ScoreReinforcedCard executes ScoreReinforcedCard
-	RecalculateScheduledCards executes RecalculateScheduledCards
-}
-
-commands {
+ACE {
 	ShowNextCardItem {
-		on showWanted publishes (
-			ShowWanted
-			ShowScoreButtons
-		)
-		on showNextLine publishes (
-			ShowNextLine
-		) triggers (
-			CheckIfComplexCardIsFinished
-		)
-		on showNextWord publishes (
-			ShowNextWord
-		) triggers (
-			CheckIfComplexCardIsFinished
-		)
+		on showWanted ( Card.showWanted Card.showScoreButtons )
+		on showNextLine ( Card.showNextLine ) triggers ( CheckIfComplexCardIsFinished )
+		on showNextWord ( Card.showNextWord ) triggers ( CheckIfComplexCardIsFinished )
 	}
 	CheckIfComplexCardIsFinished {
-		on complexCardIsFinished publishes (
-			ShowScoreButtons
-		)
-		on complexCardIsNotFinished publishes (
-		)
+		on complexCardIsFinished ( Card.showScoreButtons )
+		on complexCardIsNotFinished
 	}
 	FinishCard {
-		on cardFinished triggers (
-			common.SaveResult
-		)
+		on cardFinished triggers ( common.SaveResult )
 	}
 	ScoreCard {
-		on scored triggers (
-			common.Route
-		)
+ 		on scored triggers ( common.Route )
 	}
 	RemoveCardFromBox {
-		on scored triggers (
-			common.Route
-		)
+		on scored triggers ( common.Route )
 	}
 	DisplayNextReinforceCard {
-		on next publishes (DisplayNextReinforceCard)
-		on finished publishes (DisplayReinforceFinished)
+		on next (navigation.Content.renderNextReinforceCard)
+		on finished (navigation.Content.renderReinforceFinished)
 	}
 	ScoreReinforcedCard {
-		on keep publishes (KeepCardInReinforceCardList) triggers (DisplayNextReinforceCard)
-		on remove publishes (RemoveCardFromReinforceCardList) triggers (DisplayNextReinforceCard)
+		on keep (Reinforce.keepCardInReinforceCardList) triggers (DisplayNextReinforceCard)
+		on remove (Reinforce.removeCardFromReinforceCardList) triggers (DisplayNextReinforceCard)
 	}
 	RecalculateScheduledCards {
-		on ok triggers (
-			navigation.ReadNextCard navigation.ReadBoxes
-		)
+		on ok triggers (navigation.ReadNextCard navigation.ReadBoxes)
 	}
-}
-
-events {
-	ShowWanted listenedToBy (
-		Card.showWanted
-	)
-	ShowNextLine listenedToBy (
-		Card.showNextLine
-	)
-	ShowNextWord listenedToBy (
-		Card.showNextWord
-	)
-	ShowScoreButtons listenedToBy (
-		Card.showScoreButtons
-	)
-	SaveReinforceCards listenedToBy (
-		Reinforce.saveReinforceCardList
-	)
-	DisplayNextReinforceCard listenedToBy (
-		navigation.Content.renderNextReinforceCard
-	)
-	DisplayReinforceFinished listenedToBy (
-		navigation.Content.renderReinforceFinished
-	)
-	RemoveCardFromReinforceCardList listenedToBy (
-		Reinforce.removeCardFromReinforceCardList
-	)
-	KeepCardInReinforceCardList listenedToBy (
-		Reinforce.keepCardInReinforceCardList
-	)
 }
 
 views {

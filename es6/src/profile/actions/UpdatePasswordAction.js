@@ -23,8 +23,6 @@ export default class UpdatePasswordAction extends AbstractUpdatePasswordAction {
 		this.actionData.passwordRepetitionEmpty = this.actionParam.passwordRepetitionEmpty;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

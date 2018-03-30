@@ -2,15 +2,10 @@ import AbstractReadPublicCoursesAction from "../../../gen/navigation/actions/Abs
 
 export default class ReadPublicCoursesAction extends AbstractReadPublicCoursesAction {
 
-    captureActionParam() {
-    }
-
     initActionData() {
         this.actionData.courseId = this.actionParam.courseId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

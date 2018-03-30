@@ -16,8 +16,6 @@ export default class RouteHomeAction extends AbstractRouteHomeAction {
 		}
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

@@ -1,8 +1,8 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DisplayRemoveCourseFromUserDialogEvent from "../../../src/common/events/DisplayRemoveCourseFromUserDialogEvent";
-import DisplayDeleteBoxDialogEvent from "../../../src/common/events/DisplayDeleteBoxDialogEvent";
-import DisplayRemoveCardFromBoxDialogEvent from "../../../src/common/events/DisplayRemoveCardFromBoxDialogEvent";
+import OpenReallyDeleteDialogRemoveCourseFromUserEvent from "../../../src/common/events/OpenReallyDeleteDialogRemoveCourseFromUserEvent";
+import OpenReallyDeleteDialogDeleteBoxEvent from "../../../src/common/events/OpenReallyDeleteDialogDeleteBoxEvent";
+import OpenReallyDeleteDialogRemovedCardEvent from "../../../src/common/events/OpenReallyDeleteDialogRemovedCardEvent";
 
 export default class AbstractOpenReallyDeleteDialogCommand extends Command {
     constructor(commandParam) {
@@ -17,13 +17,13 @@ export default class AbstractOpenReallyDeleteDialogCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.removeCourseFromUser:
-			promises.push(new DisplayRemoveCourseFromUserDialogEvent(this.commandData).publish());
+			promises.push(new OpenReallyDeleteDialogRemoveCourseFromUserEvent(this.commandData).publish());
 			break;
 		case this.deleteBox:
-			promises.push(new DisplayDeleteBoxDialogEvent(this.commandData).publish());
+			promises.push(new OpenReallyDeleteDialogDeleteBoxEvent(this.commandData).publish());
 			break;
 		case this.removedCard:
-			promises.push(new DisplayRemoveCardFromBoxDialogEvent(this.commandData).publish());
+			promises.push(new OpenReallyDeleteDialogRemovedCardEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('OpenReallyDeleteDialogCommand unhandled outcome: ' + this.commandData.outcome)});

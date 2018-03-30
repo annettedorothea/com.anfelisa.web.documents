@@ -2,20 +2,55 @@ common
 
 target ES6
 
+ACE {
+	init Init {
+		
+	}
+	Route {
+		on ok ( Common.updateHash ) triggers ( Init )
+	}
+	RouteHome {
+		on ok ( Common.updateHash ) triggers ( Init )
+	}
+	Login {
+		on ok (Common.initUserInLocalStorage) triggers ( Route )
+		on unauthorized ( Error.renderError ) triggers ( Logout )
+	}
+	Logout {
+		on ok (Common.removeUserFromLocalStorage navigation.Boxes.hideBoxes ) triggers ( Route )
+	}
+	SaveResult {
+		on noCredentials ( Test.renderResult	)
+		on resultSaved triggers ( Route	)
+	}
+	ValidateRequiredField {
+		on fieldEmpty ( Validation.fieldEmpty )
+		on fieldNotEmpty ( Validation.fieldNotEmpty )
+	}
+	OpenReallyDeleteDialog {
+		on removeCourseFromUser (ReallyDeleteDialog.displayRemoveCourseFromUserDialog)
+		on deleteBox (ReallyDeleteDialog.displayDeleteBoxDialog)
+		on removedCard (ReallyDeleteDialog.displayRemoveCardFromBoxDialog)
+	}
+	CloseAllDialogs {
+		on ok 
+	}
+	SwitchLanguage {
+		on ok (Common.initLanguageInLocalStorage) triggers (Init)
+	}
+	RenderLogin {
+		on ok (Header.renderLogin)
+	}
+	RenderLogout {
+		on ok (Header.renderLogout)
+	}
+	RenderHome {
+		on ok (navigation.Content.renderPublicCourses)
+	}
+}
+
+/*
 actions {
-	init Init executes Init
-	Route executes Route
-	RouteHome executes Route
-	Login executes Login
-	Logout executes Logout
-	SaveResult executes SaveResult
-	ValidateRequiredField executes ValidateRequiredField
-	OpenReallyDeleteDialog executes OpenReallyDeleteDialog
-	CloseAllDialogs executes CloseAllDialogs
-	SwitchLanguage executes SwitchLanguage
-	RenderLogin executes RenderLogin
-	RenderLogout executes RenderLogout
-	RenderHome executes RenderHome
 }
 
 commands {
@@ -43,46 +78,20 @@ commands {
 		on confirmEmail triggers (profile.ConfirmEmail) 
 	}
 	RenderLogin {
-		on ok publishes (RenderLogin)
 	}
 	RenderLogout {
-		on ok publishes (RenderLogout)
-	}
-	Route {
-		on ok publishes ( UpdateHash ) triggers ( Init )
-	}
-	Login {
-		on ok publishes (UserLoggedIn) triggers ( Route )
-		on unauthorized publishes ( Error ) triggers ( Logout )
-	}
-	Logout {
-		on ok publishes (UserLoggedOut) triggers ( Route )
 	}
 	SaveResult {
-		on noCredentials publishes (
-			RenderResult
-		)
-		on resultSaved triggers (
-			Route
-		)
 	}
 	ValidateRequiredField {
-		on fieldEmpty publishes ( FieldEmpty )
-		on fieldNotEmpty publishes ( FieldNotEmpty )
 	}
 	OpenReallyDeleteDialog {
-		on removeCourseFromUser publishes (DisplayRemoveCourseFromUserDialog)
-		on deleteBox publishes (DisplayDeleteBoxDialog)
-		on removedCard publishes (DisplayRemoveCardFromBoxDialog)
 	}
 	CloseAllDialogs {
-		on ok 
 	}
 	SwitchLanguage {
-		on ok publishes (SwitchLanguage) triggers (Init)
 	}
 	RenderHome {
-		on ok publishes (RenderHome)
 	}
 }
 
@@ -90,21 +99,8 @@ events {
 	InitOK listenedToBy ( Common.initLanguageInLocalStorage )
 	Error listenedToBy ( Error.renderError )
 	Message listenedToBy (Message.renderMessage)
-	UpdateHash listenedToBy ( Common.updateHash )
-	UserLoggedIn listenedToBy ( Common.initUserInLocalStorage )
-	UserLoggedOut listenedToBy ( Common.removeUserFromLocalStorage navigation.Boxes.hideBoxes )
-	RenderResult listenedToBy ( Test.renderResult )
-	FieldEmpty listenedToBy ( Validation.fieldEmpty ) 
-	FieldNotEmpty listenedToBy ( Validation.fieldNotEmpty )
-	DisplayRemoveCourseFromUserDialog listenedToBy (ReallyDeleteDialog.displayRemoveCourseFromUserDialog)
-	DisplayDeleteBoxDialog listenedToBy (ReallyDeleteDialog.displayDeleteBoxDialog)
-	DisplayRemoveCardFromBoxDialog listenedToBy (ReallyDeleteDialog.displayRemoveCardFromBoxDialog)
-	SwitchLanguage listenedToBy (Common.initLanguageInLocalStorage)
-	RenderLogin listenedToBy (Header.renderLogin)
-	RenderLogout listenedToBy (Header.renderLogout)
-	RenderHome listenedToBy (navigation.Content.renderPublicCourses)
 } 
-
+*/
 views {
 	Error {
 		renderError

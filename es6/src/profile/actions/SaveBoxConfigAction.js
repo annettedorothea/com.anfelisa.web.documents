@@ -17,8 +17,6 @@ export default class SaveBoxConfigAction extends AbstractSaveBoxConfigAction {
         this.actionData.boxOfCourseList = this.actionParam.boxOfCourseList;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

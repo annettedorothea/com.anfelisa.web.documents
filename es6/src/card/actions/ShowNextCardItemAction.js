@@ -12,8 +12,6 @@ export default class ShowNextCardItemAction extends AbstractShowNextCardItemActi
 		this.actionData.flag = this.actionParam.flag;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

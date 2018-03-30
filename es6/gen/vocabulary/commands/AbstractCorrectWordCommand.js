@@ -1,8 +1,8 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import WordIsCorrectAndFinishedEvent from "../../../src/vocabulary/events/WordIsCorrectAndFinishedEvent";
-import WordIsCorrectAndNotFinishedEvent from "../../../src/vocabulary/events/WordIsCorrectAndNotFinishedEvent";
-import WordIsNotCorrectEvent from "../../../src/vocabulary/events/WordIsNotCorrectEvent";
+import CorrectWordWordIsCorrectAndFinishedEvent from "../../../src/vocabulary/events/CorrectWordWordIsCorrectAndFinishedEvent";
+import CorrectWordWordIsCorrectAndNotFinishedEvent from "../../../src/vocabulary/events/CorrectWordWordIsCorrectAndNotFinishedEvent";
+import CorrectWordWordIsNotCorrectEvent from "../../../src/vocabulary/events/CorrectWordWordIsNotCorrectEvent";
 import IsTestFinishedAction from "../../../src/vocabulary/actions/IsTestFinishedAction";
 
 export default class AbstractCorrectWordCommand extends Command {
@@ -18,15 +18,15 @@ export default class AbstractCorrectWordCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.wordIsCorrectAndFinished:
-			promises.push(new WordIsCorrectAndFinishedEvent(this.commandData).publish());
+			promises.push(new CorrectWordWordIsCorrectAndFinishedEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new IsTestFinishedAction(this.commandData)).publish());
 			break;
 		case this.wordIsCorrectAndNotFinished:
-			promises.push(new WordIsCorrectAndNotFinishedEvent(this.commandData).publish());
+			promises.push(new CorrectWordWordIsCorrectAndNotFinishedEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new IsTestFinishedAction(this.commandData)).publish());
 			break;
 		case this.wordIsNotCorrect:
-			promises.push(new WordIsNotCorrectEvent(this.commandData).publish());
+			promises.push(new CorrectWordWordIsNotCorrectEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new IsTestFinishedAction(this.commandData)).publish());
 			break;
 		default:

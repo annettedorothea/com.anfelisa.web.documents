@@ -16,8 +16,6 @@ export default class ScoreCardAction extends AbstractScoreCardAction {
 		this.actionData.cardOfBoxId = this.actionParam.cardOfBoxId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

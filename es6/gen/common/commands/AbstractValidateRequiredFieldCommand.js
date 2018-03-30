@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import FieldEmptyEvent from "../../../src/common/events/FieldEmptyEvent";
-import FieldNotEmptyEvent from "../../../src/common/events/FieldNotEmptyEvent";
+import ValidateRequiredFieldFieldEmptyEvent from "../../../src/common/events/ValidateRequiredFieldFieldEmptyEvent";
+import ValidateRequiredFieldFieldNotEmptyEvent from "../../../src/common/events/ValidateRequiredFieldFieldNotEmptyEvent";
 
 export default class AbstractValidateRequiredFieldCommand extends Command {
     constructor(commandParam) {
@@ -15,10 +15,10 @@ export default class AbstractValidateRequiredFieldCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.fieldEmpty:
-			promises.push(new FieldEmptyEvent(this.commandData).publish());
+			promises.push(new ValidateRequiredFieldFieldEmptyEvent(this.commandData).publish());
 			break;
 		case this.fieldNotEmpty:
-			promises.push(new FieldNotEmptyEvent(this.commandData).publish());
+			promises.push(new ValidateRequiredFieldFieldNotEmptyEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('ValidateRequiredFieldCommand unhandled outcome: ' + this.commandData.outcome)});

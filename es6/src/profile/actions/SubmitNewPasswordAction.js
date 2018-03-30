@@ -16,8 +16,6 @@ export default class SubmitNewPasswordAction extends AbstractSubmitNewPasswordAc
 		this.actionData.passwordRepetition = this.actionParam.passwordRepetition;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

@@ -13,8 +13,6 @@ export default class OpenProfileAction extends AbstractOpenProfileAction {
 		this.actionData.password = this.actionParam.password;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

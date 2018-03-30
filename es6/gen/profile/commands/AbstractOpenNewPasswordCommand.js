@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RenderNewPasswordEvent from "../../../src/profile/events/RenderNewPasswordEvent";
+import OpenNewPasswordOkEvent from "../../../src/profile/events/OpenNewPasswordOkEvent";
 
 export default class AbstractOpenNewPasswordCommand extends Command {
     constructor(commandParam) {
@@ -13,7 +13,7 @@ export default class AbstractOpenNewPasswordCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new RenderNewPasswordEvent(this.commandData).publish());
+			promises.push(new OpenNewPasswordOkEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('OpenNewPasswordCommand unhandled outcome: ' + this.commandData.outcome)});

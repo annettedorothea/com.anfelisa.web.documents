@@ -2,14 +2,6 @@ import AbstractRenderLoginAction from "../../../gen/common/actions/AbstractRende
 
 export default class RenderLoginAction extends AbstractRenderLoginAction {
 
-    captureActionParam() {
-    }
-
-    initActionData() {
-    }
-
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

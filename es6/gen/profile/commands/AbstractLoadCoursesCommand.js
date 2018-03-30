@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RenderCourseToBoxEvent from "../../../src/profile/events/RenderCourseToBoxEvent";
-import ErrorEvent from "../../../src/common/events/ErrorEvent";
+import LoadCoursesLoadedEvent from "../../../src/profile/events/LoadCoursesLoadedEvent";
+import LoadCoursesErrorEvent from "../../../src/profile/events/LoadCoursesErrorEvent";
 import RouteHomeAction from "../../../src/common/actions/RouteHomeAction";
 
 export default class AbstractLoadCoursesCommand extends Command {
@@ -16,10 +16,10 @@ export default class AbstractLoadCoursesCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.loaded:
-			promises.push(new RenderCourseToBoxEvent(this.commandData).publish());
+			promises.push(new LoadCoursesLoadedEvent(this.commandData).publish());
 			break;
 		case this.error:
-			promises.push(new ErrorEvent(this.commandData).publish());
+			promises.push(new LoadCoursesErrorEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new RouteHomeAction(this.commandData)).publish());
 			break;
 		default:

@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RenderLoginEvent from "../../../src/common/events/RenderLoginEvent";
+import RenderLoginOkEvent from "../../../src/common/events/RenderLoginOkEvent";
 
 export default class AbstractRenderLoginCommand extends Command {
     constructor(commandParam) {
@@ -13,7 +13,7 @@ export default class AbstractRenderLoginCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new RenderLoginEvent(this.commandData).publish());
+			promises.push(new RenderLoginOkEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('RenderLoginCommand unhandled outcome: ' + this.commandData.outcome)});

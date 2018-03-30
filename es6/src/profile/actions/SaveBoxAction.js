@@ -17,8 +17,6 @@ export default class SaveBoxAction extends AbstractSaveBoxAction {
 		this.actionData.boxId = this.actionParam.boxId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

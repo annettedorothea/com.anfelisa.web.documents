@@ -1,8 +1,8 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import FieldEmptyEvent from "../../../src/common/events/FieldEmptyEvent";
-import UsernameIsAvailableEvent from "../../../src/profile/events/UsernameIsAvailableEvent";
-import UsernameIsNotAvailableEvent from "../../../src/profile/events/UsernameIsNotAvailableEvent";
+import CheckUsernameEmptyEvent from "../../../src/profile/events/CheckUsernameEmptyEvent";
+import CheckUsernameAvailableEvent from "../../../src/profile/events/CheckUsernameAvailableEvent";
+import CheckUsernameNotAvailableEvent from "../../../src/profile/events/CheckUsernameNotAvailableEvent";
 
 export default class AbstractCheckUsernameCommand extends Command {
     constructor(commandParam) {
@@ -17,13 +17,13 @@ export default class AbstractCheckUsernameCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.empty:
-			promises.push(new FieldEmptyEvent(this.commandData).publish());
+			promises.push(new CheckUsernameEmptyEvent(this.commandData).publish());
 			break;
 		case this.available:
-			promises.push(new UsernameIsAvailableEvent(this.commandData).publish());
+			promises.push(new CheckUsernameAvailableEvent(this.commandData).publish());
 			break;
 		case this.notAvailable:
-			promises.push(new UsernameIsNotAvailableEvent(this.commandData).publish());
+			promises.push(new CheckUsernameNotAvailableEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('CheckUsernameCommand unhandled outcome: ' + this.commandData.outcome)});

@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import StatisticsReadEvent from "../../../src/navigation/events/StatisticsReadEvent";
-import ErrorEvent from "../../../src/common/events/ErrorEvent";
+import ReadStatisticsOkEvent from "../../../src/navigation/events/ReadStatisticsOkEvent";
+import ReadStatisticsUnauthorizedEvent from "../../../src/navigation/events/ReadStatisticsUnauthorizedEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractReadStatisticsCommand extends Command {
@@ -16,10 +16,10 @@ export default class AbstractReadStatisticsCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new StatisticsReadEvent(this.commandData).publish());
+			promises.push(new ReadStatisticsOkEvent(this.commandData).publish());
 			break;
 		case this.unauthorized:
-			promises.push(new ErrorEvent(this.commandData).publish());
+			promises.push(new ReadStatisticsUnauthorizedEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

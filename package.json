@@ -3,7 +3,7 @@
   "version": "1.3.0",
   "description": "",
   "scripts": {
-    "min" : "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa.min.js",
+    "min": "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa.min.js",
     "uglify": "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa.min.js",
     "build": "browserify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa.js -dv",
     "server": "watchify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa.js -dv & live-server --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8085/replay/' --browser='Google Chrome'"
@@ -23,12 +23,13 @@
     ]
   },
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "json-stable-stringify": "^1.0.1",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.24.1",
     "babelify": "^8.0.0",
     "browserify": "^14.5.0",
     "http-proxy-middleware": "^0.17.4",

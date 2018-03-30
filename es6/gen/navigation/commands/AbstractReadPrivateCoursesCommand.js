@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import PrivateCoursesReadEvent from "../../../src/navigation/events/PrivateCoursesReadEvent";
-import ErrorEvent from "../../../src/common/events/ErrorEvent";
+import ReadPrivateCoursesOkEvent from "../../../src/navigation/events/ReadPrivateCoursesOkEvent";
+import ReadPrivateCoursesUnauthorizedEvent from "../../../src/navigation/events/ReadPrivateCoursesUnauthorizedEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractReadPrivateCoursesCommand extends Command {
@@ -16,10 +16,10 @@ export default class AbstractReadPrivateCoursesCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new PrivateCoursesReadEvent(this.commandData).publish());
+			promises.push(new ReadPrivateCoursesOkEvent(this.commandData).publish());
 			break;
 		case this.unauthorized:
-			promises.push(new ErrorEvent(this.commandData).publish());
+			promises.push(new ReadPrivateCoursesUnauthorizedEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

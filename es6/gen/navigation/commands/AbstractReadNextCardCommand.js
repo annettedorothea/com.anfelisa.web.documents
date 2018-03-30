@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import NextCardReadEvent from "../../../src/navigation/events/NextCardReadEvent";
-import ErrorEvent from "../../../src/common/events/ErrorEvent";
+import ReadNextCardOkEvent from "../../../src/navigation/events/ReadNextCardOkEvent";
+import ReadNextCardUnauthorizedEvent from "../../../src/navigation/events/ReadNextCardUnauthorizedEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractReadNextCardCommand extends Command {
@@ -16,10 +16,10 @@ export default class AbstractReadNextCardCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new NextCardReadEvent(this.commandData).publish());
+			promises.push(new ReadNextCardOkEvent(this.commandData).publish());
 			break;
 		case this.unauthorized:
-			promises.push(new ErrorEvent(this.commandData).publish());
+			promises.push(new ReadNextCardUnauthorizedEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

@@ -2,30 +2,20 @@ multiplechoice
 
 target ES6
 
-actions {
-	ShowFalseMultipleChoice executes ShowFalseMultipleChoice
-	ShowCorrectMultipleChoice executes ShowCorrectMultipleChoice
-	DisplayNextQuestion executes DisplayNextQuestion
-}
-commands {
+ACE {
 	ShowFalseMultipleChoice {
-		on last publishes (ShowFalseMultipleChoice ) triggers (common.SaveResult)
-		on notLast publishes (ShowFalseMultipleChoice EnableNextButton )
+		on last (MultipleChoice.showFalse MultipleChoice.showCorrecture ) triggers (common.SaveResult)
+		on notLast (MultipleChoice.showFalse MultipleChoice.showCorrecture MultipleChoice.enableNextButton )
 	}
 	ShowCorrectMultipleChoice {
-		on last publishes (ShowCorrectMultipleChoice ) triggers (common.SaveResult)
-		on notLast publishes (ShowCorrectMultipleChoice EnableNextButton)
+		on last (MultipleChoice.showCorrect MultipleChoice.showCorrecture ) triggers (common.SaveResult)
+		on notLast (MultipleChoice.showCorrect MultipleChoice.showCorrecture MultipleChoice.enableNextButton )
 	}
 	DisplayNextQuestion {
-		on go publishes (DisplayNextQuestion)
+		on go (MultipleChoice.displayNextQuestion)
 	}
 }
-events {
-	ShowFalseMultipleChoice listenedToBy (MultipleChoice.showFalse MultipleChoice.showCorrecture)
-	ShowCorrectMultipleChoice listenedToBy (MultipleChoice.showCorrect MultipleChoice.showCorrecture)
-	EnableNextButton listenedToBy (MultipleChoice.enableNextButton)
-	DisplayNextQuestion listenedToBy (MultipleChoice.displayNextQuestion)
-}
+
 views {
 	MultipleChoice {
 		showCorrecture

@@ -14,8 +14,6 @@ export default class LoadBoxAction extends AbstractLoadBoxAction {
 		this.actionData.boxId = this.actionParam.boxId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

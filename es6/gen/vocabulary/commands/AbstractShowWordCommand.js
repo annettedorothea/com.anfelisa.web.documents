@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ShowWordEvent from "../../../src/vocabulary/events/ShowWordEvent";
+import ShowWordShowWordEvent from "../../../src/vocabulary/events/ShowWordShowWordEvent";
 
 export default class AbstractShowWordCommand extends Command {
     constructor(commandParam) {
@@ -13,7 +13,7 @@ export default class AbstractShowWordCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.showWord:
-			promises.push(new ShowWordEvent(this.commandData).publish());
+			promises.push(new ShowWordShowWordEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('ShowWordCommand unhandled outcome: ' + this.commandData.outcome)});

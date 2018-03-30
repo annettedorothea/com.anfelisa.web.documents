@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RenderChangePasswordEvent from "../../../src/profile/events/RenderChangePasswordEvent";
+import OpenChangePasswordOkEvent from "../../../src/profile/events/OpenChangePasswordOkEvent";
 
 export default class AbstractOpenChangePasswordCommand extends Command {
     constructor(commandParam) {
@@ -13,7 +13,7 @@ export default class AbstractOpenChangePasswordCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new RenderChangePasswordEvent(this.commandData).publish());
+			promises.push(new OpenChangePasswordOkEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('OpenChangePasswordCommand unhandled outcome: ' + this.commandData.outcome)});

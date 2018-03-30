@@ -15,8 +15,6 @@ export default class RemoveCardFromBoxAction extends AbstractRemoveCardFromBoxAc
         this.actionData.cardOfBoxId = this.actionParam.cardOfBoxId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

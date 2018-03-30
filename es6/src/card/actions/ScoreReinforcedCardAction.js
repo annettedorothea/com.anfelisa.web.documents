@@ -14,8 +14,6 @@ export default class ScoreReinforcedCardAction extends AbstractScoreReinforcedCa
         this.actionData.quality = this.actionParam.quality;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

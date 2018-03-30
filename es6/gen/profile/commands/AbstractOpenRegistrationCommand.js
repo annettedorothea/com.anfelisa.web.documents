@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RenderRegistrationEvent from "../../../src/profile/events/RenderRegistrationEvent";
+import OpenRegistrationOkEvent from "../../../src/profile/events/OpenRegistrationOkEvent";
 
 export default class AbstractOpenRegistrationCommand extends Command {
     constructor(commandParam) {
@@ -13,7 +13,7 @@ export default class AbstractOpenRegistrationCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new RenderRegistrationEvent(this.commandData).publish());
+			promises.push(new OpenRegistrationOkEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('OpenRegistrationCommand unhandled outcome: ' + this.commandData.outcome)});

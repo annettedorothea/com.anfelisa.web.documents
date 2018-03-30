@@ -2,70 +2,64 @@ navigation
 
 target ES6
 
+ACE {
+	ReadPublicCourses {
+		on ok ( Navigation.renderPublicCourses Breadcrumbs.renderPublicCoursesBreadcrumbs )
+	}
+	ReadPublicLessons {
+		on ok ( Navigation.renderPublicLessons Content.renderPublicLessons Breadcrumbs.renderPublicLessonsBreadcrumbs  )
+		
+	}
+	ReadPublicTests {
+		on ok ( Navigation.renderPublicTests Content.renderPublicTests Breadcrumbs.renderPublicTestsBreadcrumbs )
+	}
+	ReadPublicTest {
+		on ok ( Navigation.renderPublicTest Content.renderPublicTest Breadcrumbs.renderPublicTestsBreadcrumbs )
+	}
+	ReadPrivateCourses {
+		on ok ( Navigation.renderPrivateCourses Breadcrumbs.renderPrivateCoursesBreadcrumbs )
+		on unauthorized (  common.Error.renderError ) triggers (common.Logout)
+	}
+	ReadPrivateLessons {
+		on ok ( Navigation.renderPrivateLessons Content.renderPrivateLessons Breadcrumbs.renderPrivateLessonsBreadcrumbs )
+		on unauthorized (  common.Error.renderError ) triggers (common.Logout)
+	}
+	ReadPrivateTests {
+		on ok ( Navigation.renderPrivateTests Content.renderPrivateTests Breadcrumbs.renderPrivateTestsBreadcrumbs )
+		on unauthorized (  common.Error.renderError ) triggers (common.Logout)
+	}
+	ReadPrivateTest {
+		on ok ( Navigation.renderPrivateTest Content.renderPrivateTest Breadcrumbs.renderPrivateTestsBreadcrumbs )
+		on unauthorized (  common.Error.renderError ) triggers (common.Logout)
+	}
+	ReadResult {
+		on ok (Navigation.renderPrivateTest Content.renderPrivateTest Breadcrumbs.renderPrivateTestsBreadcrumbs Content.renderResult  )
+		on unauthorized (  common.Error.renderError ) triggers (common.Logout)
+	}
+	ReadStatistics {
+		on ok ( Content.renderStatistics )
+		on unauthorized (  common.Error.renderError ) triggers (common.Logout)
+	}
+	ReadBoxes {
+		on ok ( Boxes.renderBoxes )
+		on unauthorized (  common.Error.renderError ) triggers (common.Logout)
+	}
+	ReadNextCard {
+		on ok (Content.renderCard Boxes.activateBox )
+		on unauthorized (  common.Error.renderError ) triggers (common.Logout)
+	}
+	ReadReinforceCards {
+		on ok (card.Reinforce.saveReinforceCardList) triggers (card.DisplayNextReinforceCard)
+		on unauthorized (  common.Error.renderError ) triggers (common.Logout)
+	}
+}
+
+/*
 actions {
-	ReadPublicCourses executes ReadPublicCourses
-	ReadPublicLessons executes ReadPublicLessons
-	ReadPublicTests executes ReadPublicTests
-	ReadPublicTest executes ReadPublicTest
-	ReadPrivateCourses executes ReadPrivateCourses
-	ReadPrivateLessons executes ReadPrivateLessons
-	ReadPrivateTests executes ReadPrivateTests
-	ReadPrivateTest executes ReadPrivateTest
-	ReadResult executes ReadResult
-	ReadStatistics executes ReadStatistics
-	ReadBoxes executes ReadBoxes
-	ReadNextCard executes ReadNextCard
-	ReadReinforceCards executes ReadReinforceCards
 }
 
 commands {
-	ReadPublicCourses {
-		on ok publishes ( PublicCoursesRead )
-	}
-	ReadPublicLessons {
-		on ok publishes ( PublicLessonsRead )
-	}
-	ReadPublicTests {
-		on ok publishes ( PublicTestsRead )
-	}
-	ReadPublicTest {
-		on ok publishes ( PublicTestRead )
-	}
-	ReadPrivateCourses {
-		on ok publishes ( PrivateCoursesRead )
-		on unauthorized publishes ( common.Error ) triggers (common.Logout)
-	}
-	ReadPrivateLessons {
-		on ok publishes ( PrivateLessonsRead )
-		on unauthorized publishes ( common.Error ) triggers (common.Logout)
-	}
-	ReadPrivateTests {
-		on ok publishes ( PrivateTestsRead )
-		on unauthorized publishes ( common.Error ) triggers (common.Logout)
-	}
-	ReadPrivateTest {
-		on ok publishes ( PrivateTestRead )
-		on unauthorized publishes ( common.Error ) triggers (common.Logout)
-	}
-	ReadResult {
-		on ok publishes (ResultRead )
-		on unauthorized publishes ( common.Error ) triggers (common.Logout)
-	}
-	ReadStatistics {
-		on ok publishes ( StatisticsRead )
-		on unauthorized publishes ( common.Error ) triggers (common.Logout)
-	}
-	ReadBoxes {
-		on ok publishes ( BoxesRead )
-		on unauthorized publishes ( common.Error ) triggers (common.Logout)
-	}
-	ReadNextCard {
-		on ok publishes (NextCardRead )
-		on unauthorized publishes ( common.Error ) triggers (common.Logout)
-	}
 	ReadReinforceCards {
-		on ok publishes (card.SaveReinforceCards) triggers (card.DisplayNextReinforceCard)
-		on unauthorized publishes ( common.Error ) triggers (common.Logout)
 	}
 }
 
@@ -78,12 +72,12 @@ events {
 	PrivateLessonsRead listenedToBy ( Navigation.renderPrivateLessons Content.renderPrivateLessons Breadcrumbs.renderPrivateLessonsBreadcrumbs )
 	PrivateTestsRead listenedToBy ( Navigation.renderPrivateTests Content.renderPrivateTests Breadcrumbs.renderPrivateTestsBreadcrumbs )
 	PrivateTestRead listenedToBy ( Navigation.renderPrivateTest Content.renderPrivateTest Breadcrumbs.renderPrivateTestsBreadcrumbs )
-	ResultRead listenedToBy ( Navigation.renderPrivateTest Content.renderPrivateTest Breadcrumbs.renderPrivateTestsBreadcrumbs Content.renderResult  )
+	ResultRead listenedToBy ( Navigation.renderPrivateTest Content.renderPrivateTest Breadcrumbs.renderPrivateTestsBreadcrumbs Content.renderResult )
 	StatisticsRead listenedToBy ( Content.renderStatistics )
 	BoxesRead listenedToBy ( Boxes.renderBoxes ) 
 	NextCardRead listenedToBy ( Content.renderCard Boxes.activateBox )
 }
-
+*/
 views {
 	Navigation {
 		renderPublicCourses

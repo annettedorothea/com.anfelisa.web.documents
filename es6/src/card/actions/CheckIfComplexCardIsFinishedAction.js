@@ -2,14 +2,8 @@ import AbstractCheckIfComplexCardIsFinishedAction from "../../../gen/card/action
 
 export default class CheckIfComplexCardIsFinishedAction extends AbstractCheckIfComplexCardIsFinishedAction {
 
-    captureActionParam() {
-    }
-
     initActionData() {
 		this.actionData.isFinished = !$(".word").hasClass("hiddenWord");
-    }
-
-    releaseActionParam() {
     }
 }
 

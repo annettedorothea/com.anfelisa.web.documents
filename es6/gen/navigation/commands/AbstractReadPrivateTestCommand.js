@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import PrivateTestReadEvent from "../../../src/navigation/events/PrivateTestReadEvent";
-import ErrorEvent from "../../../src/common/events/ErrorEvent";
+import ReadPrivateTestOkEvent from "../../../src/navigation/events/ReadPrivateTestOkEvent";
+import ReadPrivateTestUnauthorizedEvent from "../../../src/navigation/events/ReadPrivateTestUnauthorizedEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractReadPrivateTestCommand extends Command {
@@ -16,10 +16,10 @@ export default class AbstractReadPrivateTestCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new PrivateTestReadEvent(this.commandData).publish());
+			promises.push(new ReadPrivateTestOkEvent(this.commandData).publish());
 			break;
 		case this.unauthorized:
-			promises.push(new ErrorEvent(this.commandData).publish());
+			promises.push(new ReadPrivateTestUnauthorizedEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

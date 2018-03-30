@@ -14,8 +14,6 @@ export default class ReadReinforceCardsAction extends AbstractReadReinforceCards
         this.actionData.boxId = this.actionParam.boxId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DisplayNextQuestionEvent from "../../../src/multiplechoice/events/DisplayNextQuestionEvent";
+import DisplayNextQuestionGoEvent from "../../../src/multiplechoice/events/DisplayNextQuestionGoEvent";
 
 export default class AbstractDisplayNextQuestionCommand extends Command {
     constructor(commandParam) {
@@ -13,7 +13,7 @@ export default class AbstractDisplayNextQuestionCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.go:
-			promises.push(new DisplayNextQuestionEvent(this.commandData).publish());
+			promises.push(new DisplayNextQuestionGoEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('DisplayNextQuestionCommand unhandled outcome: ' + this.commandData.outcome)});

@@ -167,6 +167,10 @@ export default class AppUtils {
         ErrorView.renderError(data);
     }
 
+    static deepCopy(object) {
+        return JSON.parse(JSON.stringify(object));
+    }
+
 }
 
 /*       S.D.G.       */

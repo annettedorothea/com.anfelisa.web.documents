@@ -7,12 +7,6 @@ export default class RenderLogoutAction extends AbstractRenderLogoutAction {
         this.actionParam.username = CommonView.getUsername();
     }
 
-    initActionData() {
-		this.actionData.username = this.actionParam.username;
-    }
-
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

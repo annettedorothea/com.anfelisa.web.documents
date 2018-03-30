@@ -14,8 +14,6 @@ export default class FillBoxWithCardsAction extends AbstractFillBoxWithCardsActi
 		this.actionData.boxId = this.actionParam.boxId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import TestStartedEvent from "../../../src/vocabulary/events/TestStartedEvent";
+import StartTestTestStartedEvent from "../../../src/vocabulary/events/StartTestTestStartedEvent";
 import ShowNextWordOfTestAction from "../../../src/vocabulary/actions/ShowNextWordOfTestAction";
 
 export default class AbstractStartTestCommand extends Command {
@@ -14,7 +14,7 @@ export default class AbstractStartTestCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.testStarted:
-			promises.push(new TestStartedEvent(this.commandData).publish());
+			promises.push(new StartTestTestStartedEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new ShowNextWordOfTestAction(this.commandData)).publish());
 			break;
 		default:

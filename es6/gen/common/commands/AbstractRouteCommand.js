@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import UpdateHashEvent from "../../../src/common/events/UpdateHashEvent";
+import RouteOkEvent from "../../../src/common/events/RouteOkEvent";
 import InitAction from "../../../src/common/actions/InitAction";
 
 export default class AbstractRouteCommand extends Command {
@@ -14,7 +14,7 @@ export default class AbstractRouteCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new UpdateHashEvent(this.commandData).publish());
+			promises.push(new RouteOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new InitAction(this.commandData)).publish());
 			break;
 		default:

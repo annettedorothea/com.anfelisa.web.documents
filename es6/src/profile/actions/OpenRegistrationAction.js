@@ -2,14 +2,6 @@ import AbstractOpenRegistrationAction from "../../../gen/profile/actions/Abstrac
 
 export default class OpenRegistrationAction extends AbstractOpenRegistrationAction {
 
-    captureActionParam() {
-    }
-
-    initActionData() {
-    }
-
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

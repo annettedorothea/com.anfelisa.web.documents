@@ -13,8 +13,6 @@ export default class ReadPrivateCoursesAction extends AbstractReadPrivateCourses
 		this.actionData.password = this.actionParam.password;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

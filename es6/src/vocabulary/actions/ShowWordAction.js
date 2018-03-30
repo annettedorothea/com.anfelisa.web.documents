@@ -2,15 +2,10 @@ import AbstractShowWordAction from "../../../gen/vocabulary/actions/AbstractShow
 
 export default class ShowWordAction extends AbstractShowWordAction {
 
-    captureActionParam() {
-    }
-
     initActionData() {
 		this.actionData.solution = jQuery(".active").next().html();
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

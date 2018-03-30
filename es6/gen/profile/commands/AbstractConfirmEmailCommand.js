@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import UserLoggedInEvent from "../../../src/common/events/UserLoggedInEvent";
+import ConfirmEmailSavedEvent from "../../../src/profile/events/ConfirmEmailSavedEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractConfirmEmailCommand extends Command {
@@ -14,7 +14,7 @@ export default class AbstractConfirmEmailCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.saved:
-			promises.push(new UserLoggedInEvent(this.commandData).publish());
+			promises.push(new ConfirmEmailSavedEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
 			break;
 		default:

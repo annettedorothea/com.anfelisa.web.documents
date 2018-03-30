@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DisplayNextReinforceCardEvent from "../../../src/card/events/DisplayNextReinforceCardEvent";
-import DisplayReinforceFinishedEvent from "../../../src/card/events/DisplayReinforceFinishedEvent";
+import DisplayNextReinforceCardNextEvent from "../../../src/card/events/DisplayNextReinforceCardNextEvent";
+import DisplayNextReinforceCardFinishedEvent from "../../../src/card/events/DisplayNextReinforceCardFinishedEvent";
 
 export default class AbstractDisplayNextReinforceCardCommand extends Command {
     constructor(commandParam) {
@@ -15,10 +15,10 @@ export default class AbstractDisplayNextReinforceCardCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.next:
-			promises.push(new DisplayNextReinforceCardEvent(this.commandData).publish());
+			promises.push(new DisplayNextReinforceCardNextEvent(this.commandData).publish());
 			break;
 		case this.finished:
-			promises.push(new DisplayReinforceFinishedEvent(this.commandData).publish());
+			promises.push(new DisplayNextReinforceCardFinishedEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('DisplayNextReinforceCardCommand unhandled outcome: ' + this.commandData.outcome)});

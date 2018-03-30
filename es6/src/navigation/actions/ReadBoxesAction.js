@@ -13,8 +13,6 @@ export default class ReadBoxesAction extends AbstractReadBoxesAction {
 		this.actionData.password = this.actionParam.password;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import BoxesReadEvent from "../../../src/navigation/events/BoxesReadEvent";
-import ErrorEvent from "../../../src/common/events/ErrorEvent";
+import ReadBoxesOkEvent from "../../../src/navigation/events/ReadBoxesOkEvent";
+import ReadBoxesUnauthorizedEvent from "../../../src/navigation/events/ReadBoxesUnauthorizedEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractReadBoxesCommand extends Command {
@@ -16,10 +16,10 @@ export default class AbstractReadBoxesCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new BoxesReadEvent(this.commandData).publish());
+			promises.push(new ReadBoxesOkEvent(this.commandData).publish());
 			break;
 		case this.unauthorized:
-			promises.push(new ErrorEvent(this.commandData).publish());
+			promises.push(new ReadBoxesUnauthorizedEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

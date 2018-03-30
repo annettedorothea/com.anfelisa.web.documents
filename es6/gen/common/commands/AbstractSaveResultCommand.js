@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RenderResultEvent from "../../../src/common/events/RenderResultEvent";
+import SaveResultNoCredentialsEvent from "../../../src/common/events/SaveResultNoCredentialsEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractSaveResultCommand extends Command {
@@ -15,7 +15,7 @@ export default class AbstractSaveResultCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.noCredentials:
-			promises.push(new RenderResultEvent(this.commandData).publish());
+			promises.push(new SaveResultNoCredentialsEvent(this.commandData).publish());
 			break;
 		case this.resultSaved:
 			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());

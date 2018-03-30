@@ -13,8 +13,6 @@ export default class OpenCourseSelectionAction extends AbstractOpenCourseSelecti
 		this.actionData.password = this.actionParam.password;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

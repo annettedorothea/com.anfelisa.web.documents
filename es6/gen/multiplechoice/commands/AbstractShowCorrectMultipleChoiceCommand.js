@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ShowCorrectMultipleChoiceEvent from "../../../src/multiplechoice/events/ShowCorrectMultipleChoiceEvent";
-import EnableNextButtonEvent from "../../../src/multiplechoice/events/EnableNextButtonEvent";
+import ShowCorrectMultipleChoiceLastEvent from "../../../src/multiplechoice/events/ShowCorrectMultipleChoiceLastEvent";
+import ShowCorrectMultipleChoiceNotLastEvent from "../../../src/multiplechoice/events/ShowCorrectMultipleChoiceNotLastEvent";
 import SaveResultAction from "../../../src/common/actions/SaveResultAction";
 
 export default class AbstractShowCorrectMultipleChoiceCommand extends Command {
@@ -16,12 +16,11 @@ export default class AbstractShowCorrectMultipleChoiceCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.last:
-			promises.push(new ShowCorrectMultipleChoiceEvent(this.commandData).publish());
+			promises.push(new ShowCorrectMultipleChoiceLastEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new SaveResultAction(this.commandData)).publish());
 			break;
 		case this.notLast:
-			promises.push(new ShowCorrectMultipleChoiceEvent(this.commandData).publish());
-			promises.push(new EnableNextButtonEvent(this.commandData).publish());
+			promises.push(new ShowCorrectMultipleChoiceNotLastEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('ShowCorrectMultipleChoiceCommand unhandled outcome: ' + this.commandData.outcome)});

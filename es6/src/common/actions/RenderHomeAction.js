@@ -2,14 +2,6 @@ import AbstractRenderHomeAction from "../../../gen/common/actions/AbstractRender
 
 export default class RenderHomeAction extends AbstractRenderHomeAction {
 
-    captureActionParam() {
-    }
-
-    initActionData() {
-    }
-
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

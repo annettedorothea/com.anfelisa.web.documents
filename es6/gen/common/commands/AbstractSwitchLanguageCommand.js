@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import SwitchLanguageEvent from "../../../src/common/events/SwitchLanguageEvent";
+import SwitchLanguageOkEvent from "../../../src/common/events/SwitchLanguageOkEvent";
 import InitAction from "../../../src/common/actions/InitAction";
 
 export default class AbstractSwitchLanguageCommand extends Command {
@@ -14,7 +14,7 @@ export default class AbstractSwitchLanguageCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new SwitchLanguageEvent(this.commandData).publish());
+			promises.push(new SwitchLanguageOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new InitAction(this.commandData)).publish());
 			break;
 		default:

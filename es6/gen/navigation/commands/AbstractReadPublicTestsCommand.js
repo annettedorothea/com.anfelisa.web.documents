@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import PublicTestsReadEvent from "../../../src/navigation/events/PublicTestsReadEvent";
+import ReadPublicTestsOkEvent from "../../../src/navigation/events/ReadPublicTestsOkEvent";
 
 export default class AbstractReadPublicTestsCommand extends Command {
     constructor(commandParam) {
@@ -13,7 +13,7 @@ export default class AbstractReadPublicTestsCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new PublicTestsReadEvent(this.commandData).publish());
+			promises.push(new ReadPublicTestsOkEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('ReadPublicTestsCommand unhandled outcome: ' + this.commandData.outcome)});

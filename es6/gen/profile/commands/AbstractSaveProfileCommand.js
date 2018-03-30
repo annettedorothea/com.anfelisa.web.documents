@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ErrorEvent from "../../../src/common/events/ErrorEvent";
+import SaveProfileDataInvalidEvent from "../../../src/profile/events/SaveProfileDataInvalidEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractSaveProfileCommand extends Command {
@@ -18,7 +18,7 @@ export default class AbstractSaveProfileCommand extends Command {
 			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
 			break;
 		case this.dataInvalid:
-			promises.push(new ErrorEvent(this.commandData).publish());
+			promises.push(new SaveProfileDataInvalidEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('SaveProfileCommand unhandled outcome: ' + this.commandData.outcome)});

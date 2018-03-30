@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RenderForgotPasswordEvent from "../../../src/profile/events/RenderForgotPasswordEvent";
+import OpenForgotPasswordOkEvent from "../../../src/profile/events/OpenForgotPasswordOkEvent";
 
 export default class AbstractOpenForgotPasswordCommand extends Command {
     constructor(commandParam) {
@@ -13,7 +13,7 @@ export default class AbstractOpenForgotPasswordCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new RenderForgotPasswordEvent(this.commandData).publish());
+			promises.push(new OpenForgotPasswordOkEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('OpenForgotPasswordCommand unhandled outcome: ' + this.commandData.outcome)});

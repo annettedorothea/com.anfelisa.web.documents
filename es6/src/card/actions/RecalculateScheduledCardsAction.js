@@ -15,8 +15,6 @@ export default class RecalculateScheduledCardsAction extends AbstractRecalculate
         this.actionData.password = this.actionParam.password;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

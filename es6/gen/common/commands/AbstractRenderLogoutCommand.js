@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RenderLogoutEvent from "../../../src/common/events/RenderLogoutEvent";
+import RenderLogoutOkEvent from "../../../src/common/events/RenderLogoutOkEvent";
 
 export default class AbstractRenderLogoutCommand extends Command {
     constructor(commandParam) {
@@ -13,7 +13,7 @@ export default class AbstractRenderLogoutCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new RenderLogoutEvent(this.commandData).publish());
+			promises.push(new RenderLogoutOkEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('RenderLogoutCommand unhandled outcome: ' + this.commandData.outcome)});

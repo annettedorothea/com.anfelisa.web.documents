@@ -10,7 +10,7 @@ export default class ReadStatisticsAction extends AbstractReadStatisticsAction {
 		this.actionParam.year = $(".year").val();
 		this.actionParam.month = $(".month").val();
 		if (this.actionParam.year  === undefined || this.actionParam.month === undefined) {
-			var now = new Date();
+			const now = new Date();
 			this.actionParam.year = now.getFullYear();
 			this.actionParam.month = now.getMonth() + 1;
 		}

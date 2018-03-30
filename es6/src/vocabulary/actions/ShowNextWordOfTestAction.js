@@ -11,8 +11,6 @@ export default class ShowNextWordOfTestAction extends AbstractShowNextWordOfTest
 		this.actionData.nextRandomIndex = this.actionParam.nextRandomIndex;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

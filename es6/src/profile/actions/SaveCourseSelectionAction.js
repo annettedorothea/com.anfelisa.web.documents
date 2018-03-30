@@ -15,8 +15,6 @@ export default class SaveCourseSelectionAction extends AbstractSaveCourseSelecti
         this.actionData.courseIdList = this.actionParam.courseIdList;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

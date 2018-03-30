@@ -14,8 +14,6 @@ export default class ReadPrivateTestAction extends AbstractReadPrivateTestAction
 		this.actionData.testId = this.actionParam.testId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

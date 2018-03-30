@@ -1,5 +1,5 @@
 import Action from "../../ace/Action";
-import RouteCommand from "../../../src/common/commands/RouteCommand";
+import RouteHomeCommand from "../../../src/common/commands/RouteHomeCommand";
 
 export default class AbstractRouteHomeAction extends Action {
 
@@ -8,7 +8,7 @@ export default class AbstractRouteHomeAction extends Action {
     }
 
 	getCommand() {
-		return new RouteCommand(this.actionData);
+		return new RouteHomeCommand(this.actionData);
 	}
 
 	preUpdateUI() {

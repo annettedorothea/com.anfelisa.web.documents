@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import SaveReinforceCardsEvent from "../../../src/card/events/SaveReinforceCardsEvent";
-import ErrorEvent from "../../../src/common/events/ErrorEvent";
+import ReadReinforceCardsOkEvent from "../../../src/navigation/events/ReadReinforceCardsOkEvent";
+import ReadReinforceCardsUnauthorizedEvent from "../../../src/navigation/events/ReadReinforceCardsUnauthorizedEvent";
 import DisplayNextReinforceCardAction from "../../../src/card/actions/DisplayNextReinforceCardAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
@@ -17,11 +17,11 @@ export default class AbstractReadReinforceCardsCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new SaveReinforceCardsEvent(this.commandData).publish());
+			promises.push(new ReadReinforceCardsOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new DisplayNextReinforceCardAction(this.commandData)).publish());
 			break;
 		case this.unauthorized:
-			promises.push(new ErrorEvent(this.commandData).publish());
+			promises.push(new ReadReinforceCardsUnauthorizedEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

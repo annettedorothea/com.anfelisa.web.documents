@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ShowScoreButtonsEvent from "../../../src/card/events/ShowScoreButtonsEvent";
+import CheckIfComplexCardIsFinishedComplexCardIsFinishedEvent from "../../../src/card/events/CheckIfComplexCardIsFinishedComplexCardIsFinishedEvent";
 
 export default class AbstractCheckIfComplexCardIsFinishedCommand extends Command {
     constructor(commandParam) {
@@ -14,7 +14,7 @@ export default class AbstractCheckIfComplexCardIsFinishedCommand extends Command
 	    	
 		switch (this.commandData.outcome) {
 		case this.complexCardIsFinished:
-			promises.push(new ShowScoreButtonsEvent(this.commandData).publish());
+			promises.push(new CheckIfComplexCardIsFinishedComplexCardIsFinishedEvent(this.commandData).publish());
 			break;
 		case this.complexCardIsNotFinished:
 			break;

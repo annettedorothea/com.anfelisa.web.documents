@@ -2,118 +2,39 @@ vocabulary
 
 target ES6
 
-actions {
-	CorrectWord executes CorrectWord
-	IsTestFinished executes IsTestFinished
-	IsRatedTestFinished executes IsRatedTestFinished
-	ShowNextWordOfTest executes ShowNextWordOfTest
-	ShowWord executes ShowWord
-	StartTest executes StartTest
-	RateWord executes RateWord
-	RepeatComplexCard executes RepeatComplexCard
-}
-
-commands {
+ACE {
 	CorrectWord {
-		on wordIsCorrectAndFinished publishes (
-			WordIsCorrectAndFinished
-		) triggers (
-			IsTestFinished
-		)
-		on wordIsCorrectAndNotFinished publishes (
-			WordIsCorrectAndNotFinished
-		) triggers (
-			IsTestFinished
-		)
-		on wordIsNotCorrect publishes (
-			WordIsNotCorrect
-		) triggers (
-			IsTestFinished
-		)
+		on wordIsCorrectAndFinished (Vocabulary.wordIsCorrectAndFinished) triggers (IsTestFinished)
+		on wordIsCorrectAndNotFinished (Vocabulary.wordIsCorrectAndNotFinished) triggers ( IsTestFinished )
+		on wordIsNotCorrect ( Vocabulary.wordIsNotCorrect) triggers (IsTestFinished)
 	}
 	IsTestFinished {
-		on testFailed triggers (
-			common.SaveResult
-		)
-		on testFinishedSuccessfully triggers (
-			common.SaveResult
-		)
-		on goOnWithTest publishes (
-			DisplayNextWordButton
-		)
+		on testFailed triggers (common.SaveResult)
+		on testFinishedSuccessfully triggers (common.SaveResult)
+		on goOnWithTest (Vocabulary.displayNextWordButton)
 	}
 	IsRatedTestFinished {
-		on testFailed triggers (
-			common.SaveResult
-		)
-		on testFinishedSuccessfully triggers (
-			common.SaveResult
-		)
-		on goOnWithTest triggers (
-			ShowNextWordOfTest
-		)
+		on testFailed triggers (common.SaveResult)
+		on testFinishedSuccessfully triggers (common.SaveResult)
+		on goOnWithTest triggers (ShowNextWordOfTest)
 	}
 	ShowNextWordOfTest {
-		on showNextWordOfTest publishes (
-			ShowNextWordOfTest
-		)
+		on showNextWordOfTest (Vocabulary.showNextWordOfTest)
 	}
 	ShowWord {
-		on showWord publishes (
-			ShowWord
-		)
+		on showWord (Vocabulary.showWord)
 	}
 	StartTest {
-		on testStarted publishes (
-			TestStarted
-		) triggers (
-			ShowNextWordOfTest
-		)
-	} 
+		on testStarted (Vocabulary.testStarted) triggers (ShowNextWordOfTest)
+	}
 	RateWord {
-		on wordIsCorrectAndFinished publishes (
-			WordIsCorrectAndFinished
-		) triggers (
-			IsRatedTestFinished
-		)
-		on wordIsCorrectAndNotFinished publishes (
-			WordIsCorrectAndNotFinished
-		) triggers (
-			IsRatedTestFinished
-		)
-		on wordIsNotCorrect publishes (
-			WordIsNotCorrect
-		) triggers (
-			IsRatedTestFinished
-		)
+		on wordIsCorrectAndFinished (Vocabulary.wordIsCorrectAndFinished) triggers (IsRatedTestFinished)
+		on wordIsCorrectAndNotFinished (Vocabulary.wordIsCorrectAndNotFinished) triggers (IsRatedTestFinished)
+		on wordIsNotCorrect (Vocabulary.wordIsNotCorrect) triggers (IsRatedTestFinished)
 	}
 	RepeatComplexCard {
 		on go triggers (common.Route)
 	}
-}
-
-events {
-	WordIsCorrectAndFinished listenedToBy (
-		Vocabulary.wordIsCorrectAndFinished
-	)
-	WordIsCorrectAndNotFinished listenedToBy (
-		Vocabulary.wordIsCorrectAndNotFinished
-	)
-	WordIsNotCorrect listenedToBy (
-		Vocabulary.wordIsNotCorrect
-	)
-	DisplayNextWordButton listenedToBy (
-		Vocabulary.displayNextWordButton
-	)
-	ShowNextWordOfTest listenedToBy (
-		Vocabulary.showNextWordOfTest
-	)
-	ShowWord listenedToBy (
-		Vocabulary.showWord
-	)
-	TestStarted listenedToBy (
-		Vocabulary.testStarted
-	)
 }
 
 views {

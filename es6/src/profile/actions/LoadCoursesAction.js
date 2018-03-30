@@ -14,8 +14,6 @@ export default class LoadCoursesAction extends AbstractLoadCoursesAction {
 		this.actionData.boxId = this.actionParam.boxId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */

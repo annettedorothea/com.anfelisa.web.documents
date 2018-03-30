@@ -1,8 +1,8 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import PasswordEmptyEvent from "../../../src/profile/events/PasswordEmptyEvent";
-import PasswordsOKEvent from "../../../src/profile/events/PasswordsOKEvent";
-import PasswordsMismatchEvent from "../../../src/profile/events/PasswordsMismatchEvent";
+import ValidatePasswordEmptyEvent from "../../../src/profile/events/ValidatePasswordEmptyEvent";
+import ValidatePasswordOkEvent from "../../../src/profile/events/ValidatePasswordOkEvent";
+import ValidatePasswordMismatchEvent from "../../../src/profile/events/ValidatePasswordMismatchEvent";
 
 export default class AbstractValidatePasswordCommand extends Command {
     constructor(commandParam) {
@@ -17,13 +17,13 @@ export default class AbstractValidatePasswordCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.empty:
-			promises.push(new PasswordEmptyEvent(this.commandData).publish());
+			promises.push(new ValidatePasswordEmptyEvent(this.commandData).publish());
 			break;
 		case this.ok:
-			promises.push(new PasswordsOKEvent(this.commandData).publish());
+			promises.push(new ValidatePasswordOkEvent(this.commandData).publish());
 			break;
 		case this.mismatch:
-			promises.push(new PasswordsMismatchEvent(this.commandData).publish());
+			promises.push(new ValidatePasswordMismatchEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('ValidatePasswordCommand unhandled outcome: ' + this.commandData.outcome)});

@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import KeepCardInReinforceCardListEvent from "../../../src/card/events/KeepCardInReinforceCardListEvent";
-import RemoveCardFromReinforceCardListEvent from "../../../src/card/events/RemoveCardFromReinforceCardListEvent";
+import ScoreReinforcedCardKeepEvent from "../../../src/card/events/ScoreReinforcedCardKeepEvent";
+import ScoreReinforcedCardRemoveEvent from "../../../src/card/events/ScoreReinforcedCardRemoveEvent";
 import DisplayNextReinforceCardAction from "../../../src/card/actions/DisplayNextReinforceCardAction";
 
 export default class AbstractScoreReinforcedCardCommand extends Command {
@@ -16,11 +16,11 @@ export default class AbstractScoreReinforcedCardCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.keep:
-			promises.push(new KeepCardInReinforceCardListEvent(this.commandData).publish());
+			promises.push(new ScoreReinforcedCardKeepEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new DisplayNextReinforceCardAction(this.commandData)).publish());
 			break;
 		case this.remove:
-			promises.push(new RemoveCardFromReinforceCardListEvent(this.commandData).publish());
+			promises.push(new ScoreReinforcedCardRemoveEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new DisplayNextReinforceCardAction(this.commandData)).publish());
 			break;
 		default:

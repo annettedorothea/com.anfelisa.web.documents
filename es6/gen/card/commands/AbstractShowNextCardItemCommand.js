@@ -1,9 +1,8 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ShowWantedEvent from "../../../src/card/events/ShowWantedEvent";
-import ShowScoreButtonsEvent from "../../../src/card/events/ShowScoreButtonsEvent";
-import ShowNextLineEvent from "../../../src/card/events/ShowNextLineEvent";
-import ShowNextWordEvent from "../../../src/card/events/ShowNextWordEvent";
+import ShowNextCardItemShowWantedEvent from "../../../src/card/events/ShowNextCardItemShowWantedEvent";
+import ShowNextCardItemShowNextLineEvent from "../../../src/card/events/ShowNextCardItemShowNextLineEvent";
+import ShowNextCardItemShowNextWordEvent from "../../../src/card/events/ShowNextCardItemShowNextWordEvent";
 import CheckIfComplexCardIsFinishedAction from "../../../src/card/actions/CheckIfComplexCardIsFinishedAction";
 
 export default class AbstractShowNextCardItemCommand extends Command {
@@ -19,15 +18,14 @@ export default class AbstractShowNextCardItemCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.showWanted:
-			promises.push(new ShowWantedEvent(this.commandData).publish());
-			promises.push(new ShowScoreButtonsEvent(this.commandData).publish());
+			promises.push(new ShowNextCardItemShowWantedEvent(this.commandData).publish());
 			break;
 		case this.showNextLine:
-			promises.push(new ShowNextLineEvent(this.commandData).publish());
+			promises.push(new ShowNextCardItemShowNextLineEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new CheckIfComplexCardIsFinishedAction(this.commandData)).publish());
 			break;
 		case this.showNextWord:
-			promises.push(new ShowNextWordEvent(this.commandData).publish());
+			promises.push(new ShowNextCardItemShowNextWordEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new CheckIfComplexCardIsFinishedAction(this.commandData)).publish());
 			break;
 		default:

@@ -16,8 +16,6 @@ export default class ReadResultAction extends AbstractReadResultAction {
 		this.actionData.resultId = this.actionParam.resultId;
     }
 
-    releaseActionParam() {
-    }
 }
 
 /*       S.D.G.       */
