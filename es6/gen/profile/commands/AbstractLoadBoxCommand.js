@@ -13,7 +13,7 @@ export default class AbstractLoadBoxCommand extends Command {
 
     publishEvents() {
 		let promises = [];
-	    	
+
 		switch (this.commandData.outcome) {
 		case this.loaded:
 			promises.push(new LoadBoxLoadedEvent(this.commandData).publish());

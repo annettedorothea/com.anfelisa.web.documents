@@ -406,13 +406,13 @@
         <div class="row quality-buttons">
             <div class="col-md-3 col-lg-3 col-md-offset-3 col-lg-offset-3 col-xs-6 col-sm-6">
                 <button class="scoreButton btn btn-green"
-                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 5,  boxId : {{boxId}}, cardOfBoxId : {{cardOfBoxId}} })"
+                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 5,  boxId : '{{boxId}}', cardOfBoxId : '{{cardOfBoxId}}' })"
                         disabled="disabled">{{texts.perfect}}
                 </button>
             </div>
             <div class="col-md-3 col-lg-3 col-xs-6 col-sm-6">
                 <button class="scoreButton btn btn-orange"
-                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 2, boxId : {{boxId}}, cardOfBoxId : {{cardOfBoxId}} })"
+                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 2, boxId : '{{boxId}}', cardOfBoxId : '{{cardOfBoxId}}' })"
                         disabled="disabled">{{texts.scarcely}}
                 </button>
                 <br/>
@@ -421,14 +421,14 @@
         <div class="row quality-buttons">
             <div class="col-md-3 col-lg-3 col-md-offset-3 col-lg-offset-3 col-xs-6 col-sm-6">
                 <button class="scoreButton btn btn-blue"
-                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 4, boxId : {{boxId}}, cardOfBoxId : {{cardOfBoxId}} })"
+                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 4, boxId : '{{boxId}}', cardOfBoxId : '{{cardOfBoxId}}' })"
                         disabled="disabled">{{texts.knewIt}}
                 </button>
                 <br/>
             </div>
             <div class="col-md-3 col-lg-3 col-xs-6 col-sm-6">
                 <button class="scoreButton btn btn-red"
-                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 1, boxId : {{boxId}}, cardOfBoxId : {{cardOfBoxId}} })"
+                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 1, boxId : '{{boxId}}', cardOfBoxId : '{{cardOfBoxId}}' })"
                         disabled="disabled">{{texts.didNotKnow}}
                 </button>
                 <br/>
@@ -437,14 +437,14 @@
         <div class="row quality-buttons">
             <div class="col-md-3 col-lg-3 col-md-offset-3 col-lg-offset-3 col-xs-6 col-sm-6">
                 <button class="scoreButton btn btn-cyan"
-                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 3, boxId : {{boxId}}, cardOfBoxId : {{cardOfBoxId}} })"
+                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 3, boxId : '{{boxId}}', cardOfBoxId : '{{cardOfBoxId}}' })"
                         disabled="disabled">{{texts.withEffort}}
                 </button>
                 <br/>
             </div>
             <div class="col-md-3 col-lg-3 col-xs-6 col-sm-6">
                 <button class="scoreButton btn btn-pink"
-                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 0, boxId : {{boxId}}, cardOfBoxId : {{cardOfBoxId}} })"
+                        onclick="$('.scoreButton').prop('disabled', true); Anfelisa.scoreCard({ quality : 0, boxId : '{{boxId}}', cardOfBoxId : '{{cardOfBoxId}}' })"
                         disabled="disabled">{{texts.noIdea}}
                 </button>
                 <br/>
@@ -453,13 +453,13 @@
         <div class="row quality-buttons">
             <div class="col-md-3 col-lg-3 col-md-offset-3 col-lg-offset-3 col-xs-6 col-sm-6">
                 <button class="scoreButton btn btn-gray"
-                        onclick="Anfelisa.openReallyDeleteDialog({ boxId : {{boxId}}, cardOfBoxId : {{cardOfBoxId}}, 'dialog' : 'removedCard' })">
+                        onclick="Anfelisa.openReallyDeleteDialog({ boxId : '{{boxId}}', cardOfBoxId : '{{cardOfBoxId}}', 'dialog' : 'removedCard' })">
                     {{texts.removeCardFromBox}} <i class="fa fa-trash"></i></button>
                 <br/>
             </div>
             <div class="col-md-3 col-lg-3 col-xs-6 col-sm-6">
                 <button class="scoreButton btn btn-gray"
-                        onclick="Anfelisa.route({hash: 'box/{{boxId}}/reinforce'})">{{texts.reinforce}} <i
+                        onclick="Anfelisa.route({hash: 'box/'{{boxId}}'/reinforce'})">{{texts.reinforce}} <i
                         class="fa fa-refresh"></i></button>
                 <br/>
             </div>
@@ -840,7 +840,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
             <div class="col-sm-9">
-                <button class="btn btn-default" type="button" onclick="Anfelisa.saveBoxConfig( {'boxId' : {{boxId}} })">
+                <button class="btn btn-default" type="button" onclick="Anfelisa.saveBoxConfig( {'boxId' : '{{boxId}}' })">
                     {{texts.save}}
                 </button>
                 <button class="btn btn-default" type="button" onclick="Anfelisa.route( {'hash' : 'profile'})">
@@ -1037,22 +1037,6 @@
             </div>
         </div>
 
-        <div class="form-group" id="nameDiv">
-            <label for="name" class="col-sm-3 control-label">* {{texts.name}}</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" id="name" placeholder="{{texts.name}}" value="{{name}}" onblur="Anfelisa.validateRequiredField({id : 'name'})" autocomplete="off">
-                <span class="help-block notEmpty" style="display: none">{{texts.nameNotEmpty}}</span>
-            </div>
-        </div>
-
-        <div class="form-group" id="prenameDiv">
-            <label for="prename" class="col-sm-3 control-label">* {{texts.prename}}</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" id="prename" placeholder="{{texts.prename}}" value="{{prename}}" onblur="Anfelisa.validateRequiredField({id : 'prename'})" autocomplete="off">
-                <span class="help-block notEmpty" style="display: none">{{texts.prenameNotEmpty}}</span>
-            </div>
-        </div>
-
         <div class="form-group" id="emailDiv">
             <label for="email" class="col-sm-3 control-label">* {{texts.email}}</label>
             <div class="col-sm-9">
@@ -1220,22 +1204,6 @@
                 <input type="password" class="form-control" id="passwordRepetition" placeholder="{{texts.passwordRepetition}}" onblur="Anfelisa.validatePassword()" autocomplete="off">
                 <span class="help-block notEmpty" style="display: none">{{texts.passwordRepetitionNotEmpty}}</span>
                 <span class="help-block passwordMismatch" style="display: none">{{texts.passwordMismatch}}</span>
-            </div>
-        </div>
-
-        <div class="form-group" id="nameDiv">
-            <label for="name" class="col-sm-3 control-label">* {{texts.name}}</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" id="name" placeholder="{{texts.name}}" value="{{name}}" onblur="Anfelisa.validateRequiredField({id : 'name'})" autocomplete="off">
-                <span class="help-block notEmpty" style="display: none">{{texts.nameNotEmpty}}</span>
-            </div>
-        </div>
-
-        <div class="form-group" id="prenameDiv">
-            <label for="prename" class="col-sm-3 control-label">* {{texts.prename}}</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" id="prename" placeholder="{{texts.prename}}" value="{{prename}}" onblur="Anfelisa.validateRequiredField({id : 'prename'})" autocomplete="off">
-                <span class="help-block notEmpty" style="display: none">{{texts.prenameNotEmpty}}</span>
             </div>
         </div>
 

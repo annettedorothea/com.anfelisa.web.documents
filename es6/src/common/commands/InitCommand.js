@@ -5,13 +5,14 @@ export default class InitCommand extends AbstractInitCommand {
         return new Promise((resolve) => {
             this.commandData.language = this.commandParam.language;
             this.commandData.username = this.commandParam.username;
+            this.commandData.password = this.commandParam.password;
             if (this.commandParam.username) {
                 this.commandData.outcome = this.privateCourses;
             } else {
                 this.commandData.outcome = this.publicCourses;
             }
             if (this.commandParam.hash !== undefined) {
-                const hashes = this.commandParam.hash.split("/");
+                let hashes = this.commandParam.hash.split("/");
                 if (this.commandParam.username && hashes[0] === "public") {
                     hashes = [ "private" ];
                 }

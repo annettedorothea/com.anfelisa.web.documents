@@ -4,7 +4,27 @@ target ES6
 
 ACE {
 	init Init {
-		
+		on publicCourses ( Common.initLanguageInLocalStorage ) triggers ( navigation.ReadPublicCourses RenderLogin RenderHome )
+		on publicLessons (Common.initLanguageInLocalStorage ) triggers ( navigation.ReadPublicLessons RenderLogin)
+		on publicTests (Common.initLanguageInLocalStorage ) triggers ( navigation.ReadPublicTests RenderLogin)
+		on publicTest (Common.initLanguageInLocalStorage ) triggers ( navigation.ReadPublicTest RenderLogin)
+		on privateCourses (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadStatistics navigation.ReadBoxes RenderLogout)
+		on privateLessons (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateLessons navigation.ReadBoxes RenderLogout)
+		on privateTests (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateTests navigation.ReadBoxes RenderLogout)
+		on privateTest (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateTest navigation.ReadBoxes RenderLogout) 
+		on result (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadResult navigation.ReadBoxes RenderLogout)
+		on box (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadNextCard RenderLogout)
+		on reinforce (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadReinforceCards RenderLogout)
+		on profile (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( profile.OpenProfile navigation.ReadPrivateCourses navigation.ReadBoxes RenderLogout)
+		on profileCourses (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( profile.OpenCourseSelection navigation.ReadPrivateCourses navigation.ReadBoxes RenderLogout)
+		on profileBoxCreate (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenBoxCreation RenderLogout)
+		on profileBoxEdit (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadBox RenderLogout)
+		on profileCourseAdd (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadCourses RenderLogout)
+		on profilePassword (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenChangePassword RenderLogout)
+		on forgotPassword (Common.initLanguageInLocalStorage ) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenForgotPassword)
+		on newPassword (Common.initLanguageInLocalStorage) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenNewPassword)
+		on register (Common.initLanguageInLocalStorage) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenRegistration)
+		on confirmEmail triggers (profile.ConfirmEmail)
 	}
 	Route {
 		on ok ( Common.updateHash ) triggers ( Init )
@@ -13,7 +33,7 @@ ACE {
 		on ok ( Common.updateHash ) triggers ( Init )
 	}
 	Login {
-		on ok (Common.initUserInLocalStorage) triggers ( Route )
+		on ok (Common.initUserInLocalStorage Common.initUserInLocalStorage ) triggers ( Route )
 		on unauthorized ( Error.renderError ) triggers ( Logout )
 	}
 	Logout {
@@ -49,58 +69,6 @@ ACE {
 	}
 }
 
-/*
-actions {
-}
-
-commands {
-	Init {
-		on publicCourses publishes ( InitOK ) triggers ( navigation.ReadPublicCourses RenderLogin RenderHome )
-		on publicLessons publishes (InitOK ) triggers ( navigation.ReadPublicLessons RenderLogin)
-		on publicTests publishes (InitOK ) triggers ( navigation.ReadPublicTests RenderLogin)
-		on publicTest publishes (InitOK ) triggers ( navigation.ReadPublicTest RenderLogin)
-		on privateCourses publishes (InitOK ) triggers ( navigation.ReadPrivateCourses navigation.ReadStatistics navigation.ReadBoxes RenderLogout)
-		on privateLessons publishes (InitOK ) triggers ( navigation.ReadPrivateLessons navigation.ReadBoxes RenderLogout)
-		on privateTests publishes (InitOK ) triggers ( navigation.ReadPrivateTests navigation.ReadBoxes RenderLogout)
-		on privateTest publishes (InitOK ) triggers ( navigation.ReadPrivateTest navigation.ReadBoxes RenderLogout) 
-		on result publishes (InitOK ) triggers ( navigation.ReadResult navigation.ReadBoxes RenderLogout)
-		on box publishes (InitOK ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadNextCard RenderLogout)
-		on reinforce publishes (InitOK ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadReinforceCards RenderLogout)
-		on profile publishes (InitOK ) triggers ( profile.OpenProfile navigation.ReadPrivateCourses navigation.ReadBoxes RenderLogout)
-		on profileCourses publishes (InitOK ) triggers ( profile.OpenCourseSelection navigation.ReadPrivateCourses navigation.ReadBoxes RenderLogout)
-		on profileBoxCreate publishes(InitOK) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenBoxCreation RenderLogout)
-		on profileBoxEdit publishes(InitOK) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadBox RenderLogout)
-		on profileCourseAdd publishes(InitOK) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadCourses RenderLogout)
-		on profilePassword publishes(InitOK) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenChangePassword RenderLogout)
-		on forgotPassword publishes (InitOK) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenForgotPassword)
-		on newPassword publishes (InitOK) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenNewPassword)
-		on register publishes (InitOK) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenRegistration)
-		on confirmEmail triggers (profile.ConfirmEmail) 
-	}
-	RenderLogin {
-	}
-	RenderLogout {
-	}
-	SaveResult {
-	}
-	ValidateRequiredField {
-	}
-	OpenReallyDeleteDialog {
-	}
-	CloseAllDialogs {
-	}
-	SwitchLanguage {
-	}
-	RenderHome {
-	}
-}
-
-events {
-	InitOK listenedToBy ( Common.initLanguageInLocalStorage )
-	Error listenedToBy ( Error.renderError )
-	Message listenedToBy (Message.renderMessage)
-} 
-*/
 views {
 	Error {
 		renderError

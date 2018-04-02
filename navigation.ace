@@ -54,30 +54,6 @@ ACE {
 	}
 }
 
-/*
-actions {
-}
-
-commands {
-	ReadReinforceCards {
-	}
-}
-
-events {
-	PublicCoursesRead listenedToBy ( Navigation.renderPublicCourses Breadcrumbs.renderPublicCoursesBreadcrumbs )
-	PublicLessonsRead listenedToBy ( Navigation.renderPublicLessons Content.renderPublicLessons Breadcrumbs.renderPublicLessonsBreadcrumbs )
-	PublicTestsRead listenedToBy ( Navigation.renderPublicTests Content.renderPublicTests Breadcrumbs.renderPublicTestsBreadcrumbs )
-	PublicTestRead listenedToBy ( Navigation.renderPublicTest Content.renderPublicTest Breadcrumbs.renderPublicTestsBreadcrumbs )
-	PrivateCoursesRead listenedToBy ( Navigation.renderPrivateCourses Breadcrumbs.renderPrivateCoursesBreadcrumbs )
-	PrivateLessonsRead listenedToBy ( Navigation.renderPrivateLessons Content.renderPrivateLessons Breadcrumbs.renderPrivateLessonsBreadcrumbs )
-	PrivateTestsRead listenedToBy ( Navigation.renderPrivateTests Content.renderPrivateTests Breadcrumbs.renderPrivateTestsBreadcrumbs )
-	PrivateTestRead listenedToBy ( Navigation.renderPrivateTest Content.renderPrivateTest Breadcrumbs.renderPrivateTestsBreadcrumbs )
-	ResultRead listenedToBy ( Navigation.renderPrivateTest Content.renderPrivateTest Breadcrumbs.renderPrivateTestsBreadcrumbs Content.renderResult )
-	StatisticsRead listenedToBy ( Content.renderStatistics )
-	BoxesRead listenedToBy ( Boxes.renderBoxes ) 
-	NextCardRead listenedToBy ( Content.renderCard Boxes.activateBox )
-}
-*/
 views {
 	Navigation {
 		renderPublicCourses

@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/Event";
 
-export default class AbstractSubmitForgotPasswordRequestMismatchEvent extends Event {
+export default class AbstractSubmitNewPasswordMismatchEvent extends Event {
     constructor(eventParam) {
-        super(eventParam, 'profile.SubmitForgotPasswordRequestMismatchEvent');
+        super(eventParam, 'profile.SubmitNewPasswordMismatchEvent');
     }
 	getNotifiedListeners() {
 	    return [ "common.views.ErrorView.renderError" ];

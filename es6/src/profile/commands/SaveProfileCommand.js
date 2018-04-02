@@ -3,15 +3,13 @@ import AbstractSaveProfileCommand from "../../../gen/profile/commands/AbstractSa
 export default class SaveProfileCommand extends AbstractSaveProfileCommand {
     execute() {
         return new Promise((resolve, reject) => {
-            if (!this.commandParam.email || !this.commandParam.name || !this.commandParam.prename) {
+            if (!this.commandParam.email) {
                 this.commandData.messageKey = "dataInvalid";
                 this.commandData.outcome = this.dataInvalid;
                 resolve();
             } else {
                 const data = {
                     username: this.commandParam.username,
-                    name: this.commandParam.name,
-                    prename: this.commandParam.prename,
                     email: this.commandParam.email
                 };
                 this.httpPut("api/users/update", [], data).then(() => {

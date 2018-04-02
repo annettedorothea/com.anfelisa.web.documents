@@ -63,15 +63,15 @@ ACE {
 	}
 	SubmitForgotPasswordRequest {
 		on dataInvalid (common.Error.renderError)
-		on mismatch (common.Error.renderError)
-		on saved (common.Common.initUserInLocalStorage ) triggers (common.Route)
+		on ok (common.Message.renderMessage)
 	}
 	OpenNewPassword {
 		on ok (UserInfo.renderNewPassword)
 	}
 	SubmitNewPassword {
 		on dataInvalid (common.Error.renderError)
-		on ok (common.Message.renderMessage)
+		on mismatch (common.Error.renderError)
+		on saved triggers (common.Route)
 	}
 	OpenRegistration {
 		on ok (UserInfo.renderRegistration)

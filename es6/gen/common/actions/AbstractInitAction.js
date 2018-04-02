@@ -1,4 +1,5 @@
 import Action from "../../ace/Action";
+import InitCommand from "../../../src/common/commands/InitCommand";
 
 export default class AbstractInitAction extends Action {
 
@@ -6,6 +7,9 @@ export default class AbstractInitAction extends Action {
         super(actionParam, 'common.InitAction', true);
     }
 
+	getCommand() {
+		return new InitCommand(this.actionData);
+	}
 
 	preUpdateUI() {
 	}

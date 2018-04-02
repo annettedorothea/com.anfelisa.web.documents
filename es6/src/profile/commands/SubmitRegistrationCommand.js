@@ -5,8 +5,7 @@ export default class SubmitRegistrationCommand extends AbstractSubmitRegistratio
         return new Promise((resolve) => {
             this.commandData.language = this.commandParam.language;
             if (!this.commandParam.password || !this.commandParam.passwordRepetition ||
-                !this.commandParam.email || !this.commandParam.name || !this.commandParam.prename ||
-                !this.commandParam.username || this.commandParam.usernameExists) {
+                !this.commandParam.email || !this.commandParam.username || this.commandParam.usernameExists) {
                 this.commandData.messageKey = "dataInvalid";
                 this.commandData.outcome = this.dataInvalid;
                 resolve();
@@ -19,8 +18,6 @@ export default class SubmitRegistrationCommand extends AbstractSubmitRegistratio
                     password: this.commandParam.password,
                     username: this.commandParam.username,
                     email: this.commandParam.email,
-                    name: this.commandParam.name,
-                    prename: this.commandParam.prename,
                     language: this.commandParam.language
                 };
                 this.httpPost("api/users/register", [], data).then(() => {

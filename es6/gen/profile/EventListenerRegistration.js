@@ -28,11 +28,10 @@ export default class EventListenerRegistrationProfile {
 		ACEController.registerListener('profile.ValidatePasswordMismatchEvent', UserInfoView.passwordMismatch);
 		ACEController.registerListener('profile.OpenForgotPasswordOkEvent', UserInfoView.renderForgotPassword);
 		ACEController.registerListener('profile.SubmitForgotPasswordRequestDataInvalidEvent', ErrorView.renderError);
-		ACEController.registerListener('profile.SubmitForgotPasswordRequestMismatchEvent', ErrorView.renderError);
-		ACEController.registerListener('profile.SubmitForgotPasswordRequestSavedEvent', CommonView.initUserInLocalStorage);
+		ACEController.registerListener('profile.SubmitForgotPasswordRequestOkEvent', MessageView.renderMessage);
 		ACEController.registerListener('profile.OpenNewPasswordOkEvent', UserInfoView.renderNewPassword);
 		ACEController.registerListener('profile.SubmitNewPasswordDataInvalidEvent', ErrorView.renderError);
-		ACEController.registerListener('profile.SubmitNewPasswordOkEvent', MessageView.renderMessage);
+		ACEController.registerListener('profile.SubmitNewPasswordMismatchEvent', ErrorView.renderError);
 		ACEController.registerListener('profile.OpenRegistrationOkEvent', UserInfoView.renderRegistration);
 		ACEController.registerListener('profile.SubmitRegistrationDataInvalidEvent', ErrorView.renderError);
 		ACEController.registerListener('profile.SubmitRegistrationMismatchEvent', ErrorView.renderError);

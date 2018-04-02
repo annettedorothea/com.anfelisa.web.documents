@@ -93,14 +93,14 @@ export default class ContentView {
                         jQuery(this).prop("onclick", null);
                         const v = value.charAt(j);
                         let icon = $("#" + i + "_icon");
-                        if (v === 1) {
+                        if (v === '1') {
                             jQuery(this).removeClass("fa fa-circle-o");
                             jQuery(this).addClass("fa fa-check-circle-o");
                             jQuery(this).addClass("correct");
                             icon.removeClass("fa fa-circle-o");
                             icon.addClass("fa fa-check-circle-o");
                             icon.addClass("correct");
-                        } else if (v === 2) {
+                        } else if (v === '2') {
                             jQuery(this).removeClass("fa fa-circle-o");
                             jQuery(this).addClass("fa fa-times-circle-o");
                             jQuery(this).addClass("false");

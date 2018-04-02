@@ -8,6 +8,9 @@ export default class CommonView {
     }
 
     static initLanguageInLocalStorage(data) {
+        if (Translations[data.language] === undefined) {
+            data.language = "de";
+        }
         CommonViewConfig.language = data.language;
         try {
             localStorage.language = data.language;
@@ -180,11 +183,7 @@ const Translations = {
             profile: "Mein Profil",
             username: "Benutzername",
             password: "Passwort",
-            name: "Nachname",
-            prename: "Vorname",
             email: "Email",
-            nameNotEmpty: "Nachname muss angegeben werden.",
-            prenameNotEmpty: "Vorname muss angegeben werden.",
             emailNotEmpty: "Email muss angegeben werden.",
             save: "Speichern",
             myCourseList: "Meine Kurse",
@@ -247,8 +246,8 @@ const Translations = {
             profile: "My profile",
             myBoxes: "My boxes",
             myCourses: "My courses",
-            noCourses: "Keine Kurse",
-            noBoxes: "Keine Lern-Boxen",
+            noCourses: "No courses",
+            noBoxes: "No boxes",
             backToMyCourses: "Back to my courses",
             pointsOfMaxPoints: "of",
             backToMyLessons: "Back to my lessons",
@@ -317,11 +316,7 @@ const Translations = {
             profile: "My Profile",
             username: "Username",
             password: "Password",
-            name: "Lastname",
-            prename: "Prename",
             email: "Email",
-            nameNotEmpty: "Lastname must be given.",
-            prenameNotEmpty: "Prename must be given.",
             emailNotEmpty: "Email must be given.",
             save: "Save",
             myCourseList: "My courses",
