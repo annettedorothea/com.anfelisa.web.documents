@@ -669,6 +669,9 @@
             <button class="btn btn-blue logout-button" onclick="Anfelisa.logout()"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;&nbsp;{{texts.logout}}</button>
             <button class="btn btn-blue" onclick="Anfelisa.route( {'hash' : 'private'})" data-toggle="tooltip" title="{{texts.statistics}}"><i class="fa fa-calendar"></i></button>
             <button class="btn btn-blue" onclick="Anfelisa.route( {'hash' : 'profile'})" data-toggle="tooltip" title="{{texts.profile}}"><i class="fa fa-user-o"></i></button>
+            {{#isAdmin}}
+                <button class="btn btn-blue" onclick="Anfelisa.route( {'hash' : 'admin'})" data-toggle="tooltip" title="{{texts.admin}}"><i class="fa fa-cog"></i></button>
+            {{/isAdmin}}
         </div>
         <div class="form-group">
             <button class="btn btn-blue login-button" onclick="Anfelisa.switchLanguage( {language: 'de'} )">{{texts.german}}</button>

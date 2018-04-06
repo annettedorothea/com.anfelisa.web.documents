@@ -1,7 +1,7 @@
-import AbstractRenderHomeOkEvent from "../../../gen/common/events/AbstractRenderHomeOkEvent";
+import AbstractGetRoleUnauthorizedEvent from "../../../gen/common/events/AbstractGetRoleUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
-export default class RenderHomeOkEvent extends AbstractRenderHomeOkEvent {
+export default class GetRoleUnauthorizedEvent extends AbstractGetRoleUnauthorizedEvent {
     prepareDataForView() {
         this.eventData = AppUtils.deepCopy(this.eventParam);
         if (this.eventData.data === undefined) {

@@ -4,27 +4,30 @@ target ES6
 
 ACE {
 	init Init {
-		on publicCourses ( Common.initLanguageInLocalStorage ) triggers ( navigation.ReadPublicCourses RenderLogin RenderHome )
-		on publicLessons (Common.initLanguageInLocalStorage ) triggers ( navigation.ReadPublicLessons RenderLogin)
-		on publicTests (Common.initLanguageInLocalStorage ) triggers ( navigation.ReadPublicTests RenderLogin)
-		on publicTest (Common.initLanguageInLocalStorage ) triggers ( navigation.ReadPublicTest RenderLogin)
-		on privateCourses (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadStatistics navigation.ReadBoxes RenderLogout)
-		on privateLessons (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateLessons navigation.ReadBoxes RenderLogout)
-		on privateTests (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateTests navigation.ReadBoxes RenderLogout)
-		on privateTest (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateTest navigation.ReadBoxes RenderLogout) 
-		on result (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadResult navigation.ReadBoxes RenderLogout)
-		on box (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadNextCard RenderLogout)
-		on reinforce (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadReinforceCards RenderLogout)
-		on profile (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( profile.OpenProfile navigation.ReadPrivateCourses navigation.ReadBoxes RenderLogout)
-		on profileCourses (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( profile.OpenCourseSelection navigation.ReadPrivateCourses navigation.ReadBoxes RenderLogout)
-		on profileBoxCreate (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenBoxCreation RenderLogout)
-		on profileBoxEdit (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadBox RenderLogout)
-		on profileCourseAdd (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadCourses RenderLogout)
-		on profilePassword (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenChangePassword RenderLogout)
-		on forgotPassword (Common.initLanguageInLocalStorage ) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenForgotPassword)
-		on newPassword (Common.initLanguageInLocalStorage) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenNewPassword)
-		on register (Common.initLanguageInLocalStorage) triggers ( navigation.ReadPublicCourses RenderLogin profile.OpenRegistration)
+		on publicCourses ( Common.initLanguageInLocalStorage navigation.Content.renderPublicCourses Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicCourses )
+		on publicLessons (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicLessons )
+		on publicTests (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicTests )
+		on publicTest (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicTest )
+		on forgotPassword (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicCourses  profile.OpenForgotPassword)
+		on newPassword (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicCourses  profile.OpenNewPassword)
+		on register (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicCourses  profile.OpenRegistration)
 		on confirmEmail triggers (profile.ConfirmEmail)
+
+		on privateCourses (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadStatistics navigation.ReadBoxes )
+		on privateLessons (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateLessons navigation.ReadBoxes )
+		on privateTests (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateTests navigation.ReadBoxes )
+		on privateTest (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateTest navigation.ReadBoxes ) 
+		on result (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadResult navigation.ReadBoxes )
+		on box (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadNextCard )
+		on reinforce (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadReinforceCards )
+		on profile (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole profile.OpenProfile navigation.ReadPrivateCourses navigation.ReadBoxes )
+		on profileCourses (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole profile.OpenCourseSelection navigation.ReadPrivateCourses navigation.ReadBoxes )
+		on profileBoxCreate (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenBoxCreation )
+		on profileBoxEdit (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadBox )
+		on profileCourseAdd (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadCourses )
+		on profilePassword (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenChangePassword )
+
+		on admin (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes admin.LoadAllUsers )
 	}
 	Route {
 		on ok ( Common.updateHash ) triggers ( Init )
@@ -33,7 +36,7 @@ ACE {
 		on ok ( Common.updateHash ) triggers ( Init )
 	}
 	Login {
-		on ok (Common.initUserInLocalStorage Common.initUserInLocalStorage ) triggers ( Route )
+		on ok (Common.initUserInLocalStorage ) triggers ( Route )
 		on unauthorized ( Error.renderError ) triggers ( Logout )
 	}
 	Logout {
@@ -58,14 +61,9 @@ ACE {
 	SwitchLanguage {
 		on ok (Common.initLanguageInLocalStorage) triggers (Init)
 	}
-	RenderLogin {
-		on ok (Header.renderLogin)
-	}
-	RenderLogout {
-		on ok (Header.renderLogout)
-	}
-	RenderHome {
-		on ok (navigation.Content.renderPublicCourses)
+	GetRole {
+		on ok ( Common.initRoleInLocalStorage Header.renderLogout)
+		on unauthorized ( common.Error.renderError ) triggers (common.Logout)
 	}
 }
 
@@ -80,6 +78,7 @@ views {
 		initLanguageInLocalStorage
 		updateHash
 		initUserInLocalStorage
+		initRoleInLocalStorage
 		removeUserFromLocalStorage
 	}
 	Header {

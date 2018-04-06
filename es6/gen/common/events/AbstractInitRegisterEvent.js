@@ -5,7 +5,7 @@ export default class AbstractInitRegisterEvent extends Event {
         super(eventParam, 'common.InitRegisterEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.CommonView.initLanguageInLocalStorage" ];
+	    return [ "common.views.CommonView.initLanguageInLocalStorage", "common.views.HeaderView.renderLogin", "navigation.views.BoxesView.hideBoxes" ];
 	}
 }
 

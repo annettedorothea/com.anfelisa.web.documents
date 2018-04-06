@@ -6,6 +6,7 @@ export * from "../../gen/multiplechoice/ActionFunctionExports";
 export * from "../../gen/navigation/ActionFunctionExports";
 export * from "../../gen/profile/ActionFunctionExports";
 export * from "../../gen/vocabulary/ActionFunctionExports";
+export * from "../../gen/admin/ActionFunctionExports";
 
 export * from "../../gen/ace/Scenario";
 export * from "../../gen/ace/Bug";
@@ -23,6 +24,8 @@ import EventListenerRegistrationProfile from "../../gen/profile/EventListenerReg
 import ActionFactoryRegistrationProfile from "../../gen/profile/ActionFactoryRegistration";
 import EventListenerRegistrationVocabulary from "../../gen/vocabulary/EventListenerRegistration";
 import ActionFactoryRegistrationVocabulary from "../../gen/vocabulary/ActionFactoryRegistration";
+import EventListenerRegistrationAdmin from "../../gen/admin/EventListenerRegistration";
+import ActionFactoryRegistrationAdmin from "../../gen/admin/ActionFactoryRegistration";
 
 import CommonView from "../common/views/CommonView";
 
@@ -91,6 +94,9 @@ ActionFactoryRegistrationProfile.init();
 
 EventListenerRegistrationVocabulary.init();
 ActionFactoryRegistrationVocabulary.init();
+
+EventListenerRegistrationAdmin.init();
+ActionFactoryRegistrationAdmin.init();
 
 AppUtils.start();
 

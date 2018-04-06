@@ -5,7 +5,7 @@ export default class AbstractInitPublicTestEvent extends Event {
         super(eventParam, 'common.InitPublicTestEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.CommonView.initLanguageInLocalStorage" ];
+	    return [ "common.views.CommonView.initLanguageInLocalStorage", "common.views.HeaderView.renderLogin", "navigation.views.BoxesView.hideBoxes" ];
 	}
 }
 

@@ -17,7 +17,9 @@ export default class InitCommand extends AbstractInitCommand {
                     hashes = [ "private" ];
                 }
                 if (hashes[0]) {
-                    if (hashes[0] === "private") {
+                    if (hashes[0] === "admin") {
+                        this.commandData.outcome = this.admin;
+                    } else if (hashes[0] === "private") {
                         if (hashes[1]) {
                             this.commandData.courseId = hashes[1];
                             if (hashes[2]) {

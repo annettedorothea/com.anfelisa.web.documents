@@ -31,12 +31,22 @@ export default class CommonView {
         }
     };
 
+    static initRoleInLocalStorage(data) {
+        CommonViewConfig.role = data.role;
+        try {
+            localStorage.role = data.role;
+        } catch (exception) {
+        }
+    };
+
     static removeUserFromLocalStorage(data) {
         CommonViewConfig.username = undefined;
         CommonViewConfig.password = undefined;
+        CommonViewConfig.role = undefined;
         try {
             localStorage.removeItem("username");
             localStorage.removeItem("password");
+            localStorage.removeItem("role");
         } catch (exception) {
         }
     };
@@ -111,6 +121,7 @@ const Translations = {
             logout: "Abmelden",
             statistics: "Statistik",
             profile: "Mein Profil",
+            admin: "Admin-Bereich",
             myBoxes: "Meine Lern-Boxen",
             myCourses: "Meine Kurse",
             noCourses: "Keine Kurse",
@@ -244,6 +255,7 @@ const Translations = {
             logout: "Logout",
             statistics: "Statistics",
             profile: "My profile",
+            admin: "Admin",
             myBoxes: "My boxes",
             myCourses: "My courses",
             noCourses: "No courses",

@@ -5,7 +5,7 @@ export default class AbstractInitPublicCoursesEvent extends Event {
         super(eventParam, 'common.InitPublicCoursesEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.CommonView.initLanguageInLocalStorage" ];
+	    return [ "common.views.CommonView.initLanguageInLocalStorage", "navigation.views.ContentView.renderPublicCourses", "common.views.HeaderView.renderLogin", "navigation.views.BoxesView.hideBoxes" ];
 	}
 }
 

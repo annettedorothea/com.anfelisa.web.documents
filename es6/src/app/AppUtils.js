@@ -14,7 +14,7 @@ export default class AppUtils {
     }
 
     static getApiKey() {
-        return "01c064fa-62a1-4bf1-83f9-ec1e754f16ca";
+        return "dd3785a0-34ea-4152-8813-6f06b19b28f1";
     }
 
     static getAceScenariosBaseUrl() {

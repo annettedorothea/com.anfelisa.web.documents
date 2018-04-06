@@ -8,9 +8,7 @@ import ValidateRequiredFieldAction from "../../src/common/actions/ValidateRequir
 import OpenReallyDeleteDialogAction from "../../src/common/actions/OpenReallyDeleteDialogAction";
 import CloseAllDialogsAction from "../../src/common/actions/CloseAllDialogsAction";
 import SwitchLanguageAction from "../../src/common/actions/SwitchLanguageAction";
-import RenderLoginAction from "../../src/common/actions/RenderLoginAction";
-import RenderLogoutAction from "../../src/common/actions/RenderLogoutAction";
-import RenderHomeAction from "../../src/common/actions/RenderHomeAction";
+import GetRoleAction from "../../src/common/actions/GetRoleAction";
 
 export function init(actionParam) {
     new InitAction(actionParam).apply();
@@ -52,16 +50,8 @@ export function switchLanguage(actionParam) {
     new SwitchLanguageAction(actionParam).apply();
 }
 
-export function renderLogin(actionParam) {
-    new RenderLoginAction(actionParam).apply();
-}
-
-export function renderLogout(actionParam) {
-    new RenderLogoutAction(actionParam).apply();
-}
-
-export function renderHome(actionParam) {
-    new RenderHomeAction(actionParam).apply();
+export function getRole(actionParam) {
+    new GetRoleAction(actionParam).apply();
 }
 
 

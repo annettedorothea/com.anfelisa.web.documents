@@ -5,7 +5,7 @@ export default class AbstractLoginOkEvent extends Event {
         super(eventParam, 'common.LoginOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.CommonView.initUserInLocalStorage", "common.views.CommonView.initUserInLocalStorage" ];
+	    return [ "common.views.CommonView.initUserInLocalStorage" ];
 	}
 }
 

@@ -1,20 +1,38 @@
 import ACEController from "../ace/ACEController";
 import CommonView from "../../src/common/views/CommonView";
-import ErrorView from "../../src/common/views/ErrorView";
+import ContentView from "../../src/navigation/views/ContentView";
+import HeaderView from "../../src/common/views/HeaderView";
 import BoxesView from "../../src/navigation/views/BoxesView";
+import ErrorView from "../../src/common/views/ErrorView";
 import TestView from "../../src/common/views/TestView";
 import ValidationView from "../../src/common/views/ValidationView";
 import ReallyDeleteDialogView from "../../src/common/views/ReallyDeleteDialogView";
-import HeaderView from "../../src/common/views/HeaderView";
-import ContentView from "../../src/navigation/views/ContentView";
 
 export default class EventListenerRegistrationCommon {
 
 	static init() {
 		ACEController.registerListener('common.InitPublicCoursesEvent', CommonView.initLanguageInLocalStorage);
+		ACEController.registerListener('common.InitPublicCoursesEvent', ContentView.renderPublicCourses);
+		ACEController.registerListener('common.InitPublicCoursesEvent', HeaderView.renderLogin);
+		ACEController.registerListener('common.InitPublicCoursesEvent', BoxesView.hideBoxes);
 		ACEController.registerListener('common.InitPublicLessonsEvent', CommonView.initLanguageInLocalStorage);
+		ACEController.registerListener('common.InitPublicLessonsEvent', HeaderView.renderLogin);
+		ACEController.registerListener('common.InitPublicLessonsEvent', BoxesView.hideBoxes);
 		ACEController.registerListener('common.InitPublicTestsEvent', CommonView.initLanguageInLocalStorage);
+		ACEController.registerListener('common.InitPublicTestsEvent', HeaderView.renderLogin);
+		ACEController.registerListener('common.InitPublicTestsEvent', BoxesView.hideBoxes);
 		ACEController.registerListener('common.InitPublicTestEvent', CommonView.initLanguageInLocalStorage);
+		ACEController.registerListener('common.InitPublicTestEvent', HeaderView.renderLogin);
+		ACEController.registerListener('common.InitPublicTestEvent', BoxesView.hideBoxes);
+		ACEController.registerListener('common.InitForgotPasswordEvent', CommonView.initLanguageInLocalStorage);
+		ACEController.registerListener('common.InitForgotPasswordEvent', HeaderView.renderLogin);
+		ACEController.registerListener('common.InitForgotPasswordEvent', BoxesView.hideBoxes);
+		ACEController.registerListener('common.InitNewPasswordEvent', CommonView.initLanguageInLocalStorage);
+		ACEController.registerListener('common.InitNewPasswordEvent', HeaderView.renderLogin);
+		ACEController.registerListener('common.InitNewPasswordEvent', BoxesView.hideBoxes);
+		ACEController.registerListener('common.InitRegisterEvent', CommonView.initLanguageInLocalStorage);
+		ACEController.registerListener('common.InitRegisterEvent', HeaderView.renderLogin);
+		ACEController.registerListener('common.InitRegisterEvent', BoxesView.hideBoxes);
 		ACEController.registerListener('common.InitPrivateCoursesEvent', CommonView.initLanguageInLocalStorage);
 		ACEController.registerListener('common.InitPrivateCoursesEvent', CommonView.initUserInLocalStorage);
 		ACEController.registerListener('common.InitPrivateLessonsEvent', CommonView.initLanguageInLocalStorage);
@@ -41,12 +59,10 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.InitProfileCourseAddEvent', CommonView.initUserInLocalStorage);
 		ACEController.registerListener('common.InitProfilePasswordEvent', CommonView.initLanguageInLocalStorage);
 		ACEController.registerListener('common.InitProfilePasswordEvent', CommonView.initUserInLocalStorage);
-		ACEController.registerListener('common.InitForgotPasswordEvent', CommonView.initLanguageInLocalStorage);
-		ACEController.registerListener('common.InitNewPasswordEvent', CommonView.initLanguageInLocalStorage);
-		ACEController.registerListener('common.InitRegisterEvent', CommonView.initLanguageInLocalStorage);
+		ACEController.registerListener('common.InitAdminEvent', CommonView.initLanguageInLocalStorage);
+		ACEController.registerListener('common.InitAdminEvent', CommonView.initUserInLocalStorage);
 		ACEController.registerListener('common.RouteOkEvent', CommonView.updateHash);
 		ACEController.registerListener('common.RouteHomeOkEvent', CommonView.updateHash);
-		ACEController.registerListener('common.LoginOkEvent', CommonView.initUserInLocalStorage);
 		ACEController.registerListener('common.LoginOkEvent', CommonView.initUserInLocalStorage);
 		ACEController.registerListener('common.LoginUnauthorizedEvent', ErrorView.renderError);
 		ACEController.registerListener('common.LogoutOkEvent', CommonView.removeUserFromLocalStorage);
@@ -58,9 +74,9 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.OpenReallyDeleteDialogDeleteBoxEvent', ReallyDeleteDialogView.displayDeleteBoxDialog);
 		ACEController.registerListener('common.OpenReallyDeleteDialogRemovedCardEvent', ReallyDeleteDialogView.displayRemoveCardFromBoxDialog);
 		ACEController.registerListener('common.SwitchLanguageOkEvent', CommonView.initLanguageInLocalStorage);
-		ACEController.registerListener('common.RenderLoginOkEvent', HeaderView.renderLogin);
-		ACEController.registerListener('common.RenderLogoutOkEvent', HeaderView.renderLogout);
-		ACEController.registerListener('common.RenderHomeOkEvent', ContentView.renderPublicCourses);
+		ACEController.registerListener('common.GetRoleOkEvent', CommonView.initRoleInLocalStorage);
+		ACEController.registerListener('common.GetRoleOkEvent', HeaderView.renderLogout);
+		ACEController.registerListener('common.GetRoleUnauthorizedEvent', ErrorView.renderError);
 	}
 
 }

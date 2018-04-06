@@ -9,9 +9,7 @@ import ValidateRequiredFieldAction from "../../src/common/actions/ValidateRequir
 import OpenReallyDeleteDialogAction from "../../src/common/actions/OpenReallyDeleteDialogAction";
 import CloseAllDialogsAction from "../../src/common/actions/CloseAllDialogsAction";
 import SwitchLanguageAction from "../../src/common/actions/SwitchLanguageAction";
-import RenderLoginAction from "../../src/common/actions/RenderLoginAction";
-import RenderLogoutAction from "../../src/common/actions/RenderLogoutAction";
-import RenderHomeAction from "../../src/common/actions/RenderHomeAction";
+import GetRoleAction from "../../src/common/actions/GetRoleAction";
 
 export default class ActionFactoryRegistrationCommon {
 
@@ -26,9 +24,7 @@ export default class ActionFactoryRegistrationCommon {
 		ACEController.registerFactory('common.OpenReallyDeleteDialogAction', (actionParam) => new OpenReallyDeleteDialogAction(actionParam));
 		ACEController.registerFactory('common.CloseAllDialogsAction', (actionParam) => new CloseAllDialogsAction(actionParam));
 		ACEController.registerFactory('common.SwitchLanguageAction', (actionParam) => new SwitchLanguageAction(actionParam));
-		ACEController.registerFactory('common.RenderLoginAction', (actionParam) => new RenderLoginAction(actionParam));
-		ACEController.registerFactory('common.RenderLogoutAction', (actionParam) => new RenderLogoutAction(actionParam));
-		ACEController.registerFactory('common.RenderHomeAction', (actionParam) => new RenderHomeAction(actionParam));
+		ACEController.registerFactory('common.GetRoleAction', (actionParam) => new GetRoleAction(actionParam));
 	}
 
 }

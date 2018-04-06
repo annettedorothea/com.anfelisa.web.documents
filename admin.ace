@@ -1,0 +1,16 @@
+admin
+
+target ES6
+
+ACE {
+	LoadAllUsers {
+		on ok (Admin.renderAllUsers)
+		on unauthorized ( common.Error.renderError ) triggers (common.Logout)
+	}
+}
+
+views {
+	Admin {
+		renderAllUsers
+	}
+}
