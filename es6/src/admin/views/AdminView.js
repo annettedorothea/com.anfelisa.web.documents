@@ -1,7 +1,11 @@
+import CommonView from "../../common/views/CommonView";
 
 export default class AdminView {
 	static renderAllUsers(eventData) {
-		console.log("renderAllUsers", eventData);
+        eventData.data.texts = CommonView.getTexts().user;
+        const template = $('#adminUserList').html();
+        const rendered = Mustache.render(template, eventData.data);
+        $('.content-pane').html(rendered);
 	};
 	
 }

@@ -54,6 +54,7 @@ ACE {
 		on removeCourseFromUser (ReallyDeleteDialog.displayRemoveCourseFromUserDialog)
 		on deleteBox (ReallyDeleteDialog.displayDeleteBoxDialog)
 		on removedCard (ReallyDeleteDialog.displayRemoveCardFromBoxDialog)
+		on deleteUser (ReallyDeleteDialog.displayDeleteUserDialog)
 	}
 	CloseAllDialogs {
 		on ok 
@@ -96,5 +97,6 @@ views {
 		displayRemoveCourseFromUserDialog
 		displayDeleteBoxDialog
 		displayRemoveCardFromBoxDialog
+		displayDeleteUserDialog
 	}
 }

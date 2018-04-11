@@ -169,7 +169,10 @@ const Translations = {
             dayBehindMessage: "Du bist einen Tag hinterher. Soll Dein Zeitplan neu berechnet werden?",
             daysBehindMessage: "Du bist %number% Tage hinterher. Soll Dein Zeitplan neu berechnet werden?",
             yes: "Ja",
-            warning: "Achtung!"
+            warning: "Achtung!",
+            doNotChangeDefaultAdmin: "Du kannst die Rolle des Default-Admin nicht verändern.",
+            doNotDeleteDefaultAdmin: "Du kannst den Default-Admin nicht löschen.",
+            reallyDeleteUser: "Soll der Benutzer wirklich gelöscht werden?"
         },
         error: {
             readPrivateCoursesFailed: "Kurse konnten nicht geladen werden.",
@@ -224,7 +227,13 @@ const Translations = {
             usernameNotEmpty: "Benutzername muss angegeben werden.",
             submit: "Abschicken",
             register: "Registrieren",
-            usernameNotAvailable: "Benutzername ist leider nicht mehr frei."
+            usernameNotAvailable: "Benutzername ist leider nicht mehr frei.",
+            emailConfirmed: "bestätigt",
+            role: "Rolle",
+            admin: "Admin",
+            author: "Autor",
+            student: "Schüler",
+            newPassword: "Neues Passwort"
         }
     },
     en: {
@@ -303,7 +312,10 @@ const Translations = {
             dayBehindMessage: "You are one day behind. Recalculate your schedule?",
             daysBehindMessage: "You are %number% days behind. Recalculate your schedule?",
             yes: "Yes",
-            warning: "Attention!"
+            warning: "Attention!",
+            doNotChangeDefaultAdmin: "You cannot change the default admin's role.",
+            doNotDeleteDefaultAdmin: "You cannot delete the default admin.",
+            reallyDeleteUser: "Really delete user?"
         },
         error: {
             readPrivateCoursesFailed: "Failed to load private courses.",
@@ -358,7 +370,13 @@ const Translations = {
             usernameNotEmpty: "Username must be given.",
             submit: "Submit",
             register: "Register",
-            usernameNotAvailable: "Username is already taken."
+            usernameNotAvailable: "Username is already taken.",
+            emailConfirmed: "confirmed",
+            role: "Role",
+            admin: "Admin",
+            author: "Author",
+            student: "Student",
+            newPassword: "New password"
         }
     }
 };

@@ -7,6 +7,15 @@ export default class LoadAllUsersOkEvent extends AbstractLoadAllUsersOkEvent {
         if (this.eventData.data === undefined) {
         	this.eventData.data = {};
         }
+        this.eventData.data.userList.forEach((user) => {
+            if (user.role === "ADMIN") {
+                user.adminSelected = true;
+            } else if (user.role === "AUTHOR") {
+                user.authorSelected = true;
+            } else if (user.role === "STUDENT") {
+                user.studentSelected = true;
+            }
+        });
     }
 }
 

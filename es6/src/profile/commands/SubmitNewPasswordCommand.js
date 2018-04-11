@@ -13,7 +13,8 @@ export default class SubmitNewPasswordCommand extends AbstractSubmitNewPasswordC
                 resolve();
             } else {
                 const data = {
-                    password: this.commandParam.newPassword
+                    newPassword: this.commandParam.newPassword,
+                    editedUsername: this.commandParam.username
                 };
                 this.httpPut("api/users/password", [], data).then(() => {
                     this.commandData.outcome = this.saved;

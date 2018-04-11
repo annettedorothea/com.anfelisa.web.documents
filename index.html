@@ -1302,6 +1302,52 @@
     </div>
 </script>
 
+<script id="adminUserList" type="x-tmpl-mustache">
+    <div class="adminUserList">
+        <h2>{{texts.userList}}</h2>
+        <div class="table-responsive">
+            <table class="table statHeader table-condensed">
+                <tr class="hidden-xs hidden-sm visible-md-* visible-lg-*">
+                    <th>{{texts.username}}</th>
+                    <th>{{texts.email}}</th>
+                    <th class="text-center">{{texts.emailConfirmed}}</th>
+                    <th>{{texts.role}}</th>
+                    <th></th>
+                </tr>
+                {{#userList}}
+                <tr>
+                    <td>{{username}}</td>
+                    <td>{{email}}</td>
+                    <td class="text-center">
+                        {{#emailConfirmed}}<i class="fa fa-check-square-o"></i>{{/emailConfirmed}}
+                        {{^emailConfirmed}}<i class="fa fa-square-o"></i>{{/emailConfirmed}}
+                    </td>
+                    <td>
+                        <select class="form-control" id="{{username}}_role" onChange="Anfelisa.updateUserRole({ editedUsername: '{{username}}'})">
+                            <option value="ADMIN" {{#adminSelected}}selected{{/adminSelected}}>{{texts.admin}}</option>
+                            <option value="AUTHOR" {{#authorSelected}}selected{{/authorSelected}}>{{texts.author}}</option>
+                            <option value="STUDENT" {{#studentSelected}}selected{{/studentSelected}}>{{texts.student}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <input type="text" class="form-control username" id="{{username}}_password" placeholder="{{texts.newPassword}}" />
+                                <button class="btn btn-default" type="button" onClick="Anfelisa.updatePasswordAdmin({ editedUsername: '{{username}}'})"><i class="fa fa-check"></i></button>
+                                <button class="btn btn-default" type="button"
+                                    onclick="Anfelisa.openReallyDeleteDialog({ deletedUsername: '{{username}}', 'dialog' : 'deleteUser'})">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {{/userList}}
+            </table>
+        </div>
+    </div>
+</script>
+
 <script type="text/javascript" src="lib/anfelisa.js"></script>
 
 </html>

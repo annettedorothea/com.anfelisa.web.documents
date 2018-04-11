@@ -3,6 +3,7 @@ import RemoveCourseAction from "../../profile/actions/RemoveCourseAction";
 import DeleteBoxAction from "../../profile/actions/DeleteBoxAction";
 import CloseAllDialogsAction from "../../common/actions/CloseAllDialogsAction";
 import RemoveCardFromBoxAction from "../../card/actions/RemoveCardFromBoxAction";
+import DeleteUserAdminAction from "../../admin/actions/DeleteUserAdminAction";
 
 export default class ReallyDeleteDialogView {
     static displayRemoveCourseFromUserDialog(eventData) {
@@ -29,6 +30,16 @@ export default class ReallyDeleteDialogView {
         bootbox.confirm(CommonView.getTexts().common.reallyRemoveCardFromBox, function(result) {
             if (result === true) {
                 new RemoveCardFromBoxAction( {'boxId' : eventData.boxId, 'cardOfBoxId' : eventData.cardOfBoxId} ).apply();
+            } else {
+                new CloseAllDialogsAction().apply();
+            }
+        });
+    };
+
+    static displayDeleteUserDialog(eventData) {
+        bootbox.confirm(CommonView.getTexts().common.reallyDeleteUser, function(result) {
+            if (result === true) {
+                new DeleteUserAdminAction( {'deletedUsername' : eventData.deletedUsername } ).apply();
             } else {
                 new CloseAllDialogsAction().apply();
             }

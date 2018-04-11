@@ -73,6 +73,7 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.OpenReallyDeleteDialogRemoveCourseFromUserEvent', ReallyDeleteDialogView.displayRemoveCourseFromUserDialog);
 		ACEController.registerListener('common.OpenReallyDeleteDialogDeleteBoxEvent', ReallyDeleteDialogView.displayDeleteBoxDialog);
 		ACEController.registerListener('common.OpenReallyDeleteDialogRemovedCardEvent', ReallyDeleteDialogView.displayRemoveCardFromBoxDialog);
+		ACEController.registerListener('common.OpenReallyDeleteDialogDeleteUserEvent', ReallyDeleteDialogView.displayDeleteUserDialog);
 		ACEController.registerListener('common.SwitchLanguageOkEvent', CommonView.initLanguageInLocalStorage);
 		ACEController.registerListener('common.GetRoleOkEvent', CommonView.initRoleInLocalStorage);
 		ACEController.registerListener('common.GetRoleOkEvent', HeaderView.renderLogout);

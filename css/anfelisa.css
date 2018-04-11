@@ -708,3 +708,8 @@ pre {
     font-size: 12px;
 }
 
+input.small {
+    max-width: 10px;
+}
+
+
