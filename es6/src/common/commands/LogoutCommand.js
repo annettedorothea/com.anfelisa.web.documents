@@ -2,9 +2,9 @@ import AbstractLogoutCommand from "../../../gen/common/commands/AbstractLogoutCo
 
 export default class LogoutCommand extends AbstractLogoutCommand {
     execute() {
-        return new Promise((resolve) => {
-            this.commandData.hash = "public";
+        return new Promise((resolve, reject) => {
             this.commandData.outcome = this.ok;
+            this.commandData.hash = "#";
 			resolve();
         });
     }

@@ -1,102 +1,58 @@
 common
 
-target ES6
+target ES6 
 
 ACE {
 	init Init {
-		on publicCourses ( Common.initLanguageInLocalStorage navigation.Content.renderPublicCourses Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicCourses )
-		on publicLessons (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicLessons )
-		on publicTests (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicTests )
-		on publicTest (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicTest )
-		on forgotPassword (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicCourses  profile.OpenForgotPassword)
-		on newPassword (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicCourses  profile.OpenNewPassword)
-		on register (Common.initLanguageInLocalStorage Header.renderLogin navigation.Boxes.hideBoxes ) triggers ( navigation.ReadPublicCourses  profile.OpenRegistration)
-		on confirmEmail triggers (profile.ConfirmEmail)
-
-		on privateCourses (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadStatistics navigation.ReadBoxes )
-		on privateLessons (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateLessons navigation.ReadBoxes )
-		on privateTests (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateTests navigation.ReadBoxes )
-		on privateTest (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateTest navigation.ReadBoxes ) 
-		on result (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadResult navigation.ReadBoxes )
-		on box (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadNextCard )
-		on reinforce (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes navigation.ReadReinforceCards )
-		on profile (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole profile.OpenProfile navigation.ReadPrivateCourses navigation.ReadBoxes )
-		on profileCourses (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole profile.OpenCourseSelection navigation.ReadPrivateCourses navigation.ReadBoxes )
-		on profileBoxCreate (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenBoxCreation )
-		on profileBoxEdit (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadBox )
-		on profileCourseAdd (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes profile.LoadCourses )
-		on profilePassword (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes profile.OpenChangePassword )
-
-		on admin (Common.initLanguageInLocalStorage Common.initUserInLocalStorage ) triggers ( GetRole navigation.ReadPrivateCourses navigation.ReadBoxes admin.LoadAllUsers )
+		on login ( Common.initTexts Login.render )
+		on registration ( Common.initTexts Registration.render )
+		on dashboard ( Common.initTexts Common.initUser ) triggers ( LoadDashboard )
 	}
 	Route {
-		on ok ( Common.updateHash ) triggers ( Init )
+		on ok ( Common.updateHash )
 	}
-	RouteHome {
-		on ok ( Common.updateHash ) triggers ( Init )
+	CheckUsername preUpdateUI (Registration.displayUsernameSpinner) postUpdateUI (Registration.hideUsernameSpinner) {
+		on empty
+		on available ( Registration.usernameAvailable )
+		on notAvailable ( Registration.usernameNotAvailable )
+	}
+	CreateUser preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+		on ok (Common.initUser) triggers (Route)
+		on error ( Common.displayError ) 
 	}
 	Login {
-		on ok (Common.initUserInLocalStorage ) triggers ( Route )
-		on unauthorized ( Error.renderError ) triggers ( Logout )
+		on ok ( Common.initUser ) triggers ( Route )
+	}
+	LoadDashboard preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+		on ok ( Common.initUser Dashboard.render)
+		on unauthorized ( Common.displayError Common.resetUser ) triggers ( Route )
 	}
 	Logout {
-		on ok (Common.removeUserFromLocalStorage navigation.Boxes.hideBoxes ) triggers ( Route )
-	}
-	SaveResult {
-		on noCredentials ( Test.renderResult	)
-		on resultSaved triggers ( Route	)
-	}
-	ValidateRequiredField {
-		on fieldEmpty ( Validation.fieldEmpty )
-		on fieldNotEmpty ( Validation.fieldNotEmpty )
-	}
-	OpenReallyDeleteDialog {
-		on removeCourseFromUser (ReallyDeleteDialog.displayRemoveCourseFromUserDialog)
-		on deleteBox (ReallyDeleteDialog.displayDeleteBoxDialog)
-		on removedCard (ReallyDeleteDialog.displayRemoveCardFromBoxDialog)
-		on deleteUser (ReallyDeleteDialog.displayDeleteUserDialog)
-	}
-	CloseAllDialogs {
-		on ok 
-	}
-	SwitchLanguage {
-		on ok (Common.initLanguageInLocalStorage) triggers (Init)
-	}
-	GetRole {
-		on ok ( Common.initRoleInLocalStorage Header.renderLogout)
-		on unauthorized ( common.Error.renderError ) triggers (common.Logout)
+		on ok ( Common.resetUser ) triggers ( Route )
 	}
 }
 
 views {
-	Error {
-		renderError
-	}
-	Message {
-		renderMessage
-	}
 	Common {
-		initLanguageInLocalStorage
 		updateHash
-		initUserInLocalStorage
-		initRoleInLocalStorage
-		removeUserFromLocalStorage
+		initTexts
+		displaySpinner
+		hideSpinner
+		displayError
+		initUser
+		resetUser
 	}
-	Header {
-		renderLogin
-		renderLogout
+	Login {
+		render
 	}
-	Test {
-		renderResult
+	Registration {
+		render
+		usernameAvailable
+		usernameNotAvailable
+		displayUsernameSpinner
+		hideUsernameSpinner
 	}
-	Validation {
-		fieldEmpty
-		fieldNotEmpty
-	}
-	ReallyDeleteDialog {
-		displayRemoveCourseFromUserDialog
-		displayDeleteBoxDialog
-		displayRemoveCardFromBoxDialog
-		displayDeleteUserDialog
+	Dashboard {
+		render
 	}
 }

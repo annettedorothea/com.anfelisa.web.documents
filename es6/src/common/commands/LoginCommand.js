@@ -2,19 +2,12 @@ import AbstractLoginCommand from "../../../gen/common/commands/AbstractLoginComm
 
 export default class LoginCommand extends AbstractLoginCommand {
     execute() {
-        return new Promise((resolve) => {
-            this.httpPost("api/user/login").then(() => {
-                this.commandData.hash = "private";
-                this.commandData.username = this.commandParam.username;
-                this.commandData.password = this.commandParam.password;
-                this.commandData.outcome = this.ok;
-                resolve();
-            }, (error) => {
-                this.commandData.messageKey = "loginFailed";
-                this.commandData.error = error;
-                this.commandData.outcome = this.unauthorized;
-                resolve();
-            });
+        return new Promise((resolve, reject) => {
+            this.commandData.username = this.commandParam.username;
+            this.commandData.password = this.commandParam.password;
+            this.commandData.outcome = this.ok;
+            this.commandData.hash = "#dashboard"
+			resolve();
         });
     }
 }

@@ -1,0 +1,47 @@
+card
+
+target ES6 
+
+ACE {
+	ShowNextCardItem {
+		on showWanted ( Card.showWanted Card.showScoreButtons )
+		on showNextLine ( Card.showNextLine ) triggers ( CheckIfComplexCardIsFinished )
+		on showNextWord ( Card.showNextWord ) triggers ( CheckIfComplexCardIsFinished )
+	}
+	CheckIfComplexCardIsFinished {
+		on complexCardIsFinished ( Card.showScoreButtons )
+		on complexCardIsNotFinished
+	}
+	ScoreCard {
+ 		on scored triggers ( common.Route )
+	}
+	RemoveCardFromBox {
+		on scored triggers ( common.Route common.CloseAllDialogs)
+	}
+	DisplayNextReinforceCard {
+		on next (navigation.Content.renderNextReinforceCard)
+		on finished (navigation.Content.renderReinforceFinished)
+	}
+	ScoreReinforcedCard {
+		on keep (Reinforce.keepCardInReinforceCardList) triggers (DisplayNextReinforceCard)
+		on remove (Reinforce.removeCardFromReinforceCardList) triggers (DisplayNextReinforceCard)
+	}
+	RecalculateScheduledCards {
+		on ok triggers (navigation.ReadNextCard navigation.ReadBoxes)
+	}
+}
+
+views {
+	Card {
+		showScoreButtons
+		showWanted
+		showNextLine
+		showNextWord
+	}
+	Reinforce {
+		saveReinforceCardList
+		removeCardFromReinforceCardList
+		keepCardInReinforceCardList
+	}
+	
+}

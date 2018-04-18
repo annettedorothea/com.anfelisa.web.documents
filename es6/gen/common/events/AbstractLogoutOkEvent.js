@@ -5,7 +5,7 @@ export default class AbstractLogoutOkEvent extends Event {
         super(eventParam, 'common.LogoutOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.CommonView.removeUserFromLocalStorage", "navigation.views.BoxesView.hideBoxes" ];
+	    return [ "common.views.CommonView.resetUser" ];
 	}
 }
 

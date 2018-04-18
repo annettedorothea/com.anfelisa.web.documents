@@ -1,16 +1,16 @@
 import ACEController from "../../gen/ace/ACEController";
+import InitAction from "../../src_bak/common/actions/InitAction";
 import uuid from "uuid";
-import InitAction from "../common/actions/InitAction";
-import ErrorView from "../common/views/ErrorView";
+import CryptoJS from "crypto-js";
 
 export default class AppUtils {
 
     static start() {
-        new InitAction().apply();
+    	new InitAction().apply();
     }
 
     static getClientVersion() {
-        return "3.0.0";
+        return "1.0.0";
     }
 
     static getApiKey() {
@@ -143,9 +143,9 @@ export default class AppUtils {
         }
     }
 
-	static basicAuth(user, password) {
-        if (user !== undefined && password !== undefined) {
-            const wordArray = CryptoJS.enc.Utf8.parse(user + ':' + password);
+	static basicAuth(username, password) {
+        if (username !== undefined && password !== undefined) {
+            const wordArray = CryptoJS.enc.Utf8.parse(username + ':' + password);
             const hash = CryptoJS.enc.Base64.stringify(wordArray);
             return "anfelisaBasic " + hash;
         }
@@ -157,19 +157,11 @@ export default class AppUtils {
     }
 
     static displayUnexpectedError(error) {
-        const data = {
-            message: "Error",
-            error: {
-                code: -1,
-                text: error
-            }
-        };
-        ErrorView.renderError(data);
     }
 
-    static deepCopy(object) {
-        return JSON.parse(JSON.stringify(object));
-    }
+	static deepCopy(object) {
+	    return JSON.parse(JSON.stringify(object));
+	}
 
 }
 

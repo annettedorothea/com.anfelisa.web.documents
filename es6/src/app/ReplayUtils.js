@@ -1,5 +1,3 @@
-import stringify from "json-stable-stringify";
-
 export default class ReplayUtils {
 
     static itemStringifyReplacer(key, value) {
@@ -11,9 +9,9 @@ export default class ReplayUtils {
     }
 
     static compareItems(expected, actual) {
-        const expectedJson = stringify(expected, { space: '  ', replacer: ReplayUtils.itemStringifyReplacer});
-        const actualJson = stringify(actual, { space: '  ', replacer: ReplayUtils.itemStringifyReplacer});
-        return expectedJson === actualJson;
+    	// will return false if just the order of props is different
+    	// for a better result use https://www.npmjs.com/package/json-stable-stringify
+        return JSON.stringify(expected, ReplayUtils.itemStringifyReplacer) === JSON.stringify(actual, ReplayUtils.itemStringifyReplacer);
     }
 
 }

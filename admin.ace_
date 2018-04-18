@@ -1,0 +1,32 @@
+admin
+
+target ES6
+
+ACE {
+	LoadAllUsers {
+		on ok (Admin.renderAllUsers)
+		on unauthorized ( common.Error.renderError ) triggers (common.Logout)
+	}
+	UpdateUserRole {
+		on ok triggers (LoadAllUsers)
+		on defaultAdmin (common.Message.renderMessage) triggers (LoadAllUsers)
+		on unauthorized ( common.Error.renderError ) triggers (common.Logout)
+	}
+	UpdatePasswordAdmin {
+		on ok triggers (LoadAllUsers)
+		on self ( common.Common.initUserInLocalStorage ) triggers (LoadAllUsers)
+		on unauthorized ( common.Error.renderError ) triggers (common.Logout)
+	}
+	DeleteUserAdmin {
+		on ok triggers (LoadAllUsers common.CloseAllDialogs)
+		on defaultAdmin (common.Message.renderMessage) triggers (LoadAllUsers common.CloseAllDialogs)
+		on self triggers (common.Logout common.CloseAllDialogs)
+		on unauthorized ( common.Error.renderError ) triggers (common.Logout common.CloseAllDialogs)
+	}
+}
+
+views {
+	Admin {
+		renderAllUsers
+	}
+}
