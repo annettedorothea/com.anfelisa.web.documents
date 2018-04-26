@@ -12,7 +12,6 @@ export default class Container extends React.Component {
     }
 
     render() {
-        console.log("this.state", this.state);
         return (
             <div>
                 {this.state.error && <label>{this.state.texts.errors[this.state.error.errorKey]}</label> }

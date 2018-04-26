@@ -4,7 +4,6 @@ export default class RouteAction extends AbstractRouteAction {
 
     initActionData() {
         this.actionData.hash = this.actionParam.hash;
-        console.log("RouteAction", this.actionData.hash);
     }
 
 }
