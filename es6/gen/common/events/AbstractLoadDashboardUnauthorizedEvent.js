@@ -5,7 +5,7 @@ export default class AbstractLoadDashboardUnauthorizedEvent extends Event {
         super(eventParam, 'common.LoadDashboardUnauthorizedEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.CommonView.displayError", "common.views.CommonView.resetUser" ];
+	    return [ "common.views.CommonView.displayError" ];
 	}
 }
 

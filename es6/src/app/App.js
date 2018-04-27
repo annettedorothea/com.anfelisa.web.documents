@@ -3,8 +3,11 @@ import AppUtils from "./AppUtils";
 import EventListenerRegistrationCommon from "../../gen/common/EventListenerRegistration";
 import ActionFactoryRegistrationCommon from "../../gen/common/ActionFactoryRegistration";
 
+import EventListenerRegistrationProfile from "../../gen/profile/EventListenerRegistration";
+import ActionFactoryRegistrationProfile from "../../gen/profile/ActionFactoryRegistration";
+
 import Container from "../web/Container";
-import InitAction from "../common/actions/InitAction";
+import RouteChangedAction from "../common/actions/RouteChangedAction";
 
 export * from "../../gen/ace/Scenario";
 export * from "../../gen/ace/Bug";
@@ -13,7 +16,7 @@ export * from "../../gen/common/ActionFunctionExports";
 AppUtils.start();
 
 window.onhashchange = () => {
-    new InitAction().apply();
+    new RouteChangedAction().apply();
 };
 
 const React = require('react');
@@ -26,6 +29,9 @@ export const container = ReactDOM.render(
 
 EventListenerRegistrationCommon.init();
 ActionFactoryRegistrationCommon.init();
+
+EventListenerRegistrationProfile.init();
+ActionFactoryRegistrationProfile.init();
 
 /*       S.D.G.       */
 

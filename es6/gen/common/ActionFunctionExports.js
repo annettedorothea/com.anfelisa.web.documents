@@ -1,4 +1,5 @@
 import InitAction from "../../src/common/actions/InitAction";
+import RouteChangedAction from "../../src/common/actions/RouteChangedAction";
 import RouteAction from "../../src/common/actions/RouteAction";
 import CheckUsernameAction from "../../src/common/actions/CheckUsernameAction";
 import CreateUserAction from "../../src/common/actions/CreateUserAction";
@@ -8,6 +9,10 @@ import LogoutAction from "../../src/common/actions/LogoutAction";
 
 export function init(actionParam) {
     new InitAction(actionParam).apply();
+}
+
+export function routeChanged(actionParam) {
+    new RouteChangedAction(actionParam).apply();
 }
 
 export function route(actionParam) {

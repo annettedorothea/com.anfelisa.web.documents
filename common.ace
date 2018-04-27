@@ -4,9 +4,14 @@ target ES6
 
 ACE {
 	init Init {
-		on login ( Common.initTexts Login.render )
-		on registration ( Common.initTexts Registration.render )
-		on dashboard ( Common.initTexts Common.initUser ) triggers ( LoadDashboard )
+		on user ( Common.initTexts ) triggers ( Login )
+		on noUser ( Common.initTexts ) triggers ( Route )
+	}
+	RouteChanged {
+		on login (  Login.render )
+		on registration ( Registration.render )
+		on dashboard triggers ( LoadDashboard )
+		on profile triggers ( profile.LoadUser )
 	}
 	Route {
 		on ok ( Common.updateHash )
@@ -22,10 +27,11 @@ ACE {
 	}
 	Login {
 		on ok ( Common.initUser ) triggers ( Route )
+		on unauthorized ( Common.displayError ) triggers ( Logout )
 	}
 	LoadDashboard preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok ( Common.initUser Dashboard.render)
-		on unauthorized ( Common.displayError Common.resetUser ) triggers ( Route )
+		on ok ( Dashboard.render)
+		on unauthorized ( Common.displayError ) triggers (Logout)
 	}
 	Logout {
 		on ok ( Common.resetUser ) triggers ( Route )

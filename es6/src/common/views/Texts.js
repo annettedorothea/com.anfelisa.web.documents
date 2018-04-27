@@ -22,13 +22,27 @@ export const Texts = {
             emailInvalid: "Die Email-Adresse scheint ungültig zu sein."
         },
         dashboard: {
-            title: "Übersicht"
+            title: "Übersicht",
+            profile: "Profil"
         },
         logout: {
             signout: "Abmelden"
         },
         errors: {
             registerUserFailed: "Die Registrierung ist fehlgeschlagen."
+        },
+        profile: {
+            title: "Profil",
+            username: "Benutzer",
+            email: "Email",
+            delete: "Benutzer löschen",
+            back: "Zurück",
+            confirmDelete: {
+                title: "Löschen",
+                message: "Soll der Benutzer wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle mit dem Benutzer verbundenen Daten werden dann auch gelöscht.",
+                ok: "Ja",
+                cancel: "Nein"
+            }
         }
     }
 };

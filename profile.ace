@@ -1,0 +1,21 @@
+profile
+
+target ES6
+
+ACE {
+	LoadUser preUpdateUI ( common.Common.displaySpinner ) postUpdateUI (common.Common.hideSpinner) {
+		on ok (Profile.render)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	DeleteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+		on ok triggers ( common.Logout )
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	
+}
+
+views {
+	Profile {
+		render	
+	}
+}

@@ -6,7 +6,7 @@ export default class LoginCommand extends AbstractLoginCommand {
             this.commandData.username = this.commandParam.username;
             this.commandData.password = this.commandParam.password;
             this.commandData.outcome = this.ok;
-            this.commandData.hash = "#dashboard"
+            this.commandData.hash = "#dashboard";
 			resolve();
         });
     }

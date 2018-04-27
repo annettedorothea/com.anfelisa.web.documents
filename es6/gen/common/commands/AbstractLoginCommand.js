@@ -1,12 +1,15 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoginOkEvent from "../../../src/common/events/LoginOkEvent";
+import LoginUnauthorizedEvent from "../../../src/common/events/LoginUnauthorizedEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
+import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoginCommand extends Command {
     constructor(commandParam) {
         super(commandParam, "common.LoginCommand");
         this.ok = "ok";
+        this.unauthorized = "unauthorized";
     }
 
     publishEvents() {
@@ -16,6 +19,10 @@ export default class AbstractLoginCommand extends Command {
 		case this.ok:
 			promises.push(new LoginOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
+			break;
+		case this.unauthorized:
+			promises.push(new LoginUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('LoginCommand unhandled outcome: ' + this.commandData.outcome)});
