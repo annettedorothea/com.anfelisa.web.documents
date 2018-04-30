@@ -11,6 +11,8 @@ export default class LoadDashboardCommand extends AbstractLoadDashboardCommand {
                 resolve();
             }, (error) => {
                 if (error.code === 401) {
+                    error.errorKey = "loginFailed";
+                    this.commandData.error = error;
                     this.commandData.outcome = this.unauthorized;
                     resolve();
                 } else {

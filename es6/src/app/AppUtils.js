@@ -1,12 +1,12 @@
 import ACEController from "../../gen/ace/ACEController";
-import InitAction from "../../src_bak/common/actions/InitAction";
+import InitAction from "../../src/common/actions/InitAction";
 import uuid from "uuid";
 import CryptoJS from "crypto-js";
 
 export default class AppUtils {
 
     static start() {
-    	new InitAction().apply();
+        new InitAction({hash: window.location.hash}).apply();
     }
 
     static getClientVersion() {

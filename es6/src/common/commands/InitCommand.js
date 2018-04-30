@@ -2,7 +2,7 @@ import AbstractInitCommand from "../../../gen/common/commands/AbstractInitComman
 
 export default class InitCommand extends AbstractInitCommand {
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             if (this.commandParam.username && this.commandParam.password) {
                 this.commandData.username = this.commandParam.username;
                 this.commandData.password = this.commandParam.password;
@@ -10,6 +10,7 @@ export default class InitCommand extends AbstractInitCommand {
             } else {
                 this.commandData.outcome = this.noUser;
             }
+            this.commandData.hash = this.commandParam.hash;
             this.commandData.language = this.commandParam.language;
             resolve();
         });

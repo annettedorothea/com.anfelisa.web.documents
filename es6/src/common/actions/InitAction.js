@@ -12,6 +12,7 @@ export default class InitAction extends AbstractInitAction {
         this.actionData.username = this.actionParam.username;
         this.actionData.password = this.actionParam.password;
         this.actionData.language = this.actionParam.language;
+        this.actionData.hash = this.actionParam.hash;
     }
 
     releaseActionParam() {

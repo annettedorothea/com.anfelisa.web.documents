@@ -11,7 +11,12 @@ export default class Dashboard extends React.Component {
         return (
             <div>
                 <h1>{this.props.texts.dashboard.title}</h1>
-                <button onClick={() => new RouteAction({hash: "#profile"}).apply()}>{this.props.texts.dashboard.profile}</button>
+                <button onClick={() => new RouteAction(
+                    {
+                        hash: "#profile",
+                        username: this.props.username,
+                        password: this.props.password
+                    }).apply()}>{this.props.texts.dashboard.profile}</button>
             </div>
         );
     }

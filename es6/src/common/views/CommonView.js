@@ -50,9 +50,9 @@ export default class CommonView {
 
     static resetUser(eventData) {
         App.container.setState({
-            username: "",
-            password: "",
-            role: ""
+            username: undefined,
+            password: undefined,
+            role: undefined
         });
         localStorage.removeItem("username");
         localStorage.removeItem("password");

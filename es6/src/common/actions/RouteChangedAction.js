@@ -2,16 +2,10 @@ import AbstractRouteChangedAction from "../../../gen/common/actions/AbstractRout
 
 export default class RouteChangedAction extends AbstractRouteChangedAction {
 
-    captureActionParam() {
-        this.actionParam.hash = window.location.hash.substring(1);
-    }
-
     initActionData() {
         this.actionData.hash = this.actionParam.hash;
-    }
-
-    releaseActionParam() {
-        window.location.hash = this.actionParam.hash;
+        this.actionData.username = this.actionParam.username;
+        this.actionData.password = this.actionParam.password;
     }
 
 }

@@ -14,7 +14,7 @@ ACE {
 		on profile triggers ( profile.LoadUser )
 	}
 	Route {
-		on ok ( Common.updateHash )
+		on ok ( Common.updateHash ) triggers (RouteChanged)
 	}
 	CheckUsername preUpdateUI (Registration.displayUsernameSpinner) postUpdateUI (Registration.hideUsernameSpinner) {
 		on empty

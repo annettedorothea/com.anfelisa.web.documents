@@ -7,17 +7,12 @@ import EventListenerRegistrationProfile from "../../gen/profile/EventListenerReg
 import ActionFactoryRegistrationProfile from "../../gen/profile/ActionFactoryRegistration";
 
 import Container from "../web/Container";
-import RouteChangedAction from "../common/actions/RouteChangedAction";
 
 export * from "../../gen/ace/Scenario";
 export * from "../../gen/ace/Bug";
 export * from "../../gen/common/ActionFunctionExports";
 
 AppUtils.start();
-
-window.onhashchange = () => {
-    new RouteChangedAction().apply();
-};
 
 const React = require('react');
 const ReactDOM = require('react-dom');

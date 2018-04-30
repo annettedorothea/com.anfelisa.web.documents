@@ -29,7 +29,8 @@ export const Texts = {
             signout: "Abmelden"
         },
         errors: {
-            registerUserFailed: "Die Registrierung ist fehlgeschlagen."
+            registerUserFailed: "Die Registrierung ist fehlgeschlagen.",
+            loginFailed: "Anmeldung fehlgeschlagen."
         },
         profile: {
             title: "Profil",

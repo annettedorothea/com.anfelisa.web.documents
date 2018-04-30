@@ -3,7 +3,6 @@ import AbstractLogoutAction from "../../../gen/common/actions/AbstractLogoutActi
 export default class LogoutAction extends AbstractLogoutAction {
 
     initActionData() {
-        console.log("LogoutAction");
     }
 
 }
