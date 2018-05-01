@@ -12,6 +12,10 @@ ACE {
 		on registration ( Registration.render )
 		on dashboard triggers ( LoadDashboard )
 		on profile triggers ( profile.LoadUser )
+		on forgotPassword ( ForgotPassword.render )
+		on confirmEmail triggers (ConfirmEmail)
+		on resetPassword (ResetPassword.render)
+		on userList triggers (admin.GetAllUsers) 
 	}
 	Route {
 		on ok ( Common.updateHash ) triggers (RouteChanged)
@@ -21,7 +25,7 @@ ACE {
 		on available ( Registration.usernameAvailable )
 		on notAvailable ( Registration.usernameNotAvailable )
 	}
-	CreateUser preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+	RegisterUser preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
 		on ok (Common.initUser) triggers (Route)
 		on error ( Common.displayError ) 
 	}
@@ -30,23 +34,36 @@ ACE {
 		on unauthorized ( Common.displayError ) triggers ( Logout )
 	}
 	LoadDashboard preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok ( Dashboard.render)
+		on ok ( Dashboard.render Common.initRole)
 		on unauthorized ( Common.displayError ) triggers (Logout)
 	}
 	Logout {
 		on ok ( Common.resetUser ) triggers ( Route )
 	}
+	ForgotPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+		on ok (Common.displayMessage) triggers ( Route )
+	}
+	ConfirmEmail preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+		on ok (Common.displayMessage) triggers (Route)
+		on error (Common.displayError) triggers (Route)
+	}
+	ResetPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+		on ok (Common.displayMessage) triggers (Route)
+		on error (Common.displayError) triggers (Route)
+	}
 }
 
 views {
 	Common {
-		updateHash
-		initTexts
+		displayError
+		displayMessage
 		displaySpinner
 		hideSpinner
-		displayError
+		initTexts
 		initUser
+		initRole
 		resetUser
+		updateHash
 	}
 	Login {
 		render
@@ -57,6 +74,12 @@ views {
 		usernameNotAvailable
 		displayUsernameSpinner
 		hideUsernameSpinner
+	}
+	ForgotPassword {
+		render
+	}
+	ResetPassword {
+		render
 	}
 	Dashboard {
 		render

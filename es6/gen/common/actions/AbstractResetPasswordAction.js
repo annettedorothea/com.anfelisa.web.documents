@@ -1,15 +1,15 @@
 import Action from "../../ace/Action";
-import CreateUserCommand from "../../../src/common/commands/CreateUserCommand";
+import ResetPasswordCommand from "../../../src/common/commands/ResetPasswordCommand";
 import CommonView from "../../../src/common/views/CommonView";
 
-export default class AbstractCreateUserAction extends Action {
+export default class AbstractResetPasswordAction extends Action {
 
     constructor(actionParam) {
-        super(actionParam, 'common.CreateUserAction', false);
+        super(actionParam, 'common.ResetPasswordAction', false);
     }
 
 	getCommand() {
-		return new CreateUserCommand(this.actionData);
+		return new ResetPasswordCommand(this.actionData);
 	}
 
 	preUpdateUI() {

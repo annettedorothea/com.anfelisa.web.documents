@@ -1,7 +1,7 @@
-import AbstractCreateUserOkEvent from "../../../gen/common/events/AbstractCreateUserOkEvent";
+import AbstractRouteChangedForgotPasswordEvent from "../../../gen/common/events/AbstractRouteChangedForgotPasswordEvent";
 import AppUtils from "../../app/AppUtils";
 
-export default class CreateUserOkEvent extends AbstractCreateUserOkEvent {
+export default class RouteChangedForgotPasswordEvent extends AbstractRouteChangedForgotPasswordEvent {
     prepareDataForView() {
         this.eventData = AppUtils.deepCopy(this.eventParam);
         if (this.eventData.data === undefined) {

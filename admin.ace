@@ -1,0 +1,16 @@
+admin
+
+target ES6
+
+ACE {
+	GetAllUsers preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+		on ok (UserList.render )
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+}
+
+views {
+	UserList {
+		render
+	}
+}

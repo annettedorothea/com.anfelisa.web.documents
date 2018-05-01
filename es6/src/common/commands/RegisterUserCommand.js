@@ -1,6 +1,6 @@
-import AbstractCreateUserCommand from "../../../gen/common/commands/AbstractCreateUserCommand";
+import AbstractRegisterUserCommand from "../../../gen/common/commands/AbstractRegisterUserCommand";
 
-export default class CreateUserCommand extends AbstractCreateUserCommand {
+export default class RegisterUserCommand extends AbstractRegisterUserCommand {
     execute() {
         return new Promise((resolve, reject) => {
             this.commandData.language = this.commandParam.language;

@@ -2,7 +2,7 @@ import React from 'react';
 import CryptoJS from "crypto-js";
 import RouteAction from "../common/actions/RouteAction";
 import CheckUsernameAction from "../common/actions/CheckUsernameAction"
-import CreateUserAction from "../common/actions/CreateUserAction";
+import CreateUserAction from "../common/actions/RegisterUserAction";
 
 export default class Registration extends React.Component {
 

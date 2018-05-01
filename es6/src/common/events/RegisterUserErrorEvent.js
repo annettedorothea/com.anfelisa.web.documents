@@ -1,7 +1,7 @@
-import AbstractCreateUserErrorEvent from "../../../gen/common/events/AbstractCreateUserErrorEvent";
+import AbstractRegisterUserErrorEvent from "../../../gen/common/events/AbstractRegisterUserErrorEvent";
 import AppUtils from "../../app/AppUtils";
 
-export default class CreateUserErrorEvent extends AbstractCreateUserErrorEvent {
+export default class RegisterUserErrorEvent extends AbstractRegisterUserErrorEvent {
     prepareDataForView() {
         this.eventData = AppUtils.deepCopy(this.eventParam);
         if (this.eventData.data === undefined) {

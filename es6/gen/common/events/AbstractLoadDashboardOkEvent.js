@@ -5,7 +5,7 @@ export default class AbstractLoadDashboardOkEvent extends Event {
         super(eventParam, 'common.LoadDashboardOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.DashboardView.render" ];
+	    return [ "common.views.DashboardView.render", "common.views.CommonView.initRole" ];
 	}
 }
 

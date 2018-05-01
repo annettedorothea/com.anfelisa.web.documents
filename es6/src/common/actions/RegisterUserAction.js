@@ -1,6 +1,6 @@
-import AbstractCreateUserAction from "../../../gen/common/actions/AbstractCreateUserAction";
+import AbstractRegisterUserAction from "../../../gen/common/actions/AbstractRegisterUserAction";
 
-export default class CreateUserAction extends AbstractCreateUserAction {
+export default class RegisterUserAction extends AbstractRegisterUserAction {
 
     initActionData() {
         this.actionData.username = this.actionParam.username;

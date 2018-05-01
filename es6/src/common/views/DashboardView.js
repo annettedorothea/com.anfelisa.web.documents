@@ -4,7 +4,8 @@ export default class DashboardView {
 	static render(eventData) {
         App.container.setState({
             route: "dashboard",
-            data : undefined
+            data : undefined,
+
         });
 	};
 	

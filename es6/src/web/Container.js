@@ -23,6 +23,7 @@ export default class Container extends React.Component {
         return (
             <div>
                 {this.state.error && <label>{this.state.texts.errors[this.state.error.errorKey]}</label> }
+                {this.state.messageKey && <label>{this.state.texts.messages[this.state.messageKey]}</label> }
                 {this.state.displaySpinner && <Spinner /> }
                 {content}
             </div>

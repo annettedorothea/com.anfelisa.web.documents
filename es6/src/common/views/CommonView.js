@@ -38,14 +38,31 @@ export default class CommonView {
         }, 7000);
     }
 
+    static displayMessage(eventData) {
+        clearTimeout(CommonView.timer);
+        App.container.setState({
+            messageKey: eventData.messageKey
+        });
+        CommonView.timer = setTimeout(function () {
+            App.container.setState({
+                messageKey: null
+            });
+        }, 7000);
+    }
+
     static initUser(eventData) {
         App.container.setState({
             username: eventData.username,
-            password: eventData.password,
-            role: eventData.role
+            password: eventData.password
         });
         localStorage.setItem("username", eventData.username);
         localStorage.setItem("password", eventData.password);
+    }
+
+    static initRole(eventData) {
+        App.container.setState({
+            role: eventData.role
+        });
     }
 
     static resetUser(eventData) {

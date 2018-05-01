@@ -61,6 +61,9 @@ export default class Login extends React.Component {
                     <div>
                         <a onClick={() => new RouteAction({hash: "#registration"}).apply()}>{this.props.texts.login.registration}</a>
                     </div>
+                    <div>
+                        <a onClick={() => new RouteAction({hash: "#forgotpassword"}).apply()}>{this.props.texts.login.forgotPassword}</a>
+                    </div>
                 </div>
             </div>
         );

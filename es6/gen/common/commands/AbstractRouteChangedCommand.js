@@ -2,8 +2,12 @@ import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import RouteChangedLoginEvent from "../../../src/common/events/RouteChangedLoginEvent";
 import RouteChangedRegistrationEvent from "../../../src/common/events/RouteChangedRegistrationEvent";
+import RouteChangedForgotPasswordEvent from "../../../src/common/events/RouteChangedForgotPasswordEvent";
+import RouteChangedResetPasswordEvent from "../../../src/common/events/RouteChangedResetPasswordEvent";
 import LoadDashboardAction from "../../../src/common/actions/LoadDashboardAction";
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
+import ConfirmEmailAction from "../../../src/common/actions/ConfirmEmailAction";
+import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 
 export default class AbstractRouteChangedCommand extends Command {
     constructor(commandParam) {
@@ -12,6 +16,10 @@ export default class AbstractRouteChangedCommand extends Command {
         this.registration = "registration";
         this.dashboard = "dashboard";
         this.profile = "profile";
+        this.forgotPassword = "forgotPassword";
+        this.confirmEmail = "confirmEmail";
+        this.resetPassword = "resetPassword";
+        this.userList = "userList";
     }
 
     publishEvents() {
@@ -29,6 +37,18 @@ export default class AbstractRouteChangedCommand extends Command {
 			break;
 		case this.profile:
 			promises.push(new TriggerAction(new LoadUserAction(this.commandData)).publish());
+			break;
+		case this.forgotPassword:
+			promises.push(new RouteChangedForgotPasswordEvent(this.commandData).publish());
+			break;
+		case this.confirmEmail:
+			promises.push(new TriggerAction(new ConfirmEmailAction(this.commandData)).publish());
+			break;
+		case this.resetPassword:
+			promises.push(new RouteChangedResetPasswordEvent(this.commandData).publish());
+			break;
+		case this.userList:
+			promises.push(new TriggerAction(new GetAllUsersAction(this.commandData)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('RouteChangedCommand unhandled outcome: ' + this.commandData.outcome)});
