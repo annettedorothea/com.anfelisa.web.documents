@@ -3,6 +3,7 @@ import Dashboard from "./Dashboard";
 import Logout from "./Logout";
 import Profile from "./Profile";
 import UserList from "./UserList";
+import CategoryList from "./CategoryList";
 
 export default class UserContainer extends React.Component {
 
@@ -11,6 +12,9 @@ export default class UserContainer extends React.Component {
         switch (this.props.route) {
             case "user-list":
                 content = <UserList {...this.props} />;
+                break;
+            case "category-list":
+                content = <CategoryList {...this.props} />;
                 break;
             case "profile":
                 content = <Profile {...this.props} />;

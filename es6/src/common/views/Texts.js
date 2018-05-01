@@ -3,6 +3,24 @@ export const Texts = {
         adminDashboard: {
             users: "Benutzerliste"
         },
+        authorDashboard: {
+            categories: "Kategorien"
+        },
+        categoryList: {
+            back: "Zurück",
+            cancel: "Abbrechen",
+            confirmDelete: {
+                cancel: "Nein",
+                ok: "Ja",
+                message: "Soll die Kategorie wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Unterkategorien und KArten werden dann auch gelöscht.",
+                title: "Löschen"
+            },
+            index: "Index",
+            name: "Name",
+            nameAlreadyExists: "Name wird bereits verwendet.",
+            ok: "OK",
+            title: "Alle Kategorien"
+        },
         dashboard: {
             profile: "Profil",
             title: "Übersicht"

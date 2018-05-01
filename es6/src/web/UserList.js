@@ -110,7 +110,6 @@ class RoleSelect extends React.Component {
     }
 
     onChangeRole(event) {
-        console.log("change role", event.target.value);
         const data = {
             userId: this.props.userId,
             role: event.target.value,

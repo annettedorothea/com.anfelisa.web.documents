@@ -1,19 +1,17 @@
 import React from 'react';
 import RouteAction from "../common/actions/RouteAction";
 
-export default class AdminDashboard extends React.Component {
+export default class AuthorDashboard extends React.Component {
 
     render() {
         return (
             <div>
-                <button
-                    onClick={() => new RouteAction(
+                <button onClick={() => new RouteAction(
                     {
                         username: this.props.username,
                         password: this.props.password,
-                        hash: "#users"
-                    }).apply()}
-                >{this.props.texts.adminDashboard.users}</button>
+                        hash: "#categories"
+                    }).apply()}>{this.props.texts.authorDashboard.categories}</button>
             </div>
         );
     }

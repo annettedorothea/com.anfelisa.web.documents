@@ -3,6 +3,9 @@ import AppUtils from "./AppUtils";
 import EventListenerRegistrationAdmin from "../../gen/admin/EventListenerRegistration";
 import ActionFactoryRegistrationAdmin from "../../gen/admin/ActionFactoryRegistration";
 
+import EventListenerRegistrationAuthor from "../../gen/author/EventListenerRegistration";
+import ActionFactoryRegistrationAuthor from "../../gen/author/ActionFactoryRegistration";
+
 import EventListenerRegistrationCommon from "../../gen/common/EventListenerRegistration";
 import ActionFactoryRegistrationCommon from "../../gen/common/ActionFactoryRegistration";
 
@@ -27,6 +30,9 @@ export const container = ReactDOM.render(
 
 EventListenerRegistrationAdmin.init();
 ActionFactoryRegistrationAdmin.init();
+
+EventListenerRegistrationAuthor.init();
+ActionFactoryRegistrationAuthor.init();
 
 EventListenerRegistrationCommon.init();
 ActionFactoryRegistrationCommon.init();

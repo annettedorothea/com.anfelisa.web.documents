@@ -8,6 +8,7 @@ import LoadDashboardAction from "../../../src/common/actions/LoadDashboardAction
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import ConfirmEmailAction from "../../../src/common/actions/ConfirmEmailAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
+import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
 
 export default class AbstractRouteChangedCommand extends Command {
     constructor(commandParam) {
@@ -20,6 +21,7 @@ export default class AbstractRouteChangedCommand extends Command {
         this.confirmEmail = "confirmEmail";
         this.resetPassword = "resetPassword";
         this.userList = "userList";
+        this.categories = "categories";
     }
 
     publishEvents() {
@@ -49,6 +51,9 @@ export default class AbstractRouteChangedCommand extends Command {
 			break;
 		case this.userList:
 			promises.push(new TriggerAction(new GetAllUsersAction(this.commandData)).publish());
+			break;
+		case this.categories:
+			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('RouteChangedCommand unhandled outcome: ' + this.commandData.outcome)});
