@@ -12,6 +12,8 @@ export default class AdminDashboard extends React.Component {
             <div>
                 <button onClick={() => new RouteAction(
                     {
+                        username: this.props.username,
+                        password: this.props.password,
                         hash: "#users"
                     }).apply()}>{this.props.texts.adminDashboard.users}</button>
             </div>

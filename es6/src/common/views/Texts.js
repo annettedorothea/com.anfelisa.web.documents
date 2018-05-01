@@ -70,6 +70,21 @@ export const Texts = {
             passwordRepetition: "Passwort wiederholen",
             submit: "Abschicken",
             title: "Neues Passwort"
+        },
+        userList: {
+            back: "Zurück",
+            confirmDelete: {
+                cancel: "Nein",
+                ok: "Ja",
+                message: "Soll der Benutzer wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle mit dem Benutzer verbundenen Daten werden dann auch gelöscht.",
+                title: "Löschen"
+            },
+            roles: {
+                STUDENT: "Student",
+                AUTHOR: "Autor",
+                ADMIN: "Admin"
+            },
+            title: "Alle Benutzer"
         }
     }
 };

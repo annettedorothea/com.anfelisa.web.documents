@@ -7,6 +7,8 @@ export default class EventListenerRegistrationAdmin {
 	static init() {
 		ACEController.registerListener('admin.GetAllUsersOkEvent', UserListView.render);
 		ACEController.registerListener('admin.GetAllUsersUnauthorizedEvent', CommonView.displayError);
+		ACEController.registerListener('admin.SaveRoleUnauthorizedEvent', CommonView.displayError);
+		ACEController.registerListener('admin.DeleteUserUnauthorizedEvent', CommonView.displayError);
 	}
 
 }

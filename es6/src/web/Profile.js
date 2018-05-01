@@ -2,9 +2,8 @@ import React from 'react';
 import RouteAction from "../common/actions/RouteAction";
 import DeleteUserAction from "../profile/actions/DeleteUserAction";
 import Confirm from "./Confirm";
-import CheckUsernameAction from "../common/actions/CheckUsernameAction";
 
-export default class Dashboard extends React.Component {
+export default class Profile extends React.Component {
 
     constructor(props) {
         super(props);
@@ -26,6 +25,7 @@ export default class Dashboard extends React.Component {
             deletedUsername: this.props.username,
             password: this.props.password
         };
+        this.setState({confirmDeleteUser: false});
         new DeleteUserAction(data).apply();
     }
 
@@ -80,7 +80,11 @@ export default class Dashboard extends React.Component {
                 </div>
                 <button onClick={this.onDeleteClick}>{this.props.texts.profile.delete}</button>
                 <button
-                    onClick={() => new RouteAction({hash: "#dashboard"}).apply()}>{this.props.texts.profile.back}</button>
+                    onClick={() => new RouteAction({
+                        username: this.props.username,
+                        password: this.props.password,
+                        hash: "#dashboard"
+                    }).apply()}>{this.props.texts.profile.back}</button>
             </div>
         );
     }
