@@ -4,8 +4,8 @@ target ES6
 
 ACE {
 	init Init {
-		on user ( Common.initTexts ) triggers ( Login )
-		on noUser ( Common.initTexts ) triggers ( Route )
+		on user ( Common.initTexts ) triggers ( Login RouteChanged )
+		on noUser ( Common.initTexts ) triggers ( Route RouteChanged )
 	}
 	RouteChanged {
 		on login (  Login.render )
@@ -19,7 +19,7 @@ ACE {
 		on categories triggers (author.LoadCategories)
 	}
 	Route {
-		on ok ( Common.updateHash ) triggers (RouteChanged)
+		on ok ( Common.updateHash )
 	}
 	CheckUsername preUpdateUI (Registration.displayUsernameSpinner) postUpdateUI (Registration.hideUsernameSpinner) {
 		on empty

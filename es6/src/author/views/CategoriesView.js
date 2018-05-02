@@ -4,7 +4,7 @@ export default class CategoriesView {
     static render(eventData) {
         App.container.setState({
             route: "category-list",
-            data: eventData
+            data: eventData.data
         });
     };
 

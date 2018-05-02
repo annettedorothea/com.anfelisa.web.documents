@@ -13,10 +13,12 @@ import EventListenerRegistrationProfile from "../../gen/profile/EventListenerReg
 import ActionFactoryRegistrationProfile from "../../gen/profile/ActionFactoryRegistration";
 
 import Container from "../web/Container";
+import RouteChangedAction from "../common/actions/RouteChangedAction";
 
 export * from "../../gen/ace/Scenario";
 export * from "../../gen/ace/Bug";
 export * from "../../gen/common/ActionFunctionExports";
+
 
 AppUtils.start();
 
@@ -24,9 +26,19 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 
 export const container = ReactDOM.render(
-    <Container />,
+    <Container/>,
     document.getElementById('root')
 );
+
+window.onhashchange = () => {
+    new RouteChangedAction(
+        {
+            hash: window.location.hash,
+            username: container.state.username,
+            password: container.state.password
+        }
+    ).apply();
+};
 
 EventListenerRegistrationAdmin.init();
 ActionFactoryRegistrationAdmin.init();

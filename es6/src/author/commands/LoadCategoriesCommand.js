@@ -11,9 +11,7 @@ export default class LoadCategoriesCommand extends AbstractLoadCategoriesCommand
                 });
             };
             this.httpGet("api/category/all", queryParams).then((data) => {
-                this.commandData.categoryList = data.categoryList;
-                this.commandData.parentCategoryName = data.parentCategoryName;
-                this.commandData.parentCategoryId = data.parentCategoryId;
+                this.commandData.data = data;
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {

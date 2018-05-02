@@ -29,6 +29,7 @@ export default class CategoryList extends React.Component {
         this.onNameChange = this.onNameChange.bind(this);
         this.onIndexChange = this.onIndexChange.bind(this);
         this.onNewCategory = this.onNewCategory.bind(this);
+        this.onCancelNew = this.onCancelNew.bind(this);
         this.onEdit = this.onEdit.bind(this);
         this.onEditNameChange = this.onEditNameChange.bind(this);
         this.onEditIndexChange = this.onEditIndexChange.bind(this);
@@ -120,6 +121,16 @@ export default class CategoryList extends React.Component {
         new CreateCategoryAction(data).apply();
     }
 
+    onCancelNew() {
+        this.setState(
+            {
+                newName: "",
+                newNameAlreadyExists: false,
+                newIndex: ""
+            }
+        );
+    }
+
     onEdit(category) {
         this.setState(
             {
@@ -163,6 +174,12 @@ export default class CategoryList extends React.Component {
     }
 
     render() {
+        let backLink = "#dashboard";
+        if (this.props.data.grandParentCategoryId) {
+            backLink = `#categories/${this.props.data.grandParentCategoryId}`;
+        } else if (this.props.data.parentCategoryId) {
+            backLink = "#categories";
+        }
         const categoryItems = this.props.data.categoryList.map((category) => {
             if (category.categoryId === this.state.editId) {
                 return <EditCategory
@@ -198,6 +215,7 @@ export default class CategoryList extends React.Component {
                 onNameChange={this.onNameChange}
                 onIndexChange={this.onIndexChange}
                 onNewCategory={this.onNewCategory}
+                onCancelNew={this.onCancelNew}
             />
         );
         return (
@@ -231,7 +249,7 @@ export default class CategoryList extends React.Component {
                     onClick={() => new RouteAction({
                         username: this.props.username,
                         password: this.props.password,
-                        hash: "#dashboard"
+                        hash: backLink
                     }).apply()}>{this.props.texts.categoryList.back}
                 </button>
 
@@ -271,6 +289,9 @@ class NewCategory extends React.Component {
                         disabled={this.props.nameAlreadyExists === true || this.props.name.length === 0}
                         onClick={this.props.onNewCategory}
                     >{this.props.texts.categoryList.ok}</button>
+                    <button
+                        onClick={this.props.onCancelNew}
+                    >{this.props.texts.categoryList.cancel}</button>
                 </td>
             </tr>
         );
@@ -319,25 +340,29 @@ class EditCategory extends React.Component {
 
 class CategoryItem extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick() {
+        new RouteAction(
+            {
+                username: this.props.username,
+                password: this.props.password,
+                hash: `#categories/${this.props.categoryId}`
+            }).apply();
+    }
+
     render() {
         return (
-            <tr
-                onDoubleClick={() => this.props.onEdit(this.props)}
-            >
-                <td
-                    onClick={() => new RouteAction(
-                        {
-                            username: this.props.username,
-                            password: this.props.password,
-                            hash: `#categories/${this.props.categoryId}`
-                        }).apply()}
-                >{this.props.categoryName}</td>
-                <td>{this.props.categoryIndex}</td>
-                <td>{this.props.categoryAuthor}</td>
+            <tr>
+                <td onClick={this.onClick}>{this.props.categoryName}</td>
+                <td onClick={this.onClick}>{this.props.categoryIndex}</td>
+                <td onClick={this.onClick}>{this.props.categoryAuthor}</td>
                 <td>
-                    <button
-                        onClick={() => this.props.onDeleteClick(this.props.categoryId)}
-                    >{"\u2717"}</button>
+                    <button onClick={() => this.props.onDeleteClick(this.props.categoryId)}>{"\u2717"}</button>
+                    <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button>
                 </td>
             </tr>
         );
