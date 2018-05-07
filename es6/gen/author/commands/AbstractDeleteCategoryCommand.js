@@ -1,5 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import DeleteCategoryOkEvent from "../../../src/author/events/DeleteCategoryOkEvent";
 import DeleteCategoryUnauthorizedEvent from "../../../src/author/events/DeleteCategoryUnauthorizedEvent";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
@@ -16,6 +17,7 @@ export default class AbstractDeleteCategoryCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
+			promises.push(new DeleteCategoryOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
 			break;
 		case this.unauthorized:

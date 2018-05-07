@@ -1,176 +1,55 @@
 import React from 'react';
 import RouteAction from "../common/actions/RouteAction";
-import DeleteUserAction from "../admin/actions/DeleteUserAction";
 import Confirm from "./Confirm";
-import SaveRoleAction from "../admin/actions/SaveRoleAction";
-import CheckUsernameAction from "../common/actions/CheckUsernameAction";
 import CreateCategoryAction from "../author/actions/CreateCategoryAction";
 import DeleteCategoryAction from "../author/actions/DeleteCategoryAction";
 import UpdateCategoryAction from "../author/actions/UpdateCategoryAction";
+import NameOfNewCategoryChangedAction from "../author/actions/NameOfNewCategoryChangedAction";
+import IndexOfNewCategoryChangedAction from "../author/actions/IndexOfNewCategoryChangedAction";
+import CancelNewCategoryAction from "../author/actions/CancelNewCategoryAction";
+import NameOfEditedCategoryChangedAction from "../author/actions/NameOfEditedCategoryChangedAction";
+import IndexOfEditedCategoryChangedAction from "../author/actions/IndexOfEditedCategoryChangedAction";
+import CancelEditCategoryAction from "../author/actions/CancelEditCategoryAction";
+import EditCategoryAction from "../author/actions/EditCategoryAction";
+import DeleteCategoryClickAction from "../author/actions/DeleteCategoryClickAction";
+import CancelDeleteCategoryAction from "../author/actions/CancelDeleteCategoryAction";
 
 export default class CategoryList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            newName: "",
-            newNameAlreadyExists: false,
-            newIndex: "",
-            editId: "",
-            editName: "",
-            editameAlreadyExists: false,
-            editIndex: "",
-            confirmDelete: false,
-            categoryId: ""
-        };
+        this.onEdit = this.onEdit.bind(this);
         this.onDelete = this.onDelete.bind(this);
         this.onDeleteClick = this.onDeleteClick.bind(this);
         this.onDeleteCancel = this.onDeleteCancel.bind(this);
-        this.onNameChange = this.onNameChange.bind(this);
-        this.onIndexChange = this.onIndexChange.bind(this);
-        this.onNewCategory = this.onNewCategory.bind(this);
-        this.onCancelNew = this.onCancelNew.bind(this);
-        this.onEdit = this.onEdit.bind(this);
-        this.onEditNameChange = this.onEditNameChange.bind(this);
-        this.onEditIndexChange = this.onEditIndexChange.bind(this);
-        this.onUpdateCategory = this.onUpdateCategory.bind(this);
-        this.onCancelEdit = this.onCancelEdit.bind(this);
-    }
-
-    onNameChange(event) {
-        const name = event.target.value;
-        const items = this.props.data.categoryList.filter(item => {
-            return item.categoryName === name;
-        });
-        this.setState(
-            {
-                newName: name,
-                newNameAlreadyExists: items.length > 0
-            }
-        );
-    }
-
-    onEditNameChange(event) {
-        const name = event.target.value;
-        const items = this.props.data.categoryList.filter(item => {
-            return item.categoryName === name && item.categoryId !== this.state.editId;
-        });
-        this.setState(
-            {
-                editName: name,
-                editNameAlreadyExists: items.length > 0
-            }
-        );
-    }
-
-    onIndexChange(event) {
-        const index = event.target.value;
-        this.setState(
-            {
-                newIndex: index
-            }
-        );
-    }
-
-    onEditIndexChange(event) {
-        const index = event.target.value;
-        this.setState(
-            {
-                editIndex: index
-            }
-        );
     }
 
     onDeleteClick(categoryId) {
-        this.setState({
-            confirmDelete: true,
-            categoryId
-        });
+        new DeleteCategoryClickAction({categoryId}).apply();
+    }
+
+    onEdit(categoryId, name, index) {
+        const data = {
+            categoryId,
+            name,
+            index
+        };
+        this.setState({confirmDelete: false});
+        new EditCategoryAction(data).apply();
     }
 
     onDelete() {
         const data = {
             username: this.props.username,
-            categoryId: this.state.categoryId,
+            categoryId: this.props.data.deleteCategory.categoryId,
             password: this.props.password,
             parentCategoryId: this.props.data.parentCategoryId
         };
-        this.setState({confirmDelete: false});
         new DeleteCategoryAction(data).apply();
     }
 
     onDeleteCancel() {
-        this.setState({confirmDelete: false});
-    }
-
-    onNewCategory() {
-        const data = {
-            username: this.props.username,
-            password: this.props.password,
-            categoryName: this.state.newName,
-            categoryIndex: this.state.newIndex,
-            parentCategoryId: this.props.data.parentCategoryId
-        };
-        this.setState(
-            {
-                newName: "",
-                newNameAlreadyExists: false,
-                newIndex: ""
-            }
-        );
-        new CreateCategoryAction(data).apply();
-    }
-
-    onCancelNew() {
-        this.setState(
-            {
-                newName: "",
-                newNameAlreadyExists: false,
-                newIndex: ""
-            }
-        );
-    }
-
-    onEdit(category) {
-        this.setState(
-            {
-                editId: category.categoryId,
-                editName: category.categoryName,
-                editameAlreadyExists: false,
-                editIndex: category.categoryIndex
-            }
-        );
-    }
-
-    onUpdateCategory() {
-        const data = {
-            username: this.props.username,
-            password: this.props.password,
-            categoryId: this.state.editId,
-            categoryName: this.state.editName,
-            categoryIndex: this.state.editIndex,
-            parentCategoryId: this.props.data.parentCategoryId
-        };
-        this.setState(
-            {
-                editId: "",
-                editName: "",
-                editameAlreadyExists: false,
-                editIndex: ""
-            }
-        );
-        new UpdateCategoryAction(data).apply();
-    }
-
-    onCancelEdit() {
-        this.setState(
-            {
-                editId: "",
-                editName: "",
-                editameAlreadyExists: false,
-                editIndex: ""
-            }
-        );
+        new CancelDeleteCategoryAction().apply();
     }
 
     render() {
@@ -181,16 +60,17 @@ export default class CategoryList extends React.Component {
             backLink = "#categories";
         }
         const categoryItems = this.props.data.categoryList.map((category) => {
-            if (category.categoryId === this.state.editId) {
+            if (category.categoryId === this.props.data.editedCategory.categoryId) {
                 return <EditCategory
                     key={category.categoryId}
-                    onNameChange={this.onEditNameChange}
-                    onIndexChange={this.onEditIndexChange}
-                    onCancelEdit={this.onCancelEdit}
-                    onUpdateCategory={this.onUpdateCategory}
-                    name={this.state.editName}
-                    nameAlreadyExists={this.state.editNameAlreadyExists}
-                    index={this.state.editIndex}
+                    categoryId={this.props.data.editedCategory.categoryId}
+                    name={this.props.data.editedCategory.name}
+                    index={this.props.data.editedCategory.index}
+                    nameAlreadyExists={this.props.data.editedCategory.nameAlreadyExists}
+                    categoryList={this.props.data.categoryList}
+                    username={this.props.username}
+                    password={this.props.password}
+                    parentCategoryId={this.props.data.parentCategoryId}
                     texts={this.props.texts}
                 />
             } else {
@@ -199,28 +79,29 @@ export default class CategoryList extends React.Component {
                     key={category.categoryId}
                     texts={this.props.texts}
                     onDeleteClick={this.onDeleteClick}
-                    onEdit={this.onEdit}
+                    onEdit={() => this.onEdit(category.categoryId, category.categoryName, category.categoryIndex)}
                     username={this.props.username}
                     password={this.props.password}
+                    userRole={this.props.role}
                 />
             }
         });
         categoryItems.push(
             <NewCategory
                 key="new"
-                {...this.props}
-                name={this.state.newName}
-                index={this.state.newIndex}
-                nameAlreadyExists={this.state.newNameAlreadyExists}
-                onNameChange={this.onNameChange}
-                onIndexChange={this.onIndexChange}
-                onNewCategory={this.onNewCategory}
-                onCancelNew={this.onCancelNew}
+                name={this.props.data.newCategory.name}
+                index={this.props.data.newCategory.index}
+                nameAlreadyExists={this.props.data.newCategory.nameAlreadyExists}
+                categoryList={this.props.data.categoryList}
+                username={this.props.username}
+                password={this.props.password}
+                parentCategoryId={this.props.data.parentCategoryId}
+                texts={this.props.texts}
             />
         );
         return (
             <div>
-                {this.state.confirmDelete === true &&
+                {this.props.data.deleteCategory.confirmDelete === true &&
                 <div>
                     <Confirm {...
                         {
@@ -260,13 +141,47 @@ export default class CategoryList extends React.Component {
 
 class NewCategory extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.onNameChange = this.onNameChange.bind(this);
+        this.onIndexChange = this.onIndexChange.bind(this);
+        this.onNewCategory = this.onNewCategory.bind(this);
+        this.onCancel = this.onCancel.bind(this);
+    }
+
+    onNameChange(event) {
+        const name = event.target.value;
+        new NameOfNewCategoryChangedAction({name, categoryList: this.props.categoryList}).apply();
+    }
+
+    onIndexChange(event) {
+        const index = event.target.value;
+        new IndexOfNewCategoryChangedAction({index}).apply();
+    }
+
+    onCancel() {
+        new CancelNewCategoryAction().apply();
+    }
+
+    onNewCategory() {
+        const data = {
+            username: this.props.username,
+            password: this.props.password,
+            categoryName: this.props.name,
+            categoryIndex: this.props.index,
+            parentCategoryId: this.props.parentCategoryId
+        };
+        new CreateCategoryAction(data).apply();
+    }
+
+
     render() {
         return (
             <tr>
                 <td>
                     <input
                         type={"text"}
-                        onChange={this.props.onNameChange}
+                        onChange={this.onNameChange}
                         autoComplete="off"
                         value={this.props.name}
                         placeholder={this.props.texts.categoryList.name}
@@ -277,7 +192,7 @@ class NewCategory extends React.Component {
                 <td>
                     <input
                         type={"number"}
-                        onChange={this.props.onIndexChange}
+                        onChange={this.onIndexChange}
                         autoComplete="off"
                         value={this.props.index}
                         placeholder={this.props.texts.categoryList.index}
@@ -287,10 +202,10 @@ class NewCategory extends React.Component {
                 <td>
                     <button
                         disabled={this.props.nameAlreadyExists === true || this.props.name.length === 0}
-                        onClick={this.props.onNewCategory}
+                        onClick={this.onNewCategory}
                     >{this.props.texts.categoryList.ok}</button>
                     <button
-                        onClick={this.props.onCancelNew}
+                        onClick={this.onCancel}
                     >{this.props.texts.categoryList.cancel}</button>
                 </td>
             </tr>
@@ -300,13 +215,47 @@ class NewCategory extends React.Component {
 
 class EditCategory extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.onNameChange = this.onNameChange.bind(this);
+        this.onIndexChange = this.onIndexChange.bind(this);
+        this.onUpdate = this.onUpdate.bind(this);
+        this.onCancel = this.onCancel.bind(this);
+    }
+
+    onNameChange(event) {
+        const name = event.target.value;
+        new NameOfEditedCategoryChangedAction({name, categoryList: this.props.categoryList}).apply();
+    }
+
+    onIndexChange(event) {
+        const index = event.target.value;
+        new IndexOfEditedCategoryChangedAction({index}).apply();
+    }
+
+    onCancel() {
+        new CancelEditCategoryAction().apply();
+    }
+
+    onUpdate() {
+        const data = {
+            username: this.props.username,
+            password: this.props.password,
+            categoryId: this.props.categoryId,
+            categoryName: this.props.name,
+            categoryIndex: this.props.index,
+            parentCategoryId: this.props.parentCategoryId
+        };
+        new UpdateCategoryAction(data).apply();
+    }
+
     render() {
         return (
             <tr>
                 <td>
                     <input
                         type={"text"}
-                        onChange={this.props.onNameChange}
+                        onChange={this.onNameChange}
                         autoComplete="off"
                         value={this.props.name}
                         placeholder={this.props.texts.categoryList.name}
@@ -317,7 +266,7 @@ class EditCategory extends React.Component {
                 <td>
                     <input
                         type={"number"}
-                        onChange={this.props.onIndexChange}
+                        onChange={this.onIndexChange}
                         autoComplete="off"
                         value={this.props.index}
                         placeholder={this.props.texts.categoryList.index}
@@ -327,10 +276,10 @@ class EditCategory extends React.Component {
                 <td>
                     <button
                         disabled={this.props.nameAlreadyExists === true || this.props.name.length === 0}
-                        onClick={this.props.onUpdateCategory}
+                        onClick={this.onUpdate}
                     >{this.props.texts.categoryList.ok}</button>
                     <button
-                        onClick={this.props.onCancelEdit}
+                        onClick={this.onCancel}
                     >{this.props.texts.categoryList.cancel}</button>
                 </td>
             </tr>
@@ -355,13 +304,15 @@ class CategoryItem extends React.Component {
     }
 
     render() {
+        console.log("this.props.userRole", this.props.userRole);
         return (
             <tr>
                 <td onClick={this.onClick}>{this.props.categoryName}</td>
                 <td onClick={this.onClick}>{this.props.categoryIndex}</td>
                 <td onClick={this.onClick}>{this.props.categoryAuthor}</td>
                 <td>
-                    <button onClick={() => this.props.onDeleteClick(this.props.categoryId)}>{"\u2717"}</button>
+                    {this.props.userRole === "ADMIN" &&
+                    <button onClick={() => this.props.onDeleteClick(this.props.categoryId)}>{"\u2717"}</button>}
                     <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button>
                 </td>
             </tr>

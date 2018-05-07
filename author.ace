@@ -8,21 +8,125 @@ ACE {
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 	CreateCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
-		on ok triggers (LoadCategories)
+		on ok (Categories.resetNewValues) triggers (LoadCategories)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 	UpdateCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
-		on ok triggers (LoadCategories)
+		on ok (Categories.resetEditValues) triggers (LoadCategories)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 	DeleteCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
-		on ok triggers (LoadCategories)
+		on ok (Categories.hideConfirmDelete) triggers (LoadCategories)
+		on unauthorized ( common.Common.displayError Categories.hideConfirmDelete) triggers (common.Logout)
+	}
+	
+	NameOfNewCategoryChanged {
+		on ok (Categories.nameOfNewCategoryChanged)
+	}
+	IndexOfNewCategoryChanged {
+		on ok (Categories.indexOfNewCategoryChanged)
+	}
+	CancelNewCategory {
+		on ok (Categories.resetNewValues)
+	}
+	
+	NameOfEditedCategoryChanged {
+		on ok (Categories.nameOfEditedCategoryChanged)
+	}
+	IndexOfEditedCategoryChanged {
+		on ok (Categories.indexOfEditedCategoryChanged)
+	}
+	CancelEditCategory {
+		on ok (Categories.resetEditValues)
+	}
+	EditCategory {
+		on ok (Categories.editCategory)
+	}
+	DeleteCategoryClick {
+		on ok (Categories.displayConfirmDelete)
+	}
+	CancelDeleteCategory {
+		on ok (Categories.hideConfirmDelete)
+	}
+	
+	LoadCards preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
+		on ok (Cards.render)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	CreateCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+		on ok (Cards.resetNewValues) triggers (LoadCards)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	UpdateCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+		on ok (Cards.resetEditValues) triggers (LoadCards)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	DeleteCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+		on ok (Cards.hideConfirmDelete) triggers (LoadCards)
+		on unauthorized ( common.Common.displayError Cards.hideConfirmDelete) triggers (common.Logout)
+	}
+	
+	GivenOfNewCardChanged {
+		on ok (Cards.givenOfNewCardChanged)
+	}
+	WantedOfNewCardChanged {
+		on ok (Cards.wantedOfNewCardChanged)
+	}
+	IndexOfNewCardChanged {
+		on ok (Cards.indexOfNewCardChanged)
+	}
+	CancelNewCard {
+		on ok (Cards.resetNewValues)
+	}
+	
+	GivenOfEditedCardChanged {
+		on ok (Cards.givenOfEditedCardChanged)
+	}
+	WamtedOfEditedCardChanged {
+		on ok (Cards.wantedOfEditedCardChanged)
+	}
+	IndexOfEditedCardChanged {
+		on ok (Cards.indexOfEditedCardChanged)
+	}
+	CancelEditCard {
+		on ok (Cards.resetEditValues)
+	}
+	EditCard {
+		on ok (Cards.editCard)
+	}
+	DeleteCardClick {
+		on ok (Cards.displayConfirmDelete)
+	}
+	CancelDeleteCard {
+		on ok (Cards.hideConfirmDelete)
 	}
 }
 
 views {
 	Categories {
 		render
+		nameOfNewCategoryChanged
+		indexOfNewCategoryChanged
+		resetNewValues
+		nameOfEditedCategoryChanged
+		indexOfEditedCategoryChanged
+		resetEditValues
+		editCategory
+		displayConfirmDelete
+		hideConfirmDelete
+	}
+	Cards {
+		render
+		givenOfNewCardChanged
+		wantedOfNewCardChanged
+		indexOfNewCardChanged
+		resetNewValues
+		givenOfEditedCardChanged
+		wantedOfEditedCardChanged
+		indexOfEditedCardChanged
+		resetEditValues
+		editCard
+		displayConfirmDelete
+		hideConfirmDelete
 	}
 }

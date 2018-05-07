@@ -1,5 +1,6 @@
 import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import UpdateCategoryOkEvent from "../../../src/author/events/UpdateCategoryOkEvent";
 import UpdateCategoryUnauthorizedEvent from "../../../src/author/events/UpdateCategoryUnauthorizedEvent";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
@@ -16,6 +17,7 @@ export default class AbstractUpdateCategoryCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
+			promises.push(new UpdateCategoryOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
 			break;
 		case this.unauthorized:
