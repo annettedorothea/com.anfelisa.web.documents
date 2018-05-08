@@ -5,7 +5,7 @@ export default class AbstractCreateCategoryOkEvent extends Event {
         super(eventParam, 'author.CreateCategoryOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.resetNewValues" ];
+	    return [ "author.views.CategoriesView.resetNewCategoryValues" ];
 	}
 }
 

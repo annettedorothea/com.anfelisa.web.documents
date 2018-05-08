@@ -4,7 +4,6 @@ import RouteAction from "../../src/common/actions/RouteAction";
 import CheckUsernameAction from "../../src/common/actions/CheckUsernameAction";
 import RegisterUserAction from "../../src/common/actions/RegisterUserAction";
 import LoginAction from "../../src/common/actions/LoginAction";
-import LoadDashboardAction from "../../src/common/actions/LoadDashboardAction";
 import LogoutAction from "../../src/common/actions/LogoutAction";
 import ForgotPasswordAction from "../../src/common/actions/ForgotPasswordAction";
 import ConfirmEmailAction from "../../src/common/actions/ConfirmEmailAction";
@@ -32,10 +31,6 @@ export function registerUser(actionParam) {
 
 export function login(actionParam) {
     new LoginAction(actionParam).apply();
-}
-
-export function loadDashboard(actionParam) {
-    new LoadDashboardAction(actionParam).apply();
 }
 
 export function logout(actionParam) {

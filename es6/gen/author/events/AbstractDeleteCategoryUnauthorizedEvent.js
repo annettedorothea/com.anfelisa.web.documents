@@ -5,7 +5,7 @@ export default class AbstractDeleteCategoryUnauthorizedEvent extends Event {
         super(eventParam, 'author.DeleteCategoryUnauthorizedEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.CommonView.displayError", "author.views.CategoriesView.hideConfirmDelete" ];
+	    return [ "common.views.CommonView.displayError", "author.views.CategoriesView.hideConfirmCategoryDelete" ];
 	}
 }
 

@@ -2,9 +2,10 @@ import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import RouteChangedLoginEvent from "../../../src/common/events/RouteChangedLoginEvent";
 import RouteChangedRegistrationEvent from "../../../src/common/events/RouteChangedRegistrationEvent";
+import RouteChangedDashboardEvent from "../../../src/common/events/RouteChangedDashboardEvent";
 import RouteChangedForgotPasswordEvent from "../../../src/common/events/RouteChangedForgotPasswordEvent";
 import RouteChangedResetPasswordEvent from "../../../src/common/events/RouteChangedResetPasswordEvent";
-import LoadDashboardAction from "../../../src/common/actions/LoadDashboardAction";
+import RouteChangedCategoriesEvent from "../../../src/common/events/RouteChangedCategoriesEvent";
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import ConfirmEmailAction from "../../../src/common/actions/ConfirmEmailAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
@@ -35,7 +36,7 @@ export default class AbstractRouteChangedCommand extends Command {
 			promises.push(new RouteChangedRegistrationEvent(this.commandData).publish());
 			break;
 		case this.dashboard:
-			promises.push(new TriggerAction(new LoadDashboardAction(this.commandData)).publish());
+			promises.push(new RouteChangedDashboardEvent(this.commandData).publish());
 			break;
 		case this.profile:
 			promises.push(new TriggerAction(new LoadUserAction(this.commandData)).publish());
@@ -53,6 +54,7 @@ export default class AbstractRouteChangedCommand extends Command {
 			promises.push(new TriggerAction(new GetAllUsersAction(this.commandData)).publish());
 			break;
 		case this.categories:
+			promises.push(new RouteChangedCategoriesEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
 			break;
 		default:

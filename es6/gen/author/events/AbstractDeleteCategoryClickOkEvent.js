@@ -5,7 +5,7 @@ export default class AbstractDeleteCategoryClickOkEvent extends Event {
         super(eventParam, 'author.DeleteCategoryClickOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.displayConfirmDelete" ];
+	    return [ "author.views.CategoriesView.displayConfirmCategoryDelete" ];
 	}
 }
 

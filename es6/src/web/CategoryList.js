@@ -13,6 +13,7 @@ import CancelEditCategoryAction from "../author/actions/CancelEditCategoryAction
 import EditCategoryAction from "../author/actions/EditCategoryAction";
 import DeleteCategoryClickAction from "../author/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../author/actions/CancelDeleteCategoryAction";
+import CardList from "./CardList";
 
 export default class CategoryList extends React.Component {
 
@@ -53,6 +54,7 @@ export default class CategoryList extends React.Component {
     }
 
     render() {
+        console.log("CategoryList.render", this.props);
         let backLink = "#dashboard";
         if (this.props.data.grandParentCategoryId) {
             backLink = `#categories/${this.props.data.grandParentCategoryId}`;
@@ -125,6 +127,8 @@ export default class CategoryList extends React.Component {
                     {categoryItems}
                     </tbody>
                 </table>
+
+                {this.props.data.parentCategoryId && <CardList {...this.props} />}
 
                 <button
                     onClick={() => new RouteAction({
@@ -304,7 +308,6 @@ class CategoryItem extends React.Component {
     }
 
     render() {
-        console.log("this.props.userRole", this.props.userRole);
         return (
             <tr>
                 <td onClick={this.onClick}>{this.props.categoryName}</td>

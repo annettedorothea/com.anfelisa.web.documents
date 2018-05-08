@@ -53,16 +53,11 @@ export default class CommonView {
     static initUser(eventData) {
         App.container.setState({
             username: eventData.username,
-            password: eventData.password
+            password: eventData.password,
+            role: eventData.role
         });
         localStorage.setItem("username", eventData.username);
         localStorage.setItem("password", eventData.password);
-    }
-
-    static initRole(eventData) {
-        App.container.setState({
-            role: eventData.role
-        });
     }
 
     static resetUser(eventData) {

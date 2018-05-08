@@ -5,7 +5,7 @@ export default class AbstractEditCardOkEvent extends Event {
         super(eventParam, 'author.EditCardOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CardsView.editCard" ];
+	    return [ "author.views.CategoriesView.editCard" ];
 	}
 }
 

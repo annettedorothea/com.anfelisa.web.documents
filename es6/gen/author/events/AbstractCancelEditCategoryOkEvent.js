@@ -5,7 +5,7 @@ export default class AbstractCancelEditCategoryOkEvent extends Event {
         super(eventParam, 'author.CancelEditCategoryOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.resetEditValues" ];
+	    return [ "author.views.CategoriesView.resetEditCategoryValues" ];
 	}
 }
 

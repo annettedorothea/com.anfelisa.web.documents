@@ -5,7 +5,7 @@ export default class AbstractWantedOfNewCardChangedOkEvent extends Event {
         super(eventParam, 'author.WantedOfNewCardChangedOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CardsView.wantedOfNewCardChanged" ];
+	    return [ "author.views.CategoriesView.wantedOfNewCardChanged" ];
 	}
 }
 

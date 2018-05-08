@@ -5,7 +5,7 @@ export default class AbstractDeleteCardUnauthorizedEvent extends Event {
         super(eventParam, 'author.DeleteCardUnauthorizedEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.CommonView.displayError", "author.views.CardsView.hideConfirmDelete" ];
+	    return [ "common.views.CommonView.displayError", "author.views.CategoriesView.hideConfirmCardDelete" ];
 	}
 }
 

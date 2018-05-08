@@ -12,7 +12,6 @@ import CancelEditCategoryAction from "../../src/author/actions/CancelEditCategor
 import EditCategoryAction from "../../src/author/actions/EditCategoryAction";
 import DeleteCategoryClickAction from "../../src/author/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../../src/author/actions/CancelDeleteCategoryAction";
-import LoadCardsAction from "../../src/author/actions/LoadCardsAction";
 import CreateCardAction from "../../src/author/actions/CreateCardAction";
 import UpdateCardAction from "../../src/author/actions/UpdateCardAction";
 import DeleteCardAction from "../../src/author/actions/DeleteCardAction";
@@ -44,7 +43,6 @@ export default class ActionFactoryRegistrationAuthor {
 		ACEController.registerFactory('author.EditCategoryAction', (actionParam) => new EditCategoryAction(actionParam));
 		ACEController.registerFactory('author.DeleteCategoryClickAction', (actionParam) => new DeleteCategoryClickAction(actionParam));
 		ACEController.registerFactory('author.CancelDeleteCategoryAction', (actionParam) => new CancelDeleteCategoryAction(actionParam));
-		ACEController.registerFactory('author.LoadCardsAction', (actionParam) => new LoadCardsAction(actionParam));
 		ACEController.registerFactory('author.CreateCardAction', (actionParam) => new CreateCardAction(actionParam));
 		ACEController.registerFactory('author.UpdateCardAction', (actionParam) => new UpdateCardAction(actionParam));
 		ACEController.registerFactory('author.DeleteCardAction', (actionParam) => new DeleteCardAction(actionParam));

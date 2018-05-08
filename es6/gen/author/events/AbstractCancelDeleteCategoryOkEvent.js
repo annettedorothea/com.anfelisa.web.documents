@@ -5,7 +5,7 @@ export default class AbstractCancelDeleteCategoryOkEvent extends Event {
         super(eventParam, 'author.CancelDeleteCategoryOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.hideConfirmDelete" ];
+	    return [ "author.views.CategoriesView.hideConfirmCategoryDelete" ];
 	}
 }
 

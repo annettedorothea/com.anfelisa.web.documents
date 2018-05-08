@@ -10,13 +10,13 @@ ACE {
 	RouteChanged {
 		on login (  Login.render )
 		on registration ( Registration.render )
-		on dashboard triggers ( LoadDashboard )
+		on dashboard (Dashboard.render)
 		on profile triggers ( profile.LoadUser )
 		on forgotPassword ( ForgotPassword.render )
 		on confirmEmail triggers (ConfirmEmail)
 		on resetPassword (ResetPassword.render)
 		on userList triggers (admin.GetAllUsers) 
-		on categories triggers (author.LoadCategories)
+		on categories (author.Categories.resetEditCardValues author.Categories.resetEditCategoryValues author.Categories.resetNewCardValues author.Categories.resetNewCategoryValues) triggers (author.LoadCategories )
 	}
 	Route {
 		on ok ( Common.updateHash )
@@ -30,13 +30,9 @@ ACE {
 		on ok (Common.initUser) triggers (Route)
 		on error ( Common.displayError ) 
 	}
-	Login {
-		on ok ( Common.initUser ) triggers ( Route )
+	Login preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+		on ok ( Common.initUser ) 
 		on unauthorized ( Common.displayError ) triggers ( Logout )
-	}
-	LoadDashboard preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok ( Dashboard.render Common.initRole)
-		on unauthorized ( Common.displayError ) triggers (Logout)
 	}
 	Logout {
 		on ok ( Common.resetUser ) triggers ( Route )
@@ -62,7 +58,6 @@ views {
 		hideSpinner
 		initTexts
 		initUser
-		initRole
 		resetUser
 		updateHash
 	}

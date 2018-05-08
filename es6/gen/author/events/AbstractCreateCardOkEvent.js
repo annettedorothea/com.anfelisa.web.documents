@@ -5,7 +5,7 @@ export default class AbstractCreateCardOkEvent extends Event {
         super(eventParam, 'author.CreateCardOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CardsView.resetNewValues" ];
+	    return [ "author.views.CategoriesView.resetNewCardValues" ];
 	}
 }
 

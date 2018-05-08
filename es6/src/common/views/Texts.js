@@ -12,7 +12,7 @@ export const Texts = {
             confirmDelete: {
                 cancel: "Nein",
                 ok: "Ja",
-                message: "Soll die Kategorie wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Unterkategorien und KArten werden dann auch gelöscht.",
+                message: "Soll die Kategorie wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Unterkategorien und Karten werden dann auch gelöscht.",
                 title: "Löschen"
             },
             index: "Index",
@@ -20,6 +20,20 @@ export const Texts = {
             nameAlreadyExists: "Name wird bereits verwendet.",
             ok: "OK",
             title: "Alle Kategorien"
+        },
+        cardList: {
+            cancel: "Abbrechen",
+            confirmDelete: {
+                cancel: "Nein",
+                ok: "Ja",
+                message: "Soll die Karte wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.",
+                title: "Löschen"
+            },
+            index: "Index",
+            given: "Gegeben",
+            wanted: "Gesucht",
+            ok: "OK",
+            title: "Alle Karten"
         },
         dashboard: {
             profile: "Profil",

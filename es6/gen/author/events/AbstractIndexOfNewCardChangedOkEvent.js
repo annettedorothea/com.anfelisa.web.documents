@@ -5,7 +5,7 @@ export default class AbstractIndexOfNewCardChangedOkEvent extends Event {
         super(eventParam, 'author.IndexOfNewCardChangedOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CardsView.indexOfNewCardChanged" ];
+	    return [ "author.views.CategoriesView.indexOfNewCardChanged" ];
 	}
 }
 

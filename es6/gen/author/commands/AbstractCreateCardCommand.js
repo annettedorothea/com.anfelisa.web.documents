@@ -2,7 +2,7 @@ import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import CreateCardOkEvent from "../../../src/author/events/CreateCardOkEvent";
 import CreateCardUnauthorizedEvent from "../../../src/author/events/CreateCardUnauthorizedEvent";
-import LoadCardsAction from "../../../src/author/actions/LoadCardsAction";
+import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractCreateCardCommand extends Command {
@@ -18,7 +18,7 @@ export default class AbstractCreateCardCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new CreateCardOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCardsAction(this.commandData)).publish());
+			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
 			break;
 		case this.unauthorized:
 			promises.push(new CreateCardUnauthorizedEvent(this.commandData).publish());

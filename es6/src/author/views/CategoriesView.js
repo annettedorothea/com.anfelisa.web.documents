@@ -19,10 +19,26 @@ export default class CategoriesView {
                 deleteCategory: {
                     confirmDelete: false,
                     categoryId: ""
+                },
+                newCard: {
+                    given: "",
+                    wanted: "",
+                    index: ""
+                },
+                editedCard: {
+                    cardId: "",
+                    given: "",
+                    wanted: "",
+                    index: ""
+                },
+                deleteCard: {
+                    confirmDelete: false,
+                    cardId: ""
                 }
             };
         }
         data.categoryList = eventData.data.categoryList;
+        data.cardList = eventData.data.cardList;
         data.grandParentCategoryId = eventData.data.grandParentCategoryId;
         data.parentCategoryId = eventData.data.parentCategoryId;
         data.parentCategoryName = eventData.data.parentCategoryName;
@@ -49,7 +65,7 @@ export default class CategoriesView {
         });
     };
 
-    static resetNewValues(eventData) {
+    static resetNewCategoryValues(eventData) {
         let data = App.container.state.data;
         data.newCategory = {
             name: "",
@@ -78,7 +94,7 @@ export default class CategoriesView {
         });
     };
 
-    static resetEditValues(eventData) {
+    static resetEditCategoryValues(eventData) {
         let data = App.container.state.data;
         data.editedCategory = {
             name: "",
@@ -104,7 +120,7 @@ export default class CategoriesView {
         });
     };
 
-    static displayConfirmDelete(eventData) {
+    static displayConfirmCategoryDelete(eventData) {
         let data = App.container.state.data;
         data.deleteCategory = {
             confirmDelete: true,
@@ -115,11 +131,118 @@ export default class CategoriesView {
         });
     };
 
-    static hideConfirmDelete(eventData) {
+    static hideConfirmCategoryDelete(eventData) {
         let data = App.container.state.data;
         data.deleteCategory = {
             confirmDelete: false,
             categoryId: ""
+        };
+        App.container.setState({
+            data
+        });
+    };
+
+    static givenOfNewCardChanged(eventData) {
+        let data = App.container.state.data;
+        data.newCard.given = eventData.given;
+        App.container.setState({
+            data
+        });
+    };
+
+    static wantedOfNewCardChanged(eventData) {
+        let data = App.container.state.data;
+        data.newCard.wanted = eventData.wanted;
+        App.container.setState({
+            data
+        });
+    };
+
+    static indexOfNewCardChanged(eventData) {
+        let data = App.container.state.data;
+        data.newCard.index = eventData.index;
+        App.container.setState({
+            data
+        });
+    };
+
+    static resetNewCardValues(eventData) {
+        let data = App.container.state.data;
+        data.newCard = {
+            wanted: "",
+            given: "",
+            index: ""
+        };
+        App.container.setState({
+            data
+        });
+    };
+
+    static givenOfEditedCardChanged(eventData) {
+        let data = App.container.state.data;
+        data.editedCard.given = eventData.given;
+        App.container.setState({
+            data
+        });
+    };
+
+    static wantedOfEditedCardChanged(eventData) {
+        let data = App.container.state.data;
+        data.editedCard.wanted = eventData.wanted;
+        App.container.setState({
+            data
+        });
+    };
+
+    static indexOfEditedCardChanged(eventData) {
+        let data = App.container.state.data;
+        data.editedCard.index = eventData.index;
+        App.container.setState({
+            data
+        });
+    };
+
+    static resetEditCardValues(eventData) {
+        let data = App.container.state.data;
+        data.editedCard = {
+            wanted: "",
+            given: "",
+            index: ""
+        };
+        App.container.setState({
+            data
+        });
+    };
+
+    static editCard(eventData) {
+        let data = App.container.state.data;
+        data.editedCard = {
+            cardId: eventData.cardId,
+            given: eventData.given,
+            wanted: eventData.wanted,
+            index: eventData.index
+        };
+        App.container.setState({
+            data
+        });
+    };
+
+    static displayConfirmCardDelete(eventData) {
+        let data = App.container.state.data;
+        data.deleteCard = {
+            confirmDelete: true,
+            cardId: eventData.cardId
+        };
+        App.container.setState({
+            data
+        });
+    };
+
+    static hideConfirmCardDelete(eventData) {
+        let data = App.container.state.data;
+        data.deleteCard = {
+            confirmDelete: false,
+            cardId: ""
         };
         App.container.setState({
             data

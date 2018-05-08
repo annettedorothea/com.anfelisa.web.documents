@@ -2,7 +2,6 @@ import Command from "../../../gen/ace/Command";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoginOkEvent from "../../../src/common/events/LoginOkEvent";
 import LoginUnauthorizedEvent from "../../../src/common/events/LoginUnauthorizedEvent";
-import RouteAction from "../../../src/common/actions/RouteAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoginCommand extends Command {
@@ -18,7 +17,6 @@ export default class AbstractLoginCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new LoginOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
 			break;
 		case this.unauthorized:
 			promises.push(new LoginUnauthorizedEvent(this.commandData).publish());

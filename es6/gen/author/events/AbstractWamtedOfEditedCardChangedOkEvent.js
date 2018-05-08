@@ -5,7 +5,7 @@ export default class AbstractWamtedOfEditedCardChangedOkEvent extends Event {
         super(eventParam, 'author.WamtedOfEditedCardChangedOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CardsView.wantedOfEditedCardChanged" ];
+	    return [ "author.views.CategoriesView.wantedOfEditedCardChanged" ];
 	}
 }
 

@@ -5,7 +5,7 @@ export default class AbstractDeleteCardClickOkEvent extends Event {
         super(eventParam, 'author.DeleteCardClickOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CardsView.displayConfirmDelete" ];
+	    return [ "author.views.CategoriesView.displayConfirmCardDelete" ];
 	}
 }
 

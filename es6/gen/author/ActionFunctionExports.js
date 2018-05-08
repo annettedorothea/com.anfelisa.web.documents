@@ -11,7 +11,6 @@ import CancelEditCategoryAction from "../../src/author/actions/CancelEditCategor
 import EditCategoryAction from "../../src/author/actions/EditCategoryAction";
 import DeleteCategoryClickAction from "../../src/author/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../../src/author/actions/CancelDeleteCategoryAction";
-import LoadCardsAction from "../../src/author/actions/LoadCardsAction";
 import CreateCardAction from "../../src/author/actions/CreateCardAction";
 import UpdateCardAction from "../../src/author/actions/UpdateCardAction";
 import DeleteCardAction from "../../src/author/actions/DeleteCardAction";
@@ -77,10 +76,6 @@ export function deleteCategoryClick(actionParam) {
 
 export function cancelDeleteCategory(actionParam) {
     new CancelDeleteCategoryAction(actionParam).apply();
-}
-
-export function loadCards(actionParam) {
-    new LoadCardsAction(actionParam).apply();
 }
 
 export function createCard(actionParam) {

@@ -1,5 +1,6 @@
 import Action from "../../ace/Action";
 import LoginCommand from "../../../src/common/commands/LoginCommand";
+import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractLoginAction extends Action {
 
@@ -12,9 +13,11 @@ export default class AbstractLoginAction extends Action {
 	}
 
 	preUpdateUI() {
+		CommonView.displaySpinner(this.actionParam);
 	}
 
 	postUpdateUI() {
+		CommonView.hideSpinner(this.actionParam);
 	}
 
 }
