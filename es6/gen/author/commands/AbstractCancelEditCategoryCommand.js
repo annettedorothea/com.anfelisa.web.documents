@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import CancelEditCategoryOkEvent from "../../../src/author/events/CancelEditCategoryOkEvent";
 
@@ -9,16 +9,13 @@ export default class AbstractCancelEditCategoryCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new CancelEditCategoryOkEvent(this.commandData).publish());
+			new CancelEditCategoryOkEvent(this.commandData).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('CancelEditCategoryCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'CancelEditCategoryCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

@@ -1,4 +1,4 @@
-import Action from "../../ace/Action";
+import Action from "../../ace/SynchronousAction";
 import GivenOfEditedCardChangedCommand from "../../../src/author/commands/GivenOfEditedCardChangedCommand";
 
 export default class AbstractGivenOfEditedCardChangedAction extends Action {
@@ -11,11 +11,6 @@ export default class AbstractGivenOfEditedCardChangedAction extends Action {
 		return new GivenOfEditedCardChangedCommand(this.actionData);
 	}
 
-	preUpdateUI() {
-	}
-
-	postUpdateUI() {
-	}
 
 }
 

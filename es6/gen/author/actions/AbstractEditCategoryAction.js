@@ -1,4 +1,4 @@
-import Action from "../../ace/Action";
+import Action from "../../ace/SynchronousAction";
 import EditCategoryCommand from "../../../src/author/commands/EditCategoryCommand";
 
 export default class AbstractEditCategoryAction extends Action {
@@ -11,11 +11,6 @@ export default class AbstractEditCategoryAction extends Action {
 		return new EditCategoryCommand(this.actionData);
 	}
 
-	preUpdateUI() {
-	}
-
-	postUpdateUI() {
-	}
 
 }
 

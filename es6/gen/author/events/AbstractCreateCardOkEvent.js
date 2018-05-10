@@ -1,4 +1,4 @@
-import Event from "../../../gen/ace/Event";
+import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractCreateCardOkEvent extends Event {
     constructor(eventParam) {

@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import CancelEditCardOkEvent from "../../../src/author/events/CancelEditCardOkEvent";
 
@@ -9,16 +9,13 @@ export default class AbstractCancelEditCardCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new CancelEditCardOkEvent(this.commandData).publish());
+			new CancelEditCardOkEvent(this.commandData).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('CancelEditCardCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'CancelEditCardCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

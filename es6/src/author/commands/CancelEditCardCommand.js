@@ -2,10 +2,7 @@ import AbstractCancelEditCardCommand from "../../../gen/author/commands/Abstract
 
 export default class CancelEditCardCommand extends AbstractCancelEditCardCommand {
     execute() {
-        return new Promise((resolve, reject) => {
-            this.commandData.outcome = this.ok;
-            resolve();
-        });
+        this.commandData.outcome = this.ok;
     }
 }
 

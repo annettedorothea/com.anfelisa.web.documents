@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import DeleteCategoryOkEvent from "../../../src/author/events/DeleteCategoryOkEvent";
 import DeleteCategoryUnauthorizedEvent from "../../../src/author/events/DeleteCategoryUnauthorizedEvent";

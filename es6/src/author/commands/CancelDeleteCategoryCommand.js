@@ -2,10 +2,7 @@ import AbstractCancelDeleteCategoryCommand from "../../../gen/author/commands/Ab
 
 export default class CancelDeleteCategoryCommand extends AbstractCancelDeleteCategoryCommand {
     execute() {
-        return new Promise((resolve, reject) => {
-            this.commandData.outcome = this.ok;
-			resolve();
-        });
+        this.commandData.outcome = this.ok;
     }
 }
 

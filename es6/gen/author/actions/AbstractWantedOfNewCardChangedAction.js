@@ -1,4 +1,4 @@
-import Action from "../../ace/Action";
+import Action from "../../ace/SynchronousAction";
 import WantedOfNewCardChangedCommand from "../../../src/author/commands/WantedOfNewCardChangedCommand";
 
 export default class AbstractWantedOfNewCardChangedAction extends Action {
@@ -11,11 +11,6 @@ export default class AbstractWantedOfNewCardChangedAction extends Action {
 		return new WantedOfNewCardChangedCommand(this.actionData);
 	}
 
-	preUpdateUI() {
-	}
-
-	postUpdateUI() {
-	}
 
 }
 

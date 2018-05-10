@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import InitUserEvent from "../../../src/common/events/InitUserEvent";
 import InitNoUserEvent from "../../../src/common/events/InitNoUserEvent";
@@ -14,23 +14,20 @@ export default class AbstractInitCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.user:
-			promises.push(new InitUserEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoginAction(this.commandData)).publish());
-			promises.push(new TriggerAction(new RouteChangedAction(this.commandData)).publish());
+			new InitUserEvent(this.commandData).publish();
+			new TriggerAction(new LoginAction(this.commandData)).publish();
+			new TriggerAction(new RouteChangedAction(this.commandData)).publish();
 			break;
 		case this.noUser:
-			promises.push(new InitNoUserEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
-			promises.push(new TriggerAction(new RouteChangedAction(this.commandData)).publish());
+			new InitNoUserEvent(this.commandData).publish();
+			new TriggerAction(new RouteAction(this.commandData)).publish();
+			new TriggerAction(new RouteChangedAction(this.commandData)).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('InitCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'InitCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

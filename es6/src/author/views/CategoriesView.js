@@ -67,14 +67,16 @@ export default class CategoriesView {
 
     static resetNewCategoryValues(eventData) {
         let data = App.container.state.data;
-        data.newCategory = {
-            name: "",
-            nameAlreadyExists: false,
-            index: ""
-        };
-        App.container.setState({
-            data
-        });
+        if (data) {
+            data.newCategory = {
+                name: "",
+                nameAlreadyExists: false,
+                index: ""
+            };
+            App.container.setState({
+                data
+            });
+        }
     };
 
     static nameOfEditedCategoryChanged(eventData) {
@@ -96,15 +98,17 @@ export default class CategoriesView {
 
     static resetEditCategoryValues(eventData) {
         let data = App.container.state.data;
-        data.editedCategory = {
-            name: "",
-            nameAlreadyExists: false,
-            index: "",
-            categoryId: ""
-        };
-        App.container.setState({
-            data
-        });
+        if (data) {
+            data.editedCategory = {
+                name: "",
+                nameAlreadyExists: false,
+                index: "",
+                categoryId: ""
+            };
+            App.container.setState({
+                data
+            });
+        }
     };
 
     static editCategory(eventData) {
@@ -168,14 +172,16 @@ export default class CategoriesView {
 
     static resetNewCardValues(eventData) {
         let data = App.container.state.data;
-        data.newCard = {
-            wanted: "",
-            given: "",
-            index: ""
-        };
-        App.container.setState({
-            data
-        });
+        if (data) {
+            data.newCard = {
+                wanted: "",
+                given: "",
+                index: ""
+            };
+            App.container.setState({
+                data
+            });
+        }
     };
 
     static givenOfEditedCardChanged(eventData) {
@@ -204,14 +210,16 @@ export default class CategoriesView {
 
     static resetEditCardValues(eventData) {
         let data = App.container.state.data;
-        data.editedCard = {
-            wanted: "",
-            given: "",
-            index: ""
-        };
-        App.container.setState({
-            data
-        });
+        if (data) {
+            data.editedCard = {
+                wanted: "",
+                given: "",
+                index: ""
+            };
+            App.container.setState({
+                data
+            });
+        }
     };
 
     static editCard(eventData) {
@@ -222,6 +230,7 @@ export default class CategoriesView {
             wanted: eventData.wanted,
             index: eventData.index
         };
+        console.log("editCard", data);
         App.container.setState({
             data
         });

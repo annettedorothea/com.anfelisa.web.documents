@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import RouteChangedLoginEvent from "../../../src/common/events/RouteChangedLoginEvent";
 import RouteChangedRegistrationEvent from "../../../src/common/events/RouteChangedRegistrationEvent";
@@ -26,41 +26,38 @@ export default class AbstractRouteChangedCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.login:
-			promises.push(new RouteChangedLoginEvent(this.commandData).publish());
+			new RouteChangedLoginEvent(this.commandData).publish();
 			break;
 		case this.registration:
-			promises.push(new RouteChangedRegistrationEvent(this.commandData).publish());
+			new RouteChangedRegistrationEvent(this.commandData).publish();
 			break;
 		case this.dashboard:
-			promises.push(new RouteChangedDashboardEvent(this.commandData).publish());
+			new RouteChangedDashboardEvent(this.commandData).publish();
 			break;
 		case this.profile:
-			promises.push(new TriggerAction(new LoadUserAction(this.commandData)).publish());
+			new TriggerAction(new LoadUserAction(this.commandData)).publish();
 			break;
 		case this.forgotPassword:
-			promises.push(new RouteChangedForgotPasswordEvent(this.commandData).publish());
+			new RouteChangedForgotPasswordEvent(this.commandData).publish();
 			break;
 		case this.confirmEmail:
-			promises.push(new TriggerAction(new ConfirmEmailAction(this.commandData)).publish());
+			new TriggerAction(new ConfirmEmailAction(this.commandData)).publish();
 			break;
 		case this.resetPassword:
-			promises.push(new RouteChangedResetPasswordEvent(this.commandData).publish());
+			new RouteChangedResetPasswordEvent(this.commandData).publish();
 			break;
 		case this.userList:
-			promises.push(new TriggerAction(new GetAllUsersAction(this.commandData)).publish());
+			new TriggerAction(new GetAllUsersAction(this.commandData)).publish();
 			break;
 		case this.categories:
-			promises.push(new RouteChangedCategoriesEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
+			new RouteChangedCategoriesEvent(this.commandData).publish();
+			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('RouteChangedCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'RouteChangedCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

@@ -1,7 +1,7 @@
-import AbstractWamtedOfEditedCardChangedOkEvent from "../../../gen/author/events/AbstractWamtedOfEditedCardChangedOkEvent";
+import AbstractWantedOfEditedCardChangedOkEvent from "../../../gen/author/events/AbstractWantedOfEditedCardChangedOkEvent";
 import AppUtils from "../../app/AppUtils";
 
-export default class WamtedOfEditedCardChangedOkEvent extends AbstractWamtedOfEditedCardChangedOkEvent {
+export default class WantedOfEditedCardChangedOkEvent extends AbstractWantedOfEditedCardChangedOkEvent {
     prepareDataForView() {
         this.eventData = AppUtils.deepCopy(this.eventParam);
         if (this.eventData.data === undefined) {

@@ -1,4 +1,4 @@
-import Action from "../../ace/Action";
+import Action from "../../ace/SynchronousAction";
 import NameOfEditedCategoryChangedCommand from "../../../src/author/commands/NameOfEditedCategoryChangedCommand";
 
 export default class AbstractNameOfEditedCategoryChangedAction extends Action {
@@ -11,11 +11,6 @@ export default class AbstractNameOfEditedCategoryChangedAction extends Action {
 		return new NameOfEditedCategoryChangedCommand(this.actionData);
 	}
 
-	preUpdateUI() {
-	}
-
-	postUpdateUI() {
-	}
 
 }
 

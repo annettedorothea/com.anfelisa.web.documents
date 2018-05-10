@@ -7,14 +7,13 @@ export default class CreateCardCommand extends AbstractCreateCardCommand {
                 given: this.commandParam.given,
                 wanted: this.commandParam.wanted,
                 cardIndex: this.commandParam.cardIndex,
-                categoryId: this.commandParam.parentCategoryId,
+                categoryId: this.commandParam.categoryId,
             };
-            console.log(data);
             this.httpPost("api/card/create", [], data).then((data) => {
                 this.commandData.outcome = this.ok;
                 this.commandData.username = this.commandParam.username;
                 this.commandData.password = this.commandParam.password;
-                this.commandData.categoryId = this.commandParam.parentCategoryId;
+                this.commandData.parentCategoryId = this.commandParam.categoryId;
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

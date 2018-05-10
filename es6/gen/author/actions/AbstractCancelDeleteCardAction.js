@@ -1,4 +1,4 @@
-import Action from "../../ace/Action";
+import Action from "../../ace/SynchronousAction";
 import CancelDeleteCardCommand from "../../../src/author/commands/CancelDeleteCardCommand";
 
 export default class AbstractCancelDeleteCardAction extends Action {
@@ -11,11 +11,6 @@ export default class AbstractCancelDeleteCardAction extends Action {
 		return new CancelDeleteCardCommand(this.actionData);
 	}
 
-	preUpdateUI() {
-	}
-
-	postUpdateUI() {
-	}
 
 }
 

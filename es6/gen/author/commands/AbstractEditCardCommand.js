@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import EditCardOkEvent from "../../../src/author/events/EditCardOkEvent";
 
@@ -9,16 +9,13 @@ export default class AbstractEditCardCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new EditCardOkEvent(this.commandData).publish());
+			new EditCardOkEvent(this.commandData).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('EditCardCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'EditCardCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

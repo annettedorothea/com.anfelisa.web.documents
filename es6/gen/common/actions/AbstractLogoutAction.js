@@ -1,4 +1,4 @@
-import Action from "../../ace/Action";
+import Action from "../../ace/SynchronousAction";
 import LogoutCommand from "../../../src/common/commands/LogoutCommand";
 
 export default class AbstractLogoutAction extends Action {
@@ -11,11 +11,6 @@ export default class AbstractLogoutAction extends Action {
 		return new LogoutCommand(this.actionData);
 	}
 
-	preUpdateUI() {
-	}
-
-	postUpdateUI() {
-	}
 
 }
 

@@ -1,4 +1,4 @@
-import Action from "../../ace/Action";
+import Action from "../../ace/SynchronousAction";
 import EditCardCommand from "../../../src/author/commands/EditCardCommand";
 
 export default class AbstractEditCardAction extends Action {
@@ -11,11 +11,6 @@ export default class AbstractEditCardAction extends Action {
 		return new EditCardCommand(this.actionData);
 	}
 
-	preUpdateUI() {
-	}
-
-	postUpdateUI() {
-	}
 
 }
 

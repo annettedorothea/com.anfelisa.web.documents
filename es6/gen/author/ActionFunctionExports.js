@@ -19,7 +19,7 @@ import WantedOfNewCardChangedAction from "../../src/author/actions/WantedOfNewCa
 import IndexOfNewCardChangedAction from "../../src/author/actions/IndexOfNewCardChangedAction";
 import CancelNewCardAction from "../../src/author/actions/CancelNewCardAction";
 import GivenOfEditedCardChangedAction from "../../src/author/actions/GivenOfEditedCardChangedAction";
-import WamtedOfEditedCardChangedAction from "../../src/author/actions/WamtedOfEditedCardChangedAction";
+import WantedOfEditedCardChangedAction from "../../src/author/actions/WantedOfEditedCardChangedAction";
 import IndexOfEditedCardChangedAction from "../../src/author/actions/IndexOfEditedCardChangedAction";
 import CancelEditCardAction from "../../src/author/actions/CancelEditCardAction";
 import EditCardAction from "../../src/author/actions/EditCardAction";
@@ -110,8 +110,8 @@ export function givenOfEditedCardChanged(actionParam) {
     new GivenOfEditedCardChangedAction(actionParam).apply();
 }
 
-export function wamtedOfEditedCardChanged(actionParam) {
-    new WamtedOfEditedCardChangedAction(actionParam).apply();
+export function wantedOfEditedCardChanged(actionParam) {
+    new WantedOfEditedCardChangedAction(actionParam).apply();
 }
 
 export function indexOfEditedCardChanged(actionParam) {

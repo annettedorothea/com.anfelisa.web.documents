@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoginOkEvent from "../../../src/common/events/LoginOkEvent";
 import LoginUnauthorizedEvent from "../../../src/common/events/LoginUnauthorizedEvent";

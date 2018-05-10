@@ -2,11 +2,8 @@ import AbstractDeleteCardClickCommand from "../../../gen/author/commands/Abstrac
 
 export default class DeleteCardClickCommand extends AbstractDeleteCardClickCommand {
     execute() {
-        return new Promise((resolve, reject) => {
-            this.commandData.cardId = this.commandParam.cardId;
-            this.commandData.outcome = this.ok;
-            resolve();
-        });
+        this.commandData.cardId = this.commandParam.cardId;
+        this.commandData.outcome = this.ok;
     }
 }
 

@@ -1,4 +1,4 @@
-import Event from "../../../gen/ace/Event";
+import Event from "../../../gen/ace/SynchronousEvent";
 
 export default class AbstractCancelNewCardOkEvent extends Event {
     constructor(eventParam) {

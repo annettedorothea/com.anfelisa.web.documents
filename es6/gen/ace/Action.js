@@ -10,7 +10,6 @@ export default class Action {
         this.actionParam = AppUtils.deepCopy(actionParam);
         this.actionData = {};
         this.isInitAction = isInitAction === true;
-        this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 
     captureActionParam() {
@@ -29,39 +28,6 @@ export default class Action {
     apply() {
         ACEController.addActionToQueue(this);
     }
-
-    applyAction() {
-        return new Promise((resolve, reject) => {
-            this.preUpdateUI();
-            if (ACEController.execution === ACEController.LIVE) {
-                this.actionData.uuid = AppUtils.createUUID();
-            }
-            if (ACEController.execution === ACEController.LIVE) {
-                this.captureActionParam();
-            } else {
-                this.releaseActionParam();
-            }
-            this.initActionData();
-            ACEController.addItemToTimeLine({action: this});
-            let command = this.getCommand();
-            if (command) {
-				command.executeCommand().then(
-				    () => {
-				        this.postUpdateUI();
-				        resolve();
-				    },
-				    (error) => {
-				        this.postUpdateUI();
-				        reject(error + "\n" + command.commandName);
-				    }
-				);
-            } else {
-                this.postUpdateUI();
-                resolve();
-            }
-        });
-    }
-
 }
 
 /*       S.D.G.       */

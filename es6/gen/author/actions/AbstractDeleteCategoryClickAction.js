@@ -1,4 +1,4 @@
-import Action from "../../ace/Action";
+import Action from "../../ace/SynchronousAction";
 import DeleteCategoryClickCommand from "../../../src/author/commands/DeleteCategoryClickCommand";
 
 export default class AbstractDeleteCategoryClickAction extends Action {
@@ -11,11 +11,6 @@ export default class AbstractDeleteCategoryClickAction extends Action {
 		return new DeleteCategoryClickCommand(this.actionData);
 	}
 
-	preUpdateUI() {
-	}
-
-	postUpdateUI() {
-	}
 
 }
 

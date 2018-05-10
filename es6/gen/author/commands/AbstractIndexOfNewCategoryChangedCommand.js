@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import IndexOfNewCategoryChangedOkEvent from "../../../src/author/events/IndexOfNewCategoryChangedOkEvent";
 
@@ -9,16 +9,13 @@ export default class AbstractIndexOfNewCategoryChangedCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new IndexOfNewCategoryChangedOkEvent(this.commandData).publish());
+			new IndexOfNewCategoryChangedOkEvent(this.commandData).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('IndexOfNewCategoryChangedCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'IndexOfNewCategoryChangedCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import ConfirmEmailOkEvent from "../../../src/common/events/ConfirmEmailOkEvent";
 import ConfirmEmailErrorEvent from "../../../src/common/events/ConfirmEmailErrorEvent";

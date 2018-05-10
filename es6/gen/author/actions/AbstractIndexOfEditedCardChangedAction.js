@@ -1,4 +1,4 @@
-import Action from "../../ace/Action";
+import Action from "../../ace/SynchronousAction";
 import IndexOfEditedCardChangedCommand from "../../../src/author/commands/IndexOfEditedCardChangedCommand";
 
 export default class AbstractIndexOfEditedCardChangedAction extends Action {
@@ -11,11 +11,6 @@ export default class AbstractIndexOfEditedCardChangedAction extends Action {
 		return new IndexOfEditedCardChangedCommand(this.actionData);
 	}
 
-	preUpdateUI() {
-	}
-
-	postUpdateUI() {
-	}
 
 }
 

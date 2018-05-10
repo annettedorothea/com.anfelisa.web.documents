@@ -1,4 +1,4 @@
-import Action from "../../ace/Action";
+import Action from "../../ace/SynchronousAction";
 import RouteCommand from "../../../src/common/commands/RouteCommand";
 
 export default class AbstractRouteAction extends Action {
@@ -11,11 +11,6 @@ export default class AbstractRouteAction extends Action {
 		return new RouteCommand(this.actionData);
 	}
 
-	preUpdateUI() {
-	}
-
-	postUpdateUI() {
-	}
 
 }
 

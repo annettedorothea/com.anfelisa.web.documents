@@ -12,7 +12,7 @@ export default class DeleteCardCommand extends AbstractDeleteCardCommand {
                 this.commandData.outcome = this.ok;
                 this.commandData.username = this.commandParam.username;
                 this.commandData.password = this.commandParam.password;
-                this.commandData.categoryId = this.commandParam.categoryId;
+                this.commandData.parentCategoryId = this.commandParam.categoryId;
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

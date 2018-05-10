@@ -1,4 +1,4 @@
-import Action from "../../ace/Action";
+import Action from "../../ace/SynchronousAction";
 import CancelEditCategoryCommand from "../../../src/author/commands/CancelEditCategoryCommand";
 
 export default class AbstractCancelEditCategoryAction extends Action {
@@ -11,11 +11,6 @@ export default class AbstractCancelEditCategoryAction extends Action {
 		return new CancelEditCategoryCommand(this.actionData);
 	}
 
-	preUpdateUI() {
-	}
-
-	postUpdateUI() {
-	}
 
 }
 

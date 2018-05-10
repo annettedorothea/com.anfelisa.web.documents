@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import ForgotPasswordOkEvent from "../../../src/common/events/ForgotPasswordOkEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";

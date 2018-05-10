@@ -1,4 +1,4 @@
-import Event from "../../../gen/ace/Event";
+import Event from "../../../gen/ace/SynchronousEvent";
 
 export default class AbstractNameOfEditedCategoryChangedOkEvent extends Event {
     constructor(eventParam) {

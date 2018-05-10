@@ -54,7 +54,6 @@ export default class CategoryList extends React.Component {
     }
 
     render() {
-        console.log("CategoryList.render", this.props);
         let backLink = "#dashboard";
         if (this.props.data.grandParentCategoryId) {
             backLink = `#categories/${this.props.data.grandParentCategoryId}`;
@@ -185,27 +184,27 @@ class NewCategory extends React.Component {
                 <td>
                     <input
                         type={"text"}
-                        onChange={this.onNameChange}
+                        onBlur={this.onNameChange}
                         autoComplete="off"
-                        value={this.props.name}
+                        defaultValue={this.props.name}
                         placeholder={this.props.texts.categoryList.name}
                     />
-                    {this.props.nameAlreadyExists === true && this.props.name.length > 0 &&
+                    {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
                     <label>{this.props.texts.categoryList.nameAlreadyExists}</label>}
                 </td>
                 <td>
                     <input
                         type={"number"}
-                        onChange={this.onIndexChange}
+                        onBlur={this.onIndexChange}
                         autoComplete="off"
-                        value={this.props.index}
+                        defaultValue={this.props.index}
                         placeholder={this.props.texts.categoryList.index}
                     />
                 </td>
                 <td/>
                 <td>
                     <button
-                        disabled={this.props.nameAlreadyExists === true || this.props.name.length === 0}
+                        disabled={this.props.nameAlreadyExists === true || !this.props.name || this.props.name.length === 0}
                         onClick={this.onNewCategory}
                     >{this.props.texts.categoryList.ok}</button>
                     <button
@@ -259,18 +258,18 @@ class EditCategory extends React.Component {
                 <td>
                     <input
                         type={"text"}
-                        onChange={this.onNameChange}
+                        onBlur={this.onNameChange}
                         autoComplete="off"
                         value={this.props.name}
                         placeholder={this.props.texts.categoryList.name}
                     />
-                    {this.props.nameAlreadyExists === true && this.props.name.length > 0 &&
+                    {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
                     <label>{this.props.texts.categoryList.nameAlreadyExists}</label>}
                 </td>
                 <td>
                     <input
                         type={"number"}
-                        onChange={this.onIndexChange}
+                        onBlur={this.onIndexChange}
                         autoComplete="off"
                         value={this.props.index}
                         placeholder={this.props.texts.categoryList.index}
@@ -279,7 +278,7 @@ class EditCategory extends React.Component {
                 <td/>
                 <td>
                     <button
-                        disabled={this.props.nameAlreadyExists === true || this.props.name.length === 0}
+                        disabled={this.props.nameAlreadyExists === true || !this.props.name || this.props.name.length === 0}
                         onClick={this.onUpdate}
                     >{this.props.texts.categoryList.ok}</button>
                     <button

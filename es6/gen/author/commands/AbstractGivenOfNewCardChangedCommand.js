@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import GivenOfNewCardChangedOkEvent from "../../../src/author/events/GivenOfNewCardChangedOkEvent";
 
@@ -9,16 +9,13 @@ export default class AbstractGivenOfNewCardChangedCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new GivenOfNewCardChangedOkEvent(this.commandData).publish());
+			new GivenOfNewCardChangedOkEvent(this.commandData).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('GivenOfNewCardChangedCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'GivenOfNewCardChangedCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

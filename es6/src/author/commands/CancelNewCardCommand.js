@@ -2,10 +2,7 @@ import AbstractCancelNewCardCommand from "../../../gen/author/commands/AbstractC
 
 export default class CancelNewCardCommand extends AbstractCancelNewCardCommand {
     execute() {
-        return new Promise((resolve, reject) => {
-            this.commandData.outcome = this.ok;
-            resolve();
-        });
+        this.commandData.outcome = this.ok;
     }
 }
 

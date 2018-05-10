@@ -1,4 +1,4 @@
-import Event from "../../../gen/ace/Event";
+import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractLoadCategoriesOkEvent extends Event {
     constructor(eventParam) {

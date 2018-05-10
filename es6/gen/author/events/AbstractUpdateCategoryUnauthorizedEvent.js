@@ -1,4 +1,4 @@
-import Event from "../../../gen/ace/Event";
+import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractUpdateCategoryUnauthorizedEvent extends Event {
     constructor(eventParam) {

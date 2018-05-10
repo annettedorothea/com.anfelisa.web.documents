@@ -5,16 +5,15 @@ export default class UpdateCardCommand extends AbstractUpdateCardCommand {
         return new Promise((resolve, reject) => {
             const data = {
                 cardId: this.commandParam.cardId,
-                categoryId: this.commandParam.categoryId,
                 given: this.commandParam.given,
                 wanted: this.commandParam.wanted,
-                index: this.commandParam.index
+                cardIndex: this.commandParam.cardIndex
             };
             this.httpPut("api/card/update", [], data).then((data) => {
                 this.commandData.outcome = this.ok;
                 this.commandData.username = this.commandParam.username;
                 this.commandData.password = this.commandParam.password;
-                this.commandData.categoryId = this.commandParam.categoryId;
+                this.commandData.parentCategoryId = this.commandParam.categoryId;
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

@@ -35,7 +35,7 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.IndexOfNewCardChangedOkEvent', CategoriesView.indexOfNewCardChanged);
 		ACEController.registerListener('author.CancelNewCardOkEvent', CategoriesView.resetNewCardValues);
 		ACEController.registerListener('author.GivenOfEditedCardChangedOkEvent', CategoriesView.givenOfEditedCardChanged);
-		ACEController.registerListener('author.WamtedOfEditedCardChangedOkEvent', CategoriesView.wantedOfEditedCardChanged);
+		ACEController.registerListener('author.WantedOfEditedCardChangedOkEvent', CategoriesView.wantedOfEditedCardChanged);
 		ACEController.registerListener('author.IndexOfEditedCardChangedOkEvent', CategoriesView.indexOfEditedCardChanged);
 		ACEController.registerListener('author.CancelEditCardOkEvent', CategoriesView.resetEditCardValues);
 		ACEController.registerListener('author.EditCardOkEvent', CategoriesView.editCard);

@@ -20,8 +20,6 @@ export * from "../../gen/ace/Bug";
 export * from "../../gen/common/ActionFunctionExports";
 
 
-AppUtils.start();
-
 const React = require('react');
 const ReactDOM = require('react-dom');
 
@@ -51,6 +49,8 @@ ActionFactoryRegistrationCommon.init();
 
 EventListenerRegistrationProfile.init();
 ActionFactoryRegistrationProfile.init();
+
+AppUtils.start();
 
 /*       S.D.G.       */
 

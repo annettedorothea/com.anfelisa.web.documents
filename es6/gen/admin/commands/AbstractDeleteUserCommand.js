@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import DeleteUserUnauthorizedEvent from "../../../src/admin/events/DeleteUserUnauthorizedEvent";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";

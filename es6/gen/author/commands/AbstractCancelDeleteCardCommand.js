@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import CancelDeleteCardOkEvent from "../../../src/author/events/CancelDeleteCardOkEvent";
 
@@ -9,16 +9,13 @@ export default class AbstractCancelDeleteCardCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new CancelDeleteCardOkEvent(this.commandData).publish());
+			new CancelDeleteCardOkEvent(this.commandData).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('CancelDeleteCardCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'CancelDeleteCardCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

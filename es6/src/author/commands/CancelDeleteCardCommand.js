@@ -2,10 +2,7 @@ import AbstractCancelDeleteCardCommand from "../../../gen/author/commands/Abstra
 
 export default class CancelDeleteCardCommand extends AbstractCancelDeleteCardCommand {
     execute() {
-        return new Promise((resolve, reject) => {
-            this.commandData.outcome = this.ok;
-            resolve();
-        });
+        this.commandData.outcome = this.ok;
     }
 }
 

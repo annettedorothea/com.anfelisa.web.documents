@@ -20,7 +20,7 @@ import WantedOfNewCardChangedAction from "../../src/author/actions/WantedOfNewCa
 import IndexOfNewCardChangedAction from "../../src/author/actions/IndexOfNewCardChangedAction";
 import CancelNewCardAction from "../../src/author/actions/CancelNewCardAction";
 import GivenOfEditedCardChangedAction from "../../src/author/actions/GivenOfEditedCardChangedAction";
-import WamtedOfEditedCardChangedAction from "../../src/author/actions/WamtedOfEditedCardChangedAction";
+import WantedOfEditedCardChangedAction from "../../src/author/actions/WantedOfEditedCardChangedAction";
 import IndexOfEditedCardChangedAction from "../../src/author/actions/IndexOfEditedCardChangedAction";
 import CancelEditCardAction from "../../src/author/actions/CancelEditCardAction";
 import EditCardAction from "../../src/author/actions/EditCardAction";
@@ -51,7 +51,7 @@ export default class ActionFactoryRegistrationAuthor {
 		ACEController.registerFactory('author.IndexOfNewCardChangedAction', (actionParam) => new IndexOfNewCardChangedAction(actionParam));
 		ACEController.registerFactory('author.CancelNewCardAction', (actionParam) => new CancelNewCardAction(actionParam));
 		ACEController.registerFactory('author.GivenOfEditedCardChangedAction', (actionParam) => new GivenOfEditedCardChangedAction(actionParam));
-		ACEController.registerFactory('author.WamtedOfEditedCardChangedAction', (actionParam) => new WamtedOfEditedCardChangedAction(actionParam));
+		ACEController.registerFactory('author.WantedOfEditedCardChangedAction', (actionParam) => new WantedOfEditedCardChangedAction(actionParam));
 		ACEController.registerFactory('author.IndexOfEditedCardChangedAction', (actionParam) => new IndexOfEditedCardChangedAction(actionParam));
 		ACEController.registerFactory('author.CancelEditCardAction', (actionParam) => new CancelEditCardAction(actionParam));
 		ACEController.registerFactory('author.EditCardAction', (actionParam) => new EditCardAction(actionParam));

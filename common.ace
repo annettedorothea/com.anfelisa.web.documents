@@ -21,30 +21,30 @@ ACE {
 	Route {
 		on ok ( Common.updateHash )
 	}
-	CheckUsername preUpdateUI (Registration.displayUsernameSpinner) postUpdateUI (Registration.hideUsernameSpinner) {
+	async CheckUsername preUpdateUI (Registration.displayUsernameSpinner) postUpdateUI (Registration.hideUsernameSpinner) {
 		on empty
 		on available ( Registration.usernameAvailable )
 		on notAvailable ( Registration.usernameNotAvailable )
 	}
-	RegisterUser preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+	async RegisterUser preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
 		on ok (Common.initUser) triggers (Route)
 		on error ( Common.displayError ) 
 	}
-	Login preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+	async Login preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
 		on ok ( Common.initUser ) 
 		on unauthorized ( Common.displayError ) triggers ( Logout )
 	}
 	Logout {
 		on ok ( Common.resetUser ) triggers ( Route )
 	}
-	ForgotPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+	async ForgotPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
 		on ok (Common.displayMessage) triggers ( Route )
 	}
-	ConfirmEmail preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+	async ConfirmEmail preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
 		on ok (Common.displayMessage) triggers (Route)
 		on error (Common.displayError) triggers (Route)
 	}
-	ResetPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+	async ResetPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
 		on ok (Common.displayMessage) triggers (Route)
 		on error (Common.displayError) triggers (Route)
 	}

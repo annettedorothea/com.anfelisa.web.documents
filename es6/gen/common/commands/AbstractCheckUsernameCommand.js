@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import CheckUsernameAvailableEvent from "../../../src/common/events/CheckUsernameAvailableEvent";
 import CheckUsernameNotAvailableEvent from "../../../src/common/events/CheckUsernameNotAvailableEvent";

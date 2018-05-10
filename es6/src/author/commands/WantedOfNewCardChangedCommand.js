@@ -2,11 +2,8 @@ import AbstractWantedOfNewCardChangedCommand from "../../../gen/author/commands/
 
 export default class WantedOfNewCardChangedCommand extends AbstractWantedOfNewCardChangedCommand {
     execute() {
-        return new Promise((resolve, reject) => {
-            this.commandData.wanted = this.commandParam.wanted;
-            this.commandData.outcome = this.ok;
-            resolve();
-        });
+        this.commandData.wanted = this.commandParam.wanted;
+        this.commandData.outcome = this.ok;
     }
 }
 

@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import EditCategoryOkEvent from "../../../src/author/events/EditCategoryOkEvent";
 
@@ -9,16 +9,13 @@ export default class AbstractEditCategoryCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new EditCategoryOkEvent(this.commandData).publish());
+			new EditCategoryOkEvent(this.commandData).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('EditCategoryCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'EditCategoryCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

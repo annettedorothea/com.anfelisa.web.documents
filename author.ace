@@ -3,19 +3,19 @@ author
 target ES6
 
 ACE {
-	LoadCategories preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
+	async LoadCategories preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
 		on ok (Categories.render )
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
-	CreateCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	async CreateCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.resetNewCategoryValues) triggers (LoadCategories)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
-	UpdateCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	async UpdateCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.resetEditCategoryValues) triggers (LoadCategories)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
-	DeleteCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	async DeleteCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.hideConfirmCategoryDelete) triggers (LoadCategories)
 		on unauthorized ( common.Common.displayError Categories.hideConfirmCategoryDelete) triggers (common.Logout)
 	}
@@ -49,15 +49,15 @@ ACE {
 		on ok (Categories.hideConfirmCategoryDelete)
 	}
 	
-	CreateCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	async CreateCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.resetNewCardValues) triggers (LoadCategories)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
-	UpdateCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	async UpdateCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.resetEditCardValues) triggers (LoadCategories)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
-	DeleteCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	async DeleteCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.hideConfirmCardDelete) triggers (LoadCategories)
 		on unauthorized ( common.Common.displayError Categories.hideConfirmCardDelete) triggers (common.Logout)
 	}
@@ -78,7 +78,7 @@ ACE {
 	GivenOfEditedCardChanged {
 		on ok (Categories.givenOfEditedCardChanged)
 	}
-	WamtedOfEditedCardChanged {
+	WantedOfEditedCardChanged {
 		on ok (Categories.wantedOfEditedCardChanged)
 	}
 	IndexOfEditedCardChanged {

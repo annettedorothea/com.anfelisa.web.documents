@@ -2,11 +2,8 @@ import AbstractGivenOfNewCardChangedCommand from "../../../gen/author/commands/A
 
 export default class GivenOfNewCardChangedCommand extends AbstractGivenOfNewCardChangedCommand {
     execute() {
-        return new Promise((resolve, reject) => {
-            this.commandData.given = this.commandParam.given;
-            this.commandData.outcome = this.ok;
-            resolve();
-        });
+        this.commandData.given = this.commandParam.given;
+        this.commandData.outcome = this.ok;
     }
 }
 

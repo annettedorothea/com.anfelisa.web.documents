@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/Command";
+import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import CreateCardOkEvent from "../../../src/author/events/CreateCardOkEvent";
 import CreateCardUnauthorizedEvent from "../../../src/author/events/CreateCardUnauthorizedEvent";

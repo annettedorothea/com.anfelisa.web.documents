@@ -6,7 +6,7 @@ export default class EditCardAction extends AbstractEditCardAction {
         this.actionData.index = this.actionParam.index;
         this.actionData.given = this.actionParam.given;
         this.actionData.wanted = this.actionParam.wanted;
-        this.actionData.categoryId = this.actionParam.categoryId;
+        this.actionData.cardId = this.actionParam.cardId;
     }
 
 }

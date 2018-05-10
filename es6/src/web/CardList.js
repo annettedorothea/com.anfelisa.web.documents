@@ -13,6 +13,8 @@ import DeleteCardClickAction from "../author/actions/DeleteCardClickAction";
 import CancelDeleteCardAction from "../author/actions/CancelDeleteCardAction";
 import GivenOfNewCardChangedAction from "../author/actions/GivenOfNewCardChangedAction";
 import WantedOfNewCardChangedAction from "../author/actions/WantedOfNewCardChangedAction";
+import GivenOfEditedCardChangedAction from "../author/actions/GivenOfEditedCardChangedAction";
+import WantedOfEditedCardChangedAction from "../author/actions/WantedOfEditedCardChangedAction";
 
 export default class CardList extends React.Component {
 
@@ -28,13 +30,14 @@ export default class CardList extends React.Component {
         new DeleteCardClickAction({cardId}).apply();
     }
 
-    onEdit(cardId, name, index) {
+    onEdit(cardId, given, wanted, index) {
         const data = {
             cardId,
-            name,
+            given,
+            wanted,
             index
         };
-        this.setState({confirmDelete: false});
+        console.log("onEdit", data);
         new EditCardAction(data).apply();
     }
 
@@ -43,7 +46,7 @@ export default class CardList extends React.Component {
             username: this.props.username,
             cardId: this.props.data.deleteCard.cardId,
             password: this.props.password,
-            parentCardId: this.props.data.parentCardId
+            categoryId: this.props.data.parentCategoryId
         };
         new DeleteCardAction(data).apply();
     }
@@ -53,8 +56,6 @@ export default class CardList extends React.Component {
     }
 
     render() {
-        console.log("CardList.render", this.props);
-
         const cardItems = this.props.data.cardList.map((card) => {
             if (card.cardId === this.props.data.editedCard.cardId) {
                 return <EditCard
@@ -63,10 +64,9 @@ export default class CardList extends React.Component {
                     given={this.props.data.editedCard.given}
                     wanted={this.props.data.editedCard.wanted}
                     index={this.props.data.editedCard.index}
-                    cardList={this.props.data.cardList}
                     username={this.props.username}
                     password={this.props.password}
-                    parentCardId={this.props.data.parentCardId}
+                    categoryId={this.props.data.parentCategoryId}
                     texts={this.props.texts}
                 />
             } else {
@@ -75,7 +75,7 @@ export default class CardList extends React.Component {
                     key={card.cardId}
                     texts={this.props.texts}
                     onDeleteClick={this.onDeleteClick}
-                    onEdit={() => this.onEdit(card.cardId, card.cardName, card.cardIndex)}
+                    onEdit={() => this.onEdit(card.cardId, card.given, card.wanted, card.cardIndex)}
                     username={this.props.username}
                     password={this.props.password}
                     userRole={this.props.role}
@@ -91,7 +91,7 @@ export default class CardList extends React.Component {
                 cardList={this.props.data.cardList}
                 username={this.props.username}
                 password={this.props.password}
-                parentCardId={this.props.data.parentCardId}
+                categoryId={this.props.data.parentCategoryId}
                 texts={this.props.texts}
             />
         );
@@ -109,6 +109,9 @@ export default class CardList extends React.Component {
                             cancel: this.onDeleteCancel
                         }}/>
                 </div>}
+                <h1>
+                    {this.props.texts.cardList.title}
+                </h1>
                 <table>
                     <thead>
 
@@ -160,9 +163,8 @@ class NewCard extends React.Component {
             given: this.props.given,
             wanted: this.props.wanted,
             cardIndex: this.props.index,
-            parentCategoryId: this.props.parentCategoryId
+            categoryId: this.props.categoryId
         };
-        console.log(data);
         new CreateCardAction(data).apply();
     }
 
@@ -182,7 +184,7 @@ class NewCard extends React.Component {
                 <td>
                     <textarea
                         rows="4"
-                        cols="50"
+                        cols="80"
                         onChange={this.onWantedChange}
                         autoComplete="off"
                         value={this.props.wanted}
@@ -202,7 +204,7 @@ class NewCard extends React.Component {
                 <td/>
                 <td>
                     <button
-                        disabled={this.props.given.length === 0 && this.props.wanted.length === 0}
+                        disabled={this.props.given && this.props.given.length === 0 && this.props.wanted && this.props.wanted.length === 0}
                         onClick={this.onNewCard}
                     >{this.props.texts.cardList.ok}</button>
                     <button
@@ -218,15 +220,21 @@ class EditCard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onNameChange = this.onNameChange.bind(this);
+        this.onGivenChange = this.onGivenChange.bind(this);
+        this.onWantedChange = this.onWantedChange.bind(this);
         this.onIndexChange = this.onIndexChange.bind(this);
         this.onUpdate = this.onUpdate.bind(this);
         this.onCancel = this.onCancel.bind(this);
     }
 
-    onNameChange(event) {
-        const name = event.target.value;
-        new NameOfEditedCardChangedAction({name, cardList: this.props.cardList}).apply();
+    onGivenChange(event) {
+        const given = event.target.value;
+        new GivenOfEditedCardChangedAction({given}).apply();
+    }
+
+    onWantedChange(event) {
+        const wanted = event.target.value;
+        new WantedOfEditedCardChangedAction({wanted}).apply();
     }
 
     onIndexChange(event) {
@@ -243,9 +251,10 @@ class EditCard extends React.Component {
             username: this.props.username,
             password: this.props.password,
             cardId: this.props.cardId,
-            cardName: this.props.name,
+            given: this.props.given,
+            wanted: this.props.wanted,
             cardIndex: this.props.index,
-            parentCardId: this.props.parentCardId
+            categoryId: this.props.categoryId
         };
         new UpdateCardAction(data).apply();
     }
@@ -256,13 +265,22 @@ class EditCard extends React.Component {
                 <td>
                     <input
                         type={"text"}
-                        onChange={this.onNameChange}
+                        onChange={this.onGivenChange}
                         autoComplete="off"
-                        value={this.props.name}
-                        placeholder={this.props.texts.cardList.name}
+                        value={this.props.given}
+                        placeholder={this.props.texts.cardList.given}
                     />
-                    {this.props.nameAlreadyExists === true && this.props.name.length > 0 &&
-                    <label>{this.props.texts.cardList.nameAlreadyExists}</label>}
+                </td>
+                <td>
+                    <textarea
+                        rows="4"
+                        cols="80"
+                        onChange={this.onWantedChange}
+                        autoComplete="off"
+                        value={this.props.wanted}
+                        placeholder={this.props.texts.cardList.wanted}
+                    >
+                    </textarea>
                 </td>
                 <td>
                     <input
@@ -276,7 +294,7 @@ class EditCard extends React.Component {
                 <td/>
                 <td>
                     <button
-                        disabled={this.props.nameAlreadyExists === true || this.props.name.length === 0}
+                        disabled={this.props.given && this.props.given.length === 0 && this.props.wanted && this.props.wanted.length === 0}
                         onClick={this.onUpdate}
                     >{this.props.texts.cardList.ok}</button>
                     <button
@@ -308,7 +326,9 @@ class CardItem extends React.Component {
         return (
             <tr>
                 <td onClick={this.onClick}>{this.props.given}</td>
-                <td onClick={this.onClick}>{this.props.wanted}</td>
+                <td onClick={this.onClick}>
+                    <pre>{this.props.wanted}</pre>
+                </td>
                 <td onClick={this.onClick}>{this.props.cardIndex}</td>
                 <td onClick={this.onClick}>{this.props.cardAuthor}</td>
                 <td>
