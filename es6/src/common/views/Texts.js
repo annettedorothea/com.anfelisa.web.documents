@@ -33,7 +33,11 @@ export const Texts = {
             given: "Gegeben",
             wanted: "Gesucht",
             ok: "OK",
-            title: "Alle Karten"
+            title: {
+                noCards: "Noch keine Karten",
+                oneCard: "Eine Karte",
+                cards: "{0} Karten"
+            }
         },
         dashboard: {
             profile: "Profil",

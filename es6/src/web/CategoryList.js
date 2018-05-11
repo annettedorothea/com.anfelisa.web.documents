@@ -184,9 +184,9 @@ class NewCategory extends React.Component {
                 <td>
                     <input
                         type={"text"}
-                        onBlur={this.onNameChange}
+                        onChange={this.onNameChange}
                         autoComplete="off"
-                        defaultValue={this.props.name}
+                        value={this.props.name}
                         placeholder={this.props.texts.categoryList.name}
                     />
                     {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
@@ -195,9 +195,9 @@ class NewCategory extends React.Component {
                 <td>
                     <input
                         type={"number"}
-                        onBlur={this.onIndexChange}
+                        onChange={this.onIndexChange}
                         autoComplete="off"
-                        defaultValue={this.props.index}
+                        value={this.props.index}
                         placeholder={this.props.texts.categoryList.index}
                     />
                 </td>
@@ -258,7 +258,7 @@ class EditCategory extends React.Component {
                 <td>
                     <input
                         type={"text"}
-                        onBlur={this.onNameChange}
+                        onChange={this.onNameChange}
                         autoComplete="off"
                         value={this.props.name}
                         placeholder={this.props.texts.categoryList.name}
@@ -269,7 +269,7 @@ class EditCategory extends React.Component {
                 <td>
                     <input
                         type={"number"}
-                        onBlur={this.onIndexChange}
+                        onChange={this.onIndexChange}
                         autoComplete="off"
                         value={this.props.index}
                         placeholder={this.props.texts.categoryList.index}

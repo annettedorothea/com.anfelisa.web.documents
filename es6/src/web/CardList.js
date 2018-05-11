@@ -110,7 +110,9 @@ export default class CardList extends React.Component {
                         }}/>
                 </div>}
                 <h1>
-                    {this.props.texts.cardList.title}
+                    {this.props.data.cardList.length === 0 && this.props.texts.cardList.title.noCards}
+                    {this.props.data.cardList.length === 1 && this.props.texts.cardList.title.oneCard}
+                    {this.props.data.cardList.length > 1 && this.props.texts.cardList.title.cards.replace("{0}", this.props.data.cardList.length)}
                 </h1>
                 <table>
                     <thead>
