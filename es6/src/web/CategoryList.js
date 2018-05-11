@@ -150,6 +150,7 @@ class NewCategory extends React.Component {
         this.onIndexChange = this.onIndexChange.bind(this);
         this.onNewCategory = this.onNewCategory.bind(this);
         this.onCancel = this.onCancel.bind(this);
+        this.onKeyUp = this.onKeyUp.bind(this);
     }
 
     onNameChange(event) {
@@ -177,6 +178,12 @@ class NewCategory extends React.Component {
         new CreateCategoryAction(data).apply();
     }
 
+    onKeyUp(e) {
+        e.preventDefault();
+        if (e.keyCode === 13 && this.props.nameAlreadyExists === false && this.props.name && this.props.name.length > 0) {
+            this.onNewCategory();
+        }
+    }
 
     render() {
         return (
@@ -188,6 +195,7 @@ class NewCategory extends React.Component {
                         autoComplete="off"
                         value={this.props.name}
                         placeholder={this.props.texts.categoryList.name}
+                        onKeyUp={this.onKeyUp}
                     />
                     {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
                     <label>{this.props.texts.categoryList.nameAlreadyExists}</label>}
@@ -199,6 +207,7 @@ class NewCategory extends React.Component {
                         autoComplete="off"
                         value={this.props.index}
                         placeholder={this.props.texts.categoryList.index}
+                        onKeyUp={this.onKeyUp}
                     />
                 </td>
                 <td/>
@@ -224,6 +233,7 @@ class EditCategory extends React.Component {
         this.onIndexChange = this.onIndexChange.bind(this);
         this.onUpdate = this.onUpdate.bind(this);
         this.onCancel = this.onCancel.bind(this);
+        this.onKeyUp = this.onKeyUp.bind(this);
     }
 
     onNameChange(event) {
@@ -252,6 +262,13 @@ class EditCategory extends React.Component {
         new UpdateCategoryAction(data).apply();
     }
 
+    onKeyUp(e) {
+        e.preventDefault();
+        if (e.keyCode === 13 && this.props.nameAlreadyExists === false && this.props.name && this.props.name.length > 0) {
+            this.onUpdate();
+        }
+    }
+
     render() {
         return (
             <tr>
@@ -262,6 +279,7 @@ class EditCategory extends React.Component {
                         autoComplete="off"
                         value={this.props.name}
                         placeholder={this.props.texts.categoryList.name}
+                        onKeyUp={this.onKeyUp}
                     />
                     {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
                     <label>{this.props.texts.categoryList.nameAlreadyExists}</label>}
@@ -273,6 +291,7 @@ class EditCategory extends React.Component {
                         autoComplete="off"
                         value={this.props.index}
                         placeholder={this.props.texts.categoryList.index}
+                        onKeyUp={this.onKeyUp}
                     />
                 </td>
                 <td/>

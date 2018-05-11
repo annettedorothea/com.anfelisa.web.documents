@@ -29,10 +29,12 @@ export const Texts = {
                 message: "Soll die Karte wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.",
                 title: "Löschen"
             },
+            duplicateCards: "Doppelte Karten",
             index: "Index",
             given: "Gegeben",
             wanted: "Gesucht",
             ok: "OK",
+            searchingDuplicates: "Nach doppelten Karten suchen",
             title: {
                 noCards: "Noch keine Karten",
                 oneCard: "Eine Karte",

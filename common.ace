@@ -16,7 +16,7 @@ ACE {
 		on confirmEmail triggers (ConfirmEmail)
 		on resetPassword (ResetPassword.render)
 		on userList triggers (admin.GetAllUsers) 
-		on categories (author.Categories.resetEditCardValues author.Categories.resetEditCategoryValues author.Categories.resetNewCardValues author.Categories.resetNewCategoryValues) triggers (author.LoadCategories )
+		on categories triggers (author.LoadCategories )
 	}
 	Route {
 		on ok ( Common.updateHash )

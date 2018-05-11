@@ -23,7 +23,8 @@ export default class CategoriesView {
                 newCard: {
                     given: "",
                     wanted: "",
-                    index: ""
+                    index: "",
+                    displaySpinner: false
                 },
                 editedCard: {
                     cardId: "",
@@ -31,6 +32,7 @@ export default class CategoriesView {
                     wanted: "",
                     index: ""
                 },
+                cardDuplicates: [],
                 deleteCard: {
                     confirmDelete: false,
                     cardId: ""
@@ -247,12 +249,44 @@ export default class CategoriesView {
         });
     };
 
-    static hideConfirmCardDelete(eventData) {
+    static hideConfirmCardDelete() {
         let data = App.container.state.data;
         data.deleteCard = {
             confirmDelete: false,
             cardId: ""
         };
+        App.container.setState({
+            data
+        });
+    };
+
+    static displayNewCardSpinner() {
+        let data = App.container.state.data;
+        data.newCard.displaySpinner = true;
+        App.container.setState({
+            data
+        });
+    };
+
+    static hideNewCardSpinner() {
+        let data = App.container.state.data;
+        data.newCard.displaySpinner = false;
+        App.container.setState({
+            data
+        });
+    };
+
+    static initDuplicates(eventData) {
+        let data = App.container.state.data;
+        data.cardDuplicates = eventData.data.cardList;
+        App.container.setState({
+            data
+        });
+    };
+
+    static resetDuplicates(eventData) {
+        let data = App.container.state.data;
+        data.cardDuplicates = [];
         App.container.setState({
             data
         });

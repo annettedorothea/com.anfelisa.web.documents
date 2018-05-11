@@ -16,6 +16,7 @@ import CreateCardAction from "../../src/author/actions/CreateCardAction";
 import UpdateCardAction from "../../src/author/actions/UpdateCardAction";
 import DeleteCardAction from "../../src/author/actions/DeleteCardAction";
 import GivenOfNewCardChangedAction from "../../src/author/actions/GivenOfNewCardChangedAction";
+import SearchDuplicateCardsAction from "../../src/author/actions/SearchDuplicateCardsAction";
 import WantedOfNewCardChangedAction from "../../src/author/actions/WantedOfNewCardChangedAction";
 import IndexOfNewCardChangedAction from "../../src/author/actions/IndexOfNewCardChangedAction";
 import CancelNewCardAction from "../../src/author/actions/CancelNewCardAction";
@@ -47,6 +48,7 @@ export default class ActionFactoryRegistrationAuthor {
 		ACEController.registerFactory('author.UpdateCardAction', (actionParam) => new UpdateCardAction(actionParam));
 		ACEController.registerFactory('author.DeleteCardAction', (actionParam) => new DeleteCardAction(actionParam));
 		ACEController.registerFactory('author.GivenOfNewCardChangedAction', (actionParam) => new GivenOfNewCardChangedAction(actionParam));
+		ACEController.registerFactory('author.SearchDuplicateCardsAction', (actionParam) => new SearchDuplicateCardsAction(actionParam));
 		ACEController.registerFactory('author.WantedOfNewCardChangedAction', (actionParam) => new WantedOfNewCardChangedAction(actionParam));
 		ACEController.registerFactory('author.IndexOfNewCardChangedAction', (actionParam) => new IndexOfNewCardChangedAction(actionParam));
 		ACEController.registerFactory('author.CancelNewCardAction', (actionParam) => new CancelNewCardAction(actionParam));

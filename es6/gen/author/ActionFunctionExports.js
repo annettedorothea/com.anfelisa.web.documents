@@ -15,6 +15,7 @@ import CreateCardAction from "../../src/author/actions/CreateCardAction";
 import UpdateCardAction from "../../src/author/actions/UpdateCardAction";
 import DeleteCardAction from "../../src/author/actions/DeleteCardAction";
 import GivenOfNewCardChangedAction from "../../src/author/actions/GivenOfNewCardChangedAction";
+import SearchDuplicateCardsAction from "../../src/author/actions/SearchDuplicateCardsAction";
 import WantedOfNewCardChangedAction from "../../src/author/actions/WantedOfNewCardChangedAction";
 import IndexOfNewCardChangedAction from "../../src/author/actions/IndexOfNewCardChangedAction";
 import CancelNewCardAction from "../../src/author/actions/CancelNewCardAction";
@@ -92,6 +93,10 @@ export function deleteCard(actionParam) {
 
 export function givenOfNewCardChanged(actionParam) {
     new GivenOfNewCardChangedAction(actionParam).apply();
+}
+
+export function searchDuplicateCards(actionParam) {
+    new SearchDuplicateCardsAction(actionParam).apply();
 }
 
 export function wantedOfNewCardChanged(actionParam) {

@@ -37,7 +37,6 @@ export default class CardList extends React.Component {
             wanted,
             index
         };
-        console.log("onEdit", data);
         new EditCardAction(data).apply();
     }
 
@@ -88,6 +87,7 @@ export default class CardList extends React.Component {
                 given={this.props.data.newCard.given}
                 wanted={this.props.data.newCard.wanted}
                 index={this.props.data.newCard.index}
+                displaySpinner={this.props.data.newCard.displaySpinner}
                 cardList={this.props.data.cardList}
                 username={this.props.username}
                 password={this.props.password}
@@ -123,10 +123,77 @@ export default class CardList extends React.Component {
                     </tbody>
                 </table>
 
+                {this.props.data.cardDuplicates && this.props.data.cardDuplicates.length > 0 &&
+                <CardDuplicates cardDuplicates={this.props.data.cardDuplicates} texts={this.props.texts}/>}
+
             </div>
         );
     }
 }
+
+class CardDuplicates extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const cardItems = this.props.cardDuplicates.map((card) => {
+            return <DuplicateCardItem
+                {...card}
+                key={card.cardId}
+                texts={this.props.texts}
+                username={this.props.username}
+                password={this.props.password}
+                userRole={this.props.role}
+            />
+        });
+        return (
+            <div>
+                <h1>
+                    {this.props.texts.cardList.duplicateCards}
+                </h1>
+                <table>
+                    <thead>
+                    </thead>
+                    <tbody>
+                    {cardItems}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+}
+
+class DuplicateCardItem extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick() {
+        new RouteAction(
+            {
+                username: this.props.username,
+                password: this.props.password,
+                hash: `#categories/${this.props.categoryId}`
+            }).apply();
+    }
+
+    render() {
+        return (
+            <tr>
+                <td onClick={this.onClick}>{this.props.given}</td>
+                <td onClick={this.onClick}>
+                    <pre>{this.props.wanted}</pre>
+                </td>
+                <td onClick={this.onClick}>{this.props.cardIndex}</td>
+                <td onClick={this.onClick}>{this.props.cardAuthor}</td>
+            </tr>
+        );
+    }
+}
+
 
 class NewCard extends React.Component {
 
@@ -137,11 +204,24 @@ class NewCard extends React.Component {
         this.onIndexChange = this.onIndexChange.bind(this);
         this.onNewCard = this.onNewCard.bind(this);
         this.onCancel = this.onCancel.bind(this);
+        this.onKeyUp = this.onKeyUp.bind(this);
+        this.onAltKeyUp = this.onAltKeyUp.bind(this);
+    }
+
+    componentDidMount() {
+        this.givenInput.focus();
     }
 
     onGivenChange(event) {
         const given = event.target.value;
-        new GivenOfNewCardChangedAction({given, cardList: this.props.cardList}).apply();
+        new GivenOfNewCardChangedAction(
+            {
+                given,
+                username: this.props.username,
+                password: this.props.password,
+                categoryId: this.props.categoryId
+            }
+        ).apply();
     }
 
     onWantedChange(event) {
@@ -156,6 +236,7 @@ class NewCard extends React.Component {
 
     onCancel() {
         new CancelNewCardAction().apply();
+        this.givenInput.focus();
     }
 
     onNewCard() {
@@ -168,8 +249,22 @@ class NewCard extends React.Component {
             categoryId: this.props.categoryId
         };
         new CreateCardAction(data).apply();
+        this.givenInput.focus();
     }
 
+    onKeyUp(e) {
+        e.preventDefault();
+        if (e.keyCode === 13 && this.props.given && this.props.given.length > 0 && this.props.wanted && this.props.wanted.length > 0) {
+            this.onNewCard();
+        }
+    }
+
+    onAltKeyUp(e) {
+        e.preventDefault();
+        if (e.keyCode === 13 && e.altKey && this.props.given && this.props.given.length > 0 && this.props.wanted && this.props.wanted.length > 0) {
+            this.onNewCard();
+        }
+    }
 
     render() {
         return (
@@ -181,7 +276,13 @@ class NewCard extends React.Component {
                         autoComplete="off"
                         value={this.props.given}
                         placeholder={this.props.texts.cardList.given}
+                        ref={input => {
+                            this.givenInput = input;
+                        }}
+                        onKeyUp={this.onKeyUp}
                     />
+                    {this.props.displaySpinner === true &&
+                    <label>{this.props.texts.cardList.searchingDuplicates}</label>}
                 </td>
                 <td>
                     <textarea
@@ -191,6 +292,7 @@ class NewCard extends React.Component {
                         autoComplete="off"
                         value={this.props.wanted}
                         placeholder={this.props.texts.cardList.wanted}
+                        onKeyUp={this.onAltKeyUp}
                     >
                     </textarea>
                 </td>
@@ -201,6 +303,7 @@ class NewCard extends React.Component {
                         autoComplete="off"
                         value={this.props.index}
                         placeholder={this.props.texts.cardList.index}
+                        onKeyUp={this.onKeyUp}
                     />
                 </td>
                 <td/>
@@ -227,6 +330,8 @@ class EditCard extends React.Component {
         this.onIndexChange = this.onIndexChange.bind(this);
         this.onUpdate = this.onUpdate.bind(this);
         this.onCancel = this.onCancel.bind(this);
+        this.onKeyUp = this.onKeyUp.bind(this);
+        this.onAltKeyUp = this.onAltKeyUp.bind(this);
     }
 
     onGivenChange(event) {
@@ -246,6 +351,20 @@ class EditCard extends React.Component {
 
     onCancel() {
         new CancelEditCardAction().apply();
+    }
+
+    onKeyUp(e) {
+        e.preventDefault();
+        if (e.keyCode === 13 && this.props.given && this.props.given.length > 0 && this.props.wanted && this.props.wanted.length > 0) {
+            this.onUpdate();
+        }
+    }
+
+    onAltKeyUp(e) {
+        e.preventDefault();
+        if (e.keyCode === 13 && e.altKey && this.props.given && this.props.given.length > 0 && this.props.wanted && this.props.wanted.length > 0) {
+            this.onUpdate();
+        }
     }
 
     onUpdate() {
@@ -271,6 +390,7 @@ class EditCard extends React.Component {
                         autoComplete="off"
                         value={this.props.given}
                         placeholder={this.props.texts.cardList.given}
+                        onKeyUp={this.onKeyUp}
                     />
                 </td>
                 <td>
@@ -281,6 +401,7 @@ class EditCard extends React.Component {
                         autoComplete="off"
                         value={this.props.wanted}
                         placeholder={this.props.texts.cardList.wanted}
+                        onKeyUp={this.onAltKeyUp}
                     >
                     </textarea>
                 </td>
@@ -291,6 +412,7 @@ class EditCard extends React.Component {
                         autoComplete="off"
                         value={this.props.index}
                         placeholder={this.props.texts.cardList.index}
+                        onKeyUp={this.onKeyUp}
                     />
                 </td>
                 <td/>
@@ -312,27 +434,17 @@ class CardItem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onClick = this.onClick.bind(this);
-    }
-
-    onClick() {
-        new RouteAction(
-            {
-                username: this.props.username,
-                password: this.props.password,
-                hash: `#cards/${this.props.cardId}`
-            }).apply();
     }
 
     render() {
         return (
             <tr>
-                <td onClick={this.onClick}>{this.props.given}</td>
-                <td onClick={this.onClick}>
+                <td>{this.props.given}</td>
+                <td>
                     <pre>{this.props.wanted}</pre>
                 </td>
-                <td onClick={this.onClick}>{this.props.cardIndex}</td>
-                <td onClick={this.onClick}>{this.props.cardAuthor}</td>
+                <td>{this.props.cardIndex}</td>
+                <td>{this.props.cardAuthor}</td>
                 <td>
                     {this.props.userRole === "ADMIN" &&
                     <button onClick={() => this.props.onDeleteClick(this.props.cardId)}>{"\u2717"}</button>}

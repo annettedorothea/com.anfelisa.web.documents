@@ -5,7 +5,6 @@ import RouteChangedRegistrationEvent from "../../../src/common/events/RouteChang
 import RouteChangedDashboardEvent from "../../../src/common/events/RouteChangedDashboardEvent";
 import RouteChangedForgotPasswordEvent from "../../../src/common/events/RouteChangedForgotPasswordEvent";
 import RouteChangedResetPasswordEvent from "../../../src/common/events/RouteChangedResetPasswordEvent";
-import RouteChangedCategoriesEvent from "../../../src/common/events/RouteChangedCategoriesEvent";
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import ConfirmEmailAction from "../../../src/common/actions/ConfirmEmailAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
@@ -52,7 +51,6 @@ export default class AbstractRouteChangedCommand extends Command {
 			new TriggerAction(new GetAllUsersAction(this.commandData)).publish();
 			break;
 		case this.categories:
-			new RouteChangedCategoriesEvent(this.commandData).publish();
 			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
 			break;
 		default:

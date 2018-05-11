@@ -6,6 +6,11 @@ export default class EventListenerRegistrationAuthor {
 
 	static init() {
 		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.render);
+		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetEditCardValues);
+		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetEditCategoryValues);
+		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetNewCardValues);
+		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetNewCategoryValues);
+		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetDuplicates);
 		ACEController.registerListener('author.LoadCategoriesUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.CreateCategoryOkEvent', CategoriesView.resetNewCategoryValues);
 		ACEController.registerListener('author.CreateCategoryUnauthorizedEvent', CommonView.displayError);
@@ -31,6 +36,10 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.DeleteCardUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.DeleteCardUnauthorizedEvent', CategoriesView.hideConfirmCardDelete);
 		ACEController.registerListener('author.GivenOfNewCardChangedOkEvent', CategoriesView.givenOfNewCardChanged);
+		ACEController.registerListener('author.SearchDuplicateCardsOkEvent', CategoriesView.initDuplicates);
+		ACEController.registerListener('author.SearchDuplicateCardsTooShortEvent', CategoriesView.resetDuplicates);
+		ACEController.registerListener('author.SearchDuplicateCardsUnauthorizedEvent', CommonView.displayError);
+		ACEController.registerListener('author.SearchDuplicateCardsUnauthorizedEvent', CategoriesView.hideConfirmCardDelete);
 		ACEController.registerListener('author.WantedOfNewCardChangedOkEvent', CategoriesView.wantedOfNewCardChanged);
 		ACEController.registerListener('author.IndexOfNewCardChangedOkEvent', CategoriesView.indexOfNewCardChanged);
 		ACEController.registerListener('author.CancelNewCardOkEvent', CategoriesView.resetNewCardValues);
