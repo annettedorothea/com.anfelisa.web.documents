@@ -27,6 +27,7 @@ import CancelEditCardAction from "../../src/author/actions/CancelEditCardAction"
 import EditCardAction from "../../src/author/actions/EditCardAction";
 import DeleteCardClickAction from "../../src/author/actions/DeleteCardClickAction";
 import CancelDeleteCardAction from "../../src/author/actions/CancelDeleteCardAction";
+import FilterCardsAction from "../../src/author/actions/FilterCardsAction";
 
 export default class ActionFactoryRegistrationAuthor {
 
@@ -59,6 +60,7 @@ export default class ActionFactoryRegistrationAuthor {
 		ACEController.registerFactory('author.EditCardAction', (actionParam) => new EditCardAction(actionParam));
 		ACEController.registerFactory('author.DeleteCardClickAction', (actionParam) => new DeleteCardClickAction(actionParam));
 		ACEController.registerFactory('author.CancelDeleteCardAction', (actionParam) => new CancelDeleteCardAction(actionParam));
+		ACEController.registerFactory('author.FilterCardsAction', (actionParam) => new FilterCardsAction(actionParam));
 	}
 
 }

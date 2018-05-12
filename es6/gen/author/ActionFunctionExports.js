@@ -26,6 +26,7 @@ import CancelEditCardAction from "../../src/author/actions/CancelEditCardAction"
 import EditCardAction from "../../src/author/actions/EditCardAction";
 import DeleteCardClickAction from "../../src/author/actions/DeleteCardClickAction";
 import CancelDeleteCardAction from "../../src/author/actions/CancelDeleteCardAction";
+import FilterCardsAction from "../../src/author/actions/FilterCardsAction";
 
 export function loadCategories(actionParam) {
     new LoadCategoriesAction(actionParam).apply();
@@ -137,6 +138,10 @@ export function deleteCardClick(actionParam) {
 
 export function cancelDeleteCard(actionParam) {
     new CancelDeleteCardAction(actionParam).apply();
+}
+
+export function filterCards(actionParam) {
+    new FilterCardsAction(actionParam).apply();
 }
 
 

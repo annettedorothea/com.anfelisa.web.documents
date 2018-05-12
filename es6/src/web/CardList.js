@@ -15,6 +15,7 @@ import GivenOfNewCardChangedAction from "../author/actions/GivenOfNewCardChanged
 import WantedOfNewCardChangedAction from "../author/actions/WantedOfNewCardChangedAction";
 import GivenOfEditedCardChangedAction from "../author/actions/GivenOfEditedCardChangedAction";
 import WantedOfEditedCardChangedAction from "../author/actions/WantedOfEditedCardChangedAction";
+import FilterCardsAction from "../author/actions/FilterCardsAction";
 
 export default class CardList extends React.Component {
 
@@ -24,6 +25,7 @@ export default class CardList extends React.Component {
         this.onDelete = this.onDelete.bind(this);
         this.onDeleteClick = this.onDeleteClick.bind(this);
         this.onDeleteCancel = this.onDeleteCancel.bind(this);
+        this.onFilterChange = this.onFilterChange.bind(this);
     }
 
     onDeleteClick(cardId) {
@@ -54,8 +56,17 @@ export default class CardList extends React.Component {
         new CancelDeleteCardAction().apply();
     }
 
+    onFilterChange(event) {
+        const filter = event.target.value;
+        new FilterCardsAction(
+            {
+                filter
+            }
+        ).apply();
+    }
+
     render() {
-        const cardItems = this.props.data.cardList.map((card) => {
+        const cardItems = this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).map((card) => {
             if (card.cardId === this.props.data.editedCard.cardId) {
                 return <EditCard
                     key={card.cardId}
@@ -111,9 +122,19 @@ export default class CardList extends React.Component {
                 </div>}
                 <h1>
                     {this.props.data.cardList.length === 0 && this.props.texts.cardList.title.noCards}
-                    {this.props.data.cardList.length === 1 && this.props.texts.cardList.title.oneCard}
-                    {this.props.data.cardList.length > 1 && this.props.texts.cardList.title.cards.replace("{0}", this.props.data.cardList.length)}
+                    {this.props.data.cardList.length === 1 &&
+                    this.props.texts.cardList.title.oneCard.replace("{0}", this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).length)}
+                    {this.props.data.cardList.length > 1 &&
+                    this.props.texts.cardList.title.cards.replace("{1}", this.props.data.cardList.length)
+                        .replace("{0}", this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).length)}
                 </h1>
+                <input
+                    type={"text"}
+                    onChange={this.onFilterChange}
+                    autoComplete="off"
+                    value={this.props.data.filter}
+                    placeholder={this.props.texts.cardList.filter}
+                />
                 <table>
                     <thead>
 

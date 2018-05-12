@@ -50,6 +50,7 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.EditCardOkEvent', CategoriesView.editCard);
 		ACEController.registerListener('author.DeleteCardClickOkEvent', CategoriesView.displayConfirmCardDelete);
 		ACEController.registerListener('author.CancelDeleteCardOkEvent', CategoriesView.hideConfirmCardDelete);
+		ACEController.registerListener('author.FilterCardsOkEvent', CategoriesView.filterChanged);
 	}
 
 }

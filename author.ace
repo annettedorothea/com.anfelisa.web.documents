@@ -108,6 +108,10 @@ ACE {
 	CancelDeleteCard {
 		on ok (Categories.hideConfirmCardDelete)
 	}
+	
+	FilterCards {
+		on ok (Categories.filterChanged)
+	}
 }
 
 views {
@@ -137,5 +141,6 @@ views {
 		hideNewCardSpinner
 		initDuplicates
 		resetDuplicates
+		filterChanged
 	}
 }

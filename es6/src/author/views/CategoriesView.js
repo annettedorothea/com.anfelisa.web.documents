@@ -36,7 +36,8 @@ export default class CategoriesView {
                 deleteCard: {
                     confirmDelete: false,
                     cardId: ""
-                }
+                },
+                filter: ""
             };
         }
         data.categoryList = eventData.data.categoryList;
@@ -232,7 +233,6 @@ export default class CategoriesView {
             wanted: eventData.wanted,
             index: eventData.index
         };
-        console.log("editCard", data);
         App.container.setState({
             data
         });
@@ -287,6 +287,14 @@ export default class CategoriesView {
     static resetDuplicates(eventData) {
         let data = App.container.state.data;
         data.cardDuplicates = [];
+        App.container.setState({
+            data
+        });
+    };
+
+    static filterChanged(eventData) {
+        let data = App.container.state.data;
+        data.filter = eventData.filter;
         App.container.setState({
             data
         });

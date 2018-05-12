@@ -30,6 +30,7 @@ export const Texts = {
                 title: "Löschen"
             },
             duplicateCards: "Doppelte Karten",
+            filter: "Suchen und filtern",
             index: "Index",
             given: "Gegeben",
             wanted: "Gesucht",
@@ -37,8 +38,8 @@ export const Texts = {
             searchingDuplicates: "Nach doppelten Karten suchen",
             title: {
                 noCards: "Noch keine Karten",
-                oneCard: "Eine Karte",
-                cards: "{0} Karten"
+                oneCard: "{0} von einer Karte",
+                cards: "{0} von {1} Karten"
             }
         },
         dashboard: {
