@@ -27,6 +27,13 @@ import EditCardAction from "../../src/author/actions/EditCardAction";
 import DeleteCardClickAction from "../../src/author/actions/DeleteCardClickAction";
 import CancelDeleteCardAction from "../../src/author/actions/CancelDeleteCardAction";
 import FilterCardsAction from "../../src/author/actions/FilterCardsAction";
+import TranslateAction from "../../src/author/actions/TranslateAction";
+import ToggleDictionaryLookupOfNewCategoryAction from "../../src/author/actions/ToggleDictionaryLookupOfNewCategoryAction";
+import ToggleDictionaryLookupOfEditedCategoryAction from "../../src/author/actions/ToggleDictionaryLookupOfEditedCategoryAction";
+import GivenLanguageOfNewCategoryChangedAction from "../../src/author/actions/GivenLanguageOfNewCategoryChangedAction";
+import GivenLanguageOfEditedCategoryChangedAction from "../../src/author/actions/GivenLanguageOfEditedCategoryChangedAction";
+import WantedLanguageOfNewCategoryChangedAction from "../../src/author/actions/WantedLanguageOfNewCategoryChangedAction";
+import WantedLanguageOfEditedCategoryChangedAction from "../../src/author/actions/WantedLanguageOfEditedCategoryChangedAction";
 
 export function loadCategories(actionParam) {
     new LoadCategoriesAction(actionParam).apply();
@@ -142,6 +149,34 @@ export function cancelDeleteCard(actionParam) {
 
 export function filterCards(actionParam) {
     new FilterCardsAction(actionParam).apply();
+}
+
+export function translate(actionParam) {
+    new TranslateAction(actionParam).apply();
+}
+
+export function toggleDictionaryLookupOfNewCategory(actionParam) {
+    new ToggleDictionaryLookupOfNewCategoryAction(actionParam).apply();
+}
+
+export function toggleDictionaryLookupOfEditedCategory(actionParam) {
+    new ToggleDictionaryLookupOfEditedCategoryAction(actionParam).apply();
+}
+
+export function givenLanguageOfNewCategoryChanged(actionParam) {
+    new GivenLanguageOfNewCategoryChangedAction(actionParam).apply();
+}
+
+export function givenLanguageOfEditedCategoryChanged(actionParam) {
+    new GivenLanguageOfEditedCategoryChangedAction(actionParam).apply();
+}
+
+export function wantedLanguageOfNewCategoryChanged(actionParam) {
+    new WantedLanguageOfNewCategoryChangedAction(actionParam).apply();
+}
+
+export function wantedLanguageOfEditedCategoryChanged(actionParam) {
+    new WantedLanguageOfEditedCategoryChangedAction(actionParam).apply();
 }
 
 

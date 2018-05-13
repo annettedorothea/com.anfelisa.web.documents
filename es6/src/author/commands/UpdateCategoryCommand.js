@@ -6,7 +6,10 @@ export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand
             const data = {
                 categoryId: this.commandParam.categoryId,
                 categoryName: this.commandParam.categoryName,
-                categoryIndex: this.commandParam.categoryIndex
+                categoryIndex: this.commandParam.categoryIndex,
+                dictionaryLookup: this.commandParam.dictionaryLookup,
+                givenLanguage: this.commandParam.givenLanguage,
+                wantedLanguage: this.commandParam.wantedLanguage
             };
             this.httpPut("api/category/update", [], data).then((data) => {
                 this.commandData.outcome = this.ok;

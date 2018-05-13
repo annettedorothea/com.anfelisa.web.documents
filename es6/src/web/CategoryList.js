@@ -14,6 +14,13 @@ import EditCategoryAction from "../author/actions/EditCategoryAction";
 import DeleteCategoryClickAction from "../author/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../author/actions/CancelDeleteCategoryAction";
 import CardList from "./CardList";
+import ToggleDictionaryLookupOfNewCategoryAction from "../author/actions/ToggleDictionaryLookupOfNewCategoryAction";
+import GivenLanguageOfNewCategoryChangedAction from "../author/actions/GivenLanguageOfNewCategoryChangedAction";
+import WantedLanguageOfNewCategoryChangedAction from "../author/actions/WantedLanguageOfNewCategoryChangedAction";
+import ToggleDictionaryLookupOfEditedCategoryAction
+    from "../author/actions/ToggleDictionaryLookupOfEditedCategoryAction";
+import GivenLanguageOfEditedCategoryChangedAction from "../author/actions/GivenLanguageOfEditedCategoryChangedAction";
+import WantedLanguageOfEditedCategoryChangedAction from "../author/actions/WantedLanguageOfEditedCategoryChangedAction";
 
 export default class CategoryList extends React.Component {
 
@@ -29,11 +36,14 @@ export default class CategoryList extends React.Component {
         new DeleteCategoryClickAction({categoryId}).apply();
     }
 
-    onEdit(categoryId, name, index) {
+    onEdit(categoryId, name, index, dictionaryLookup, givenLanguage, wantedLanguage) {
         const data = {
             categoryId,
             name,
-            index
+            index,
+            dictionaryLookup,
+            givenLanguage,
+            wantedLanguage
         };
         this.setState({confirmDelete: false});
         new EditCategoryAction(data).apply();
@@ -72,6 +82,9 @@ export default class CategoryList extends React.Component {
                     username={this.props.username}
                     password={this.props.password}
                     parentCategoryId={this.props.data.parentCategoryId}
+                    dictionaryLookup={this.props.data.editedCategory.dictionaryLookup}
+                    givenLanguage={this.props.data.editedCategory.givenLanguage}
+                    wantedLanguage={this.props.data.editedCategory.wantedLanguage}
                     texts={this.props.texts}
                 />
             } else {
@@ -80,10 +93,12 @@ export default class CategoryList extends React.Component {
                     key={category.categoryId}
                     texts={this.props.texts}
                     onDeleteClick={this.onDeleteClick}
-                    onEdit={() => this.onEdit(category.categoryId, category.categoryName, category.categoryIndex)}
+                    onEdit={() => this.onEdit(category.categoryId, category.categoryName, category.categoryIndex, category.dictionaryLookup, category.givenLanguage, category.wantedLanguage)}
                     username={this.props.username}
                     password={this.props.password}
                     userRole={this.props.role}
+                    givenLanguage={category.givenLanguage}
+                    wantedLanguage={category.wantedLanguage}
                 />
             }
         });
@@ -97,6 +112,9 @@ export default class CategoryList extends React.Component {
                 username={this.props.username}
                 password={this.props.password}
                 parentCategoryId={this.props.data.parentCategoryId}
+                dictionaryLookup={this.props.data.newCategory.dictionaryLookup}
+                givenLanguage={this.props.data.newCategory.givenLanguage}
+                wantedLanguage={this.props.data.newCategory.wantedLanguage}
                 texts={this.props.texts}
             />
         );
@@ -151,6 +169,9 @@ class NewCategory extends React.Component {
         this.onNewCategory = this.onNewCategory.bind(this);
         this.onCancel = this.onCancel.bind(this);
         this.onKeyUp = this.onKeyUp.bind(this);
+        this.onDictionayLookupChange = this.onDictionayLookupChange.bind(this);
+        this.onGivenLanguageChange = this.onGivenLanguageChange.bind(this);
+        this.onWantedLanguageChange = this.onWantedLanguageChange.bind(this);
     }
 
     onNameChange(event) {
@@ -173,7 +194,10 @@ class NewCategory extends React.Component {
             password: this.props.password,
             categoryName: this.props.name,
             categoryIndex: this.props.index,
-            parentCategoryId: this.props.parentCategoryId
+            parentCategoryId: this.props.parentCategoryId,
+            dictionaryLookup: this.props.dictionaryLookup,
+            givenLanguage: this.props.givenLanguage,
+            wantedLanguage: this.props.wantedLanguage
         };
         new CreateCategoryAction(data).apply();
     }
@@ -183,6 +207,24 @@ class NewCategory extends React.Component {
         if (e.keyCode === 13 && this.props.nameAlreadyExists === false && this.props.name && this.props.name.length > 0) {
             this.onNewCategory();
         }
+    }
+
+    onDictionayLookupChange() {
+        new ToggleDictionaryLookupOfNewCategoryAction().apply();
+    }
+
+    onGivenLanguageChange(e) {
+        const data = {
+            givenLanguage: e.target.value
+        };
+        new GivenLanguageOfNewCategoryChangedAction(data).apply();
+    }
+
+    onWantedLanguageChange(e) {
+        const data = {
+            wantedLanguage: e.target.value
+        };
+        new WantedLanguageOfNewCategoryChangedAction(data).apply();
     }
 
     render() {
@@ -210,10 +252,38 @@ class NewCategory extends React.Component {
                         onKeyUp={this.onKeyUp}
                     />
                 </td>
+                <td>
+                    <input
+                        type={"checkbox"}
+                        onChange={this.onDictionayLookupChange}
+                        checked={this.props.dictionaryLookup}
+                    />
+                    <label>{this.props.texts.categoryList.dictionaryLookup}</label>
+                </td>
+                <td>
+                    <label>{this.props.texts.categoryList.givenLanguage}</label>
+                    <select value={this.props.givenLanguage} onChange={this.onGivenLanguageChange}
+                            disabled={!this.props.dictionaryLookup}>
+                        <option value="">{this.props.texts.categoryList.languages.emtpy}</option>
+                        <option value="de">{this.props.texts.categoryList.languages.de}</option>
+                        <option value="en">{this.props.texts.categoryList.languages.en}</option>
+                        <option value="fr">{this.props.texts.categoryList.languages.fr}</option>
+                    </select>
+                </td>
+                <td>
+                    <label>{this.props.texts.categoryList.wantedLanguage}</label>
+                    <select value={this.props.wantedLanguage} onChange={this.onWantedLanguageChange}
+                            disabled={!this.props.dictionaryLookup}>
+                        <option value="">{this.props.texts.categoryList.languages.emtpy}</option>
+                        <option value="de">{this.props.texts.categoryList.languages.de}</option>
+                        <option value="en">{this.props.texts.categoryList.languages.en}</option>
+                        <option value="fr">{this.props.texts.categoryList.languages.fr}</option>
+                    </select>
+                </td>
                 <td/>
                 <td>
                     <button
-                        disabled={this.props.nameAlreadyExists === true || !this.props.name || this.props.name.length === 0}
+                        disabled={this.props.nameAlreadyExists === true || !this.props.name || this.props.name.length === 0 || this.props.dictionaryLookup && (this.props.givenLanguage.length === 0 || this.props.wantedLanguage.length === 0)}
                         onClick={this.onNewCategory}
                     >{this.props.texts.categoryList.ok}</button>
                     <button
@@ -234,6 +304,9 @@ class EditCategory extends React.Component {
         this.onUpdate = this.onUpdate.bind(this);
         this.onCancel = this.onCancel.bind(this);
         this.onKeyUp = this.onKeyUp.bind(this);
+        this.onDictionayLookupChange = this.onDictionayLookupChange.bind(this);
+        this.onGivenLanguageChange = this.onGivenLanguageChange.bind(this);
+        this.onWantedLanguageChange = this.onWantedLanguageChange.bind(this);
     }
 
     onNameChange(event) {
@@ -257,7 +330,10 @@ class EditCategory extends React.Component {
             categoryId: this.props.categoryId,
             categoryName: this.props.name,
             categoryIndex: this.props.index,
-            parentCategoryId: this.props.parentCategoryId
+            parentCategoryId: this.props.parentCategoryId,
+            dictionaryLookup: this.props.dictionaryLookup,
+            givenLanguage: this.props.givenLanguage,
+            wantedLanguage: this.props.wantedLanguage
         };
         new UpdateCategoryAction(data).apply();
     }
@@ -267,6 +343,24 @@ class EditCategory extends React.Component {
         if (e.keyCode === 13 && this.props.nameAlreadyExists === false && this.props.name && this.props.name.length > 0) {
             this.onUpdate();
         }
+    }
+
+    onDictionayLookupChange() {
+        new ToggleDictionaryLookupOfEditedCategoryAction().apply();
+    }
+
+    onGivenLanguageChange(e) {
+        const data = {
+            givenLanguage: e.target.value
+        };
+        new GivenLanguageOfEditedCategoryChangedAction(data).apply();
+    }
+
+    onWantedLanguageChange(e) {
+        const data = {
+            wantedLanguage: e.target.value
+        };
+        new WantedLanguageOfEditedCategoryChangedAction(data).apply();
     }
 
     render() {
@@ -294,10 +388,38 @@ class EditCategory extends React.Component {
                         onKeyUp={this.onKeyUp}
                     />
                 </td>
+                <td>
+                    <input
+                        type={"checkbox"}
+                        onChange={this.onDictionayLookupChange}
+                        checked={this.props.dictionaryLookup}
+                    />
+                    <label>{this.props.texts.categoryList.dictionaryLookup}</label>
+                </td>
+                <td>
+                    <label>{this.props.texts.categoryList.givenLanguage}</label>
+                    <select value={this.props.givenLanguage} onChange={this.onGivenLanguageChange}
+                            disabled={!this.props.dictionaryLookup}>
+                        <option value="">{this.props.texts.categoryList.languages.emtpy}</option>
+                        <option value="de">{this.props.texts.categoryList.languages.de}</option>
+                        <option value="en">{this.props.texts.categoryList.languages.en}</option>
+                        <option value="fr">{this.props.texts.categoryList.languages.fr}</option>
+                    </select>
+                </td>
+                <td>
+                    <label>{this.props.texts.categoryList.wantedLanguage}</label>
+                    <select value={this.props.wantedLanguage} onChange={this.onWantedLanguageChange}
+                            disabled={!this.props.dictionaryLookup}>
+                        <option value="">{this.props.texts.categoryList.languages.emtpy}</option>
+                        <option value="de">{this.props.texts.categoryList.languages.de}</option>
+                        <option value="en">{this.props.texts.categoryList.languages.en}</option>
+                        <option value="fr">{this.props.texts.categoryList.languages.fr}</option>
+                    </select>
+                </td>
                 <td/>
                 <td>
                     <button
-                        disabled={this.props.nameAlreadyExists === true || !this.props.name || this.props.name.length === 0}
+                        disabled={this.props.nameAlreadyExists === true || !this.props.name || this.props.name.length === 0 || this.props.dictionaryLookup && (this.props.givenLanguage.length === 0 || this.props.wantedLanguage.length === 0)}
                         onClick={this.onUpdate}
                     >{this.props.texts.categoryList.ok}</button>
                     <button
@@ -331,6 +453,8 @@ class CategoryItem extends React.Component {
                 <td onClick={this.onClick}>{this.props.categoryName}</td>
                 <td onClick={this.onClick}>{this.props.categoryIndex}</td>
                 <td onClick={this.onClick}>{this.props.categoryAuthor}</td>
+                <td onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.givenLanguage]}</td>
+                <td onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.wantedLanguage]}</td>
                 <td>
                     {this.props.userRole === "ADMIN" &&
                     <button onClick={() => this.props.onDeleteClick(this.props.categoryId)}>{"\u2717"}</button>}

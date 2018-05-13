@@ -51,6 +51,13 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.DeleteCardClickOkEvent', CategoriesView.displayConfirmCardDelete);
 		ACEController.registerListener('author.CancelDeleteCardOkEvent', CategoriesView.hideConfirmCardDelete);
 		ACEController.registerListener('author.FilterCardsOkEvent', CategoriesView.filterChanged);
+		ACEController.registerListener('author.TranslateOkEvent', CategoriesView.wantedOfNewCardChanged);
+		ACEController.registerListener('author.ToggleDictionaryLookupOfNewCategoryOkEvent', CategoriesView.toggleDictionaryLookupOfNewCategory);
+		ACEController.registerListener('author.ToggleDictionaryLookupOfEditedCategoryOkEvent', CategoriesView.toggleDictionaryLookupOfEditedCategory);
+		ACEController.registerListener('author.GivenLanguageOfNewCategoryChangedOkEvent', CategoriesView.givenLanguageOfNewCategoryChanged);
+		ACEController.registerListener('author.GivenLanguageOfEditedCategoryChangedOkEvent', CategoriesView.givenLanguageOfEditedCategoryChanged);
+		ACEController.registerListener('author.WantedLanguageOfNewCategoryChangedOkEvent', CategoriesView.wantedLanguageOfNewCategoryChanged);
+		ACEController.registerListener('author.WantedLanguageOfEditedCategoryChangedOkEvent', CategoriesView.wantedLanguageOfEditedCategoryChanged);
 	}
 
 }

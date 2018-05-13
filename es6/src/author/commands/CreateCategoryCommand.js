@@ -7,6 +7,9 @@ export default class CreateCategoryCommand extends AbstractCreateCategoryCommand
                 categoryName: this.commandParam.categoryName,
                 categoryIndex: this.commandParam.categoryIndex,
                 parentCategoryId: this.commandParam.parentCategoryId,
+                dictionaryLookup: this.commandParam.dictionaryLookup,
+                givenLanguage: this.commandParam.givenLanguage,
+                wantedLanguage: this.commandParam.wantedLanguage
             };
             this.httpPost("api/category/create", [], data).then((data) => {
                 this.commandData.outcome = this.ok;

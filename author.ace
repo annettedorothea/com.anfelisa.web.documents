@@ -112,6 +112,37 @@ ACE {
 	FilterCards {
 		on ok (Categories.filterChanged)
 	}
+	
+	async Translate preUpdateUI (Categories.displayTranslateSpinner) postUpdateUI (Categories.hideTranslateSpinner) {
+		on ok (Categories.wantedOfNewCardChanged)
+		on error
+		on empty
+		on wantedNotEmpty
+	}
+	
+	ToggleDictionaryLookupOfNewCategory {
+		on ok (Categories.toggleDictionaryLookupOfNewCategory)
+	}
+	
+	ToggleDictionaryLookupOfEditedCategory {
+		on ok (Categories.toggleDictionaryLookupOfEditedCategory)
+	}
+	
+	GivenLanguageOfNewCategoryChanged {
+		on ok (Categories.givenLanguageOfNewCategoryChanged)
+	}
+	
+	GivenLanguageOfEditedCategoryChanged {
+		on ok (Categories.givenLanguageOfEditedCategoryChanged) 
+	}
+	
+	WantedLanguageOfNewCategoryChanged {
+		on ok (Categories.wantedLanguageOfNewCategoryChanged)
+	}
+	
+	WantedLanguageOfEditedCategoryChanged {
+		on ok (Categories.wantedLanguageOfEditedCategoryChanged)
+	}
 }
 
 views {
@@ -139,8 +170,16 @@ views {
 		hideConfirmCardDelete
 		displayNewCardSpinner
 		hideNewCardSpinner
+		displayTranslateSpinner
+		hideTranslateSpinner
 		initDuplicates
 		resetDuplicates
 		filterChanged
+		toggleDictionaryLookupOfNewCategory
+		toggleDictionaryLookupOfEditedCategory
+		givenLanguageOfNewCategoryChanged
+		givenLanguageOfEditedCategoryChanged
+		wantedLanguageOfNewCategoryChanged
+		wantedLanguageOfEditedCategoryChanged
 	}
 }

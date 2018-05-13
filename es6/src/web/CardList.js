@@ -16,6 +16,8 @@ import WantedOfNewCardChangedAction from "../author/actions/WantedOfNewCardChang
 import GivenOfEditedCardChangedAction from "../author/actions/GivenOfEditedCardChangedAction";
 import WantedOfEditedCardChangedAction from "../author/actions/WantedOfEditedCardChangedAction";
 import FilterCardsAction from "../author/actions/FilterCardsAction";
+import TranslateAction from "../author/actions/TranslateAction";
+import ToggleDictionaryLookupOfNewCategoryAction from "../author/actions/ToggleDictionaryLookupOfNewCategoryAction";
 
 export default class CardList extends React.Component {
 
@@ -103,6 +105,9 @@ export default class CardList extends React.Component {
                 username={this.props.username}
                 password={this.props.password}
                 categoryId={this.props.data.parentCategoryId}
+                dictionaryLookup={this.props.data.newCard.dictionaryLookup}
+                givenLanguage={this.props.data.newCard.givenLanguage}
+                wantedLanguage={this.props.data.newCard.wantedLanguage}
                 texts={this.props.texts}
             />
         );
@@ -227,6 +232,7 @@ class NewCard extends React.Component {
         this.onCancel = this.onCancel.bind(this);
         this.onKeyUp = this.onKeyUp.bind(this);
         this.onAltKeyUp = this.onAltKeyUp.bind(this);
+        this.onBlur = this.onBlur.bind(this);
     }
 
     componentDidMount() {
@@ -273,6 +279,16 @@ class NewCard extends React.Component {
         this.givenInput.focus();
     }
 
+    onBlur(e) {
+        const data = {
+            given: this.props.given,
+            wanted: this.props.wanted,
+            givenLanguage: this.props.givenLanguage,
+            wantedLanguage: this.props.wantedLanguage
+        };
+        new TranslateAction(data).apply();
+    }
+
     onKeyUp(e) {
         e.preventDefault();
         if (e.keyCode === 13 && this.props.given && this.props.given.length > 0 && this.props.wanted && this.props.wanted.length > 0) {
@@ -296,26 +312,30 @@ class NewCard extends React.Component {
                         onChange={this.onGivenChange}
                         autoComplete="off"
                         value={this.props.given}
-                        placeholder={this.props.texts.cardList.given}
+                        placeholder={`${this.props.texts.cardList.given} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.givenLanguage] + ")" : "" }`}
                         ref={input => {
                             this.givenInput = input;
                         }}
                         onKeyUp={this.onKeyUp}
+                        onBlur={this.onBlur}
                     />
                     {this.props.displaySpinner === true &&
                     <label>{this.props.texts.cardList.searchingDuplicates}</label>}
                 </td>
                 <td>
+                    <div>
                     <textarea
                         rows="4"
                         cols="80"
                         onChange={this.onWantedChange}
                         autoComplete="off"
                         value={this.props.wanted}
-                        placeholder={this.props.texts.cardList.wanted}
+                        placeholder={`${this.props.texts.cardList.wanted} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.wantedLanguage] + ")" : "" }`}
                         onKeyUp={this.onAltKeyUp}
                     >
                     </textarea>
+                    </div>
+                    <a href="http://translate.yandex.com/" target="yandex">Powered by Yandex.Translate</a>
                 </td>
                 <td>
                     <input

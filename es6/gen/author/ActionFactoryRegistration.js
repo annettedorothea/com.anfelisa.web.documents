@@ -28,6 +28,13 @@ import EditCardAction from "../../src/author/actions/EditCardAction";
 import DeleteCardClickAction from "../../src/author/actions/DeleteCardClickAction";
 import CancelDeleteCardAction from "../../src/author/actions/CancelDeleteCardAction";
 import FilterCardsAction from "../../src/author/actions/FilterCardsAction";
+import TranslateAction from "../../src/author/actions/TranslateAction";
+import ToggleDictionaryLookupOfNewCategoryAction from "../../src/author/actions/ToggleDictionaryLookupOfNewCategoryAction";
+import ToggleDictionaryLookupOfEditedCategoryAction from "../../src/author/actions/ToggleDictionaryLookupOfEditedCategoryAction";
+import GivenLanguageOfNewCategoryChangedAction from "../../src/author/actions/GivenLanguageOfNewCategoryChangedAction";
+import GivenLanguageOfEditedCategoryChangedAction from "../../src/author/actions/GivenLanguageOfEditedCategoryChangedAction";
+import WantedLanguageOfNewCategoryChangedAction from "../../src/author/actions/WantedLanguageOfNewCategoryChangedAction";
+import WantedLanguageOfEditedCategoryChangedAction from "../../src/author/actions/WantedLanguageOfEditedCategoryChangedAction";
 
 export default class ActionFactoryRegistrationAuthor {
 
@@ -61,6 +68,13 @@ export default class ActionFactoryRegistrationAuthor {
 		ACEController.registerFactory('author.DeleteCardClickAction', (actionParam) => new DeleteCardClickAction(actionParam));
 		ACEController.registerFactory('author.CancelDeleteCardAction', (actionParam) => new CancelDeleteCardAction(actionParam));
 		ACEController.registerFactory('author.FilterCardsAction', (actionParam) => new FilterCardsAction(actionParam));
+		ACEController.registerFactory('author.TranslateAction', (actionParam) => new TranslateAction(actionParam));
+		ACEController.registerFactory('author.ToggleDictionaryLookupOfNewCategoryAction', (actionParam) => new ToggleDictionaryLookupOfNewCategoryAction(actionParam));
+		ACEController.registerFactory('author.ToggleDictionaryLookupOfEditedCategoryAction', (actionParam) => new ToggleDictionaryLookupOfEditedCategoryAction(actionParam));
+		ACEController.registerFactory('author.GivenLanguageOfNewCategoryChangedAction', (actionParam) => new GivenLanguageOfNewCategoryChangedAction(actionParam));
+		ACEController.registerFactory('author.GivenLanguageOfEditedCategoryChangedAction', (actionParam) => new GivenLanguageOfEditedCategoryChangedAction(actionParam));
+		ACEController.registerFactory('author.WantedLanguageOfNewCategoryChangedAction', (actionParam) => new WantedLanguageOfNewCategoryChangedAction(actionParam));
+		ACEController.registerFactory('author.WantedLanguageOfEditedCategoryChangedAction', (actionParam) => new WantedLanguageOfEditedCategoryChangedAction(actionParam));
 	}
 
 }

@@ -15,10 +15,19 @@ export const Texts = {
                 message: "Soll die Kategorie wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Unterkategorien und Karten werden dann auch gelöscht.",
                 title: "Löschen"
             },
+            dictionaryLookup: "im Wörterbuch nachschlagen",
             index: "Index",
+            languages: {
+                de: "Deutsch",
+                emtpy: "Bitte wählen",
+                en: "Englisch",
+                fr: "Französisch",
+            },
             name: "Name",
             nameAlreadyExists: "Name wird bereits verwendet.",
             ok: "OK",
+            givenLanguage: "von",
+            wantedLanguage: "nach",
             title: "Alle Kategorien"
         },
         cardList: {

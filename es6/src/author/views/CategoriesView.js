@@ -8,13 +8,20 @@ export default class CategoriesView {
                 newCategory: {
                     name: "",
                     nameAlreadyExists: false,
-                    index: ""
+                    index: "",
+                    dictionaryLookup: false,
+                    givenLanguage: "",
+                    wantedLanguage: ""
+
                 },
                 editedCategory: {
                     categoryId: "",
                     name: "",
                     nameAlreadyExists: false,
-                    index: ""
+                    index: "",
+                    dictionaryLookup: false,
+                    givenLanguage: "",
+                    wantedLanguage: ""
                 },
                 deleteCategory: {
                     confirmDelete: false,
@@ -24,7 +31,10 @@ export default class CategoriesView {
                     given: "",
                     wanted: "",
                     index: "",
-                    displaySpinner: false
+                    displaySpinner: false,
+                    dictionaryLookup: false,
+                    givenLanguage: "",
+                    wantedLanguage: ""
                 },
                 editedCard: {
                     cardId: "",
@@ -37,7 +47,8 @@ export default class CategoriesView {
                     confirmDelete: false,
                     cardId: ""
                 },
-                filter: ""
+                filter: "",
+                displayTranslateSpinner: false
             };
         }
         data.categoryList = eventData.data.categoryList;
@@ -74,7 +85,10 @@ export default class CategoriesView {
             data.newCategory = {
                 name: "",
                 nameAlreadyExists: false,
-                index: ""
+                index: "",
+                dictionaryLookup: eventData.data.parentDictionaryLookup ? eventData.data.parentDictionaryLookup : false,
+                givenLanguage: eventData.data.parentGivenLanguage ? eventData.data.parentGivenLanguage : "",
+                wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : ""
             };
             App.container.setState({
                 data
@@ -106,7 +120,10 @@ export default class CategoriesView {
                 name: "",
                 nameAlreadyExists: false,
                 index: "",
-                categoryId: ""
+                categoryId: "",
+                dictionaryLookup: false,
+                givenLanguage: "",
+                wantedLanguage: ""
             };
             App.container.setState({
                 data
@@ -120,7 +137,10 @@ export default class CategoriesView {
             categoryId: eventData.categoryId,
             name: eventData.name,
             nameAlreadyExists: false,
-            index: eventData.index
+            index: eventData.index,
+            dictionaryLookup: eventData.dictionaryLookup ? eventData.dictionaryLookup : false,
+            givenLanguage: eventData.givenLanguage ? eventData.givenLanguage : "",
+            wantedLanguage: eventData.wantedLanguage ? eventData.wantedLanguage : ""
         };
         App.container.setState({
             data
@@ -179,7 +199,10 @@ export default class CategoriesView {
             data.newCard = {
                 wanted: "",
                 given: "",
-                index: ""
+                index: "",
+                dictionaryLookup: eventData.data.parentDictionaryLookup ? eventData.data.parentDictionaryLookup : false,
+                givenLanguage: eventData.data.parentGivenLanguage ? eventData.data.parentGivenLanguage : "",
+                wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : ""
             };
             App.container.setState({
                 data
@@ -276,6 +299,22 @@ export default class CategoriesView {
         });
     };
 
+    static displayTranslateSpinner() {
+        let data = App.container.state.data;
+        data.displayTranslateSpinner = true;
+        App.container.setState({
+            data
+        });
+    };
+
+    static hideTranslateSpinner() {
+        let data = App.container.state.data;
+        data.displayTranslateSpinner = false;
+        App.container.setState({
+            data
+        });
+    };
+
     static initDuplicates(eventData) {
         let data = App.container.state.data;
         data.cardDuplicates = eventData.data.cardList;
@@ -300,6 +339,63 @@ export default class CategoriesView {
         });
     };
 
+    static toggleDictionaryLookupOfNewCategory() {
+        let data = App.container.state.data;
+        data.newCategory.dictionaryLookup = !data.newCategory.dictionaryLookup;
+        if (data.newCategory.dictionaryLookup === false) {
+            data.newCategory.givenLanguage = "";
+            data.newCategory.wantedLanguage = "";
+        }
+        App.container.setState({
+            data
+        });
+    };
+
+    static toggleDictionaryLookupOfEditedCategory() {
+        let data = App.container.state.data;
+        data.editedCategory.dictionaryLookup = !data.editedCategory.dictionaryLookup;
+        if (data.editedCategory.dictionaryLookup === false) {
+            data.editedCategory.givenLanguage = "";
+            data.editedCategory.wantedLanguage = "";
+        }
+        App.container.setState({
+            data
+        });
+    };
+
+    static givenLanguageOfNewCategoryChanged(eventData) {
+        let data = App.container.state.data;
+        data.newCategory.givenLanguage = eventData.givenLanguage;
+        App.container.setState({
+            data
+        });
+    };
+
+    static givenLanguageOfEditedCategoryChanged(eventData) {
+        let data = App.container.state.data;
+        data.editedCategory.givenLanguage = eventData.givenLanguage;
+        App.container.setState({
+            data
+        });
+    };
+
+    static wantedLanguageOfNewCategoryChanged(eventData) {
+        let data = App.container.state.data;
+        data.newCategory.wantedLanguage = eventData.wantedLanguage;
+        App.container.setState({
+            data
+        });
+    };
+
+    static wantedLanguageOfEditedCategoryChanged(eventData) {
+        let data = App.container.state.data;
+        data.editedCategory.wantedLanguage = eventData.wantedLanguage;
+        App.container.setState({
+            data
+        });
+    };
+
 }
+
 
 /*                    S.D.G.                    */
