@@ -114,8 +114,8 @@ ACE {
 	}
 	
 	async Translate preUpdateUI (Categories.displayTranslateSpinner) postUpdateUI (Categories.hideTranslateSpinner) {
-		on wantedFetched (Categories.wantedOfNewCardChanged) /*triggers (SearchDuplicateCards)*/
-		on givenFetched (Categories.givenOfNewCardChanged) /*triggers (SearchDuplicateCards)*/
+		on wantedFetched (Categories.wantedOfNewCardChanged) triggers (SearchDuplicateCards)
+		on givenFetched (Categories.givenOfNewCardChanged) triggers (SearchDuplicateCards)
 		on error
 		on empty
 		on targetNotEmtpy

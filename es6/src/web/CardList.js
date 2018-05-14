@@ -252,7 +252,8 @@ class NewCard extends React.Component {
         this.onCancel = this.onCancel.bind(this);
         this.onKeyUp = this.onKeyUp.bind(this);
         this.onAltKeyUp = this.onAltKeyUp.bind(this);
-        this.onBlur = this.onBlur.bind(this);
+        this.onBlurGiven = this.onBlurGiven.bind(this);
+        this.onBlurWanted = this.onBlurWanted.bind(this);
     }
 
     componentDidMount() {
@@ -308,15 +309,36 @@ class NewCard extends React.Component {
         this.setFocus();
     }
 
-    onBlur(e) {
-        const data = {
-            given: this.props.given,
-            wanted: this.props.wanted,
-            givenLanguage: this.props.givenLanguage,
-            wantedLanguage: this.props.wantedLanguage,
-            naturalInputOrder: this.props.naturalInputOrder
-        };
-        new TranslateAction(data).apply();
+    onBlurGiven() {
+        if (this.props.naturalInputOrder === true) {
+            const data = {
+                given: this.props.given,
+                wanted: this.props.wanted,
+                givenLanguage: this.props.givenLanguage,
+                wantedLanguage: this.props.wantedLanguage,
+                naturalInputOrder: this.props.naturalInputOrder,
+                username: this.props.username,
+                password: this.props.password,
+                categoryId: this.props.categoryId
+            };
+            new TranslateAction(data).apply();
+        }
+    }
+
+    onBlurWanted() {
+        if (this.props.naturalInputOrder === false) {
+            const data = {
+                given: this.props.given,
+                wanted: this.props.wanted,
+                givenLanguage: this.props.givenLanguage,
+                wantedLanguage: this.props.wantedLanguage,
+                naturalInputOrder: this.props.naturalInputOrder,
+                username: this.props.username,
+                password: this.props.password,
+                categoryId: this.props.categoryId
+            };
+            new TranslateAction(data).apply();
+        }
     }
 
     onKeyUp(e) {
@@ -348,7 +370,7 @@ class NewCard extends React.Component {
                             this.givenInput = textarea;
                         }}
                         onKeyUp={this.onAltKeyUp}
-                        onBlur={this.onBlur}
+                        onBlur={this.onBlurGiven}
                     >
                     </textarea>
                 </div>
@@ -375,7 +397,7 @@ class NewCard extends React.Component {
                             this.wantedInput = textarea;
                         }}
                         onKeyUp={this.onAltKeyUp}
-                        onBlur={this.onBlur}
+                        onBlur={this.onBlurWanted}
                     >
                     </textarea>
                 </div>

@@ -2,6 +2,7 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import TranslateWantedFetchedEvent from "../../../src/author/events/TranslateWantedFetchedEvent";
 import TranslateGivenFetchedEvent from "../../../src/author/events/TranslateGivenFetchedEvent";
+import SearchDuplicateCardsAction from "../../../src/author/actions/SearchDuplicateCardsAction";
 
 export default class AbstractTranslateCommand extends Command {
     constructor(commandParam) {
@@ -19,9 +20,11 @@ export default class AbstractTranslateCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.wantedFetched:
 			promises.push(new TranslateWantedFetchedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new SearchDuplicateCardsAction(this.commandData)).publish());
 			break;
 		case this.givenFetched:
 			promises.push(new TranslateGivenFetchedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new SearchDuplicateCardsAction(this.commandData)).publish());
 			break;
 		case this.error:
 			break;
