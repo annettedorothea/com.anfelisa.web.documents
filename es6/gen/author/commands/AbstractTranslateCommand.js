@@ -1,28 +1,33 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import TranslateOkEvent from "../../../src/author/events/TranslateOkEvent";
+import TranslateWantedFetchedEvent from "../../../src/author/events/TranslateWantedFetchedEvent";
+import TranslateGivenFetchedEvent from "../../../src/author/events/TranslateGivenFetchedEvent";
 
 export default class AbstractTranslateCommand extends Command {
     constructor(commandParam) {
         super(commandParam, "author.TranslateCommand");
-        this.ok = "ok";
+        this.wantedFetched = "wantedFetched";
+        this.givenFetched = "givenFetched";
         this.error = "error";
         this.empty = "empty";
-        this.wantedNotEmpty = "wantedNotEmpty";
+        this.targetNotEmtpy = "targetNotEmtpy";
     }
 
     publishEvents() {
 		let promises = [];
 	    	
 		switch (this.commandData.outcome) {
-		case this.ok:
-			promises.push(new TranslateOkEvent(this.commandData).publish());
+		case this.wantedFetched:
+			promises.push(new TranslateWantedFetchedEvent(this.commandData).publish());
+			break;
+		case this.givenFetched:
+			promises.push(new TranslateGivenFetchedEvent(this.commandData).publish());
 			break;
 		case this.error:
 			break;
 		case this.empty:
 			break;
-		case this.wantedNotEmpty:
+		case this.targetNotEmtpy:
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('TranslateCommand unhandled outcome: ' + this.commandData.outcome)});

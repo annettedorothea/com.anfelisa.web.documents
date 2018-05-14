@@ -261,7 +261,6 @@ class NewCategory extends React.Component {
                     <label>{this.props.texts.categoryList.dictionaryLookup}</label>
                 </td>
                 <td>
-                    <label>{this.props.texts.categoryList.givenLanguage}</label>
                     <select value={this.props.givenLanguage} onChange={this.onGivenLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
                         <option value="">{this.props.texts.categoryList.languages.emtpy}</option>
@@ -271,7 +270,6 @@ class NewCategory extends React.Component {
                     </select>
                 </td>
                 <td>
-                    <label>{this.props.texts.categoryList.wantedLanguage}</label>
                     <select value={this.props.wantedLanguage} onChange={this.onWantedLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
                         <option value="">{this.props.texts.categoryList.languages.emtpy}</option>
@@ -397,7 +395,6 @@ class EditCategory extends React.Component {
                     <label>{this.props.texts.categoryList.dictionaryLookup}</label>
                 </td>
                 <td>
-                    <label>{this.props.texts.categoryList.givenLanguage}</label>
                     <select value={this.props.givenLanguage} onChange={this.onGivenLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
                         <option value="">{this.props.texts.categoryList.languages.emtpy}</option>
@@ -407,7 +404,6 @@ class EditCategory extends React.Component {
                     </select>
                 </td>
                 <td>
-                    <label>{this.props.texts.categoryList.wantedLanguage}</label>
                     <select value={this.props.wantedLanguage} onChange={this.onWantedLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
                         <option value="">{this.props.texts.categoryList.languages.emtpy}</option>

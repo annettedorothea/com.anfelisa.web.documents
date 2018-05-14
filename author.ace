@@ -114,10 +114,11 @@ ACE {
 	}
 	
 	async Translate preUpdateUI (Categories.displayTranslateSpinner) postUpdateUI (Categories.hideTranslateSpinner) {
-		on ok (Categories.wantedOfNewCardChanged)
+		on wantedFetched (Categories.wantedOfNewCardChanged) /*triggers (SearchDuplicateCards)*/
+		on givenFetched (Categories.givenOfNewCardChanged) /*triggers (SearchDuplicateCards)*/
 		on error
 		on empty
-		on wantedNotEmpty
+		on targetNotEmtpy
 	}
 	
 	ToggleDictionaryLookupOfNewCategory {
@@ -142,6 +143,10 @@ ACE {
 	
 	WantedLanguageOfEditedCategoryChanged {
 		on ok (Categories.wantedLanguageOfEditedCategoryChanged)
+	}
+	
+	ToggelInputOrder {
+		on ok (Categories.toggelInputOrder)
 	}
 }
 
@@ -181,5 +186,6 @@ views {
 		givenLanguageOfEditedCategoryChanged
 		wantedLanguageOfNewCategoryChanged
 		wantedLanguageOfEditedCategoryChanged
+		toggelInputOrder
 	}
 }

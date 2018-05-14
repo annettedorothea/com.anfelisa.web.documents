@@ -18,6 +18,7 @@ import WantedOfEditedCardChangedAction from "../author/actions/WantedOfEditedCar
 import FilterCardsAction from "../author/actions/FilterCardsAction";
 import TranslateAction from "../author/actions/TranslateAction";
 import ToggleDictionaryLookupOfNewCategoryAction from "../author/actions/ToggleDictionaryLookupOfNewCategoryAction";
+import ToggelInputOrderAction from "../author/actions/ToggelInputOrderAction";
 
 export default class CardList extends React.Component {
 
@@ -28,6 +29,7 @@ export default class CardList extends React.Component {
         this.onDeleteClick = this.onDeleteClick.bind(this);
         this.onDeleteCancel = this.onDeleteCancel.bind(this);
         this.onFilterChange = this.onFilterChange.bind(this);
+        this.onToggleInputOrder = this.onToggleInputOrder.bind(this);
     }
 
     onDeleteClick(cardId) {
@@ -67,6 +69,11 @@ export default class CardList extends React.Component {
         ).apply();
     }
 
+    onToggleInputOrder() {
+        console.log("onToggleInputOrder");
+        new ToggelInputOrderAction().apply();
+    }
+
     render() {
         const cardItems = this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).map((card) => {
             if (card.cardId === this.props.data.editedCard.cardId) {
@@ -79,6 +86,7 @@ export default class CardList extends React.Component {
                     username={this.props.username}
                     password={this.props.password}
                     categoryId={this.props.data.parentCategoryId}
+                    naturalInputOrder={this.props.data.naturalInputOrder}
                     texts={this.props.texts}
                 />
             } else {
@@ -91,6 +99,7 @@ export default class CardList extends React.Component {
                     username={this.props.username}
                     password={this.props.password}
                     userRole={this.props.role}
+                    naturalInputOrder={this.props.data.naturalInputOrder}
                 />
             }
         });
@@ -101,6 +110,7 @@ export default class CardList extends React.Component {
                 wanted={this.props.data.newCard.wanted}
                 index={this.props.data.newCard.index}
                 displaySpinner={this.props.data.newCard.displaySpinner}
+                displayTranslateSpinner={this.props.data.newCard.displayTranslateSpinner}
                 cardList={this.props.data.cardList}
                 username={this.props.username}
                 password={this.props.password}
@@ -109,8 +119,28 @@ export default class CardList extends React.Component {
                 givenLanguage={this.props.data.newCard.givenLanguage}
                 wantedLanguage={this.props.data.newCard.wantedLanguage}
                 texts={this.props.texts}
+                naturalInputOrder={this.props.data.naturalInputOrder}
             />
         );
+        cardItems.push(
+            <tr key="hint">
+                <td colSpan="5"><a href="http://translate.yandex.com/" target="yandex">Powered by Yandex.Translate</a>
+                </td>
+            </tr>
+        );
+        let duplicateCards = this.props.data.cardDuplicates.map((card) => {
+            return <DuplicateCardItem
+                {...card}
+                key={card.cardId}
+                texts={this.props.texts}
+                username={this.props.username}
+                password={this.props.password}
+                userRole={this.props.role}
+                naturalInputOrder={this.props.data.naturalInputOrder}
+                filter={this.props.data.naturalInputOrder === true ? this.props.data.newCard.given : this.props.data.newCard.wante}
+            />
+
+        });
         return (
             <div>
                 {this.props.data.deleteCard.confirmDelete === true &&
@@ -140,51 +170,20 @@ export default class CardList extends React.Component {
                     value={this.props.data.filter}
                     placeholder={this.props.texts.cardList.filter}
                 />
+                <button onClick={this.onToggleInputOrder}>{"\u21c4"}</button>
                 <table>
                     <thead>
 
                     </thead>
                     <tbody>
                     {cardItems}
+                    {duplicateCards.length > 0 && <tr>
+                        <td colSpan="5">{this.props.texts.cardList.duplicateCards}</td>
+                    </tr>}
+                    {duplicateCards}
                     </tbody>
                 </table>
 
-                {this.props.data.cardDuplicates && this.props.data.cardDuplicates.length > 0 &&
-                <CardDuplicates cardDuplicates={this.props.data.cardDuplicates} texts={this.props.texts}/>}
-
-            </div>
-        );
-    }
-}
-
-class CardDuplicates extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const cardItems = this.props.cardDuplicates.map((card) => {
-            return <DuplicateCardItem
-                {...card}
-                key={card.cardId}
-                texts={this.props.texts}
-                username={this.props.username}
-                password={this.props.password}
-                userRole={this.props.role}
-            />
-        });
-        return (
-            <div>
-                <h1>
-                    {this.props.texts.cardList.duplicateCards}
-                </h1>
-                <table>
-                    <thead>
-                    </thead>
-                    <tbody>
-                    {cardItems}
-                    </tbody>
-                </table>
             </div>
         );
     }
@@ -198,6 +197,11 @@ class DuplicateCardItem extends React.Component {
     }
 
     onClick() {
+        new FilterCardsAction(
+            {
+                filter: this.props.filter
+            }
+        ).apply();
         new RouteAction(
             {
                 username: this.props.username,
@@ -206,13 +210,29 @@ class DuplicateCardItem extends React.Component {
             }).apply();
     }
 
+    renderGiven() {
+        return (
+            <td onClick={this.onClick}>
+                <pre>{this.props.given}</pre>
+            </td>
+        );
+    }
+
+    renderWanted() {
+        return (
+            <td onClick={this.onClick}>
+                <pre>{this.props.wanted}</pre>
+            </td>
+        );
+    }
+
     render() {
         return (
             <tr>
-                <td onClick={this.onClick}>{this.props.given}</td>
-                <td onClick={this.onClick}>
-                    <pre>{this.props.wanted}</pre>
-                </td>
+                {this.props.naturalInputOrder === true && this.renderGiven()}
+                {this.props.naturalInputOrder === true && this.renderWanted()}
+                {this.props.naturalInputOrder === false && this.renderWanted()}
+                {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td onClick={this.onClick}>{this.props.cardIndex}</td>
                 <td onClick={this.onClick}>{this.props.cardAuthor}</td>
             </tr>
@@ -236,7 +256,15 @@ class NewCard extends React.Component {
     }
 
     componentDidMount() {
-        this.givenInput.focus();
+        this.setFocus();
+    }
+
+    setFocus() {
+        if (this.props.naturalInputOrder === true) {
+            this.givenInput.focus();
+        } else {
+            this.wantedInput.focus();
+        }
     }
 
     onGivenChange(event) {
@@ -252,6 +280,7 @@ class NewCard extends React.Component {
     }
 
     onWantedChange(event) {
+        console.log("onWantedChange !!!!!!!!!");
         const wanted = event.target.value;
         new WantedOfNewCardChangedAction({wanted, cardList: this.props.cardList}).apply();
     }
@@ -263,7 +292,7 @@ class NewCard extends React.Component {
 
     onCancel() {
         new CancelNewCardAction().apply();
-        this.givenInput.focus();
+        this.setFocus();
     }
 
     onNewCard() {
@@ -276,7 +305,7 @@ class NewCard extends React.Component {
             categoryId: this.props.categoryId
         };
         new CreateCardAction(data).apply();
-        this.givenInput.focus();
+        this.setFocus();
     }
 
     onBlur(e) {
@@ -284,7 +313,8 @@ class NewCard extends React.Component {
             given: this.props.given,
             wanted: this.props.wanted,
             givenLanguage: this.props.givenLanguage,
-            wantedLanguage: this.props.wantedLanguage
+            wantedLanguage: this.props.wantedLanguage,
+            naturalInputOrder: this.props.naturalInputOrder
         };
         new TranslateAction(data).apply();
     }
@@ -303,40 +333,63 @@ class NewCard extends React.Component {
         }
     }
 
-    render() {
+    renderGiven() {
         return (
-            <tr>
-                <td>
-                    <input
-                        type={"text"}
+            <td>
+                <div>
+                    <textarea
+                        rows="4"
+                        cols="40"
                         onChange={this.onGivenChange}
                         autoComplete="off"
                         value={this.props.given}
                         placeholder={`${this.props.texts.cardList.given} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.givenLanguage] + ")" : "" }`}
-                        ref={input => {
-                            this.givenInput = input;
+                        ref={textarea => {
+                            this.givenInput = textarea;
                         }}
-                        onKeyUp={this.onKeyUp}
+                        onKeyUp={this.onAltKeyUp}
                         onBlur={this.onBlur}
-                    />
-                    {this.props.displaySpinner === true &&
-                    <label>{this.props.texts.cardList.searchingDuplicates}</label>}
-                </td>
-                <td>
-                    <div>
+                    >
+                    </textarea>
+                </div>
+                {this.props.displaySpinner === true &&
+                <label>{this.props.texts.cardList.searchingDuplicates}</label>}
+                {this.props.displayTranslateSpinner === true &&
+                <label>{this.props.texts.cardList.loadingTranslation}</label>}
+            </td>
+        )
+    }
+
+    renderWanted() {
+        return (
+            <td>
+                <div>
                     <textarea
                         rows="4"
-                        cols="80"
+                        cols="40"
                         onChange={this.onWantedChange}
                         autoComplete="off"
                         value={this.props.wanted}
                         placeholder={`${this.props.texts.cardList.wanted} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.wantedLanguage] + ")" : "" }`}
+                        ref={textarea => {
+                            this.wantedInput = textarea;
+                        }}
                         onKeyUp={this.onAltKeyUp}
+                        onBlur={this.onBlur}
                     >
                     </textarea>
-                    </div>
-                    <a href="http://translate.yandex.com/" target="yandex">Powered by Yandex.Translate</a>
-                </td>
+                </div>
+            </td>
+        )
+    }
+
+    render() {
+        return (
+            <tr>
+                {this.props.naturalInputOrder === true && this.renderGiven()}
+                {this.props.naturalInputOrder === true && this.renderWanted()}
+                {this.props.naturalInputOrder === false && this.renderWanted()}
+                {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td>
                     <input
                         type={"number"}
@@ -421,23 +474,27 @@ class EditCard extends React.Component {
         new UpdateCardAction(data).apply();
     }
 
-    render() {
+    renderGiven() {
         return (
-            <tr>
-                <td>
-                    <input
-                        type={"text"}
-                        onChange={this.onGivenChange}
-                        autoComplete="off"
-                        value={this.props.given}
-                        placeholder={this.props.texts.cardList.given}
-                        onKeyUp={this.onKeyUp}
-                    />
-                </td>
-                <td>
+            <td>
+                <input
+                    type={"text"}
+                    onChange={this.onGivenChange}
+                    autoComplete="off"
+                    value={this.props.given}
+                    placeholder={this.props.texts.cardList.given}
+                    onKeyUp={this.onKeyUp}
+                />
+            </td>
+        );
+    }
+
+    renderWanted() {
+        return (
+            <td>
                     <textarea
                         rows="4"
-                        cols="80"
+                        cols="40"
                         onChange={this.onWantedChange}
                         autoComplete="off"
                         value={this.props.wanted}
@@ -445,7 +502,17 @@ class EditCard extends React.Component {
                         onKeyUp={this.onAltKeyUp}
                     >
                     </textarea>
-                </td>
+            </td>
+        );
+    }
+
+    render() {
+        return (
+            <tr>
+                {this.props.naturalInputOrder === true && this.renderGiven()}
+                {this.props.naturalInputOrder === true && this.renderWanted()}
+                {this.props.naturalInputOrder === false && this.renderWanted()}
+                {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td>
                     <input
                         type={"number"}
@@ -477,13 +544,27 @@ class CardItem extends React.Component {
         super(props);
     }
 
+    renderGiven() {
+        return (
+            <td>{this.props.given}</td>
+        );
+    }
+
+    renderWanted() {
+        return (
+            <td>
+                <pre>{this.props.wanted}</pre>
+            </td>
+        );
+    }
+
     render() {
         return (
             <tr>
-                <td>{this.props.given}</td>
-                <td>
-                    <pre>{this.props.wanted}</pre>
-                </td>
+                {this.props.naturalInputOrder === true && this.renderGiven()}
+                {this.props.naturalInputOrder === true && this.renderWanted()}
+                {this.props.naturalInputOrder === false && this.renderWanted()}
+                {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td>{this.props.cardIndex}</td>
                 <td>{this.props.cardAuthor}</td>
                 <td>

@@ -26,8 +26,6 @@ export const Texts = {
             name: "Name",
             nameAlreadyExists: "Name wird bereits verwendet.",
             ok: "OK",
-            givenLanguage: "von",
-            wantedLanguage: "nach",
             title: "Alle Kategorien"
         },
         cardList: {
@@ -45,6 +43,7 @@ export const Texts = {
             wanted: "Gesucht",
             ok: "OK",
             searchingDuplicates: "Nach doppelten Karten suchen",
+            loadingTranslation: "Übersetzungsvorschlag laden",
             title: {
                 noCards: "Noch keine Karten",
                 oneCard: "{0} von einer Karte",

@@ -35,6 +35,7 @@ import GivenLanguageOfNewCategoryChangedAction from "../../src/author/actions/Gi
 import GivenLanguageOfEditedCategoryChangedAction from "../../src/author/actions/GivenLanguageOfEditedCategoryChangedAction";
 import WantedLanguageOfNewCategoryChangedAction from "../../src/author/actions/WantedLanguageOfNewCategoryChangedAction";
 import WantedLanguageOfEditedCategoryChangedAction from "../../src/author/actions/WantedLanguageOfEditedCategoryChangedAction";
+import ToggelInputOrderAction from "../../src/author/actions/ToggelInputOrderAction";
 
 export default class ActionFactoryRegistrationAuthor {
 
@@ -75,6 +76,7 @@ export default class ActionFactoryRegistrationAuthor {
 		ACEController.registerFactory('author.GivenLanguageOfEditedCategoryChangedAction', (actionParam) => new GivenLanguageOfEditedCategoryChangedAction(actionParam));
 		ACEController.registerFactory('author.WantedLanguageOfNewCategoryChangedAction', (actionParam) => new WantedLanguageOfNewCategoryChangedAction(actionParam));
 		ACEController.registerFactory('author.WantedLanguageOfEditedCategoryChangedAction', (actionParam) => new WantedLanguageOfEditedCategoryChangedAction(actionParam));
+		ACEController.registerFactory('author.ToggelInputOrderAction', (actionParam) => new ToggelInputOrderAction(actionParam));
 	}
 
 }

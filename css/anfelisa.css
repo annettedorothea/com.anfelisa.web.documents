@@ -1,6 +1,19 @@
 body {
     background-size: 100% auto;
+    font-size: 1em;
+    font-family: Helvetica, sans-serif;
 }
+
+body pre {
+    font-size: 1em;
+    font-family: Helvetica, sans-serif;
+}
+
+input, button, textarea, select {
+    font-size: 1em;
+    font-family: Helvetica, sans-serif;
+}
+
 
 body.water {
     background: url(img/bg_water.jpg) repeat fixed;

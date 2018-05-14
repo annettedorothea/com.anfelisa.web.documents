@@ -34,6 +34,7 @@ import GivenLanguageOfNewCategoryChangedAction from "../../src/author/actions/Gi
 import GivenLanguageOfEditedCategoryChangedAction from "../../src/author/actions/GivenLanguageOfEditedCategoryChangedAction";
 import WantedLanguageOfNewCategoryChangedAction from "../../src/author/actions/WantedLanguageOfNewCategoryChangedAction";
 import WantedLanguageOfEditedCategoryChangedAction from "../../src/author/actions/WantedLanguageOfEditedCategoryChangedAction";
+import ToggelInputOrderAction from "../../src/author/actions/ToggelInputOrderAction";
 
 export function loadCategories(actionParam) {
     new LoadCategoriesAction(actionParam).apply();
@@ -177,6 +178,10 @@ export function wantedLanguageOfNewCategoryChanged(actionParam) {
 
 export function wantedLanguageOfEditedCategoryChanged(actionParam) {
     new WantedLanguageOfEditedCategoryChangedAction(actionParam).apply();
+}
+
+export function toggelInputOrder(actionParam) {
+    new ToggelInputOrderAction(actionParam).apply();
 }
 
 

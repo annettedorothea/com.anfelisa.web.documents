@@ -32,6 +32,7 @@ export default class CategoriesView {
                     wanted: "",
                     index: "",
                     displaySpinner: false,
+                    displayTranslateSpinner: false,
                     dictionaryLookup: false,
                     givenLanguage: "",
                     wantedLanguage: ""
@@ -48,7 +49,7 @@ export default class CategoriesView {
                     cardId: ""
                 },
                 filter: "",
-                displayTranslateSpinner: false
+                naturalInputOrder: true
             };
         }
         data.categoryList = eventData.data.categoryList;
@@ -301,7 +302,7 @@ export default class CategoriesView {
 
     static displayTranslateSpinner() {
         let data = App.container.state.data;
-        data.displayTranslateSpinner = true;
+        data.newCard.displayTranslateSpinner = true;
         App.container.setState({
             data
         });
@@ -309,7 +310,7 @@ export default class CategoriesView {
 
     static hideTranslateSpinner() {
         let data = App.container.state.data;
-        data.displayTranslateSpinner = false;
+        data.newCard.displayTranslateSpinner = false;
         App.container.setState({
             data
         });
@@ -394,6 +395,15 @@ export default class CategoriesView {
             data
         });
     };
+
+    static toggelInputOrder() {
+        let data = App.container.state.data;
+        data.naturalInputOrder = !data.naturalInputOrder;
+        App.container.setState({
+            data
+        });
+    };
+
 
 }
 
