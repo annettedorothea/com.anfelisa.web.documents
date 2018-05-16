@@ -340,6 +340,14 @@ export default class CategoriesView {
         });
     };
 
+    static resetFilter() {
+        let data = App.container.state.data;
+        data.filter = "";
+        App.container.setState({
+            data
+        });
+    };
+
     static toggleDictionaryLookupOfNewCategory() {
         let data = App.container.state.data;
         data.newCategory.dictionaryLookup = !data.newCategory.dictionaryLookup;

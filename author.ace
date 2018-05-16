@@ -11,6 +11,7 @@ ACE {
 			Categories.resetNewCardValues 
 			Categories.resetNewCategoryValues
 			Categories.resetDuplicates
+			Categories.resetFilter
 		)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
@@ -78,7 +79,7 @@ ACE {
 		on unauthorized ( common.Common.displayError Categories.hideConfirmCardDelete) triggers (common.Logout)
 	}
 	WantedOfNewCardChanged {
-		on ok (Categories.wantedOfNewCardChanged)
+		on ok (Categories.wantedOfNewCardChanged) triggers (SearchDuplicateCards)
 	}
 	IndexOfNewCardChanged {
 		on ok (Categories.indexOfNewCardChanged)
@@ -187,5 +188,6 @@ views {
 		wantedLanguageOfNewCategoryChanged
 		wantedLanguageOfEditedCategoryChanged
 		toggelInputOrder
+		resetFilter
 	}
 }

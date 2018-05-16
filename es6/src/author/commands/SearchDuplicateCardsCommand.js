@@ -13,6 +13,10 @@ export default class SearchDuplicateCardsCommand extends AbstractSearchDuplicate
                     key: "categoryId",
                     value: this.commandParam.categoryId
                 });
+                queryParams.push({
+                    key: "naturalInputOrder",
+                    value: this.commandParam.naturalInputOrder
+                });
                 this.httpGet("api/cards/search", queryParams).then((data) => {
                     this.commandData.data = data;
                     this.commandData.outcome = this.ok;

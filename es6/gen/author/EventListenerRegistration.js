@@ -11,6 +11,7 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetNewCardValues);
 		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetNewCategoryValues);
 		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetDuplicates);
+		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetFilter);
 		ACEController.registerListener('author.LoadCategoriesUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.CreateCategoryOkEvent', CategoriesView.resetNewCategoryValues);
 		ACEController.registerListener('author.CreateCategoryUnauthorizedEvent', CommonView.displayError);

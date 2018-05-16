@@ -4,6 +4,7 @@ export default class WantedOfNewCardChangedAction extends AbstractWantedOfNewCar
 
     initActionData() {
         this.actionData.wanted = this.actionParam.wanted;
+        this.actionData.naturalInputOrder = this.actionParam.naturalInputOrder;
     }
 
 }

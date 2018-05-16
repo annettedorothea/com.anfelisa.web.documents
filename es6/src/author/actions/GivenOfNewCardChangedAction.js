@@ -7,6 +7,7 @@ export default class GivenOfNewCardChangedAction extends AbstractGivenOfNewCardC
         this.actionData.username = this.actionParam.username;
         this.actionData.password = this.actionParam.password;
         this.actionData.categoryId = this.actionParam.categoryId;
+        this.actionData.naturalInputOrder = this.actionParam.naturalInputOrder;
     }
 
 }

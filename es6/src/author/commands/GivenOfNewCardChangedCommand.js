@@ -6,6 +6,7 @@ export default class GivenOfNewCardChangedCommand extends AbstractGivenOfNewCard
         this.commandData.username = this.commandParam.username;
         this.commandData.password = this.commandParam.password;
         this.commandData.categoryId = this.commandParam.categoryId;
+        this.commandData.naturalInputOrder = this.commandParam.naturalInputOrder;
         this.commandData.outcome = this.ok;
     }
 }

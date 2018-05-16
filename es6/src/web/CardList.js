@@ -137,7 +137,6 @@ export default class CardList extends React.Component {
                 password={this.props.password}
                 userRole={this.props.role}
                 naturalInputOrder={this.props.data.naturalInputOrder}
-                filter={this.props.data.naturalInputOrder === true ? this.props.data.newCard.given : this.props.data.newCard.wante}
             />
 
         });
@@ -197,11 +196,6 @@ class DuplicateCardItem extends React.Component {
     }
 
     onClick() {
-        new FilterCardsAction(
-            {
-                filter: this.props.filter
-            }
-        ).apply();
         new RouteAction(
             {
                 username: this.props.username,
@@ -235,6 +229,7 @@ class DuplicateCardItem extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td onClick={this.onClick}>{this.props.cardIndex}</td>
                 <td onClick={this.onClick}>{this.props.cardAuthor}</td>
+                <td onClick={this.onClick}>{this.props.path}</td>
             </tr>
         );
     }
@@ -275,15 +270,21 @@ class NewCard extends React.Component {
                 given,
                 username: this.props.username,
                 password: this.props.password,
-                categoryId: this.props.categoryId
+                categoryId: this.props.categoryId,
+                naturalInputOrder: this.props.naturalInputOrder
             }
         ).apply();
     }
 
     onWantedChange(event) {
-        console.log("onWantedChange !!!!!!!!!");
         const wanted = event.target.value;
-        new WantedOfNewCardChangedAction({wanted, cardList: this.props.cardList}).apply();
+        new WantedOfNewCardChangedAction(
+            {
+                wanted,
+                cardList: this.props.cardList,
+                naturalInputOrder: this.props.naturalInputOrder,
+            }
+        ).apply();
     }
 
     onIndexChange(event) {
