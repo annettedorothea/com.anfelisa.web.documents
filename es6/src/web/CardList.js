@@ -17,7 +17,6 @@ import GivenOfEditedCardChangedAction from "../author/actions/GivenOfEditedCardC
 import WantedOfEditedCardChangedAction from "../author/actions/WantedOfEditedCardChangedAction";
 import FilterCardsAction from "../author/actions/FilterCardsAction";
 import TranslateAction from "../author/actions/TranslateAction";
-import ToggleDictionaryLookupOfNewCategoryAction from "../author/actions/ToggleDictionaryLookupOfNewCategoryAction";
 import ToggelInputOrderAction from "../author/actions/ToggelInputOrderAction";
 
 export default class CardList extends React.Component {
@@ -137,6 +136,7 @@ export default class CardList extends React.Component {
                 password={this.props.password}
                 userRole={this.props.role}
                 naturalInputOrder={this.props.data.naturalInputOrder}
+                parentCategoryId={this.props.data.parentCategoryId}
             />
 
         });
@@ -192,21 +192,11 @@ class DuplicateCardItem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onClick = this.onClick.bind(this);
-    }
-
-    onClick() {
-        new RouteAction(
-            {
-                username: this.props.username,
-                password: this.props.password,
-                hash: `#categories/${this.props.categoryId}`
-            }).apply();
     }
 
     renderGiven() {
         return (
-            <td onClick={this.onClick}>
+            <td>
                 <pre>{this.props.given}</pre>
             </td>
         );
@@ -214,10 +204,17 @@ class DuplicateCardItem extends React.Component {
 
     renderWanted() {
         return (
-            <td onClick={this.onClick}>
+            <td>
                 <pre>{this.props.wanted}</pre>
             </td>
         );
+    }
+
+    renderPath() {
+        if (this.props.categoryId === this.props.parentCategoryId) {
+            return <td>{this.props.path}</td>
+        }
+        return <td><a href={`#categories/${this.props.categoryId}`}>{this.props.path}</a></td>
     }
 
     render() {
@@ -227,9 +224,9 @@ class DuplicateCardItem extends React.Component {
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
-                <td onClick={this.onClick}>{this.props.cardIndex}</td>
-                <td onClick={this.onClick}>{this.props.cardAuthor}</td>
-                <td onClick={this.onClick}>{this.props.path}</td>
+                <td>{this.props.cardIndex}</td>
+                <td>{this.props.cardAuthor}</td>
+                {this.renderPath()}
             </tr>
         );
     }
@@ -268,6 +265,7 @@ class NewCard extends React.Component {
         new GivenOfNewCardChangedAction(
             {
                 given,
+                wanted: this.props.wanted,
                 username: this.props.username,
                 password: this.props.password,
                 categoryId: this.props.categoryId,
@@ -281,7 +279,10 @@ class NewCard extends React.Component {
         new WantedOfNewCardChangedAction(
             {
                 wanted,
-                cardList: this.props.cardList,
+                given: this.props.given,
+                username: this.props.username,
+                password: this.props.password,
+                categoryId: this.props.categoryId,
                 naturalInputOrder: this.props.naturalInputOrder,
             }
         ).apply();

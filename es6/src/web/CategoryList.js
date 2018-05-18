@@ -444,6 +444,7 @@ class CategoryItem extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <tr>
                 <td onClick={this.onClick}>{this.props.categoryName}</td>
@@ -453,7 +454,7 @@ class CategoryItem extends React.Component {
                 <td onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.wantedLanguage]}</td>
                 <td>
                     {this.props.userRole === "ADMIN" &&
-                    <button onClick={() => this.props.onDeleteClick(this.props.categoryId)}>{"\u2717"}</button>}
+                    <button disabled={!this.props.empty} onClick={() => this.props.onDeleteClick(this.props.categoryId)}>{"\u2717"}</button>}
                     <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button>
                 </td>
             </tr>

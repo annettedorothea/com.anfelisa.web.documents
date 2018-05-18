@@ -12,6 +12,8 @@ ACE {
 			Categories.resetNewCategoryValues
 			Categories.resetDuplicates
 			Categories.resetFilter
+			Categories.resetGiven
+			Categories.resetWanted
 		)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
@@ -189,5 +191,7 @@ views {
 		wantedLanguageOfEditedCategoryChanged
 		toggelInputOrder
 		resetFilter
+		resetGiven
+		resetWanted
 	}
 }

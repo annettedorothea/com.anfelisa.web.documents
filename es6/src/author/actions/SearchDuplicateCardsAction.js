@@ -4,6 +4,7 @@ export default class SearchDuplicateCardsAction extends AbstractSearchDuplicateC
 
     initActionData() {
         this.actionData.given = this.actionParam.given;
+        this.actionData.wanted = this.actionParam.wanted;
         this.actionData.username = this.actionParam.username;
         this.actionData.password = this.actionParam.password;
         this.actionData.categoryId = this.actionParam.categoryId;

@@ -412,6 +412,21 @@ export default class CategoriesView {
         });
     };
 
+    static resetGiven() {
+        let data = App.container.state.data;
+        data.newCard.given = "";
+        App.container.setState({
+            data
+        });
+    };
+
+    static resetWanted() {
+        let data = App.container.state.data;
+        data.newCard.wanted = "";
+        App.container.setState({
+            data
+        });
+    };
 
 }
 

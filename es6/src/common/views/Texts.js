@@ -12,7 +12,7 @@ export const Texts = {
             confirmDelete: {
                 cancel: "Nein",
                 ok: "Ja",
-                message: "Soll die Kategorie wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Unterkategorien und Karten werden dann auch gelöscht.",
+                message: "Soll die Kategorie wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht.",
                 title: "Löschen"
             },
             dictionaryLookup: "im Wörterbuch nachschlagen",
