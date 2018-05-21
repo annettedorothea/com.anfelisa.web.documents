@@ -14,6 +14,7 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetFilter);
 		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetGiven);
 		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.resetWanted);
+		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.hideDictionary);
 		ACEController.registerListener('author.LoadCategoriesUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.CreateCategoryOkEvent', CategoriesView.resetNewCategoryValues);
 		ACEController.registerListener('author.CreateCategoryUnauthorizedEvent', CommonView.displayError);
@@ -46,6 +47,7 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.WantedOfNewCardChangedOkEvent', CategoriesView.wantedOfNewCardChanged);
 		ACEController.registerListener('author.IndexOfNewCardChangedOkEvent', CategoriesView.indexOfNewCardChanged);
 		ACEController.registerListener('author.CancelNewCardOkEvent', CategoriesView.resetNewCardValues);
+		ACEController.registerListener('author.CancelNewCardOkEvent', CategoriesView.hideDictionary);
 		ACEController.registerListener('author.GivenOfEditedCardChangedOkEvent', CategoriesView.givenOfEditedCardChanged);
 		ACEController.registerListener('author.WantedOfEditedCardChangedOkEvent', CategoriesView.wantedOfEditedCardChanged);
 		ACEController.registerListener('author.IndexOfEditedCardChangedOkEvent', CategoriesView.indexOfEditedCardChanged);
@@ -55,7 +57,9 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.CancelDeleteCardOkEvent', CategoriesView.hideConfirmCardDelete);
 		ACEController.registerListener('author.FilterCardsOkEvent', CategoriesView.filterChanged);
 		ACEController.registerListener('author.TranslateWantedFetchedEvent', CategoriesView.wantedOfNewCardChanged);
+		ACEController.registerListener('author.TranslateWantedFetchedEvent', CategoriesView.displayDictionary);
 		ACEController.registerListener('author.TranslateGivenFetchedEvent', CategoriesView.givenOfNewCardChanged);
+		ACEController.registerListener('author.TranslateGivenFetchedEvent', CategoriesView.displayDictionary);
 		ACEController.registerListener('author.ToggleDictionaryLookupOfNewCategoryOkEvent', CategoriesView.toggleDictionaryLookupOfNewCategory);
 		ACEController.registerListener('author.ToggleDictionaryLookupOfEditedCategoryOkEvent', CategoriesView.toggleDictionaryLookupOfEditedCategory);
 		ACEController.registerListener('author.GivenLanguageOfNewCategoryChangedOkEvent', CategoriesView.givenLanguageOfNewCategoryChanged);
@@ -63,6 +67,7 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.WantedLanguageOfNewCategoryChangedOkEvent', CategoriesView.wantedLanguageOfNewCategoryChanged);
 		ACEController.registerListener('author.WantedLanguageOfEditedCategoryChangedOkEvent', CategoriesView.wantedLanguageOfEditedCategoryChanged);
 		ACEController.registerListener('author.ToggelInputOrderOkEvent', CategoriesView.toggelInputOrder);
+		ACEController.registerListener('author.ToggelUseDictionaryOkEvent', CategoriesView.toggleUseDictionary);
 	}
 
 }

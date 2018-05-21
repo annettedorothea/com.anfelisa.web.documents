@@ -48,7 +48,8 @@ export const Texts = {
                 noCards: "Noch keine Karten",
                 oneCard: "{0} von einer Karte",
                 cards: "{0} von {1} Karten"
-            }
+            },
+            useDictionary: "Linugee Wörterbuch anzeigen"
         },
         dashboard: {
             profile: "Profil",

@@ -5,7 +5,7 @@ export default class AbstractCancelNewCardOkEvent extends Event {
         super(eventParam, 'author.CancelNewCardOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.resetNewCardValues" ];
+	    return [ "author.views.CategoriesView.resetNewCardValues", "author.views.CategoriesView.hideDictionary" ];
 	}
 }
 

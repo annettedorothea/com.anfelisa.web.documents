@@ -5,7 +5,7 @@ export default class AbstractTranslateWantedFetchedEvent extends Event {
         super(eventParam, 'author.TranslateWantedFetchedEvent');
     }
 	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.wantedOfNewCardChanged" ];
+	    return [ "author.views.CategoriesView.wantedOfNewCardChanged", "author.views.CategoriesView.displayDictionary" ];
 	}
 }
 

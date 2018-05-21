@@ -49,7 +49,9 @@ export default class CategoriesView {
                     cardId: ""
                 },
                 filter: "",
-                naturalInputOrder: true
+                naturalInputOrder: true,
+                displayDictionary: false,
+                useDictionary: true
             };
         }
         data.categoryList = eventData.data.categoryList;
@@ -423,6 +425,30 @@ export default class CategoriesView {
     static resetWanted() {
         let data = App.container.state.data;
         data.newCard.wanted = "";
+        App.container.setState({
+            data
+        });
+    };
+
+    static displayDictionary() {
+        let data = App.container.state.data;
+        data.displayDictionary = true;
+        App.container.setState({
+            data
+        });
+    };
+
+    static hideDictionary() {
+        let data = App.container.state.data;
+        data.displayDictionary = false;
+        App.container.setState({
+            data
+        });
+    };
+
+    static toggleUseDictionary() {
+        let data = App.container.state.data;
+        data.useDictionary = !data.useDictionary;
         App.container.setState({
             data
         });

@@ -18,6 +18,7 @@ import WantedOfEditedCardChangedAction from "../author/actions/WantedOfEditedCar
 import FilterCardsAction from "../author/actions/FilterCardsAction";
 import TranslateAction from "../author/actions/TranslateAction";
 import ToggelInputOrderAction from "../author/actions/ToggelInputOrderAction";
+import ToggelUseDictionaryAction from "../author/actions/ToggelUseDictionaryAction";
 
 export default class CardList extends React.Component {
 
@@ -29,6 +30,7 @@ export default class CardList extends React.Component {
         this.onDeleteCancel = this.onDeleteCancel.bind(this);
         this.onFilterChange = this.onFilterChange.bind(this);
         this.onToggleInputOrder = this.onToggleInputOrder.bind(this);
+        this.onUseDictionaryChange = this.onUseDictionaryChange.bind(this);
     }
 
     onDeleteClick(cardId) {
@@ -69,8 +71,11 @@ export default class CardList extends React.Component {
     }
 
     onToggleInputOrder() {
-        console.log("onToggleInputOrder");
         new ToggelInputOrderAction().apply();
+    }
+
+    onUseDictionaryChange() {
+        new ToggelUseDictionaryAction().apply();
     }
 
     render() {
@@ -169,6 +174,12 @@ export default class CardList extends React.Component {
                     value={this.props.data.filter}
                     placeholder={this.props.texts.cardList.filter}
                 />
+                <input
+                    type={"checkbox"}
+                    onChange={this.onUseDictionaryChange}
+                    checked={this.props.data.useDictionary}
+                />
+                <label>{this.props.texts.cardList.useDictionary}</label>
                 <button onClick={this.onToggleInputOrder}>{"\u21c4"}</button>
                 <table>
                     <thead>
@@ -183,6 +194,46 @@ export default class CardList extends React.Component {
                     </tbody>
                 </table>
 
+                {this.props.data.useDictionary &&
+                <Dictionary
+                    given={this.props.data.newCard.given}
+                    wanted={this.props.data.newCard.wanted}
+                    givenLanguage={this.props.data.newCard.givenLanguage}
+                    wantedLanguage={this.props.data.newCard.wantedLanguage}
+                    naturalInputOrder={this.props.data.naturalInputOrder}
+                    displayDictionary={this.props.data.displayDictionary}
+                />
+                }
+
+            </div>
+        );
+    }
+}
+
+class Dictionary extends React.Component {
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.displayDictionary !== nextProps.displayDictionary;
+    }
+
+    render() {
+        const languageMap = {
+            "de": "deutsch",
+            "fr": "franzoesisch",
+            "en": "englisch"
+        };
+        const sourceLanguage = this.props.naturalInputOrder === true ? this.props.givenLanguage : this.props.wantedLanguage;
+        const targetLanguage = this.props.naturalInputOrder === true ? this.props.wantedLanguage : this.props.givenLanguage;
+        const value = this.props.naturalInputOrder === true ? this.props.given : this.props.wanted;
+
+        const src = `https://www.linguee.de/${languageMap[sourceLanguage]}-${languageMap[targetLanguage]}/search?source=${languageMap[sourceLanguage]}&query=${value}`;
+        console.log("src", src);
+        if (this.props.displayDictionary === false) {
+            return "";
+        }
+        return (
+            <div className="dictionaryWrapper">
+                <iframe src={src} frameBorder="0"/>
             </div>
         );
     }
@@ -294,7 +345,12 @@ class NewCard extends React.Component {
     }
 
     onCancel() {
-        new CancelNewCardAction().apply();
+        const data = {
+            parentDictionaryLookup: this.props.dictionaryLookup,
+            parentGivenLanguage: this.props.givenLanguage,
+            parentWantedLanguage: this.props.wantedLanguage
+        };
+        new CancelNewCardAction(data).apply();
         this.setFocus();
     }
 

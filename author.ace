@@ -14,6 +14,7 @@ ACE {
 			Categories.resetFilter
 			Categories.resetGiven
 			Categories.resetWanted
+			Categories.hideDictionary
 		)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
@@ -37,7 +38,7 @@ ACE {
 		on ok (Categories.indexOfNewCategoryChanged)
 	}
 	CancelNewCategory {
-		on ok (Categories.resetNewCategoryValues)
+		on ok (Categories.resetNewCategoryValues )
 	}
 	
 	NameOfEditedCategoryChanged {
@@ -87,7 +88,7 @@ ACE {
 		on ok (Categories.indexOfNewCardChanged)
 	}
 	CancelNewCard {
-		on ok (Categories.resetNewCardValues)
+		on ok (Categories.resetNewCardValues Categories.hideDictionary)
 	}
 	
 	GivenOfEditedCardChanged {
@@ -117,8 +118,8 @@ ACE {
 	}
 	
 	async Translate preUpdateUI (Categories.displayTranslateSpinner) postUpdateUI (Categories.hideTranslateSpinner) {
-		on wantedFetched (Categories.wantedOfNewCardChanged) triggers (SearchDuplicateCards)
-		on givenFetched (Categories.givenOfNewCardChanged) triggers (SearchDuplicateCards)
+		on wantedFetched (Categories.wantedOfNewCardChanged Categories.displayDictionary ) triggers (SearchDuplicateCards)
+		on givenFetched (Categories.givenOfNewCardChanged Categories.displayDictionary ) triggers (SearchDuplicateCards)
 		on error
 		on empty
 		on targetNotEmtpy
@@ -150,6 +151,10 @@ ACE {
 	
 	ToggelInputOrder {
 		on ok (Categories.toggelInputOrder)
+	}
+	
+	ToggelUseDictionary {
+		on ok (Categories.toggleUseDictionary)
 	}
 }
 
@@ -193,5 +198,8 @@ views {
 		resetFilter
 		resetGiven
 		resetWanted
+		displayDictionary
+		hideDictionary
+		toggleUseDictionary
 	}
 }
