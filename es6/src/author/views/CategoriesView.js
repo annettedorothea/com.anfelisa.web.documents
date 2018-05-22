@@ -35,7 +35,8 @@ export default class CategoriesView {
                     displayTranslateSpinner: false,
                     dictionaryLookup: false,
                     givenLanguage: "",
-                    wantedLanguage: ""
+                    wantedLanguage: "",
+                    image: ""
                 },
                 editedCard: {
                     cardId: "",
@@ -51,7 +52,7 @@ export default class CategoriesView {
                 filter: "",
                 naturalInputOrder: true,
                 displayDictionary: false,
-                useDictionary: true
+                useDictionary: false
             };
         }
         data.categoryList = eventData.data.categoryList;
@@ -205,8 +206,10 @@ export default class CategoriesView {
                 index: "",
                 dictionaryLookup: eventData.data.parentDictionaryLookup ? eventData.data.parentDictionaryLookup : false,
                 givenLanguage: eventData.data.parentGivenLanguage ? eventData.data.parentGivenLanguage : "",
-                wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : ""
+                wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : "",
+                image: ""
             };
+            data.useDictionary = data.newCard.dictionaryLookup;
             App.container.setState({
                 data
             });
@@ -453,6 +456,22 @@ export default class CategoriesView {
             data
         });
     };
+
+    static displayUploadSpinner() {
+        console.log("displayUploadSpinner");
+    }
+
+    static hideUploadSpinner() {
+        console.log("hideUploadSpinner");
+    }
+
+    static displayImage(eventData) {
+        let data = App.container.state.data;
+        data.newCard.image = eventData.image;
+        App.container.setState({
+            data
+        });
+    }
 
 }
 

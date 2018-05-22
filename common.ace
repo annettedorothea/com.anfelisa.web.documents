@@ -48,6 +48,12 @@ ACE {
 		on ok (Common.displayMessage) triggers (Route)
 		on error (Common.displayError) triggers (Route)
 	}
+	DisplayError {
+		on ok (Common.displayError)
+	}
+	DisplayMessage {
+		on ok (Common.displayMessage)
+	}
 }
 
 views {

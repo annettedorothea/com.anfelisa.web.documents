@@ -3,7 +3,6 @@ import AbstractTranslateCommand from "../../../gen/author/commands/AbstractTrans
 export default class TranslateCommand extends AbstractTranslateCommand {
     execute() {
         return new Promise((resolve, reject) => {
-            console.log("TranslateCommand", this.commandParam);
             if (this.commandParam.naturalInputOrder === true && (!this.commandParam.given || this.commandParam.given.length === 0)) {
                 this.commandData.outcome = this.empty;
                 resolve();
@@ -43,7 +42,6 @@ export default class TranslateCommand extends AbstractTranslateCommand {
                     this.commandData.categoryId = this.commandParam.categoryId;
                     this.commandData.username = this.commandParam.username;
                     this.commandData.password = this.commandParam.password;
-                    console.log("this.commandData", this.commandData);
                     resolve();
                 }, (error) => {
                     if (error.code === 401) {

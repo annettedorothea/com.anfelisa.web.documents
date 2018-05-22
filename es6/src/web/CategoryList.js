@@ -444,7 +444,6 @@ class CategoryItem extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <tr>
                 <td onClick={this.onClick}>{this.props.categoryName}</td>

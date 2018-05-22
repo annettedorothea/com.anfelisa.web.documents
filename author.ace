@@ -156,6 +156,12 @@ ACE {
 	ToggelUseDictionary {
 		on ok (Categories.toggleUseDictionary)
 	}
+	
+	async LoadWantedImage preUpdateUI (Categories.displayUploadSpinner) postUpdateUI (Categories.hideUploadSpinner) {
+		on ok (Categories.displayImage)
+		on error
+	}
+	
 }
 
 views {
@@ -201,5 +207,9 @@ views {
 		displayDictionary
 		hideDictionary
 		toggleUseDictionary
+		
+		displayUploadSpinner
+		hideUploadSpinner
+		displayImage
 	}
 }

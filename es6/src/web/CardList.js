@@ -19,6 +19,8 @@ import FilterCardsAction from "../author/actions/FilterCardsAction";
 import TranslateAction from "../author/actions/TranslateAction";
 import ToggelInputOrderAction from "../author/actions/ToggelInputOrderAction";
 import ToggelUseDictionaryAction from "../author/actions/ToggelUseDictionaryAction";
+import LoadWantedImageAction from "../author/actions/LoadWantedImageAction";
+import DisplayErrorAction from "../common/actions/DisplayErrorAction";
 
 export default class CardList extends React.Component {
 
@@ -91,6 +93,7 @@ export default class CardList extends React.Component {
                     password={this.props.password}
                     categoryId={this.props.data.parentCategoryId}
                     naturalInputOrder={this.props.data.naturalInputOrder}
+                    image={this.props.data.editedCard.image}
                     texts={this.props.texts}
                 />
             } else {
@@ -112,6 +115,8 @@ export default class CardList extends React.Component {
                 key="new"
                 given={this.props.data.newCard.given}
                 wanted={this.props.data.newCard.wanted}
+                image={this.props.data.newCard.image}
+                file={this.props.data.newCard.file}
                 index={this.props.data.newCard.index}
                 displaySpinner={this.props.data.newCard.displaySpinner}
                 displayTranslateSpinner={this.props.data.newCard.displayTranslateSpinner}
@@ -125,12 +130,6 @@ export default class CardList extends React.Component {
                 texts={this.props.texts}
                 naturalInputOrder={this.props.data.naturalInputOrder}
             />
-        );
-        cardItems.push(
-            <tr key="hint">
-                <td colSpan="5"><a href="http://translate.yandex.com/" target="yandex">Powered by Yandex.Translate</a>
-                </td>
-            </tr>
         );
         let duplicateCards = this.props.data.cardDuplicates.map((card) => {
             return <DuplicateCardItem
@@ -174,12 +173,16 @@ export default class CardList extends React.Component {
                     value={this.props.data.filter}
                     placeholder={this.props.texts.cardList.filter}
                 />
-                <input
-                    type={"checkbox"}
-                    onChange={this.onUseDictionaryChange}
-                    checked={this.props.data.useDictionary}
-                />
-                <label>{this.props.texts.cardList.useDictionary}</label>
+                {this.props.data.newCard.dictionaryLookup === true &&
+                <span>
+                        <input
+                            type={"checkbox"}
+                            onChange={this.onUseDictionaryChange}
+                            checked={this.props.data.useDictionary}
+                        />
+                        <label>{this.props.texts.cardList.useDictionary}</label>
+                    </span>
+                }
                 <button onClick={this.onToggleInputOrder}>{"\u21c4"}</button>
                 <table>
                     <thead>
@@ -227,7 +230,6 @@ class Dictionary extends React.Component {
         const value = this.props.naturalInputOrder === true ? this.props.given : this.props.wanted;
 
         const src = `https://www.linguee.de/${languageMap[sourceLanguage]}-${languageMap[targetLanguage]}/search?source=${languageMap[sourceLanguage]}&query=${value}`;
-        console.log("src", src);
         if (this.props.displayDictionary === false) {
             return "";
         }
@@ -297,6 +299,7 @@ class NewCard extends React.Component {
         this.onAltKeyUp = this.onAltKeyUp.bind(this);
         this.onBlurGiven = this.onBlurGiven.bind(this);
         this.onBlurWanted = this.onBlurWanted.bind(this);
+        this.onWantedFileChange = this.onWantedFileChange.bind(this);
     }
 
     componentDidMount() {
@@ -308,6 +311,30 @@ class NewCard extends React.Component {
             this.givenInput.focus();
         } else {
             this.wantedInput.focus();
+        }
+    }
+
+    onWantedFileChange(event) {
+        let files = event.target.files;
+
+        if (files.length > 0) {
+            const file = files[0];
+            event.target.value = null;
+            if (!file.type.match('image.*')) {
+                new DisplayErrorAction({error: {errorKey: "noImageFile"}}).apply();
+                return;
+            }
+            if (file.size > 2000000) {
+                new DisplayErrorAction({error: {errorKey: "fileTooBig"}}).apply();
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                new LoadWantedImageAction({
+                    image: e.target.result
+                }).apply();
+            };
+            reader.readAsDataURL(file);
         }
     }
 
@@ -361,7 +388,8 @@ class NewCard extends React.Component {
             given: this.props.given,
             wanted: this.props.wanted,
             cardIndex: this.props.index,
-            categoryId: this.props.categoryId
+            categoryId: this.props.categoryId,
+            image: this.props.image
         };
         new CreateCardAction(data).apply();
         this.setFocus();
@@ -443,32 +471,48 @@ class NewCard extends React.Component {
     renderWanted() {
         return (
             <td>
-                <div>
-                    <textarea
-                        rows="4"
-                        cols="40"
-                        onChange={this.onWantedChange}
-                        autoComplete="off"
-                        value={this.props.wanted}
-                        placeholder={`${this.props.texts.cardList.wanted} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.wantedLanguage] + ")" : "" }`}
-                        ref={textarea => {
-                            this.wantedInput = textarea;
-                        }}
-                        onKeyUp={this.onAltKeyUp}
-                        onBlur={this.onBlurWanted}
-                    >
-                    </textarea>
-                </div>
+                <textarea
+                    rows="4"
+                    cols="40"
+                    onChange={this.onWantedChange}
+                    autoComplete="off"
+                    value={this.props.wanted}
+                    placeholder={`${this.props.texts.cardList.wanted} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.wantedLanguage] + ")" : "" }`}
+                    ref={textarea => {
+                        this.wantedInput = textarea;
+                    }}
+                    onKeyUp={this.onAltKeyUp}
+                    onBlur={this.onBlurWanted}
+                >
+                </textarea>
+            </td>
+        )
+    }
+
+    renderImage() {
+        if (this.props.image.length > 0) {
+            return (
+                <td>
+                    <img className="preview" src={this.props.image}/>
+                </td>
+            )
+        }
+        return (
+            <td>
+                <input type="file" onChange={this.onWantedFileChange} value={this.props.file}/>
             </td>
         )
     }
 
     render() {
+        const buttonDisabled = !(this.props.given.length > 0 && (this.props.wanted.length > 0 || this.props.image.length > 0));
         return (
             <tr>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
+                {this.props.naturalInputOrder === true && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderWanted()}
+                {this.props.naturalInputOrder === false && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td>
                     <input
@@ -483,7 +527,7 @@ class NewCard extends React.Component {
                 <td/>
                 <td>
                     <button
-                        disabled={this.props.given && this.props.given.length === 0 && this.props.wanted && this.props.wanted.length === 0}
+                        disabled={buttonDisabled}
                         onClick={this.onNewCard}
                     >{this.props.texts.cardList.ok}</button>
                     <button
@@ -586,12 +630,22 @@ class EditCard extends React.Component {
         );
     }
 
+    renderImage() {
+        return (
+            <td>
+                <img className="preview" src={this.props.image}/>
+            </td>
+        )
+    }
+
     render() {
         return (
             <tr>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
+                {this.props.naturalInputOrder === true && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderWanted()}
+                {this.props.naturalInputOrder === false && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td>
                     <input
@@ -638,12 +692,22 @@ class CardItem extends React.Component {
         );
     }
 
+    renderImage() {
+        return (
+            <td>
+                <img className="preview" src={this.props.image}/>
+            </td>
+        );
+    }
+
     render() {
         return (
             <tr>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
+                {this.props.naturalInputOrder === true && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderWanted()}
+                {this.props.naturalInputOrder === false && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td>{this.props.cardIndex}</td>
                 <td>{this.props.cardAuthor}</td>

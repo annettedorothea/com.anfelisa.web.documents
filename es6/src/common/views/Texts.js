@@ -60,6 +60,8 @@ export const Texts = {
             loginFailed: "Anmeldung fehlgeschlagen.",
             failedToConfirmEmail: "Email-Adresse konnte nicht bestätigt werden.",
             failedToResetPassword: "Das Passwort konnte nicht geändert werden.",
+            fileTooBig: "Die Datei ist zu groß.",
+            noImageFile: "Es dürfen nur Bilder hochgeladen werden.",
             unauthorized: "Zugriff verweigert."
         },
         forgotPassword: {

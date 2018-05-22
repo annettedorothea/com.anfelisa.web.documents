@@ -37,6 +37,7 @@ import WantedLanguageOfNewCategoryChangedAction from "../../src/author/actions/W
 import WantedLanguageOfEditedCategoryChangedAction from "../../src/author/actions/WantedLanguageOfEditedCategoryChangedAction";
 import ToggelInputOrderAction from "../../src/author/actions/ToggelInputOrderAction";
 import ToggelUseDictionaryAction from "../../src/author/actions/ToggelUseDictionaryAction";
+import LoadWantedImageAction from "../../src/author/actions/LoadWantedImageAction";
 
 export default class ActionFactoryRegistrationAuthor {
 
@@ -79,6 +80,7 @@ export default class ActionFactoryRegistrationAuthor {
 		ACEController.registerFactory('author.WantedLanguageOfEditedCategoryChangedAction', (actionParam) => new WantedLanguageOfEditedCategoryChangedAction(actionParam));
 		ACEController.registerFactory('author.ToggelInputOrderAction', (actionParam) => new ToggelInputOrderAction(actionParam));
 		ACEController.registerFactory('author.ToggelUseDictionaryAction', (actionParam) => new ToggelUseDictionaryAction(actionParam));
+		ACEController.registerFactory('author.LoadWantedImageAction', (actionParam) => new LoadWantedImageAction(actionParam));
 	}
 
 }

@@ -68,6 +68,7 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.WantedLanguageOfEditedCategoryChangedOkEvent', CategoriesView.wantedLanguageOfEditedCategoryChanged);
 		ACEController.registerListener('author.ToggelInputOrderOkEvent', CategoriesView.toggelInputOrder);
 		ACEController.registerListener('author.ToggelUseDictionaryOkEvent', CategoriesView.toggleUseDictionary);
+		ACEController.registerListener('author.LoadWantedImageOkEvent', CategoriesView.displayImage);
 	}
 
 }

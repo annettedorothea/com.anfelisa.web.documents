@@ -9,6 +9,8 @@ import LogoutAction from "../../src/common/actions/LogoutAction";
 import ForgotPasswordAction from "../../src/common/actions/ForgotPasswordAction";
 import ConfirmEmailAction from "../../src/common/actions/ConfirmEmailAction";
 import ResetPasswordAction from "../../src/common/actions/ResetPasswordAction";
+import DisplayErrorAction from "../../src/common/actions/DisplayErrorAction";
+import DisplayMessageAction from "../../src/common/actions/DisplayMessageAction";
 
 export default class ActionFactoryRegistrationCommon {
 
@@ -23,6 +25,8 @@ export default class ActionFactoryRegistrationCommon {
 		ACEController.registerFactory('common.ForgotPasswordAction', (actionParam) => new ForgotPasswordAction(actionParam));
 		ACEController.registerFactory('common.ConfirmEmailAction', (actionParam) => new ConfirmEmailAction(actionParam));
 		ACEController.registerFactory('common.ResetPasswordAction', (actionParam) => new ResetPasswordAction(actionParam));
+		ACEController.registerFactory('common.DisplayErrorAction', (actionParam) => new DisplayErrorAction(actionParam));
+		ACEController.registerFactory('common.DisplayMessageAction', (actionParam) => new DisplayMessageAction(actionParam));
 	}
 
 }

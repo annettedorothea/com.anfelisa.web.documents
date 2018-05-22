@@ -29,6 +29,8 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.ConfirmEmailErrorEvent', CommonView.displayError);
 		ACEController.registerListener('common.ResetPasswordOkEvent', CommonView.displayMessage);
 		ACEController.registerListener('common.ResetPasswordErrorEvent', CommonView.displayError);
+		ACEController.registerListener('common.DisplayErrorOkEvent', CommonView.displayError);
+		ACEController.registerListener('common.DisplayMessageOkEvent', CommonView.displayMessage);
 	}
 
 }

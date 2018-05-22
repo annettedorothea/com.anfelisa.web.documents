@@ -9,6 +9,7 @@ export default class CreateCardAction extends AbstractCreateCardAction {
         this.actionData.wanted = this.actionParam.wanted;
         this.actionData.cardIndex = this.actionParam.cardIndex;
         this.actionData.categoryId = this.actionParam.categoryId;
+        this.actionData.image = this.actionParam.image;
     }
 
 }

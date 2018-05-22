@@ -36,6 +36,7 @@ import WantedLanguageOfNewCategoryChangedAction from "../../src/author/actions/W
 import WantedLanguageOfEditedCategoryChangedAction from "../../src/author/actions/WantedLanguageOfEditedCategoryChangedAction";
 import ToggelInputOrderAction from "../../src/author/actions/ToggelInputOrderAction";
 import ToggelUseDictionaryAction from "../../src/author/actions/ToggelUseDictionaryAction";
+import LoadWantedImageAction from "../../src/author/actions/LoadWantedImageAction";
 
 export function loadCategories(actionParam) {
     new LoadCategoriesAction(actionParam).apply();
@@ -187,6 +188,10 @@ export function toggelInputOrder(actionParam) {
 
 export function toggelUseDictionary(actionParam) {
     new ToggelUseDictionaryAction(actionParam).apply();
+}
+
+export function loadWantedImage(actionParam) {
+    new LoadWantedImageAction(actionParam).apply();
 }
 
 
