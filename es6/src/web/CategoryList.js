@@ -52,6 +52,7 @@ export default class CategoryList extends React.Component {
     }
 
     render() {
+        console.log("render this.props", this.props);
         let backLink = "#dashboard";
         if (this.props.data.grandParentCategoryId) {
             backLink = `#categories/${this.props.data.grandParentCategoryId}`;
@@ -71,6 +72,7 @@ export default class CategoryList extends React.Component {
                     password={this.props.password}
                     parentCategoryId={this.props.data.parentCategoryId}
                     dictionaryLookup={this.props.data.editedCategory.dictionaryLookup}
+                    rootDictionaryLookup={this.props.data.rootDictionaryLookup}
                     givenLanguage={this.props.data.editedCategory.givenLanguage}
                     wantedLanguage={this.props.data.editedCategory.wantedLanguage}
                     texts={this.props.texts}
@@ -87,6 +89,7 @@ export default class CategoryList extends React.Component {
                     userRole={this.props.role}
                     givenLanguage={category.givenLanguage}
                     wantedLanguage={category.wantedLanguage}
+                    rootDictionaryLookup={this.props.data.rootDictionaryLookup}
                 />
             }
         });
@@ -101,6 +104,7 @@ export default class CategoryList extends React.Component {
                 password={this.props.password}
                 parentCategoryId={this.props.data.parentCategoryId}
                 dictionaryLookup={this.props.data.newCategory.dictionaryLookup}
+                rootDictionaryLookup={this.props.data.rootDictionaryLookup}
                 givenLanguage={this.props.data.newCategory.givenLanguage}
                 wantedLanguage={this.props.data.newCategory.wantedLanguage}
                 texts={this.props.texts}

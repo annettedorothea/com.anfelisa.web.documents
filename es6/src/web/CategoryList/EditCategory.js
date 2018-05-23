@@ -86,6 +86,8 @@ export default class EditCategory extends React.Component {
                     {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
                     <label>{this.props.texts.categoryList.nameAlreadyExists}</label>}
                 </td>
+                <td/>
+                {this.props.rootDictionaryLookup === true &&
                 <td>
                     <input
                         type={"checkbox"}
@@ -93,8 +95,6 @@ export default class EditCategory extends React.Component {
                         checked={this.props.dictionaryLookup}
                     />
                     <label>{this.props.texts.categoryList.dictionaryLookup}</label>
-                </td>
-                <td>
                     <select value={this.props.givenLanguage} onChange={this.onGivenLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
                         <option value="">{this.props.texts.categoryList.languages.emtpy}</option>
@@ -102,8 +102,6 @@ export default class EditCategory extends React.Component {
                         <option value="en">{this.props.texts.categoryList.languages.en}</option>
                         <option value="fr">{this.props.texts.categoryList.languages.fr}</option>
                     </select>
-                </td>
-                <td>
                     <select value={this.props.wantedLanguage} onChange={this.onWantedLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
                         <option value="">{this.props.texts.categoryList.languages.emtpy}</option>
@@ -112,15 +110,15 @@ export default class EditCategory extends React.Component {
                         <option value="fr">{this.props.texts.categoryList.languages.fr}</option>
                     </select>
                 </td>
-                <td/>
+                }
                 <td>
                     <button
                         disabled={this.props.nameAlreadyExists === true || !this.props.name || this.props.name.length === 0 || this.props.dictionaryLookup && (this.props.givenLanguage.length === 0 || this.props.wantedLanguage.length === 0)}
                         onClick={this.onUpdate}
-                    >{this.props.texts.categoryList.ok}</button>
+                    >{"\u2713"}</button>
                     <button
                         onClick={this.onCancel}
-                    >{this.props.texts.categoryList.cancel}</button>
+                    >{"\u2717"}</button>
                 </td>
             </tr>
         );

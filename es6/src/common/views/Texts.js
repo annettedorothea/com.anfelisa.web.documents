@@ -8,7 +8,6 @@ export const Texts = {
         },
         categoryList: {
             back: "Zurück",
-            cancel: "Abbrechen",
             confirmDelete: {
                 cancel: "Nein",
                 ok: "Ja",
@@ -25,11 +24,9 @@ export const Texts = {
             },
             name: "Name",
             nameAlreadyExists: "Name wird bereits verwendet.",
-            ok: "OK",
             title: "Alle Kategorien"
         },
         cardList: {
-            cancel: "Abbrechen",
             confirmDelete: {
                 cancel: "Nein",
                 ok: "Ja",
@@ -41,7 +38,6 @@ export const Texts = {
             index: "Index",
             given: "Gegeben",
             wanted: "Gesucht",
-            ok: "OK",
             searchingDuplicates: "Nach doppelten Karten suchen",
             loadingTranslation: "Übersetzungsvorschlag laden",
             title: {

@@ -11,7 +11,6 @@ export default class CategoriesView {
                     dictionaryLookup: false,
                     givenLanguage: "",
                     wantedLanguage: ""
-
                 },
                 editedCategory: {
                     categoryId: "",
@@ -59,6 +58,7 @@ export default class CategoriesView {
         data.grandParentCategoryId = eventData.data.grandParentCategoryId;
         data.parentCategoryId = eventData.data.parentCategoryId;
         data.parentCategoryName = eventData.data.parentCategoryName;
+        data.rootDictionaryLookup = eventData.data.rootDictionaryLookup;
         App.container.setState({
             route: "category-list",
             data

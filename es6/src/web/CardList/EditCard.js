@@ -60,7 +60,7 @@ export default class EditCard extends React.Component {
 
     onAltKeyUp(e) {
         e.preventDefault();
-        if (e.keyCode === 13 && this.isValid()) {
+        if (e.keyCode === 13 && e.altKey && this.isValid()) {
             this.onUpdate();
         }
     }
@@ -149,10 +149,10 @@ export default class EditCard extends React.Component {
                     <button
                         disabled={!this.isValid()}
                         onClick={this.onUpdate}
-                    >{this.props.texts.cardList.ok}</button>
+                    >{"\u2713"}</button>
                     <button
                         onClick={this.onCancel}
-                    >{this.props.texts.cardList.cancel}</button>
+                    >{"\u2717"}</button>
                 </td>
             </tr>
         );

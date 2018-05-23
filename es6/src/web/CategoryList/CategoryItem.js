@@ -17,17 +17,30 @@ export default class CategoryItem extends React.Component {
             }).apply();
     }
 
+    renderDictionayLookup() {
+        if (this.props.rootDictionaryLookup === true) {
+            if (this.props.givenLanguage && this.props.wantedLanguage) {
+                return <td
+                    onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.givenLanguage]} {"\u2192"} {this.props.texts.categoryList.languages[this.props.wantedLanguage]}</td>
+            } else {
+                return <td onClick={this.onClick}/>
+            }
+        } else {
+            return ""
+        }
+    }
+
     render() {
         return (
             <tr>
                 <td onClick={this.onClick}>{this.props.categoryIndex}</td>
                 <td onClick={this.onClick}>{this.props.categoryName}</td>
                 <td onClick={this.onClick}>{this.props.categoryAuthor}</td>
-                <td onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.givenLanguage]}</td>
-                <td onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.wantedLanguage]}</td>
+                {this.renderDictionayLookup()}
                 <td>
                     {this.props.userRole === "ADMIN" &&
-                    <button disabled={!this.props.empty} onClick={() => this.props.onDeleteClick(this.props.categoryId)}>{"\u2717"}</button>}
+                    <button disabled={!this.props.empty}
+                            onClick={() => this.props.onDeleteClick(this.props.categoryId)}>{"\u2717"}</button>}
                     <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button>
                 </td>
             </tr>
