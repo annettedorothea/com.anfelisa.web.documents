@@ -260,6 +260,7 @@ export default class CategoriesView {
             cardId: eventData.cardId,
             given: eventData.given,
             wanted: eventData.wanted,
+            image: eventData.image,
             index: eventData.index
         };
         App.container.setState({
@@ -465,9 +466,33 @@ export default class CategoriesView {
         console.log("hideUploadSpinner");
     }
 
-    static displayImage(eventData) {
+    static displayImageOfNewCard(eventData) {
         let data = App.container.state.data;
         data.newCard.image = eventData.image;
+        App.container.setState({
+            data
+        });
+    }
+
+    static displayImageOfEditedCard(eventData) {
+        let data = App.container.state.data;
+        data.editedCard.image = eventData.image;
+        App.container.setState({
+            data
+        });
+    }
+
+    static removeNewCardImage() {
+        let data = App.container.state.data;
+        data.newCard.image = "";
+        App.container.setState({
+            data
+        });
+    }
+
+    static removeEditedCardImage() {
+        let data = App.container.state.data;
+        data.editedCard.image = "";
         App.container.setState({
             data
         });

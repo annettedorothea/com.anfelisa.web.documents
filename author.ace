@@ -157,9 +157,22 @@ ACE {
 		on ok (Categories.toggleUseDictionary)
 	}
 	
-	async LoadWantedImage preUpdateUI (Categories.displayUploadSpinner) postUpdateUI (Categories.hideUploadSpinner) {
-		on ok (Categories.displayImage)
+	LoadWantedImageOfNewCard {
+		on ok (Categories.displayImageOfNewCard)
 		on error
+	}
+	
+	LoadWantedImageOfEditedCard {
+		on ok (Categories.displayImageOfEditedCard)
+		on error
+	}
+	
+	RemoveNewCardImage {
+		on ok (Categories.removeNewCardImage)
+	}
+	
+	RemoveEditedCardImage {
+		on ok (Categories.removeEditedCardImage)
 	}
 	
 }
@@ -210,6 +223,9 @@ views {
 		
 		displayUploadSpinner
 		hideUploadSpinner
-		displayImage
+		displayImageOfNewCard
+		displayImageOfEditedCard
+		removeNewCardImage
+		removeEditedCardImage
 	}
 }

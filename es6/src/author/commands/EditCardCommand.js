@@ -6,6 +6,7 @@ export default class EditCardCommand extends AbstractEditCardCommand {
         this.commandData.index = this.commandParam.index;
         this.commandData.given = this.commandParam.given;
         this.commandData.wanted = this.commandParam.wanted;
+        this.commandData.image = this.commandParam.image;
         this.commandData.outcome = this.ok;
     }
 }

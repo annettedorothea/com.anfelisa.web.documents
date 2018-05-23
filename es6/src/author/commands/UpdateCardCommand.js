@@ -7,6 +7,7 @@ export default class UpdateCardCommand extends AbstractUpdateCardCommand {
                 cardId: this.commandParam.cardId,
                 given: this.commandParam.given,
                 wanted: this.commandParam.wanted,
+                image: this.commandParam.image,
                 cardIndex: this.commandParam.cardIndex
             };
             this.httpPut("api/card/update", [], data).then((data) => {

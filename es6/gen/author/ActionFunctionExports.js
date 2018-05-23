@@ -36,7 +36,10 @@ import WantedLanguageOfNewCategoryChangedAction from "../../src/author/actions/W
 import WantedLanguageOfEditedCategoryChangedAction from "../../src/author/actions/WantedLanguageOfEditedCategoryChangedAction";
 import ToggelInputOrderAction from "../../src/author/actions/ToggelInputOrderAction";
 import ToggelUseDictionaryAction from "../../src/author/actions/ToggelUseDictionaryAction";
-import LoadWantedImageAction from "../../src/author/actions/LoadWantedImageAction";
+import LoadWantedImageOfNewCardAction from "../../src/author/actions/LoadWantedImageOfNewCardAction";
+import LoadWantedImageOfEditedCardAction from "../../src/author/actions/LoadWantedImageOfEditedCardAction";
+import RemoveNewCardImageAction from "../../src/author/actions/RemoveNewCardImageAction";
+import RemoveEditedCardImageAction from "../../src/author/actions/RemoveEditedCardImageAction";
 
 export function loadCategories(actionParam) {
     new LoadCategoriesAction(actionParam).apply();
@@ -190,8 +193,20 @@ export function toggelUseDictionary(actionParam) {
     new ToggelUseDictionaryAction(actionParam).apply();
 }
 
-export function loadWantedImage(actionParam) {
-    new LoadWantedImageAction(actionParam).apply();
+export function loadWantedImageOfNewCard(actionParam) {
+    new LoadWantedImageOfNewCardAction(actionParam).apply();
+}
+
+export function loadWantedImageOfEditedCard(actionParam) {
+    new LoadWantedImageOfEditedCardAction(actionParam).apply();
+}
+
+export function removeNewCardImage(actionParam) {
+    new RemoveNewCardImageAction(actionParam).apply();
+}
+
+export function removeEditedCardImage(actionParam) {
+    new RemoveEditedCardImageAction(actionParam).apply();
 }
 
 
