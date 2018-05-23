@@ -3,10 +3,8 @@ import CreateCategoryAction from "../../src/author/actions/CreateCategoryAction"
 import UpdateCategoryAction from "../../src/author/actions/UpdateCategoryAction";
 import DeleteCategoryAction from "../../src/author/actions/DeleteCategoryAction";
 import NameOfNewCategoryChangedAction from "../../src/author/actions/NameOfNewCategoryChangedAction";
-import IndexOfNewCategoryChangedAction from "../../src/author/actions/IndexOfNewCategoryChangedAction";
 import CancelNewCategoryAction from "../../src/author/actions/CancelNewCategoryAction";
 import NameOfEditedCategoryChangedAction from "../../src/author/actions/NameOfEditedCategoryChangedAction";
-import IndexOfEditedCategoryChangedAction from "../../src/author/actions/IndexOfEditedCategoryChangedAction";
 import CancelEditCategoryAction from "../../src/author/actions/CancelEditCategoryAction";
 import EditCategoryAction from "../../src/author/actions/EditCategoryAction";
 import DeleteCategoryClickAction from "../../src/author/actions/DeleteCategoryClickAction";
@@ -17,11 +15,9 @@ import DeleteCardAction from "../../src/author/actions/DeleteCardAction";
 import GivenOfNewCardChangedAction from "../../src/author/actions/GivenOfNewCardChangedAction";
 import SearchDuplicateCardsAction from "../../src/author/actions/SearchDuplicateCardsAction";
 import WantedOfNewCardChangedAction from "../../src/author/actions/WantedOfNewCardChangedAction";
-import IndexOfNewCardChangedAction from "../../src/author/actions/IndexOfNewCardChangedAction";
 import CancelNewCardAction from "../../src/author/actions/CancelNewCardAction";
 import GivenOfEditedCardChangedAction from "../../src/author/actions/GivenOfEditedCardChangedAction";
 import WantedOfEditedCardChangedAction from "../../src/author/actions/WantedOfEditedCardChangedAction";
-import IndexOfEditedCardChangedAction from "../../src/author/actions/IndexOfEditedCardChangedAction";
 import CancelEditCardAction from "../../src/author/actions/CancelEditCardAction";
 import EditCardAction from "../../src/author/actions/EditCardAction";
 import DeleteCardClickAction from "../../src/author/actions/DeleteCardClickAction";
@@ -61,20 +57,12 @@ export function nameOfNewCategoryChanged(actionParam) {
     new NameOfNewCategoryChangedAction(actionParam).apply();
 }
 
-export function indexOfNewCategoryChanged(actionParam) {
-    new IndexOfNewCategoryChangedAction(actionParam).apply();
-}
-
 export function cancelNewCategory(actionParam) {
     new CancelNewCategoryAction(actionParam).apply();
 }
 
 export function nameOfEditedCategoryChanged(actionParam) {
     new NameOfEditedCategoryChangedAction(actionParam).apply();
-}
-
-export function indexOfEditedCategoryChanged(actionParam) {
-    new IndexOfEditedCategoryChangedAction(actionParam).apply();
 }
 
 export function cancelEditCategory(actionParam) {
@@ -117,10 +105,6 @@ export function wantedOfNewCardChanged(actionParam) {
     new WantedOfNewCardChangedAction(actionParam).apply();
 }
 
-export function indexOfNewCardChanged(actionParam) {
-    new IndexOfNewCardChangedAction(actionParam).apply();
-}
-
 export function cancelNewCard(actionParam) {
     new CancelNewCardAction(actionParam).apply();
 }
@@ -131,10 +115,6 @@ export function givenOfEditedCardChanged(actionParam) {
 
 export function wantedOfEditedCardChanged(actionParam) {
     new WantedOfEditedCardChangedAction(actionParam).apply();
-}
-
-export function indexOfEditedCardChanged(actionParam) {
-    new IndexOfEditedCardChangedAction(actionParam).apply();
 }
 
 export function cancelEditCard(actionParam) {

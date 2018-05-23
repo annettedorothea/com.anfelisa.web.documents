@@ -2,7 +2,6 @@ import TranslateAction from "../../author/actions/TranslateAction";
 import CreateCardAction from "../../author/actions/CreateCardAction";
 import DisplayErrorAction from "../../common/actions/DisplayErrorAction";
 import GivenOfNewCardChangedAction from "../../author/actions/GivenOfNewCardChangedAction";
-import IndexOfNewCardChangedAction from "../../author/actions/IndexOfNewCardChangedAction";
 import React from "react";
 import WantedOfNewCardChangedAction from "../../author/actions/WantedOfNewCardChangedAction";
 import CancelNewCardAction from "../../author/actions/CancelNewCardAction";
@@ -15,10 +14,8 @@ export default class NewCard extends React.Component {
         super(props);
         this.onGivenChange = this.onGivenChange.bind(this);
         this.onWantedChange = this.onWantedChange.bind(this);
-        this.onIndexChange = this.onIndexChange.bind(this);
         this.onNewCard = this.onNewCard.bind(this);
         this.onCancel = this.onCancel.bind(this);
-        this.onKeyUp = this.onKeyUp.bind(this);
         this.onAltKeyUp = this.onAltKeyUp.bind(this);
         this.onBlurGiven = this.onBlurGiven.bind(this);
         this.onBlurWanted = this.onBlurWanted.bind(this);
@@ -90,11 +87,6 @@ export default class NewCard extends React.Component {
         ).apply();
     }
 
-    onIndexChange(event) {
-        const index = event.target.value;
-        new IndexOfNewCardChangedAction({index}).apply();
-    }
-
     onCancel() {
         const data = {
             parentDictionaryLookup: this.props.dictionaryLookup,
@@ -111,7 +103,6 @@ export default class NewCard extends React.Component {
             password: this.props.password,
             given: this.props.given,
             wanted: this.props.wanted,
-            cardIndex: this.props.index,
             categoryId: this.props.categoryId,
             image: this.props.image
         };
@@ -148,13 +139,6 @@ export default class NewCard extends React.Component {
                 categoryId: this.props.categoryId
             };
             new TranslateAction(data).apply();
-        }
-    }
-
-    onKeyUp(e) {
-        e.preventDefault();
-        if (e.keyCode === 13 && this.isValid()) {
-            this.onNewCard();
         }
     }
 
@@ -238,22 +222,13 @@ export default class NewCard extends React.Component {
     render() {
         return (
             <tr>
+                <td></td>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
-                <td>
-                    <input
-                        type={"number"}
-                        onChange={this.onIndexChange}
-                        autoComplete="off"
-                        value={this.props.index}
-                        placeholder={this.props.texts.cardList.index}
-                        onKeyUp={this.onKeyUp}
-                    />
-                </td>
                 <td/>
                 <td>
                     <button

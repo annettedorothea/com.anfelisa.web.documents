@@ -1,7 +1,6 @@
 import UpdateCardAction from "../../author/actions/UpdateCardAction";
 import React from "react";
 import CancelEditCardAction from "../../author/actions/CancelEditCardAction";
-import IndexOfEditedCardChangedAction from "../../author/actions/IndexOfEditedCardChangedAction";
 import WantedOfEditedCardChangedAction from "../../author/actions/WantedOfEditedCardChangedAction";
 import GivenOfEditedCardChangedAction from "../../author/actions/GivenOfEditedCardChangedAction";
 import RemoveEditedCardImageAction from "../../author/actions/RemoveEditedCardImageAction";
@@ -14,10 +13,8 @@ export default class EditCard extends React.Component {
         super(props);
         this.onGivenChange = this.onGivenChange.bind(this);
         this.onWantedChange = this.onWantedChange.bind(this);
-        this.onIndexChange = this.onIndexChange.bind(this);
         this.onUpdate = this.onUpdate.bind(this);
         this.onCancel = this.onCancel.bind(this);
-        this.onKeyUp = this.onKeyUp.bind(this);
         this.onAltKeyUp = this.onAltKeyUp.bind(this);
         this.onRemoveImage = this.onRemoveImage.bind(this);
         this.onWantedFileChange = this.onWantedFileChange.bind(this);
@@ -57,20 +54,8 @@ export default class EditCard extends React.Component {
         }
     }
 
-    onIndexChange(event) {
-        const index = event.target.value;
-        new IndexOfEditedCardChangedAction({index}).apply();
-    }
-
     onCancel() {
         new CancelEditCardAction().apply();
-    }
-
-    onKeyUp(e) {
-        e.preventDefault();
-        if (e.keyCode === 13 && this.isValid()) {
-            this.onUpdate();
-        }
     }
 
     onAltKeyUp(e) {
@@ -88,7 +73,6 @@ export default class EditCard extends React.Component {
             given: this.props.given,
             wanted: this.props.wanted,
             image: this.props.image,
-            cardIndex: this.props.index,
             categoryId: this.props.categoryId
         };
         new UpdateCardAction(data).apply();
@@ -153,22 +137,13 @@ export default class EditCard extends React.Component {
     render() {
         return (
             <tr>
+                <td>{this.props.index}</td>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
-                <td>
-                    <input
-                        type={"number"}
-                        onChange={this.onIndexChange}
-                        autoComplete="off"
-                        value={this.props.index}
-                        placeholder={this.props.texts.cardList.index}
-                        onKeyUp={this.onKeyUp}
-                    />
-                </td>
                 <td/>
                 <td>
                     <button

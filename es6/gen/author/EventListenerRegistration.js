@@ -24,10 +24,8 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.DeleteCategoryUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.DeleteCategoryUnauthorizedEvent', CategoriesView.hideConfirmCategoryDelete);
 		ACEController.registerListener('author.NameOfNewCategoryChangedOkEvent', CategoriesView.nameOfNewCategoryChanged);
-		ACEController.registerListener('author.IndexOfNewCategoryChangedOkEvent', CategoriesView.indexOfNewCategoryChanged);
 		ACEController.registerListener('author.CancelNewCategoryOkEvent', CategoriesView.resetNewCategoryValues);
 		ACEController.registerListener('author.NameOfEditedCategoryChangedOkEvent', CategoriesView.nameOfEditedCategoryChanged);
-		ACEController.registerListener('author.IndexOfEditedCategoryChangedOkEvent', CategoriesView.indexOfEditedCategoryChanged);
 		ACEController.registerListener('author.CancelEditCategoryOkEvent', CategoriesView.resetEditCategoryValues);
 		ACEController.registerListener('author.EditCategoryOkEvent', CategoriesView.editCategory);
 		ACEController.registerListener('author.DeleteCategoryClickOkEvent', CategoriesView.displayConfirmCategoryDelete);
@@ -45,12 +43,10 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.SearchDuplicateCardsUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.SearchDuplicateCardsUnauthorizedEvent', CategoriesView.hideConfirmCardDelete);
 		ACEController.registerListener('author.WantedOfNewCardChangedOkEvent', CategoriesView.wantedOfNewCardChanged);
-		ACEController.registerListener('author.IndexOfNewCardChangedOkEvent', CategoriesView.indexOfNewCardChanged);
 		ACEController.registerListener('author.CancelNewCardOkEvent', CategoriesView.resetNewCardValues);
 		ACEController.registerListener('author.CancelNewCardOkEvent', CategoriesView.hideDictionary);
 		ACEController.registerListener('author.GivenOfEditedCardChangedOkEvent', CategoriesView.givenOfEditedCardChanged);
 		ACEController.registerListener('author.WantedOfEditedCardChangedOkEvent', CategoriesView.wantedOfEditedCardChanged);
-		ACEController.registerListener('author.IndexOfEditedCardChangedOkEvent', CategoriesView.indexOfEditedCardChanged);
 		ACEController.registerListener('author.CancelEditCardOkEvent', CategoriesView.resetEditCardValues);
 		ACEController.registerListener('author.EditCardOkEvent', CategoriesView.editCard);
 		ACEController.registerListener('author.DeleteCardClickOkEvent', CategoriesView.displayConfirmCardDelete);

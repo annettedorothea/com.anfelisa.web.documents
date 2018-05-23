@@ -34,18 +34,12 @@ ACE {
 	NameOfNewCategoryChanged {
 		on ok (Categories.nameOfNewCategoryChanged)
 	}
-	IndexOfNewCategoryChanged {
-		on ok (Categories.indexOfNewCategoryChanged)
-	}
 	CancelNewCategory {
 		on ok (Categories.resetNewCategoryValues )
 	}
 	
 	NameOfEditedCategoryChanged {
 		on ok (Categories.nameOfEditedCategoryChanged)
-	}
-	IndexOfEditedCategoryChanged {
-		on ok (Categories.indexOfEditedCategoryChanged)
 	}
 	CancelEditCategory {
 		on ok (Categories.resetEditCategoryValues)
@@ -84,9 +78,6 @@ ACE {
 	WantedOfNewCardChanged {
 		on ok (Categories.wantedOfNewCardChanged) triggers (SearchDuplicateCards)
 	}
-	IndexOfNewCardChanged {
-		on ok (Categories.indexOfNewCardChanged)
-	}
 	CancelNewCard {
 		on ok (Categories.resetNewCardValues Categories.hideDictionary)
 	}
@@ -96,9 +87,6 @@ ACE {
 	}
 	WantedOfEditedCardChanged {
 		on ok (Categories.wantedOfEditedCardChanged)
-	}
-	IndexOfEditedCardChanged {
-		on ok (Categories.indexOfEditedCardChanged)
 	}
 	CancelEditCard {
 		on ok (Categories.resetEditCardValues)
@@ -181,21 +169,17 @@ views {
 	Categories {
 		render
 		nameOfNewCategoryChanged
-		indexOfNewCategoryChanged
 		resetNewCategoryValues
 		nameOfEditedCategoryChanged
-		indexOfEditedCategoryChanged
 		resetEditCategoryValues
 		editCategory
 		displayConfirmCategoryDelete
 		hideConfirmCategoryDelete
 		givenOfNewCardChanged
 		wantedOfNewCardChanged
-		indexOfNewCardChanged
 		resetNewCardValues
 		givenOfEditedCardChanged
 		wantedOfEditedCardChanged
-		indexOfEditedCardChanged
 		resetEditCardValues
 		editCard
 		displayConfirmCardDelete

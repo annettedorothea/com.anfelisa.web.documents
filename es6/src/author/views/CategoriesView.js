@@ -8,7 +8,6 @@ export default class CategoriesView {
                 newCategory: {
                     name: "",
                     nameAlreadyExists: false,
-                    index: "",
                     dictionaryLookup: false,
                     givenLanguage: "",
                     wantedLanguage: ""
@@ -17,8 +16,8 @@ export default class CategoriesView {
                 editedCategory: {
                     categoryId: "",
                     name: "",
-                    nameAlreadyExists: false,
                     index: "",
+                    nameAlreadyExists: false,
                     dictionaryLookup: false,
                     givenLanguage: "",
                     wantedLanguage: ""
@@ -30,7 +29,6 @@ export default class CategoriesView {
                 newCard: {
                     given: "",
                     wanted: "",
-                    index: "",
                     displaySpinner: false,
                     displayTranslateSpinner: false,
                     dictionaryLookup: false,
@@ -42,6 +40,7 @@ export default class CategoriesView {
                     cardId: "",
                     given: "",
                     wanted: "",
+                    image: "",
                     index: ""
                 },
                 cardDuplicates: [],
@@ -66,14 +65,6 @@ export default class CategoriesView {
         });
     };
 
-    static indexOfNewCategoryChanged(eventData) {
-        let data = App.container.state.data;
-        data.newCategory.index = eventData.index;
-        App.container.setState({
-            data
-        });
-    };
-
     static nameOfNewCategoryChanged(eventData) {
         let data = App.container.state.data;
         data.newCategory.name = eventData.name;
@@ -89,7 +80,6 @@ export default class CategoriesView {
             data.newCategory = {
                 name: "",
                 nameAlreadyExists: false,
-                index: "",
                 dictionaryLookup: eventData.data.parentDictionaryLookup ? eventData.data.parentDictionaryLookup : false,
                 givenLanguage: eventData.data.parentGivenLanguage ? eventData.data.parentGivenLanguage : "",
                 wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : ""
@@ -109,21 +99,13 @@ export default class CategoriesView {
         });
     };
 
-    static indexOfEditedCategoryChanged(eventData) {
-        let data = App.container.state.data;
-        data.editedCategory.index = eventData.index;
-        App.container.setState({
-            data
-        });
-    };
-
     static resetEditCategoryValues(eventData) {
         let data = App.container.state.data;
         if (data) {
             data.editedCategory = {
                 name: "",
-                nameAlreadyExists: false,
                 index: "",
+                nameAlreadyExists: false,
                 categoryId: "",
                 dictionaryLookup: false,
                 givenLanguage: "",
@@ -140,8 +122,8 @@ export default class CategoriesView {
         data.editedCategory = {
             categoryId: eventData.categoryId,
             name: eventData.name,
-            nameAlreadyExists: false,
             index: eventData.index,
+            nameAlreadyExists: false,
             dictionaryLookup: eventData.dictionaryLookup ? eventData.dictionaryLookup : false,
             givenLanguage: eventData.givenLanguage ? eventData.givenLanguage : "",
             wantedLanguage: eventData.wantedLanguage ? eventData.wantedLanguage : ""
@@ -189,21 +171,12 @@ export default class CategoriesView {
         });
     };
 
-    static indexOfNewCardChanged(eventData) {
-        let data = App.container.state.data;
-        data.newCard.index = eventData.index;
-        App.container.setState({
-            data
-        });
-    };
-
     static resetNewCardValues(eventData) {
         let data = App.container.state.data;
         if (data) {
             data.newCard = {
                 wanted: "",
                 given: "",
-                index: "",
                 dictionaryLookup: eventData.data.parentDictionaryLookup ? eventData.data.parentDictionaryLookup : false,
                 givenLanguage: eventData.data.parentGivenLanguage ? eventData.data.parentGivenLanguage : "",
                 wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : "",
@@ -232,20 +205,13 @@ export default class CategoriesView {
         });
     };
 
-    static indexOfEditedCardChanged(eventData) {
-        let data = App.container.state.data;
-        data.editedCard.index = eventData.index;
-        App.container.setState({
-            data
-        });
-    };
-
     static resetEditCardValues(eventData) {
         let data = App.container.state.data;
         if (data) {
             data.editedCard = {
                 wanted: "",
                 given: "",
+                image: "",
                 index: ""
             };
             App.container.setState({
@@ -260,8 +226,8 @@ export default class CategoriesView {
             cardId: eventData.cardId,
             given: eventData.given,
             wanted: eventData.wanted,
-            image: eventData.image,
-            index: eventData.index
+            index: eventData.index,
+            image: eventData.image
         };
         App.container.setState({
             data

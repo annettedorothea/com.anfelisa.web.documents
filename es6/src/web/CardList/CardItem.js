@@ -31,13 +31,13 @@ export default class CardItem extends React.Component {
     render() {
         return (
             <tr>
+                <td>{this.props.cardIndex}</td>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
-                <td>{this.props.cardIndex}</td>
                 <td>{this.props.cardAuthor}</td>
                 <td>
                     {this.props.userRole === "ADMIN" &&
