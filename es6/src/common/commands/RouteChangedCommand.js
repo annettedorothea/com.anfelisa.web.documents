@@ -5,9 +5,10 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
         this.commandData.outcome = this.login;
         this.commandData.password = this.commandParam.password;
         this.commandData.username = this.commandParam.username;
+        console.log("this.commandParam.hash", this.commandParam.hash);
         if (this.commandParam.hash === "#registration") {
             this.commandData.outcome = this.registration;
-        } else if (this.commandParam.hash === "#") {
+        } else if (this.commandParam.hash === "") {
             this.commandData.outcome = this.dashboard;
         } else if (this.commandParam.hash === "#profile") {
             this.commandData.outcome = this.profile;
@@ -27,6 +28,9 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             const hashes = this.commandParam.hash.split("/");
             this.commandData.parentCategoryId = hashes[1] ? hashes[1] : "";
             this.commandData.outcome = this.categories;
+        } else if (this.commandParam.hash.startsWith("#createbox")) {
+            const hashes = this.commandParam.hash.split("/");
+            this.commandData.outcome = this.createBox;
         }
     }
 }

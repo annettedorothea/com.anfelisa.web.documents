@@ -75,7 +75,7 @@ export default class UserList extends React.Component {
                     onClick={() => new RouteAction({
                         username: this.props.username,
                         password: this.props.password,
-                        hash: "#dashboard"
+                        hash: "#"
                     }).apply()}>{this.props.texts.userList.back}
                 </button>
 

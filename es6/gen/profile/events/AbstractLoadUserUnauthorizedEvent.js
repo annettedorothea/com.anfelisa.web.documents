@@ -1,4 +1,4 @@
-import Event from "../../../gen/ace/SynchronousEvent";
+import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractLoadUserUnauthorizedEvent extends Event {
     constructor(eventParam) {

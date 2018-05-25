@@ -47,6 +47,12 @@ export const Texts = {
             },
             useDictionary: "Linugee Wörterbuch anzeigen"
         },
+        createBox: {
+            cancel: "Abbrechen",
+            create: "Speichern",
+            maxInterval: "maximaler Abstand im Tagen",
+            title: "Neue Lernkartei anlegen"
+        },
         dashboard: {
             profile: "Profil",
             title: "Übersicht"
@@ -116,6 +122,9 @@ export const Texts = {
             passwordRepetition: "Passwort wiederholen",
             submit: "Abschicken",
             title: "Neues Passwort"
+        },
+        studentDashboard: {
+            createBox: "Neue Lernkartei anlegen"
         },
         userList: {
             back: "Zurück",

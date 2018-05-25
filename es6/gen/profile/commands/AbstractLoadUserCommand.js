@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/SynchronousCommand";
+import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadUserOkEvent from "../../../src/profile/events/LoadUserOkEvent";
 import LoadUserUnauthorizedEvent from "../../../src/profile/events/LoadUserUnauthorizedEvent";
@@ -12,17 +12,20 @@ export default class AbstractLoadUserCommand extends Command {
     }
 
     publishEvents() {
+		let promises = [];
+	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new LoadUserOkEvent(this.commandData).publish();
+			promises.push(new LoadUserOkEvent(this.commandData).publish());
 			break;
 		case this.unauthorized:
-			new LoadUserUnauthorizedEvent(this.commandData).publish();
-			new TriggerAction(new LogoutAction(this.commandData)).publish();
+			promises.push(new LoadUserUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:
-			throw 'LoadUserCommand unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('LoadUserCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
+		return Promise.all(promises);
     }
 }
 

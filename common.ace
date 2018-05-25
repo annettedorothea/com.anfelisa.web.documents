@@ -10,13 +10,14 @@ ACE {
 	RouteChanged {
 		on login (  Login.render )
 		on registration ( Registration.render )
-		on dashboard (Dashboard.render)
+		on dashboard (Dashboard.render) triggers (box.LoadBoxes)
 		on profile triggers ( profile.LoadUser )
 		on forgotPassword ( ForgotPassword.render )
 		on confirmEmail triggers (ConfirmEmail)
 		on resetPassword (ResetPassword.render)
 		on userList triggers (admin.GetAllUsers) 
 		on categories triggers (author.LoadCategories )
+		on createBox triggers (box.LoadRootCategories )
 	}
 	Route {
 		on ok ( Common.updateHash )

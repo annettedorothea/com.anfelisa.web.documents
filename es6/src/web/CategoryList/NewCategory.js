@@ -89,8 +89,9 @@ export default class NewCategory extends React.Component {
                         type={"checkbox"}
                         onChange={this.onDictionayLookupChange}
                         checked={this.props.dictionaryLookup}
+                        id="dictionaryLookupNewCheckbox"
                     />
-                    <label>{this.props.texts.categoryList.dictionaryLookup}</label>
+                    <label for="dictionaryLookupNewCheckbox">{this.props.texts.categoryList.dictionaryLookup}</label>
                     <select value={this.props.givenLanguage} onChange={this.onGivenLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
                         <option value="">{this.props.texts.categoryList.languages.emtpy}</option>

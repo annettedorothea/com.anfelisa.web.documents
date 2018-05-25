@@ -2,6 +2,7 @@ import React from 'react';
 import RouteAction from "../common/actions/RouteAction";
 import AdminDashboard from "./AdminDashboard";
 import AuthorDashboard from "./AuthorDashboard";
+import StudentDashboard from "./StudentDashboard";
 
 export default class Dashboard extends React.Component {
 
@@ -14,6 +15,7 @@ export default class Dashboard extends React.Component {
         if (this.props.role === "AUTHOR" || this.props.role === "ADMIN") {
             authorContent = <AuthorDashboard {...this.props} />
         }
+        const userContent = <StudentDashboard {...this.props}/>;
         return (
             <div>
                 <h1>{this.props.texts.dashboard.title}</h1>
@@ -25,6 +27,7 @@ export default class Dashboard extends React.Component {
                     }).apply()}>{this.props.texts.dashboard.profile}</button>
                 {adminContent}
                 {authorContent}
+                {userContent}
             </div>
         );
     }

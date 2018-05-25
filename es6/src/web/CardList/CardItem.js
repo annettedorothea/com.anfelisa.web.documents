@@ -8,7 +8,7 @@ export default class CardItem extends React.Component {
 
     renderGiven() {
         return (
-            <td>{this.props.given}</td>
+            <td><pre>{this.props.given}</pre></td>
         );
     }
 

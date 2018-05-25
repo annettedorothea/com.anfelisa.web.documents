@@ -168,37 +168,49 @@ ACE {
 views {
 	Categories {
 		render
+		
 		nameOfNewCategoryChanged
 		resetNewCategoryValues
+		
 		nameOfEditedCategoryChanged
 		resetEditCategoryValues
 		editCategory
+		
 		displayConfirmCategoryDelete
 		hideConfirmCategoryDelete
+		
 		givenOfNewCardChanged
 		wantedOfNewCardChanged
+		givenLanguageOfNewCategoryChanged
+		wantedLanguageOfNewCategoryChanged
 		resetNewCardValues
+		
 		givenOfEditedCardChanged
 		wantedOfEditedCardChanged
+		givenLanguageOfEditedCategoryChanged
+		wantedLanguageOfEditedCategoryChanged
 		resetEditCardValues
 		editCard
+		
 		displayConfirmCardDelete
 		hideConfirmCardDelete
+		
 		displayNewCardSpinner
 		hideNewCardSpinner
+		
 		displayTranslateSpinner
 		hideTranslateSpinner
+		
 		initDuplicates
 		resetDuplicates
+		
 		filterChanged
+		resetFilter
+		
 		toggleDictionaryLookupOfNewCategory
 		toggleDictionaryLookupOfEditedCategory
-		givenLanguageOfNewCategoryChanged
-		givenLanguageOfEditedCategoryChanged
-		wantedLanguageOfNewCategoryChanged
-		wantedLanguageOfEditedCategoryChanged
+		
 		toggelInputOrder
-		resetFilter
 		resetGiven
 		resetWanted
 		displayDictionary

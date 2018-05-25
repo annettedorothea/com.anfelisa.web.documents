@@ -5,10 +5,12 @@ import RouteChangedRegistrationEvent from "../../../src/common/events/RouteChang
 import RouteChangedDashboardEvent from "../../../src/common/events/RouteChangedDashboardEvent";
 import RouteChangedForgotPasswordEvent from "../../../src/common/events/RouteChangedForgotPasswordEvent";
 import RouteChangedResetPasswordEvent from "../../../src/common/events/RouteChangedResetPasswordEvent";
+import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import ConfirmEmailAction from "../../../src/common/actions/ConfirmEmailAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
+import LoadRootCategoriesAction from "../../../src/box/actions/LoadRootCategoriesAction";
 
 export default class AbstractRouteChangedCommand extends Command {
     constructor(commandParam) {
@@ -22,6 +24,7 @@ export default class AbstractRouteChangedCommand extends Command {
         this.resetPassword = "resetPassword";
         this.userList = "userList";
         this.categories = "categories";
+        this.createBox = "createBox";
     }
 
     publishEvents() {
@@ -34,6 +37,7 @@ export default class AbstractRouteChangedCommand extends Command {
 			break;
 		case this.dashboard:
 			new RouteChangedDashboardEvent(this.commandData).publish();
+			new TriggerAction(new LoadBoxesAction(this.commandData)).publish();
 			break;
 		case this.profile:
 			new TriggerAction(new LoadUserAction(this.commandData)).publish();
@@ -52,6 +56,9 @@ export default class AbstractRouteChangedCommand extends Command {
 			break;
 		case this.categories:
 			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
+			break;
+		case this.createBox:
+			new TriggerAction(new LoadRootCategoriesAction(this.commandData)).publish();
 			break;
 		default:
 			throw 'RouteChangedCommand unhandled outcome: ' + this.commandData.outcome;

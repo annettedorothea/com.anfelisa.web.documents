@@ -1,0 +1,40 @@
+box
+
+target ES6
+
+ACE {
+	async LoadBoxes preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
+		on ok (Boxes.render)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	async LoadRootCategories preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+		on ok (CreateBox.render)
+		on unauthorized ( common.Common.displayError) triggers (common.Logout)
+	}
+	
+	ToggleMaxInterval {
+		on ok (CreateBox.toggleMaxInterval)
+	}
+	MaxIntervalChanged {
+		on ok (CreateBox.maxIntervalChanged)
+	}
+	CategorySelected {
+		on ok (CreateBox.categorySelected)
+	}
+	async CreateBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
+		on ok triggers (LoadBoxes)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+}
+
+views {
+	Boxes {
+		render
+	}
+	CreateBox {
+		render
+		toggleMaxInterval
+		maxIntervalChanged
+		categorySelected
+	}
+}

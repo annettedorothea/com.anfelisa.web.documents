@@ -4,10 +4,12 @@ import Logout from "./Logout";
 import Profile from "./Profile";
 import UserList from "./UserList";
 import CategoryList from "./CategoryList";
+import CreateBox from "./CreateBox";
 
 export default class UserContainer extends React.Component {
 
     render() {
+        console.log("UserContainer", this.props.route);
         let content;
         switch (this.props.route) {
             case "user-list":
@@ -18,6 +20,9 @@ export default class UserContainer extends React.Component {
                 break;
             case "profile":
                 content = <Profile {...this.props} />;
+                break;
+            case "create-box":
+                content = <CreateBox {...this.props} />;
                 break;
             case "dashboard":
             default:

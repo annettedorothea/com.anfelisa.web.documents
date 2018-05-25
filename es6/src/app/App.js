@@ -6,6 +6,9 @@ import ActionFactoryRegistrationAdmin from "../../gen/admin/ActionFactoryRegistr
 import EventListenerRegistrationAuthor from "../../gen/author/EventListenerRegistration";
 import ActionFactoryRegistrationAuthor from "../../gen/author/ActionFactoryRegistration";
 
+import EventListenerRegistrationBox from "../../gen/box/EventListenerRegistration";
+import ActionFactoryRegistrationBox from "../../gen/box/ActionFactoryRegistration";
+
 import EventListenerRegistrationCommon from "../../gen/common/EventListenerRegistration";
 import ActionFactoryRegistrationCommon from "../../gen/common/ActionFactoryRegistration";
 
@@ -43,6 +46,9 @@ ActionFactoryRegistrationAdmin.init();
 
 EventListenerRegistrationAuthor.init();
 ActionFactoryRegistrationAuthor.init();
+
+EventListenerRegistrationBox.init();
+ActionFactoryRegistrationBox.init();
 
 EventListenerRegistrationCommon.init();
 ActionFactoryRegistrationCommon.init();
