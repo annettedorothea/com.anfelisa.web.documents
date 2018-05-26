@@ -10,7 +10,7 @@ ACE {
 	RouteChanged {
 		on login (  Login.render )
 		on registration ( Registration.render )
-		on dashboard (Dashboard.render) triggers (box.LoadBoxes)
+		on dashboard triggers (box.LoadBoxes)
 		on profile triggers ( profile.LoadUser )
 		on forgotPassword ( ForgotPassword.render )
 		on confirmEmail triggers (ConfirmEmail)

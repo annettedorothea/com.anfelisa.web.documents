@@ -173,7 +173,7 @@ export default class CardList extends React.Component {
                             checked={this.props.data.useDictionary}
                             id="useDictionaryCheckbox"
                         />
-                        <label for="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary}</label>
+                        <label htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary}</label>
                     </span>
                 }
                 <button onClick={this.onToggleInputOrder}>{"\u21c4"}</button>

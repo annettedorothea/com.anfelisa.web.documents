@@ -2,7 +2,6 @@ import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import RouteChangedLoginEvent from "../../../src/common/events/RouteChangedLoginEvent";
 import RouteChangedRegistrationEvent from "../../../src/common/events/RouteChangedRegistrationEvent";
-import RouteChangedDashboardEvent from "../../../src/common/events/RouteChangedDashboardEvent";
 import RouteChangedForgotPasswordEvent from "../../../src/common/events/RouteChangedForgotPasswordEvent";
 import RouteChangedResetPasswordEvent from "../../../src/common/events/RouteChangedResetPasswordEvent";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
@@ -36,7 +35,6 @@ export default class AbstractRouteChangedCommand extends Command {
 			new RouteChangedRegistrationEvent(this.commandData).publish();
 			break;
 		case this.dashboard:
-			new RouteChangedDashboardEvent(this.commandData).publish();
 			new TriggerAction(new LoadBoxesAction(this.commandData)).publish();
 			break;
 		case this.profile:

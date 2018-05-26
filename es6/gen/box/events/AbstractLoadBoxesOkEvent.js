@@ -5,7 +5,7 @@ export default class AbstractLoadBoxesOkEvent extends Event {
         super(eventParam, 'box.LoadBoxesOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "box.views.BoxesView.render" ];
+	    return [ "common.views.DashboardView.render" ];
 	}
 }
 

@@ -2,7 +2,6 @@ import ACEController from "../ace/ACEController";
 import CommonView from "../../src/common/views/CommonView";
 import LoginView from "../../src/common/views/LoginView";
 import RegistrationView from "../../src/common/views/RegistrationView";
-import DashboardView from "../../src/common/views/DashboardView";
 import ForgotPasswordView from "../../src/common/views/ForgotPasswordView";
 import ResetPasswordView from "../../src/common/views/ResetPasswordView";
 
@@ -13,7 +12,6 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.InitNoUserEvent', CommonView.initTexts);
 		ACEController.registerListener('common.RouteChangedLoginEvent', LoginView.render);
 		ACEController.registerListener('common.RouteChangedRegistrationEvent', RegistrationView.render);
-		ACEController.registerListener('common.RouteChangedDashboardEvent', DashboardView.render);
 		ACEController.registerListener('common.RouteChangedForgotPasswordEvent', ForgotPasswordView.render);
 		ACEController.registerListener('common.RouteChangedResetPasswordEvent', ResetPasswordView.render);
 		ACEController.registerListener('common.RouteOkEvent', CommonView.updateHash);

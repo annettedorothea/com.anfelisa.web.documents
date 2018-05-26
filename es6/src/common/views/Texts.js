@@ -6,6 +6,13 @@ export const Texts = {
         authorDashboard: {
             categories: "Kategorien"
         },
+        box: {
+            maxIntervalOne: "Karten im Abstand von maximal einem Tag erneut abfragen.",
+            maxInterval: "Karten im Abstand von maximal {0} Tagen erneut abfragen.",
+            myCards: "Bearbeitete Karten",
+            todaysCards: "Karten für heute",
+            totalCards: "Karten insgesamt"
+        },
         categoryList: {
             back: "Zurück",
             confirmDelete: {

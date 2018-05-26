@@ -6,7 +6,7 @@ export default class CreateBoxView {
             route: "create-box",
             data : {
                 categoryList: eventData.data.categoryList,
-                selectedCategoryId: "",
+                categoryId: "",
                 maxIntervalChecked: false,
                 maxInterval: ""
             }
@@ -30,7 +30,7 @@ export default class CreateBoxView {
     }
     static categorySelected(eventData) {
         let data = App.container.state.data;
-        data.selectedCategoryId = eventData.selectedCategoryId;
+        data.categoryId = eventData.categoryId;
         App.container.setState({
             data
         });

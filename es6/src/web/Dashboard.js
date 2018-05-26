@@ -7,6 +7,7 @@ import StudentDashboard from "./StudentDashboard";
 export default class Dashboard extends React.Component {
 
     render() {
+        console.log("Dashboard", this.props);
         let adminContent;
         let authorContent;
         if (this.props.role === "ADMIN") {

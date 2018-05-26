@@ -26,15 +26,15 @@ export default class CreateBox extends React.Component {
     }
 
     onCategorySelected(event) {
-        const selectedCategoryId = event.target.value;
-        new CategorySelectedAction({selectedCategoryId}).apply();
+        const categoryId = event.target.value;
+        new CategorySelectedAction({categoryId}).apply();
     }
 
     onCreate() {
         const data = {
             username: this.props.username,
             password: this.props.password,
-            selectedCategoryId: this.props.data.selectedCategoryId,
+            categoryId: this.props.data.categoryId,
             maxInterval: this.props.data.maxInterval
         };
         new CreateBoxAction(data).apply();
@@ -47,16 +47,16 @@ export default class CreateBox extends React.Component {
                 key={category.categoryId}
                 {...category}
                 onCategorySelected={this.onCategorySelected}
-                checked={category.categoryId === this.props.data.selectedCategoryId}
+                checked={category.categoryId === this.props.data.categoryId}
             />
         });
-        const canSave = this.props.data.selectedCategoryId.length > 0 && (this.props.data.maxIntervalChecked && this.props.data.maxInterval.length > 0 || !this.props.data.maxIntervalChecked);
+        const canSave = this.props.data.categoryId.length > 0 && (this.props.data.maxIntervalChecked && this.props.data.maxInterval.length > 0 || !this.props.data.maxIntervalChecked);
         return (
             <div>
                 <h1>{this.props.texts.createBox.title}</h1>
 
                 <input id="maxIntervalCheckbox" type={"checkbox"} value={this.props.data.maxIntervalChecked} onChange={this.onMaxIntervalCheckedChange}/>
-                <label for="maxIntervalCheckbox">{this.props.texts.createBox.maxInterval}</label>
+                <label htmlFor="maxIntervalCheckbox">{this.props.texts.createBox.maxInterval}</label>
 
                 <input type="number" value={this.props.data.maxInterval} onChange={this.onMaxIntervalChange} disabled={!this.props.data.maxIntervalChecked}/>
 
