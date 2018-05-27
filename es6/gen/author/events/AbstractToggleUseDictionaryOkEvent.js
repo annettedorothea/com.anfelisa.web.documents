@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/SynchronousEvent";
 
-export default class AbstractToggelUseDictionaryOkEvent extends Event {
+export default class AbstractToggleUseDictionaryOkEvent extends Event {
     constructor(eventParam) {
-        super(eventParam, 'author.ToggelUseDictionaryOkEvent');
+        super(eventParam, 'author.ToggleUseDictionaryOkEvent');
     }
 	getNotifiedListeners() {
 	    return [ "author.views.CategoriesView.toggleUseDictionary" ];

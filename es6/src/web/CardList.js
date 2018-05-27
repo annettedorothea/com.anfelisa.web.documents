@@ -5,8 +5,8 @@ import EditCardAction from "../author/actions/EditCardAction";
 import DeleteCardClickAction from "../author/actions/DeleteCardClickAction";
 import CancelDeleteCardAction from "../author/actions/CancelDeleteCardAction";
 import FilterCardsAction from "../author/actions/FilterCardsAction";
-import ToggelInputOrderAction from "../author/actions/ToggelInputOrderAction";
-import ToggelUseDictionaryAction from "../author/actions/ToggelUseDictionaryAction";
+import ToggleInputOrderAction from "../author/actions/ToggleInputOrderAction";
+import ToggleUseDictionaryAction from "../author/actions/ToggleUseDictionaryAction";
 import Dictionary from "./CardList/Dictionary";
 import DuplicateCardItem from "./CardList/DuplicateCardItem";
 import NewCard from "./CardList/NewCard";
@@ -65,11 +65,11 @@ export default class CardList extends React.Component {
     }
 
     onToggleInputOrder() {
-        new ToggelInputOrderAction().apply();
+        new ToggleInputOrderAction().apply();
     }
 
     onUseDictionaryChange() {
-        new ToggelUseDictionaryAction().apply();
+        new ToggleUseDictionaryAction().apply();
     }
 
     render() {

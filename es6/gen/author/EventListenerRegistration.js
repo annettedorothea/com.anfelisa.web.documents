@@ -62,8 +62,8 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.GivenLanguageOfEditedCategoryChangedOkEvent', CategoriesView.givenLanguageOfEditedCategoryChanged);
 		ACEController.registerListener('author.WantedLanguageOfNewCategoryChangedOkEvent', CategoriesView.wantedLanguageOfNewCategoryChanged);
 		ACEController.registerListener('author.WantedLanguageOfEditedCategoryChangedOkEvent', CategoriesView.wantedLanguageOfEditedCategoryChanged);
-		ACEController.registerListener('author.ToggelInputOrderOkEvent', CategoriesView.toggelInputOrder);
-		ACEController.registerListener('author.ToggelUseDictionaryOkEvent', CategoriesView.toggleUseDictionary);
+		ACEController.registerListener('author.ToggleInputOrderOkEvent', CategoriesView.toggleInputOrder);
+		ACEController.registerListener('author.ToggleUseDictionaryOkEvent', CategoriesView.toggleUseDictionary);
 		ACEController.registerListener('author.LoadWantedImageOfNewCardOkEvent', CategoriesView.displayImageOfNewCard);
 		ACEController.registerListener('author.LoadWantedImageOfEditedCardOkEvent', CategoriesView.displayImageOfEditedCard);
 		ACEController.registerListener('author.RemoveNewCardImageOkEvent', CategoriesView.removeNewCardImage);

@@ -1,6 +1,6 @@
 import React from 'react';
-import ToggleMaxIntervalAction from "../../box/actions/ToggleMaxIntervalAction";
-import MaxIntervalChangedAction from "../../box/actions/MaxIntervalChangedAction";
+import DeleteBoxClickAction from "../../box/actions/DeleteBoxClickAction";
+import EditBoxAction from "../../box/actions/EditBoxAction";
 
 export default class BoxItem extends React.Component {
 
@@ -8,6 +8,8 @@ export default class BoxItem extends React.Component {
         super(props);
         this.onMaxIntervalChange = this.onMaxIntervalChange.bind(this);
         this.onMaxIntervalCheckedChange = this.onMaxIntervalCheckedChange.bind(this);
+        this.onDeleteClick = this.onDeleteClick.bind(this);
+        this.onEdit = this.onEdit.bind(this);
     }
 
     onMaxIntervalChange(event) {
@@ -18,14 +20,27 @@ export default class BoxItem extends React.Component {
         //new ToggleMaxIntervalAction().apply();
     }
 
+    onDeleteClick() {
+        new DeleteBoxClickAction({boxId: this.props.boxId}).apply();
+    }
+
+    onEdit() {
+        const data = {
+            boxId: this.props.boxId,
+            maxInterval: this.props.maxInterval !== null ? this.props.maxInterval : "",
+            maxIntervalChecked: this.props.maxInterval && this.props.maxInterval > 0 ? true : false
+        };
+        new EditBoxAction(data).apply();
+    }
+
 
     render() {
-        console.log("BoxItem", this.props);
         return (
             <div>
                 <h1>{this.props.categoryName} - {this.props.totalCards} {this.props.texts.box.totalCards}</h1>
 
-                {this.props.maxInterval > 1 && <div>{this.props.texts.box.maxInterval.replace("{0}", this.props.maxInterval)}</div>}
+                {this.props.maxInterval > 1 &&
+                <div>{this.props.texts.box.maxInterval.replace("{0}", this.props.maxInterval)}</div>}
                 {this.props.maxInterval === 1 && <div>{this.props.texts.box.maxIntervalOne}</div>}
 
                 <table>
@@ -40,6 +55,8 @@ export default class BoxItem extends React.Component {
                     </tr>
                     </tbody>
                 </table>
+                <button onClick={() => this.onDeleteClick(this.props.boxId)}>{"\u2717"}</button>
+                <button onClick={() => this.onEdit(this.props.boxId)}>{"\u270E"}</button>
             </div>
         );
     }

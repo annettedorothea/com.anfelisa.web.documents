@@ -4,7 +4,7 @@ target ES6
 
 ACE {
 	async LoadBoxes preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
-		on ok (common.Dashboard.render)
+		on ok (BoxList.render)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 	async LoadRootCategories preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
@@ -25,6 +25,36 @@ ACE {
 		on ok triggers (LoadBoxes)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
+	EditBox {
+		on ok (BoxList.editBox)
+	}
+	ToggleMaxIntervalOfBox {
+		on ok (BoxList.toggleMaxInterval)
+	}
+	MaxIntervalChangedOfBox {
+		on ok (BoxList.maxIntervalChanged)
+	}
+	CancelEditBox {
+		on ok (BoxList.cancelEditBox)
+	}
+	async UpdateBox {
+		on ok triggers (LoadBoxes)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	DeleteBoxClick {
+		on ok (BoxList.displayConfirmDelete)
+	}
+	CancelDeleteCategory {
+		on ok (BoxList.hideConfirmDelete)
+	}
+	async DeleteBox {
+		on ok triggers (LoadBoxes)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	async PostponeCardsOfBox {
+		on ok triggers (LoadBoxes)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
 }
 
 views {
@@ -33,5 +63,14 @@ views {
 		toggleMaxInterval
 		maxIntervalChanged
 		categorySelected
+	}
+	BoxList {
+		render
+		toggleMaxInterval
+		maxIntervalChanged
+		editBox
+		cancelEditBox
+		displayConfirmDelete
+		hideConfirmDelete
 	}
 }

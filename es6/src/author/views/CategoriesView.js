@@ -376,7 +376,7 @@ export default class CategoriesView {
         });
     };
 
-    static toggelInputOrder() {
+    static toggleInputOrder() {
         let data = App.container.state.data;
         data.naturalInputOrder = !data.naturalInputOrder;
         App.container.setState({
@@ -423,14 +423,6 @@ export default class CategoriesView {
             data
         });
     };
-
-    static displayUploadSpinner() {
-        console.log("displayUploadSpinner");
-    }
-
-    static hideUploadSpinner() {
-        console.log("hideUploadSpinner");
-    }
 
     static displayImageOfNewCard(eventData) {
         let data = App.container.state.data;

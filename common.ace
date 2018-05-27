@@ -84,7 +84,4 @@ views {
 	ResetPassword {
 		render
 	}
-	Dashboard {
-		render
-	}
 }

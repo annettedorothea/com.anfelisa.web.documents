@@ -137,11 +137,11 @@ ACE {
 		on ok (Categories.wantedLanguageOfEditedCategoryChanged)
 	}
 	
-	ToggelInputOrder {
-		on ok (Categories.toggelInputOrder)
+	ToggleInputOrder {
+		on ok (Categories.toggleInputOrder)
 	}
 	
-	ToggelUseDictionary {
+	ToggleUseDictionary {
 		on ok (Categories.toggleUseDictionary)
 	}
 	
@@ -210,15 +210,13 @@ views {
 		toggleDictionaryLookupOfNewCategory
 		toggleDictionaryLookupOfEditedCategory
 		
-		toggelInputOrder
+		toggleInputOrder
 		resetGiven
 		resetWanted
 		displayDictionary
 		hideDictionary
 		toggleUseDictionary
 		
-		displayUploadSpinner
-		hideUploadSpinner
 		displayImageOfNewCard
 		displayImageOfEditedCard
 		removeNewCardImage

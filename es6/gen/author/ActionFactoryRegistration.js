@@ -31,8 +31,8 @@ import GivenLanguageOfNewCategoryChangedAction from "../../src/author/actions/Gi
 import GivenLanguageOfEditedCategoryChangedAction from "../../src/author/actions/GivenLanguageOfEditedCategoryChangedAction";
 import WantedLanguageOfNewCategoryChangedAction from "../../src/author/actions/WantedLanguageOfNewCategoryChangedAction";
 import WantedLanguageOfEditedCategoryChangedAction from "../../src/author/actions/WantedLanguageOfEditedCategoryChangedAction";
-import ToggelInputOrderAction from "../../src/author/actions/ToggelInputOrderAction";
-import ToggelUseDictionaryAction from "../../src/author/actions/ToggelUseDictionaryAction";
+import ToggleInputOrderAction from "../../src/author/actions/ToggleInputOrderAction";
+import ToggleUseDictionaryAction from "../../src/author/actions/ToggleUseDictionaryAction";
 import LoadWantedImageOfNewCardAction from "../../src/author/actions/LoadWantedImageOfNewCardAction";
 import LoadWantedImageOfEditedCardAction from "../../src/author/actions/LoadWantedImageOfEditedCardAction";
 import RemoveNewCardImageAction from "../../src/author/actions/RemoveNewCardImageAction";
@@ -73,8 +73,8 @@ export default class ActionFactoryRegistrationAuthor {
 		ACEController.registerFactory('author.GivenLanguageOfEditedCategoryChangedAction', (actionParam) => new GivenLanguageOfEditedCategoryChangedAction(actionParam));
 		ACEController.registerFactory('author.WantedLanguageOfNewCategoryChangedAction', (actionParam) => new WantedLanguageOfNewCategoryChangedAction(actionParam));
 		ACEController.registerFactory('author.WantedLanguageOfEditedCategoryChangedAction', (actionParam) => new WantedLanguageOfEditedCategoryChangedAction(actionParam));
-		ACEController.registerFactory('author.ToggelInputOrderAction', (actionParam) => new ToggelInputOrderAction(actionParam));
-		ACEController.registerFactory('author.ToggelUseDictionaryAction', (actionParam) => new ToggelUseDictionaryAction(actionParam));
+		ACEController.registerFactory('author.ToggleInputOrderAction', (actionParam) => new ToggleInputOrderAction(actionParam));
+		ACEController.registerFactory('author.ToggleUseDictionaryAction', (actionParam) => new ToggleUseDictionaryAction(actionParam));
 		ACEController.registerFactory('author.LoadWantedImageOfNewCardAction', (actionParam) => new LoadWantedImageOfNewCardAction(actionParam));
 		ACEController.registerFactory('author.LoadWantedImageOfEditedCardAction', (actionParam) => new LoadWantedImageOfEditedCardAction(actionParam));
 		ACEController.registerFactory('author.RemoveNewCardImageAction', (actionParam) => new RemoveNewCardImageAction(actionParam));

@@ -1,7 +1,7 @@
-import AbstractToggelUseDictionaryOkEvent from "../../../gen/author/events/AbstractToggelUseDictionaryOkEvent";
+import AbstractMaxIntervalChangedOfBoxOkEvent from "../../../gen/box/events/AbstractMaxIntervalChangedOfBoxOkEvent";
 import AppUtils from "../../app/AppUtils";
 
-export default class ToggelUseDictionaryOkEvent extends AbstractToggelUseDictionaryOkEvent {
+export default class MaxIntervalChangedOfBoxOkEvent extends AbstractMaxIntervalChangedOfBoxOkEvent {
     prepareDataForView() {
         this.eventData = AppUtils.deepCopy(this.eventParam);
         if (this.eventData.data === undefined) {

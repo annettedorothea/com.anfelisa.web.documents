@@ -30,8 +30,8 @@ import GivenLanguageOfNewCategoryChangedAction from "../../src/author/actions/Gi
 import GivenLanguageOfEditedCategoryChangedAction from "../../src/author/actions/GivenLanguageOfEditedCategoryChangedAction";
 import WantedLanguageOfNewCategoryChangedAction from "../../src/author/actions/WantedLanguageOfNewCategoryChangedAction";
 import WantedLanguageOfEditedCategoryChangedAction from "../../src/author/actions/WantedLanguageOfEditedCategoryChangedAction";
-import ToggelInputOrderAction from "../../src/author/actions/ToggelInputOrderAction";
-import ToggelUseDictionaryAction from "../../src/author/actions/ToggelUseDictionaryAction";
+import ToggleInputOrderAction from "../../src/author/actions/ToggleInputOrderAction";
+import ToggleUseDictionaryAction from "../../src/author/actions/ToggleUseDictionaryAction";
 import LoadWantedImageOfNewCardAction from "../../src/author/actions/LoadWantedImageOfNewCardAction";
 import LoadWantedImageOfEditedCardAction from "../../src/author/actions/LoadWantedImageOfEditedCardAction";
 import RemoveNewCardImageAction from "../../src/author/actions/RemoveNewCardImageAction";
@@ -165,12 +165,12 @@ export function wantedLanguageOfEditedCategoryChanged(actionParam) {
     new WantedLanguageOfEditedCategoryChangedAction(actionParam).apply();
 }
 
-export function toggelInputOrder(actionParam) {
-    new ToggelInputOrderAction(actionParam).apply();
+export function toggleInputOrder(actionParam) {
+    new ToggleInputOrderAction(actionParam).apply();
 }
 
-export function toggelUseDictionary(actionParam) {
-    new ToggelUseDictionaryAction(actionParam).apply();
+export function toggleUseDictionary(actionParam) {
+    new ToggleUseDictionaryAction(actionParam).apply();
 }
 
 export function loadWantedImageOfNewCard(actionParam) {

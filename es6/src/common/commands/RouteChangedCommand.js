@@ -5,7 +5,6 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
         this.commandData.outcome = this.login;
         this.commandData.password = this.commandParam.password;
         this.commandData.username = this.commandParam.username;
-        console.log("this.commandParam.hash", this.commandParam.hash);
         if (this.commandParam.hash === "#registration") {
             this.commandData.outcome = this.registration;
         } else if (this.commandParam.hash === "") {

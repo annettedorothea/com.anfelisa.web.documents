@@ -64,6 +64,10 @@ export const Texts = {
             profile: "Profil",
             title: "Übersicht"
         },
+        editBox: {
+            maxInterval: "maximaler Abstand im Tagen",
+            title: "Neue Lernkartei anlegen"
+        },
         errors: {
             registerUserFailed: "Die Registrierung ist fehlgeschlagen.",
             loginFailed: "Anmeldung fehlgeschlagen.",
