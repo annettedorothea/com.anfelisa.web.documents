@@ -15,18 +15,18 @@ import DisplayMessageAction from "../../src/common/actions/DisplayMessageAction"
 export default class ActionFactoryRegistrationCommon {
 
 	static init() {
-		ACEController.registerFactory('common.InitAction', (actionParam) => new InitAction(actionParam));
-		ACEController.registerFactory('common.RouteChangedAction', (actionParam) => new RouteChangedAction(actionParam));
-		ACEController.registerFactory('common.RouteAction', (actionParam) => new RouteAction(actionParam));
-		ACEController.registerFactory('common.CheckUsernameAction', (actionParam) => new CheckUsernameAction(actionParam));
-		ACEController.registerFactory('common.RegisterUserAction', (actionParam) => new RegisterUserAction(actionParam));
-		ACEController.registerFactory('common.LoginAction', (actionParam) => new LoginAction(actionParam));
-		ACEController.registerFactory('common.LogoutAction', (actionParam) => new LogoutAction(actionParam));
-		ACEController.registerFactory('common.ForgotPasswordAction', (actionParam) => new ForgotPasswordAction(actionParam));
-		ACEController.registerFactory('common.ConfirmEmailAction', (actionParam) => new ConfirmEmailAction(actionParam));
-		ACEController.registerFactory('common.ResetPasswordAction', (actionParam) => new ResetPasswordAction(actionParam));
-		ACEController.registerFactory('common.DisplayErrorAction', (actionParam) => new DisplayErrorAction(actionParam));
-		ACEController.registerFactory('common.DisplayMessageAction', (actionParam) => new DisplayMessageAction(actionParam));
+		ACEController.registerFactory('common.InitAction', (actionData) => new InitAction(actionData));
+		ACEController.registerFactory('common.RouteChangedAction', (actionData) => new RouteChangedAction(actionData));
+		ACEController.registerFactory('common.RouteAction', (actionData) => new RouteAction(actionData));
+		ACEController.registerFactory('common.CheckUsernameAction', (actionData) => new CheckUsernameAction(actionData));
+		ACEController.registerFactory('common.RegisterUserAction', (actionData) => new RegisterUserAction(actionData));
+		ACEController.registerFactory('common.LoginAction', (actionData) => new LoginAction(actionData));
+		ACEController.registerFactory('common.LogoutAction', (actionData) => new LogoutAction(actionData));
+		ACEController.registerFactory('common.ForgotPasswordAction', (actionData) => new ForgotPasswordAction(actionData));
+		ACEController.registerFactory('common.ConfirmEmailAction', (actionData) => new ConfirmEmailAction(actionData));
+		ACEController.registerFactory('common.ResetPasswordAction', (actionData) => new ResetPasswordAction(actionData));
+		ACEController.registerFactory('common.DisplayErrorAction', (actionData) => new DisplayErrorAction(actionData));
+		ACEController.registerFactory('common.DisplayMessageAction', (actionData) => new DisplayMessageAction(actionData));
 	}
 
 }

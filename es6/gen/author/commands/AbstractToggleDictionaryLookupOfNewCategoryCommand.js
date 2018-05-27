@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import ToggleDictionaryLookupOfNewCategoryOkEvent from "../../../src/author/events/ToggleDictionaryLookupOfNewCategoryOkEvent";
 
 export default class AbstractToggleDictionaryLookupOfNewCategoryCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.ToggleDictionaryLookupOfNewCategoryCommand");
+    constructor(commandData) {
+        super(commandData, "author.ToggleDictionaryLookupOfNewCategoryCommand");
         this.ok = "ok";
     }
 

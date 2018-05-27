@@ -4,19 +4,14 @@ import AppUtils from "../../src/app/AppUtils";
 
 export default class SynchronousAction extends Action {
 
-    constructor(actionParam, actionName, isInitAction) {
-    	super(actionParam, actionName, isInitAction);
+    constructor(actionData, actionName, isInitAction) {
+    	super(actionData, actionName, isInitAction);
         this.asynchronous = false;
     }
 
     applyAction() {
         if (ACEController.execution === ACEController.LIVE) {
             this.actionData.uuid = AppUtils.createUUID();
-        }
-        if (ACEController.execution === ACEController.LIVE) {
-            this.captureActionParam();
-        } else {
-            this.releaseActionParam();
         }
         this.initActionData();
         ACEController.addItemToTimeLine({action: this});

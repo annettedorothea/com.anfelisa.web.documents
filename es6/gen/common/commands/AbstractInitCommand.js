@@ -7,8 +7,8 @@ import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractInitCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "common.InitCommand");
+    constructor(commandData) {
+        super(commandData, "common.InitCommand");
         this.user = "user";
         this.noUser = "noUser";
     }

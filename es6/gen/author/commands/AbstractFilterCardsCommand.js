@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import FilterCardsOkEvent from "../../../src/author/events/FilterCardsOkEvent";
 
 export default class AbstractFilterCardsCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.FilterCardsCommand");
+    constructor(commandData) {
+        super(commandData, "author.FilterCardsCommand");
         this.ok = "ok";
     }
 

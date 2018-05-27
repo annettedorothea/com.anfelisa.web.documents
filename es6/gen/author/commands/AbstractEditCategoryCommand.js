@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import EditCategoryOkEvent from "../../../src/author/events/EditCategoryOkEvent";
 
 export default class AbstractEditCategoryCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.EditCategoryCommand");
+    constructor(commandData) {
+        super(commandData, "author.EditCategoryCommand");
         this.ok = "ok";
     }
 

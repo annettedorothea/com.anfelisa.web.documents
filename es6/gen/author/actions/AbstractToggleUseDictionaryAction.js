@@ -3,8 +3,8 @@ import ToggleUseDictionaryCommand from "../../../src/author/commands/ToggleUseDi
 
 export default class AbstractToggleUseDictionaryAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.ToggleUseDictionaryAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.ToggleUseDictionaryAction', false);
     }
 
 	getCommand() {

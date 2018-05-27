@@ -5,8 +5,8 @@ import LoadCategoriesUnauthorizedEvent from "../../../src/author/events/LoadCate
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadCategoriesCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.LoadCategoriesCommand");
+    constructor(commandData) {
+        super(commandData, "author.LoadCategoriesCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

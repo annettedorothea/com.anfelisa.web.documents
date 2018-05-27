@@ -5,8 +5,8 @@ import ConfirmEmailErrorEvent from "../../../src/common/events/ConfirmEmailError
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractConfirmEmailCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "common.ConfirmEmailCommand");
+    constructor(commandData) {
+        super(commandData, "common.ConfirmEmailCommand");
         this.ok = "ok";
         this.error = "error";
     }

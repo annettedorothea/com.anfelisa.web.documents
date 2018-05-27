@@ -3,9 +3,8 @@ import AbstractNameOfNewCategoryChangedCommand
 
 export default class NameOfNewCategoryChangedCommand extends AbstractNameOfNewCategoryChangedCommand {
     execute() {
-        this.commandData.name = this.commandParam.name;
-        const items = this.commandParam.categoryList.filter(item => {
-            return item.categoryName === this.commandParam.name;
+        const items = this.commandData.categoryList.filter(item => {
+            return item.categoryName === this.commandData.name;
         });
         this.commandData.nameAlreadyExists = items.length > 0;
         this.commandData.outcome = this.ok;

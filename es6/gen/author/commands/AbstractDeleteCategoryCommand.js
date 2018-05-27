@@ -6,8 +6,8 @@ import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesActi
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractDeleteCategoryCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.DeleteCategoryCommand");
+    constructor(commandData) {
+        super(commandData, "author.DeleteCategoryCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

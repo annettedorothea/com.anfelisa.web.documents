@@ -7,9 +7,18 @@ export const Texts = {
             categories: "Kategorien"
         },
         box: {
+            confirmDelete: {
+                cancel: "Nein",
+                ok: "Ja",
+                message: "Soll die Kategorie wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht.",
+                title: "Löschen"
+            },
             maxIntervalOne: "Karten im Abstand von maximal einem Tag erneut abfragen.",
             maxInterval: "Karten im Abstand von maximal {0} Tagen erneut abfragen.",
             myCards: "Bearbeitete Karten",
+            postpone: "Zeitplan neu berechnen",
+            daysBehindScheduleMessageOne: "Du bist einen Tag hinterher.",
+            daysBehindScheduleMessage: "Du bist {0} Tage hinterher.",
             todaysCards: "Karten für heute",
             totalCards: "Karten insgesamt"
         },

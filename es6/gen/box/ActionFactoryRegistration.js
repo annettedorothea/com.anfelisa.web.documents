@@ -11,28 +11,28 @@ import MaxIntervalChangedOfBoxAction from "../../src/box/actions/MaxIntervalChan
 import CancelEditBoxAction from "../../src/box/actions/CancelEditBoxAction";
 import UpdateBoxAction from "../../src/box/actions/UpdateBoxAction";
 import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
-import CancelDeleteCategoryAction from "../../src/box/actions/CancelDeleteCategoryAction";
+import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
 import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
 import PostponeCardsOfBoxAction from "../../src/box/actions/PostponeCardsOfBoxAction";
 
 export default class ActionFactoryRegistrationBox {
 
 	static init() {
-		ACEController.registerFactory('box.LoadBoxesAction', (actionParam) => new LoadBoxesAction(actionParam));
-		ACEController.registerFactory('box.LoadRootCategoriesAction', (actionParam) => new LoadRootCategoriesAction(actionParam));
-		ACEController.registerFactory('box.ToggleMaxIntervalAction', (actionParam) => new ToggleMaxIntervalAction(actionParam));
-		ACEController.registerFactory('box.MaxIntervalChangedAction', (actionParam) => new MaxIntervalChangedAction(actionParam));
-		ACEController.registerFactory('box.CategorySelectedAction', (actionParam) => new CategorySelectedAction(actionParam));
-		ACEController.registerFactory('box.CreateBoxAction', (actionParam) => new CreateBoxAction(actionParam));
-		ACEController.registerFactory('box.EditBoxAction', (actionParam) => new EditBoxAction(actionParam));
-		ACEController.registerFactory('box.ToggleMaxIntervalOfBoxAction', (actionParam) => new ToggleMaxIntervalOfBoxAction(actionParam));
-		ACEController.registerFactory('box.MaxIntervalChangedOfBoxAction', (actionParam) => new MaxIntervalChangedOfBoxAction(actionParam));
-		ACEController.registerFactory('box.CancelEditBoxAction', (actionParam) => new CancelEditBoxAction(actionParam));
-		ACEController.registerFactory('box.UpdateBoxAction', (actionParam) => new UpdateBoxAction(actionParam));
-		ACEController.registerFactory('box.DeleteBoxClickAction', (actionParam) => new DeleteBoxClickAction(actionParam));
-		ACEController.registerFactory('box.CancelDeleteCategoryAction', (actionParam) => new CancelDeleteCategoryAction(actionParam));
-		ACEController.registerFactory('box.DeleteBoxAction', (actionParam) => new DeleteBoxAction(actionParam));
-		ACEController.registerFactory('box.PostponeCardsOfBoxAction', (actionParam) => new PostponeCardsOfBoxAction(actionParam));
+		ACEController.registerFactory('box.LoadBoxesAction', (actionData) => new LoadBoxesAction(actionData));
+		ACEController.registerFactory('box.LoadRootCategoriesAction', (actionData) => new LoadRootCategoriesAction(actionData));
+		ACEController.registerFactory('box.ToggleMaxIntervalAction', (actionData) => new ToggleMaxIntervalAction(actionData));
+		ACEController.registerFactory('box.MaxIntervalChangedAction', (actionData) => new MaxIntervalChangedAction(actionData));
+		ACEController.registerFactory('box.CategorySelectedAction', (actionData) => new CategorySelectedAction(actionData));
+		ACEController.registerFactory('box.CreateBoxAction', (actionData) => new CreateBoxAction(actionData));
+		ACEController.registerFactory('box.EditBoxAction', (actionData) => new EditBoxAction(actionData));
+		ACEController.registerFactory('box.ToggleMaxIntervalOfBoxAction', (actionData) => new ToggleMaxIntervalOfBoxAction(actionData));
+		ACEController.registerFactory('box.MaxIntervalChangedOfBoxAction', (actionData) => new MaxIntervalChangedOfBoxAction(actionData));
+		ACEController.registerFactory('box.CancelEditBoxAction', (actionData) => new CancelEditBoxAction(actionData));
+		ACEController.registerFactory('box.UpdateBoxAction', (actionData) => new UpdateBoxAction(actionData));
+		ACEController.registerFactory('box.DeleteBoxClickAction', (actionData) => new DeleteBoxClickAction(actionData));
+		ACEController.registerFactory('box.CancelDeleteBoxAction', (actionData) => new CancelDeleteBoxAction(actionData));
+		ACEController.registerFactory('box.DeleteBoxAction', (actionData) => new DeleteBoxAction(actionData));
+		ACEController.registerFactory('box.PostponeCardsOfBoxAction', (actionData) => new PostponeCardsOfBoxAction(actionData));
 	}
 
 }

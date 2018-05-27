@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractLoadBoxesUnauthorizedEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'box.LoadBoxesUnauthorizedEvent');
+    constructor(eventData) {
+        super(eventData, 'box.LoadBoxesUnauthorizedEvent');
     }
 	getNotifiedListeners() {
 	    return [ "common.views.CommonView.displayError" ];

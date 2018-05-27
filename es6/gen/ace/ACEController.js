@@ -132,8 +132,8 @@ export default class ACEController {
         for (let i = 0; i < ACEController.expectedTimeline.length; i++) {
             let item = ACEController.expectedTimeline[i];
             if (item.action) {
-                const actionParam = item.action.actionParam;
-                let action = ACEController.factories[item.action.actionName](actionParam);
+                const actionData = item.action.actionData;
+                let action = ACEController.factories[item.action.actionName](actionData);
                 action.actionData.uuid = item.action.actionData.uuid;
                 actions.push(action);
             }
@@ -147,7 +147,7 @@ export default class ACEController {
     static getCommandByUuid(uuid) {
         for (let i = 0; i < ACEController.expectedTimeline.length; i++) {
             let item = ACEController.expectedTimeline[i];
-            if (item.command && item.command.commandParam.uuid === uuid) {
+            if (item.command && item.command.commandData.uuid === uuid) {
                 return item.command;
             }
         }

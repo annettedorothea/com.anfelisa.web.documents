@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import GivenOfEditedCardChangedOkEvent from "../../../src/author/events/GivenOfEditedCardChangedOkEvent";
 
 export default class AbstractGivenOfEditedCardChangedCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.GivenOfEditedCardChangedCommand");
+    constructor(commandData) {
+        super(commandData, "author.GivenOfEditedCardChangedCommand");
         this.ok = "ok";
     }
 

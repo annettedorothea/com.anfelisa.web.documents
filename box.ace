@@ -22,7 +22,7 @@ ACE {
 		on ok (CreateBox.categorySelected)
 	}
 	async CreateBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
-		on ok triggers (LoadBoxes)
+		on ok triggers (common.Route)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 	EditBox {
@@ -44,7 +44,7 @@ ACE {
 	DeleteBoxClick {
 		on ok (BoxList.displayConfirmDelete)
 	}
-	CancelDeleteCategory {
+	CancelDeleteBox {
 		on ok (BoxList.hideConfirmDelete)
 	}
 	async DeleteBox {

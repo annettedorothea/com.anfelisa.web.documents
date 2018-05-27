@@ -3,8 +3,8 @@ import UpdateBoxCommand from "../../../src/box/commands/UpdateBoxCommand";
 
 export default class AbstractUpdateBoxAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'box.UpdateBoxAction', false);
+    constructor(actionData) {
+        super(actionData, 'box.UpdateBoxAction', false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

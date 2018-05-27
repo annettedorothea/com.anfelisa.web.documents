@@ -5,8 +5,8 @@ import LoadRootCategoriesUnauthorizedEvent from "../../../src/box/events/LoadRoo
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadRootCategoriesCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.LoadRootCategoriesCommand");
+    constructor(commandData) {
+        super(commandData, "box.LoadRootCategoriesCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

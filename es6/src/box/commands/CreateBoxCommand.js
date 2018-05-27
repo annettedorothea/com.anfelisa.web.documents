@@ -4,13 +4,12 @@ export default class CreateBoxCommand extends AbstractCreateBoxCommand {
     execute() {
         return new Promise((resolve, reject) => {
             const data = {
-                categoryId: this.commandParam.categoryId,
-                maxInterval: this.commandParam.maxInterval
+                categoryId: this.commandData.categoryId,
+                maxInterval: this.commandData.maxInterval
             };
             this.httpPost("api/box/create", [], data).then((data) => {
                 this.commandData.outcome = this.ok;
-                this.commandData.username = this.commandParam.username;
-                this.commandData.password = this.commandParam.password;
+                this.commandData.hash = "#";
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

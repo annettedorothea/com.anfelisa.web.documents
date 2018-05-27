@@ -3,15 +3,14 @@ import AbstractForgotPasswordCommand from "../../../gen/common/commands/Abstract
 export default class ForgotPasswordCommand extends AbstractForgotPasswordCommand {
     execute() {
         return new Promise((resolve) => {
-            this.commandData.language = this.commandParam.language;
             let queryParams = [];
             queryParams.push({
                 key: "username",
-                value: this.commandParam.username
+                value: this.commandData.username
             });
             queryParams.push({
                 key: "language",
-                value: this.commandParam.language
+                value: this.commandData.language
             });
             this.commandData.hash = "#";
             this.commandData.outcome = this.ok;

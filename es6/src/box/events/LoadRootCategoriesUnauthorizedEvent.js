@@ -3,7 +3,7 @@ import AppUtils from "../../app/AppUtils";
 
 export default class LoadRootCategoriesUnauthorizedEvent extends AbstractLoadRootCategoriesUnauthorizedEvent {
     prepareDataForView() {
-        this.eventData = AppUtils.deepCopy(this.eventParam);
+        this.eventData = AppUtils.deepCopy(this.eventData);
         if (this.eventData.data === undefined) {
         	this.eventData.data = {};
         }

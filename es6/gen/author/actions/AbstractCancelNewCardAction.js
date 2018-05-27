@@ -3,8 +3,8 @@ import CancelNewCardCommand from "../../../src/author/commands/CancelNewCardComm
 
 export default class AbstractCancelNewCardAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.CancelNewCardAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.CancelNewCardAction', false);
     }
 
 	getCommand() {

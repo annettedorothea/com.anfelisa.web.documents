@@ -5,8 +5,8 @@ import LoadBoxesUnauthorizedEvent from "../../../src/box/events/LoadBoxesUnautho
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadBoxesCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.LoadBoxesCommand");
+    constructor(commandData) {
+        super(commandData, "box.LoadBoxesCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

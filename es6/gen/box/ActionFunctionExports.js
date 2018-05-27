@@ -10,68 +10,68 @@ import MaxIntervalChangedOfBoxAction from "../../src/box/actions/MaxIntervalChan
 import CancelEditBoxAction from "../../src/box/actions/CancelEditBoxAction";
 import UpdateBoxAction from "../../src/box/actions/UpdateBoxAction";
 import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
-import CancelDeleteCategoryAction from "../../src/box/actions/CancelDeleteCategoryAction";
+import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
 import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
 import PostponeCardsOfBoxAction from "../../src/box/actions/PostponeCardsOfBoxAction";
 
-export function loadBoxes(actionParam) {
-    new LoadBoxesAction(actionParam).apply();
+export function loadBoxes(actionData) {
+    new LoadBoxesAction(actionData).apply();
 }
 
-export function loadRootCategories(actionParam) {
-    new LoadRootCategoriesAction(actionParam).apply();
+export function loadRootCategories(actionData) {
+    new LoadRootCategoriesAction(actionData).apply();
 }
 
-export function toggleMaxInterval(actionParam) {
-    new ToggleMaxIntervalAction(actionParam).apply();
+export function toggleMaxInterval(actionData) {
+    new ToggleMaxIntervalAction(actionData).apply();
 }
 
-export function maxIntervalChanged(actionParam) {
-    new MaxIntervalChangedAction(actionParam).apply();
+export function maxIntervalChanged(actionData) {
+    new MaxIntervalChangedAction(actionData).apply();
 }
 
-export function categorySelected(actionParam) {
-    new CategorySelectedAction(actionParam).apply();
+export function categorySelected(actionData) {
+    new CategorySelectedAction(actionData).apply();
 }
 
-export function createBox(actionParam) {
-    new CreateBoxAction(actionParam).apply();
+export function createBox(actionData) {
+    new CreateBoxAction(actionData).apply();
 }
 
-export function editBox(actionParam) {
-    new EditBoxAction(actionParam).apply();
+export function editBox(actionData) {
+    new EditBoxAction(actionData).apply();
 }
 
-export function toggleMaxIntervalOfBox(actionParam) {
-    new ToggleMaxIntervalOfBoxAction(actionParam).apply();
+export function toggleMaxIntervalOfBox(actionData) {
+    new ToggleMaxIntervalOfBoxAction(actionData).apply();
 }
 
-export function maxIntervalChangedOfBox(actionParam) {
-    new MaxIntervalChangedOfBoxAction(actionParam).apply();
+export function maxIntervalChangedOfBox(actionData) {
+    new MaxIntervalChangedOfBoxAction(actionData).apply();
 }
 
-export function cancelEditBox(actionParam) {
-    new CancelEditBoxAction(actionParam).apply();
+export function cancelEditBox(actionData) {
+    new CancelEditBoxAction(actionData).apply();
 }
 
-export function updateBox(actionParam) {
-    new UpdateBoxAction(actionParam).apply();
+export function updateBox(actionData) {
+    new UpdateBoxAction(actionData).apply();
 }
 
-export function deleteBoxClick(actionParam) {
-    new DeleteBoxClickAction(actionParam).apply();
+export function deleteBoxClick(actionData) {
+    new DeleteBoxClickAction(actionData).apply();
 }
 
-export function cancelDeleteCategory(actionParam) {
-    new CancelDeleteCategoryAction(actionParam).apply();
+export function cancelDeleteBox(actionData) {
+    new CancelDeleteBoxAction(actionData).apply();
 }
 
-export function deleteBox(actionParam) {
-    new DeleteBoxAction(actionParam).apply();
+export function deleteBox(actionData) {
+    new DeleteBoxAction(actionData).apply();
 }
 
-export function postponeCardsOfBox(actionParam) {
-    new PostponeCardsOfBoxAction(actionParam).apply();
+export function postponeCardsOfBox(actionData) {
+    new PostponeCardsOfBoxAction(actionData).apply();
 }
 
 

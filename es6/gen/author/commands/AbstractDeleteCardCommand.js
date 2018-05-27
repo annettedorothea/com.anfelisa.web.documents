@@ -6,8 +6,8 @@ import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesActi
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractDeleteCardCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.DeleteCardCommand");
+    constructor(commandData) {
+        super(commandData, "author.DeleteCardCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

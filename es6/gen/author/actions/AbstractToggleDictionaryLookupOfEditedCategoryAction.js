@@ -3,8 +3,8 @@ import ToggleDictionaryLookupOfEditedCategoryCommand from "../../../src/author/c
 
 export default class AbstractToggleDictionaryLookupOfEditedCategoryAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.ToggleDictionaryLookupOfEditedCategoryAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.ToggleDictionaryLookupOfEditedCategoryAction', false);
     }
 
 	getCommand() {

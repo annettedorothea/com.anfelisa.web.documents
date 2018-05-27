@@ -6,8 +6,8 @@ import SearchDuplicateCardsUnauthorizedEvent from "../../../src/author/events/Se
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractSearchDuplicateCardsCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.SearchDuplicateCardsCommand");
+    constructor(commandData) {
+        super(commandData, "author.SearchDuplicateCardsCommand");
         this.ok = "ok";
         this.tooShort = "tooShort";
         this.unauthorized = "unauthorized";

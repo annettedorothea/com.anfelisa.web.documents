@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/SynchronousEvent";
 
 export default class AbstractFilterCardsOkEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'author.FilterCardsOkEvent');
+    constructor(eventData) {
+        super(eventData, 'author.FilterCardsOkEvent');
     }
 	getNotifiedListeners() {
 	    return [ "author.views.CategoriesView.filterChanged" ];

@@ -11,52 +11,52 @@ import ResetPasswordAction from "../../src/common/actions/ResetPasswordAction";
 import DisplayErrorAction from "../../src/common/actions/DisplayErrorAction";
 import DisplayMessageAction from "../../src/common/actions/DisplayMessageAction";
 
-export function init(actionParam) {
-    new InitAction(actionParam).apply();
+export function init(actionData) {
+    new InitAction(actionData).apply();
 }
 
-export function routeChanged(actionParam) {
-    new RouteChangedAction(actionParam).apply();
+export function routeChanged(actionData) {
+    new RouteChangedAction(actionData).apply();
 }
 
-export function route(actionParam) {
-    new RouteAction(actionParam).apply();
+export function route(actionData) {
+    new RouteAction(actionData).apply();
 }
 
-export function checkUsername(actionParam) {
-    new CheckUsernameAction(actionParam).apply();
+export function checkUsername(actionData) {
+    new CheckUsernameAction(actionData).apply();
 }
 
-export function registerUser(actionParam) {
-    new RegisterUserAction(actionParam).apply();
+export function registerUser(actionData) {
+    new RegisterUserAction(actionData).apply();
 }
 
-export function login(actionParam) {
-    new LoginAction(actionParam).apply();
+export function login(actionData) {
+    new LoginAction(actionData).apply();
 }
 
-export function logout(actionParam) {
-    new LogoutAction(actionParam).apply();
+export function logout(actionData) {
+    new LogoutAction(actionData).apply();
 }
 
-export function forgotPassword(actionParam) {
-    new ForgotPasswordAction(actionParam).apply();
+export function forgotPassword(actionData) {
+    new ForgotPasswordAction(actionData).apply();
 }
 
-export function confirmEmail(actionParam) {
-    new ConfirmEmailAction(actionParam).apply();
+export function confirmEmail(actionData) {
+    new ConfirmEmailAction(actionData).apply();
 }
 
-export function resetPassword(actionParam) {
-    new ResetPasswordAction(actionParam).apply();
+export function resetPassword(actionData) {
+    new ResetPasswordAction(actionData).apply();
 }
 
-export function displayError(actionParam) {
-    new DisplayErrorAction(actionParam).apply();
+export function displayError(actionData) {
+    new DisplayErrorAction(actionData).apply();
 }
 
-export function displayMessage(actionParam) {
-    new DisplayMessageAction(actionParam).apply();
+export function displayMessage(actionData) {
+    new DisplayMessageAction(actionData).apply();
 }
 
 

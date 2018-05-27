@@ -2,7 +2,6 @@ import AbstractDisplayErrorCommand from "../../../gen/common/commands/AbstractDi
 
 export default class DisplayErrorCommand extends AbstractDisplayErrorCommand {
     execute() {
-        this.commandData.error = this.commandParam.error;
         this.commandData.outcome = this.ok;
     }
 }

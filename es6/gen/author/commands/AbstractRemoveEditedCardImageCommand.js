@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import RemoveEditedCardImageOkEvent from "../../../src/author/events/RemoveEditedCardImageOkEvent";
 
 export default class AbstractRemoveEditedCardImageCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.RemoveEditedCardImageCommand");
+    constructor(commandData) {
+        super(commandData, "author.RemoveEditedCardImageCommand");
         this.ok = "ok";
     }
 

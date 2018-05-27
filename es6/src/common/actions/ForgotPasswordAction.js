@@ -3,8 +3,6 @@ import AbstractForgotPasswordAction from "../../../gen/common/actions/AbstractFo
 export default class ForgotPasswordAction extends AbstractForgotPasswordAction {
 
     initActionData() {
-        this.actionData.username = this.actionParam.username;
-        this.actionData.language = this.actionParam.language;
     }
 
 }

@@ -3,7 +3,6 @@ import AbstractFilterCardsAction from "../../../gen/author/actions/AbstractFilte
 export default class FilterCardsAction extends AbstractFilterCardsAction {
 
     initActionData() {
-        this.actionData.filter = this.actionParam.filter;
     }
 
 }

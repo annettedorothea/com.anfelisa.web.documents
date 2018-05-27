@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import DeleteCategoryClickOkEvent from "../../../src/author/events/DeleteCategoryClickOkEvent";
 
 export default class AbstractDeleteCategoryClickCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.DeleteCategoryClickCommand");
+    constructor(commandData) {
+        super(commandData, "author.DeleteCategoryClickCommand");
         this.ok = "ok";
     }
 

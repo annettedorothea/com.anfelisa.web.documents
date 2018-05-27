@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import CancelEditBoxOkEvent from "../../../src/box/events/CancelEditBoxOkEvent";
 
 export default class AbstractCancelEditBoxCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.CancelEditBoxCommand");
+    constructor(commandData) {
+        super(commandData, "box.CancelEditBoxCommand");
         this.ok = "ok";
     }
 

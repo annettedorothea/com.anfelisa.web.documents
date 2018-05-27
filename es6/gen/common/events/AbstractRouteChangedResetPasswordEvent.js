@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/SynchronousEvent";
 
 export default class AbstractRouteChangedResetPasswordEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'common.RouteChangedResetPasswordEvent');
+    constructor(eventData) {
+        super(eventData, 'common.RouteChangedResetPasswordEvent');
     }
 	getNotifiedListeners() {
 	    return [ "common.views.ResetPasswordView.render" ];

@@ -3,8 +3,6 @@ import AbstractLoadRootCategoriesAction from "../../../gen/box/actions/AbstractL
 export default class LoadRootCategoriesAction extends AbstractLoadRootCategoriesAction {
 
     initActionData() {
-        this.actionData.username = this.actionParam.username;
-        this.actionData.password = this.actionParam.password;
     }
 
 }

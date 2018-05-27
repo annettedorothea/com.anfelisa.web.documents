@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import EditCardOkEvent from "../../../src/author/events/EditCardOkEvent";
 
 export default class AbstractEditCardCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.EditCardCommand");
+    constructor(commandData) {
+        super(commandData, "author.EditCardCommand");
         this.ok = "ok";
     }
 

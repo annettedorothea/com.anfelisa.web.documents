@@ -2,7 +2,6 @@ import AbstractDeleteBoxClickCommand from "../../../gen/box/commands/AbstractDel
 
 export default class DeleteBoxClickCommand extends AbstractDeleteBoxClickCommand {
     execute() {
-        this.commandData.boxId = this.commandParam.boxId;
         this.commandData.outcome = this.ok;
     }
 }

@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import DisplayErrorOkEvent from "../../../src/common/events/DisplayErrorOkEvent";
 
 export default class AbstractDisplayErrorCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "common.DisplayErrorCommand");
+    constructor(commandData) {
+        super(commandData, "common.DisplayErrorCommand");
         this.ok = "ok";
     }
 

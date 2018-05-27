@@ -3,7 +3,6 @@ import AbstractCategorySelectedAction from "../../../gen/box/actions/AbstractCat
 export default class CategorySelectedAction extends AbstractCategorySelectedAction {
 
     initActionData() {
-        this.actionData.categoryId = this.actionParam.categoryId;
     }
 
 }

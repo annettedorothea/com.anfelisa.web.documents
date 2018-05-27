@@ -5,8 +5,8 @@ import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractPostponeCardsOfBoxCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.PostponeCardsOfBoxCommand");
+    constructor(commandData) {
+        super(commandData, "box.PostponeCardsOfBoxCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

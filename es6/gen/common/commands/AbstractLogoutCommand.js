@@ -4,8 +4,8 @@ import LogoutOkEvent from "../../../src/common/events/LogoutOkEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractLogoutCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "common.LogoutCommand");
+    constructor(commandData) {
+        super(commandData, "common.LogoutCommand");
         this.ok = "ok";
     }
 

@@ -32,7 +32,7 @@ ACE {
 		on error ( Common.displayError ) 
 	}
 	async Login preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok ( Common.initUser ) 
+		on ok ( Common.initUser ) triggers (RouteChanged)
 		on unauthorized ( Common.displayError ) triggers ( Logout )
 	}
 	Logout {

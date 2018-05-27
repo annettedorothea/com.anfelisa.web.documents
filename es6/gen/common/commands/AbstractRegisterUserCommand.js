@@ -5,8 +5,8 @@ import RegisterUserErrorEvent from "../../../src/common/events/RegisterUserError
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractRegisterUserCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "common.RegisterUserCommand");
+    constructor(commandData) {
+        super(commandData, "common.RegisterUserCommand");
         this.ok = "ok";
         this.error = "error";
     }

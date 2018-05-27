@@ -4,8 +4,8 @@ import CategoriesView from "../../../src/author/views/CategoriesView";
 
 export default class AbstractSearchDuplicateCardsAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.SearchDuplicateCardsAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.SearchDuplicateCardsAction', false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 
@@ -14,11 +14,11 @@ export default class AbstractSearchDuplicateCardsAction extends Action {
 	}
 
 		preUpdateUI() {
-			CategoriesView.displayNewCardSpinner(this.actionParam);
+			CategoriesView.displayNewCardSpinner(this.actionData);
 		}
 	
 		postUpdateUI() {
-			CategoriesView.hideNewCardSpinner(this.actionParam);
+			CategoriesView.hideNewCardSpinner(this.actionData);
 		}
 
 }

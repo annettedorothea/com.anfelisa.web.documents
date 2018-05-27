@@ -10,9 +10,6 @@ export default class DeleteCardCommand extends AbstractDeleteCardCommand {
             });
             this.httpDelete("api/card/delete", queryParams).then((data) => {
                 this.commandData.outcome = this.ok;
-                this.commandData.username = this.commandParam.username;
-                this.commandData.password = this.commandParam.password;
-                this.commandData.parentCategoryId = this.commandParam.categoryId;
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

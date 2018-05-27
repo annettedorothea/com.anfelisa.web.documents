@@ -3,8 +3,8 @@ import LogoutCommand from "../../../src/common/commands/LogoutCommand";
 
 export default class AbstractLogoutAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'common.LogoutAction', false);
+    constructor(actionData) {
+        super(actionData, 'common.LogoutAction', false);
     }
 
 	getCommand() {

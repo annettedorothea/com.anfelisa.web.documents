@@ -4,8 +4,8 @@ import RegistrationView from "../../../src/common/views/RegistrationView";
 
 export default class AbstractCheckUsernameAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'common.CheckUsernameAction', false);
+    constructor(actionData) {
+        super(actionData, 'common.CheckUsernameAction', false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 
@@ -14,11 +14,11 @@ export default class AbstractCheckUsernameAction extends Action {
 	}
 
 		preUpdateUI() {
-			RegistrationView.displayUsernameSpinner(this.actionParam);
+			RegistrationView.displayUsernameSpinner(this.actionData);
 		}
 	
 		postUpdateUI() {
-			RegistrationView.hideUsernameSpinner(this.actionParam);
+			RegistrationView.hideUsernameSpinner(this.actionData);
 		}
 
 }

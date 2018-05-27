@@ -3,8 +3,8 @@ import LoadWantedImageOfEditedCardCommand from "../../../src/author/commands/Loa
 
 export default class AbstractLoadWantedImageOfEditedCardAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.LoadWantedImageOfEditedCardAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.LoadWantedImageOfEditedCardAction', false);
     }
 
 	getCommand() {

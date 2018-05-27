@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/SynchronousEvent";
 
 export default class AbstractEditCategoryOkEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'author.EditCategoryOkEvent');
+    constructor(eventData) {
+        super(eventData, 'author.EditCategoryOkEvent');
     }
 	getNotifiedListeners() {
 	    return [ "author.views.CategoriesView.editCategory" ];

@@ -3,10 +3,6 @@ import AbstractRegisterUserAction from "../../../gen/common/actions/AbstractRegi
 export default class RegisterUserAction extends AbstractRegisterUserAction {
 
     initActionData() {
-        this.actionData.username = this.actionParam.username;
-        this.actionData.password = this.actionParam.password;
-        this.actionData.email = this.actionParam.email;
-        this.actionData.language = this.actionParam.language;
     }
 
 }

@@ -3,7 +3,6 @@ import AbstractWantedLanguageOfEditedCategoryChangedAction from "../../../gen/au
 export default class WantedLanguageOfEditedCategoryChangedAction extends AbstractWantedLanguageOfEditedCategoryChangedAction {
 
     initActionData() {
-        this.actionData.wantedLanguage = this.actionParam.wantedLanguage;
     }
 
 }

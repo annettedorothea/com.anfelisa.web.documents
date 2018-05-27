@@ -3,8 +3,8 @@ import PostponeCardsOfBoxCommand from "../../../src/box/commands/PostponeCardsOf
 
 export default class AbstractPostponeCardsOfBoxAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'box.PostponeCardsOfBoxAction', false);
+    constructor(actionData) {
+        super(actionData, 'box.PostponeCardsOfBoxAction', false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

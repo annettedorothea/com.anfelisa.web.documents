@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import NameOfNewCategoryChangedOkEvent from "../../../src/author/events/NameOfNewCategoryChangedOkEvent";
 
 export default class AbstractNameOfNewCategoryChangedCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.NameOfNewCategoryChangedCommand");
+    constructor(commandData) {
+        super(commandData, "author.NameOfNewCategoryChangedCommand");
         this.ok = "ok";
     }
 

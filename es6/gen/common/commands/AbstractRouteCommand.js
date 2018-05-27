@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import RouteOkEvent from "../../../src/common/events/RouteOkEvent";
 
 export default class AbstractRouteCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "common.RouteCommand");
+    constructor(commandData) {
+        super(commandData, "common.RouteCommand");
         this.ok = "ok";
     }
 

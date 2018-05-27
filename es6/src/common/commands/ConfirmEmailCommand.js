@@ -6,7 +6,7 @@ export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
             let queryParams = [];
             queryParams.push({
                 key: "token",
-                value: this.commandParam.token
+                value: this.commandData.token
             });
             this.commandData.hash = "#";
             this.httpPut("api/users/confirm", queryParams).then(() => {

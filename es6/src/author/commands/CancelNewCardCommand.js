@@ -2,11 +2,6 @@ import AbstractCancelNewCardCommand from "../../../gen/author/commands/AbstractC
 
 export default class CancelNewCardCommand extends AbstractCancelNewCardCommand {
     execute() {
-        this.commandData.data = {
-            parentDictionaryLookup: this.commandParam.parentDictionaryLookup,
-            parentGivenLanguage: this.commandParam.parentGivenLanguage,
-            parentWantedLanguage: this.commandParam.parentWantedLanguage
-        };
         this.commandData.outcome = this.ok;
     }
 }

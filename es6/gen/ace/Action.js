@@ -2,20 +2,13 @@ import ACEController from "./ACEController";
 import AppUtils from "../../src/app/AppUtils";
 
 export default class Action {
-    constructor(actionParam, actionName, isInitAction) {
+    constructor(actionData, actionName, isInitAction) {
         this.actionName = actionName;
-        if (actionParam === undefined) {
-            actionParam = {};
+        if (actionData === undefined) {
+            actionData = {};
         }
-        this.actionParam = AppUtils.deepCopy(actionParam);
-        this.actionData = {};
+        this.actionData = AppUtils.deepCopy(actionData);
         this.isInitAction = isInitAction === true;
-    }
-
-    captureActionParam() {
-    }
-
-    releaseActionParam() {
     }
 
     initActionData() {

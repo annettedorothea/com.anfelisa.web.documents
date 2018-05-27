@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import GivenLanguageOfEditedCategoryChangedOkEvent from "../../../src/author/events/GivenLanguageOfEditedCategoryChangedOkEvent";
 
 export default class AbstractGivenLanguageOfEditedCategoryChangedCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.GivenLanguageOfEditedCategoryChangedCommand");
+    constructor(commandData) {
+        super(commandData, "author.GivenLanguageOfEditedCategoryChangedCommand");
         this.ok = "ok";
     }
 

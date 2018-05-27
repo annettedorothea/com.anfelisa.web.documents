@@ -3,7 +3,6 @@ import AbstractDisplayErrorAction from "../../../gen/common/actions/AbstractDisp
 export default class DisplayErrorAction extends AbstractDisplayErrorAction {
 
     initActionData() {
-        this.actionData.error = this.actionParam.error;
     }
 
 }

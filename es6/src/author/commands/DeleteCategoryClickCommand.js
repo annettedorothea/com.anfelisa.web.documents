@@ -2,7 +2,6 @@ import AbstractDeleteCategoryClickCommand from "../../../gen/author/commands/Abs
 
 export default class DeleteCategoryClickCommand extends AbstractDeleteCategoryClickCommand {
     execute() {
-        this.commandData.categoryId = this.commandParam.categoryId;
         this.commandData.outcome = this.ok;
     }
 }

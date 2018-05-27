@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractPostponeCardsOfBoxUnauthorizedEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'box.PostponeCardsOfBoxUnauthorizedEvent');
+    constructor(eventData) {
+        super(eventData, 'box.PostponeCardsOfBoxUnauthorizedEvent');
     }
 	getNotifiedListeners() {
 	    return [ "common.views.CommonView.displayError" ];

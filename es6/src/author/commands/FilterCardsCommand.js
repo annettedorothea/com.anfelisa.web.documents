@@ -2,7 +2,6 @@ import AbstractFilterCardsCommand from "../../../gen/author/commands/AbstractFil
 
 export default class FilterCardsCommand extends AbstractFilterCardsCommand {
     execute() {
-        this.commandData.filter = this.commandParam.filter;
         this.commandData.outcome = this.ok;
     }
 }

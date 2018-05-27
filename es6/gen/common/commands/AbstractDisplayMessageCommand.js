@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import DisplayMessageOkEvent from "../../../src/common/events/DisplayMessageOkEvent";
 
 export default class AbstractDisplayMessageCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "common.DisplayMessageCommand");
+    constructor(commandData) {
+        super(commandData, "common.DisplayMessageCommand");
         this.ok = "ok";
     }
 

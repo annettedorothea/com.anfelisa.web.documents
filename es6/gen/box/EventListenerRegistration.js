@@ -20,7 +20,7 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.CancelEditBoxOkEvent', BoxListView.cancelEditBox);
 		ACEController.registerListener('box.UpdateBoxUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('box.DeleteBoxClickOkEvent', BoxListView.displayConfirmDelete);
-		ACEController.registerListener('box.CancelDeleteCategoryOkEvent', BoxListView.hideConfirmDelete);
+		ACEController.registerListener('box.CancelDeleteBoxOkEvent', BoxListView.hideConfirmDelete);
 		ACEController.registerListener('box.DeleteBoxUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('box.PostponeCardsOfBoxUnauthorizedEvent', CommonView.displayError);
 	}

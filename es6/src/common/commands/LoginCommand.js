@@ -4,8 +4,6 @@ export default class LoginCommand extends AbstractLoginCommand {
     execute() {
         return new Promise((resolve) => {
             this.httpGet("api/user/role").then((data) => {
-                this.commandData.username = this.commandParam.username;
-                this.commandData.password = this.commandParam.password;
                 this.commandData.role = data.credentialsRole;
                 this.commandData.outcome = this.ok;
                 resolve();

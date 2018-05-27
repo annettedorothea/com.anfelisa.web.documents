@@ -5,8 +5,8 @@ import TranslateGivenFetchedEvent from "../../../src/author/events/TranslateGive
 import SearchDuplicateCardsAction from "../../../src/author/actions/SearchDuplicateCardsAction";
 
 export default class AbstractTranslateCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.TranslateCommand");
+    constructor(commandData) {
+        super(commandData, "author.TranslateCommand");
         this.wantedFetched = "wantedFetched";
         this.givenFetched = "givenFetched";
         this.error = "error";

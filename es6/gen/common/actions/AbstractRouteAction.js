@@ -3,8 +3,8 @@ import RouteCommand from "../../../src/common/commands/RouteCommand";
 
 export default class AbstractRouteAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'common.RouteAction', false);
+    constructor(actionData) {
+        super(actionData, 'common.RouteAction', false);
     }
 
 	getCommand() {

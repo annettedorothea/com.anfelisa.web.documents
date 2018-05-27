@@ -19,9 +19,9 @@ export default class BoxListView {
         });
 	};
 	
-	static toggleMaxInterval(eventData) {
+	static toggleMaxInterval() {
         let data = App.container.state.data;
-        data.editedBox.maxIntervalChecked = !data.maxIntervalChecked;
+        data.editedBox.maxIntervalChecked = !data.editedBox.maxIntervalChecked;
         data.editedBox.maxInterval = "";
         App.container.setState({
             data
@@ -41,7 +41,6 @@ export default class BoxListView {
         data.editedBox.boxId = eventData.boxId;
         data.editedBox.maxIntervalChecked = eventData.maxIntervalChecked;
         data.editedBox.maxInterval = eventData.maxInterval;
-        console.log("editBox", data);
         App.container.setState({
             data
         });
@@ -57,7 +56,7 @@ export default class BoxListView {
 
 	static displayConfirmDelete(eventData) {
         let data = App.container.state.data;
-        data.deleteCard = {
+        data.deleteBox = {
             confirmDelete: true,
             boxId: eventData.boxId
         };
@@ -68,7 +67,7 @@ export default class BoxListView {
 
 	static hideConfirmDelete(eventData) {
         let data = App.container.state.data;
-        data.deleteCard = {
+        data.deleteBox = {
             confirmDelete: false,
             boxId: ""
         };

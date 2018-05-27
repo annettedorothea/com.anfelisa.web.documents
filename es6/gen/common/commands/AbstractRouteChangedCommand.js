@@ -12,8 +12,8 @@ import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesActi
 import LoadRootCategoriesAction from "../../../src/box/actions/LoadRootCategoriesAction";
 
 export default class AbstractRouteChangedCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "common.RouteChangedCommand");
+    constructor(commandData) {
+        super(commandData, "common.RouteChangedCommand");
         this.login = "login";
         this.registration = "registration";
         this.dashboard = "dashboard";

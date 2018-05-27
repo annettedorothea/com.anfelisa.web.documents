@@ -10,9 +10,6 @@ export default class DeleteCategoryCommand extends AbstractDeleteCategoryCommand
             });
             this.httpDelete("api/category/delete", queryParams).then((data) => {
                 this.commandData.outcome = this.ok;
-                this.commandData.username = this.commandParam.username;
-                this.commandData.password = this.commandParam.password;
-                this.commandData.parentCategoryId = this.commandParam.parentCategoryId;
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

@@ -4,8 +4,8 @@ import WantedOfNewCardChangedOkEvent from "../../../src/author/events/WantedOfNe
 import SearchDuplicateCardsAction from "../../../src/author/actions/SearchDuplicateCardsAction";
 
 export default class AbstractWantedOfNewCardChangedCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.WantedOfNewCardChangedCommand");
+    constructor(commandData) {
+        super(commandData, "author.WantedOfNewCardChangedCommand");
         this.ok = "ok";
     }
 

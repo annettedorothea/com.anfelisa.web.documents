@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import CategorySelectedOkEvent from "../../../src/box/events/CategorySelectedOkEvent";
 
 export default class AbstractCategorySelectedCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.CategorySelectedCommand");
+    constructor(commandData) {
+        super(commandData, "box.CategorySelectedCommand");
         this.ok = "ok";
     }
 

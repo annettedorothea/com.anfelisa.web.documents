@@ -3,7 +3,6 @@ import AbstractGivenLanguageOfEditedCategoryChangedAction from "../../../gen/aut
 export default class GivenLanguageOfEditedCategoryChangedAction extends AbstractGivenLanguageOfEditedCategoryChangedAction {
 
     initActionData() {
-        this.actionData.givenLanguage = this.actionParam.givenLanguage;
     }
 
 }

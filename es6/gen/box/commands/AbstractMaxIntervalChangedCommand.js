@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import MaxIntervalChangedOkEvent from "../../../src/box/events/MaxIntervalChangedOkEvent";
 
 export default class AbstractMaxIntervalChangedCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.MaxIntervalChangedCommand");
+    constructor(commandData) {
+        super(commandData, "box.MaxIntervalChangedCommand");
         this.ok = "ok";
     }
 

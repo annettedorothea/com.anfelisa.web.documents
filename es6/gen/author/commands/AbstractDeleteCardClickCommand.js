@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import DeleteCardClickOkEvent from "../../../src/author/events/DeleteCardClickOkEvent";
 
 export default class AbstractDeleteCardClickCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.DeleteCardClickCommand");
+    constructor(commandData) {
+        super(commandData, "author.DeleteCardClickCommand");
         this.ok = "ok";
     }
 

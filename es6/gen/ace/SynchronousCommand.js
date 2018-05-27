@@ -24,7 +24,7 @@ export default class SynchronousCommand extends Command {
             }
         } else {
             try {
-                const timelineCommand = ACEController.getCommandByUuid(this.commandParam.uuid);
+                const timelineCommand = ACEController.getCommandByUuid(this.commandData.uuid);
                 this.commandData = timelineCommand.commandData;
                 ACEController.addItemToTimeLine({command: this});
                 this.publishEvents();

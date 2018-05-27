@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import ToggleInputOrderOkEvent from "../../../src/author/events/ToggleInputOrderOkEvent";
 
 export default class AbstractToggleInputOrderCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.ToggleInputOrderCommand");
+    constructor(commandData) {
+        super(commandData, "author.ToggleInputOrderCommand");
         this.ok = "ok";
     }
 

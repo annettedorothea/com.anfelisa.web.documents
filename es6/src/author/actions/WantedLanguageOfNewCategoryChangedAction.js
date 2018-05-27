@@ -3,7 +3,6 @@ import AbstractWantedLanguageOfNewCategoryChangedAction from "../../../gen/autho
 export default class WantedLanguageOfNewCategoryChangedAction extends AbstractWantedLanguageOfNewCategoryChangedAction {
 
     initActionData() {
-        this.actionData.wantedLanguage = this.actionParam.wantedLanguage;
     }
 
 }

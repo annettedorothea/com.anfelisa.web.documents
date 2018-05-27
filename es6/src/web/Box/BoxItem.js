@@ -1,23 +1,14 @@
 import React from 'react';
 import DeleteBoxClickAction from "../../box/actions/DeleteBoxClickAction";
 import EditBoxAction from "../../box/actions/EditBoxAction";
+import DaysBehindSchedule from "./DaysBehindSchedule";
 
 export default class BoxItem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onMaxIntervalChange = this.onMaxIntervalChange.bind(this);
-        this.onMaxIntervalCheckedChange = this.onMaxIntervalCheckedChange.bind(this);
-        this.onDeleteClick = this.onDeleteClick.bind(this);
         this.onEdit = this.onEdit.bind(this);
-    }
-
-    onMaxIntervalChange(event) {
-        const maxInterval = event.target.value;
-    }
-
-    onMaxIntervalCheckedChange() {
-        //new ToggleMaxIntervalAction().apply();
+        this.onDeleteClick = this.onDeleteClick.bind(this);
     }
 
     onDeleteClick() {
@@ -28,15 +19,15 @@ export default class BoxItem extends React.Component {
         const data = {
             boxId: this.props.boxId,
             maxInterval: this.props.maxInterval ? this.props.maxInterval : "",
-            maxIntervalChecked: this.props.maxInterval && this.props.maxInterval > 0 ? true : false
+            maxIntervalChecked: !!(this.props.maxInterval && this.props.maxInterval > 0)
         };
         new EditBoxAction(data).apply();
     }
 
-
     render() {
         return (
             <div>
+
                 <h1>{this.props.categoryName} - {this.props.totalCards} {this.props.texts.box.totalCards}</h1>
 
                 {this.props.maxInterval > 1 &&
@@ -57,6 +48,14 @@ export default class BoxItem extends React.Component {
                 </table>
                 <button onClick={() => this.onDeleteClick(this.props.boxId)}>{"\u2717"}</button>
                 <button onClick={() => this.onEdit(this.props.boxId)}>{"\u270E"}</button>
+
+                <DaysBehindSchedule
+                    boxId={this.props.boxId}
+                    daysBehindSchedule={this.props.daysBehindSchedule}
+                    texts={this.props.texts}
+                    username={this.props.username}
+                    password={this.props.password}
+                />
             </div>
         );
     }

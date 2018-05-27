@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/SynchronousEvent";
 
 export default class AbstractRemoveEditedCardImageOkEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'author.RemoveEditedCardImageOkEvent');
+    constructor(eventData) {
+        super(eventData, 'author.RemoveEditedCardImageOkEvent');
     }
 	getNotifiedListeners() {
 	    return [ "author.views.CategoriesView.removeEditedCardImage" ];

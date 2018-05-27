@@ -3,7 +3,6 @@ import AbstractDeleteBoxClickAction from "../../../gen/box/actions/AbstractDelet
 export default class DeleteBoxClickAction extends AbstractDeleteBoxClickAction {
 
     initActionData() {
-        this.actionData.boxId = this.actionParam.boxId;
     }
 
 }

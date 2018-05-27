@@ -3,7 +3,6 @@ import AbstractDisplayMessageAction from "../../../gen/common/actions/AbstractDi
 export default class DisplayMessageAction extends AbstractDisplayMessageAction {
 
     initActionData() {
-        this.actionData.message = this.actionParam.message;
     }
 
 }

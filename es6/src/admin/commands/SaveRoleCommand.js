@@ -6,16 +6,14 @@ export default class SaveRoleCommand extends AbstractSaveRoleCommand {
             let queryParams = [];
             queryParams.push({
                 key: "userId",
-                value: this.commandParam.userId
+                value: this.commandData.userId
             });
             queryParams.push({
                 key: "role",
-                value: this.commandParam.role
+                value: this.commandData.role
             });
             this.httpPut("api/user/role", queryParams).then(() => {
                 this.commandData.outcome = this.ok;
-                this.commandData.username = this.commandParam.username;
-                this.commandData.password = this.commandParam.password;
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

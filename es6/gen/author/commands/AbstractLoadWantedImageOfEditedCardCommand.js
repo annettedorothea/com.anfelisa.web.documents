@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadWantedImageOfEditedCardOkEvent from "../../../src/author/events/LoadWantedImageOfEditedCardOkEvent";
 
 export default class AbstractLoadWantedImageOfEditedCardCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.LoadWantedImageOfEditedCardCommand");
+    constructor(commandData) {
+        super(commandData, "author.LoadWantedImageOfEditedCardCommand");
         this.ok = "ok";
         this.error = "error";
     }

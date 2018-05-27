@@ -2,7 +2,6 @@ import AbstractMaxIntervalChangedCommand from "../../../gen/box/commands/Abstrac
 
 export default class MaxIntervalChangedCommand extends AbstractMaxIntervalChangedCommand {
     execute() {
-        this.commandData.maxInterval = this.commandParam.maxInterval;
         this.commandData.outcome = this.ok;
     }
 }

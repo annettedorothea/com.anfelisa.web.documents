@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractResetPasswordErrorEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'common.ResetPasswordErrorEvent');
+    constructor(eventData) {
+        super(eventData, 'common.ResetPasswordErrorEvent');
     }
 	getNotifiedListeners() {
 	    return [ "common.views.CommonView.displayError" ];

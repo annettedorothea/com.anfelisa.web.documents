@@ -2,7 +2,6 @@ import AbstractGivenLanguageOfEditedCategoryChangedCommand from "../../../gen/au
 
 export default class GivenLanguageOfEditedCategoryChangedCommand extends AbstractGivenLanguageOfEditedCategoryChangedCommand {
     execute() {
-        this.commandData.givenLanguage = this.commandParam.givenLanguage;
         this.commandData.outcome = this.ok;
     }
 }

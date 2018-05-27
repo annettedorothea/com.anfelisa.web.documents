@@ -3,8 +3,8 @@ import RemoveEditedCardImageCommand from "../../../src/author/commands/RemoveEdi
 
 export default class AbstractRemoveEditedCardImageAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.RemoveEditedCardImageAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.RemoveEditedCardImageAction', false);
     }
 
 	getCommand() {

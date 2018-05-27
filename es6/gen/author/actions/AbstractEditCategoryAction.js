@@ -3,8 +3,8 @@ import EditCategoryCommand from "../../../src/author/commands/EditCategoryComman
 
 export default class AbstractEditCategoryAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.EditCategoryAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.EditCategoryAction', false);
     }
 
 	getCommand() {

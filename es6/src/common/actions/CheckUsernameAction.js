@@ -3,7 +3,6 @@ import AbstractCheckUsernameAction from "../../../gen/common/actions/AbstractChe
 export default class CheckUsernameAction extends AbstractCheckUsernameAction {
 
     initActionData() {
-        this.actionData.username = this.actionParam.username;
     }
 
 }

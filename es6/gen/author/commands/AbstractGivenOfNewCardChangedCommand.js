@@ -4,8 +4,8 @@ import GivenOfNewCardChangedOkEvent from "../../../src/author/events/GivenOfNewC
 import SearchDuplicateCardsAction from "../../../src/author/actions/SearchDuplicateCardsAction";
 
 export default class AbstractGivenOfNewCardChangedCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.GivenOfNewCardChangedCommand");
+    constructor(commandData) {
+        super(commandData, "author.GivenOfNewCardChangedCommand");
         this.ok = "ok";
     }
 

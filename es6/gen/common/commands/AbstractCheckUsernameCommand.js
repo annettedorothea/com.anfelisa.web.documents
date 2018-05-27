@@ -4,8 +4,8 @@ import CheckUsernameAvailableEvent from "../../../src/common/events/CheckUsernam
 import CheckUsernameNotAvailableEvent from "../../../src/common/events/CheckUsernameNotAvailableEvent";
 
 export default class AbstractCheckUsernameCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "common.CheckUsernameCommand");
+    constructor(commandData) {
+        super(commandData, "common.CheckUsernameCommand");
         this.empty = "empty";
         this.available = "available";
         this.notAvailable = "notAvailable";

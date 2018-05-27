@@ -5,8 +5,8 @@ import LoadUserUnauthorizedEvent from "../../../src/profile/events/LoadUserUnaut
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadUserCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "profile.LoadUserCommand");
+    constructor(commandData) {
+        super(commandData, "profile.LoadUserCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

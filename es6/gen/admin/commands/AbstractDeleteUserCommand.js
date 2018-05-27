@@ -5,8 +5,8 @@ import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractDeleteUserCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "admin.DeleteUserCommand");
+    constructor(commandData) {
+        super(commandData, "admin.DeleteUserCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

@@ -3,14 +3,14 @@ import AbstractCheckUsernameCommand from "../../../gen/common/commands/AbstractC
 export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
     execute() {
         return new Promise((resolve, reject) => {
-            if (!this.commandParam.username) {
+            if (!this.commandData.username) {
                 this.commandData.outcome = this.empty;
                 resolve();
             } else {
                 let queryParams = [];
                 queryParams.push({
                     key: "username",
-                    value: this.commandParam.username
+                    value: this.commandData.username
                 });
                 this.httpGet("api/users/username", queryParams).then((data) => {
                     if (data.available === true) {

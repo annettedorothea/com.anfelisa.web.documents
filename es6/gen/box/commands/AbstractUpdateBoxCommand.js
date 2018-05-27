@@ -5,8 +5,8 @@ import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractUpdateBoxCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.UpdateBoxCommand");
+    constructor(commandData) {
+        super(commandData, "box.UpdateBoxCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

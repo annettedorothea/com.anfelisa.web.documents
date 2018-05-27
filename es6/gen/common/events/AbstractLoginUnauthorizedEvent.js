@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractLoginUnauthorizedEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'common.LoginUnauthorizedEvent');
+    constructor(eventData) {
+        super(eventData, 'common.LoginUnauthorizedEvent');
     }
 	getNotifiedListeners() {
 	    return [ "common.views.CommonView.displayError" ];

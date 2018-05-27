@@ -3,7 +3,6 @@ import AbstractDeleteCardClickAction from "../../../gen/author/actions/AbstractD
 export default class DeleteCardClickAction extends AbstractDeleteCardClickAction {
 
     initActionData() {
-        this.actionData.cardId = this.actionParam.cardId;
     }
 
 }

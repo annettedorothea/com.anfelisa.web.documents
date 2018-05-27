@@ -5,8 +5,8 @@ import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractDeleteBoxCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.DeleteBoxCommand");
+    constructor(commandData) {
+        super(commandData, "box.DeleteBoxCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

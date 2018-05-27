@@ -3,8 +3,8 @@ import GivenOfNewCardChangedCommand from "../../../src/author/commands/GivenOfNe
 
 export default class AbstractGivenOfNewCardChangedAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.GivenOfNewCardChangedAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.GivenOfNewCardChangedAction', false);
     }
 
 	getCommand() {

@@ -37,156 +37,156 @@ import LoadWantedImageOfEditedCardAction from "../../src/author/actions/LoadWant
 import RemoveNewCardImageAction from "../../src/author/actions/RemoveNewCardImageAction";
 import RemoveEditedCardImageAction from "../../src/author/actions/RemoveEditedCardImageAction";
 
-export function loadCategories(actionParam) {
-    new LoadCategoriesAction(actionParam).apply();
+export function loadCategories(actionData) {
+    new LoadCategoriesAction(actionData).apply();
 }
 
-export function createCategory(actionParam) {
-    new CreateCategoryAction(actionParam).apply();
+export function createCategory(actionData) {
+    new CreateCategoryAction(actionData).apply();
 }
 
-export function updateCategory(actionParam) {
-    new UpdateCategoryAction(actionParam).apply();
+export function updateCategory(actionData) {
+    new UpdateCategoryAction(actionData).apply();
 }
 
-export function deleteCategory(actionParam) {
-    new DeleteCategoryAction(actionParam).apply();
+export function deleteCategory(actionData) {
+    new DeleteCategoryAction(actionData).apply();
 }
 
-export function nameOfNewCategoryChanged(actionParam) {
-    new NameOfNewCategoryChangedAction(actionParam).apply();
+export function nameOfNewCategoryChanged(actionData) {
+    new NameOfNewCategoryChangedAction(actionData).apply();
 }
 
-export function cancelNewCategory(actionParam) {
-    new CancelNewCategoryAction(actionParam).apply();
+export function cancelNewCategory(actionData) {
+    new CancelNewCategoryAction(actionData).apply();
 }
 
-export function nameOfEditedCategoryChanged(actionParam) {
-    new NameOfEditedCategoryChangedAction(actionParam).apply();
+export function nameOfEditedCategoryChanged(actionData) {
+    new NameOfEditedCategoryChangedAction(actionData).apply();
 }
 
-export function cancelEditCategory(actionParam) {
-    new CancelEditCategoryAction(actionParam).apply();
+export function cancelEditCategory(actionData) {
+    new CancelEditCategoryAction(actionData).apply();
 }
 
-export function editCategory(actionParam) {
-    new EditCategoryAction(actionParam).apply();
+export function editCategory(actionData) {
+    new EditCategoryAction(actionData).apply();
 }
 
-export function deleteCategoryClick(actionParam) {
-    new DeleteCategoryClickAction(actionParam).apply();
+export function deleteCategoryClick(actionData) {
+    new DeleteCategoryClickAction(actionData).apply();
 }
 
-export function cancelDeleteCategory(actionParam) {
-    new CancelDeleteCategoryAction(actionParam).apply();
+export function cancelDeleteCategory(actionData) {
+    new CancelDeleteCategoryAction(actionData).apply();
 }
 
-export function createCard(actionParam) {
-    new CreateCardAction(actionParam).apply();
+export function createCard(actionData) {
+    new CreateCardAction(actionData).apply();
 }
 
-export function updateCard(actionParam) {
-    new UpdateCardAction(actionParam).apply();
+export function updateCard(actionData) {
+    new UpdateCardAction(actionData).apply();
 }
 
-export function deleteCard(actionParam) {
-    new DeleteCardAction(actionParam).apply();
+export function deleteCard(actionData) {
+    new DeleteCardAction(actionData).apply();
 }
 
-export function givenOfNewCardChanged(actionParam) {
-    new GivenOfNewCardChangedAction(actionParam).apply();
+export function givenOfNewCardChanged(actionData) {
+    new GivenOfNewCardChangedAction(actionData).apply();
 }
 
-export function searchDuplicateCards(actionParam) {
-    new SearchDuplicateCardsAction(actionParam).apply();
+export function searchDuplicateCards(actionData) {
+    new SearchDuplicateCardsAction(actionData).apply();
 }
 
-export function wantedOfNewCardChanged(actionParam) {
-    new WantedOfNewCardChangedAction(actionParam).apply();
+export function wantedOfNewCardChanged(actionData) {
+    new WantedOfNewCardChangedAction(actionData).apply();
 }
 
-export function cancelNewCard(actionParam) {
-    new CancelNewCardAction(actionParam).apply();
+export function cancelNewCard(actionData) {
+    new CancelNewCardAction(actionData).apply();
 }
 
-export function givenOfEditedCardChanged(actionParam) {
-    new GivenOfEditedCardChangedAction(actionParam).apply();
+export function givenOfEditedCardChanged(actionData) {
+    new GivenOfEditedCardChangedAction(actionData).apply();
 }
 
-export function wantedOfEditedCardChanged(actionParam) {
-    new WantedOfEditedCardChangedAction(actionParam).apply();
+export function wantedOfEditedCardChanged(actionData) {
+    new WantedOfEditedCardChangedAction(actionData).apply();
 }
 
-export function cancelEditCard(actionParam) {
-    new CancelEditCardAction(actionParam).apply();
+export function cancelEditCard(actionData) {
+    new CancelEditCardAction(actionData).apply();
 }
 
-export function editCard(actionParam) {
-    new EditCardAction(actionParam).apply();
+export function editCard(actionData) {
+    new EditCardAction(actionData).apply();
 }
 
-export function deleteCardClick(actionParam) {
-    new DeleteCardClickAction(actionParam).apply();
+export function deleteCardClick(actionData) {
+    new DeleteCardClickAction(actionData).apply();
 }
 
-export function cancelDeleteCard(actionParam) {
-    new CancelDeleteCardAction(actionParam).apply();
+export function cancelDeleteCard(actionData) {
+    new CancelDeleteCardAction(actionData).apply();
 }
 
-export function filterCards(actionParam) {
-    new FilterCardsAction(actionParam).apply();
+export function filterCards(actionData) {
+    new FilterCardsAction(actionData).apply();
 }
 
-export function translate(actionParam) {
-    new TranslateAction(actionParam).apply();
+export function translate(actionData) {
+    new TranslateAction(actionData).apply();
 }
 
-export function toggleDictionaryLookupOfNewCategory(actionParam) {
-    new ToggleDictionaryLookupOfNewCategoryAction(actionParam).apply();
+export function toggleDictionaryLookupOfNewCategory(actionData) {
+    new ToggleDictionaryLookupOfNewCategoryAction(actionData).apply();
 }
 
-export function toggleDictionaryLookupOfEditedCategory(actionParam) {
-    new ToggleDictionaryLookupOfEditedCategoryAction(actionParam).apply();
+export function toggleDictionaryLookupOfEditedCategory(actionData) {
+    new ToggleDictionaryLookupOfEditedCategoryAction(actionData).apply();
 }
 
-export function givenLanguageOfNewCategoryChanged(actionParam) {
-    new GivenLanguageOfNewCategoryChangedAction(actionParam).apply();
+export function givenLanguageOfNewCategoryChanged(actionData) {
+    new GivenLanguageOfNewCategoryChangedAction(actionData).apply();
 }
 
-export function givenLanguageOfEditedCategoryChanged(actionParam) {
-    new GivenLanguageOfEditedCategoryChangedAction(actionParam).apply();
+export function givenLanguageOfEditedCategoryChanged(actionData) {
+    new GivenLanguageOfEditedCategoryChangedAction(actionData).apply();
 }
 
-export function wantedLanguageOfNewCategoryChanged(actionParam) {
-    new WantedLanguageOfNewCategoryChangedAction(actionParam).apply();
+export function wantedLanguageOfNewCategoryChanged(actionData) {
+    new WantedLanguageOfNewCategoryChangedAction(actionData).apply();
 }
 
-export function wantedLanguageOfEditedCategoryChanged(actionParam) {
-    new WantedLanguageOfEditedCategoryChangedAction(actionParam).apply();
+export function wantedLanguageOfEditedCategoryChanged(actionData) {
+    new WantedLanguageOfEditedCategoryChangedAction(actionData).apply();
 }
 
-export function toggleInputOrder(actionParam) {
-    new ToggleInputOrderAction(actionParam).apply();
+export function toggleInputOrder(actionData) {
+    new ToggleInputOrderAction(actionData).apply();
 }
 
-export function toggleUseDictionary(actionParam) {
-    new ToggleUseDictionaryAction(actionParam).apply();
+export function toggleUseDictionary(actionData) {
+    new ToggleUseDictionaryAction(actionData).apply();
 }
 
-export function loadWantedImageOfNewCard(actionParam) {
-    new LoadWantedImageOfNewCardAction(actionParam).apply();
+export function loadWantedImageOfNewCard(actionData) {
+    new LoadWantedImageOfNewCardAction(actionData).apply();
 }
 
-export function loadWantedImageOfEditedCard(actionParam) {
-    new LoadWantedImageOfEditedCardAction(actionParam).apply();
+export function loadWantedImageOfEditedCard(actionData) {
+    new LoadWantedImageOfEditedCardAction(actionData).apply();
 }
 
-export function removeNewCardImage(actionParam) {
-    new RemoveNewCardImageAction(actionParam).apply();
+export function removeNewCardImage(actionData) {
+    new RemoveNewCardImageAction(actionData).apply();
 }
 
-export function removeEditedCardImage(actionParam) {
-    new RemoveEditedCardImageAction(actionParam).apply();
+export function removeEditedCardImage(actionData) {
+    new RemoveEditedCardImageAction(actionData).apply();
 }
 
 

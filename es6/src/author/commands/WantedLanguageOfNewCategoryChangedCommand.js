@@ -2,7 +2,6 @@ import AbstractWantedLanguageOfNewCategoryChangedCommand from "../../../gen/auth
 
 export default class WantedLanguageOfNewCategoryChangedCommand extends AbstractWantedLanguageOfNewCategoryChangedCommand {
     execute() {
-        this.commandData.wantedLanguage = this.commandParam.wantedLanguage;
         this.commandData.outcome = this.ok;
     }
 }

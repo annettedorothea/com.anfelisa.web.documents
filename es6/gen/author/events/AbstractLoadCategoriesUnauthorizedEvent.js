@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractLoadCategoriesUnauthorizedEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'author.LoadCategoriesUnauthorizedEvent');
+    constructor(eventData) {
+        super(eventData, 'author.LoadCategoriesUnauthorizedEvent');
     }
 	getNotifiedListeners() {
 	    return [ "common.views.CommonView.displayError" ];

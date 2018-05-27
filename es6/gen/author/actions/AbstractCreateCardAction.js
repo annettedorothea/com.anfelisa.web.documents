@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractCreateCardAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.CreateCardAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.CreateCardAction', false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 
@@ -14,11 +14,11 @@ export default class AbstractCreateCardAction extends Action {
 	}
 
 		preUpdateUI() {
-			CommonView.displaySpinner(this.actionParam);
+			CommonView.displaySpinner(this.actionData);
 		}
 	
 		postUpdateUI() {
-			CommonView.hideSpinner(this.actionParam);
+			CommonView.hideSpinner(this.actionData);
 		}
 
 }

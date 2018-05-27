@@ -3,8 +3,8 @@ import CategorySelectedCommand from "../../../src/box/commands/CategorySelectedC
 
 export default class AbstractCategorySelectedAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'box.CategorySelectedAction', false);
+    constructor(actionData) {
+        super(actionData, 'box.CategorySelectedAction', false);
     }
 
 	getCommand() {

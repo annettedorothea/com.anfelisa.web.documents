@@ -3,23 +3,23 @@ import AbstractSearchDuplicateCardsCommand from "../../../gen/author/commands/Ab
 export default class SearchDuplicateCardsCommand extends AbstractSearchDuplicateCardsCommand {
     execute() {
         return new Promise((resolve, reject) => {
-            if (this.commandParam.given && this.commandParam.given.length > 0 || this.commandParam.wanted && this.commandParam.wanted.length > 0) {
+            if (this.commandData.given && this.commandData.given.length > 0 || this.commandData.wanted && this.commandData.wanted.length > 0) {
                 let queryParams = [];
                 queryParams.push({
                     key: "given",
-                    value: this.commandParam.given
+                    value: this.commandData.given
                 });
                 queryParams.push({
                     key: "wanted",
-                    value: this.commandParam.wanted
+                    value: this.commandData.wanted
                 });
                 queryParams.push({
                     key: "categoryId",
-                    value: this.commandParam.categoryId
+                    value: this.commandData.categoryId
                 });
                 queryParams.push({
                     key: "naturalInputOrder",
-                    value: this.commandParam.naturalInputOrder
+                    value: this.commandData.naturalInputOrder
                 });
                 this.httpGet("api/cards/search", queryParams).then((data) => {
                     this.commandData.data = data;

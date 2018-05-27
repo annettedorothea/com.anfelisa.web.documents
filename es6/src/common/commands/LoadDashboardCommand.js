@@ -4,8 +4,6 @@ export default class LoadDashboardCommand extends AbstractLoadDashboardCommand {
     execute() {
         return new Promise((resolve, reject) => {
             this.httpGet("api/user/role").then((data) => {
-                this.commandData.username = this.commandParam.username;
-                this.commandData.password = this.commandParam.password;
                 this.commandData.role = data.credentialsRole;
                 this.commandData.outcome = this.ok;
                 resolve();

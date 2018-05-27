@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractCheckUsernameNotAvailableEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'common.CheckUsernameNotAvailableEvent');
+    constructor(eventData) {
+        super(eventData, 'common.CheckUsernameNotAvailableEvent');
     }
 	getNotifiedListeners() {
 	    return [ "common.views.RegistrationView.usernameNotAvailable" ];

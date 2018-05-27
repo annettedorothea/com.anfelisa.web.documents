@@ -3,8 +3,6 @@ import AbstractNameOfNewCategoryChangedAction from "../../../gen/author/actions/
 export default class NameOfNewCategoryChangedAction extends AbstractNameOfNewCategoryChangedAction {
 
     initActionData() {
-        this.actionData.name = this.actionParam.name;
-        this.actionData.categoryList = this.actionParam.categoryList;
     }
 
 }

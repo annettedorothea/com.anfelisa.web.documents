@@ -6,7 +6,13 @@ import CryptoJS from "crypto-js";
 export default class AppUtils {
 
     static start() {
-        new InitAction({hash: window.location.hash}).apply();
+    	const data = {
+            username: localStorage.getItem("username"),
+            password: localStorage.getItem("password"),
+            language: "de",
+            hash: window.location.hash
+		};
+        new InitAction(data).apply();
     }
 
     static getClientVersion() {

@@ -3,8 +3,8 @@ import ToggleInputOrderCommand from "../../../src/author/commands/ToggleInputOrd
 
 export default class AbstractToggleInputOrderAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.ToggleInputOrderAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.ToggleInputOrderAction', false);
     }
 
 	getCommand() {

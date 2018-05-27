@@ -5,8 +5,8 @@ import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractSaveRoleCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "admin.SaveRoleCommand");
+    constructor(commandData) {
+        super(commandData, "admin.SaveRoleCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

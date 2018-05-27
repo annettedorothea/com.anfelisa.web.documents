@@ -2,6 +2,7 @@ import React from 'react';
 import CancelEditBoxAction from "../../box/actions/CancelEditBoxAction";
 import ToggleMaxIntervalOfBoxAction from "../../box/actions/ToggleMaxIntervalOfBoxAction";
 import MaxIntervalChangedOfBoxAction from "../../box/actions/MaxIntervalChangedOfBoxAction";
+import UpdateBoxAction from "../../box/actions/UpdateBoxAction";
 
 export default class EditBoxItem extends React.Component {
 
@@ -15,7 +16,7 @@ export default class EditBoxItem extends React.Component {
 
     onMaxIntervalChange(event) {
         const maxInterval = event.target.value;
-        new MaxIntervalChangedOfBoxAction().apply({maxInterval});
+        new MaxIntervalChangedOfBoxAction({maxInterval}).apply();
     }
 
     onMaxIntervalCheckedChange() {
@@ -23,6 +24,13 @@ export default class EditBoxItem extends React.Component {
     }
 
     onUpdate() {
+        const data = {
+            username: this.props.username,
+            password: this.props.password,
+            maxInterval: this.props.editedBox.maxInterval,
+            boxId: this.props.boxId
+        };
+        new UpdateBoxAction(data).apply();
     }
 
     onCancel() {
@@ -30,13 +38,11 @@ export default class EditBoxItem extends React.Component {
     }
 
     render() {
-        console.log("EditBoxItem", this.props);
-        console.log("editedBox.maxInterval", this.props.editedBox.maxInterval);
         return (
             <div>
                 <h1>{this.props.categoryName} - {this.props.totalCards} {this.props.texts.box.totalCards}</h1>
 
-                <input id="maxIntervalCheckbox" type={"checkbox"} checked={this.props.editedBox.maxIntervalChecked} onChange={this.onMaxIntervalCheckedChange}/>
+                <input id="maxIntervalCheckbox" type={"checkbox"} checked={this.props.editedBox.maxIntervalChecked === true} onChange={this.onMaxIntervalCheckedChange}/>
                 <label htmlFor="maxIntervalCheckbox">{this.props.texts.editBox.maxInterval}</label>
 
                 <input type="number" value={this.props.editedBox.maxInterval} onChange={this.onMaxIntervalChange} disabled={!this.props.editedBox.maxIntervalChecked}/>

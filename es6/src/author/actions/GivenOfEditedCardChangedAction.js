@@ -3,7 +3,6 @@ import AbstractGivenOfEditedCardChangedAction from "../../../gen/author/actions/
 export default class GivenOfEditedCardChangedAction extends AbstractGivenOfEditedCardChangedAction {
 
     initActionData() {
-        this.actionData.given = this.actionParam.given;
     }
 
 }

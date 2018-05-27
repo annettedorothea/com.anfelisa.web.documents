@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractLoadUserAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'profile.LoadUserAction', false);
+    constructor(actionData) {
+        super(actionData, 'profile.LoadUserAction', false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 
@@ -14,11 +14,11 @@ export default class AbstractLoadUserAction extends Action {
 	}
 
 		preUpdateUI() {
-			CommonView.displaySpinner(this.actionParam);
+			CommonView.displaySpinner(this.actionData);
 		}
 	
 		postUpdateUI() {
-			CommonView.hideSpinner(this.actionParam);
+			CommonView.hideSpinner(this.actionData);
 		}
 
 }

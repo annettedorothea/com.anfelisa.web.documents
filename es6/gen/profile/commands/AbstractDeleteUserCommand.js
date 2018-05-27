@@ -4,8 +4,8 @@ import DeleteUserUnauthorizedEvent from "../../../src/profile/events/DeleteUserU
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractDeleteUserCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "profile.DeleteUserCommand");
+    constructor(commandData) {
+        super(commandData, "profile.DeleteUserCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

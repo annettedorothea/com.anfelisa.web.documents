@@ -3,8 +3,8 @@ import CancelNewCategoryCommand from "../../../src/author/commands/CancelNewCate
 
 export default class AbstractCancelNewCategoryAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.CancelNewCategoryAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.CancelNewCategoryAction', false);
     }
 
 	getCommand() {

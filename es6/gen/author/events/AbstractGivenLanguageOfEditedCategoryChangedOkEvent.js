@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/SynchronousEvent";
 
 export default class AbstractGivenLanguageOfEditedCategoryChangedOkEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'author.GivenLanguageOfEditedCategoryChangedOkEvent');
+    constructor(eventData) {
+        super(eventData, 'author.GivenLanguageOfEditedCategoryChangedOkEvent');
     }
 	getNotifiedListeners() {
 	    return [ "author.views.CategoriesView.givenLanguageOfEditedCategoryChanged" ];

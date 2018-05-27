@@ -4,8 +4,8 @@ import ForgotPasswordOkEvent from "../../../src/common/events/ForgotPasswordOkEv
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractForgotPasswordCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "common.ForgotPasswordCommand");
+    constructor(commandData) {
+        super(commandData, "common.ForgotPasswordCommand");
         this.ok = "ok";
     }
 

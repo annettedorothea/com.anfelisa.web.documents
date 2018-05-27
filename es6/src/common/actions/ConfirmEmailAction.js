@@ -3,7 +3,6 @@ import AbstractConfirmEmailAction from "../../../gen/common/actions/AbstractConf
 export default class ConfirmEmailAction extends AbstractConfirmEmailAction {
 
     initActionData() {
-        this.actionData.token = this.actionParam.token;
     }
 
 }

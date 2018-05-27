@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import CancelNewCardOkEvent from "../../../src/author/events/CancelNewCardOkEvent";
 
 export default class AbstractCancelNewCardCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.CancelNewCardCommand");
+    constructor(commandData) {
+        super(commandData, "author.CancelNewCardCommand");
         this.ok = "ok";
     }
 

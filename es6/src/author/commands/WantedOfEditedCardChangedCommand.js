@@ -3,7 +3,6 @@ import AbstractWantedOfEditedCardChangedCommand
 
 export default class WantedOfEditedCardChangedCommand extends AbstractWantedOfEditedCardChangedCommand {
     execute() {
-        this.commandData.wanted = this.commandParam.wanted;
         this.commandData.outcome = this.ok;
     }
 }

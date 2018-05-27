@@ -5,8 +5,8 @@ import GetAllUsersUnauthorizedEvent from "../../../src/admin/events/GetAllUsersU
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractGetAllUsersCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "admin.GetAllUsersCommand");
+    constructor(commandData) {
+        super(commandData, "admin.GetAllUsersCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }

@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import EditBoxOkEvent from "../../../src/box/events/EditBoxOkEvent";
 
 export default class AbstractEditBoxCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.EditBoxCommand");
+    constructor(commandData) {
+        super(commandData, "box.EditBoxCommand");
         this.ok = "ok";
     }
 

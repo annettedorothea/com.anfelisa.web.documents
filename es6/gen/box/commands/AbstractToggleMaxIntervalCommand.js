@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import ToggleMaxIntervalOkEvent from "../../../src/box/events/ToggleMaxIntervalOkEvent";
 
 export default class AbstractToggleMaxIntervalCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.ToggleMaxIntervalCommand");
+    constructor(commandData) {
+        super(commandData, "box.ToggleMaxIntervalCommand");
         this.ok = "ok";
     }
 

@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractConfirmEmailAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'common.ConfirmEmailAction', false);
+    constructor(actionData) {
+        super(actionData, 'common.ConfirmEmailAction', false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 
@@ -14,11 +14,11 @@ export default class AbstractConfirmEmailAction extends Action {
 	}
 
 		preUpdateUI() {
-			CommonView.displaySpinner(this.actionParam);
+			CommonView.displaySpinner(this.actionData);
 		}
 	
 		postUpdateUI() {
-			CommonView.hideSpinner(this.actionParam);
+			CommonView.hideSpinner(this.actionData);
 		}
 
 }

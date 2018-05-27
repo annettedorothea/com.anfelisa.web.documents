@@ -5,8 +5,8 @@ import ResetPasswordErrorEvent from "../../../src/common/events/ResetPasswordErr
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractResetPasswordCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "common.ResetPasswordCommand");
+    constructor(commandData) {
+        super(commandData, "common.ResetPasswordCommand");
         this.ok = "ok";
         this.error = "error";
     }

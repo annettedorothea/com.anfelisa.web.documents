@@ -3,8 +3,8 @@ import FilterCardsCommand from "../../../src/author/commands/FilterCardsCommand"
 
 export default class AbstractFilterCardsAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.FilterCardsAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.FilterCardsAction', false);
     }
 
 	getCommand() {

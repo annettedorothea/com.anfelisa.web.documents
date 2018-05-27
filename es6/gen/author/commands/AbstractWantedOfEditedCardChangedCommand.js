@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import WantedOfEditedCardChangedOkEvent from "../../../src/author/events/WantedOfEditedCardChangedOkEvent";
 
 export default class AbstractWantedOfEditedCardChangedCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.WantedOfEditedCardChangedCommand");
+    constructor(commandData) {
+        super(commandData, "author.WantedOfEditedCardChangedCommand");
         this.ok = "ok";
     }
 

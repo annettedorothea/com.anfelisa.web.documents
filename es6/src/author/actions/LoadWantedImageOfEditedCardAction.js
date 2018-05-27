@@ -3,7 +3,6 @@ import AbstractLoadWantedImageOfEditedCardAction from "../../../gen/author/actio
 export default class LoadWantedImageOfEditedCardAction extends AbstractLoadWantedImageOfEditedCardAction {
 
     initActionData() {
-        this.actionData.image = this.actionParam.image;
     }
 
 }

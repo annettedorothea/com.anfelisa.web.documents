@@ -2,7 +2,6 @@ import AbstractLoadWantedImageOfEditedCardCommand from "../../../gen/author/comm
 
 export default class LoadWantedImageOfEditedCardCommand extends AbstractLoadWantedImageOfEditedCardCommand {
     execute() {
-        this.commandData.image = this.commandParam.image;
         this.commandData.outcome = this.ok;
     }
 }

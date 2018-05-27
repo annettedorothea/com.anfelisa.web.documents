@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractSaveRoleUnauthorizedEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'admin.SaveRoleUnauthorizedEvent');
+    constructor(eventData) {
+        super(eventData, 'admin.SaveRoleUnauthorizedEvent');
     }
 	getNotifiedListeners() {
 	    return [ "common.views.CommonView.displayError" ];

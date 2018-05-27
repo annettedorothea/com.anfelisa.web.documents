@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import DeleteBoxClickOkEvent from "../../../src/box/events/DeleteBoxClickOkEvent";
 
 export default class AbstractDeleteBoxClickCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.DeleteBoxClickCommand");
+    constructor(commandData) {
+        super(commandData, "box.DeleteBoxClickCommand");
         this.ok = "ok";
     }
 

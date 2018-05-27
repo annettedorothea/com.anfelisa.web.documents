@@ -3,7 +3,6 @@ import AbstractMaxIntervalChangedOfBoxAction from "../../../gen/box/actions/Abst
 export default class MaxIntervalChangedOfBoxAction extends AbstractMaxIntervalChangedOfBoxAction {
 
     initActionData() {
-        this.actionData.maxInterval = this.actionParam.maxInterval;
     }
 
 }

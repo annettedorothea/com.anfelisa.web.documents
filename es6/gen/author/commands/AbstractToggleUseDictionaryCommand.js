@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import ToggleUseDictionaryOkEvent from "../../../src/author/events/ToggleUseDictionaryOkEvent";
 
 export default class AbstractToggleUseDictionaryCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.ToggleUseDictionaryCommand");
+    constructor(commandData) {
+        super(commandData, "author.ToggleUseDictionaryCommand");
         this.ok = "ok";
     }
 

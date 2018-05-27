@@ -1,9 +1,9 @@
 import AppUtils from "../../src/app/AppUtils";
 
 export default class Event {
-    constructor(eventParam, eventName) {
+    constructor(eventData, eventName) {
         this.eventName = eventName;
-        this.eventParam = AppUtils.deepCopy(eventParam);
+        this.eventData = AppUtils.deepCopy(eventData);
     }
 
     prepareDataForView() {

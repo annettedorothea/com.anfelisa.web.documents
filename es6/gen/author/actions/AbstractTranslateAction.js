@@ -4,8 +4,8 @@ import CategoriesView from "../../../src/author/views/CategoriesView";
 
 export default class AbstractTranslateAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'author.TranslateAction', false);
+    constructor(actionData) {
+        super(actionData, 'author.TranslateAction', false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 
@@ -14,11 +14,11 @@ export default class AbstractTranslateAction extends Action {
 	}
 
 		preUpdateUI() {
-			CategoriesView.displayTranslateSpinner(this.actionParam);
+			CategoriesView.displayTranslateSpinner(this.actionData);
 		}
 	
 		postUpdateUI() {
-			CategoriesView.hideTranslateSpinner(this.actionParam);
+			CategoriesView.hideTranslateSpinner(this.actionData);
 		}
 
 }

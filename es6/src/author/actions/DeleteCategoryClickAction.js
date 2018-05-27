@@ -3,7 +3,6 @@ import AbstractDeleteCategoryClickAction from "../../../gen/author/actions/Abstr
 export default class DeleteCategoryClickAction extends AbstractDeleteCategoryClickAction {
 
     initActionData() {
-        this.actionData.categoryId = this.actionParam.categoryId;
     }
 
 }

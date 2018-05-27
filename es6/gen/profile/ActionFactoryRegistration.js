@@ -5,8 +5,8 @@ import DeleteUserAction from "../../src/profile/actions/DeleteUserAction";
 export default class ActionFactoryRegistrationProfile {
 
 	static init() {
-		ACEController.registerFactory('profile.LoadUserAction', (actionParam) => new LoadUserAction(actionParam));
-		ACEController.registerFactory('profile.DeleteUserAction', (actionParam) => new DeleteUserAction(actionParam));
+		ACEController.registerFactory('profile.LoadUserAction', (actionData) => new LoadUserAction(actionData));
+		ACEController.registerFactory('profile.DeleteUserAction', (actionData) => new DeleteUserAction(actionData));
 	}
 
 }

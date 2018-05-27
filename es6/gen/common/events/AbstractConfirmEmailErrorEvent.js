@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractConfirmEmailErrorEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'common.ConfirmEmailErrorEvent');
+    constructor(eventData) {
+        super(eventData, 'common.ConfirmEmailErrorEvent');
     }
 	getNotifiedListeners() {
 	    return [ "common.views.CommonView.displayError" ];

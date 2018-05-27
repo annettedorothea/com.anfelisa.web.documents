@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractSaveRoleAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'admin.SaveRoleAction', false);
+    constructor(actionData) {
+        super(actionData, 'admin.SaveRoleAction', false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 
@@ -14,11 +14,11 @@ export default class AbstractSaveRoleAction extends Action {
 	}
 
 		preUpdateUI() {
-			CommonView.displaySpinner(this.actionParam);
+			CommonView.displaySpinner(this.actionData);
 		}
 	
 		postUpdateUI() {
-			CommonView.hideSpinner(this.actionParam);
+			CommonView.hideSpinner(this.actionData);
 		}
 
 }

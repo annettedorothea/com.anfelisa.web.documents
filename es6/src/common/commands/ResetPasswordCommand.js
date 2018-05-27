@@ -6,11 +6,11 @@ export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
             let queryParams = [];
             queryParams.push({
                 key: "token",
-                value: this.commandParam.token
+                value: this.commandData.token
             });
             queryParams.push({
                 key: "password",
-                value: this.commandParam.password
+                value: this.commandData.password
             });
             this.commandData.hash = "#";
             this.httpPut("api/users/resetpassword", queryParams).then(() => {

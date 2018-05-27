@@ -3,8 +3,8 @@ import DeleteBoxCommand from "../../../src/box/commands/DeleteBoxCommand";
 
 export default class AbstractDeleteBoxAction extends Action {
 
-    constructor(actionParam) {
-        super(actionParam, 'box.DeleteBoxAction', false);
+    constructor(actionData) {
+        super(actionData, 'box.DeleteBoxAction', false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

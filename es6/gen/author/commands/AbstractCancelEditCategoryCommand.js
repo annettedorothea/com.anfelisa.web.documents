@@ -3,8 +3,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import CancelEditCategoryOkEvent from "../../../src/author/events/CancelEditCategoryOkEvent";
 
 export default class AbstractCancelEditCategoryCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "author.CancelEditCategoryCommand");
+    constructor(commandData) {
+        super(commandData, "author.CancelEditCategoryCommand");
         this.ok = "ok";
     }
 

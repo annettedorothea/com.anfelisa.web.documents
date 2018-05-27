@@ -1,8 +1,8 @@
 import Event from "../../../gen/ace/AsynchronousEvent";
 
 export default class AbstractLoadBoxesOkEvent extends Event {
-    constructor(eventParam) {
-        super(eventParam, 'box.LoadBoxesOkEvent');
+    constructor(eventData) {
+        super(eventData, 'box.LoadBoxesOkEvent');
     }
 	getNotifiedListeners() {
 	    return [ "box.views.BoxListView.render" ];

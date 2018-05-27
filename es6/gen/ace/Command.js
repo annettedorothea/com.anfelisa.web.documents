@@ -1,10 +1,9 @@
 import AppUtils from "../../src/app/AppUtils";
 
 export default class Command {
-    constructor(commandParam, commandName) {
+    constructor(commandData, commandName) {
         this.commandName = commandName;
-        this.commandParam = AppUtils.deepCopy(commandParam);
-        this.commandData = {};
+        this.commandData = AppUtils.deepCopy(commandData);
     }
 
     execute() {

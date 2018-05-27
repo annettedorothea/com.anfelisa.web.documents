@@ -1,12 +1,12 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import CreateBoxUnauthorizedEvent from "../../../src/box/events/CreateBoxUnauthorizedEvent";
-import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
+import RouteAction from "../../../src/common/actions/RouteAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractCreateBoxCommand extends Command {
-    constructor(commandParam) {
-        super(commandParam, "box.CreateBoxCommand");
+    constructor(commandData) {
+        super(commandData, "box.CreateBoxCommand");
         this.ok = "ok";
         this.unauthorized = "unauthorized";
     }
@@ -16,7 +16,7 @@ export default class AbstractCreateBoxCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new TriggerAction(new LoadBoxesAction(this.commandData)).publish());
+			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
 			break;
 		case this.unauthorized:
 			promises.push(new CreateBoxUnauthorizedEvent(this.commandData).publish());
