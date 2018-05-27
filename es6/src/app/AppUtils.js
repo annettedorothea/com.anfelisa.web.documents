@@ -27,9 +27,9 @@ export default class AppUtils {
         return "http://ace.anfelisa.com/";
     }
 
-    static httpGet(url, queryParams, commandParam) {
+    static httpGet(url, queryParams, commandData) {
 		return new Promise((resolve, reject) => {
-		    let authorization = commandParam ? AppUtils.basicAuth(commandParam.username, commandParam.password) : undefined;
+		    let authorization = commandData ? AppUtils.basicAuth(commandData.username, commandData.password) : undefined;
 		    const headers = new Headers();
 		    headers.append("Content-Type", "application/json");
 		    headers.append("Accept", "application/json");
@@ -70,9 +70,9 @@ export default class AppUtils {
 		});
     }
 
-    static httpChange(methodType, url, queryParams, data, commandParam) {
+    static httpChange(methodType, url, queryParams, data, commandData) {
 		return new Promise((resolve, reject) => {
-		    let authorization = commandParam ? AppUtils.basicAuth(commandParam.username, commandParam.password) : undefined;
+		    let authorization = commandData ? AppUtils.basicAuth(commandData.username, commandData.password) : undefined;
 		    const headers = new Headers();
 		    headers.append("Content-Type", "application/json");
 		    headers.append("Accept", "text/plain");
@@ -114,16 +114,16 @@ export default class AppUtils {
 		});
     }
 
-    static httpPost(url, queryParams, data, commandParam) {
-        return AppUtils.httpChange("POST", url, queryParams, data, commandParam);
+    static httpPost(url, queryParams, data, commandData) {
+        return AppUtils.httpChange("POST", url, queryParams, data, commandData);
     }
 
-    static httpPut(url, queryParams, data, commandParam) {
-        return AppUtils.httpChange("PUT", url, queryParams, data, commandParam);
+    static httpPut(url, queryParams, data, commandData) {
+        return AppUtils.httpChange("PUT", url, queryParams, data, commandData);
     }
 
-    static httpDelete(url, queryParams, data, commandParam) {
-        return AppUtils.httpChange("DELETE", url, queryParams, data, commandParam);
+    static httpDelete(url, queryParams, data, commandData) {
+        return AppUtils.httpChange("DELETE", url, queryParams, data, commandData);
     }
 
     static queryParamString(url, queryParams) {

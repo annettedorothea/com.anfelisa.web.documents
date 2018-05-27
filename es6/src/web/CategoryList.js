@@ -58,6 +58,10 @@ export default class CategoryList extends React.Component {
         } else if (this.props.data.parentCategoryId) {
             backLink = "#categories";
         }
+        console.log("CategoryList", this.props);
+        if (!this.props.data.editedCategory || !this.props.data.newCategory || !this.props.data.deleteCategory) {
+            return "";
+        }
         const categoryItems = this.props.data.categoryList.map((category) => {
             if (category.categoryId === this.props.data.editedCategory.categoryId) {
                 return <EditCategory

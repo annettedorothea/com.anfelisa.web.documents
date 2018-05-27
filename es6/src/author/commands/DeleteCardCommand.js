@@ -6,7 +6,7 @@ export default class DeleteCardCommand extends AbstractDeleteCardCommand {
             let queryParams = [];
             queryParams.push({
                 key: "cardId",
-                value: this.commandParam.cardId
+                value: this.commandData.cardId
             });
             this.httpDelete("api/card/delete", queryParams).then((data) => {
                 this.commandData.outcome = this.ok;

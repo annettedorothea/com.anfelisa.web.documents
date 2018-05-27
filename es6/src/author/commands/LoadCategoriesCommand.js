@@ -4,10 +4,10 @@ export default class LoadCategoriesCommand extends AbstractLoadCategoriesCommand
     execute() {
         return new Promise((resolve, reject) => {
             let queryParams = [];
-            if (this.commandParam.parentCategoryId) {
+            if (this.commandData.parentCategoryId) {
                 queryParams.push({
                     key: "parentCategoryId",
-                    value: this.commandParam.parentCategoryId
+                    value: this.commandData.parentCategoryId
                 });
             };
             this.httpGet("api/category/all", queryParams).then((data) => {

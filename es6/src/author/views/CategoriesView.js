@@ -2,63 +2,60 @@ import * as App from "../../app/App";
 
 export default class CategoriesView {
     static render(eventData) {
-        let data = App.container.state.data;
-        if (!data) {
-            data = {
-                newCategory: {
-                    name: "",
-                    nameAlreadyExists: false,
-                    dictionaryLookup: false,
-                    givenLanguage: "",
-                    wantedLanguage: ""
-                },
-                editedCategory: {
-                    categoryId: "",
-                    name: "",
-                    index: "",
-                    nameAlreadyExists: false,
-                    dictionaryLookup: false,
-                    givenLanguage: "",
-                    wantedLanguage: ""
-                },
-                deleteCategory: {
-                    confirmDelete: false,
-                    categoryId: ""
-                },
-                newCard: {
-                    given: "",
-                    wanted: "",
-                    displaySpinner: false,
-                    displayTranslateSpinner: false,
-                    dictionaryLookup: false,
-                    givenLanguage: "",
-                    wantedLanguage: "",
-                    image: ""
-                },
-                editedCard: {
-                    cardId: "",
-                    given: "",
-                    wanted: "",
-                    image: "",
-                    index: ""
-                },
-                cardDuplicates: [],
-                deleteCard: {
-                    confirmDelete: false,
-                    cardId: ""
-                },
-                filter: "",
-                naturalInputOrder: true,
-                displayDictionary: false,
-                useDictionary: false
-            };
-        }
-        data.categoryList = eventData.data.categoryList;
-        data.cardList = eventData.data.cardList;
-        data.grandParentCategoryId = eventData.data.grandParentCategoryId;
-        data.parentCategoryId = eventData.data.parentCategoryId;
-        data.parentCategoryName = eventData.data.parentCategoryName;
-        data.rootDictionaryLookup = eventData.data.rootDictionaryLookup;
+        const data = {
+            newCategory: {
+                name: "",
+                nameAlreadyExists: false,
+                dictionaryLookup: false,
+                givenLanguage: "",
+                wantedLanguage: ""
+            },
+            editedCategory: {
+                categoryId: "",
+                name: "",
+                index: "",
+                nameAlreadyExists: false,
+                dictionaryLookup: false,
+                givenLanguage: "",
+                wantedLanguage: ""
+            },
+            deleteCategory: {
+                confirmDelete: false,
+                categoryId: ""
+            },
+            newCard: {
+                given: "",
+                wanted: "",
+                displaySpinner: false,
+                displayTranslateSpinner: false,
+                dictionaryLookup: false,
+                givenLanguage: "",
+                wantedLanguage: "",
+                image: ""
+            },
+            editedCard: {
+                cardId: "",
+                given: "",
+                wanted: "",
+                image: "",
+                index: ""
+            },
+            cardDuplicates: [],
+            deleteCard: {
+                confirmDelete: false,
+                cardId: ""
+            },
+            filter: "",
+            naturalInputOrder: true,
+            displayDictionary: false,
+            useDictionary: false,
+            categoryList: eventData.data.categoryList,
+            cardList: eventData.data.cardList,
+            grandParentCategoryId: eventData.data.parentCategoryId,
+            parentCategoryId: eventData.data.parentCategoryId,
+            parentCategoryName: eventData.data.parentCategoryName,
+            rootDictionaryLookup: eventData.data.rootDictionaryLookup
+        };
         App.container.setState({
             route: "category-list",
             data
