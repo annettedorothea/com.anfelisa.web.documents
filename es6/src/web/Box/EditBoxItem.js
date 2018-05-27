@@ -1,5 +1,7 @@
 import React from 'react';
 import CancelEditBoxAction from "../../box/actions/CancelEditBoxAction";
+import ToggleMaxIntervalOfBoxAction from "../../box/actions/ToggleMaxIntervalOfBoxAction";
+import MaxIntervalChangedOfBoxAction from "../../box/actions/MaxIntervalChangedOfBoxAction";
 
 export default class EditBoxItem extends React.Component {
 
@@ -13,10 +15,11 @@ export default class EditBoxItem extends React.Component {
 
     onMaxIntervalChange(event) {
         const maxInterval = event.target.value;
+        new MaxIntervalChangedOfBoxAction().apply({maxInterval});
     }
 
     onMaxIntervalCheckedChange() {
-        //new ToggleMaxIntervalAction().apply();
+        new ToggleMaxIntervalOfBoxAction().apply();
     }
 
     onUpdate() {
@@ -28,12 +31,12 @@ export default class EditBoxItem extends React.Component {
 
     render() {
         console.log("EditBoxItem", this.props);
-        console.log("this.props.editedBox.maxIntervalChecked", this.props.editedBox.maxIntervalChecked);
+        console.log("editedBox.maxInterval", this.props.editedBox.maxInterval);
         return (
             <div>
                 <h1>{this.props.categoryName} - {this.props.totalCards} {this.props.texts.box.totalCards}</h1>
 
-                <input id="maxIntervalCheckbox" type={"checkbox"} value={this.props.editedBox.maxIntervalChecked} onChange={this.onMaxIntervalCheckedChange}/>
+                <input id="maxIntervalCheckbox" type={"checkbox"} checked={this.props.editedBox.maxIntervalChecked} onChange={this.onMaxIntervalCheckedChange}/>
                 <label htmlFor="maxIntervalCheckbox">{this.props.texts.editBox.maxInterval}</label>
 
                 <input type="number" value={this.props.editedBox.maxInterval} onChange={this.onMaxIntervalChange} disabled={!this.props.editedBox.maxIntervalChecked}/>

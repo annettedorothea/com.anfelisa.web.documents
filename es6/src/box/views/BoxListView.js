@@ -21,8 +21,8 @@ export default class BoxListView {
 	
 	static toggleMaxInterval(eventData) {
         let data = App.container.state.data;
-        data.maxIntervalChecked = !data.maxIntervalChecked;
-        data.maxInterval = "";
+        data.editedBox.maxIntervalChecked = !data.maxIntervalChecked;
+        data.editedBox.maxInterval = "";
         App.container.setState({
             data
         });
@@ -30,7 +30,7 @@ export default class BoxListView {
 	
 	static maxIntervalChanged(eventData) {
         let data = App.container.state.data;
-        data.maxInterval = eventData.maxInterval;
+        data.editedBox.maxInterval = eventData.maxInterval;
         App.container.setState({
             data
         });

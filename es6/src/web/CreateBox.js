@@ -55,7 +55,7 @@ export default class CreateBox extends React.Component {
             <div>
                 <h1>{this.props.texts.createBox.title}</h1>
 
-                <input id="maxIntervalCheckbox" type={"checkbox"} value={this.props.data.maxIntervalChecked} onChange={this.onMaxIntervalCheckedChange}/>
+                <input id="maxIntervalCheckbox" type={"checkbox"} checked={this.props.data.maxIntervalChecked} onChange={this.onMaxIntervalCheckedChange}/>
                 <label htmlFor="maxIntervalCheckbox">{this.props.texts.createBox.maxInterval}</label>
 
                 <input type="number" value={this.props.data.maxInterval} onChange={this.onMaxIntervalChange} disabled={!this.props.data.maxIntervalChecked}/>

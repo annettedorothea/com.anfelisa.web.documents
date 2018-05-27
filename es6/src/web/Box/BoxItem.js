@@ -27,7 +27,7 @@ export default class BoxItem extends React.Component {
     onEdit() {
         const data = {
             boxId: this.props.boxId,
-            maxInterval: this.props.maxInterval !== null ? this.props.maxInterval : "",
+            maxInterval: this.props.maxInterval ? this.props.maxInterval : "",
             maxIntervalChecked: this.props.maxInterval && this.props.maxInterval > 0 ? true : false
         };
         new EditBoxAction(data).apply();
