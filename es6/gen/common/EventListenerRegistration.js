@@ -17,9 +17,13 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.RouteOkEvent', CommonView.updateHash);
 		ACEController.registerListener('common.CheckUsernameAvailableEvent', RegistrationView.usernameAvailable);
 		ACEController.registerListener('common.CheckUsernameNotAvailableEvent', RegistrationView.usernameNotAvailable);
-		ACEController.registerListener('common.RegisterUserOkEvent', CommonView.initUser);
+		ACEController.registerListener('common.RegisterUserOkEvent', CommonView.displayMessage);
 		ACEController.registerListener('common.RegisterUserErrorEvent', CommonView.displayError);
-		ACEController.registerListener('common.LoginOkEvent', CommonView.initUser);
+		ACEController.registerListener('common.InitialLoginOkEvent', CommonView.initUser);
+		ACEController.registerListener('common.InitialLoginUnauthorizedEvent', CommonView.displayError);
+		ACEController.registerListener('common.LoginSaveInLocalStorageEvent', CommonView.initUser);
+		ACEController.registerListener('common.LoginSaveInLocalStorageEvent', CommonView.saveInLocalStorage);
+		ACEController.registerListener('common.LoginDoNotSaveInLocalStorageEvent', CommonView.initUser);
 		ACEController.registerListener('common.LoginUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('common.LogoutOkEvent', CommonView.resetUser);
 		ACEController.registerListener('common.ForgotPasswordOkEvent', CommonView.displayMessage);

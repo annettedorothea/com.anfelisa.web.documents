@@ -10,6 +10,7 @@ import ConfirmEmailAction from "../../../src/common/actions/ConfirmEmailAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
 import LoadRootCategoriesAction from "../../../src/box/actions/LoadRootCategoriesAction";
+import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractRouteChangedCommand extends Command {
     constructor(commandData) {
@@ -24,6 +25,7 @@ export default class AbstractRouteChangedCommand extends Command {
         this.userList = "userList";
         this.categories = "categories";
         this.createBox = "createBox";
+        this.invalid = "invalid";
     }
 
     publishEvents() {
@@ -57,6 +59,9 @@ export default class AbstractRouteChangedCommand extends Command {
 			break;
 		case this.createBox:
 			new TriggerAction(new LoadRootCategoriesAction(this.commandData)).publish();
+			break;
+		case this.invalid:
+			new TriggerAction(new RouteAction(this.commandData)).publish();
 			break;
 		default:
 			throw 'RouteChangedCommand unhandled outcome: ' + this.commandData.outcome;

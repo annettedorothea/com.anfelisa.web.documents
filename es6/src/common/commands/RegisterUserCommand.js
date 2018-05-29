@@ -11,7 +11,8 @@ export default class RegisterUserCommand extends AbstractRegisterUserCommand {
             };
             this.httpPost("api/users/register", [], data).then(() => {
                 this.commandData.outcome = this.ok;
-                this.commandData.hash = "#dashboard";
+                this.commandData.hash = "#";
+                this.commandData.messageKey = "confirmEmail";
                 resolve();
             }, (error) => {
                 error.errorKey = "registerUserFailed";

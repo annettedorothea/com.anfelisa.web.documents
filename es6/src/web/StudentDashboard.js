@@ -28,6 +28,7 @@ export default class StudentDashboard extends React.Component {
     }
 
     render() {
+        console.log("StudentDashboard", this.props.data);
         let boxes = "";
         if (this.props.data && this.props.data.boxList) {
             boxes = this.props.data.boxList.map((box) => {

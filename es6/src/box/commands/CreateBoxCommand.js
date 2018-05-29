@@ -9,7 +9,7 @@ export default class CreateBoxCommand extends AbstractCreateBoxCommand {
             };
             this.httpPost("api/box/create", [], data).then((data) => {
                 this.commandData.outcome = this.ok;
-                this.commandData.hash = "#";
+                this.commandData.hash = "#dashboard";
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

@@ -2,20 +2,22 @@ import * as App from "../../app/App";
 
 export default class BoxListView {
 	static render(eventData) {
+	    const data = {
+            boxList: eventData.data.boxList,
+            editedBox: {
+                boxId: "",
+                maxIntervalChecked: false,
+                maxInterval: ""
+            },
+            deleteBox: {
+                confirmDelete: false,
+                boxId: ""
+            }
+        };
+        console.log("BoxListView.render data", data);
         App.container.setState({
             route: "dashboard",
-            data : {
-            	boxList: eventData.data.boxList,
-				editedBox: {
-            	    boxId: "",
-                    maxIntervalChecked: false,
-                    maxInterval: ""
-                },
-				deleteBox: {
-                    confirmDelete: false,
-                    boxId: ""
-				}
-			}
+            data
         });
 	};
 	

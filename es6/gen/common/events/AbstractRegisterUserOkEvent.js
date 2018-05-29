@@ -5,7 +5,7 @@ export default class AbstractRegisterUserOkEvent extends Event {
         super(eventData, 'common.RegisterUserOkEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.CommonView.initUser" ];
+	    return [ "common.views.CommonView.displayMessage" ];
 	}
 }
 

@@ -52,13 +52,12 @@ export default class CategoryList extends React.Component {
     }
 
     render() {
-        let backLink = "#";
+        let backLink = "#dashboard";
         if (this.props.data.grandParentCategoryId) {
             backLink = `#categories/${this.props.data.grandParentCategoryId}`;
         } else if (this.props.data.parentCategoryId) {
             backLink = "#categories";
         }
-        console.log("CategoryList", this.props);
         if (!this.props.data.editedCategory || !this.props.data.newCategory || !this.props.data.deleteCategory) {
             return "";
         }

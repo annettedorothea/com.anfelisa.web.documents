@@ -5,7 +5,12 @@ export default class LoginCommand extends AbstractLoginCommand {
         return new Promise((resolve) => {
             this.httpGet("api/user/role").then((data) => {
                 this.commandData.role = data.credentialsRole;
-                this.commandData.outcome = this.ok;
+                this.commandData.hash = "#dashboard";
+                if (this.commandData.saveInLocalStorage === true) {
+                    this.commandData.outcome = this.saveInLocalStorage;
+                } else {
+                    this.commandData.outcome = this.doNotSaveInLocalStorage;
+                }
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

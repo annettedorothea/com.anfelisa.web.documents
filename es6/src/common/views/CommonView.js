@@ -27,11 +27,11 @@ export default class CommonView {
     }
 
     static displayError(eventData) {
-        clearTimeout(CommonView.timer);
+        clearTimeout(CommonView.errorTimer);
         App.container.setState({
             error: eventData.error
         });
-        CommonView.timer = setTimeout(function () {
+        CommonView.errorTimer = setTimeout(function () {
             App.container.setState({
                 error: null
             });
@@ -39,11 +39,11 @@ export default class CommonView {
     }
 
     static displayMessage(eventData) {
-        clearTimeout(CommonView.timer);
+        clearTimeout(CommonView.messageTimer);
         App.container.setState({
             messageKey: eventData.messageKey
         });
-        CommonView.timer = setTimeout(function () {
+        CommonView.messageTimer = setTimeout(function () {
             App.container.setState({
                 messageKey: null
             });
@@ -56,6 +56,9 @@ export default class CommonView {
             password: eventData.password,
             role: eventData.role
         });
+    }
+
+    static saveInLocalStorage(eventData) {
         localStorage.setItem("username", eventData.username);
         localStorage.setItem("password", eventData.password);
     }

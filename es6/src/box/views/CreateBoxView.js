@@ -10,7 +10,6 @@ export default class CreateBoxView {
                 maxIntervalChecked: false,
                 maxInterval: ""
             }
-
         });
     };
     static toggleMaxInterval() {

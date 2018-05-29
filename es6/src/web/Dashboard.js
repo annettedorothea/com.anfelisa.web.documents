@@ -9,13 +9,16 @@ export default class Dashboard extends React.Component {
     render() {
         let adminContent;
         let authorContent;
+        let userContent;
         if (this.props.role === "ADMIN") {
             adminContent = <AdminDashboard {...this.props} />
         }
         if (this.props.role === "AUTHOR" || this.props.role === "ADMIN") {
             authorContent = <AuthorDashboard {...this.props} />
         }
-        const userContent = <StudentDashboard {...this.props}/>;
+        if (this.props.role === "STUDENT" || this.props.role === "AUTHOR" || this.props.role === "ADMIN") {
+            userContent = <StudentDashboard {...this.props}/>;
+        }
         return (
             <div>
                 <h1>{this.props.texts.dashboard.title}</h1>

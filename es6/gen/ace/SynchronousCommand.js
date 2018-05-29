@@ -15,7 +15,7 @@ export default class SynchronousCommand extends Command {
                 }
             }
             catch (error) {
-            	console.log("executeCommand failed", error);
+            	console.error(`execute command ${this.commandName} failed`, error);
                 if (ACEController.execution === ACEController.LIVE) {
                     ACEController.applyNextActions();
                 } else {

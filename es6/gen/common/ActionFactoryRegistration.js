@@ -4,6 +4,7 @@ import RouteChangedAction from "../../src/common/actions/RouteChangedAction";
 import RouteAction from "../../src/common/actions/RouteAction";
 import CheckUsernameAction from "../../src/common/actions/CheckUsernameAction";
 import RegisterUserAction from "../../src/common/actions/RegisterUserAction";
+import InitialLoginAction from "../../src/common/actions/InitialLoginAction";
 import LoginAction from "../../src/common/actions/LoginAction";
 import LogoutAction from "../../src/common/actions/LogoutAction";
 import ForgotPasswordAction from "../../src/common/actions/ForgotPasswordAction";
@@ -20,6 +21,7 @@ export default class ActionFactoryRegistrationCommon {
 		ACEController.registerFactory('common.RouteAction', (actionData) => new RouteAction(actionData));
 		ACEController.registerFactory('common.CheckUsernameAction', (actionData) => new CheckUsernameAction(actionData));
 		ACEController.registerFactory('common.RegisterUserAction', (actionData) => new RegisterUserAction(actionData));
+		ACEController.registerFactory('common.InitialLoginAction', (actionData) => new InitialLoginAction(actionData));
 		ACEController.registerFactory('common.LoginAction', (actionData) => new LoginAction(actionData));
 		ACEController.registerFactory('common.LogoutAction', (actionData) => new LogoutAction(actionData));
 		ACEController.registerFactory('common.ForgotPasswordAction', (actionData) => new ForgotPasswordAction(actionData));

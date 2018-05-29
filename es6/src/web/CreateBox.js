@@ -67,7 +67,7 @@ export default class CreateBox extends React.Component {
                     {
                         username: this.props.username,
                         password: this.props.password,
-                        hash: "#"
+                        hash: "#dashboard"
                     }).apply()}>{this.props.texts.createBox.cancel}</button>
             </div>
         );

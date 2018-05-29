@@ -2,7 +2,7 @@ import AbstractConfirmEmailCommand from "../../../gen/common/commands/AbstractCo
 
 export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let queryParams = [];
             queryParams.push({
                 key: "token",

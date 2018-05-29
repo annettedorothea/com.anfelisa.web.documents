@@ -96,6 +96,8 @@ export const Texts = {
             forgotPassword: "Passwort vergessen?",
             password: "Passwort",
             registration: "Neu hier?",
+            saveInLocalStorage: "Angemeldet bleiben.",
+            saveInLocalStorageHint: "Dabei wird ein Cookie gesetzt. Das bedeutet, dass im Browser die Login-Daten hinterlegt werden. Das Passwort wird dabei verschlüsselt. Der Vorteil ist, dass man eingeloggt bleibt, selbst wenn der Browser geschlossen und erneut geöffnet oder die Seite neu geladen wird.",
             signin: "Anmelden",
             title: "Anmeldung",
             username: "Benutzer"
@@ -104,6 +106,7 @@ export const Texts = {
             signout: "Abmelden"
         },
         messages: {
+            confirmEmail: "Bitte checke dein Postfach und bestätige deine Email-Adresse.",
             emailConfirmed: "Die Email-Adresse wurde bestätigt.",
             passwordRequestSubmitted: "Eine Email mit einem Link zur Eingabe eines neues Passortes wurde an die angegebene Email-Adresse verschickt.",
             passwordResetted: "Das Passwort wurde geändert."

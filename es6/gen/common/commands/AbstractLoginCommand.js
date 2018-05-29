@@ -1,13 +1,16 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import LoginOkEvent from "../../../src/common/events/LoginOkEvent";
+import LoginSaveInLocalStorageEvent from "../../../src/common/events/LoginSaveInLocalStorageEvent";
+import LoginDoNotSaveInLocalStorageEvent from "../../../src/common/events/LoginDoNotSaveInLocalStorageEvent";
 import LoginUnauthorizedEvent from "../../../src/common/events/LoginUnauthorizedEvent";
+import RouteAction from "../../../src/common/actions/RouteAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoginCommand extends Command {
     constructor(commandData) {
         super(commandData, "common.LoginCommand");
-        this.ok = "ok";
+        this.saveInLocalStorage = "saveInLocalStorage";
+        this.doNotSaveInLocalStorage = "doNotSaveInLocalStorage";
         this.unauthorized = "unauthorized";
     }
 
@@ -15,8 +18,13 @@ export default class AbstractLoginCommand extends Command {
 		let promises = [];
 	    	
 		switch (this.commandData.outcome) {
-		case this.ok:
-			promises.push(new LoginOkEvent(this.commandData).publish());
+		case this.saveInLocalStorage:
+			promises.push(new LoginSaveInLocalStorageEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
+			break;
+		case this.doNotSaveInLocalStorage:
+			promises.push(new LoginDoNotSaveInLocalStorageEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
 			break;
 		case this.unauthorized:
 			promises.push(new LoginUnauthorizedEvent(this.commandData).publish());

@@ -8,12 +8,14 @@ export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: ''
+            username: "",
+            password: "",
+            saveInLocalStorage: false
         };
         this.onUsernameChange = this.onUsernameChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onLogin = this.onLogin.bind(this);
+        this.onToggleSaveInLocalStorage = this.onToggleSaveInLocalStorage.bind(this);
     }
 
     onUsernameChange(event) {
@@ -26,10 +28,16 @@ export default class Login extends React.Component {
         this.setState({password});
     }
 
+    onToggleSaveInLocalStorage() {
+        const saveInLocalStorage = !this.state.saveInLocalStorage;
+        this.setState({saveInLocalStorage});
+    }
+
     onLogin() {
         const data = {
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            saveInLocalStorage: this.state.saveInLocalStorage
         };
         new LoginAction(data).apply();
     }
@@ -54,6 +62,14 @@ export default class Login extends React.Component {
                             placeholder={this.props.texts.login.username}
                             onChange={this.onPasswordChange}
                         />
+                    </div>
+                    <div>
+                        <input id="saveInLocalStorage" type={"checkbox"} onChange={this.onToggleSaveInLocalStorage}/>
+                        <label htmlFor="saveInLocalStorage">
+                            {this.props.texts.login.saveInLocalStorage}
+                            <div>{this.props.texts.login.saveInLocalStorageHint}</div>
+                        </label>
+
                     </div>
                     <div>
                         <button onClick={this.onLogin}>{this.props.texts.login.signin}</button>

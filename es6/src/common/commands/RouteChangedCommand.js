@@ -2,9 +2,8 @@ import AbstractRouteChangedCommand from "../../../gen/common/commands/AbstractRo
 
 export default class RouteChangedCommand extends AbstractRouteChangedCommand {
     execute() {
-        this.commandData.outcome = this.login;
         if (this.commandData.password && this.commandData.username) {
-            if (this.commandData.hash === "") {
+            if (this.commandData.hash === "#dashboard") {
                 this.commandData.outcome = this.dashboard;
             } else if (this.commandData.hash === "#profile") {
                 this.commandData.outcome = this.profile;
@@ -17,6 +16,9 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             } else if (this.commandData.hash.startsWith("#createbox")) {
                 const hashes = this.commandData.hash.split("/");
                 this.commandData.outcome = this.createBox;
+            } else {
+                this.commandData.outcome = this.invalid;
+                this.commandData.hash = "#dashboard";
             }
         } else {
             if (this.commandData.hash === "") {
@@ -33,6 +35,9 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 const hashes = this.commandData.hash.split("/");
                 this.commandData.token = hashes[1] ? hashes[1] : "";
                 this.commandData.outcome = this.resetPassword;
+            } else {
+                this.commandData.outcome = this.invalid;
+                this.commandData.hash = "#";
             }
         }
     }

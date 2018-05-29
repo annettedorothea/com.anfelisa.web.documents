@@ -83,7 +83,7 @@ export default class Profile extends React.Component {
                     onClick={() => new RouteAction({
                         username: this.props.username,
                         password: this.props.password,
-                        hash: "#"
+                        hash: "#dashboard"
                     }).apply()}>{this.props.texts.profile.back}</button>
             </div>
         );

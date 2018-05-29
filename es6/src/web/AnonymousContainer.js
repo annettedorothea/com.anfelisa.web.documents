@@ -8,6 +8,7 @@ export default class AnonymousContainer extends React.Component {
 
     render() {
         let content;
+        console.log("AnonymousContainer");
         switch (this.props.route) {
             case "registration":
                 content = <Registration {...this.props} />;
