@@ -51,7 +51,7 @@ export default class CategoriesView {
             useDictionary: false,
             categoryList: eventData.data.categoryList,
             cardList: eventData.data.cardList,
-            grandParentCategoryId: eventData.data.parentCategoryId,
+            grandParentCategoryId: eventData.data.grandParentCategoryId,
             parentCategoryId: eventData.data.parentCategoryId,
             parentCategoryName: eventData.data.parentCategoryName,
             rootDictionaryLookup: eventData.data.rootDictionaryLookup

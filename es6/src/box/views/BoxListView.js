@@ -14,7 +14,6 @@ export default class BoxListView {
                 boxId: ""
             }
         };
-        console.log("BoxListView.render data", data);
         App.container.setState({
             route: "dashboard",
             data

@@ -18,15 +18,11 @@ export default class CategoryItem extends React.Component {
     }
 
     renderDictionayLookup() {
-        if (this.props.rootDictionaryLookup === true) {
-            if (this.props.givenLanguage && this.props.wantedLanguage) {
-                return <td
-                    onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.givenLanguage]} {"\u2192"} {this.props.texts.categoryList.languages[this.props.wantedLanguage]}</td>
-            } else {
-                return <td onClick={this.onClick}/>
-            }
+        if (this.props.givenLanguage && this.props.wantedLanguage) {
+            return <td
+                onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.givenLanguage]} {"\u2192"} {this.props.texts.categoryList.languages[this.props.wantedLanguage]}</td>
         } else {
-            return ""
+            return <td onClick={this.onClick}/>
         }
     }
 
@@ -36,7 +32,7 @@ export default class CategoryItem extends React.Component {
                 <td onClick={this.onClick}>{this.props.categoryIndex}</td>
                 <td onClick={this.onClick}>{this.props.categoryName}</td>
                 <td onClick={this.onClick}>{this.props.categoryAuthor}</td>
-                {this.renderDictionayLookup()}
+                {this.props.rootDictionaryLookup === true && this.renderDictionayLookup()}
                 <td>
                     {this.props.userRole === "ADMIN" &&
                     <button disabled={!this.props.empty}

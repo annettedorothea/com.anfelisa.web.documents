@@ -3,7 +3,6 @@ import * as App from "../../app/App";
 export default class RegistrationView {
 
 	static render(eventData) {
-	    console.log("RegistrationView.render");
         App.container.setState({
             route: "registration",
             data: {

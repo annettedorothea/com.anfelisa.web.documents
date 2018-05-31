@@ -163,6 +163,7 @@ export default class AppUtils {
     }
 
     static displayUnexpectedError(error) {
+    	console.error(error);
     }
 
 	static deepCopy(object) {

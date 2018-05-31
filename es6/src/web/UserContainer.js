@@ -10,7 +10,6 @@ export default class UserContainer extends React.Component {
 
     render() {
         let content;
-        console.log("UserContainer");
         switch (this.props.route) {
             case "user-list":
                 content = <UserList {...this.props} />;
