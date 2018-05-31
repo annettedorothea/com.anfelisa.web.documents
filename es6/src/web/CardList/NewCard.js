@@ -103,7 +103,7 @@ export default class NewCard extends React.Component {
             password: this.props.password,
             given: this.props.given,
             wanted: this.props.wanted,
-            categoryId: this.props.categoryId,
+            parentCategoryId: this.props.categoryId,
             image: this.props.image
         };
         new CreateCardAction(data).apply();

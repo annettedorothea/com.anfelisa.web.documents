@@ -27,7 +27,9 @@ export default class ReplayUtils {
             data : undefined,
             username: undefined,
             password: undefined,
-            role: undefined
+            role: undefined,
+            errors: [],
+            messages: []
         });
     }
 
@@ -40,7 +42,9 @@ export default class ReplayUtils {
             data : undefined,
             username: undefined,
             password: undefined,
-            role: undefined
+            role: undefined,
+            errors: [],
+            messages: []
         });
     }
 

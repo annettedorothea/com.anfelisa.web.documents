@@ -20,10 +20,16 @@ export default class Container extends React.Component {
         } else {
             content = <UserContainer {...this.state} />;
         }
+        const errors = this.state.errors ? this.state.errors.map((error) => {
+            return <div>{this.state.texts.errors[error.errorKey]}</div>;
+        }) : [];
+        const messages = this.state.messages? this.state.messages.map((messageKey) => {
+            return <div>{this.state.texts.errors[messageKey]}</div>;
+        }): [];
         return (
             <div>
-                {this.state.error && <label>{this.state.texts.errors[this.state.error.errorKey]}</label> }
-                {this.state.messageKey && <label>{this.state.texts.messages[this.state.messageKey]}</label> }
+                {errors}
+                {messages}
                 {this.state.displaySpinner && <Spinner /> }
                 {content}
             </div>

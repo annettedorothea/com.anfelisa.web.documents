@@ -27,25 +27,37 @@ export default class CommonView {
     }
 
     static displayError(eventData) {
-        clearTimeout(CommonView.errorTimer);
+        let errors = App.container.state.errors;
+        if (!errors) {
+            errors = [];
+        }
+        errors.push(eventData.error);
         App.container.setState({
-            error: eventData.error
+            errors
         });
-        CommonView.errorTimer = setTimeout(function () {
+        setTimeout(function () {
+            let errors = App.container.state.errors;
+            errors.shift();
             App.container.setState({
-                error: null
+                errors
             });
         }, 7000);
     }
 
     static displayMessage(eventData) {
-        clearTimeout(CommonView.messageTimer);
+        let messages = App.container.state.messages;
+        if (!messages) {
+            messages = [];
+        }
+        messages.push(eventData.messageKey);
         App.container.setState({
-            messageKey: eventData.messageKey
+            messages
         });
-        CommonView.messageTimer = setTimeout(function () {
+        setTimeout(function () {
+            let messages = App.container.state.messages;
+            messages.shift();
             App.container.setState({
-                messageKey: null
+                messages
             });
         }, 7000);
     }

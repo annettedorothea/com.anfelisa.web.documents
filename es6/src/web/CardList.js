@@ -46,7 +46,7 @@ export default class CardList extends React.Component {
             username: this.props.username,
             cardId: this.props.data.deleteCard.cardId,
             password: this.props.password,
-            categoryId: this.props.data.parentCategoryId
+            parentCategoryId: this.props.data.parentCategoryId
         };
         new DeleteCardAction(data).apply();
     }

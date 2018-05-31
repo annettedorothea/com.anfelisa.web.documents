@@ -73,7 +73,7 @@ export default class EditCard extends React.Component {
             given: this.props.given,
             wanted: this.props.wanted,
             image: this.props.image,
-            categoryId: this.props.categoryId
+            parentCategoryId: this.props.categoryId
         };
         new UpdateCardAction(data).apply();
     }
