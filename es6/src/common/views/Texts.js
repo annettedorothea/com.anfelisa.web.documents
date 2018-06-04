@@ -16,6 +16,7 @@ export const Texts = {
             maxIntervalOne: "Karten im Abstand von maximal einem Tag erneut abfragen.",
             maxInterval: "Karten im Abstand von maximal {0} Tagen erneut abfragen.",
             myCards: "Bearbeitete Karten",
+            nextCard: "Karten abfragen",
             postpone: "Zeitplan neu berechnen",
             daysBehindScheduleMessageOne: "Du bist einen Tag hinterher.",
             daysBehindScheduleMessage: "Du bist {0} Tage hinterher.",

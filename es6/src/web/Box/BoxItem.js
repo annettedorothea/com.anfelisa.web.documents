@@ -2,6 +2,7 @@ import React from 'react';
 import DeleteBoxClickAction from "../../box/actions/DeleteBoxClickAction";
 import EditBoxAction from "../../box/actions/EditBoxAction";
 import DaysBehindSchedule from "./DaysBehindSchedule";
+import RouteAction from "../../common/actions/RouteAction";
 
 export default class BoxItem extends React.Component {
 
@@ -48,6 +49,12 @@ export default class BoxItem extends React.Component {
                 </table>
                 <button onClick={() => this.onDeleteClick(this.props.boxId)}>{"\u2717"}</button>
                 <button onClick={() => this.onEdit(this.props.boxId)}>{"\u270E"}</button>
+                <button onClick={() => new RouteAction(
+                    {
+                        username: this.props.username,
+                        password: this.props.password,
+                        hash: `#box/${this.props.boxId}`
+                    }).apply()}>{this.props.texts.box.nextCard}</button>
 
                 <DaysBehindSchedule
                     boxId={this.props.boxId}

@@ -13,6 +13,8 @@ import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
 import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
 import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
 import PostponeCardsOfBoxAction from "../../src/box/actions/PostponeCardsOfBoxAction";
+import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
+import ScheduleNextCardAction from "../../src/box/actions/ScheduleNextCardAction";
 
 export function loadBoxes(actionData) {
     new LoadBoxesAction(actionData).apply();
@@ -72,6 +74,14 @@ export function deleteBox(actionData) {
 
 export function postponeCardsOfBox(actionData) {
     new PostponeCardsOfBoxAction(actionData).apply();
+}
+
+export function loadNextCard(actionData) {
+    new LoadNextCardAction(actionData).apply();
+}
+
+export function scheduleNextCard(actionData) {
+    new ScheduleNextCardAction(actionData).apply();
 }
 
 

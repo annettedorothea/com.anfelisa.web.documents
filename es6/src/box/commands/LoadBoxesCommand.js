@@ -3,7 +3,12 @@ import AbstractLoadBoxesCommand from "../../../gen/box/commands/AbstractLoadBoxe
 export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
     execute() {
         return new Promise((resolve, reject) => {
-            this.httpGet("api/boxes/my").then((data) => {
+            let queryParams = [];
+            queryParams.push({
+                key: "today",
+                value: this.commandData.today
+            });
+            this.httpGet("api/boxes/my", queryParams).then((data) => {
                 this.commandData.data = data;
                 this.commandData.outcome = this.ok;
                 resolve();

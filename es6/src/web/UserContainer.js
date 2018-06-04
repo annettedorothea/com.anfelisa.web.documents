@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import UserList from "./UserList";
 import CategoryList from "./CategoryList";
 import CreateBox from "./CreateBox";
+import QueryCards from "./Box/QueryCards";
 
 export default class UserContainer extends React.Component {
 
@@ -22,6 +23,9 @@ export default class UserContainer extends React.Component {
                 break;
             case "create-box":
                 content = <CreateBox {...this.props} />;
+                break;
+            case "card":
+                content = <QueryCards {...this.props} />;
                 break;
             case "dashboard":
             default:

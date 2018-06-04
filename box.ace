@@ -55,6 +55,14 @@ ACE {
 		on ok triggers (LoadBoxes)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
+	async LoadNextCard {
+		on ok (Box.render)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	async ScheduleNextCard {
+		on ok triggers (LoadNextCard)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
 }
 
 views {
@@ -72,5 +80,8 @@ views {
 		cancelEditBox
 		displayConfirmDelete
 		hideConfirmDelete
+	}
+	Box {
+		render
 	}
 }

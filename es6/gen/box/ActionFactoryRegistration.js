@@ -14,6 +14,8 @@ import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
 import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
 import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
 import PostponeCardsOfBoxAction from "../../src/box/actions/PostponeCardsOfBoxAction";
+import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
+import ScheduleNextCardAction from "../../src/box/actions/ScheduleNextCardAction";
 
 export default class ActionFactoryRegistrationBox {
 
@@ -33,6 +35,8 @@ export default class ActionFactoryRegistrationBox {
 		ACEController.registerFactory('box.CancelDeleteBoxAction', (actionData) => new CancelDeleteBoxAction(actionData));
 		ACEController.registerFactory('box.DeleteBoxAction', (actionData) => new DeleteBoxAction(actionData));
 		ACEController.registerFactory('box.PostponeCardsOfBoxAction', (actionData) => new PostponeCardsOfBoxAction(actionData));
+		ACEController.registerFactory('box.LoadNextCardAction', (actionData) => new LoadNextCardAction(actionData));
+		ACEController.registerFactory('box.ScheduleNextCardAction', (actionData) => new ScheduleNextCardAction(actionData));
 	}
 
 }

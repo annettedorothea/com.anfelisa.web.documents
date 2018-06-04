@@ -2,6 +2,7 @@ import ACEController from "../ace/ACEController";
 import BoxListView from "../../src/box/views/BoxListView";
 import CommonView from "../../src/common/views/CommonView";
 import CreateBoxView from "../../src/box/views/CreateBoxView";
+import BoxView from "../../src/box/views/BoxView";
 
 export default class EventListenerRegistrationBox {
 
@@ -23,6 +24,9 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.CancelDeleteBoxOkEvent', BoxListView.hideConfirmDelete);
 		ACEController.registerListener('box.DeleteBoxUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('box.PostponeCardsOfBoxUnauthorizedEvent', CommonView.displayError);
+		ACEController.registerListener('box.LoadNextCardOkEvent', BoxView.render);
+		ACEController.registerListener('box.LoadNextCardUnauthorizedEvent', CommonView.displayError);
+		ACEController.registerListener('box.ScheduleNextCardUnauthorizedEvent', CommonView.displayError);
 	}
 
 }
