@@ -3,9 +3,6 @@ import AbstractScheduleNextCardAction from "../../../gen/box/actions/AbstractSch
 export default class ScheduleNextCardAction extends AbstractScheduleNextCardAction {
 
     initActionData() {
-        let date = new Date();
-        date.setHours(24,0,0,0);
-        this.actionData.today = date.toISOString();
     }
 
 }

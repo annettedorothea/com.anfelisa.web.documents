@@ -38,7 +38,9 @@ img.preview {
     max-width: 120px;
 }
 
-
+.given, .wanted {
+    border: black solid 3px;
+}
 
 
 body.water {

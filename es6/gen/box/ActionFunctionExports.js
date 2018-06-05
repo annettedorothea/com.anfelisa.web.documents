@@ -15,6 +15,7 @@ import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
 import PostponeCardsOfBoxAction from "../../src/box/actions/PostponeCardsOfBoxAction";
 import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import ScheduleNextCardAction from "../../src/box/actions/ScheduleNextCardAction";
+import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 
 export function loadBoxes(actionData) {
     new LoadBoxesAction(actionData).apply();
@@ -82,6 +83,10 @@ export function loadNextCard(actionData) {
 
 export function scheduleNextCard(actionData) {
     new ScheduleNextCardAction(actionData).apply();
+}
+
+export function displayWanted(actionData) {
+    new DisplayWantedAction(actionData).apply();
 }
 
 

@@ -5,10 +5,6 @@ export default class ScheduleNextCardCommand extends AbstractScheduleNextCardCom
         return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
-                key: "today",
-                value: this.commandData.today
-            });
-            queryParams.push({
                 key: "boxId",
                 value: this.commandData.boxId
             });

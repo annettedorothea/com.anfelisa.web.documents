@@ -27,6 +27,9 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.LoadNextCardOkEvent', BoxView.render);
 		ACEController.registerListener('box.LoadNextCardUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('box.ScheduleNextCardUnauthorizedEvent', CommonView.displayError);
+		ACEController.registerListener('box.DisplayWantedAllEvent', BoxView.displayNextItem);
+		ACEController.registerListener('box.DisplayWantedAllEvent', BoxView.enableScoreButtons);
+		ACEController.registerListener('box.DisplayWantedNotAllEvent', BoxView.displayNextItem);
 	}
 
 }

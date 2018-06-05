@@ -1,5 +1,6 @@
-import React from 'react';
-import ScheduleNextCardAction from "../../box/actions/ScheduleNextCardAction";
+import React from "react";
+import Given from "./Given";
+import Wanted from "./Wanted";
 
 export default class Card extends React.Component {
 
@@ -10,22 +11,19 @@ export default class Card extends React.Component {
     render() {
         const lines = this.props.data.wanted.split("\n");
 
-        console.log("lines", lines);
         console.log("this.props", this.props);
         return (
             <div>
-                <div>
-                    {this.props.data.given}
-                </div>
-                <div>
-                {this.props.data.wanted}
-                </div>
-                <div>
-                lastQuality {this.props.data.lastQuality}
-                </div>
-                <div>
-                {new Date(this.props.data.scheduledDate).toLocaleDateString()}
-                </div>
+                <Given
+                    given={this.props.data.given}
+                    lastQuality={this.props.data.lastQuality}
+                    scheduledDate={this.props.data.scheduledDate}
+                />
+                <Wanted
+                    wanted={this.props.data.wanted}
+                    lastQuality={this.props.data.lastQuality}
+                    index={this.props.data.index}
+                />
             </div>
         );
     }

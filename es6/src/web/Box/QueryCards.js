@@ -9,7 +9,6 @@ export default class QueryCards extends React.Component {
     }
 
     render() {
-        console.log("QueryCards this.props", this.props);
         if (this.props.data.cardId) {
             return <Card {...this.props}/>
         }
