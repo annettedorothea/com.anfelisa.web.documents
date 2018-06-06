@@ -30,6 +30,8 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.DisplayWantedAllEvent', BoxView.displayNextItem);
 		ACEController.registerListener('box.DisplayWantedAllEvent', BoxView.enableScoreButtons);
 		ACEController.registerListener('box.DisplayWantedNotAllEvent', BoxView.displayNextItem);
+		ACEController.registerListener('box.DisplayWantedImageEvent', BoxView.displayImage);
+		ACEController.registerListener('box.DisplayWantedImageEvent', BoxView.enableScoreButtons);
 	}
 
 }

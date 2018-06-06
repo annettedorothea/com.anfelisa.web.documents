@@ -8,16 +8,25 @@ export default class Given extends React.Component {
 
     render() {
         return (
-            <div className="given">
+            <div className={`given lastQuality_${this.props.lastQuality}`}>
                 <div>
                     {this.props.given}
                 </div>
+                {this.props.scheduledDate &&
                 <div>
-                    lastQuality {this.props.lastQuality}
+                    {this.props.texts.queryCards.scheduledDate} {new Date(this.props.scheduledDate).toLocaleDateString()}
                 </div>
+                }
                 <div>
-                    {new Date(this.props.scheduledDate).toLocaleDateString()}
+                    {this.props.count === 0 && this.props.texts.queryCards.never}
+                    {this.props.count > 0 &&
+                    this.props.texts.queryCards.count.replace("{0}", this.props.count)}
                 </div>
+                {this.props.scoredDate &&
+                <div>
+                    {this.props.texts.queryCards.scoredDate} {new Date(this.props.scoredDate).toLocaleDateString()}
+                </div>
+                }
             </div>
         );
     }

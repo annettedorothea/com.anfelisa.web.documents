@@ -39,6 +39,7 @@ window.onhashchange = () => {
             password: container.state.password
         }
     ).apply();
+    window.scrollTo(0, 0);
 };
 
 EventListenerRegistrationAdmin.init();

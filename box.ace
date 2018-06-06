@@ -66,6 +66,7 @@ ACE {
 	DisplayWanted {
 		on all (Box.displayNextItem Box.enableScoreButtons)
 		on notAll (Box.displayNextItem)
+		on image (Box.displayImage Box.enableScoreButtons)
 	}
 }
 
@@ -88,6 +89,7 @@ views {
 	Box {
 		render
 		displayNextItem
+		displayImage
 		enableScoreButtons
 	}
 }

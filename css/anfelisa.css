@@ -14,7 +14,6 @@ input, button, textarea, select {
     font-family: Helvetica, sans-serif;
 }
 
-
 .dictionaryWrapper {
     width: 100%;
     height: 700px;
@@ -39,8 +38,64 @@ img.preview {
 }
 
 .given, .wanted {
-    border: black solid 3px;
+    border: gray solid 3px;
+    border-radius: 7px;
+    padding: 10px;
+    margin: 20px 0;
 }
+
+.hidden {
+    visibility: hidden;
+}
+
+img.image {
+    max-height: 600px;
+    max-width: 100%;
+}
+
+.lastQuality_0 {
+    border-color: pink;
+}
+
+.lastQuality_1 {
+    border-color: red;
+}
+
+.lastQuality_2 {
+    border-color: orange;
+}
+
+.lastQuality_3 {
+    border-color: cyan;
+}
+
+.lastQuality_4 {
+    border-color: blue;
+}
+
+.lastQuality_5 {
+    border-color: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 body.water {

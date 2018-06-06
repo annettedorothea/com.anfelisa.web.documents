@@ -10,7 +10,7 @@ export const Texts = {
             confirmDelete: {
                 cancel: "Nein",
                 ok: "Ja",
-                message: "Soll die Kategorie wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht.",
+                message: "Soll die Lernkartei wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht.",
                 title: "Löschen"
             },
             maxIntervalOne: "Karten im Abstand von maximal einem Tag erneut abfragen.",
@@ -124,6 +124,22 @@ export const Texts = {
             email: "Email",
             title: "Profil",
             username: "Benutzer"
+        },
+        queryCards: {
+            back: "Zurück",
+            count: "{0}x abgefragt",
+            never: "noch nie abgefragt",
+            scoreButtons : {
+                0: "Keine Ahnung",
+                1: "Nicht gewusst",
+                2: "Knapp daneben",
+                3: "Mit Mühe",
+                4: "Gewusst",
+                5: "Perfekt"
+            },
+            scheduledDate: "geplant für den: ",
+            scheduleNextCard: "Nächste Karte",
+            scoredDate: "zuletzt abgefragt am: "
         },
         registration: {
             cancel: "Abbrechen",
