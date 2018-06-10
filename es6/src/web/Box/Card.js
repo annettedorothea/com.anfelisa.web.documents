@@ -2,6 +2,7 @@ import React from "react";
 import Given from "./Given";
 import Wanted from "./Wanted";
 import ScoreButton from "./ScoreButton";
+import ScoreCardAction from "../../box/actions/ScoreCardAction";
 
 export default class Card extends React.Component {
 
@@ -11,7 +12,14 @@ export default class Card extends React.Component {
     }
 
     scoreButtonClick(quality) {
-        console.log("scoreButtonClick", quality);
+        const data = {
+            boxId: this.props.data.boxId,
+            scheduledCardId: this.props.data.scheduledCardId,
+            quality,
+            username: this.props.username,
+            password: this.props.password
+        };
+        new ScoreCardAction(data).apply();
     }
 
     render() {

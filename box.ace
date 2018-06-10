@@ -68,6 +68,10 @@ ACE {
 		on notAll (Box.displayNextItem)
 		on image (Box.displayImage Box.enableScoreButtons)
 	}
+	async ScoreCard {
+		on ok triggers (LoadNextCard)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
 }
 
 views {

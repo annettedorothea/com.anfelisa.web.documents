@@ -17,6 +17,7 @@ import PostponeCardsOfBoxAction from "../../src/box/actions/PostponeCardsOfBoxAc
 import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import ScheduleNextCardAction from "../../src/box/actions/ScheduleNextCardAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
+import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
 
 export default class ActionFactoryRegistrationBox {
 
@@ -39,6 +40,7 @@ export default class ActionFactoryRegistrationBox {
 		ACEController.registerFactory('box.LoadNextCardAction', (actionData) => new LoadNextCardAction(actionData));
 		ACEController.registerFactory('box.ScheduleNextCardAction', (actionData) => new ScheduleNextCardAction(actionData));
 		ACEController.registerFactory('box.DisplayWantedAction', (actionData) => new DisplayWantedAction(actionData));
+		ACEController.registerFactory('box.ScoreCardAction', (actionData) => new ScoreCardAction(actionData));
 	}
 
 }
