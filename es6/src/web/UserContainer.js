@@ -27,6 +27,9 @@ export default class UserContainer extends React.Component {
             case "card":
                 content = <QueryCards {...this.props} />;
                 break;
+            case "reinforce-card":
+                content = <QueryCards {...this.props} />;
+                break;
             case "dashboard":
             default:
                 content = <Dashboard {...this.props} />;

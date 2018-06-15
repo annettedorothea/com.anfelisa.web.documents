@@ -129,6 +129,7 @@ export const Texts = {
             back: "Zurück",
             count: "{0}x abgefragt",
             never: "noch nie abgefragt",
+            reinforceCard: "Festigen",
             scoreButtons : {
                 0: "Keine Ahnung",
                 1: "Nicht gewusst",

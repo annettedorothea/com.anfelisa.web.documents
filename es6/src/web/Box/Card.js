@@ -3,6 +3,7 @@ import Given from "./Given";
 import Wanted from "./Wanted";
 import ScoreButton from "./ScoreButton";
 import ScoreCardAction from "../../box/actions/ScoreCardAction";
+import RouteAction from "../../common/actions/RouteAction";
 
 export default class Card extends React.Component {
 
@@ -53,7 +54,16 @@ export default class Card extends React.Component {
                     image={this.props.data.image}
                     displayImage={this.props.data.displayImage}
                 />
-                {scoreButtons}
+                <div>
+                    {scoreButtons}
+                </div>
+                <button
+                    onClick={() => new RouteAction({
+                        username: this.props.username,
+                        password: this.props.password,
+                        hash: "#dashboard"
+                    }).apply()}>{this.props.texts.queryCards.back}
+                </button>
             </div>
         );
     }

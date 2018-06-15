@@ -3,6 +3,7 @@ import BoxListView from "../../src/box/views/BoxListView";
 import CommonView from "../../src/common/views/CommonView";
 import CreateBoxView from "../../src/box/views/CreateBoxView";
 import BoxView from "../../src/box/views/BoxView";
+import BoxReinforceView from "../../src/box/views/BoxReinforceView";
 
 export default class EventListenerRegistrationBox {
 
@@ -33,6 +34,14 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.DisplayWantedImageEvent', BoxView.displayImage);
 		ACEController.registerListener('box.DisplayWantedImageEvent', BoxView.enableScoreButtons);
 		ACEController.registerListener('box.ScoreCardUnauthorizedEvent', CommonView.displayError);
+		ACEController.registerListener('box.LoadNextReinforceCardOkEvent', BoxReinforceView.render);
+		ACEController.registerListener('box.LoadNextReinforceCardUnauthorizedEvent', CommonView.displayError);
+		ACEController.registerListener('box.DisplayWantedReinforceAllEvent', BoxReinforceView.displayNextItem);
+		ACEController.registerListener('box.DisplayWantedReinforceAllEvent', BoxReinforceView.enableScoreButtons);
+		ACEController.registerListener('box.DisplayWantedReinforceNotAllEvent', BoxReinforceView.displayNextItem);
+		ACEController.registerListener('box.DisplayWantedReinforceImageEvent', BoxReinforceView.displayImage);
+		ACEController.registerListener('box.DisplayWantedReinforceImageEvent', BoxReinforceView.enableScoreButtons);
+		ACEController.registerListener('box.ScoreReinforceCardUnauthorizedEvent', CommonView.displayError);
 	}
 
 }

@@ -51,10 +51,12 @@ ACE {
 		on ok triggers (LoadBoxes)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
+	
 	async PostponeCardsOfBox {
 		on ok triggers (LoadBoxes)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
+	
 	async LoadNextCard {
 		on ok (Box.render)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
@@ -70,6 +72,20 @@ ACE {
 	}
 	async ScoreCard {
 		on ok triggers (LoadNextCard)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	async LoadNextReinforceCard {
+		on ok (BoxReinforce.render)
+		on noCard triggers (common.Route)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	DisplayWantedReinforce {
+		on all (BoxReinforce.displayNextItem BoxReinforce.enableScoreButtons)
+		on notAll (BoxReinforce.displayNextItem)
+		on image (BoxReinforce.displayImage BoxReinforce.enableScoreButtons)
+	}
+	async ScoreReinforceCard {
+		on ok triggers (LoadNextReinforceCard)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 }
@@ -91,6 +107,12 @@ views {
 		hideConfirmDelete
 	}
 	Box {
+		render
+		displayNextItem
+		displayImage
+		enableScoreButtons
+	}
+	BoxReinforce {
 		render
 		displayNextItem
 		displayImage

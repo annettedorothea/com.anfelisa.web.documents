@@ -17,6 +17,9 @@ import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import ScheduleNextCardAction from "../../src/box/actions/ScheduleNextCardAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
+import LoadNextReinforceCardAction from "../../src/box/actions/LoadNextReinforceCardAction";
+import DisplayWantedReinforceAction from "../../src/box/actions/DisplayWantedReinforceAction";
+import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
 
 export function loadBoxes(actionData) {
     new LoadBoxesAction(actionData).apply();
@@ -92,6 +95,18 @@ export function displayWanted(actionData) {
 
 export function scoreCard(actionData) {
     new ScoreCardAction(actionData).apply();
+}
+
+export function loadNextReinforceCard(actionData) {
+    new LoadNextReinforceCardAction(actionData).apply();
+}
+
+export function displayWantedReinforce(actionData) {
+    new DisplayWantedReinforceAction(actionData).apply();
+}
+
+export function scoreReinforceCard(actionData) {
+    new ScoreReinforceCardAction(actionData).apply();
 }
 
 

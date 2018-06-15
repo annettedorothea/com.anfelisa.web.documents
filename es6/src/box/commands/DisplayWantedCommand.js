@@ -12,7 +12,6 @@ export default class DisplayWantedCommand extends AbstractDisplayWantedCommand {
                 this.commandData.outcome = this.all;
             }
         }
-        console.log("this.commandData", this.commandData);
     }
 }
 
