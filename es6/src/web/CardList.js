@@ -121,6 +121,7 @@ export default class CardList extends React.Component {
                 wantedLanguage={this.props.data.newCard.wantedLanguage}
                 texts={this.props.texts}
                 naturalInputOrder={this.props.data.naturalInputOrder}
+                useDictionary={this.props.data.useDictionary}
             />
         );
         let duplicateCards = this.props.data.cardDuplicates.map((card) => {
@@ -197,7 +198,7 @@ export default class CardList extends React.Component {
                     givenLanguage={this.props.data.newCard.givenLanguage}
                     wantedLanguage={this.props.data.newCard.wantedLanguage}
                     naturalInputOrder={this.props.data.naturalInputOrder}
-                    displayDictionary={this.props.data.displayDictionary}
+                    value={this.props.data.dictionaryValue}
                 />
                 }
 

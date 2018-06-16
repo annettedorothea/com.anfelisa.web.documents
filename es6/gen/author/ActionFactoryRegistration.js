@@ -25,6 +25,7 @@ import DeleteCardClickAction from "../../src/author/actions/DeleteCardClickActio
 import CancelDeleteCardAction from "../../src/author/actions/CancelDeleteCardAction";
 import FilterCardsAction from "../../src/author/actions/FilterCardsAction";
 import TranslateAction from "../../src/author/actions/TranslateAction";
+import PassValueToDictionaryAction from "../../src/author/actions/PassValueToDictionaryAction";
 import ToggleDictionaryLookupOfNewCategoryAction from "../../src/author/actions/ToggleDictionaryLookupOfNewCategoryAction";
 import ToggleDictionaryLookupOfEditedCategoryAction from "../../src/author/actions/ToggleDictionaryLookupOfEditedCategoryAction";
 import GivenLanguageOfNewCategoryChangedAction from "../../src/author/actions/GivenLanguageOfNewCategoryChangedAction";
@@ -67,6 +68,7 @@ export default class ActionFactoryRegistrationAuthor {
 		ACEController.registerFactory('author.CancelDeleteCardAction', (actionData) => new CancelDeleteCardAction(actionData));
 		ACEController.registerFactory('author.FilterCardsAction', (actionData) => new FilterCardsAction(actionData));
 		ACEController.registerFactory('author.TranslateAction', (actionData) => new TranslateAction(actionData));
+		ACEController.registerFactory('author.PassValueToDictionaryAction', (actionData) => new PassValueToDictionaryAction(actionData));
 		ACEController.registerFactory('author.ToggleDictionaryLookupOfNewCategoryAction', (actionData) => new ToggleDictionaryLookupOfNewCategoryAction(actionData));
 		ACEController.registerFactory('author.ToggleDictionaryLookupOfEditedCategoryAction', (actionData) => new ToggleDictionaryLookupOfEditedCategoryAction(actionData));
 		ACEController.registerFactory('author.GivenLanguageOfNewCategoryChangedAction', (actionData) => new GivenLanguageOfNewCategoryChangedAction(actionData));

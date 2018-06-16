@@ -9,7 +9,6 @@ export default class LoadNextReinforceCardCommand extends AbstractLoadNextReinfo
                 value: this.commandData.boxId
             });
             this.httpGet("api/box/next-reinforce-card", queryParams).then((data) => {
-                console.log("LoadNextReinforceCardCommand", data);
                 if (data.reinforceCardId) {
                     this.commandData.outcome = this.ok;
                     this.commandData.data = data;

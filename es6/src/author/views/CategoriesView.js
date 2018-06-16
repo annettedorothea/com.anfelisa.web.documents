@@ -47,8 +47,8 @@ export default class CategoriesView {
             },
             filter: "",
             naturalInputOrder: true,
-            displayDictionary: false,
-            useDictionary: false,
+            useDictionary: App.container.state && App.container.state.data ? App.container.state.data.useDictionary : false,
+            dictionaryValue: "",
             categoryList: eventData.data.categoryList,
             cardList: eventData.data.cardList,
             grandParentCategoryId: eventData.data.grandParentCategoryId,
@@ -179,7 +179,6 @@ export default class CategoriesView {
                 wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : "",
                 image: ""
             };
-            data.useDictionary = data.newCard.dictionaryLookup;
             App.container.setState({
                 data
             });
@@ -397,17 +396,10 @@ export default class CategoriesView {
         });
     };
 
-    static displayDictionary() {
+    static setDictionaryValue(eventData) {
         let data = App.container.state.data;
-        data.displayDictionary = true;
-        App.container.setState({
-            data
-        });
-    };
-
-    static hideDictionary() {
-        let data = App.container.state.data;
-        data.displayDictionary = false;
+        data.dictionaryValue = eventData.dictionaryValue;
+        console.log("setDictionaryValue", data);
         App.container.setState({
             data
         });

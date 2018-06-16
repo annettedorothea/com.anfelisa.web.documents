@@ -7,6 +7,7 @@ import WantedOfNewCardChangedAction from "../../author/actions/WantedOfNewCardCh
 import CancelNewCardAction from "../../author/actions/CancelNewCardAction";
 import LoadWantedImageOfNewCardAction from "../../author/actions/LoadWantedImageOfNewCardAction";
 import RemoveNewCardImageAction from "../../author/actions/RemoveNewCardImageAction";
+import PassValueToDictionaryAction from "../../author/actions/PassValueToDictionaryAction";
 
 export default class NewCard extends React.Component {
 
@@ -111,6 +112,16 @@ export default class NewCard extends React.Component {
     }
 
     onBlurGiven() {
+        console.log("onBlurGiven", this.props);
+        if (this.props.naturalInputOrder === true && this.props.useDictionary === true && (!this.props.wanted || this.props.wanted.length === 0)) {
+            const data = {
+                dictionaryValue: this.props.given,
+                givenLanguage: this.props.givenLanguage,
+                wantedLanguage: this.props.wantedLanguage,
+                naturalInputOrder: this.props.naturalInputOrder
+            };
+            new PassValueToDictionaryAction(data).apply();
+        }
         if (this.props.naturalInputOrder === true && this.props.dictionaryLookup === true) {
             const data = {
                 given: this.props.given,
@@ -127,6 +138,15 @@ export default class NewCard extends React.Component {
     }
 
     onBlurWanted() {
+        if (this.props.naturalInputOrder === false && this.props.useDictionary === true && (!this.props.given || this.props.given.length === 0)) {
+            const data = {
+                dictionaryValue: this.props.wanted,
+                givenLanguage: this.props.givenLanguage,
+                wantedLanguage: this.props.wantedLanguage,
+                naturalInputOrder: this.props.naturalInputOrder
+            };
+            new PassValueToDictionaryAction(data).apply();
+        }
         if (this.props.naturalInputOrder === false && this.props.dictionaryLookup === true) {
             const data = {
                 given: this.props.given,
@@ -165,6 +185,7 @@ export default class NewCard extends React.Component {
                         }}
                         onKeyUp={this.onAltKeyUp}
                         onBlur={this.onBlurGiven}
+                        id="given"
                     />
                 </div>
                 {this.props.displaySpinner === true &&
@@ -190,6 +211,7 @@ export default class NewCard extends React.Component {
                     }}
                     onKeyUp={this.onAltKeyUp}
                     onBlur={this.onBlurWanted}
+                    id="wanted"
                 />
             </td>
         )

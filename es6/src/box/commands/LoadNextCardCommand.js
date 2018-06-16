@@ -13,8 +13,6 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
                 value: this.commandData.boxId
             });
             this.httpGet("api/box/next-card", queryParams).then((data) => {
-                console.log("data", data);
-                console.log("this.commandData", this.commandData);
                 this.commandData.data = data;
                 if (data.scheduledCardId) {
                     this.commandData.outcome = this.ok;

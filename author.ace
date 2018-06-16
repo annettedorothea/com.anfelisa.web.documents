@@ -14,7 +14,6 @@ ACE {
 			Categories.resetFilter
 			Categories.resetGiven
 			Categories.resetWanted
-			Categories.hideDictionary
 		)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
@@ -79,7 +78,7 @@ ACE {
 		on ok (Categories.wantedOfNewCardChanged) triggers (SearchDuplicateCards)
 	}
 	CancelNewCard {
-		on ok (Categories.resetNewCardValues Categories.hideDictionary)
+		on ok (Categories.resetNewCardValues )
 	}
 	
 	GivenOfEditedCardChanged {
@@ -106,11 +105,15 @@ ACE {
 	}
 	
 	async Translate preUpdateUI (Categories.displayTranslateSpinner) postUpdateUI (Categories.hideTranslateSpinner) {
-		on wantedFetched (Categories.wantedOfNewCardChanged Categories.displayDictionary ) triggers (SearchDuplicateCards)
-		on givenFetched (Categories.givenOfNewCardChanged Categories.displayDictionary ) triggers (SearchDuplicateCards)
+		on wantedFetched (Categories.wantedOfNewCardChanged ) triggers (SearchDuplicateCards)
+		on givenFetched (Categories.givenOfNewCardChanged ) triggers (SearchDuplicateCards)
 		on error
 		on empty
 		on targetNotEmtpy
+	}
+	
+	PassValueToDictionary {
+		on ok (Categories.setDictionaryValue)
 	}
 	
 	ToggleDictionaryLookupOfNewCategory {
@@ -213,9 +216,8 @@ views {
 		toggleInputOrder
 		resetGiven
 		resetWanted
-		displayDictionary
-		hideDictionary
 		toggleUseDictionary
+		setDictionaryValue
 		
 		displayImageOfNewCard
 		displayImageOfEditedCard

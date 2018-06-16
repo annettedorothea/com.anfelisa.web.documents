@@ -1,6 +1,6 @@
 import ACEController from "./ACEController";
 import Event from "./Event";
-
+import AppUtils from "../../src/app/AppUtils";
 
 export default class SynchronousEvent extends Event {
 

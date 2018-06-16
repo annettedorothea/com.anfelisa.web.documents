@@ -24,6 +24,7 @@ import DeleteCardClickAction from "../../src/author/actions/DeleteCardClickActio
 import CancelDeleteCardAction from "../../src/author/actions/CancelDeleteCardAction";
 import FilterCardsAction from "../../src/author/actions/FilterCardsAction";
 import TranslateAction from "../../src/author/actions/TranslateAction";
+import PassValueToDictionaryAction from "../../src/author/actions/PassValueToDictionaryAction";
 import ToggleDictionaryLookupOfNewCategoryAction from "../../src/author/actions/ToggleDictionaryLookupOfNewCategoryAction";
 import ToggleDictionaryLookupOfEditedCategoryAction from "../../src/author/actions/ToggleDictionaryLookupOfEditedCategoryAction";
 import GivenLanguageOfNewCategoryChangedAction from "../../src/author/actions/GivenLanguageOfNewCategoryChangedAction";
@@ -139,6 +140,10 @@ export function filterCards(actionData) {
 
 export function translate(actionData) {
     new TranslateAction(actionData).apply();
+}
+
+export function passValueToDictionary(actionData) {
+    new PassValueToDictionaryAction(actionData).apply();
 }
 
 export function toggleDictionaryLookupOfNewCategory(actionData) {
