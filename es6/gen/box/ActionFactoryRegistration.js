@@ -16,6 +16,7 @@ import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
 import PostponeCardsOfBoxAction from "../../src/box/actions/PostponeCardsOfBoxAction";
 import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import ScheduleNextCardAction from "../../src/box/actions/ScheduleNextCardAction";
+import ToggleScheduleNextAction from "../../src/box/actions/ToggleScheduleNextAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
 import LoadNextReinforceCardAction from "../../src/box/actions/LoadNextReinforceCardAction";
@@ -42,6 +43,7 @@ export default class ActionFactoryRegistrationBox {
 		ACEController.registerFactory('box.PostponeCardsOfBoxAction', (actionData) => new PostponeCardsOfBoxAction(actionData));
 		ACEController.registerFactory('box.LoadNextCardAction', (actionData) => new LoadNextCardAction(actionData));
 		ACEController.registerFactory('box.ScheduleNextCardAction', (actionData) => new ScheduleNextCardAction(actionData));
+		ACEController.registerFactory('box.ToggleScheduleNextAction', (actionData) => new ToggleScheduleNextAction(actionData));
 		ACEController.registerFactory('box.DisplayWantedAction', (actionData) => new DisplayWantedAction(actionData));
 		ACEController.registerFactory('box.ScoreCardAction', (actionData) => new ScoreCardAction(actionData));
 		ACEController.registerFactory('box.LoadNextReinforceCardAction', (actionData) => new LoadNextReinforceCardAction(actionData));

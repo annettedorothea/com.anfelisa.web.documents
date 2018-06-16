@@ -59,11 +59,17 @@ ACE {
 	
 	async LoadNextCard {
 		on ok (Box.render)
+		on scheduleNext triggers (ScheduleNextCard)
+		on doNotScheduleNext (Box.render)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 	async ScheduleNextCard {
 		on ok triggers (LoadNextCard)
+		on badRequest (Box.render)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	ToggleScheduleNext {
+		on ok (Box.toggleScheduleNext)
 	}
 	DisplayWanted {
 		on all (Box.displayNextItem Box.enableScoreButtons)
@@ -111,6 +117,7 @@ views {
 		displayNextItem
 		displayImage
 		enableScoreButtons
+		toggleScheduleNext
 	}
 	BoxReinforce {
 		render

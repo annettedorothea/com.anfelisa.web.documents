@@ -17,6 +17,7 @@ export default class QueryCards extends React.Component {
         if (this.props.data.reinforceCardId) {
             return <ReinforceCard {...this.props}/>
         }
+        console.log("QueryCards", this.props);
         return (
             <div>
                 <button onClick={() => new ScheduleNextCardAction(

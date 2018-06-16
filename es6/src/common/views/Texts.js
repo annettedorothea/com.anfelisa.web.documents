@@ -139,6 +139,7 @@ export const Texts = {
                 5: "Perfekt"
             },
             scheduledDate: "geplant für den: ",
+            scheduleNext: "Automatisch weiter mit neuen Karten",
             scheduleNextCard: "Nächste Karte",
             scoredDate: "zuletzt abgefragt am: "
         },

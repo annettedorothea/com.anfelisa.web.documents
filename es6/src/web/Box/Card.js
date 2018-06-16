@@ -4,12 +4,14 @@ import Wanted from "./Wanted";
 import ScoreButton from "./ScoreButton";
 import ScoreCardAction from "../../box/actions/ScoreCardAction";
 import RouteAction from "../../common/actions/RouteAction";
+import ToggleScheduleNextAction from "../../box/actions/ToggleScheduleNextAction";
 
 export default class Card extends React.Component {
 
     constructor(props) {
         super(props);
         this.scoreButtonClick = this.scoreButtonClick.bind(this);
+        this.onScheduleNextCheckedChange = this.onScheduleNextCheckedChange.bind(this);
     }
 
     scoreButtonClick(quality) {
@@ -18,9 +20,14 @@ export default class Card extends React.Component {
             scheduledCardId: this.props.data.scheduledCardId,
             quality,
             username: this.props.username,
-            password: this.props.password
+            password: this.props.password,
+            scheduleNext: this.props.data.scheduleNext
         };
         new ScoreCardAction(data).apply();
+    }
+
+    onScheduleNextCheckedChange() {
+        new ToggleScheduleNextAction().apply();
     }
 
     render() {
@@ -54,6 +61,10 @@ export default class Card extends React.Component {
                     image={this.props.data.image}
                     displayImage={this.props.data.displayImage}
                 />
+                <div>
+                    <input id="scheduleNextCheckbox" type={"checkbox"} checked={this.props.data.scheduleNext} onChange={this.onScheduleNextCheckedChange}/>
+                    <label htmlFor="scheduleNextCheckbox">{this.props.texts.queryCards.scheduleNext}</label>
+                </div>
                 <div>
                     {scoreButtons}
                 </div>

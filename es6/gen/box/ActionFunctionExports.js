@@ -15,6 +15,7 @@ import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
 import PostponeCardsOfBoxAction from "../../src/box/actions/PostponeCardsOfBoxAction";
 import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import ScheduleNextCardAction from "../../src/box/actions/ScheduleNextCardAction";
+import ToggleScheduleNextAction from "../../src/box/actions/ToggleScheduleNextAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
 import LoadNextReinforceCardAction from "../../src/box/actions/LoadNextReinforceCardAction";
@@ -87,6 +88,10 @@ export function loadNextCard(actionData) {
 
 export function scheduleNextCard(actionData) {
     new ScheduleNextCardAction(actionData).apply();
+}
+
+export function toggleScheduleNext(actionData) {
+    new ToggleScheduleNextAction(actionData).apply();
 }
 
 export function displayWanted(actionData) {

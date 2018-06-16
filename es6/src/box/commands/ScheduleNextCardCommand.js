@@ -13,7 +13,10 @@ export default class ScheduleNextCardCommand extends AbstractScheduleNextCardCom
                 this.commandData.data = data;
                 resolve();
             }, (error) => {
-                if (error.code === 401) {
+                if (error.code === 400) {
+                    this.commandData.outcome = this.badRequest;
+                    resolve();
+                } else if (error.code === 401) {
                     error.errorKey = "unauthorized";
                     this.commandData.error = error;
                     this.commandData.outcome = this.unauthorized;
