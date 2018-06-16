@@ -9,8 +9,9 @@ export default class SynchronousEvent extends Event {
         if (this.eventName !== "TriggerAction") {
             this.eventData.notifiedListeners = this.getNotifiedListeners();
         }
-        ACEController.addItemToTimeLine({event: this});
         this.notifyListeners();
+		this.eventData.appState = AppUtils.getAppState();
+		ACEController.addItemToTimeLine({event: this});
     }
 
     notifyListeners() {

@@ -8,10 +8,13 @@ export default class AsynchronousEvent extends Event {
             if (this.eventName !== "TriggerAction") {
                 this.eventData.notifiedListeners = this.getNotifiedListeners();
             }
-            ACEController.addItemToTimeLine({event: this});
             Promise.all(this.notifyListeners()).then(() => {
+				this.eventData.appState = AppUtils.getAppState();
+				ACEController.addItemToTimeLine({event: this});
                 resolve();
             }, (error) => {
+				this.eventData.appState = AppUtils.getAppState();
+				ACEController.addItemToTimeLine({event: this});
                 reject(error + "\n" + this.eventName);
             });
         });

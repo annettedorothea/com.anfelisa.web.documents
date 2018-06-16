@@ -2,6 +2,7 @@ import ACEController from "../../gen/ace/ACEController";
 import InitAction from "../../src/common/actions/InitAction";
 import uuid from "uuid";
 import CryptoJS from "crypto-js";
+import * as App from "./App";
 
 export default class AppUtils {
 
@@ -168,6 +169,12 @@ export default class AppUtils {
 
 	static deepCopy(object) {
 	    return JSON.parse(JSON.stringify(object));
+	}
+
+	static getAppState() {
+        const appState = AppUtils.deepCopy(App.container.state);
+        delete appState.texts;
+    	return appState;
 	}
 
 }
