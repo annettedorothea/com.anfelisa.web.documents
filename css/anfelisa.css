@@ -16,12 +16,18 @@ input, button, textarea, select {
 
 .dictionaryWrapper {
     width: 100%;
-    height: 700px;
+    height: 500px;
 }
 
 iframe {
     width: 100%;
-    height: 100%;
+    height: 100%
+}
+
+.iframePlaceholder {
+    background-color: darkgray;
+    width: 100%;
+    height: 500px;
 }
 
 table {

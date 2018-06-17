@@ -30,9 +30,17 @@ export default class NewCard extends React.Component {
 
     setFocus() {
         if (this.props.naturalInputOrder === true) {
-            this.givenInput.focus();
+            if (!this.props.given || this.props.given.length === 0) {
+                this.givenInput.focus();
+            } else {
+                this.wantedInput.focus();
+            }
         } else {
-            this.wantedInput.focus();
+            if (!this.props.wanted || this.props.wanted.length === 0) {
+                this.wantedInput.focus();
+            } else {
+                this.givenInput.focus();
+            }
         }
     }
 
@@ -112,7 +120,6 @@ export default class NewCard extends React.Component {
     }
 
     onBlurGiven() {
-        console.log("onBlurGiven", this.props);
         if (this.props.naturalInputOrder === true && this.props.useDictionary === true && (!this.props.wanted || this.props.wanted.length === 0)) {
             const data = {
                 dictionaryValue: this.props.given,

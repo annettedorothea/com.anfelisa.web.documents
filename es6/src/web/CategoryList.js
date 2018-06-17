@@ -139,8 +139,6 @@ export default class CategoryList extends React.Component {
                     </tbody>
                 </table>
 
-                {this.props.data.parentCategoryId && <CardList {...this.props} />}
-
                 <button
                     onClick={() => new RouteAction({
                         username: this.props.username,
@@ -148,6 +146,8 @@ export default class CategoryList extends React.Component {
                         hash: backLink
                     }).apply()}>{this.props.texts.categoryList.back}
                 </button>
+
+                {this.props.data.parentCategoryId && <CardList {...this.props} />}
 
             </div>
         );

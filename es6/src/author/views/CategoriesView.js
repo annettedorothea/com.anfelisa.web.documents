@@ -399,7 +399,6 @@ export default class CategoriesView {
     static setDictionaryValue(eventData) {
         let data = App.container.state.data;
         data.dictionaryValue = eventData.dictionaryValue;
-        console.log("setDictionaryValue", data);
         App.container.setState({
             data
         });
