@@ -2,7 +2,6 @@ import * as App from "../../app/App";
 
 export default class CategoriesView {
     static render(eventData) {
-        console.log("render", eventData);
         const data = {
             newCategory: {
                 name: "",
@@ -176,8 +175,6 @@ export default class CategoriesView {
             data.newCard.given = "";
             data.newCard.image = "";
             data.cardDuplicates = [];
-            console.log("resetNewCardValues eventData", eventData);
-            console.log("resetNewCardValues data", data);
             App.container.setState({
                 data
             });

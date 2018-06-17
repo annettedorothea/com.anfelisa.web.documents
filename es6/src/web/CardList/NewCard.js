@@ -25,22 +25,17 @@ export default class NewCard extends React.Component {
     }
 
     componentDidMount() {
-        console.log("componentDidMount", this.props);
         this.setFocus();
     }
 
     setFocus() {
-        console.log("setFocus", this.props);
-        console.log("naturalInputOrder", this.props.naturalInputOrder);
         if (this.props.naturalInputOrder === true) {
-            console.log("given", this.props.given);
             if (!this.props.given || this.props.given.length === 0) {
                 this.setFocusGiven();
             } else {
                 this.setFocusWanted();
             }
         } else {
-            console.log("wanted", this.props.wanted);
             if (!this.props.wanted || this.props.wanted.length === 0) {
                 this.setFocusWanted();
             } else {
