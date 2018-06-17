@@ -25,23 +25,44 @@ export default class NewCard extends React.Component {
     }
 
     componentDidMount() {
+        console.log("componentDidMount", this.props);
         this.setFocus();
     }
 
     setFocus() {
+        console.log("setFocus", this.props);
+        console.log("naturalInputOrder", this.props.naturalInputOrder);
         if (this.props.naturalInputOrder === true) {
+            console.log("given", this.props.given);
             if (!this.props.given || this.props.given.length === 0) {
-                this.givenInput.focus();
+                this.setFocusGiven();
             } else {
-                this.wantedInput.focus();
+                this.setFocusWanted();
             }
         } else {
+            console.log("wanted", this.props.wanted);
             if (!this.props.wanted || this.props.wanted.length === 0) {
-                this.wantedInput.focus();
+                this.setFocusWanted();
             } else {
-                this.givenInput.focus();
+                this.setFocusGiven();
             }
         }
+    }
+
+    setFocusByInputOrder() {
+        if (this.props.naturalInputOrder === true) {
+            this.setFocusGiven();
+        } else {
+            this.setFocusWanted();
+        }
+    }
+
+    setFocusGiven() {
+        this.givenInput.focus();
+    }
+
+    setFocusWanted() {
+        this.wantedInput.focus();
     }
 
     onWantedFileChange(event) {
@@ -103,7 +124,7 @@ export default class NewCard extends React.Component {
             parentWantedLanguage: this.props.wantedLanguage
         };
         new CancelNewCardAction(data).apply();
-        this.setFocus();
+        this.setFocusByInputOrder();
     }
 
     onNewCard() {
@@ -116,7 +137,7 @@ export default class NewCard extends React.Component {
             image: this.props.image
         };
         new CreateCardAction(data).apply();
-        this.setFocus();
+        this.setFocusByInputOrder();
     }
 
     onBlurGiven() {

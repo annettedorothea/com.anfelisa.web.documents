@@ -6,14 +6,6 @@ ACE {
 	async LoadCategories preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
 		on ok (
 			Categories.render 
-			Categories.resetEditCardValues 
-			Categories.resetEditCategoryValues 
-			Categories.resetNewCardValues 
-			Categories.resetNewCategoryValues
-			Categories.resetDuplicates
-			Categories.resetFilter
-			Categories.resetGiven
-			Categories.resetWanted
 		)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
@@ -208,14 +200,11 @@ views {
 		resetDuplicates
 		
 		filterChanged
-		resetFilter
 		
 		toggleDictionaryLookupOfNewCategory
 		toggleDictionaryLookupOfEditedCategory
 		
 		toggleInputOrder
-		resetGiven
-		resetWanted
 		toggleUseDictionary
 		setDictionaryValue
 		

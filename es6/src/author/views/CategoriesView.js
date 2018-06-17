@@ -2,22 +2,23 @@ import * as App from "../../app/App";
 
 export default class CategoriesView {
     static render(eventData) {
+        console.log("render", eventData);
         const data = {
             newCategory: {
                 name: "",
                 nameAlreadyExists: false,
-                dictionaryLookup: false,
-                givenLanguage: "",
-                wantedLanguage: ""
+                dictionaryLookup: eventData.data.parentDictionaryLookup ? eventData.data.parentDictionaryLookup : false,
+                givenLanguage: eventData.data.parentGivenLanguage ? eventData.data.parentGivenLanguage : "",
+                wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : ""
             },
             editedCategory: {
                 categoryId: "",
                 name: "",
                 index: "",
                 nameAlreadyExists: false,
-                dictionaryLookup: false,
-                givenLanguage: "",
-                wantedLanguage: ""
+                dictionaryLookup: eventData.data.parentDictionaryLookup ? eventData.data.parentDictionaryLookup : false,
+                givenLanguage: eventData.data.parentGivenLanguage ? eventData.data.parentGivenLanguage : "",
+                wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : ""
             },
             deleteCategory: {
                 confirmDelete: false,
@@ -26,12 +27,12 @@ export default class CategoriesView {
             newCard: {
                 given: "",
                 wanted: "",
+                image: "",
                 displaySpinner: false,
                 displayTranslateSpinner: false,
-                dictionaryLookup: false,
-                givenLanguage: "",
-                wantedLanguage: "",
-                image: ""
+                dictionaryLookup: eventData.data.parentDictionaryLookup ? eventData.data.parentDictionaryLookup : false,
+                givenLanguage: eventData.data.parentGivenLanguage ? eventData.data.parentGivenLanguage : "",
+                wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : ""
             },
             editedCard: {
                 cardId: "",
@@ -46,7 +47,7 @@ export default class CategoriesView {
                 cardId: ""
             },
             filter: "",
-            naturalInputOrder: true,
+            naturalInputOrder: App.container.state && App.container.state.data ? App.container.state.data.naturalInputOrder : true,
             useDictionary: App.container.state && App.container.state.data ? App.container.state.data.useDictionary : false,
             dictionaryValue: "",
             categoryList: eventData.data.categoryList,
@@ -171,14 +172,12 @@ export default class CategoriesView {
     static resetNewCardValues(eventData) {
         let data = App.container.state.data;
         if (data) {
-            data.newCard = {
-                wanted: "",
-                given: "",
-                dictionaryLookup: eventData.data.parentDictionaryLookup ? eventData.data.parentDictionaryLookup : false,
-                givenLanguage: eventData.data.parentGivenLanguage ? eventData.data.parentGivenLanguage : "",
-                wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : "",
-                image: ""
-            };
+            data.newCard.wanted = "";
+            data.newCard.given = "";
+            data.newCard.image = "";
+            data.cardDuplicates = [];
+            console.log("resetNewCardValues eventData", eventData);
+            console.log("resetNewCardValues data", data);
             App.container.setState({
                 data
             });
@@ -308,14 +307,6 @@ export default class CategoriesView {
         });
     };
 
-    static resetFilter() {
-        let data = App.container.state.data;
-        data.filter = "";
-        App.container.setState({
-            data
-        });
-    };
-
     static toggleDictionaryLookupOfNewCategory() {
         let data = App.container.state.data;
         data.newCategory.dictionaryLookup = !data.newCategory.dictionaryLookup;
@@ -375,22 +366,6 @@ export default class CategoriesView {
     static toggleInputOrder() {
         let data = App.container.state.data;
         data.naturalInputOrder = !data.naturalInputOrder;
-        App.container.setState({
-            data
-        });
-    };
-
-    static resetGiven() {
-        let data = App.container.state.data;
-        data.newCard.given = "";
-        App.container.setState({
-            data
-        });
-    };
-
-    static resetWanted() {
-        let data = App.container.state.data;
-        data.newCard.wanted = "";
         App.container.setState({
             data
         });
