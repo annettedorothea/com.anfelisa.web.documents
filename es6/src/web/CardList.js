@@ -102,32 +102,33 @@ export default class CardList extends React.Component {
                 />
             }
         });
-        const newCardItem = <NewCard
-            key="new"
-            given={this.props.data.newCard.given}
-            wanted={this.props.data.newCard.wanted}
-            image={this.props.data.newCard.image}
-            file={this.props.data.newCard.file}
-            index={this.props.data.newCard.index}
-            displaySpinner={this.props.data.newCard.displaySpinner}
-            displayTranslateSpinner={this.props.data.newCard.displayTranslateSpinner}
-            cardList={this.props.data.cardList}
-            username={this.props.username}
-            password={this.props.password}
-            categoryId={this.props.data.parentCategoryId}
-            dictionaryLookup={this.props.data.newCard.dictionaryLookup}
-            givenLanguage={this.props.data.newCard.givenLanguage}
-            wantedLanguage={this.props.data.newCard.wantedLanguage}
-            texts={this.props.texts}
-            naturalInputOrder={this.props.data.naturalInputOrder}
-            useDictionary={this.props.data.useDictionary}
-            ref={component => {
-                this.newCard = component;
-            }}
-        />;
-        cardItems.push(
-            newCardItem
-        );
+        if (this.props.role === "ADMIN" || this.props.role === "AUTHOR") {
+            cardItems.push(
+                <NewCard
+                    key="new"
+                    given={this.props.data.newCard.given}
+                    wanted={this.props.data.newCard.wanted}
+                    image={this.props.data.newCard.image}
+                    file={this.props.data.newCard.file}
+                    index={this.props.data.newCard.index}
+                    displaySpinner={this.props.data.newCard.displaySpinner}
+                    displayTranslateSpinner={this.props.data.newCard.displayTranslateSpinner}
+                    cardList={this.props.data.cardList}
+                    username={this.props.username}
+                    password={this.props.password}
+                    categoryId={this.props.data.parentCategoryId}
+                    dictionaryLookup={this.props.data.newCard.dictionaryLookup}
+                    givenLanguage={this.props.data.newCard.givenLanguage}
+                    wantedLanguage={this.props.data.newCard.wantedLanguage}
+                    texts={this.props.texts}
+                    naturalInputOrder={this.props.data.naturalInputOrder}
+                    useDictionary={this.props.data.useDictionary}
+                    ref={component => {
+                        this.newCard = component;
+                    }}
+                />
+            );
+        }
         let duplicateCards = this.props.data.cardDuplicates.map((card) => {
             return <DuplicateCardItem
                 {...card}
@@ -170,7 +171,7 @@ export default class CardList extends React.Component {
                     value={this.props.data.filter}
                     placeholder={this.props.texts.cardList.filter}
                 />
-                {this.props.data.newCard.dictionaryLookup === true &&
+                {this.props.data.newCard.dictionaryLookup === true && (this.props.role === "ADMIN" || this.props.role === "AUTHOR") &&
                 <span>
                         <input
                             type={"checkbox"}

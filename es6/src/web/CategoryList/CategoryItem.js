@@ -37,7 +37,8 @@ export default class CategoryItem extends React.Component {
                     {this.props.userRole === "ADMIN" &&
                     <button disabled={!this.props.empty}
                             onClick={() => this.props.onDeleteClick(this.props.categoryId)}>{"\u2717"}</button>}
-                    <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button>
+                    {(this.props.userRole === "ADMIN" || this.props.userRole === "AUTHOR") &&
+                    <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button>}
                 </td>
             </tr>
         );

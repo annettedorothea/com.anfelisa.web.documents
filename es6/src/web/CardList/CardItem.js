@@ -45,7 +45,8 @@ export default class CardItem extends React.Component {
                 <td>
                     {this.props.userRole === "ADMIN" &&
                     <button onClick={() => this.props.onDeleteClick(this.props.cardId)}>{"\u2717"}</button>}
-                    <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button>
+                    {(this.props.userRole === "ADMIN" || this.props.userRole === "AUTHOR")&&
+                    <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button> }
                 </td>
             </tr>
         );

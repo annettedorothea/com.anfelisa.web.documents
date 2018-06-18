@@ -95,23 +95,25 @@ export default class CategoryList extends React.Component {
                 />
             }
         });
-        categoryItems.push(
-            <NewCategory
-                key="new"
-                name={this.props.data.newCategory.name}
-                index={this.props.data.newCategory.index}
-                nameAlreadyExists={this.props.data.newCategory.nameAlreadyExists}
-                categoryList={this.props.data.categoryList}
-                username={this.props.username}
-                password={this.props.password}
-                parentCategoryId={this.props.data.parentCategoryId}
-                dictionaryLookup={this.props.data.newCategory.dictionaryLookup}
-                rootDictionaryLookup={this.props.data.rootDictionaryLookup}
-                givenLanguage={this.props.data.newCategory.givenLanguage}
-                wantedLanguage={this.props.data.newCategory.wantedLanguage}
-                texts={this.props.texts}
-            />
-        );
+        if (this.props.userRole === "ADMIN" || this.props.userRole === "AUTHOR") {
+            categoryItems.push(
+                <NewCategory
+                    key="new"
+                    name={this.props.data.newCategory.name}
+                    index={this.props.data.newCategory.index}
+                    nameAlreadyExists={this.props.data.newCategory.nameAlreadyExists}
+                    categoryList={this.props.data.categoryList}
+                    username={this.props.username}
+                    password={this.props.password}
+                    parentCategoryId={this.props.data.parentCategoryId}
+                    dictionaryLookup={this.props.data.newCategory.dictionaryLookup}
+                    rootDictionaryLookup={this.props.data.rootDictionaryLookup}
+                    givenLanguage={this.props.data.newCategory.givenLanguage}
+                    wantedLanguage={this.props.data.newCategory.wantedLanguage}
+                    texts={this.props.texts}
+                />
+            );
+        }
         return (
             <div>
                 {this.props.data.deleteCategory.confirmDelete === true &&
