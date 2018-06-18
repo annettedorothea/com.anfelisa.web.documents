@@ -46,8 +46,8 @@ export default class CategoriesView {
                 cardId: ""
             },
             filter: "",
-            naturalInputOrder: App.container.state && App.container.state.data ? App.container.state.data.naturalInputOrder : true,
-            useDictionary: App.container.state && App.container.state.data ? App.container.state.data.useDictionary : false,
+            naturalInputOrder: App.container.state && App.container.state.data && App.container.state.data.naturalInputOrder !== undefined ? App.container.state.data.naturalInputOrder : true,
+            useDictionary: App.container.state && App.container.state.data && App.container.state.data.useDictionary !== undefined ? App.container.state.data.useDictionary : false,
             dictionaryValue: "",
             categoryList: eventData.data.categoryList,
             cardList: eventData.data.cardList,

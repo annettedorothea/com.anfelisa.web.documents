@@ -53,11 +53,15 @@ export default class NewCard extends React.Component {
     }
 
     setFocusGiven() {
-        this.givenInput.focus();
+        if (this.givenInput) {
+            this.givenInput.focus();
+        }
     }
 
     setFocusWanted() {
-        this.wantedInput.focus();
+        if (this.wantedInput) {
+            this.wantedInput.focus();
+        }
     }
 
     onWantedFileChange(event) {
@@ -197,7 +201,7 @@ export default class NewCard extends React.Component {
             <td>
                 <div>
                     <textarea
-                        rows="4"
+                        rows="7"
                         cols="40"
                         onChange={this.onGivenChange}
                         autoComplete="off"
@@ -223,7 +227,7 @@ export default class NewCard extends React.Component {
         return (
             <td>
                 <textarea
-                    rows="4"
+                    rows="7"
                     cols="40"
                     onChange={this.onWantedChange}
                     autoComplete="off"

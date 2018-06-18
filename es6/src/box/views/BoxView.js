@@ -17,6 +17,19 @@ export default class BoxView {
         });
     };
 
+    static renderStatistics(eventData) {
+        let data = App.container.state.data;
+        data.daysBehindSchedule = eventData.data.daysBehindSchedule;
+        data.myCards = eventData.data.myCards;
+        data.todaysCards = eventData.data.todaysCards;
+        data.totalCards = eventData.data.totalCards;
+        data.reinforceCards = eventData.data.reinforceCards;
+        data.categoryName = eventData.data.categoryName;
+        App.container.setState({
+            data
+        });
+    };
+
     static displayNextItem(eventData) {
         let data = App.container.state.data;
         data.index = eventData.index;

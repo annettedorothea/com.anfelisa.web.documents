@@ -8,8 +8,16 @@ export default class PostponeCardsOfBoxCommand extends AbstractPostponeCardsOfBo
                 key: "boxId",
                 value: this.commandData.boxId
             });
+            queryParams.push({
+                key: "today",
+                value: this.commandData.today
+            });
             this.httpPut("api/cards/postpone", queryParams).then((data) => {
-                this.commandData.outcome = this.ok;
+                if (this.commandData.loadList === true) {
+                    this.commandData.outcome = this.list;
+                } else {
+                    this.commandData.outcome = this.next;
+                }
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

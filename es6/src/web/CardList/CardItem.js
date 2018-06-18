@@ -4,6 +4,9 @@ export default class CardItem extends React.Component {
 
     constructor(props) {
         super(props);
+        this.renderGiven = this.renderGiven.bind(this);
+        this.renderWanted = this.renderWanted.bind(this);
+        this.renderImage = this.renderImage.bind(this);
     }
 
     renderGiven() {

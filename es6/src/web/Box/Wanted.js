@@ -5,15 +5,11 @@ export default class Wanted extends React.Component {
 
     constructor(props) {
         super(props);
-        this.lines = [];
-        if (this.props.wanted.length > 0) {
-            this.lines = this.props.wanted.split("\n");
-        }
         this.onClick = this.onClick.bind(this);
     }
 
-    onClick() {
-        const wantedItemsLength = this.lines.length;
+    onClick(lines) {
+        const wantedItemsLength = lines.length;
         const index = this.props.index;
         const image = this.props.image;
         const hasImage = !!image;
@@ -26,13 +22,18 @@ export default class Wanted extends React.Component {
     }
 
     render() {
+        let lines = [];
+        if (this.props.wanted.length > 0) {
+            lines = this.props.wanted.split("\n");
+        }
+
         let lineItems = [];
-        for (let i = 0; i < this.lines.length; i++) {
-            lineItems.push(<div key={i} className={i < this.props.index ? "" : "hidden"}>{this.lines[i]} </div>);
+        for (let i = 0; i < lines.length; i++) {
+            lineItems.push(<div key={i} className={i < this.props.index ? "" : "hidden"}>{lines[i]} </div>);
         }
 
         return (
-            <div className={`wanted lastQuality_${this.props.lastQuality}`} onClick={this.onClick}>
+            <div className={`wanted lastQuality_${this.props.lastQuality}`} onClick={() => this.onClick(lines)}>
                 {lineItems}
                 {this.props.image && <img src={this.props.image} className={this.props.displayImage === true ? "image" : "hidden image"}/>}
             </div>

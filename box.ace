@@ -53,19 +53,20 @@ ACE {
 	}
 	
 	async PostponeCardsOfBox {
-		on ok triggers (LoadBoxes)
+		on next triggers (LoadNextCard)
+		on list triggers (LoadBoxes)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 	
 	async LoadNextCard {
-		on ok (Box.render)
+		on ok (Box.render) triggers (LoadBoxStatistics)
 		on scheduleNext triggers (ScheduleNextCard)
-		on doNotScheduleNext (Box.render)
+		on doNotScheduleNext (Box.render) triggers (LoadBoxStatistics)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 	async ScheduleNextCard {
 		on ok triggers (LoadNextCard)
-		on badRequest (Box.render)
+		on badRequest
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 	ToggleScheduleNext {
@@ -81,7 +82,7 @@ ACE {
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 	async LoadNextReinforceCard {
-		on ok (BoxReinforce.render)
+		on ok (BoxReinforce.render) triggers (LoadBoxStatistics)
 		on noCard triggers (common.Route)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
@@ -92,6 +93,10 @@ ACE {
 	}
 	async ScoreReinforceCard {
 		on ok triggers (LoadNextReinforceCard)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+	async LoadBoxStatistics {
+		on ok (Box.renderStatistics)
 		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 }
@@ -118,6 +123,7 @@ views {
 		displayImage
 		enableScoreButtons
 		toggleScheduleNext
+		renderStatistics
 	}
 	BoxReinforce {
 		render

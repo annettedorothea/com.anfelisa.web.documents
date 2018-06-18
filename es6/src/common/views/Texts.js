@@ -20,6 +20,7 @@ export const Texts = {
             postpone: "Zeitplan neu berechnen",
             daysBehindScheduleMessageOne: "Du bist einen Tag hinterher.",
             daysBehindScheduleMessage: "Du bist {0} Tage hinterher.",
+            reinforceCards: "Karten zum Festigen",
             todaysCards: "Karten für heute",
             totalCards: "Karten insgesamt"
         },

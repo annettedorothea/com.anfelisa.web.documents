@@ -39,6 +39,7 @@ export default class ReinforceCard extends React.Component {
         }
         return (
             <div>
+                <h2>{this.props.texts.queryCards.reinforceCard}</h2>
                 <Given
                     given={this.props.data.given}
                     lastQuality={this.props.data.lastQuality}

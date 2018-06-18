@@ -1,13 +1,15 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import PostponeCardsOfBoxUnauthorizedEvent from "../../../src/box/events/PostponeCardsOfBoxUnauthorizedEvent";
+import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractPostponeCardsOfBoxCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.PostponeCardsOfBoxCommand");
-        this.ok = "ok";
+        this.next = "next";
+        this.list = "list";
         this.unauthorized = "unauthorized";
     }
 
@@ -15,7 +17,10 @@ export default class AbstractPostponeCardsOfBoxCommand extends Command {
 		let promises = [];
 	    	
 		switch (this.commandData.outcome) {
-		case this.ok:
+		case this.next:
+			promises.push(new TriggerAction(new LoadNextCardAction(this.commandData)).publish());
+			break;
+		case this.list:
 			promises.push(new TriggerAction(new LoadBoxesAction(this.commandData)).publish());
 			break;
 		case this.unauthorized:

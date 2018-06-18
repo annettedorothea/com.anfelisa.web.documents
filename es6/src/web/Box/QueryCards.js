@@ -3,6 +3,7 @@ import ScheduleNextCardAction from "../../box/actions/ScheduleNextCardAction";
 import Card from "./Card";
 import RouteAction from "../../common/actions/RouteAction";
 import ReinforceCard from "./ReinforceCard";
+import BoxInfo from "./BoxInfo";
 
 export default class QueryCards extends React.Component {
 
@@ -11,14 +12,13 @@ export default class QueryCards extends React.Component {
     }
 
     render() {
+        let content;
         if (this.props.data.cardId) {
-            return <Card {...this.props}/>
-        }
-        if (this.props.data.reinforceCardId) {
-            return <ReinforceCard {...this.props}/>
-        }
-        return (
-            <div>
+            content = <Card {...this.props}/>
+        } else if (this.props.data.reinforceCardId) {
+            content = <ReinforceCard {...this.props}/>
+        } else {
+            content = <div>
                 <button onClick={() => new ScheduleNextCardAction(
                     {
                         username: this.props.username,
@@ -38,7 +38,18 @@ export default class QueryCards extends React.Component {
                         hash: "#dashboard"
                     }).apply()}>{this.props.texts.queryCards.back}
                 </button>
-
+            </div>;
+        }
+        return (
+            <div>
+                <BoxInfo
+                    {...this.props.data}
+                    username={this.props.username}
+                    password={this.props.password}
+                    texts={this.props.texts}
+                    loadList={false}
+                />
+                {content}
             </div>
         );
     }

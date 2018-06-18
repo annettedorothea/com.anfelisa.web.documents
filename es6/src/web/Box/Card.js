@@ -62,7 +62,8 @@ export default class Card extends React.Component {
                     displayImage={this.props.data.displayImage}
                 />
                 <div>
-                    <input id="scheduleNextCheckbox" type={"checkbox"} checked={this.props.data.scheduleNext} onChange={this.onScheduleNextCheckedChange}/>
+                    <input id="scheduleNextCheckbox" type={"checkbox"} checked={this.props.data.scheduleNext}
+                           onChange={this.onScheduleNextCheckedChange}/>
                     <label htmlFor="scheduleNextCheckbox">{this.props.texts.queryCards.scheduleNext}</label>
                 </div>
                 <div>

@@ -22,6 +22,7 @@ import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
 import LoadNextReinforceCardAction from "../../src/box/actions/LoadNextReinforceCardAction";
 import DisplayWantedReinforceAction from "../../src/box/actions/DisplayWantedReinforceAction";
 import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
+import LoadBoxStatisticsAction from "../../src/box/actions/LoadBoxStatisticsAction";
 
 export default class ActionFactoryRegistrationBox {
 
@@ -49,6 +50,7 @@ export default class ActionFactoryRegistrationBox {
 		ACEController.registerFactory('box.LoadNextReinforceCardAction', (actionData) => new LoadNextReinforceCardAction(actionData));
 		ACEController.registerFactory('box.DisplayWantedReinforceAction', (actionData) => new DisplayWantedReinforceAction(actionData));
 		ACEController.registerFactory('box.ScoreReinforceCardAction', (actionData) => new ScoreReinforceCardAction(actionData));
+		ACEController.registerFactory('box.LoadBoxStatisticsAction', (actionData) => new LoadBoxStatisticsAction(actionData));
 	}
 
 }

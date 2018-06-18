@@ -1,8 +1,8 @@
 import React from 'react';
 import DeleteBoxClickAction from "../../box/actions/DeleteBoxClickAction";
 import EditBoxAction from "../../box/actions/EditBoxAction";
-import DaysBehindSchedule from "./DaysBehindSchedule";
 import RouteAction from "../../common/actions/RouteAction";
+import BoxInfo from "./BoxInfo";
 
 export default class BoxItem extends React.Component {
 
@@ -28,25 +28,8 @@ export default class BoxItem extends React.Component {
     render() {
         return (
             <div>
+                <BoxInfo {...this.props} loadList={true}/>
 
-                <h1>{this.props.categoryName} - {this.props.totalCards} {this.props.texts.box.totalCards}</h1>
-
-                {this.props.maxInterval > 1 &&
-                <div>{this.props.texts.box.maxInterval.replace("{0}", this.props.maxInterval)}</div>}
-                {this.props.maxInterval === 1 && <div>{this.props.texts.box.maxIntervalOne}</div>}
-
-                <table>
-                    <tbody>
-                    <tr>
-                        <td>{this.props.texts.box.todaysCards}</td>
-                        <td>{this.props.todaysCards}</td>
-                    </tr>
-                    <tr>
-                        <td>{this.props.texts.box.myCards}</td>
-                        <td>{this.props.myCards}</td>
-                    </tr>
-                    </tbody>
-                </table>
                 <button onClick={() => this.onDeleteClick(this.props.boxId)}>{"\u2717"}</button>
                 <button onClick={() => this.onEdit(this.props.boxId)}>{"\u270E"}</button>
                 <button onClick={() => new RouteAction(
@@ -55,14 +38,6 @@ export default class BoxItem extends React.Component {
                         password: this.props.password,
                         hash: `#box/${this.props.boxId}`
                     }).apply()}>{this.props.texts.box.nextCard}</button>
-
-                <DaysBehindSchedule
-                    boxId={this.props.boxId}
-                    daysBehindSchedule={this.props.daysBehindSchedule}
-                    texts={this.props.texts}
-                    username={this.props.username}
-                    password={this.props.password}
-                />
             </div>
         );
     }

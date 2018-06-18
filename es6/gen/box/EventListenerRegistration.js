@@ -28,7 +28,6 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.LoadNextCardOkEvent', BoxView.render);
 		ACEController.registerListener('box.LoadNextCardDoNotScheduleNextEvent', BoxView.render);
 		ACEController.registerListener('box.LoadNextCardUnauthorizedEvent', CommonView.displayError);
-		ACEController.registerListener('box.ScheduleNextCardBadRequestEvent', BoxView.render);
 		ACEController.registerListener('box.ScheduleNextCardUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('box.ToggleScheduleNextOkEvent', BoxView.toggleScheduleNext);
 		ACEController.registerListener('box.DisplayWantedAllEvent', BoxView.displayNextItem);
@@ -45,6 +44,8 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.DisplayWantedReinforceImageEvent', BoxReinforceView.displayImage);
 		ACEController.registerListener('box.DisplayWantedReinforceImageEvent', BoxReinforceView.enableScoreButtons);
 		ACEController.registerListener('box.ScoreReinforceCardUnauthorizedEvent', CommonView.displayError);
+		ACEController.registerListener('box.LoadBoxStatisticsOkEvent', BoxView.renderStatistics);
+		ACEController.registerListener('box.LoadBoxStatisticsUnauthorizedEvent', CommonView.displayError);
 	}
 
 }

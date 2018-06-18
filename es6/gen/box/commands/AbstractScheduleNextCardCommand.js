@@ -1,6 +1,5 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ScheduleNextCardBadRequestEvent from "../../../src/box/events/ScheduleNextCardBadRequestEvent";
 import ScheduleNextCardUnauthorizedEvent from "../../../src/box/events/ScheduleNextCardUnauthorizedEvent";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
@@ -21,7 +20,6 @@ export default class AbstractScheduleNextCardCommand extends Command {
 			promises.push(new TriggerAction(new LoadNextCardAction(this.commandData)).publish());
 			break;
 		case this.badRequest:
-			promises.push(new ScheduleNextCardBadRequestEvent(this.commandData).publish());
 			break;
 		case this.unauthorized:
 			promises.push(new ScheduleNextCardUnauthorizedEvent(this.commandData).publish());
