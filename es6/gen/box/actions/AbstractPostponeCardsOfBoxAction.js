@@ -1,5 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import PostponeCardsOfBoxCommand from "../../../src/box/commands/PostponeCardsOfBoxCommand";
+import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractPostponeCardsOfBoxAction extends Action {
 
@@ -13,9 +14,11 @@ export default class AbstractPostponeCardsOfBoxAction extends Action {
 	}
 
 		preUpdateUI() {
+			CommonView.displaySpinner(this.actionData);
 		}
 	
 		postUpdateUI() {
+			CommonView.hideSpinner(this.actionData);
 		}
 
 }

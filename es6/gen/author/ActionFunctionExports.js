@@ -37,6 +37,9 @@ import LoadWantedImageOfNewCardAction from "../../src/author/actions/LoadWantedI
 import LoadWantedImageOfEditedCardAction from "../../src/author/actions/LoadWantedImageOfEditedCardAction";
 import RemoveNewCardImageAction from "../../src/author/actions/RemoveNewCardImageAction";
 import RemoveEditedCardImageAction from "../../src/author/actions/RemoveEditedCardImageAction";
+import ToggleScheduleCardSelectionAction from "../../src/author/actions/ToggleScheduleCardSelectionAction";
+import ToggleAllScheduleCardSelectionAction from "../../src/author/actions/ToggleAllScheduleCardSelectionAction";
+import ScheduleSelectedCardsAction from "../../src/author/actions/ScheduleSelectedCardsAction";
 
 export function loadCategories(actionData) {
     new LoadCategoriesAction(actionData).apply();
@@ -192,6 +195,18 @@ export function removeNewCardImage(actionData) {
 
 export function removeEditedCardImage(actionData) {
     new RemoveEditedCardImageAction(actionData).apply();
+}
+
+export function toggleScheduleCardSelection(actionData) {
+    new ToggleScheduleCardSelectionAction(actionData).apply();
+}
+
+export function toggleAllScheduleCardSelection(actionData) {
+    new ToggleAllScheduleCardSelectionAction(actionData).apply();
+}
+
+export function scheduleSelectedCards(actionData) {
+    new ScheduleSelectedCardsAction(actionData).apply();
 }
 
 

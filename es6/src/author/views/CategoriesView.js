@@ -54,7 +54,8 @@ export default class CategoriesView {
             grandParentCategoryId: eventData.data.grandParentCategoryId,
             parentCategoryId: eventData.data.parentCategoryId,
             parentCategoryName: eventData.data.parentCategoryName,
-            rootDictionaryLookup: eventData.data.rootDictionaryLookup
+            rootDictionaryLookup: eventData.data.rootDictionaryLookup,
+            scheduleCardSelection: []
         };
         App.container.setState({
             route: "category-list",
@@ -411,6 +412,30 @@ export default class CategoriesView {
     static removeEditedCardImage() {
         let data = App.container.state.data;
         data.editedCard.image = "";
+        App.container.setState({
+            data
+        });
+    }
+
+    static toggleScheduleCardSelection(eventData) {
+        let data = App.container.state.data;
+        const index = data.scheduleCardSelection.indexOf(eventData.cardId);
+        if (index !== -1) {
+            data.scheduleCardSelection.splice(index, 1);
+        } else {
+            data.scheduleCardSelection.push(eventData.cardId);
+        }
+        App.container.setState({
+            data
+        });
+    }
+
+    static toggleAllScheduleCardSelection(eventData) {
+        let data = App.container.state.data;
+        data.scheduleCardSelection = [];
+        if (eventData.selectAll === true) {
+            data.cardList.forEach(card => {data.scheduleCardSelection.push(card.cardId)});
+        }
         App.container.setState({
             data
         });

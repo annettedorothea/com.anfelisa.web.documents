@@ -57,6 +57,10 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.LoadWantedImageOfEditedCardOkEvent', CategoriesView.displayImageOfEditedCard);
 		ACEController.registerListener('author.RemoveNewCardImageOkEvent', CategoriesView.removeNewCardImage);
 		ACEController.registerListener('author.RemoveEditedCardImageOkEvent', CategoriesView.removeEditedCardImage);
+		ACEController.registerListener('author.ToggleScheduleCardSelectionOkEvent', CategoriesView.toggleScheduleCardSelection);
+		ACEController.registerListener('author.ToggleAllScheduleCardSelectionOkEvent', CategoriesView.toggleAllScheduleCardSelection);
+		ACEController.registerListener('author.ScheduleSelectedCardsUnauthorizedEvent', CommonView.displayError);
+		ACEController.registerListener('author.ScheduleSelectedCardsUnauthorizedEvent', CategoriesView.hideConfirmCardDelete);
 	}
 
 }

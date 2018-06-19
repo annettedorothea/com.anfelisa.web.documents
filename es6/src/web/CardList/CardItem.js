@@ -1,12 +1,15 @@
 import React from "react";
+import ToggleScheduleCardSelectionAction from "../../author/actions/ToggleScheduleCardSelectionAction";
 
 export default class CardItem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.renderGiven = this.renderGiven.bind(this);
-        this.renderWanted = this.renderWanted.bind(this);
-        this.renderImage = this.renderImage.bind(this);
+        this.toggleScheduleCardSelection = this.toggleScheduleCardSelection.bind(this);
+    }
+
+    toggleScheduleCardSelection(cardId) {
+        new ToggleScheduleCardSelectionAction({cardId}).apply();
     }
 
     renderGiven() {
@@ -34,6 +37,13 @@ export default class CardItem extends React.Component {
     render() {
         return (
             <tr>
+                <td>
+                    <input
+                        type={"checkbox"}
+                        onChange={() => this.toggleScheduleCardSelection(this.props.cardId)}
+                        checked={this.props.scheduleCardSelection.indexOf(this.props.cardId) >= 0}
+                    />
+                </td>
                 <td>{this.props.cardIndex}</td>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}

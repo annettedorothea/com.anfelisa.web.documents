@@ -6,6 +6,7 @@ import GivenOfEditedCardChangedAction from "../../author/actions/GivenOfEditedCa
 import RemoveEditedCardImageAction from "../../author/actions/RemoveEditedCardImageAction";
 import DisplayErrorAction from "../../common/actions/DisplayErrorAction";
 import LoadWantedImageOfEditedCardAction from "../../author/actions/LoadWantedImageOfEditedCardAction";
+import ToggleScheduleCardSelectionAction from "../../author/actions/ToggleScheduleCardSelectionAction";
 
 export default class EditCard extends React.Component {
 
@@ -18,6 +19,11 @@ export default class EditCard extends React.Component {
         this.onAltKeyUp = this.onAltKeyUp.bind(this);
         this.onRemoveImage = this.onRemoveImage.bind(this);
         this.onWantedFileChange = this.onWantedFileChange.bind(this);
+        this.toggleScheduleCardSelection = this.toggleScheduleCardSelection.bind(this);
+    }
+
+    toggleScheduleCardSelection(cardId) {
+        new ToggleScheduleCardSelectionAction({cardId}).apply();
     }
 
     onGivenChange(event) {
@@ -137,6 +143,13 @@ export default class EditCard extends React.Component {
     render() {
         return (
             <tr>
+                <td>
+                    <input
+                        type={"checkbox"}
+                        onChange={() => this.toggleScheduleCardSelection(this.props.cardId)}
+                        checked={this.props.scheduleCardSelection.indexOf(this.props.cardId) >= 0}
+                    />
+                </td>
                 <td>{this.props.index}</td>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}

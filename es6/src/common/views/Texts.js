@@ -58,6 +58,7 @@ export const Texts = {
             wanted: "Gesucht",
             searchingDuplicates: "Nach doppelten Karten suchen",
             loadingTranslation: "Übersetzungsvorschlag laden",
+            scheduleSelectedCards: "Selektierte Karten heute noch bearbeiten",
             title: {
                 noCards: "Noch keine Karten",
                 oneCard: "{0} von einer Karte",

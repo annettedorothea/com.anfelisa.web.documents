@@ -1,5 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import LoadNextReinforceCardCommand from "../../../src/box/commands/LoadNextReinforceCardCommand";
+import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractLoadNextReinforceCardAction extends Action {
 
@@ -13,9 +14,11 @@ export default class AbstractLoadNextReinforceCardAction extends Action {
 	}
 
 		preUpdateUI() {
+			CommonView.displaySpinner(this.actionData);
 		}
 	
 		postUpdateUI() {
+			CommonView.hideSpinner(this.actionData);
 		}
 
 }

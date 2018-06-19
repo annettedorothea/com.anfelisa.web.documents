@@ -1,5 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import ScoreReinforceCardCommand from "../../../src/box/commands/ScoreReinforceCardCommand";
+import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractScoreReinforceCardAction extends Action {
 
@@ -13,9 +14,11 @@ export default class AbstractScoreReinforceCardAction extends Action {
 	}
 
 		preUpdateUI() {
+			CommonView.displaySpinner(this.actionData);
 		}
 	
 		postUpdateUI() {
+			CommonView.hideSpinner(this.actionData);
 		}
 
 }

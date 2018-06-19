@@ -12,6 +12,8 @@ import DuplicateCardItem from "./CardList/DuplicateCardItem";
 import NewCard from "./CardList/NewCard";
 import EditCard from "./CardList/EditCard";
 import CardItem from "./CardList/CardItem";
+import ToggleAllScheduleCardSelectionAction from "../author/actions/ToggleAllScheduleCardSelectionAction";
+import ScheduleSelectedCardsAction from "../author/actions/ScheduleSelectedCardsAction";
 
 export default class CardList extends React.Component {
 
@@ -24,6 +26,20 @@ export default class CardList extends React.Component {
         this.onFilterChange = this.onFilterChange.bind(this);
         this.onToggleInputOrder = this.onToggleInputOrder.bind(this);
         this.onUseDictionaryChange = this.onUseDictionaryChange.bind(this);
+        this.toggleAllScheduleCardSelection = this.toggleAllScheduleCardSelection.bind(this);
+        this.onSchedule = this.onSchedule.bind(this);
+    }
+
+    onSchedule() {
+        console.log("onSchedule", this.props.data.cardList);
+        new ScheduleSelectedCardsAction(
+            {
+                username: this.props.username,
+                password: this.props.password,
+                cardIds: this.props.data.scheduleCardSelection,
+                parentCategoryId: this.props.data.parentCategoryId
+            }
+        ).apply();
     }
 
     onDeleteClick(cardId) {
@@ -49,6 +65,10 @@ export default class CardList extends React.Component {
             parentCategoryId: this.props.data.parentCategoryId
         };
         new DeleteCardAction(data).apply();
+    }
+
+    toggleAllScheduleCardSelection() {
+        new ToggleAllScheduleCardSelectionAction({selectAll: this.props.data.scheduleCardSelection.length < this.props.data.cardList.length}).apply();
     }
 
     onDeleteCancel() {
@@ -87,11 +107,13 @@ export default class CardList extends React.Component {
                     naturalInputOrder={this.props.data.naturalInputOrder}
                     image={this.props.data.editedCard.image}
                     texts={this.props.texts}
+                    scheduleCardSelection={this.props.data.scheduleCardSelection}
                 />
             } else {
                 return <CardItem
                     {...card}
                     key={card.cardId}
+                    scheduleCardSelection={this.props.data.scheduleCardSelection}
                     texts={this.props.texts}
                     onDeleteClick={this.onDeleteClick}
                     onEdit={() => this.onEdit(card.cardId, card.given, card.wanted, card.image, card.cardIndex)}
@@ -183,9 +205,18 @@ export default class CardList extends React.Component {
                     </span>
                 }
                 <button onClick={this.onToggleInputOrder}>{"\u21c4"}</button>
+                <button onClick={this.onSchedule}>{this.props.texts.cardList.scheduleSelectedCards}</button>
                 <table>
                     <thead>
-
+                    <tr>
+                        <th>
+                            <input
+                                type={"checkbox"}
+                                onChange={this.toggleAllScheduleCardSelection}
+                                checked={this.props.data.scheduleCardSelection.length === this.props.data.cardList.length}
+                            />
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
                     {cardItems}

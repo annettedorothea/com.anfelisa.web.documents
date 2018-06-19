@@ -1,5 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import DeleteBoxCommand from "../../../src/box/commands/DeleteBoxCommand";
+import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractDeleteBoxAction extends Action {
 
@@ -13,9 +14,11 @@ export default class AbstractDeleteBoxAction extends Action {
 	}
 
 		preUpdateUI() {
+			CommonView.displaySpinner(this.actionData);
 		}
 	
 		postUpdateUI() {
+			CommonView.hideSpinner(this.actionData);
 		}
 
 }

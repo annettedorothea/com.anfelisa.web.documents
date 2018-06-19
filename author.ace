@@ -157,7 +157,16 @@ ACE {
 	RemoveEditedCardImage {
 		on ok (Categories.removeEditedCardImage)
 	}
-	
+	ToggleScheduleCardSelection {
+		on ok (Categories.toggleScheduleCardSelection)
+	}
+	ToggleAllScheduleCardSelection {
+		on ok (Categories.toggleAllScheduleCardSelection)
+	}
+	async ScheduleSelectedCards preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+		on ok triggers (LoadCategories)
+		on unauthorized ( common.Common.displayError Categories.hideConfirmCardDelete) triggers (common.Logout)
+	}
 }
 
 views {
@@ -212,5 +221,8 @@ views {
 		displayImageOfEditedCard
 		removeNewCardImage
 		removeEditedCardImage
+		
+		toggleScheduleCardSelection
+		toggleAllScheduleCardSelection
 	}
 }
