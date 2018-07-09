@@ -1,4 +1,5 @@
-import AbstractToggleDictionaryLookupOfNewCategoryAction from "../../../gen/author/actions/AbstractToggleDictionaryLookupOfNewCategoryAction";
+import AbstractToggleDictionaryLookupOfNewCategoryAction
+    from "../../../gen/author/actions/AbstractToggleDictionaryLookupOfNewCategoryAction";
 
 export default class ToggleDictionaryLookupOfNewCategoryAction extends AbstractToggleDictionaryLookupOfNewCategoryAction {
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import RouteAction from "../common/actions/RouteAction";
 import BoxItem from "./Box/BoxItem";
 import EditBoxItem from "./Box/EditBoxItem";
 import Confirm from "./Confirm";
@@ -64,12 +63,6 @@ export default class StudentDashboard extends React.Component {
                             cancel: this.onDeleteCancel
                         }}/>
                 </div>}
-                <button onClick={() => new RouteAction(
-                    {
-                        username: this.props.username,
-                        password: this.props.password,
-                        hash: "#createbox"
-                    }).apply()}>{this.props.texts.studentDashboard.createBox}</button>
                 {boxes}
             </div>
         );

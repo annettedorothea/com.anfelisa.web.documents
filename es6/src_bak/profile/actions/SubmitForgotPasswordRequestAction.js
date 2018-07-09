@@ -1,4 +1,5 @@
-import AbstractSubmitForgotPasswordRequestAction from "../../../gen/profile/actions/AbstractSubmitForgotPasswordRequestAction";
+import AbstractSubmitForgotPasswordRequestAction
+    from "../../../gen/profile/actions/AbstractSubmitForgotPasswordRequestAction";
 import CommonView from "../../common/views/CommonView";
 
 export default class SubmitForgotPasswordRequestAction extends AbstractSubmitForgotPasswordRequestAction {

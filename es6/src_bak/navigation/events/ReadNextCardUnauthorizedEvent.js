@@ -1,4 +1,5 @@
-import AbstractReadNextCardUnauthorizedEvent from "../../../gen/navigation/events/AbstractReadNextCardUnauthorizedEvent";
+import AbstractReadNextCardUnauthorizedEvent
+    from "../../../gen/navigation/events/AbstractReadNextCardUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ReadNextCardUnauthorizedEvent extends AbstractReadNextCardUnauthorizedEvent {

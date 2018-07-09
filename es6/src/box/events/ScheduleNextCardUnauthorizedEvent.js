@@ -1,4 +1,5 @@
-import AbstractScheduleNextCardUnauthorizedEvent from "../../../gen/box/events/AbstractScheduleNextCardUnauthorizedEvent";
+import AbstractScheduleNextCardUnauthorizedEvent
+    from "../../../gen/box/events/AbstractScheduleNextCardUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ScheduleNextCardUnauthorizedEvent extends AbstractScheduleNextCardUnauthorizedEvent {

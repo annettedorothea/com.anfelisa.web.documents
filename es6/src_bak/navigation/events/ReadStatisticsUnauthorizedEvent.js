@@ -1,4 +1,5 @@
-import AbstractReadStatisticsUnauthorizedEvent from "../../../gen/navigation/events/AbstractReadStatisticsUnauthorizedEvent";
+import AbstractReadStatisticsUnauthorizedEvent
+    from "../../../gen/navigation/events/AbstractReadStatisticsUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ReadStatisticsUnauthorizedEvent extends AbstractReadStatisticsUnauthorizedEvent {

@@ -1,4 +1,5 @@
-import AbstractCreateCategoryUnauthorizedEvent from "../../../gen/author/events/AbstractCreateCategoryUnauthorizedEvent";
+import AbstractCreateCategoryUnauthorizedEvent
+    from "../../../gen/author/events/AbstractCreateCategoryUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class CreateCategoryUnauthorizedEvent extends AbstractCreateCategoryUnauthorizedEvent {

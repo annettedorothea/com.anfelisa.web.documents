@@ -1,4 +1,5 @@
-import AbstractUpdateCategoryUnauthorizedEvent from "../../../gen/author/events/AbstractUpdateCategoryUnauthorizedEvent";
+import AbstractUpdateCategoryUnauthorizedEvent
+    from "../../../gen/author/events/AbstractUpdateCategoryUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class UpdateCategoryUnauthorizedEvent extends AbstractUpdateCategoryUnauthorizedEvent {

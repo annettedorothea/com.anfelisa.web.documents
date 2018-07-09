@@ -1,4 +1,5 @@
-import AbstractSubmitForgotPasswordRequestCommand from "../../../gen/profile/commands/AbstractSubmitForgotPasswordRequestCommand";
+import AbstractSubmitForgotPasswordRequestCommand
+    from "../../../gen/profile/commands/AbstractSubmitForgotPasswordRequestCommand";
 
 export default class SubmitForgotPasswordRequestCommand extends AbstractSubmitForgotPasswordRequestCommand {
     execute() {

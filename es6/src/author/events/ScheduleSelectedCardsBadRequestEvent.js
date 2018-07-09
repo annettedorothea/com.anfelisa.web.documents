@@ -1,4 +1,5 @@
-import AbstractScheduleSelectedCardsBadRequestEvent from "../../../gen/author/events/AbstractScheduleSelectedCardsBadRequestEvent";
+import AbstractScheduleSelectedCardsBadRequestEvent
+    from "../../../gen/author/events/AbstractScheduleSelectedCardsBadRequestEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ScheduleSelectedCardsBadRequestEvent extends AbstractScheduleSelectedCardsBadRequestEvent {

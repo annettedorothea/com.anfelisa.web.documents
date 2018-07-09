@@ -1,4 +1,5 @@
-import AbstractDisplayWantedReinforceNotAllEvent from "../../../gen/box/events/AbstractDisplayWantedReinforceNotAllEvent";
+import AbstractDisplayWantedReinforceNotAllEvent
+    from "../../../gen/box/events/AbstractDisplayWantedReinforceNotAllEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class DisplayWantedReinforceNotAllEvent extends AbstractDisplayWantedReinforceNotAllEvent {

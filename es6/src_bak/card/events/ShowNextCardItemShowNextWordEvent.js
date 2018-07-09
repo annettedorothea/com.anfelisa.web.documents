@@ -1,4 +1,5 @@
-import AbstractShowNextCardItemShowNextWordEvent from "../../../gen/card/events/AbstractShowNextCardItemShowNextWordEvent";
+import AbstractShowNextCardItemShowNextWordEvent
+    from "../../../gen/card/events/AbstractShowNextCardItemShowNextWordEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ShowNextCardItemShowNextWordEvent extends AbstractShowNextCardItemShowNextWordEvent {

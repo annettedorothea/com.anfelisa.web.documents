@@ -1,4 +1,5 @@
-import AbstractWantedOfEditedCardChangedOkEvent from "../../../gen/author/events/AbstractWantedOfEditedCardChangedOkEvent";
+import AbstractWantedOfEditedCardChangedOkEvent
+    from "../../../gen/author/events/AbstractWantedOfEditedCardChangedOkEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class WantedOfEditedCardChangedOkEvent extends AbstractWantedOfEditedCardChangedOkEvent {

@@ -1,4 +1,5 @@
-import AbstractToggleAllScheduleCardSelectionAction from "../../../gen/author/actions/AbstractToggleAllScheduleCardSelectionAction";
+import AbstractToggleAllScheduleCardSelectionAction
+    from "../../../gen/author/actions/AbstractToggleAllScheduleCardSelectionAction";
 
 export default class ToggleAllScheduleCardSelectionAction extends AbstractToggleAllScheduleCardSelectionAction {
 

@@ -1,6 +1,5 @@
 import stringify from "json-stable-stringify";
 import * as App from "./App";
-import CommonView from "../common/views/CommonView";
 
 export default class ReplayUtils {
 

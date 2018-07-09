@@ -1,4 +1,5 @@
-import AbstractDeleteUserAdminUnauthorizedEvent from "../../../gen/admin/events/AbstractDeleteUserAdminUnauthorizedEvent";
+import AbstractDeleteUserAdminUnauthorizedEvent
+    from "../../../gen/admin/events/AbstractDeleteUserAdminUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class DeleteUserAdminUnauthorizedEvent extends AbstractDeleteUserAdminUnauthorizedEvent {

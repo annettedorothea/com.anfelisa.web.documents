@@ -1,4 +1,5 @@
-import AbstractSubmitRegistrationDataInvalidEvent from "../../../gen/profile/events/AbstractSubmitRegistrationDataInvalidEvent";
+import AbstractSubmitRegistrationDataInvalidEvent
+    from "../../../gen/profile/events/AbstractSubmitRegistrationDataInvalidEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class SubmitRegistrationDataInvalidEvent extends AbstractSubmitRegistrationDataInvalidEvent {

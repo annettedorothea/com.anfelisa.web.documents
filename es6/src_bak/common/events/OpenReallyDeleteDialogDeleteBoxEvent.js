@@ -1,4 +1,5 @@
-import AbstractOpenReallyDeleteDialogDeleteBoxEvent from "../../../gen/common/events/AbstractOpenReallyDeleteDialogDeleteBoxEvent";
+import AbstractOpenReallyDeleteDialogDeleteBoxEvent
+    from "../../../gen/common/events/AbstractOpenReallyDeleteDialogDeleteBoxEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class OpenReallyDeleteDialogDeleteBoxEvent extends AbstractOpenReallyDeleteDialogDeleteBoxEvent {

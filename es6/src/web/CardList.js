@@ -31,7 +31,6 @@ export default class CardList extends React.Component {
     }
 
     onSchedule() {
-        console.log("onSchedule", this.props.data.cardList);
         new ScheduleSelectedCardsAction(
             {
                 username: this.props.username,
@@ -108,6 +107,7 @@ export default class CardList extends React.Component {
                     image={this.props.data.editedCard.image}
                     texts={this.props.texts}
                     scheduleCardSelection={this.props.data.scheduleCardSelection}
+                    hasBox={this.props.data.hasBox}
                 />
             } else {
                 return <CardItem
@@ -121,10 +121,12 @@ export default class CardList extends React.Component {
                     password={this.props.password}
                     userRole={this.props.role}
                     naturalInputOrder={this.props.data.naturalInputOrder}
+                    hasBox={this.props.data.hasBox}
+                    editable={this.props.data.parentEditable}
                 />
             }
         });
-        if (this.props.role === "ADMIN" || this.props.role === "AUTHOR") {
+        if (this.props.data.parentEditable) {
             cardItems.push(
                 <NewCard
                     key="new"
@@ -148,6 +150,7 @@ export default class CardList extends React.Component {
                     ref={component => {
                         this.newCard = component;
                     }}
+                    hasBox={this.props.data.hasBox}
                 />
             );
         }
@@ -161,6 +164,7 @@ export default class CardList extends React.Component {
                 userRole={this.props.role}
                 naturalInputOrder={this.props.data.naturalInputOrder}
                 parentCategoryId={this.props.data.parentCategoryId}
+                hasBox={this.props.data.hasBox}
             />
 
         });
@@ -204,10 +208,15 @@ export default class CardList extends React.Component {
                         <label htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary}</label>
                     </span>
                 }
+
                 <button onClick={this.onToggleInputOrder}>{"\u21c4"}</button>
-                <button onClick={this.onSchedule}>{this.props.texts.cardList.scheduleSelectedCards}</button>
+                {this.props.data.hasBox === true &&
+                <button onClick={this.onSchedule}
+                        disabled={this.props.data.scheduleCardSelection.length === 0}>{this.props.texts.cardList.scheduleSelectedCards}</button>
+                }
                 <table>
                     <thead>
+                    {this.props.data.cardList.length > 0 && this.props.data.hasBox === true &&
                     <tr>
                         <th>
                             <input
@@ -217,6 +226,7 @@ export default class CardList extends React.Component {
                             />
                         </th>
                     </tr>
+                    }
                     </thead>
                     <tbody>
                     {cardItems}

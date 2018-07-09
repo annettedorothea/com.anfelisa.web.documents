@@ -1,4 +1,5 @@
-import AbstractLoadWantedImageOfNewCardOkEvent from "../../../gen/author/events/AbstractLoadWantedImageOfNewCardOkEvent";
+import AbstractLoadWantedImageOfNewCardOkEvent
+    from "../../../gen/author/events/AbstractLoadWantedImageOfNewCardOkEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class LoadWantedImageOfNewCardOkEvent extends AbstractLoadWantedImageOfNewCardOkEvent {

@@ -9,6 +9,8 @@ import CardList from "./CardList";
 import NewCategory from "./CategoryList/NewCategory"
 import EditCategory from "./CategoryList/EditCategory"
 import CategoryItem from "./CategoryList/CategoryItem"
+import CreateBoxAction from "../box/actions/CreateBoxAction";
+import InviteUserAction from "../author/actions/InviteUserAction";
 
 export default class CategoryList extends React.Component {
 
@@ -35,6 +37,27 @@ export default class CategoryList extends React.Component {
         };
         this.setState({confirmDelete: false});
         new EditCategoryAction(data).apply();
+    }
+
+    onSubscribe(categoryId) {
+        const data = {
+            username: this.props.username,
+            password: this.props.password,
+            categoryId: categoryId,
+            maxInterval: null
+        };
+        new CreateBoxAction(data).apply();
+    }
+
+    onInvite(categoryId, invitedUsername) {
+        const data = {
+            username: this.props.username,
+            password: this.props.password,
+            categoryId: categoryId,
+            invitedUsername
+        };
+        new InviteUserAction(data).apply();
+        console.log("onInvite", data);
     }
 
     onDelete() {
@@ -86,6 +109,8 @@ export default class CategoryList extends React.Component {
                     texts={this.props.texts}
                     onDeleteClick={this.onDeleteClick}
                     onEdit={() => this.onEdit(category.categoryId, category.categoryName, category.categoryIndex, category.dictionaryLookup, category.givenLanguage, category.wantedLanguage)}
+                    onSubscribe={() => this.onSubscribe(category.categoryId)}
+                    onInvite={(invitedUsername) => this.onInvite(category.categoryId, invitedUsername)}
                     username={this.props.username}
                     password={this.props.password}
                     userRole={this.props.role}
@@ -95,7 +120,7 @@ export default class CategoryList extends React.Component {
                 />
             }
         });
-        if (this.props.userRole === "ADMIN" || this.props.userRole === "AUTHOR") {
+        if (this.props.data.parentEditable) {
             categoryItems.push(
                 <NewCategory
                     key="new"

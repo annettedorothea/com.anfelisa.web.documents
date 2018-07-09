@@ -1,4 +1,5 @@
-import AbstractScoreReinforceCardUnauthorizedEvent from "../../../gen/box/events/AbstractScoreReinforceCardUnauthorizedEvent";
+import AbstractScoreReinforceCardUnauthorizedEvent
+    from "../../../gen/box/events/AbstractScoreReinforceCardUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ScoreReinforceCardUnauthorizedEvent extends AbstractScoreReinforceCardUnauthorizedEvent {

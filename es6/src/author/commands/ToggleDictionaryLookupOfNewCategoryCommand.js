@@ -1,4 +1,5 @@
-import AbstractToggleDictionaryLookupOfNewCategoryCommand from "../../../gen/author/commands/AbstractToggleDictionaryLookupOfNewCategoryCommand";
+import AbstractToggleDictionaryLookupOfNewCategoryCommand
+    from "../../../gen/author/commands/AbstractToggleDictionaryLookupOfNewCategoryCommand";
 
 export default class ToggleDictionaryLookupOfNewCategoryCommand extends AbstractToggleDictionaryLookupOfNewCategoryCommand {
     execute() {

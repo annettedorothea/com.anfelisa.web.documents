@@ -1,4 +1,5 @@
-import AbstractToggleAllScheduleCardSelectionOkEvent from "../../../gen/author/events/AbstractToggleAllScheduleCardSelectionOkEvent";
+import AbstractToggleAllScheduleCardSelectionOkEvent
+    from "../../../gen/author/events/AbstractToggleAllScheduleCardSelectionOkEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ToggleAllScheduleCardSelectionOkEvent extends AbstractToggleAllScheduleCardSelectionOkEvent {

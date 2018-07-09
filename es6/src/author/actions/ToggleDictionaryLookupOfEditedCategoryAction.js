@@ -1,4 +1,5 @@
-import AbstractToggleDictionaryLookupOfEditedCategoryAction from "../../../gen/author/actions/AbstractToggleDictionaryLookupOfEditedCategoryAction";
+import AbstractToggleDictionaryLookupOfEditedCategoryAction
+    from "../../../gen/author/actions/AbstractToggleDictionaryLookupOfEditedCategoryAction";
 
 export default class ToggleDictionaryLookupOfEditedCategoryAction extends AbstractToggleDictionaryLookupOfEditedCategoryAction {
 

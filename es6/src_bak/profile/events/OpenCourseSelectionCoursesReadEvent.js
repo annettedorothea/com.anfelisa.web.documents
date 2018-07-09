@@ -1,4 +1,5 @@
-import AbstractOpenCourseSelectionCoursesReadEvent from "../../../gen/profile/events/AbstractOpenCourseSelectionCoursesReadEvent";
+import AbstractOpenCourseSelectionCoursesReadEvent
+    from "../../../gen/profile/events/AbstractOpenCourseSelectionCoursesReadEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class OpenCourseSelectionCoursesReadEvent extends AbstractOpenCourseSelectionCoursesReadEvent {

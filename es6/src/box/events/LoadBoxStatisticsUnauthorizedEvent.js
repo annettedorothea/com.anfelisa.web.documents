@@ -1,4 +1,5 @@
-import AbstractLoadBoxStatisticsUnauthorizedEvent from "../../../gen/box/events/AbstractLoadBoxStatisticsUnauthorizedEvent";
+import AbstractLoadBoxStatisticsUnauthorizedEvent
+    from "../../../gen/box/events/AbstractLoadBoxStatisticsUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class LoadBoxStatisticsUnauthorizedEvent extends AbstractLoadBoxStatisticsUnauthorizedEvent {

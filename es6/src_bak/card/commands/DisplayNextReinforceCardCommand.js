@@ -1,4 +1,5 @@
-import AbstractDisplayNextReinforceCardCommand from "../../../gen/card/commands/AbstractDisplayNextReinforceCardCommand";
+import AbstractDisplayNextReinforceCardCommand
+    from "../../../gen/card/commands/AbstractDisplayNextReinforceCardCommand";
 
 export default class DisplayNextReinforceCardCommand extends AbstractDisplayNextReinforceCardCommand {
     execute() {

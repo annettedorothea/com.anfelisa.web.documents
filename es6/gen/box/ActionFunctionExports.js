@@ -1,8 +1,4 @@
 import LoadBoxesAction from "../../src/box/actions/LoadBoxesAction";
-import LoadRootCategoriesAction from "../../src/box/actions/LoadRootCategoriesAction";
-import ToggleMaxIntervalAction from "../../src/box/actions/ToggleMaxIntervalAction";
-import MaxIntervalChangedAction from "../../src/box/actions/MaxIntervalChangedAction";
-import CategorySelectedAction from "../../src/box/actions/CategorySelectedAction";
 import CreateBoxAction from "../../src/box/actions/CreateBoxAction";
 import EditBoxAction from "../../src/box/actions/EditBoxAction";
 import ToggleMaxIntervalOfBoxAction from "../../src/box/actions/ToggleMaxIntervalOfBoxAction";
@@ -25,22 +21,6 @@ import LoadBoxStatisticsAction from "../../src/box/actions/LoadBoxStatisticsActi
 
 export function loadBoxes(actionData) {
     new LoadBoxesAction(actionData).apply();
-}
-
-export function loadRootCategories(actionData) {
-    new LoadRootCategoriesAction(actionData).apply();
-}
-
-export function toggleMaxInterval(actionData) {
-    new ToggleMaxIntervalAction(actionData).apply();
-}
-
-export function maxIntervalChanged(actionData) {
-    new MaxIntervalChangedAction(actionData).apply();
-}
-
-export function categorySelected(actionData) {
-    new CategorySelectedAction(actionData).apply();
 }
 
 export function createBox(actionData) {

@@ -1,4 +1,5 @@
-import AbstractLoadNextCardDoNotScheduleNextEvent from "../../../gen/box/events/AbstractLoadNextCardDoNotScheduleNextEvent";
+import AbstractLoadNextCardDoNotScheduleNextEvent
+    from "../../../gen/box/events/AbstractLoadNextCardDoNotScheduleNextEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class LoadNextCardDoNotScheduleNextEvent extends AbstractLoadNextCardDoNotScheduleNextEvent {

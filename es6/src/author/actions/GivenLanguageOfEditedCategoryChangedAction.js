@@ -1,4 +1,5 @@
-import AbstractGivenLanguageOfEditedCategoryChangedAction from "../../../gen/author/actions/AbstractGivenLanguageOfEditedCategoryChangedAction";
+import AbstractGivenLanguageOfEditedCategoryChangedAction
+    from "../../../gen/author/actions/AbstractGivenLanguageOfEditedCategoryChangedAction";
 
 export default class GivenLanguageOfEditedCategoryChangedAction extends AbstractGivenLanguageOfEditedCategoryChangedAction {
 

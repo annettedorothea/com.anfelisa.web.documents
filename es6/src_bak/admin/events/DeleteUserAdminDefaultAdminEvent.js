@@ -1,4 +1,5 @@
-import AbstractDeleteUserAdminDefaultAdminEvent from "../../../gen/admin/events/AbstractDeleteUserAdminDefaultAdminEvent";
+import AbstractDeleteUserAdminDefaultAdminEvent
+    from "../../../gen/admin/events/AbstractDeleteUserAdminDefaultAdminEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class DeleteUserAdminDefaultAdminEvent extends AbstractDeleteUserAdminDefaultAdminEvent {

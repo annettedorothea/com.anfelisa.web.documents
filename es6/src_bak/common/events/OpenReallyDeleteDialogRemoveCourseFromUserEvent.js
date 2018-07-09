@@ -1,4 +1,5 @@
-import AbstractOpenReallyDeleteDialogRemoveCourseFromUserEvent from "../../../gen/common/events/AbstractOpenReallyDeleteDialogRemoveCourseFromUserEvent";
+import AbstractOpenReallyDeleteDialogRemoveCourseFromUserEvent
+    from "../../../gen/common/events/AbstractOpenReallyDeleteDialogRemoveCourseFromUserEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class OpenReallyDeleteDialogRemoveCourseFromUserEvent extends AbstractOpenReallyDeleteDialogRemoveCourseFromUserEvent {

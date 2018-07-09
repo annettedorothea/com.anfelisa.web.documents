@@ -1,4 +1,5 @@
-import AbstractScheduleSelectedCardsUnauthorizedEvent from "../../../gen/author/events/AbstractScheduleSelectedCardsUnauthorizedEvent";
+import AbstractScheduleSelectedCardsUnauthorizedEvent
+    from "../../../gen/author/events/AbstractScheduleSelectedCardsUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ScheduleSelectedCardsUnauthorizedEvent extends AbstractScheduleSelectedCardsUnauthorizedEvent {

@@ -1,4 +1,5 @@
-import AbstractGivenLanguageOfEditedCategoryChangedCommand from "../../../gen/author/commands/AbstractGivenLanguageOfEditedCategoryChangedCommand";
+import AbstractGivenLanguageOfEditedCategoryChangedCommand
+    from "../../../gen/author/commands/AbstractGivenLanguageOfEditedCategoryChangedCommand";
 
 export default class GivenLanguageOfEditedCategoryChangedCommand extends AbstractGivenLanguageOfEditedCategoryChangedCommand {
     execute() {

@@ -143,6 +143,7 @@ export default class EditCard extends React.Component {
     render() {
         return (
             <tr>
+                {this.props.hasBox &&
                 <td>
                     <input
                         type={"checkbox"}
@@ -150,6 +151,7 @@ export default class EditCard extends React.Component {
                         checked={this.props.scheduleCardSelection.indexOf(this.props.cardId) >= 0}
                     />
                 </td>
+                }
                 <td>{this.props.index}</td>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}

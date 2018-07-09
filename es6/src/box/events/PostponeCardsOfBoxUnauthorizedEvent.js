@@ -1,4 +1,5 @@
-import AbstractPostponeCardsOfBoxUnauthorizedEvent from "../../../gen/box/events/AbstractPostponeCardsOfBoxUnauthorizedEvent";
+import AbstractPostponeCardsOfBoxUnauthorizedEvent
+    from "../../../gen/box/events/AbstractPostponeCardsOfBoxUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class PostponeCardsOfBoxUnauthorizedEvent extends AbstractPostponeCardsOfBoxUnauthorizedEvent {

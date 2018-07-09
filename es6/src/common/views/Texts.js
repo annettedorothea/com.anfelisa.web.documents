@@ -34,6 +34,7 @@ export const Texts = {
             },
             dictionaryLookup: "im Wörterbuch nachschlagen",
             index: "Index",
+            invite: "einladen",
             languages: {
                 de: "Deutsch",
                 emtpy: "Bitte wählen",
@@ -42,7 +43,9 @@ export const Texts = {
             },
             name: "Name",
             nameAlreadyExists: "Name wird bereits verwendet.",
-            title: "Alle Kategorien"
+            subscribe: "Neue Lernkartei anlegen",
+            title: "Alle Kategorien",
+            username: "Benutzer"
         },
         cardList: {
             confirmDelete: {
@@ -58,7 +61,7 @@ export const Texts = {
             wanted: "Gesucht",
             searchingDuplicates: "Nach doppelten Karten suchen",
             loadingTranslation: "Übersetzungsvorschlag laden",
-            scheduleSelectedCards: "Selektierte Karten heute noch bearbeiten",
+            scheduleSelectedCards: "Selektierte Karten heute noch abfragen",
             title: {
                 noCards: "Noch keine Karten",
                 oneCard: "{0} von einer Karte",
@@ -69,16 +72,14 @@ export const Texts = {
         createBox: {
             cancel: "Abbrechen",
             create: "Speichern",
-            maxInterval: "maximaler Abstand im Tagen",
-            title: "Neue Lernkartei anlegen"
+            maxInterval: "maximaler Abstand im Tagen"
         },
         dashboard: {
             profile: "Profil",
             title: "Übersicht"
         },
         editBox: {
-            maxInterval: "maximaler Abstand im Tagen",
-            title: "Neue Lernkartei anlegen"
+            maxInterval: "maximaler Abstand im Tagen"
         },
         errors: {
             registerUserFailed: "Die Registrierung ist fehlgeschlagen.",
@@ -87,7 +88,8 @@ export const Texts = {
             failedToResetPassword: "Das Passwort konnte nicht geändert werden.",
             fileTooBig: "Die Datei ist zu groß.",
             noImageFile: "Es dürfen nur Bilder hochgeladen werden.",
-            unauthorized: "Zugriff verweigert."
+            unauthorized: "Zugriff verweigert.",
+            userDoesNotExist: "Benutzer wurde nicht gefunden."
         },
         forgotPassword: {
             cancel: "Abbrechen",
@@ -129,6 +131,7 @@ export const Texts = {
         },
         queryCards: {
             back: "Zurück",
+            category: "Zur Kategorie",
             count: "{0}x abgefragt",
             never: "noch nie abgefragt",
             reinforceCard: "Festigen",
@@ -167,9 +170,6 @@ export const Texts = {
             submit: "Abschicken",
             title: "Neues Passwort"
         },
-        studentDashboard: {
-            createBox: "Neue Lernkartei anlegen"
-        },
         userList: {
             back: "Zurück",
             confirmDelete: {
@@ -180,7 +180,6 @@ export const Texts = {
             },
             roles: {
                 STUDENT: "Student",
-                AUTHOR: "Autor",
                 ADMIN: "Admin"
             },
             title: "Alle Benutzer"

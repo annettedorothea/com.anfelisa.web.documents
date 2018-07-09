@@ -54,8 +54,10 @@ export default class CategoriesView {
             grandParentCategoryId: eventData.data.grandParentCategoryId,
             parentCategoryId: eventData.data.parentCategoryId,
             parentCategoryName: eventData.data.parentCategoryName,
+            parentEditable: eventData.data.parentEditable,
             rootDictionaryLookup: eventData.data.rootDictionaryLookup,
-            scheduleCardSelection: []
+            scheduleCardSelection: [],
+            hasBox: eventData.data.hasBox
         };
         App.container.setState({
             route: "category-list",

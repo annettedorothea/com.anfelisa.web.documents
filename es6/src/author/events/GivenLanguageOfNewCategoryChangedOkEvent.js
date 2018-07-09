@@ -1,4 +1,5 @@
-import AbstractGivenLanguageOfNewCategoryChangedOkEvent from "../../../gen/author/events/AbstractGivenLanguageOfNewCategoryChangedOkEvent";
+import AbstractGivenLanguageOfNewCategoryChangedOkEvent
+    from "../../../gen/author/events/AbstractGivenLanguageOfNewCategoryChangedOkEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class GivenLanguageOfNewCategoryChangedOkEvent extends AbstractGivenLanguageOfNewCategoryChangedOkEvent {

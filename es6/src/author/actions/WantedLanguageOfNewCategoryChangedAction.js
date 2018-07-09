@@ -1,4 +1,5 @@
-import AbstractWantedLanguageOfNewCategoryChangedAction from "../../../gen/author/actions/AbstractWantedLanguageOfNewCategoryChangedAction";
+import AbstractWantedLanguageOfNewCategoryChangedAction
+    from "../../../gen/author/actions/AbstractWantedLanguageOfNewCategoryChangedAction";
 
 export default class WantedLanguageOfNewCategoryChangedAction extends AbstractWantedLanguageOfNewCategoryChangedAction {
 

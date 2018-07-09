@@ -1,4 +1,5 @@
-import AbstractToggleDictionaryLookupOfNewCategoryOkEvent from "../../../gen/author/events/AbstractToggleDictionaryLookupOfNewCategoryOkEvent";
+import AbstractToggleDictionaryLookupOfNewCategoryOkEvent
+    from "../../../gen/author/events/AbstractToggleDictionaryLookupOfNewCategoryOkEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ToggleDictionaryLookupOfNewCategoryOkEvent extends AbstractToggleDictionaryLookupOfNewCategoryOkEvent {

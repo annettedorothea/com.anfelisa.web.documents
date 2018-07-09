@@ -1,15 +1,4 @@
 import InitAction from "../common/actions/InitAction";
-
-export * from "../../gen/common/ActionFunctionExports";
-export * from "../../gen/card/ActionFunctionExports";
-export * from "../../gen/navigation/ActionFunctionExports";
-export * from "../../gen/profile/ActionFunctionExports";
-export * from "../../gen/admin/ActionFunctionExports";
-export * from "../../gen/author/ActionFunctionExports";
-
-export * from "../../gen/ace/Scenario";
-export * from "../../gen/ace/Bug";
-
 import AppUtils from './AppUtils';
 import EventListenerRegistrationCard from "../../gen/card/EventListenerRegistration";
 import ActionFactoryRegistrationCard from "../../gen/card/ActionFactoryRegistration";
@@ -23,6 +12,16 @@ import EventListenerRegistrationAdmin from "../../gen/admin/EventListenerRegistr
 import ActionFactoryRegistrationAdmin from "../../gen/admin/ActionFactoryRegistration";
 import EventListenerRegistrationAuthor from "../../gen/author/EventListenerRegistration";
 import ActionFactoryRegistrationAuthor from "../../gen/author/ActionFactoryRegistration";
+
+export * from "../../gen/common/ActionFunctionExports";
+export * from "../../gen/card/ActionFunctionExports";
+export * from "../../gen/navigation/ActionFunctionExports";
+export * from "../../gen/profile/ActionFunctionExports";
+export * from "../../gen/admin/ActionFunctionExports";
+export * from "../../gen/author/ActionFunctionExports";
+
+export * from "../../gen/ace/Scenario";
+export * from "../../gen/ace/Bug";
 
 window.onhashchange = () => {
     new InitAction().apply();

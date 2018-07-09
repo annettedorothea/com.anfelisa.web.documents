@@ -1,4 +1,5 @@
-import AbstractToggleDictionaryLookupOfEditedCategoryCommand from "../../../gen/author/commands/AbstractToggleDictionaryLookupOfEditedCategoryCommand";
+import AbstractToggleDictionaryLookupOfEditedCategoryCommand
+    from "../../../gen/author/commands/AbstractToggleDictionaryLookupOfEditedCategoryCommand";
 
 export default class ToggleDictionaryLookupOfEditedCategoryCommand extends AbstractToggleDictionaryLookupOfEditedCategoryCommand {
     execute() {

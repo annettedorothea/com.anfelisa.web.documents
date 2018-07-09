@@ -17,7 +17,6 @@ ACE {
 		on resetPassword (ResetPassword.render)
 		on userList triggers (admin.GetAllUsers) 
 		on categories triggers (author.LoadCategories )
-		on createBox triggers (box.LoadRootCategories )
 		on nextCard triggers (box.LoadNextCard)
 		on reinforceCard triggers (box.LoadNextReinforceCard)
 		on invalid triggers (Route)

@@ -1,9 +1,5 @@
 import ACEController from "../ace/ACEController";
 import LoadBoxesAction from "../../src/box/actions/LoadBoxesAction";
-import LoadRootCategoriesAction from "../../src/box/actions/LoadRootCategoriesAction";
-import ToggleMaxIntervalAction from "../../src/box/actions/ToggleMaxIntervalAction";
-import MaxIntervalChangedAction from "../../src/box/actions/MaxIntervalChangedAction";
-import CategorySelectedAction from "../../src/box/actions/CategorySelectedAction";
 import CreateBoxAction from "../../src/box/actions/CreateBoxAction";
 import EditBoxAction from "../../src/box/actions/EditBoxAction";
 import ToggleMaxIntervalOfBoxAction from "../../src/box/actions/ToggleMaxIntervalOfBoxAction";
@@ -28,10 +24,6 @@ export default class ActionFactoryRegistrationBox {
 
 	static init() {
 		ACEController.registerFactory('box.LoadBoxesAction', (actionData) => new LoadBoxesAction(actionData));
-		ACEController.registerFactory('box.LoadRootCategoriesAction', (actionData) => new LoadRootCategoriesAction(actionData));
-		ACEController.registerFactory('box.ToggleMaxIntervalAction', (actionData) => new ToggleMaxIntervalAction(actionData));
-		ACEController.registerFactory('box.MaxIntervalChangedAction', (actionData) => new MaxIntervalChangedAction(actionData));
-		ACEController.registerFactory('box.CategorySelectedAction', (actionData) => new CategorySelectedAction(actionData));
 		ACEController.registerFactory('box.CreateBoxAction', (actionData) => new CreateBoxAction(actionData));
 		ACEController.registerFactory('box.EditBoxAction', (actionData) => new EditBoxAction(actionData));
 		ACEController.registerFactory('box.ToggleMaxIntervalOfBoxAction', (actionData) => new ToggleMaxIntervalOfBoxAction(actionData));

@@ -1,4 +1,5 @@
-import AbstractLoadWantedImageOfEditedCardCommand from "../../../gen/author/commands/AbstractLoadWantedImageOfEditedCardCommand";
+import AbstractLoadWantedImageOfEditedCardCommand
+    from "../../../gen/author/commands/AbstractLoadWantedImageOfEditedCardCommand";
 
 export default class LoadWantedImageOfEditedCardCommand extends AbstractLoadWantedImageOfEditedCardCommand {
     execute() {

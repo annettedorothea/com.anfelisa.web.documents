@@ -1,4 +1,5 @@
-import AbstractValidateRequiredFieldFieldNotEmptyEvent from "../../../gen/common/events/AbstractValidateRequiredFieldFieldNotEmptyEvent";
+import AbstractValidateRequiredFieldFieldNotEmptyEvent
+    from "../../../gen/common/events/AbstractValidateRequiredFieldFieldNotEmptyEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ValidateRequiredFieldFieldNotEmptyEvent extends AbstractValidateRequiredFieldFieldNotEmptyEvent {

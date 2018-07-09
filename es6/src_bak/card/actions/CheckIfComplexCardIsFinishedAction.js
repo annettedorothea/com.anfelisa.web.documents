@@ -1,4 +1,5 @@
-import AbstractCheckIfComplexCardIsFinishedAction from "../../../gen/card/actions/AbstractCheckIfComplexCardIsFinishedAction";
+import AbstractCheckIfComplexCardIsFinishedAction
+    from "../../../gen/card/actions/AbstractCheckIfComplexCardIsFinishedAction";
 
 export default class CheckIfComplexCardIsFinishedAction extends AbstractCheckIfComplexCardIsFinishedAction {
 

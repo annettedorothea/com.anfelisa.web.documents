@@ -1,4 +1,5 @@
-import AbstractUpdatePasswordAdminUnauthorizedEvent from "../../../gen/admin/events/AbstractUpdatePasswordAdminUnauthorizedEvent";
+import AbstractUpdatePasswordAdminUnauthorizedEvent
+    from "../../../gen/admin/events/AbstractUpdatePasswordAdminUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class UpdatePasswordAdminUnauthorizedEvent extends AbstractUpdatePasswordAdminUnauthorizedEvent {

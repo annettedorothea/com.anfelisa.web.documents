@@ -1,4 +1,5 @@
-import AbstractShowNextCardItemShowNextLineEvent from "../../../gen/card/events/AbstractShowNextCardItemShowNextLineEvent";
+import AbstractShowNextCardItemShowNextLineEvent
+    from "../../../gen/card/events/AbstractShowNextCardItemShowNextLineEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ShowNextCardItemShowNextLineEvent extends AbstractShowNextCardItemShowNextLineEvent {

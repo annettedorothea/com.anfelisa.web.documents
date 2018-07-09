@@ -14,7 +14,9 @@ export default class CardItem extends React.Component {
 
     renderGiven() {
         return (
-            <td><pre>{this.props.given}</pre></td>
+            <td>
+                <pre>{this.props.given}</pre>
+            </td>
         );
     }
 
@@ -37,6 +39,7 @@ export default class CardItem extends React.Component {
     render() {
         return (
             <tr>
+                {this.props.hasBox &&
                 <td>
                     <input
                         type={"checkbox"}
@@ -44,6 +47,7 @@ export default class CardItem extends React.Component {
                         checked={this.props.scheduleCardSelection.indexOf(this.props.cardId) >= 0}
                     />
                 </td>
+                }
                 <td>{this.props.cardIndex}</td>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
@@ -53,10 +57,10 @@ export default class CardItem extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td>{this.props.cardAuthor}</td>
                 <td>
-                    {this.props.userRole === "ADMIN" &&
+                    {this.props.editable === true &&
                     <button onClick={() => this.props.onDeleteClick(this.props.cardId)}>{"\u2717"}</button>}
-                    {(this.props.userRole === "ADMIN" || this.props.userRole === "AUTHOR")&&
-                    <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button> }
+                    {this.props.editable === true &&
+                    <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button>}
                 </td>
             </tr>
         );

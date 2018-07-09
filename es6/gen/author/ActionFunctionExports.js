@@ -40,6 +40,7 @@ import RemoveEditedCardImageAction from "../../src/author/actions/RemoveEditedCa
 import ToggleScheduleCardSelectionAction from "../../src/author/actions/ToggleScheduleCardSelectionAction";
 import ToggleAllScheduleCardSelectionAction from "../../src/author/actions/ToggleAllScheduleCardSelectionAction";
 import ScheduleSelectedCardsAction from "../../src/author/actions/ScheduleSelectedCardsAction";
+import InviteUserAction from "../../src/author/actions/InviteUserAction";
 
 export function loadCategories(actionData) {
     new LoadCategoriesAction(actionData).apply();
@@ -207,6 +208,10 @@ export function toggleAllScheduleCardSelection(actionData) {
 
 export function scheduleSelectedCards(actionData) {
     new ScheduleSelectedCardsAction(actionData).apply();
+}
+
+export function inviteUser(actionData) {
+    new InviteUserAction(actionData).apply();
 }
 
 

@@ -1,4 +1,5 @@
-import AbstractLoginDoNotSaveInLocalstorageEvent from "../../../gen/common/events/AbstractLoginDoNotSaveInLocalstorageEvent";
+import AbstractLoginDoNotSaveInLocalstorageEvent
+    from "../../../gen/common/events/AbstractLoginDoNotSaveInLocalstorageEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class LoginDoNotSaveInLocalstorageEvent extends AbstractLoginDoNotSaveInLocalstorageEvent {

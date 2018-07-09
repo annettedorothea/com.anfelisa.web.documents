@@ -1,4 +1,5 @@
-import AbstractCheckIfComplexCardIsFinishedComplexCardIsFinishedEvent from "../../../gen/card/events/AbstractCheckIfComplexCardIsFinishedComplexCardIsFinishedEvent";
+import AbstractCheckIfComplexCardIsFinishedComplexCardIsFinishedEvent
+    from "../../../gen/card/events/AbstractCheckIfComplexCardIsFinishedComplexCardIsFinishedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class CheckIfComplexCardIsFinishedComplexCardIsFinishedEvent extends AbstractCheckIfComplexCardIsFinishedComplexCardIsFinishedEvent {

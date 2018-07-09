@@ -1,4 +1,5 @@
-import AbstractLoadNextReinforceCardUnauthorizedEvent from "../../../gen/box/events/AbstractLoadNextReinforceCardUnauthorizedEvent";
+import AbstractLoadNextReinforceCardUnauthorizedEvent
+    from "../../../gen/box/events/AbstractLoadNextReinforceCardUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class LoadNextReinforceCardUnauthorizedEvent extends AbstractLoadNextReinforceCardUnauthorizedEvent {

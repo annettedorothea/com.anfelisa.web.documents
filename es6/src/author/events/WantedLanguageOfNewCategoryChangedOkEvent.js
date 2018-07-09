@@ -1,4 +1,5 @@
-import AbstractWantedLanguageOfNewCategoryChangedOkEvent from "../../../gen/author/events/AbstractWantedLanguageOfNewCategoryChangedOkEvent";
+import AbstractWantedLanguageOfNewCategoryChangedOkEvent
+    from "../../../gen/author/events/AbstractWantedLanguageOfNewCategoryChangedOkEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class WantedLanguageOfNewCategoryChangedOkEvent extends AbstractWantedLanguageOfNewCategoryChangedOkEvent {

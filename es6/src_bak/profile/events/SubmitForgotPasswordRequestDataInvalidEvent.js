@@ -1,4 +1,5 @@
-import AbstractSubmitForgotPasswordRequestDataInvalidEvent from "../../../gen/profile/events/AbstractSubmitForgotPasswordRequestDataInvalidEvent";
+import AbstractSubmitForgotPasswordRequestDataInvalidEvent
+    from "../../../gen/profile/events/AbstractSubmitForgotPasswordRequestDataInvalidEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class SubmitForgotPasswordRequestDataInvalidEvent extends AbstractSubmitForgotPasswordRequestDataInvalidEvent {

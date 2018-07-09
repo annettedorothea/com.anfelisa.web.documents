@@ -9,7 +9,6 @@ import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import ConfirmEmailAction from "../../../src/common/actions/ConfirmEmailAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
-import LoadRootCategoriesAction from "../../../src/box/actions/LoadRootCategoriesAction";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import LoadNextReinforceCardAction from "../../../src/box/actions/LoadNextReinforceCardAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
@@ -26,7 +25,6 @@ export default class AbstractRouteChangedCommand extends Command {
         this.resetPassword = "resetPassword";
         this.userList = "userList";
         this.categories = "categories";
-        this.createBox = "createBox";
         this.nextCard = "nextCard";
         this.reinforceCard = "reinforceCard";
         this.invalid = "invalid";
@@ -60,9 +58,6 @@ export default class AbstractRouteChangedCommand extends Command {
 			break;
 		case this.categories:
 			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
-			break;
-		case this.createBox:
-			new TriggerAction(new LoadRootCategoriesAction(this.commandData)).publish();
 			break;
 		case this.nextCard:
 			new TriggerAction(new LoadNextCardAction(this.commandData)).publish();

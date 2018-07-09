@@ -1,4 +1,5 @@
-import AbstractWantedOfEditedCardChangedAction from "../../../gen/author/actions/AbstractWantedOfEditedCardChangedAction";
+import AbstractWantedOfEditedCardChangedAction
+    from "../../../gen/author/actions/AbstractWantedOfEditedCardChangedAction";
 
 export default class WantedOfEditedCardChangedAction extends AbstractWantedOfEditedCardChangedAction {
 

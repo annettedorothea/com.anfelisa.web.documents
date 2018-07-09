@@ -73,6 +73,13 @@ export default class Card extends React.Component {
                     onClick={() => new RouteAction({
                         username: this.props.username,
                         password: this.props.password,
+                        hash: `#categories/${this.props.data.categoryId}`
+                    }).apply()}>{this.props.texts.queryCards.category}
+                </button>
+                <button
+                    onClick={() => new RouteAction({
+                        username: this.props.username,
+                        password: this.props.password,
                         hash: "#dashboard"
                     }).apply()}>{this.props.texts.queryCards.back}
                 </button>

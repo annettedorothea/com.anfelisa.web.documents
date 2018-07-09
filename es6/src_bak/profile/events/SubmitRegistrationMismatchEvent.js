@@ -1,4 +1,5 @@
-import AbstractSubmitRegistrationMismatchEvent from "../../../gen/profile/events/AbstractSubmitRegistrationMismatchEvent";
+import AbstractSubmitRegistrationMismatchEvent
+    from "../../../gen/profile/events/AbstractSubmitRegistrationMismatchEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class SubmitRegistrationMismatchEvent extends AbstractSubmitRegistrationMismatchEvent {

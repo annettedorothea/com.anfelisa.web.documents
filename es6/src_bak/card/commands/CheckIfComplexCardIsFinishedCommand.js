@@ -1,4 +1,5 @@
-import AbstractCheckIfComplexCardIsFinishedCommand from "../../../gen/card/commands/AbstractCheckIfComplexCardIsFinishedCommand";
+import AbstractCheckIfComplexCardIsFinishedCommand
+    from "../../../gen/card/commands/AbstractCheckIfComplexCardIsFinishedCommand";
 
 export default class CheckIfComplexCardIsFinishedCommand extends AbstractCheckIfComplexCardIsFinishedCommand {
     execute() {

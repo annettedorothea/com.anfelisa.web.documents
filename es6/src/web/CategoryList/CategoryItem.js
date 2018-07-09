@@ -5,7 +5,22 @@ export default class CategoryItem extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            username: ""
+        };
+        this.onUsernameChange = this.onUsernameChange.bind(this);
         this.onClick = this.onClick.bind(this);
+        this.onInvite = this.onInvite.bind(this);
+    }
+
+    onUsernameChange(event) {
+        const username = event.target.value;
+        this.setState({username});
+    }
+
+    onInvite() {
+        this.props.onInvite(this.state.username);
+        this.setState({username: ""});
     }
 
     onClick() {
@@ -34,11 +49,24 @@ export default class CategoryItem extends React.Component {
                 <td onClick={this.onClick}>{this.props.categoryAuthor}</td>
                 {this.props.rootDictionaryLookup === true && this.renderDictionayLookup()}
                 <td>
-                    {this.props.userRole === "ADMIN" &&
+                    {this.props.editable === true &&
                     <button disabled={!this.props.empty}
                             onClick={() => this.props.onDeleteClick(this.props.categoryId)}>{"\u2717"}</button>}
-                    {(this.props.userRole === "ADMIN" || this.props.userRole === "AUTHOR") &&
-                    <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button>}
+                    {this.props.editable === true &&
+                    <button onClick={() => this.props.onEdit()}>{"\u270E"}</button>}
+                    {this.props.editable === true && this.props.isRoot === true &&
+                    <div>
+                        <input
+                            type={"text"}
+                            placeholder={this.props.texts.categoryList.username}
+                            onChange={this.onUsernameChange}
+                            autoComplete="off"
+                            value={this.state.username}
+                        />
+                        <button onClick={this.onInvite}>{this.props.texts.categoryList.invite}</button>
+                    </div>}
+                    {this.props.isRoot === true && this.props.hasBox === false &&
+                    <button onClick={() => this.props.onSubscribe()}>{this.props.texts.categoryList.subscribe}</button>}
                 </td>
             </tr>
         );

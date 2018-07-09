@@ -1,4 +1,5 @@
-import AbstractToggleAllScheduleCardSelectionCommand from "../../../gen/author/commands/AbstractToggleAllScheduleCardSelectionCommand";
+import AbstractToggleAllScheduleCardSelectionCommand
+    from "../../../gen/author/commands/AbstractToggleAllScheduleCardSelectionCommand";
 
 export default class ToggleAllScheduleCardSelectionCommand extends AbstractToggleAllScheduleCardSelectionCommand {
     execute() {

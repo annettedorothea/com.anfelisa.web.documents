@@ -1,4 +1,5 @@
-import AbstractSearchDuplicateCardsUnauthorizedEvent from "../../../gen/author/events/AbstractSearchDuplicateCardsUnauthorizedEvent";
+import AbstractSearchDuplicateCardsUnauthorizedEvent
+    from "../../../gen/author/events/AbstractSearchDuplicateCardsUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class SearchDuplicateCardsUnauthorizedEvent extends AbstractSearchDuplicateCardsUnauthorizedEvent {

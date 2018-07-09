@@ -64,7 +64,7 @@ ACE {
 	async SearchDuplicateCards preUpdateUI (Categories.displayNewCardSpinner) postUpdateUI (Categories.hideNewCardSpinner) {
 		on ok (Categories.initDuplicates)
 		on tooShort (Categories.resetDuplicates)
-		on unauthorized ( common.Common.displayError Categories.hideConfirmCardDelete) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError) triggers (common.Logout)
 	}
 	WantedOfNewCardChanged {
 		on ok (Categories.wantedOfNewCardChanged) triggers (SearchDuplicateCards)
@@ -165,7 +165,13 @@ ACE {
 	}
 	async ScheduleSelectedCards preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers (LoadCategories)
-		on unauthorized ( common.Common.displayError Categories.hideConfirmCardDelete) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+	}
+
+	async InviteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+		on ok triggers (LoadCategories)
+		on userDoesNotExist (common.Common.displayError) triggers (LoadCategories )
+		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
 	}
 }
 

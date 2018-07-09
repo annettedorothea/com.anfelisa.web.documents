@@ -1,4 +1,5 @@
-import AbstractOpenReallyDeleteDialogRemovedCardEvent from "../../../gen/common/events/AbstractOpenReallyDeleteDialogRemovedCardEvent";
+import AbstractOpenReallyDeleteDialogRemovedCardEvent
+    from "../../../gen/common/events/AbstractOpenReallyDeleteDialogRemovedCardEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class OpenReallyDeleteDialogRemovedCardEvent extends AbstractOpenReallyDeleteDialogRemovedCardEvent {

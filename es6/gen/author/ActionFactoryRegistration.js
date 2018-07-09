@@ -41,6 +41,7 @@ import RemoveEditedCardImageAction from "../../src/author/actions/RemoveEditedCa
 import ToggleScheduleCardSelectionAction from "../../src/author/actions/ToggleScheduleCardSelectionAction";
 import ToggleAllScheduleCardSelectionAction from "../../src/author/actions/ToggleAllScheduleCardSelectionAction";
 import ScheduleSelectedCardsAction from "../../src/author/actions/ScheduleSelectedCardsAction";
+import InviteUserAction from "../../src/author/actions/InviteUserAction";
 
 export default class ActionFactoryRegistrationAuthor {
 
@@ -87,6 +88,7 @@ export default class ActionFactoryRegistrationAuthor {
 		ACEController.registerFactory('author.ToggleScheduleCardSelectionAction', (actionData) => new ToggleScheduleCardSelectionAction(actionData));
 		ACEController.registerFactory('author.ToggleAllScheduleCardSelectionAction', (actionData) => new ToggleAllScheduleCardSelectionAction(actionData));
 		ACEController.registerFactory('author.ScheduleSelectedCardsAction', (actionData) => new ScheduleSelectedCardsAction(actionData));
+		ACEController.registerFactory('author.InviteUserAction', (actionData) => new InviteUserAction(actionData));
 	}
 
 }

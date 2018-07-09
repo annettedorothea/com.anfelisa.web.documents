@@ -271,7 +271,8 @@ export default class NewCard extends React.Component {
     render() {
         return (
             <tr>
-                <td></td>
+                {this.props.hasBox && <td/>}
+                <td/>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}

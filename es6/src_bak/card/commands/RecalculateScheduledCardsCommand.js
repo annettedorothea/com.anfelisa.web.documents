@@ -1,4 +1,5 @@
-import AbstractRecalculateScheduledCardsCommand from "../../../gen/card/commands/AbstractRecalculateScheduledCardsCommand";
+import AbstractRecalculateScheduledCardsCommand
+    from "../../../gen/card/commands/AbstractRecalculateScheduledCardsCommand";
 
 export default class RecalculateScheduledCardsCommand extends AbstractRecalculateScheduledCardsCommand {
     execute() {

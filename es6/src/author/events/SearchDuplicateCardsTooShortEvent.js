@@ -1,4 +1,5 @@
-import AbstractSearchDuplicateCardsTooShortEvent from "../../../gen/author/events/AbstractSearchDuplicateCardsTooShortEvent";
+import AbstractSearchDuplicateCardsTooShortEvent
+    from "../../../gen/author/events/AbstractSearchDuplicateCardsTooShortEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class SearchDuplicateCardsTooShortEvent extends AbstractSearchDuplicateCardsTooShortEvent {

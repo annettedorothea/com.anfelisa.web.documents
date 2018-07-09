@@ -127,7 +127,6 @@ class RoleSelect extends React.Component {
                 disabled={this.props.username === this.props.myUsername}
             >
                 <option value="STUDENT">{this.props.texts.userList.roles["STUDENT"]}</option>
-                <option value="AUTHOR">{this.props.texts.userList.roles["AUTHOR"]}</option>
                 <option value="ADMIN">{this.props.texts.userList.roles["ADMIN"]}</option>
             </select>
         );

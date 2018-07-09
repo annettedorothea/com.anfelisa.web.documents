@@ -1,4 +1,5 @@
-import AbstractLoadWantedImageOfEditedCardAction from "../../../gen/author/actions/AbstractLoadWantedImageOfEditedCardAction";
+import AbstractLoadWantedImageOfEditedCardAction
+    from "../../../gen/author/actions/AbstractLoadWantedImageOfEditedCardAction";
 
 export default class LoadWantedImageOfEditedCardAction extends AbstractLoadWantedImageOfEditedCardAction {
 

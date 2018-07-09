@@ -1,4 +1,5 @@
-import AbstractToggleDictionaryLookupOfEditedCategoryOkEvent from "../../../gen/author/events/AbstractToggleDictionaryLookupOfEditedCategoryOkEvent";
+import AbstractToggleDictionaryLookupOfEditedCategoryOkEvent
+    from "../../../gen/author/events/AbstractToggleDictionaryLookupOfEditedCategoryOkEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class ToggleDictionaryLookupOfEditedCategoryOkEvent extends AbstractToggleDictionaryLookupOfEditedCategoryOkEvent {

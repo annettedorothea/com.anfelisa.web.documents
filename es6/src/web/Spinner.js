@@ -1,5 +1,4 @@
 import React from 'react';
-import RouteAction from "../common/actions/RouteAction";
 
 export default class Spinner extends React.Component {
 

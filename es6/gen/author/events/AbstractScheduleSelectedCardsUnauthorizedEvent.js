@@ -5,7 +5,7 @@ export default class AbstractScheduleSelectedCardsUnauthorizedEvent extends Even
         super(eventData, 'author.ScheduleSelectedCardsUnauthorizedEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.CommonView.displayError", "author.views.CategoriesView.hideConfirmCardDelete" ];
+	    return [ "common.views.CommonView.displayError" ];
 	}
 }
 

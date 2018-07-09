@@ -1,4 +1,5 @@
-import AbstractSubmitNewPasswordDataInvalidEvent from "../../../gen/profile/events/AbstractSubmitNewPasswordDataInvalidEvent";
+import AbstractSubmitNewPasswordDataInvalidEvent
+    from "../../../gen/profile/events/AbstractSubmitNewPasswordDataInvalidEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class SubmitNewPasswordDataInvalidEvent extends AbstractSubmitNewPasswordDataInvalidEvent {

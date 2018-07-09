@@ -32,7 +32,6 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.SearchDuplicateCardsOkEvent', CategoriesView.initDuplicates);
 		ACEController.registerListener('author.SearchDuplicateCardsTooShortEvent', CategoriesView.resetDuplicates);
 		ACEController.registerListener('author.SearchDuplicateCardsUnauthorizedEvent', CommonView.displayError);
-		ACEController.registerListener('author.SearchDuplicateCardsUnauthorizedEvent', CategoriesView.hideConfirmCardDelete);
 		ACEController.registerListener('author.WantedOfNewCardChangedOkEvent', CategoriesView.wantedOfNewCardChanged);
 		ACEController.registerListener('author.CancelNewCardOkEvent', CategoriesView.resetNewCardValues);
 		ACEController.registerListener('author.GivenOfEditedCardChangedOkEvent', CategoriesView.givenOfEditedCardChanged);
@@ -60,7 +59,8 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.ToggleScheduleCardSelectionOkEvent', CategoriesView.toggleScheduleCardSelection);
 		ACEController.registerListener('author.ToggleAllScheduleCardSelectionOkEvent', CategoriesView.toggleAllScheduleCardSelection);
 		ACEController.registerListener('author.ScheduleSelectedCardsUnauthorizedEvent', CommonView.displayError);
-		ACEController.registerListener('author.ScheduleSelectedCardsUnauthorizedEvent', CategoriesView.hideConfirmCardDelete);
+		ACEController.registerListener('author.InviteUserUserDoesNotExistEvent', CommonView.displayError);
+		ACEController.registerListener('author.InviteUserUnauthorizedEvent', CommonView.displayError);
 	}
 
 }

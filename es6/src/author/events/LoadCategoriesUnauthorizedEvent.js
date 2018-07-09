@@ -1,4 +1,5 @@
-import AbstractLoadCategoriesUnauthorizedEvent from "../../../gen/author/events/AbstractLoadCategoriesUnauthorizedEvent";
+import AbstractLoadCategoriesUnauthorizedEvent
+    from "../../../gen/author/events/AbstractLoadCategoriesUnauthorizedEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class LoadCategoriesUnauthorizedEvent extends AbstractLoadCategoriesUnauthorizedEvent {

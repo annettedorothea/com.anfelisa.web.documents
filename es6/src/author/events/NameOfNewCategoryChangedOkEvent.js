@@ -1,4 +1,5 @@
-import AbstractNameOfNewCategoryChangedOkEvent from "../../../gen/author/events/AbstractNameOfNewCategoryChangedOkEvent";
+import AbstractNameOfNewCategoryChangedOkEvent
+    from "../../../gen/author/events/AbstractNameOfNewCategoryChangedOkEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class NameOfNewCategoryChangedOkEvent extends AbstractNameOfNewCategoryChangedOkEvent {

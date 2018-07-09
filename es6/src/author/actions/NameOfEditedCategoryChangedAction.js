@@ -1,4 +1,5 @@
-import AbstractNameOfEditedCategoryChangedAction from "../../../gen/author/actions/AbstractNameOfEditedCategoryChangedAction";
+import AbstractNameOfEditedCategoryChangedAction
+    from "../../../gen/author/actions/AbstractNameOfEditedCategoryChangedAction";
 
 export default class NameOfEditedCategoryChangedAction extends AbstractNameOfEditedCategoryChangedAction {
 

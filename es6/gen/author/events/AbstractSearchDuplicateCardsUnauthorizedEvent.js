@@ -5,7 +5,7 @@ export default class AbstractSearchDuplicateCardsUnauthorizedEvent extends Event
         super(eventData, 'author.SearchDuplicateCardsUnauthorizedEvent');
     }
 	getNotifiedListeners() {
-	    return [ "common.views.CommonView.displayError", "author.views.CategoriesView.hideConfirmCardDelete" ];
+	    return [ "common.views.CommonView.displayError" ];
 	}
 }
 

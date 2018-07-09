@@ -1,4 +1,5 @@
-import AbstractDisplayNextReinforceCardNextEvent from "../../../gen/card/events/AbstractDisplayNextReinforceCardNextEvent";
+import AbstractDisplayNextReinforceCardNextEvent
+    from "../../../gen/card/events/AbstractDisplayNextReinforceCardNextEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class DisplayNextReinforceCardNextEvent extends AbstractDisplayNextReinforceCardNextEvent {
