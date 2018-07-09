@@ -14,7 +14,7 @@ export default class CardItem extends React.Component {
 
     renderGiven() {
         return (
-            <td>
+            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {}}>
                 <pre>{this.props.given}</pre>
             </td>
         );
@@ -22,7 +22,7 @@ export default class CardItem extends React.Component {
 
     renderWanted() {
         return (
-            <td>
+            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {}}>
                 <pre>{this.props.wanted}</pre>
             </td>
         );
@@ -30,7 +30,7 @@ export default class CardItem extends React.Component {
 
     renderImage() {
         return (
-            <td>
+            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {}}>
                 <img className="preview" src={this.props.image}/>
             </td>
         );
@@ -60,7 +60,7 @@ export default class CardItem extends React.Component {
                     {this.props.editable === true &&
                     <button onClick={() => this.props.onDeleteClick(this.props.cardId)}>{"\u2717"}</button>}
                     {this.props.editable === true &&
-                    <button onClick={() => this.props.onEdit(this.props)}>{"\u270E"}</button>}
+                    <button onClick={() => this.props.onEdit()}>{"\u270E"}</button>}
                 </td>
             </tr>
         );

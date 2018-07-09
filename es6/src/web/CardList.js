@@ -197,7 +197,7 @@ export default class CardList extends React.Component {
                     value={this.props.data.filter}
                     placeholder={this.props.texts.cardList.filter}
                 />
-                {this.props.data.newCard.dictionaryLookup === true && (this.props.role === "ADMIN" || this.props.role === "AUTHOR") &&
+                {this.props.data.newCard.dictionaryLookup === true && this.props.data.parentEditable &&
                 <span>
                         <input
                             type={"checkbox"}
