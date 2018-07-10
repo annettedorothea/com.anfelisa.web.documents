@@ -4,7 +4,7 @@ import ToggleDictionaryLookupOfEditedCategoryCommand from "../../../src/author/c
 export default class AbstractToggleDictionaryLookupOfEditedCategoryAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.ToggleDictionaryLookupOfEditedCategoryAction', false, false);
+        super(actionData, 'author.ToggleDictionaryLookupOfEditedCategoryAction');
     }
 
 	getCommand() {

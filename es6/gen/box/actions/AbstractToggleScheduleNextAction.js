@@ -4,7 +4,7 @@ import ToggleScheduleNextCommand from "../../../src/box/commands/ToggleScheduleN
 export default class AbstractToggleScheduleNextAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'box.ToggleScheduleNextAction', false, false);
+        super(actionData, 'box.ToggleScheduleNextAction');
     }
 
 	getCommand() {

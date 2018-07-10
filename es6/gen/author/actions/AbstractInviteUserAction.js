@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractInviteUserAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.InviteUserAction', false, false);
+        super(actionData, 'author.InviteUserAction');
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

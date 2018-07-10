@@ -4,7 +4,7 @@ import LoadWantedImageOfEditedCardCommand from "../../../src/author/commands/Loa
 export default class AbstractLoadWantedImageOfEditedCardAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.LoadWantedImageOfEditedCardAction', false, false);
+        super(actionData, 'author.LoadWantedImageOfEditedCardAction');
     }
 
 	getCommand() {

@@ -4,7 +4,7 @@ import ToggleMaxIntervalOfBoxCommand from "../../../src/box/commands/ToggleMaxIn
 export default class AbstractToggleMaxIntervalOfBoxAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'box.ToggleMaxIntervalOfBoxAction', false, false);
+        super(actionData, 'box.ToggleMaxIntervalOfBoxAction');
     }
 
 	getCommand() {

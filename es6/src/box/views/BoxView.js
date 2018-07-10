@@ -1,4 +1,5 @@
 import * as App from "../../app/App";
+import AppUtils from "../../app/AppUtils";
 
 export default class BoxView {
     static render(eventData) {
@@ -6,11 +7,19 @@ export default class BoxView {
         if (App.container.state && App.container.state.data && App.container.state.data.scheduleNext) {
             scheduleNext = App.container.state.data.scheduleNext;
         }
-        let data = eventData.data;
+        let data = AppUtils.deepCopy(eventData.data);
         data.index = 0;
         data.enableScoreButtons = false;
         data.displayImage = false;
         data.scheduleNext = scheduleNext;
+        if (App.container.state && App.container.state.data && App.container.state.data.categoryName) {
+            data.daysBehindSchedule = App.container.state.data.daysBehindSchedule;
+            data.myCards = App.container.state.data.myCards;
+            data.todaysCards = App.container.state.data.todaysCards;
+            data.totalCards = App.container.state.data.totalCards;
+            data.reinforceCards = App.container.state.data.reinforceCards;
+            data.categoryName = App.container.state.data.categoryName;
+        }
         App.container.setState({
             route: "card",
             data

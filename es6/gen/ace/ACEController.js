@@ -16,7 +16,6 @@ export default class ACEController {
         ACEController.execution = ACEController.LIVE;
         ACEController.actualTimeline = [];
         ACEController.expectedTimeline = [];
-        ACEController.firstRouteIndex = undefined;
     }
 
     static registerListener(eventName, listener) {
@@ -48,15 +47,11 @@ export default class ACEController {
         let timestamp = new Date();
         item.timestamp = timestamp.getTime();
         if (ACEController.execution === ACEController.LIVE) {
-			if (item.action && item.action.isRouteAction === true) {
-			    if (ACEController.firstRouteIndex === undefined) {
-			        ACEController.firstRouteIndex = ACEController.timeline.length;
-			    }
-			    if (ACEController.firstRouteIndex && ACEController.firstRouteIndex < ACEController.timeline.length) {
-			        ACEController.timeline.splice(ACEController.firstRouteIndex);
-			    }
+            if (ACEController.timeline.length < AppUtils.getMaxTimelineSize()) {
+				ACEController.timeline.push(AppUtils.deepCopy(item));
+			} else {
+				console.debug(`timeline size ${AppUtils.getMaxTimelineSize()} exceeded - item was not added`, item);
 			}
-			ACEController.timeline.push(AppUtils.deepCopy(item));
         } else {
             ACEController.actualTimeline.push(AppUtils.deepCopy(item));
         }

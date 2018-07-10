@@ -4,7 +4,6 @@ import {Texts} from "./Texts";
 export default class CommonView {
 
     static updateHash(eventData) {
-        console.log("updateHash", eventData.hash);
         window.location.hash = eventData.hash;
     };
 

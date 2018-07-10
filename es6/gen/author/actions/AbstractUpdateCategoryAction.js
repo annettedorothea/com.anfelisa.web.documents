@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractUpdateCategoryAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.UpdateCategoryAction', false, false);
+        super(actionData, 'author.UpdateCategoryAction');
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

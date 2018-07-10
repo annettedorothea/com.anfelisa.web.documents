@@ -10,7 +10,6 @@ export default class SynchronousEvent extends Event {
             this.eventData.notifiedListeners = this.getNotifiedListeners();
         }
         this.notifyListeners();
-		this.eventData.appState = AppUtils.getAppState();
 		ACEController.addItemToTimeLine({event: this});
     }
 
@@ -21,7 +20,7 @@ export default class SynchronousEvent extends Event {
             if (listenersForEvent !== undefined) {
                 for (i = 0; i < listenersForEvent.length; i += 1) {
                     listener = listenersForEvent[i];
-                    listener(this.eventData);
+					listener(AppUtils.deepCopy(this.eventData));
                 }
             }
         }

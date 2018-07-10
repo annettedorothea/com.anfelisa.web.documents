@@ -10,12 +10,9 @@ export default class AsynchronousEvent extends Event {
                 this.eventData.notifiedListeners = this.getNotifiedListeners();
             }
             Promise.all(this.notifyListeners()).then(() => {
-				this.eventData.appState = AppUtils.getAppState();
 				ACEController.addItemToTimeLine({event: this});
                 resolve();
             }, (error) => {
-				this.eventData.appState = AppUtils.getAppState();
-				ACEController.addItemToTimeLine({event: this});
                 reject(error + "\n" + this.eventName);
             });
         });
@@ -29,7 +26,7 @@ export default class AsynchronousEvent extends Event {
             if (listenersForEvent !== undefined) {
                 for (i = 0; i < listenersForEvent.length; i += 1) {
                     listener = listenersForEvent[i];
-                    promises.push(listener(this.eventData));
+					promises.push(listener(AppUtils.deepCopy(this.eventData)));
                 }
             }
         }

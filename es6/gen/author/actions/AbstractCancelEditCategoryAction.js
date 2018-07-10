@@ -4,7 +4,7 @@ import CancelEditCategoryCommand from "../../../src/author/commands/CancelEditCa
 export default class AbstractCancelEditCategoryAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.CancelEditCategoryAction', false, false);
+        super(actionData, 'author.CancelEditCategoryAction');
     }
 
 	getCommand() {

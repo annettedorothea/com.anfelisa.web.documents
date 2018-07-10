@@ -4,7 +4,7 @@ import EditBoxCommand from "../../../src/box/commands/EditBoxCommand";
 export default class AbstractEditBoxAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'box.EditBoxAction', false, false);
+        super(actionData, 'box.EditBoxAction');
     }
 
 	getCommand() {

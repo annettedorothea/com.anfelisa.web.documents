@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractForgotPasswordAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'common.ForgotPasswordAction', false, false);
+        super(actionData, 'common.ForgotPasswordAction');
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

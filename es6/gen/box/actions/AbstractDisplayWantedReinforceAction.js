@@ -4,7 +4,7 @@ import DisplayWantedReinforceCommand from "../../../src/box/commands/DisplayWant
 export default class AbstractDisplayWantedReinforceAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'box.DisplayWantedReinforceAction', false, false);
+        super(actionData, 'box.DisplayWantedReinforceAction');
     }
 
 	getCommand() {

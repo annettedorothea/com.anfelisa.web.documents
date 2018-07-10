@@ -4,8 +4,8 @@ import AppUtils from "../../src/app/AppUtils";
 
 export default class SynchronousAction extends Action {
 
-    constructor(actionData, actionName, isInitAction, isRouteAction) {
-    	super(actionData, actionName, isInitAction, isRouteAction);
+    constructor(actionData, actionName) {
+    	super(actionData, actionName);
         this.asynchronous = false;
     }
 

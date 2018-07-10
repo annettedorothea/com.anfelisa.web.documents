@@ -4,7 +4,7 @@ import RouteChangedCommand from "../../../src/common/commands/RouteChangedComman
 export default class AbstractRouteChangedAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'common.RouteChangedAction', false, true);
+        super(actionData, 'common.RouteChangedAction');
     }
 
 	getCommand() {

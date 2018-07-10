@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractLoadNextReinforceCardAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'box.LoadNextReinforceCardAction', false, false);
+        super(actionData, 'box.LoadNextReinforceCardAction');
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

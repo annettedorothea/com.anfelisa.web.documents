@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractInitialLoginAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'common.InitialLoginAction', false, false);
+        super(actionData, 'common.InitialLoginAction');
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

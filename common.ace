@@ -3,11 +3,11 @@ common
 target ES6 
 
 ACE {
-	init Init {
+	Init {
 		on user ( Common.initTexts ) triggers ( InitialLogin )
 		on noUser ( Common.initTexts ) triggers ( RouteChanged )
 	}
-	route RouteChanged {
+	RouteChanged {
 		on login (  Login.render )
 		on registration ( Registration.render )
 		on dashboard triggers (box.LoadBoxes)

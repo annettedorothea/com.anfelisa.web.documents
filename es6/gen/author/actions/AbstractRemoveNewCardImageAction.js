@@ -4,7 +4,7 @@ import RemoveNewCardImageCommand from "../../../src/author/commands/RemoveNewCar
 export default class AbstractRemoveNewCardImageAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.RemoveNewCardImageAction', false, false);
+        super(actionData, 'author.RemoveNewCardImageAction');
     }
 
 	getCommand() {

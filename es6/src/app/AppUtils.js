@@ -171,12 +171,9 @@ export default class AppUtils {
 	    return JSON.parse(JSON.stringify(object));
 	}
 
-	static getAppState() {
-    	return {};
-        /*const appState = AppUtils.deepCopy(App.container.state);
-        delete appState.texts;
-    	return appState;*/
-	}
+	static getMaxTimelineSize() {
+        return 2000;
+    }
 
 }
 

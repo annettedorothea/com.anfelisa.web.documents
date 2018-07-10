@@ -5,7 +5,7 @@ import CategoriesView from "../../../src/author/views/CategoriesView";
 export default class AbstractTranslateAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.TranslateAction', false, false);
+        super(actionData, 'author.TranslateAction');
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

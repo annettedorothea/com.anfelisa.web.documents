@@ -5,7 +5,7 @@ import CategoriesView from "../../../src/author/views/CategoriesView";
 export default class AbstractSearchDuplicateCardsAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.SearchDuplicateCardsAction', false, false);
+        super(actionData, 'author.SearchDuplicateCardsAction');
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

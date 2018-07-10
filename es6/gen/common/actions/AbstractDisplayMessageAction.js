@@ -4,7 +4,7 @@ import DisplayMessageCommand from "../../../src/common/commands/DisplayMessageCo
 export default class AbstractDisplayMessageAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'common.DisplayMessageAction', false, false);
+        super(actionData, 'common.DisplayMessageAction');
     }
 
 	getCommand() {
