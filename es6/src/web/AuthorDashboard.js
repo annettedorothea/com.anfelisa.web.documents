@@ -11,7 +11,7 @@ export default class AuthorDashboard extends React.Component {
                         username: this.props.username,
                         password: this.props.password,
                         hash: "#categories"
-                    }).apply()}>{this.props.texts.authorDashboard.categories}</button>
+                    }).apply()}>{this.props.texts.authorDashboard.categories[this.props.language]}</button>
             </div>
         );
     }

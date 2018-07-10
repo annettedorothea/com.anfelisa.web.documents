@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractLoadUserAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'profile.LoadUserAction', false);
+        super(actionData, 'profile.LoadUserAction', false, false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

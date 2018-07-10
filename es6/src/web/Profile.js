@@ -34,57 +34,58 @@ export default class Profile extends React.Component {
     }
 
     render() {
+        console.log("this.props.data", this.props.data);
         return (
             <div>
                 {this.state.confirmDeleteUser === true &&
                 <div>
                     <Confirm {...
                         {
-                            title: this.props.texts.profile.confirmDelete.title,
-                            message: this.props.texts.profile.confirmDelete.message,
-                            okText: this.props.texts.profile.confirmDelete.ok,
-                            cancelText: this.props.texts.profile.confirmDelete.cancel,
+                            title: this.props.texts.profile.confirmDelete.title[this.props.language],
+                            message: this.props.texts.profile.confirmDelete.message[this.props.language],
+                            okText: this.props.texts.profile.confirmDelete.ok[this.props.language],
+                            cancelText: this.props.texts.profile.confirmDelete.cancel[this.props.language],
                             ok: this.onDelete,
                             cancel: this.onDeleteCancel
                         }}/>
                 </div>}
-                <h1>{this.props.texts.profile.title}</h1>
+                <h1>{this.props.texts.profile.title[this.props.language]}</h1>
                 <div>
                     <div>
-                        <label>{this.props.texts.profile.username}</label>
+                        <label>{this.props.texts.profile.username[this.props.language]}</label>
                         <input
                             type={"text"}
-                            placeholder={this.props.texts.profile.username}
+                            placeholder={this.props.texts.profile.username[this.props.language]}
                             value={this.props.data.username}
                             readOnly={true}
                         />
                     </div>
                     <div>
-                        <label>{this.props.texts.profile.email}</label>
+                        <label>{this.props.texts.profile.email[this.props.language]}</label>
                         <input
                             type={"text"}
-                            placeholder={this.props.texts.profile.email}
+                            placeholder={this.props.texts.profile.email[this.props.language]}
                             value={this.props.data.email}
                             readOnly={true}
                         />
                     </div>
                     <div>
-                        <label>{this.props.texts.profile.role}</label>
+                        <label>{this.props.texts.profile.role[this.props.language]}</label>
                         <input
                             type={"text"}
-                            placeholder={this.props.texts.profile.role}
-                            value={this.props.data.role}
+                            placeholder={this.props.texts.profile.role[this.props.language]}
+                            value={this.props.texts.profile.role[this.props.data.role][this.props.language]}
                             readOnly={true}
                         />
                     </div>
                 </div>
-                <button onClick={this.onDeleteClick}>{this.props.texts.profile.delete}</button>
+                <button onClick={this.onDeleteClick}>{this.props.texts.profile.delete[this.props.language]}</button>
                 <button
                     onClick={() => new RouteAction({
                         username: this.props.username,
                         password: this.props.password,
                         hash: "#dashboard"
-                    }).apply()}>{this.props.texts.profile.back}</button>
+                    }).apply()}>{this.props.texts.profile.back[this.props.language]}</button>
             </div>
         );
     }

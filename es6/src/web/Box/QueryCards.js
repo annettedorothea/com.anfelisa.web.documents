@@ -24,19 +24,19 @@ export default class QueryCards extends React.Component {
                         username: this.props.username,
                         password: this.props.password,
                         boxId: this.props.data.boxId
-                    }).apply()}>{this.props.texts.queryCards.scheduleNextCard}</button>
+                    }).apply()}>{this.props.texts.queryCards.scheduleNextCard[this.props.language]}</button>
                 <button onClick={() => new RouteAction(
                     {
                         username: this.props.username,
                         password: this.props.password,
                         hash: `#box/reinforce/${this.props.data.boxId}`
-                    }).apply()}>{this.props.texts.queryCards.reinforceCard}</button>
+                    }).apply()}>{this.props.texts.queryCards.reinforceCard[this.props.language]}</button>
                 <button
                     onClick={() => new RouteAction({
                         username: this.props.username,
                         password: this.props.password,
                         hash: "#dashboard"
-                    }).apply()}>{this.props.texts.queryCards.back}
+                    }).apply()}>{this.props.texts.queryCards.back[this.props.language]}
                 </button>
             </div>;
         }
@@ -47,6 +47,7 @@ export default class QueryCards extends React.Component {
                     username={this.props.username}
                     password={this.props.password}
                     texts={this.props.texts}
+                    language={this.props.language}
                     loadList={false}
                 />
                 {content}

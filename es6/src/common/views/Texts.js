@@ -1,188 +1,442 @@
 export const Texts = {
-    de: {
-        adminDashboard: {
-            users: "Benutzerliste"
-        },
-        authorDashboard: {
-            categories: "Kategorien"
-        },
-        box: {
-            confirmDelete: {
-                cancel: "Nein",
-                ok: "Ja",
-                message: "Soll die Lernkartei wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht.",
-                title: "Löschen"
+    adminDashboard: {
+        users: {
+            de: "Benutzerliste"
+        }
+    },
+    authorDashboard: {
+        categories: {
+            de: "Kategorien"
+        }
+    },
+    box: {
+        confirmDelete: {
+            cancel: {
+                de: "Nein"
             },
-            maxIntervalOne: "Karten im Abstand von maximal einem Tag erneut abfragen.",
-            maxInterval: "Karten im Abstand von maximal {0} Tagen erneut abfragen.",
-            myCards: "Bearbeitete Karten",
-            nextCard: "Karten abfragen",
-            postpone: "Zeitplan neu berechnen",
-            daysBehindScheduleMessageOne: "Du bist einen Tag hinterher.",
-            daysBehindScheduleMessage: "Du bist {0} Tage hinterher.",
-            reinforceCards: "Karten zum Festigen",
-            todaysCards: "Karten für heute",
-            totalCards: "Karten insgesamt"
-        },
-        categoryList: {
-            back: "Zurück",
-            confirmDelete: {
-                cancel: "Nein",
-                ok: "Ja",
-                message: "Soll die Kategorie wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht.",
-                title: "Löschen"
+            ok: {
+                de: "Ja"
             },
-            dictionaryLookup: "im Wörterbuch nachschlagen",
-            index: "Index",
-            invite: "einladen",
-            languages: {
-                de: "Deutsch",
-                emtpy: "Bitte wählen",
-                en: "Englisch",
-                fr: "Französisch",
+            message: {
+                de: "Soll die Lernkartei wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht."
             },
-            name: "Name",
-            nameAlreadyExists: "Name wird bereits verwendet.",
-            subscribe: "Neue Lernkartei anlegen",
-            title: "Alle Kategorien",
-            username: "Benutzer"
-        },
-        cardList: {
-            confirmDelete: {
-                cancel: "Nein",
-                ok: "Ja",
-                message: "Soll die Karte wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.",
-                title: "Löschen"
-            },
-            duplicateCards: "Doppelte Karten",
-            filter: "Suchen und filtern",
-            index: "Index",
-            given: "Gegeben",
-            wanted: "Gesucht",
-            searchingDuplicates: "Nach doppelten Karten suchen",
-            loadingTranslation: "Übersetzungsvorschlag laden",
-            scheduleSelectedCards: "Selektierte Karten heute noch abfragen",
             title: {
-                noCards: "Noch keine Karten",
-                oneCard: "{0} von einer Karte",
-                cards: "{0} von {1} Karten"
+                de: "Löschen"
+            }
+        },
+        maxIntervalOne: {
+            de: "Karten im Abstand von maximal einem Tag erneut abfragen."
+        },
+        maxInterval: {
+            de: "Karten im Abstand von maximal {0} Tagen erneut abfragen."
+        },
+        myCards: {
+            de: "Bearbeitete Karten"
+        },
+        nextCard: {
+            de: "Karten abfragen"
+        },
+        postpone: {
+            de: "Zeitplan neu berechnen"
+        },
+        daysBehindScheduleMessageOne: {
+            de: "Du bist einen Tag hinterher."
+        },
+        daysBehindScheduleMessage: {
+            de: "Du bist {0} Tage hinterher."
+        },
+        reinforceCards: {
+            de: "Karten zum Festigen"
+        },
+        todaysCards: {
+            de: "Karten für heute"
+        },
+        totalCards: {
+            de: "Karten insgesamt"
+        }
+    },
+    categoryList: {
+        back: {
+            de: "Zurück"
+        },
+        confirmDelete: {
+            cancel: {
+                de: "Nein"
             },
-            useDictionary: "Linugee Wörterbuch anzeigen"
+            ok: {
+                de: "Ja"
+            },
+            message: {
+                de: "Soll die Kategorie wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht."
+            },
+            title: {
+                de: "Löschen"
+            }
         },
-        createBox: {
-            cancel: "Abbrechen",
-            create: "Speichern",
-            maxInterval: "maximaler Abstand im Tagen"
+        dictionaryLookup: {
+            de: "im Wörterbuch nachschlagen"
         },
-        dashboard: {
-            profile: "Profil",
-            title: "Übersicht"
+        index: {
+            de: "Index"
         },
-        editBox: {
-            maxInterval: "maximaler Abstand im Tagen"
+        invite: {
+            de: "einladen"
         },
-        errors: {
-            registerUserFailed: "Die Registrierung ist fehlgeschlagen.",
-            loginFailed: "Anmeldung fehlgeschlagen.",
-            failedToConfirmEmail: "Email-Adresse konnte nicht bestätigt werden.",
-            failedToResetPassword: "Das Passwort konnte nicht geändert werden.",
-            fileTooBig: "Die Datei ist zu groß.",
-            noImageFile: "Es dürfen nur Bilder hochgeladen werden.",
-            unauthorized: "Zugriff verweigert.",
-            userDoesNotExist: "Benutzer wurde nicht gefunden."
+        languages: {
+            de: {
+                de: "Deutsch"
+            },
+            emtpy: {
+                de: "Bitte wählen"
+            },
+            en: {
+                de: "Englisch"
+            },
+            fr: {
+                de: "Französisch"
+            },
         },
-        forgotPassword: {
-            cancel: "Abbrechen",
-            submit: "Abschicken",
-            title: "Passwort vergessen?",
-            username: "Benutzername"
+        name: {
+            de: "Name"
         },
-        login: {
-            forgotPassword: "Passwort vergessen?",
-            password: "Passwort",
-            registration: "Neu hier?",
-            saveInLocalStorage: "Angemeldet bleiben.",
-            saveInLocalStorageHint: "Dabei wird ein Cookie gesetzt. Das bedeutet, dass im Browser die Login-Daten hinterlegt werden. Das Passwort wird dabei verschlüsselt. Der Vorteil ist, dass man eingeloggt bleibt, selbst wenn der Browser geschlossen und erneut geöffnet oder die Seite neu geladen wird.",
-            signin: "Anmelden",
-            title: "Anmeldung",
-            username: "Benutzer"
+        nameAlreadyExists: {
+            de: "Name wird bereits verwendet."
         },
-        logout: {
-            signout: "Abmelden"
+        subscribe: {
+            de: "Neue Lernkartei anlegen"
         },
-        messages: {
-            confirmEmail: "Bitte checke dein Postfach und bestätige deine Email-Adresse.",
-            emailConfirmed: "Die Email-Adresse wurde bestätigt.",
-            passwordRequestSubmitted: "Eine Email mit einem Link zur Eingabe eines neues Passortes wurde an die angegebene Email-Adresse verschickt.",
-            passwordResetted: "Das Passwort wurde geändert."
+        title: {
+            de: "Alle Kategorien"
         },
+        username: {
+            de: "Benutzer"
+        }
+    },
+    cardList: {
+        confirmDelete: {
+            cancel: {
+                de: "Nein"
+            },
+            ok: {
+                de: "Ja"
+            },
+            message: {
+                de: "Soll die Karte wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+            },
+            title: {
+                de: "Löschen"
+            }
+        },
+        duplicateCards: {
+            de: "Doppelte Karten"
+        },
+        filter: {
+            de: "Suchen und filtern"
+        },
+        index: {
+            de: "Index"
+        },
+        given: {
+            de: "Gegeben"
+        },
+        wanted: {
+            de: "Gesucht"
+        },
+        searchingDuplicates: {
+            de: "Nach doppelten Karten suchen"
+        },
+        loadingTranslation: {
+            de: "Übersetzungsvorschlag laden"
+        },
+        scheduleSelectedCards: {
+            de: "Selektierte Karten heute noch abfragen"
+        },
+        title: {
+            noCards: {
+                de: "Noch keine Karten"
+            },
+            oneCard: {
+                de: "{0} von einer Karte"
+            },
+            cards: {
+                de: "{0} von {1} Karten"
+            }
+        },
+        useDictionary: {
+            de: "Linugee Wörterbuch anzeigen"
+        }
+    },
+    dashboard: {
         profile: {
-            confirmDelete: {
-                cancel: "Nein",
-                ok: "Ja",
-                message: "Soll der Benutzer wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle mit dem Benutzer verbundenen Daten werden dann auch gelöscht.",
-                title: "Löschen"
-            },
-            delete: "Benutzer löschen",
-            back: "Zurück",
-            email: "Email",
-            title: "Profil",
-            username: "Benutzer"
+            de: "Profil"
         },
-        queryCards: {
-            back: "Zurück",
-            category: "Zur Kategorie",
-            count: "{0}x abgefragt",
-            never: "noch nie abgefragt",
-            reinforceCard: "Festigen",
-            scoreButtons : {
-                0: "Keine Ahnung",
-                1: "Nicht gewusst",
-                2: "Knapp daneben",
-                3: "Mit Mühe",
-                4: "Gewusst",
-                5: "Perfekt"
-            },
-            scheduledDate: "geplant für den: ",
-            scheduleNext: "Automatisch weiter mit neuen Karten",
-            scheduleNextCard: "Nächste Karte",
-            scoredDate: "zuletzt abgefragt am: "
+        title: {
+            de: "Übersicht"
+        }
+    },
+    editBox: {
+        maxInterval: {
+            de: "maximaler Abstand im Tagen"
+        }
+    },
+    errors: {
+        registerUserFailed: {
+            de: "Die Registrierung ist fehlgeschlagen."
+        },
+        loginFailed: {
+            de: "Anmeldung fehlgeschlagen."
+        },
+        failedToConfirmEmail: {
+            de: "Email-Adresse konnte nicht bestätigt werden."
+        },
+        failedToResetPassword: {
+            de: "Das Passwort konnte nicht geändert werden."
+        },
+        fileTooBig: {
+            de: "Die Datei ist zu groß."
+        },
+        noImageFile: {
+            de: "Es dürfen nur Bilder hochgeladen werden."
+        },
+        unauthorized: {
+            de: "Zugriff verweigert."
+        },
+        userDoesNotExist: {
+            de: "Benutzer wurde nicht gefunden."
+        }
+    },
+    forgotPassword: {
+        cancel: {
+            de: "Abbrechen"
+        },
+        submit: {
+            de: "Abschicken"
+        },
+        title: {
+            de: "Passwort vergessen?"
+        },
+        username: {
+            de: "Benutzername"
+        }
+    },
+    login: {
+        forgotPassword: {
+            de: "Passwort vergessen?"
+        },
+        password: {
+            de: "Passwort"
         },
         registration: {
-            cancel: "Abbrechen",
-            checkingUsername: "checking username....",
-            email: "Email",
-            emailInvalid: "Die Email-Adresse scheint ungültig zu sein.",
-            password: "Passwort",
-            passwordMismatch: "Passwörter stimmen nicht überein.",
-            passwordRepetition: "Passwort wiederholen",
-            register: "Registrieren",
-            title: "Registrierung",
-            username: "Benutzer",
-            usernameAvailable: "Benutzer ist noch frei.",
-            usernameNotAvailable: "Benutzer ist nicht mehr frei."
+            de: "Neu hier?"
         },
-        resetPassword: {
-            cancel: "Abbrechen",
-            password: "Passwort",
-            passwordMismatch: "Passwörter stimmen nicht überein.",
-            passwordRepetition: "Passwort wiederholen",
-            submit: "Abschicken",
-            title: "Neues Passwort"
+        saveInLocalStorage: {
+            de: "Angemeldet bleiben."
         },
-        userList: {
-            back: "Zurück",
-            confirmDelete: {
-                cancel: "Nein",
-                ok: "Ja",
-                message: "Soll der Benutzer wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle mit dem Benutzer verbundenen Daten werden dann auch gelöscht.",
-                title: "Löschen"
+        saveInLocalStorageHint: {
+            de: "Dabei wird ein Cookie gesetzt. Das bedeutet, dass im Browser die Login-Daten hinterlegt werden. Das Passwort wird dabei verschlüsselt. Der Vorteil ist, dass man eingeloggt bleibt, selbst wenn der Browser geschlossen und erneut geöffnet oder die Seite neu geladen wird."
+        },
+        signin: {
+            de: "Anmelden"
+        },
+        title: {
+            de: "Anmeldung"
+        },
+        username: {
+            de: "Benutzer"
+        }
+    },
+    logout: {
+        signout: {
+            de: "Abmelden"
+        }
+    },
+    messages: {
+        confirmEmail: {
+            de: "Bitte checke dein Postfach und bestätige deine Email-Adresse."
+        },
+        emailConfirmed: {
+            de: "Die Email-Adresse wurde bestätigt."
+        },
+        passwordRequestSubmitted: {
+            de: "Eine Email mit einem Link zur Eingabe eines neues Passortes wurde an die angegebene Email-Adresse verschickt."
+        },
+        passwordResetted: {
+            de: "Das Passwort wurde geändert."
+        }
+    },
+    profile: {
+        confirmDelete: {
+            cancel: {
+                de: "Nein"
             },
-            roles: {
-                STUDENT: "Student",
-                ADMIN: "Admin"
+            message: {
+                de: "Soll der Benutzer wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle mit dem Benutzer verbundenen Daten werden dann auch gelöscht."
             },
-            title: "Alle Benutzer"
+            ok: {
+                de: "Ja"
+            },
+            title: {
+                de: "Löschen"
+            }
+        },
+        delete: {
+            de: "Benutzer löschen"
+        },
+        back: {
+            de: "Zurück"
+        },
+        email: {
+            de: "Email"
+        },
+        role: {
+            ADMIN: {
+                de: "Administrator"
+            },
+            STUDENT: {
+                de: "Student"
+            },
+            de: "Rolle"
+        },
+        title: {
+            de: "Profil"
+        },
+        username: {
+            de: "Benutzer"
+        }
+    },
+    queryCards: {
+        back: {
+            de: "Zurück"
+        },
+        category: {
+            de: "Zur Kategorie"
+        },
+        count: {
+            de: "{0}x abgefragt"
+        },
+        never: {
+            de: "noch nie abgefragt"
+        },
+        reinforceCard: {
+            de: "Festigen"
+        },
+        scoreButtons: {
+            0: {
+                de: "Keine Ahnung"
+            },
+            1: {
+                de: "Nicht gewusst"
+            },
+            2: {
+                de: "Knapp daneben"
+            },
+            3: {
+                de: "Mit Mühe"
+            },
+            4: {
+                de: "Gewusst"
+            },
+            5: {
+                de: "Perfekt"
+            }
+        },
+        scheduledDate: {
+            de: "geplant für den: "
+        },
+        scheduleNext: {
+            de: "Automatisch weiter mit neuen Karten"
+        },
+        scheduleNextCard: {
+            de: "Nächste Karte"
+        },
+        scoredDate: {
+            de: "zuletzt abgefragt am: "
+        }
+    },
+    registration: {
+        cancel: {
+            de: "Abbrechen"
+        },
+        checkingUsername: {
+            de: "checking username...."
+        },
+        email: "Email",
+        emailInvalid: {
+            de: "Die Email-Adresse scheint ungültig zu sein."
+        },
+        password: {
+            de: "Passwort"
+        },
+        passwordMismatch: {
+            de: "Passwörter stimmen nicht überein."
+        },
+        passwordRepetition: {
+            de: "Passwort wiederholen"
+        },
+        register: {
+            de: "Registrieren"
+        },
+        title: {
+            de: "Registrierung"
+        },
+        username: {
+            de: "Benutzer"
+        },
+        usernameAvailable: {
+            de: "Benutzer ist noch frei."
+        },
+        usernameNotAvailable: {
+            de: "Benutzer ist nicht mehr frei."
+        }
+    },
+    resetPassword: {
+        cancel: {
+            de: "Abbrechen"
+        },
+        password: {
+            de: "Passwort"
+        },
+        passwordMismatch: {
+            de: "Passwörter stimmen nicht überein."
+        },
+        passwordRepetition: {
+            de: "Passwort wiederholen"
+        },
+        submit: {
+            de: "Abschicken"
+        },
+        title: {
+            de: "Neues Passwort"
+        }
+    },
+    userList: {
+        back: {
+            de: "Zurück"
+        },
+        confirmDelete: {
+            cancel: {
+                de: "Nein"
+            },
+            ok: {
+                de: "Ja"
+            },
+            message: {
+                de: "Soll der Benutzer wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle mit dem Benutzer verbundenen Daten werden dann auch gelöscht."
+            },
+            title: {
+                de: "Löschen"
+            }
+        },
+        roles: {
+            STUDENT: {
+                de: "Student"
+            },
+            ADMIN: {
+                de: "Administrator"
+            }
+        },
+        title: {
+            de: "Alle Benutzer"
         }
     }
 };

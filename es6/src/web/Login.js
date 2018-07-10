@@ -45,40 +45,40 @@ export default class Login extends React.Component {
     render() {
         return (
             <div>
-                <h1>{this.props.texts.login.title}</h1>
+                <h1>{this.props.texts.login.title[this.props.language]}</h1>
                 <div>
                     <div>
-                        <label>{this.props.texts.login.username}</label>
+                        <label>{this.props.texts.login.username[this.props.language]}</label>
                         <input
                             type={"text"}
-                            placeholder={this.props.texts.login.username}
+                            placeholder={this.props.texts.login.username[this.props.language]}
                             onChange={this.onUsernameChange}
                         />
                     </div>
                     <div>
-                        <label>{this.props.texts.login.password}</label>
+                        <label>{this.props.texts.login.password[this.props.language]}</label>
                         <input
                             type={"password"}
-                            placeholder={this.props.texts.login.username}
+                            placeholder={this.props.texts.login.password[this.props.language]}
                             onChange={this.onPasswordChange}
                         />
                     </div>
                     <div>
                         <input id="saveInLocalStorage" type={"checkbox"} onChange={this.onToggleSaveInLocalStorage}/>
                         <label htmlFor="saveInLocalStorage">
-                            {this.props.texts.login.saveInLocalStorage}
-                            <div>{this.props.texts.login.saveInLocalStorageHint}</div>
+                            {this.props.texts.login.saveInLocalStorage[this.props.language]}
+                            <div>{this.props.texts.login.saveInLocalStorageHint[this.props.language]}</div>
                         </label>
 
                     </div>
                     <div>
-                        <button onClick={this.onLogin}>{this.props.texts.login.signin}</button>
+                        <button onClick={this.onLogin}>{this.props.texts.login.signin[this.props.language]}</button>
                     </div>
                     <div>
-                        <a onClick={() => new RouteAction({hash: "#registration"}).apply()}>{this.props.texts.login.registration}</a>
+                        <a onClick={() => new RouteAction({hash: "#registration"}).apply()}>{this.props.texts.login.registration[this.props.language]}</a>
                     </div>
                     <div>
-                        <a onClick={() => new RouteAction({hash: "#forgotpassword"}).apply()}>{this.props.texts.login.forgotPassword}</a>
+                        <a onClick={() => new RouteAction({hash: "#forgotpassword"}).apply()}>{this.props.texts.login.forgotPassword[this.props.language]}</a>
                     </div>
                 </div>
             </div>

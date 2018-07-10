@@ -49,37 +49,37 @@ export default class ResetPassword extends React.Component {
     render() {
         return (
             <div>
-                <h1>{this.props.texts.resetPassword.title}</h1>
+                <h1>{this.props.texts.resetPassword.title[this.props.language]}</h1>
                 <div>
                     <div>
-                        <label>{this.props.texts.resetPassword.password}</label>
+                        <label>{this.props.texts.resetPassword.password[this.props.language]}</label>
                         <input
                             type={"password"}
-                            placeholder={this.props.texts.resetPassword.password}
+                            placeholder={this.props.texts.resetPassword.password[this.props.language]}
                             onChange={this.onPasswordChange}
                             autoComplete="off"
                         />
                     </div>
                     <div>
-                        <label>{this.props.texts.resetPassword.passwordRepetition}</label>
+                        <label>{this.props.texts.resetPassword.passwordRepetition[this.props.language]}</label>
                         <input
                             type={"password"}
-                            placeholder={this.props.texts.resetPassword.passwordRepetition}
+                            placeholder={this.props.texts.resetPassword.passwordRepetition[this.props.language]}
                             onChange={this.onPasswordRepetitionChange}
                             autoComplete="off"
                         />
                         {this.state.passwordMismatch === true &&
-                        <label>{this.props.texts.resetPassword.passwordMismatch}</label>}
+                        <label>{this.props.texts.resetPassword.passwordMismatch[this.props.language]}</label>}
                     </div>
                     <div>
                         <button onClick={this.onSubmit}
                                 disabled={this.state.password.length === 0 ||
                                 this.state.passwordMismatch === true
                                 }>
-                            {this.props.texts.resetPassword.submit}
+                            {this.props.texts.resetPassword.submit[this.props.language]}
                         </button>
                         <button
-                            onClick={() => new RouteAction({hash: "#"}).apply()}>{this.props.texts.resetPassword.cancel}</button>
+                            onClick={() => new RouteAction({hash: "#"}).apply()}>{this.props.texts.resetPassword.cancel[this.props.language]}</button>
                     </div>
                 </div>
             </div>

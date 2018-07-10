@@ -33,19 +33,21 @@ export default class ReinforceCard extends React.Component {
                     quality={i}
                     scoreButtonClick={this.scoreButtonClick}
                     texts={this.props.texts}
+                    language={this.props.language}
                     disabled={!this.props.data.enableScoreButtons}
                 />
             );
         }
         return (
             <div>
-                <h2>{this.props.texts.queryCards.reinforceCard}</h2>
+                <h2>{this.props.texts.queryCards.reinforceCard[this.props.language]}</h2>
                 <Given
                     given={this.props.data.given}
                     lastQuality={this.props.data.lastQuality}
                     scheduledDate={this.props.data.scheduledDate}
                     scoredDate={this.props.data.scoredDate}
                     count={this.props.data.count}
+                    language={this.props.language}
                     texts={this.props.texts}
                 />
                 <Wanted
@@ -63,14 +65,14 @@ export default class ReinforceCard extends React.Component {
                         username: this.props.username,
                         password: this.props.password,
                         hash: `#categories/${this.props.data.categoryId}`
-                    }).apply()}>{this.props.texts.queryCards.category}
+                    }).apply()}>{this.props.texts.queryCards.category[this.props.language]}
                 </button>
                 <button
                     onClick={() => new RouteAction({
                         username: this.props.username,
                         password: this.props.password,
                         hash: `#box/${this.props.data.boxId}`
-                    }).apply()}>{this.props.texts.queryCards.back}
+                    }).apply()}>{this.props.texts.queryCards.back[this.props.language]}
                 </button>
             </div>
         );

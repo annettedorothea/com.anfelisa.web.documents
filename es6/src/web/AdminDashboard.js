@@ -13,7 +13,7 @@ export default class AdminDashboard extends React.Component {
                         password: this.props.password,
                         hash: "#users"
                     }).apply()}
-                >{this.props.texts.adminDashboard.users}</button>
+                >{this.props.texts.adminDashboard.users[this.props.language]}</button>
             </div>
         );
     }

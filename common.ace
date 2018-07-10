@@ -7,7 +7,7 @@ ACE {
 		on user ( Common.initTexts ) triggers ( InitialLogin )
 		on noUser ( Common.initTexts ) triggers ( RouteChanged )
 	}
-	RouteChanged {
+	route RouteChanged {
 		on login (  Login.render )
 		on registration ( Registration.render )
 		on dashboard triggers (box.LoadBoxes)

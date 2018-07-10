@@ -35,7 +35,7 @@ export default class CategoryItem extends React.Component {
     renderDictionayLookup() {
         if (this.props.givenLanguage && this.props.wantedLanguage) {
             return <td
-                onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.givenLanguage]} {"\u2192"} {this.props.texts.categoryList.languages[this.props.wantedLanguage]}</td>
+                onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.givenLanguage][this.props.language]} {"\u2192"} {this.props.texts.categoryList.languages[this.props.wantedLanguage][this.props.language]}</td>
         } else {
             return <td onClick={this.onClick}/>
         }
@@ -58,15 +58,15 @@ export default class CategoryItem extends React.Component {
                     <div>
                         <input
                             type={"text"}
-                            placeholder={this.props.texts.categoryList.username}
+                            placeholder={this.props.texts.categoryList.username[this.props.language]}
                             onChange={this.onUsernameChange}
                             autoComplete="off"
                             value={this.state.username}
                         />
-                        <button onClick={this.onInvite}>{this.props.texts.categoryList.invite}</button>
+                        <button onClick={this.onInvite}>{this.props.texts.categoryList.invite[this.props.language]}</button>
                     </div>}
                     {this.props.isRoot === true && this.props.hasBox === false &&
-                    <button onClick={() => this.props.onSubscribe()}>{this.props.texts.categoryList.subscribe}</button>}
+                    <button onClick={() => this.props.onSubscribe()}>{this.props.texts.categoryList.subscribe[this.props.language]}</button>}
                 </td>
             </tr>
         );

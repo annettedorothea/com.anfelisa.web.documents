@@ -7,7 +7,10 @@ export default class Container extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            errors: [],
+            messages: []
+        };
     }
 
     render() {
@@ -20,11 +23,11 @@ export default class Container extends React.Component {
         } else {
             content = <UserContainer {...this.state} />;
         }
-        const errors = this.state.errors ? this.state.errors.map((error) => {
-            return <div>{this.state.texts.errors[error.errorKey]}</div>;
+        const errors = this.state.errors ? this.state.errors.map((error, index) => {
+            return <div key={index}>{this.state.texts.errors[error.errorKey][this.state.language]}</div>;
         }) : [];
-        const messages = this.state.messages? this.state.messages.map((messageKey) => {
-            return <div>{this.state.texts.errors[messageKey]}</div>;
+        const messages = this.state.messages? this.state.messages.map((messageKey, index) => {
+            return <div key={index}>{this.state.texts.messages[messageKey][this.state.language]}</div>;
         }): [];
         return (
             <div>

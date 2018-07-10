@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractDeleteBoxAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'box.DeleteBoxAction', false);
+        super(actionData, 'box.DeleteBoxAction', false, false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

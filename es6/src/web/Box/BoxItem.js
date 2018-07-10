@@ -37,7 +37,7 @@ export default class BoxItem extends React.Component {
                         username: this.props.username,
                         password: this.props.password,
                         hash: `#box/${this.props.boxId}`
-                    }).apply()}>{this.props.texts.box.nextCard}</button>
+                    }).apply()}>{this.props.texts.box.nextCard[this.props.language]}</button>
             </div>
         );
     }

@@ -4,7 +4,7 @@ import ToggleAllScheduleCardSelectionCommand from "../../../src/author/commands/
 export default class AbstractToggleAllScheduleCardSelectionAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.ToggleAllScheduleCardSelectionAction', false);
+        super(actionData, 'author.ToggleAllScheduleCardSelectionAction', false, false);
     }
 
 	getCommand() {

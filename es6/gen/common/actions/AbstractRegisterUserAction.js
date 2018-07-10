@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractRegisterUserAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'common.RegisterUserAction', false);
+        super(actionData, 'common.RegisterUserAction', false, false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

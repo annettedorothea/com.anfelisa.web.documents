@@ -36,6 +36,7 @@ export default class StudentDashboard extends React.Component {
                         {...box}
                         editedBox={this.props.data.editedBox}
                         texts={this.props.texts}
+                        language={this.props.language}
                         username={this.props.username}
                         password={this.props.password}
                     />
@@ -44,6 +45,7 @@ export default class StudentDashboard extends React.Component {
                     key={box.boxId}
                     {...box}
                     texts={this.props.texts}
+                    language={this.props.language}
                     username={this.props.username}
                     password={this.props.password}
                 />
@@ -51,14 +53,14 @@ export default class StudentDashboard extends React.Component {
         }
         return (
             <div>
-                {this.props.data && this.props.data.deleteBox.confirmDelete === true &&
+                {this.props.data && this.props.data.deleteBox && this.props.data.deleteBox.confirmDelete === true &&
                 <div>
                     <Confirm {...
                         {
-                            title: this.props.texts.box.confirmDelete.title,
-                            message: this.props.texts.box.confirmDelete.message,
-                            okText: this.props.texts.box.confirmDelete.ok,
-                            cancelText: this.props.texts.box.confirmDelete.cancel,
+                            title: this.props.texts.box.confirmDelete.title[this.props.language],
+                            message: this.props.texts.box.confirmDelete.message[this.props.language],
+                            okText: this.props.texts.box.confirmDelete.ok[this.props.language],
+                            cancelText: this.props.texts.box.confirmDelete.cancel[this.props.language],
                             ok: this.onDelete,
                             cancel: this.onDeleteCancel
                         }}/>

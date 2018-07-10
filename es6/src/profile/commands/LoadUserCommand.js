@@ -4,7 +4,7 @@ export default class LoadUserCommand extends AbstractLoadUserCommand {
     execute() {
         return new Promise((resolve, reject) => {
             this.httpGet("api/user/get").then((data) => {
-                this.commandData.role = data.credentialsRole;
+                this.commandData.role = data.role;
                 this.commandData.userId = data.userId;
                 this.commandData.email = data.email;
                 this.commandData.emailConfirmed = data.emailConfirmed;

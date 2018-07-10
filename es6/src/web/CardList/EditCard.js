@@ -97,7 +97,7 @@ export default class EditCard extends React.Component {
                     onChange={this.onGivenChange}
                     autoComplete="off"
                     value={this.props.given}
-                    placeholder={this.props.texts.cardList.given}
+                    placeholder={this.props.texts.cardList.given[this.props.language]}
                     onKeyUp={this.onAltKeyUp}
                 />
             </td>
@@ -113,7 +113,7 @@ export default class EditCard extends React.Component {
                     onChange={this.onWantedChange}
                     autoComplete="off"
                     value={this.props.wanted}
-                    placeholder={this.props.texts.cardList.wanted}
+                    placeholder={this.props.texts.cardList.wanted[this.props.language]}
                     onKeyUp={this.onAltKeyUp}
                 />
             </td>

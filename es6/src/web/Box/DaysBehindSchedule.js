@@ -24,12 +24,12 @@ export default class DaysBehindSchedule extends React.Component {
         }
         let message = "";
         if (this.props.daysBehindSchedule === 1) {
-            message = this.props.texts.box.daysBehindScheduleMessageOne;
+            message = this.props.texts.box.daysBehindScheduleMessageOne[this.props.language];
         } else {
-            message = this.props.texts.box.daysBehindScheduleMessage.replace("{0}", this.props.daysBehindSchedule);
+            message = this.props.texts.box.daysBehindScheduleMessage[this.props.language].replace("{0}", this.props.daysBehindSchedule);
         }
         return <div>{message}
-            <button onClick={this.onPostpone}>{this.props.texts.box.postpone}</button>
+            <button onClick={this.onPostpone}>{this.props.texts.box.postpone[this.props.language]}</button>
         </div>;
         s
     }

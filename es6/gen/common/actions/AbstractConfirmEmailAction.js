@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractConfirmEmailAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'common.ConfirmEmailAction', false);
+        super(actionData, 'common.ConfirmEmailAction', false, false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

@@ -4,7 +4,7 @@ import WantedLanguageOfEditedCategoryChangedCommand from "../../../src/author/co
 export default class AbstractWantedLanguageOfEditedCategoryChangedAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.WantedLanguageOfEditedCategoryChangedAction', false);
+        super(actionData, 'author.WantedLanguageOfEditedCategoryChangedAction', false, false);
     }
 
 	getCommand() {

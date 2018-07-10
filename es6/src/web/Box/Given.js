@@ -14,17 +14,17 @@ export default class Given extends React.Component {
                 </div>
                 {this.props.scheduledDate &&
                 <div>
-                    {this.props.texts.queryCards.scheduledDate} {new Date(this.props.scheduledDate).toLocaleDateString()}
+                    {this.props.texts.queryCards.scheduledDate[this.props.language]} {new Date(this.props.scheduledDate).toLocaleDateString()}
                 </div>
                 }
                 <div>
-                    {this.props.count === 0 && this.props.texts.queryCards.never}
+                    {this.props.count === 0 && this.props.texts.queryCards.never[this.props.language]}
                     {this.props.count > 0 &&
-                    this.props.texts.queryCards.count.replace("{0}", this.props.count)}
+                    this.props.texts.queryCards.count[this.props.language].replace("{0}", this.props.count)}
                 </div>
                 {this.props.scoredDate &&
                 <div>
-                    {this.props.texts.queryCards.scoredDate} {new Date(this.props.scoredDate).toLocaleDateString()}
+                    {this.props.texts.queryCards.scoredDate[this.props.language]} {new Date(this.props.scoredDate).toLocaleDateString()}
                 </div>
                 }
             </div>

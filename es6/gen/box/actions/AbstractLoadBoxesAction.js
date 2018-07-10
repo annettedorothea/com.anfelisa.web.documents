@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractLoadBoxesAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'box.LoadBoxesAction', false);
+        super(actionData, 'box.LoadBoxesAction', false, false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

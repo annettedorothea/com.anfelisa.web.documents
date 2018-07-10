@@ -172,9 +172,10 @@ export default class AppUtils {
 	}
 
 	static getAppState() {
-        const appState = AppUtils.deepCopy(App.container.state);
+    	return {};
+        /*const appState = AppUtils.deepCopy(App.container.state);
         delete appState.texts;
-    	return appState;
+    	return appState;*/
 	}
 
 }

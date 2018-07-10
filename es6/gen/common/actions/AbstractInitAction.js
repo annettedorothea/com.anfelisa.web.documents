@@ -4,7 +4,7 @@ import InitCommand from "../../../src/common/commands/InitCommand";
 export default class AbstractInitAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'common.InitAction', true);
+        super(actionData, 'common.InitAction', true, false);
     }
 
 	getCommand() {

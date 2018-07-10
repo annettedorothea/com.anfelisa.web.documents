@@ -4,7 +4,7 @@ import CancelDeleteCardCommand from "../../../src/author/commands/CancelDeleteCa
 export default class AbstractCancelDeleteCardAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.CancelDeleteCardAction', false);
+        super(actionData, 'author.CancelDeleteCardAction', false, false);
     }
 
 	getCommand() {

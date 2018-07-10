@@ -29,13 +29,13 @@ export default class ForgotPassword extends React.Component {
     render() {
         return (
             <div>
-                <h1>{this.props.texts.forgotPassword.title}</h1>
+                <h1>{this.props.texts.forgotPassword.title[this.props.language]}</h1>
                 <div>
                     <div>
-                        <label>{this.props.texts.forgotPassword.username}</label>
+                        <label>{this.props.texts.forgotPassword.username[this.props.language]}</label>
                         <input
                             type={"text"}
-                            placeholder={this.props.texts.forgotPassword.username}
+                            placeholder={this.props.texts.forgotPassword.username[this.props.language]}
                             onChange={this.onUsernameChange}
                             autoComplete="off"
                             value={this.state.username}
@@ -44,10 +44,10 @@ export default class ForgotPassword extends React.Component {
                     <div>
                         <button onClick={this.onSubmit}
                                 disabled={this.state.username.length === 0}>
-                            {this.props.texts.forgotPassword.submit}
+                            {this.props.texts.forgotPassword.submit[this.props.language]}
                         </button>
                         <button
-                            onClick={() => new RouteAction({hash: "#"}).apply()}>{this.props.texts.forgotPassword.cancel}</button>
+                            onClick={() => new RouteAction({hash: "#"}).apply()}>{this.props.texts.forgotPassword.cancel[this.props.language]}</button>
                     </div>
                 </div>
             </div>

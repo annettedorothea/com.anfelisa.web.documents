@@ -4,7 +4,7 @@ import DeleteCardClickCommand from "../../../src/author/commands/DeleteCardClick
 export default class AbstractDeleteCardClickAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.DeleteCardClickAction', false);
+        super(actionData, 'author.DeleteCardClickAction', false, false);
     }
 
 	getCommand() {

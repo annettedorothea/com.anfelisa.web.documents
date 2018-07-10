@@ -10,7 +10,7 @@ export default class Logout extends React.Component {
                     {this.props.username}
                 </div>
                 <div>
-                    <button onClick={() => new LogoutAction().apply()}>{this.props.texts.logout.signout}</button>
+                    <button onClick={() => new LogoutAction().apply()}>{this.props.texts.logout.signout[this.props.language]}</button>
                 </div>
             </div>
         );

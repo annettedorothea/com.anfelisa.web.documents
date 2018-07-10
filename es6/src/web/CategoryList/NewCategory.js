@@ -76,11 +76,11 @@ export default class NewCategory extends React.Component {
                         onChange={this.onNameChange}
                         autoComplete="off"
                         value={this.props.name}
-                        placeholder={this.props.texts.categoryList.name}
+                        placeholder={this.props.texts.categoryList.name[this.props.language]}
                         onKeyUp={this.onKeyUp}
                     />
                     {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
-                    <label>{this.props.texts.categoryList.nameAlreadyExists}</label>}
+                    <label>{this.props.texts.categoryList.nameAlreadyExists[this.props.language]}</label>}
                 </td>
                 <td/>
                 {this.props.rootDictionaryLookup === true &&
@@ -91,20 +91,20 @@ export default class NewCategory extends React.Component {
                         checked={this.props.dictionaryLookup}
                         id="dictionaryLookupNewCheckbox"
                     />
-                    <label htmlFor="dictionaryLookupNewCheckbox">{this.props.texts.categoryList.dictionaryLookup}</label>
+                    <label htmlFor="dictionaryLookupNewCheckbox">{this.props.texts.categoryList.dictionaryLookup[this.props.language]}</label>
                     <select value={this.props.givenLanguage} onChange={this.onGivenLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
-                        <option value="">{this.props.texts.categoryList.languages.emtpy}</option>
-                        <option value="de">{this.props.texts.categoryList.languages.de}</option>
-                        <option value="en">{this.props.texts.categoryList.languages.en}</option>
-                        <option value="fr">{this.props.texts.categoryList.languages.fr}</option>
+                        <option value="">{this.props.texts.categoryList.languages.emtpy[this.props.language]}</option>
+                        <option value="de">{this.props.texts.categoryList.languages.de[this.props.language]}</option>
+                        <option value="en">{this.props.texts.categoryList.languages.en[this.props.language]}</option>
+                        <option value="fr">{this.props.texts.categoryList.languages.fr[this.props.language]}</option>
                     </select>
                     <select value={this.props.wantedLanguage} onChange={this.onWantedLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
-                        <option value="">{this.props.texts.categoryList.languages.emtpy}</option>
-                        <option value="de">{this.props.texts.categoryList.languages.de}</option>
-                        <option value="en">{this.props.texts.categoryList.languages.en}</option>
-                        <option value="fr">{this.props.texts.categoryList.languages.fr}</option>
+                        <option value="">{this.props.texts.categoryList.languages.emtpy[this.props.language]}</option>
+                        <option value="de">{this.props.texts.categoryList.languages.de[this.props.language]}</option>
+                        <option value="en">{this.props.texts.categoryList.languages.en[this.props.language]}</option>
+                        <option value="fr">{this.props.texts.categoryList.languages.fr[this.props.language]}</option>
                     </select>
                 </td>
                 }

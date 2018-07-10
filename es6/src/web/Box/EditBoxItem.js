@@ -40,21 +40,21 @@ export default class EditBoxItem extends React.Component {
     render() {
         return (
             <div>
-                <h1>{this.props.categoryName} - {this.props.totalCards} {this.props.texts.box.totalCards}</h1>
+                <h1>{this.props.categoryName} - {this.props.totalCards} {this.props.texts.box.totalCards[this.props.language]}</h1>
 
                 <input id="maxIntervalCheckbox" type={"checkbox"} checked={this.props.editedBox.maxIntervalChecked === true} onChange={this.onMaxIntervalCheckedChange}/>
-                <label htmlFor="maxIntervalCheckbox">{this.props.texts.editBox.maxInterval}</label>
+                <label htmlFor="maxIntervalCheckbox">{this.props.texts.editBox.maxInterval[this.props.language]}</label>
 
                 <input type="number" value={this.props.editedBox.maxInterval} onChange={this.onMaxIntervalChange} disabled={!this.props.editedBox.maxIntervalChecked}/>
 
                 <table>
                     <tbody>
                     <tr>
-                        <td>{this.props.texts.box.todaysCards}</td>
+                        <td>{this.props.texts.box.todaysCards[this.props.language]}</td>
                         <td>{this.props.todaysCards}</td>
                     </tr>
                     <tr>
-                        <td>{this.props.texts.box.myCards}</td>
+                        <td>{this.props.texts.box.myCards[this.props.language]}</td>
                         <td>{this.props.myCards}</td>
                     </tr>
                     </tbody>

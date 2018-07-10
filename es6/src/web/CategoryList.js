@@ -101,12 +101,14 @@ export default class CategoryList extends React.Component {
                     givenLanguage={this.props.data.editedCategory.givenLanguage}
                     wantedLanguage={this.props.data.editedCategory.wantedLanguage}
                     texts={this.props.texts}
+                    language={this.props.language}
                 />
             } else {
                 return <CategoryItem
                     {...category}
                     key={category.categoryId}
                     texts={this.props.texts}
+                    language={this.props.language}
                     onDeleteClick={this.onDeleteClick}
                     onEdit={() => this.onEdit(category.categoryId, category.categoryName, category.categoryIndex, category.dictionaryLookup, category.givenLanguage, category.wantedLanguage)}
                     onSubscribe={() => this.onSubscribe(category.categoryId)}
@@ -136,6 +138,7 @@ export default class CategoryList extends React.Component {
                     givenLanguage={this.props.data.newCategory.givenLanguage}
                     wantedLanguage={this.props.data.newCategory.wantedLanguage}
                     texts={this.props.texts}
+                    language={this.props.language}
                 />
             );
         }
@@ -145,17 +148,17 @@ export default class CategoryList extends React.Component {
                 <div>
                     <Confirm {...
                         {
-                            title: this.props.texts.categoryList.confirmDelete.title,
-                            message: this.props.texts.categoryList.confirmDelete.message,
-                            okText: this.props.texts.categoryList.confirmDelete.ok,
-                            cancelText: this.props.texts.categoryList.confirmDelete.cancel,
+                            title: this.props.texts.categoryList.confirmDelete.title[this.props.language],
+                            message: this.props.texts.categoryList.confirmDelete.message[this.props.language],
+                            okText: this.props.texts.categoryList.confirmDelete.ok[this.props.language],
+                            cancelText: this.props.texts.categoryList.confirmDelete.cancel[this.props.language],
                             ok: this.onDelete,
                             cancel: this.onDeleteCancel
                         }}/>
                 </div>}
                 <h1>
                     {this.props.data.parentCategoryName && this.props.data.parentCategoryName}
-                    {!this.props.data.parentCategoryName && this.props.texts.categoryList.title}
+                    {!this.props.data.parentCategoryName && this.props.texts.categoryList.title[this.props.language]}
                 </h1>
                 <table>
                     <thead>
@@ -171,7 +174,7 @@ export default class CategoryList extends React.Component {
                         username: this.props.username,
                         password: this.props.password,
                         hash: backLink
-                    }).apply()}>{this.props.texts.categoryList.back}
+                    }).apply()}>{this.props.texts.categoryList.back[this.props.language]}
                 </button>
 
                 {this.props.data.parentCategoryId && <CardList {...this.props} />}

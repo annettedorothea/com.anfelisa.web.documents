@@ -5,7 +5,7 @@ import RegistrationView from "../../../src/common/views/RegistrationView";
 export default class AbstractCheckUsernameAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'common.CheckUsernameAction', false);
+        super(actionData, 'common.CheckUsernameAction', false, false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

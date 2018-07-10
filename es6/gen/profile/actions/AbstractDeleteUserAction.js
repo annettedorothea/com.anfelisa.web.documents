@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractDeleteUserAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'profile.DeleteUserAction', false);
+        super(actionData, 'profile.DeleteUserAction', false, false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

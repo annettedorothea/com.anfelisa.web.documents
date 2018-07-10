@@ -41,6 +41,7 @@ export default class Card extends React.Component {
                     scoreButtonClick={this.scoreButtonClick}
                     texts={this.props.texts}
                     disabled={!this.props.data.enableScoreButtons}
+                    language={this.props.language}
                 />
             );
         }
@@ -53,6 +54,7 @@ export default class Card extends React.Component {
                     scoredDate={this.props.data.scoredDate}
                     count={this.props.data.count}
                     texts={this.props.texts}
+                    language={this.props.language}
                 />
                 <Wanted
                     wanted={this.props.data.wanted}
@@ -64,7 +66,7 @@ export default class Card extends React.Component {
                 <div>
                     <input id="scheduleNextCheckbox" type={"checkbox"} checked={this.props.data.scheduleNext}
                            onChange={this.onScheduleNextCheckedChange}/>
-                    <label htmlFor="scheduleNextCheckbox">{this.props.texts.queryCards.scheduleNext}</label>
+                    <label htmlFor="scheduleNextCheckbox">{this.props.texts.queryCards.scheduleNext[this.props.language]}</label>
                 </div>
                 <div>
                     {scoreButtons}
@@ -74,14 +76,14 @@ export default class Card extends React.Component {
                         username: this.props.username,
                         password: this.props.password,
                         hash: `#categories/${this.props.data.categoryId}`
-                    }).apply()}>{this.props.texts.queryCards.category}
+                    }).apply()}>{this.props.texts.queryCards.category[this.props.language]}
                 </button>
                 <button
                     onClick={() => new RouteAction({
                         username: this.props.username,
                         password: this.props.password,
                         hash: "#dashboard"
-                    }).apply()}>{this.props.texts.queryCards.back}
+                    }).apply()}>{this.props.texts.queryCards.back[this.props.language]}
                 </button>
             </div>
         );

@@ -43,6 +43,7 @@ export default class UserList extends React.Component {
                 {...user}
                 key={user.userId}
                 texts={this.props.texts}
+                language={this.props.language}
                 myUsername={this.props.username}
                 myPassword={this.props.password}
                 onDeleteClick={this.onDeleteClick}
@@ -54,15 +55,15 @@ export default class UserList extends React.Component {
                 <div>
                     <Confirm {...
                         {
-                            title: this.props.texts.userList.confirmDelete.title,
-                            message: this.props.texts.userList.confirmDelete.message,
-                            okText: this.props.texts.userList.confirmDelete.ok,
-                            cancelText: this.props.texts.userList.confirmDelete.cancel,
+                            title: this.props.texts.userList.confirmDelete.title[this.props.language],
+                            message: this.props.texts.userList.confirmDelete.message[this.props.language],
+                            okText: this.props.texts.userList.confirmDelete.ok[this.props.language],
+                            cancelText: this.props.texts.userList.confirmDelete.cancel[this.props.language],
                             ok: this.onDelete,
                             cancel: this.onDeleteCancel
                         }}/>
                 </div>}
-                <h1>{this.props.texts.userList.title}</h1>
+                <h1>{this.props.texts.userList.title[this.props.language]}</h1>
                 <table>
                     <thead>
 
@@ -76,7 +77,7 @@ export default class UserList extends React.Component {
                         username: this.props.username,
                         password: this.props.password,
                         hash: "#dashboard"
-                    }).apply()}>{this.props.texts.userList.back}
+                    }).apply()}>{this.props.texts.userList.back[this.props.language]}
                 </button>
 
             </div>
@@ -126,8 +127,8 @@ class RoleSelect extends React.Component {
                 defaultValue={this.props.role}
                 disabled={this.props.username === this.props.myUsername}
             >
-                <option value="STUDENT">{this.props.texts.userList.roles["STUDENT"]}</option>
-                <option value="ADMIN">{this.props.texts.userList.roles["ADMIN"]}</option>
+                <option value="STUDENT">{this.props.texts.userList.roles["STUDENT"][this.props.language]}</option>
+                <option value="ADMIN">{this.props.texts.userList.roles["ADMIN"][this.props.language]}</option>
             </select>
         );
     }

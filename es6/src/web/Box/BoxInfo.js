@@ -7,24 +7,24 @@ export default class BoxInfo extends React.Component {
         return (
             <div>
 
-                <h1>{this.props.categoryName} - {this.props.totalCards} {this.props.texts.box.totalCards}</h1>
+                <h1>{this.props.categoryName} - {this.props.totalCards} {this.props.texts.box.totalCards[this.props.language]}</h1>
 
                 {this.props.maxInterval > 1 &&
-                <div>{this.props.texts.box.maxInterval.replace("{0}", this.props.maxInterval)}</div>}
+                <div>{this.props.texts.box.maxInterval[this.props.language].replace("{0}", this.props.maxInterval)}</div>}
                 {this.props.maxInterval === 1 && <div>{this.props.texts.box.maxIntervalOne}</div>}
 
                 <table>
                     <tbody>
                     <tr>
-                        <td>{this.props.texts.box.todaysCards}</td>
+                        <td>{this.props.texts.box.todaysCards[this.props.language]}</td>
                         <td>{this.props.todaysCards}</td>
                     </tr>
                     <tr>
-                        <td>{this.props.texts.box.myCards}</td>
+                        <td>{this.props.texts.box.myCards[this.props.language]}</td>
                         <td>{this.props.myCards}</td>
                     </tr>
                     <tr>
-                        <td>{this.props.texts.box.reinforceCards}</td>
+                        <td>{this.props.texts.box.reinforceCards[this.props.language]}</td>
                         <td>{this.props.reinforceCards}</td>
                     </tr>
                     </tbody>
@@ -34,6 +34,7 @@ export default class BoxInfo extends React.Component {
                     boxId={this.props.boxId}
                     daysBehindSchedule={this.props.daysBehindSchedule}
                     texts={this.props.texts}
+                    language={this.props.language}
                     username={this.props.username}
                     password={this.props.password}
                     loadList={this.props.loadList}

@@ -4,7 +4,7 @@ import PassValueToDictionaryCommand from "../../../src/author/commands/PassValue
 export default class AbstractPassValueToDictionaryAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.PassValueToDictionaryAction', false);
+        super(actionData, 'author.PassValueToDictionaryAction', false, false);
     }
 
 	getCommand() {

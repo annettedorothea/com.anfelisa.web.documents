@@ -4,7 +4,7 @@ import CancelEditBoxCommand from "../../../src/box/commands/CancelEditBoxCommand
 export default class AbstractCancelEditBoxAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'box.CancelEditBoxAction', false);
+        super(actionData, 'box.CancelEditBoxAction', false, false);
     }
 
 	getCommand() {

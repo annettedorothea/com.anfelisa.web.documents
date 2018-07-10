@@ -4,7 +4,7 @@ import WantedLanguageOfNewCategoryChangedCommand from "../../../src/author/comma
 export default class AbstractWantedLanguageOfNewCategoryChangedAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.WantedLanguageOfNewCategoryChangedAction', false);
+        super(actionData, 'author.WantedLanguageOfNewCategoryChangedAction', false, false);
     }
 
 	getCommand() {

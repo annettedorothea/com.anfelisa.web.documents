@@ -4,7 +4,7 @@ import CancelDeleteCategoryCommand from "../../../src/author/commands/CancelDele
 export default class AbstractCancelDeleteCategoryAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.CancelDeleteCategoryAction', false);
+        super(actionData, 'author.CancelDeleteCategoryAction', false, false);
     }
 
 	getCommand() {

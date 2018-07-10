@@ -8,7 +8,7 @@ export default class ScoreButton extends React.Component {
                 onClick={() => this.props.scoreButtonClick(this.props.quality)}
                 disabled={this.props.disabled}
                 >
-                {this.props.texts.queryCards.scoreButtons[this.props.quality]}
+                {this.props.texts.queryCards.scoreButtons[this.props.quality][this.props.language]}
             </button>
         );
     }

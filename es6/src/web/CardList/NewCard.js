@@ -206,7 +206,7 @@ export default class NewCard extends React.Component {
                         onChange={this.onGivenChange}
                         autoComplete="off"
                         value={this.props.given}
-                        placeholder={`${this.props.texts.cardList.given} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.givenLanguage] + ")" : "" }`}
+                        placeholder={`${this.props.texts.cardList.given[this.props.language]} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.givenLanguage][this.props.language] + ")" : "" }`}
                         ref={textarea => {
                             this.givenInput = textarea;
                         }}
@@ -216,9 +216,9 @@ export default class NewCard extends React.Component {
                     />
                 </div>
                 {this.props.displaySpinner === true &&
-                <label>{this.props.texts.cardList.searchingDuplicates}</label>}
+                <label>{this.props.texts.cardList.searchingDuplicates[this.props.language]}</label>}
                 {this.props.displayTranslateSpinner === true &&
-                <label>{this.props.texts.cardList.loadingTranslation}</label>}
+                <label>{this.props.texts.cardList.loadingTranslation[this.props.language]}</label>}
             </td>
         )
     }
@@ -232,7 +232,7 @@ export default class NewCard extends React.Component {
                     onChange={this.onWantedChange}
                     autoComplete="off"
                     value={this.props.wanted}
-                    placeholder={`${this.props.texts.cardList.wanted} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.wantedLanguage] + ")" : "" }`}
+                    placeholder={`${this.props.texts.cardList.wanted[this.props.language]} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.wantedLanguage][this.props.language] + ")" : "" }`}
                     ref={textarea => {
                         this.wantedInput = textarea;
                     }}

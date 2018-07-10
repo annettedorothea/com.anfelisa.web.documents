@@ -5,7 +5,7 @@ import CommonView from "../../../src/common/views/CommonView";
 export default class AbstractPostponeCardsOfBoxAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'box.PostponeCardsOfBoxAction', false);
+        super(actionData, 'box.PostponeCardsOfBoxAction', false, false);
 		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 

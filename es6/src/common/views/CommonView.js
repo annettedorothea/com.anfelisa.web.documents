@@ -4,12 +4,13 @@ import {Texts} from "./Texts";
 export default class CommonView {
 
     static updateHash(eventData) {
+        console.log("updateHash", eventData.hash);
         window.location.hash = eventData.hash;
     };
 
     static initTexts(eventData) {
         App.container.setState({
-            texts: Texts[eventData.language],
+            texts: Texts,
             language: eventData.language
         });
     }
@@ -28,9 +29,6 @@ export default class CommonView {
 
     static displayError(eventData) {
         let errors = App.container.state.errors;
-        if (!errors) {
-            errors = [];
-        }
         errors.push(eventData.error);
         App.container.setState({
             errors
@@ -46,9 +44,6 @@ export default class CommonView {
 
     static displayMessage(eventData) {
         let messages = App.container.state.messages;
-        if (!messages) {
-            messages = [];
-        }
         messages.push(eventData.messageKey);
         App.container.setState({
             messages
@@ -84,6 +79,7 @@ export default class CommonView {
         localStorage.removeItem("username");
         localStorage.removeItem("password");
     }
+
 }
 
 /*                    S.D.G.                    */

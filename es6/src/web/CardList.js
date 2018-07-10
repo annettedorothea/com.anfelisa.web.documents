@@ -106,6 +106,7 @@ export default class CardList extends React.Component {
                     naturalInputOrder={this.props.data.naturalInputOrder}
                     image={this.props.data.editedCard.image}
                     texts={this.props.texts}
+                    language={this.props.language}
                     scheduleCardSelection={this.props.data.scheduleCardSelection}
                     hasBox={this.props.data.hasBox}
                 />
@@ -115,6 +116,7 @@ export default class CardList extends React.Component {
                     key={card.cardId}
                     scheduleCardSelection={this.props.data.scheduleCardSelection}
                     texts={this.props.texts}
+                    language={this.props.language}
                     onDeleteClick={this.onDeleteClick}
                     onEdit={() => this.onEdit(card.cardId, card.given, card.wanted, card.image, card.cardIndex)}
                     username={this.props.username}
@@ -145,6 +147,7 @@ export default class CardList extends React.Component {
                     givenLanguage={this.props.data.newCard.givenLanguage}
                     wantedLanguage={this.props.data.newCard.wantedLanguage}
                     texts={this.props.texts}
+                    language={this.props.language}
                     naturalInputOrder={this.props.data.naturalInputOrder}
                     useDictionary={this.props.data.useDictionary}
                     ref={component => {
@@ -159,6 +162,7 @@ export default class CardList extends React.Component {
                 {...card}
                 key={card.cardId}
                 texts={this.props.texts}
+                language={this.props.language}
                 username={this.props.username}
                 password={this.props.password}
                 userRole={this.props.role}
@@ -174,20 +178,20 @@ export default class CardList extends React.Component {
                 <div>
                     <Confirm {...
                         {
-                            title: this.props.texts.cardList.confirmDelete.title,
-                            message: this.props.texts.cardList.confirmDelete.message,
-                            okText: this.props.texts.cardList.confirmDelete.ok,
-                            cancelText: this.props.texts.cardList.confirmDelete.cancel,
+                            title: this.props.texts.cardList.confirmDelete.title[this.props.language],
+                            message: this.props.texts.cardList.confirmDelete.message[this.props.language],
+                            okText: this.props.texts.cardList.confirmDelete.ok[this.props.language],
+                            cancelText: this.props.texts.cardList.confirmDelete.cancel[this.props.language],
                             ok: this.onDelete,
                             cancel: this.onDeleteCancel
                         }}/>
                 </div>}
                 <h1>
-                    {this.props.data.cardList.length === 0 && this.props.texts.cardList.title.noCards}
+                    {this.props.data.cardList.length === 0 && this.props.texts.cardList.title.noCards[this.props.language]}
                     {this.props.data.cardList.length === 1 &&
-                    this.props.texts.cardList.title.oneCard.replace("{0}", this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).length)}
+                    this.props.texts.cardList.title.oneCard[this.props.language].replace("{0}", this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).length)}
                     {this.props.data.cardList.length > 1 &&
-                    this.props.texts.cardList.title.cards.replace("{1}", this.props.data.cardList.length)
+                    this.props.texts.cardList.title.cards[this.props.language].replace("{1}", this.props.data.cardList.length)
                         .replace("{0}", this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).length)}
                 </h1>
                 <input
@@ -195,7 +199,7 @@ export default class CardList extends React.Component {
                     onChange={this.onFilterChange}
                     autoComplete="off"
                     value={this.props.data.filter}
-                    placeholder={this.props.texts.cardList.filter}
+                    placeholder={this.props.texts.cardList.filter[this.props.language]}
                 />
                 {this.props.data.newCard.dictionaryLookup === true && this.props.data.parentEditable &&
                 <span>
@@ -205,14 +209,14 @@ export default class CardList extends React.Component {
                             checked={this.props.data.useDictionary}
                             id="useDictionaryCheckbox"
                         />
-                        <label htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary}</label>
+                        <label htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary[this.props.language]}</label>
                     </span>
                 }
 
                 <button onClick={this.onToggleInputOrder}>{"\u21c4"}</button>
                 {this.props.data.hasBox === true &&
                 <button onClick={this.onSchedule}
-                        disabled={this.props.data.scheduleCardSelection.length === 0}>{this.props.texts.cardList.scheduleSelectedCards}</button>
+                        disabled={this.props.data.scheduleCardSelection.length === 0}>{this.props.texts.cardList.scheduleSelectedCards[this.props.language]}</button>
                 }
                 <table>
                     <thead>
@@ -231,7 +235,7 @@ export default class CardList extends React.Component {
                     <tbody>
                     {cardItems}
                     {duplicateCards.length > 0 && <tr>
-                        <td colSpan="5">{this.props.texts.cardList.duplicateCards}</td>
+                        <td colSpan="5">{this.props.texts.cardList.duplicateCards[this.props.language]}</td>
                     </tr>}
                     {duplicateCards}
                     </tbody>

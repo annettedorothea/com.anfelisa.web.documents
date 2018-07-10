@@ -4,7 +4,7 @@ import DeleteCategoryClickCommand from "../../../src/author/commands/DeleteCateg
 export default class AbstractDeleteCategoryClickAction extends Action {
 
     constructor(actionData) {
-        super(actionData, 'author.DeleteCategoryClickAction', false);
+        super(actionData, 'author.DeleteCategoryClickAction', false, false);
     }
 
 	getCommand() {

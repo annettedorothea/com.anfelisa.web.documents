@@ -73,55 +73,55 @@ export default class Registration extends React.Component {
     render() {
         return (
             <div>
-                <h1>{this.props.texts.registration.title}</h1>
+                <h1>{this.props.texts.registration.title[this.props.language]}</h1>
                 <div>
                     <div>
-                        <label>{this.props.texts.registration.username}</label>
+                        <label>{this.props.texts.registration.username[this.props.language]}</label>
                         <input
                             type={"text"}
-                            placeholder={this.props.texts.registration.username}
+                            placeholder={this.props.texts.registration.username[this.props.language]}
                             onChange={this.onUsernameChange}
                             autoComplete="off"
                             value={this.state.username}
                         />
                         {this.props.data.displayUsernameSpinner === true &&
-                        <label>{this.props.texts.registration.checkingUsername}</label>}
+                        <label>{this.props.texts.registration.checkingUsername[this.props.language]}</label>}
                         {this.props.data.usernameAvailable === true && this.state.username.length > 0 &&
-                        <label>{this.props.texts.registration.usernameAvailable}</label>}
+                        <label>{this.props.texts.registration.usernameAvailable[this.props.language]}</label>}
                         {this.props.data.usernameAvailable === false && this.state.username.length > 0 &&
-                        <label>{this.props.texts.registration.usernameNotAvailable}</label>}
+                        <label>{this.props.texts.registration.usernameNotAvailable[this.props.language]}</label>}
                     </div>
                     <div>
-                        <label>{this.props.texts.registration.password}</label>
+                        <label>{this.props.texts.registration.password[this.props.language]}</label>
                         <input
                             type={"password"}
-                            placeholder={this.props.texts.registration.password}
+                            placeholder={this.props.texts.registration.password[this.props.language]}
                             onChange={this.onPasswordChange}
                             autoComplete="off"
                         />
                     </div>
                     <div>
-                        <label>{this.props.texts.registration.passwordRepetition}</label>
+                        <label>{this.props.texts.registration.passwordRepetition[this.props.language]}</label>
                         <input
                             type={"password"}
-                            placeholder={this.props.texts.registration.passwordRepetition}
+                            placeholder={this.props.texts.registration.passwordRepetition[this.props.language]}
                             onChange={this.onPasswordRepetitionChange}
                             autoComplete="off"
                         />
                         {this.state.passwordMismatch === true &&
-                        <label>{this.props.texts.registration.passwordMismatch}</label>}
+                        <label>{this.props.texts.registration.passwordMismatch[this.props.language]}</label>}
                     </div>
                     <div>
-                        <label>{this.props.texts.registration.email}</label>
+                        <label>{this.props.texts.registration.email[this.props.language]}</label>
                         <input
                             type={"text"}
-                            placeholder={this.props.texts.registration.email}
+                            placeholder={this.props.texts.registration.email[this.props.language]}
                             onChange={this.onEmailChange}
                             autoComplete="off"
                             value={this.state.email}
                         />
                         {this.state.emailInvalid === true &&
-                        <label>{this.props.texts.registration.emailInvalid}</label>}
+                        <label>{this.props.texts.registration.emailInvalid[this.props.language]}</label>}
                     </div>
                     <div>
                         <button onClick={this.onRegister}
@@ -131,10 +131,10 @@ export default class Registration extends React.Component {
                                 this.state.password.length === 0 ||
                                 this.state.passwordMismatch === true
                                 }>
-                            {this.props.texts.registration.register}
+                            {this.props.texts.registration.register[this.props.language]}
                         </button>
                         <button
-                            onClick={() => new RouteAction({hash: "#"}).apply()}>{this.props.texts.registration.cancel}</button>
+                            onClick={() => new RouteAction({hash: "#"}).apply()}>{this.props.texts.registration.cancel[this.props.language]}</button>
                     </div>
                 </div>
             </div>
