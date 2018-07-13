@@ -28,20 +28,19 @@ export default class ForgotPassword extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>{this.props.texts.forgotPassword.title[this.props.language]}</h1>
-                <div>
-                    <div>
+            <div className="center">
+                <div className="form">
+                    <h1>{this.props.texts.forgotPassword.title[this.props.language]}</h1>
+                    <div className="line">
                         <label>{this.props.texts.forgotPassword.username[this.props.language]}</label>
                         <input
                             type={"text"}
-                            placeholder={this.props.texts.forgotPassword.username[this.props.language]}
                             onChange={this.onUsernameChange}
                             autoComplete="off"
                             value={this.state.username}
                         />
                     </div>
-                    <div>
+                    <div className="moreMarginLine hCenter">
                         <button onClick={this.onSubmit}
                                 disabled={this.state.username.length === 0}>
                             {this.props.texts.forgotPassword.submit[this.props.language]}

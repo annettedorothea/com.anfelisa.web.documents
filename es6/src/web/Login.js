@@ -44,41 +44,35 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>{this.props.texts.login.title[this.props.language]}</h1>
-                <div>
-                    <div>
+            <div className="center">
+                <div className="form">
+                    <h1>{this.props.texts.login.title[this.props.language]}</h1>
+                    <div className="line">
                         <label>{this.props.texts.login.username[this.props.language]}</label>
                         <input
                             type={"text"}
-                            placeholder={this.props.texts.login.username[this.props.language]}
                             onChange={this.onUsernameChange}
                         />
+                        <a onClick={() => new RouteAction({hash: "#registration"}).apply()}>{this.props.texts.login.registration[this.props.language]}</a>
                     </div>
-                    <div>
+                    <div className="line">
                         <label>{this.props.texts.login.password[this.props.language]}</label>
                         <input
                             type={"password"}
-                            placeholder={this.props.texts.login.password[this.props.language]}
                             onChange={this.onPasswordChange}
                         />
+                        <a onClick={() => new RouteAction({hash: "#forgotpassword"}).apply()}>{this.props.texts.login.forgotPassword[this.props.language]}</a>
                     </div>
-                    <div>
+                    <div className="line">
                         <input id="saveInLocalStorage" type={"checkbox"} onChange={this.onToggleSaveInLocalStorage}/>
                         <label htmlFor="saveInLocalStorage">
                             {this.props.texts.login.saveInLocalStorage[this.props.language]}
-                            <div>{this.props.texts.login.saveInLocalStorageHint[this.props.language]}</div>
                         </label>
-
+                        <div
+                            className="small-font">{this.props.texts.login.saveInLocalStorageHint[this.props.language]}</div>
                     </div>
-                    <div>
-                        <button onClick={this.onLogin}>{this.props.texts.login.signin[this.props.language]}</button>
-                    </div>
-                    <div>
-                        <a onClick={() => new RouteAction({hash: "#registration"}).apply()}>{this.props.texts.login.registration[this.props.language]}</a>
-                    </div>
-                    <div>
-                        <a onClick={() => new RouteAction({hash: "#forgotpassword"}).apply()}>{this.props.texts.login.forgotPassword[this.props.language]}</a>
+                    <div className="moreMarginLine hCenter">
+                        <button className="primary" onClick={this.onLogin}>{this.props.texts.login.signin[this.props.language]}</button>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ export default class Spinner extends React.Component {
 
     render() {
         return (
-            <div>Spinner</div>
+            <div className="spinner"><i className="fas fa-cog fa-spin"/></div>
         );
     }
 }

@@ -32,7 +32,7 @@ export default class Registration extends React.Component {
     onEmailChange(event) {
         const email = event.target.value;
         let emailInvalid = false;
-        if( /(.+)@(.+){2,}\.(.+){2,}/.test(email) === false){
+        if (/(.+)@(.+){2,}\.(.+){2,}/.test(email) === false) {
             emailInvalid = true;
         } else {
         }
@@ -72,58 +72,62 @@ export default class Registration extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>{this.props.texts.registration.title[this.props.language]}</h1>
-                <div>
-                    <div>
+            <div className="center">
+                <div className="form">
+                    <h1>{this.props.texts.registration.title[this.props.language]}</h1>
+                    <div className="line">
                         <label>{this.props.texts.registration.username[this.props.language]}</label>
-                        <input
-                            type={"text"}
-                            placeholder={this.props.texts.registration.username[this.props.language]}
-                            onChange={this.onUsernameChange}
-                            autoComplete="off"
-                            value={this.state.username}
-                        />
-                        {this.props.data.displayUsernameSpinner === true &&
-                        <label>{this.props.texts.registration.checkingUsername[this.props.language]}</label>}
-                        {this.props.data.usernameAvailable === true && this.state.username.length > 0 &&
-                        <label>{this.props.texts.registration.usernameAvailable[this.props.language]}</label>}
-                        {this.props.data.usernameAvailable === false && this.state.username.length > 0 &&
-                        <label>{this.props.texts.registration.usernameNotAvailable[this.props.language]}</label>}
+                        <div className="inputContainer">
+                            <input
+                                type={"text"}
+                                onChange={this.onUsernameChange}
+                                autoComplete="off"
+                                value={this.state.username}
+                            />
+                            {this.props.data.displayUsernameSpinner === true &&
+                            <i className="fas fa-cog fa-spin inside"/>}
+                            {this.props.data.usernameAvailable === true && this.state.username.length > 0 &&
+                            <i className="fas fa-check outside success"/>}
+                            {this.props.data.usernameAvailable === false && this.state.username.length > 0 &&
+                            <i className="fas fa-times outside error"/>}
+                        </div>
                     </div>
-                    <div>
+                    <div className="line">
                         <label>{this.props.texts.registration.password[this.props.language]}</label>
-                        <input
-                            type={"password"}
-                            placeholder={this.props.texts.registration.password[this.props.language]}
-                            onChange={this.onPasswordChange}
-                            autoComplete="off"
-                        />
+                        <div className="inputContainer">
+                            <input
+                                type={"password"}
+                                onChange={this.onPasswordChange}
+                                autoComplete="off"
+                            />
+                        </div>
                     </div>
-                    <div>
+                    <div className="line">
                         <label>{this.props.texts.registration.passwordRepetition[this.props.language]}</label>
-                        <input
-                            type={"password"}
-                            placeholder={this.props.texts.registration.passwordRepetition[this.props.language]}
-                            onChange={this.onPasswordRepetitionChange}
-                            autoComplete="off"
-                        />
-                        {this.state.passwordMismatch === true &&
-                        <label>{this.props.texts.registration.passwordMismatch[this.props.language]}</label>}
+                        <div className="inputContainer">
+                            <input
+                                type={"password"}
+                                onChange={this.onPasswordRepetitionChange}
+                                autoComplete="off"
+                            />
+                            {this.state.passwordMismatch === true &&
+                            <i className="fas fa-times outside error"/>}
+                        </div>
                     </div>
-                    <div>
+                    <div className="line">
                         <label>{this.props.texts.registration.email[this.props.language]}</label>
-                        <input
-                            type={"text"}
-                            placeholder={this.props.texts.registration.email[this.props.language]}
-                            onChange={this.onEmailChange}
-                            autoComplete="off"
-                            value={this.state.email}
-                        />
-                        {this.state.emailInvalid === true &&
-                        <label>{this.props.texts.registration.emailInvalid[this.props.language]}</label>}
+                        <div className="inputContainer">
+                            <input
+                                type={"text"}
+                                onChange={this.onEmailChange}
+                                autoComplete="off"
+                                value={this.state.email}
+                            />
+                            {this.state.emailInvalid === true && this.state.email.length > 0 &&
+                            <i className="fas fa-times outside error"/>}
+                        </div>
                     </div>
-                    <div>
+                    <div className="moreMarginLine hCenter">
                         <button onClick={this.onRegister}
                                 disabled={this.props.data.usernameAvailable === false ||
                                 this.state.username.length === 0 ||
@@ -135,6 +139,10 @@ export default class Registration extends React.Component {
                         </button>
                         <button
                             onClick={() => new RouteAction({hash: "#"}).apply()}>{this.props.texts.registration.cancel[this.props.language]}</button>
+                    </div>
+                    <div className="line">
+                        <div
+                            className="small-font">{this.props.texts.registration.terms[this.props.language]}</div>
                     </div>
                 </div>
             </div>

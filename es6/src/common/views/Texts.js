@@ -233,7 +233,7 @@ export const Texts = {
             de: "Angemeldet bleiben."
         },
         saveInLocalStorageHint: {
-            de: "Dabei wird ein Cookie gesetzt. Das bedeutet, dass im Browser die Login-Daten hinterlegt werden. Das Passwort wird dabei verschlüsselt. Der Vorteil ist, dass man eingeloggt bleibt, selbst wenn der Browser geschlossen und erneut geöffnet oder die Seite neu geladen wird."
+            de: "Wenn Du angemeldet bleiben willst, wird ein Cookie gesetzt. Das bedeutet, dass Deine Logindaten verschlüsselt in Deinem Browser gespeichert werden und Du Dich später nicht erneut anmelden musst."
         },
         signin: {
             de: "Anmelden"
@@ -357,18 +357,11 @@ export const Texts = {
         cancel: {
             de: "Abbrechen"
         },
-        checkingUsername: {
-            de: "checking username...."
-        },
-        email: "Email",
-        emailInvalid: {
-            de: "Die Email-Adresse scheint ungültig zu sein."
+        email: {
+            de: "Email"
         },
         password: {
             de: "Passwort"
-        },
-        passwordMismatch: {
-            de: "Passwörter stimmen nicht überein."
         },
         passwordRepetition: {
             de: "Passwort wiederholen"
@@ -376,17 +369,14 @@ export const Texts = {
         register: {
             de: "Registrieren"
         },
+        terms: {
+            de: "Mit Deiner Registrierung erklärst Du Dich einverstanden, dass Deine Daten auf unserem Server gespeichert und digital verarbeitet werden."
+        },
         title: {
             de: "Registrierung"
         },
         username: {
             de: "Benutzer"
-        },
-        usernameAvailable: {
-            de: "Benutzer ist noch frei."
-        },
-        usernameNotAvailable: {
-            de: "Benutzer ist nicht mehr frei."
         }
     },
     resetPassword: {
@@ -395,9 +385,6 @@ export const Texts = {
         },
         password: {
             de: "Passwort"
-        },
-        passwordMismatch: {
-            de: "Passwörter stimmen nicht überein."
         },
         passwordRepetition: {
             de: "Passwort wiederholen"
