@@ -10,6 +10,7 @@ export default class AsynchronousEvent extends Event {
                 this.eventData.notifiedListeners = this.getNotifiedListeners();
             }
             Promise.all(this.notifyListeners()).then(() => {
+            	this.eventData.appState = AppUtils.getAppState();
 				ACEController.addItemToTimeLine({event: this});
                 resolve();
             }, (error) => {

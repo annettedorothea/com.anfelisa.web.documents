@@ -22,13 +22,15 @@ export default class ReplayUtils {
         localStorage.removeItem("password");
         window.location.hash = "#";
         App.container.setState({
-            route: "login",
-            data : undefined,
+            route: "",
+            data : {},
             username: undefined,
             password: undefined,
             role: undefined,
+            language: undefined,
             errors: [],
-            messages: []
+            messages: [],
+            displaySpinner: false
         });
     }
 
@@ -37,13 +39,15 @@ export default class ReplayUtils {
         localStorage.removeItem("password");
         window.location.hash = "#";
         App.container.setState({
-            route: "login",
-            data : undefined,
+            route: "",
+            data : {},
             username: undefined,
             password: undefined,
             role: undefined,
+            language: undefined,
             errors: [],
-            messages: []
+            messages: [],
+            displaySpinner: false
         });
     }
 

@@ -1,7 +1,7 @@
-import AbstractLoginOkEvent from "../../../gen/common/events/AbstractLoginOkEvent";
+import AbstractLoginSaveInLocalStorageEvent from "../../../gen/common/events/AbstractLoginSaveInLocalStorageEvent";
 import AppUtils from "../../app/AppUtils";
 
-export default class LoginOkEvent extends AbstractLoginOkEvent {
+export default class LoginSaveInLocalStorageEvent extends AbstractLoginSaveInLocalStorageEvent {
     prepareDataForView() {
         this.eventData = AppUtils.deepCopy(this.eventData);
         if (this.eventData.data === undefined) {

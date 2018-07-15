@@ -175,6 +175,14 @@ export default class AppUtils {
         return 2000;
     }
 
+    static getAppState() {
+        const appState = AppUtils.deepCopy(App.container.state);
+        delete appState.texts;
+        //delete appState.displaySpinner;
+        console.log("getAppState", appState);
+        return appState;
+    }
+
 }
 
 /*       S.D.G.       */

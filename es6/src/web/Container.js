@@ -9,7 +9,14 @@ export default class Container extends React.Component {
         super(props);
         this.state = {
             errors: [],
-            messages: []
+            messages: [],
+            username: undefined,
+            password: undefined,
+            role: undefined,
+            language: undefined,
+            displaySpinner: false,
+            route: "",
+            data: {}
         };
     }
 

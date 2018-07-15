@@ -10,26 +10,11 @@ export default class AsynchronousCommand extends Command {
                 this.execute().then(() => {
                     ACEController.addItemToTimeLine({command: this});
                     this.publishEvents().then(() => {
-                        if (ACEController.execution === ACEController.LIVE) {
-                            ACEController.applyNextActions();
-                        } else {
-                            setTimeout(ACEController.applyNextActions, ACEController.pauseInMillis);
-                        }
                         resolve();
                     }, (error) => {
-                        if (ACEController.execution === ACEController.LIVE) {
-                            ACEController.applyNextActions();
-                        } else {
-                            setTimeout(ACEController.applyNextActions, ACEController.pauseInMillis);
-                        }
                         reject(error + "\n" + this.commandName);
                     });
                 }, (error) => {
-                    if (ACEController.execution === ACEController.LIVE) {
-                        ACEController.applyNextActions();
-                    } else {
-                        setTimeout(ACEController.applyNextActions, ACEController.pauseInMillis);
-                    }
                     reject(error + "\n" + this.commandName);
                 });
             } else {
@@ -37,10 +22,8 @@ export default class AsynchronousCommand extends Command {
                 this.commandData = timelineCommand.commandData;
                 ACEController.addItemToTimeLine({command: this});
                 this.publishEvents().then(() => {
-                    setTimeout(ACEController.applyNextActions, ACEController.pauseInMillis);
                     resolve();
                 }, (error) => {
-                    setTimeout(ACEController.applyNextActions, ACEController.pauseInMillis);
                     reject(error + "\n" + this.commandName);
                 });
             }

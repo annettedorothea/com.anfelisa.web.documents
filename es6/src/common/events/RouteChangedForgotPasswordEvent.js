@@ -1,5 +1,4 @@
-import AbstractRouteChangedForgotPasswordEvent
-    from "../../../gen/common/events/AbstractRouteChangedForgotPasswordEvent";
+import AbstractRouteChangedForgotPasswordEvent from "../../../gen/common/events/AbstractRouteChangedForgotPasswordEvent";
 import AppUtils from "../../app/AppUtils";
 
 export default class RouteChangedForgotPasswordEvent extends AbstractRouteChangedForgotPasswordEvent {

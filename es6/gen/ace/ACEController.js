@@ -70,8 +70,10 @@ export default class ACEController {
     static applyNextActions() {
         let action = ACEController.actionQueue.shift();
         if (action) {
+            const pauseInMillis = ACEController.execution === ACEController.LIVE ? 0 : ACEController.pauseInMillis;
         	if (action.asynchronous) {
 	            action.applyAction().then(() => {
+                    setTimeout(ACEController.applyNextActions, pauseInMillis);
 	            }, (error) => {
 	                ACEController.actionIsProcessing = false;
 	                console.error(error + "\n" + action.actionName);
@@ -80,10 +82,12 @@ export default class ACEController {
 	    	} else {
 	    		try {
 	    			action.applyAction();
+                    setTimeout(ACEController.applyNextActions, pauseInMillis);
 	    		} catch(error) {
 	                ACEController.actionIsProcessing = false;
 	                console.error(error + "\n" + action.actionName);
 	                AppUtils.displayUnexpectedError(error + "\n" + action.actionName);
+                    setTimeout(ACEController.applyNextActions, pauseInMillis);
 				}
 	    	}
         } else if (action === undefined) {
