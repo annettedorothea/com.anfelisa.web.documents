@@ -57,7 +57,6 @@ export default class CategoryList extends React.Component {
             invitedUsername
         };
         new InviteUserAction(data).apply();
-        console.log("onInvite", data);
     }
 
     onDelete() {

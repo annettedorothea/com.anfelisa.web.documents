@@ -6,27 +6,27 @@ import Utils from "./Utils";
 export default class AsynchronousCommand extends Command {
     executeCommand() {
         return new Promise((resolve, reject) => {
-            if (ACEController.execution !== ACEController.REPLAY) {
-                this.execute().then(() => {
-                    ACEController.addItemToTimeLine({command: this});
-                    this.publishEvents().then(() => {
-                        resolve();
-                    }, (error) => {
-                        reject(error + "\n" + this.commandName);
-                    });
-                }, (error) => {
-                    reject(error + "\n" + this.commandName);
-                });
-            } else {
-                const timelineCommand = ACEController.getCommandByUuid(this.commandData.uuid);
-                this.commandData = timelineCommand.commandData;
-                ACEController.addItemToTimeLine({command: this});
-                this.publishEvents().then(() => {
-                    resolve();
-                }, (error) => {
-                    reject(error + "\n" + this.commandName);
-                });
-            }
+			if (ACEController.execution !== ACEController.REPLAY) {
+			    this.execute().then(() => {
+			        ACEController.addItemToTimeLine({command: this});
+			        this.publishEvents().then(() => {
+			            resolve();
+			        }, (error) => {
+			            reject(error + "\n" + this.commandName);
+			        });
+			    }, (error) => {
+			        reject(error + "\n" + this.commandName);
+			    });
+			} else {
+			    const timelineCommand = ACEController.getCommandByUuid(this.commandData.uuid);
+			    this.commandData = timelineCommand.commandData;
+			    ACEController.addItemToTimeLine({command: this});
+			    this.publishEvents().then(() => {
+			        resolve();
+			    }, (error) => {
+			        reject(error + "\n" + this.commandName);
+			    });
+			}
         });
     }
 

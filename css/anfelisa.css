@@ -109,6 +109,14 @@ h1 {
     font-size: 24px;
 }
 
+.shown {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
 /* toast */
 
 .toastContainer {
@@ -117,6 +125,7 @@ h1 {
     bottom: 16px;
     right: 16px;
     z-index: 1;
+    border: 3px solid red;
 }
 
 .toast {

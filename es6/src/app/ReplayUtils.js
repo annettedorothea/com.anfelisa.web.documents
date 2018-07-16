@@ -1,5 +1,6 @@
 import stringify from "json-stable-stringify";
 import * as App from "./App";
+import AppUtils from "./AppUtils";
 
 export default class ReplayUtils {
 
@@ -20,7 +21,6 @@ export default class ReplayUtils {
     static prepareReplay() {
         localStorage.removeItem("username");
         localStorage.removeItem("password");
-        window.location.hash = "#";
         App.container.setState({
             route: "",
             data : {},
@@ -37,7 +37,6 @@ export default class ReplayUtils {
     static tearDownReplay() {
         localStorage.removeItem("username");
         localStorage.removeItem("password");
-        window.location.hash = "#";
         App.container.setState({
             route: "",
             data : {},

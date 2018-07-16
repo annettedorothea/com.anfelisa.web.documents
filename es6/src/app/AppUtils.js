@@ -178,8 +178,6 @@ export default class AppUtils {
     static getAppState() {
         const appState = AppUtils.deepCopy(App.container.state);
         delete appState.texts;
-        //delete appState.displaySpinner;
-        console.log("getAppState", appState);
         return appState;
     }
 
