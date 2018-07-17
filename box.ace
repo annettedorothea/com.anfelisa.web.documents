@@ -5,12 +5,12 @@ target ES6
 ACE {
 	async LoadBoxes preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
 		on ok (BoxList.render)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 	
 	async CreateBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
 		on ok triggers (common.Route)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 	EditBox {
 		on ok (BoxList.editBox)
@@ -26,7 +26,7 @@ ACE {
 	}
 	async UpdateBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers (LoadBoxes)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 	DeleteBoxClick {
 		on ok (BoxList.displayConfirmDelete)
@@ -36,25 +36,25 @@ ACE {
 	}
 	async DeleteBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers (LoadBoxes)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 	
 	async PostponeCardsOfBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on next triggers (LoadNextCard)
 		on list triggers (LoadBoxes)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 	
 	async LoadNextCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Box.render) triggers (LoadBoxStatistics)
 		on scheduleNext triggers (ScheduleNextCard)
 		on doNotScheduleNext (Box.render) triggers (LoadBoxStatistics)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 	async ScheduleNextCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers (LoadNextCard)
 		on badRequest
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 	ToggleScheduleNext {
 		on ok (Box.toggleScheduleNext)
@@ -66,12 +66,12 @@ ACE {
 	}
 	async ScoreCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers (LoadNextCard)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 	async LoadNextReinforceCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (BoxReinforce.render) triggers (LoadBoxStatistics)
 		on noCard triggers (common.Route)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 	DisplayWantedReinforce {
 		on all (BoxReinforce.displayNextItem BoxReinforce.enableScoreButtons)
@@ -80,11 +80,11 @@ ACE {
 	}
 	async ScoreReinforceCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers (LoadNextReinforceCard)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 	async LoadBoxStatistics preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Box.renderStatistics)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 }
 

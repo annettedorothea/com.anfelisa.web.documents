@@ -3,6 +3,7 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import InviteUserUserDoesNotExistEvent from "../../../src/author/events/InviteUserUserDoesNotExistEvent";
 import InviteUserUnauthorizedEvent from "../../../src/author/events/InviteUserUnauthorizedEvent";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
+import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractInviteUserCommand extends Command {
@@ -22,10 +23,12 @@ export default class AbstractInviteUserCommand extends Command {
 			break;
 		case this.userDoesNotExist:
 			promises.push(new InviteUserUserDoesNotExistEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
 			break;
 		case this.unauthorized:
 			promises.push(new InviteUserUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

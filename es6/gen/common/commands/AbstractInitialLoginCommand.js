@@ -3,6 +3,7 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import InitialLoginOkEvent from "../../../src/common/events/InitialLoginOkEvent";
 import InitialLoginUnauthorizedEvent from "../../../src/common/events/InitialLoginUnauthorizedEvent";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
+import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractInitialLoginCommand extends Command {
@@ -22,6 +23,7 @@ export default class AbstractInitialLoginCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new InitialLoginUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

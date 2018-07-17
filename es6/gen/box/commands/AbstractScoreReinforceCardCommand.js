@@ -2,6 +2,7 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import ScoreReinforceCardUnauthorizedEvent from "../../../src/box/events/ScoreReinforceCardUnauthorizedEvent";
 import LoadNextReinforceCardAction from "../../../src/box/actions/LoadNextReinforceCardAction";
+import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractScoreReinforceCardCommand extends Command {
@@ -20,6 +21,7 @@ export default class AbstractScoreReinforceCardCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new ScoreReinforceCardUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

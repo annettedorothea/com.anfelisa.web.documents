@@ -5,15 +5,15 @@ target ES6
 ACE {
 	async GetAllUsers preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (UserList.render )
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers ( common.ClearToast common.Logout)
 	}
 	async SaveRole preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers (GetAllUsers)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers ( common.ClearToast common.Logout)
 	}
 	async DeleteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers ( GetAllUsers )
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers ( common.ClearToast common.Logout)
 	}
 }
 

@@ -12,6 +12,7 @@ import ConfirmEmailAction from "../../src/common/actions/ConfirmEmailAction";
 import ResetPasswordAction from "../../src/common/actions/ResetPasswordAction";
 import DisplayErrorAction from "../../src/common/actions/DisplayErrorAction";
 import DisplayMessageAction from "../../src/common/actions/DisplayMessageAction";
+import ClearToastAction from "../../src/common/actions/ClearToastAction";
 
 export default class ActionFactoryRegistrationCommon {
 
@@ -29,6 +30,7 @@ export default class ActionFactoryRegistrationCommon {
 		ACEController.registerFactory('common.ResetPasswordAction', (actionData) => new ResetPasswordAction(actionData));
 		ACEController.registerFactory('common.DisplayErrorAction', (actionData) => new DisplayErrorAction(actionData));
 		ACEController.registerFactory('common.DisplayMessageAction', (actionData) => new DisplayMessageAction(actionData));
+		ACEController.registerFactory('common.ClearToastAction', (actionData) => new ClearToastAction(actionData));
 	}
 
 }

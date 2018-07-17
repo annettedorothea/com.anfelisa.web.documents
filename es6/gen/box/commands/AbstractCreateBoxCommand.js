@@ -2,6 +2,7 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import CreateBoxUnauthorizedEvent from "../../../src/box/events/CreateBoxUnauthorizedEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
+import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractCreateBoxCommand extends Command {
@@ -20,6 +21,7 @@ export default class AbstractCreateBoxCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new CreateBoxUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

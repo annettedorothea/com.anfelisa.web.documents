@@ -30,37 +30,40 @@ ACE {
 		on notAvailable ( Registration.usernameNotAvailable )
 	}
 	async RegisterUser preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok (Common.displayMessage) triggers (Route)
-		on error ( Common.displayError ) 
+		on ok (Common.displayMessage) triggers (ClearToast Route)
+		on error ( Common.displayError ) triggers (ClearToast )
 	}
 	async InitialLogin preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
 		on ok ( Common.initUser ) triggers ( RouteChanged )
-		on unauthorized ( Common.displayError ) triggers ( Logout )
+		on unauthorized ( Common.displayError ) triggers ( ClearToast Logout )
 	}
 	async Login preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
 		on saveInLocalStorage ( Common.initUser Common.saveInLocalStorage ) triggers ( Route )
 		on doNotSaveInLocalStorage ( Common.initUser ) triggers ( Route )
-		on unauthorized ( Common.displayError ) triggers ( Logout )
+		on unauthorized ( Common.displayError ) triggers ( ClearToast Logout )
 	}
 	Logout {
 		on ok ( Common.resetUser ) triggers ( Route )
 	}
 	async ForgotPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok (Common.displayMessage) triggers ( Route )
+		on ok (Common.displayMessage) triggers ( ClearToast Route )
 	}
 	async ConfirmEmail preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok (Common.displayMessage) triggers (Route)
-		on error (Common.displayError) triggers (Route)
+		on ok (Common.displayMessage) triggers (ClearToast Route)
+		on error (Common.displayError) triggers (ClearToast Route)
 	}
 	async ResetPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok (Common.displayMessage) triggers (Route)
-		on error (Common.displayError) triggers (Route)
+		on ok (Common.displayMessage) triggers (ClearToast Route)
+		on error (Common.displayError) triggers (ClearToast Route)
 	}
 	DisplayError {
-		on ok (Common.displayError)
+		on ok (Common.displayError) triggers (ClearToast)
 	}
 	DisplayMessage {
-		on ok (Common.displayMessage)
+		on ok (Common.displayMessage) triggers (ClearToast )
+	}
+	ClearToast {
+		on ok (Common.clearToast)
 	}
 }
 
@@ -68,6 +71,7 @@ views {
 	Common {
 		displayError
 		displayMessage
+		clearToast
 		displaySpinner
 		hideSpinner
 		initTexts

@@ -1,15 +1,16 @@
 import React from 'react';
 import Spinner from "./Spinner";
+import Toast from "./Toast";
 import AnonymousContainer from "./AnonymousContainer";
 import UserContainer from "./UserContainer";
+import ToastContainer from "./ToastContainer";
 
 export default class Container extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            errors: [],
-            messages: [],
+            toast: undefined,
             username: undefined,
             password: undefined,
             role: undefined,
@@ -30,22 +31,9 @@ export default class Container extends React.Component {
         } else {
             content = <UserContainer {...this.state} />;
         }
-        const errors = this.state.errors ? this.state.errors.map((error, index) => {
-            return <div className="toast error"
-                        key={index}>{this.state.texts.errors[error.errorKey][this.state.language]}</div>;
-        }) : [];
-        const messages = this.state.messages ? this.state.messages.map((messageKey, index) => {
-            return <div className="toast info"
-                        key={index}>{this.state.texts.messages[messageKey][this.state.language]}</div>;
-        }) : [];
         return (
             <div>
-                <div className="toastContainer">
-                    {errors}
-                </div>
-                <div className="toastContainer">
-                    {messages}
-                </div>
+                <ToastContainer toast={this.state.toast}/>
                 {this.state.displaySpinner && <Spinner/>}
                 {content}
             </div>

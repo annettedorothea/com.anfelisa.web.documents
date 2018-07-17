@@ -2,6 +2,7 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadBoxesOkEvent from "../../../src/box/events/LoadBoxesOkEvent";
 import LoadBoxesUnauthorizedEvent from "../../../src/box/events/LoadBoxesUnauthorizedEvent";
+import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadBoxesCommand extends Command {
@@ -20,6 +21,7 @@ export default class AbstractLoadBoxesCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new LoadBoxesUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

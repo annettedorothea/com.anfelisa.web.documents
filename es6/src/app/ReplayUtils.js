@@ -28,8 +28,7 @@ export default class ReplayUtils {
             password: undefined,
             role: undefined,
             language: undefined,
-            errors: [],
-            messages: [],
+            toast: undefined,
             displaySpinner: false
         });
     }
@@ -44,8 +43,7 @@ export default class ReplayUtils {
             password: undefined,
             role: undefined,
             language: undefined,
-            errors: [],
-            messages: [],
+            toast: undefined,
             displaySpinner: false
         });
     }

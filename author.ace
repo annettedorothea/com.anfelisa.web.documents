@@ -7,7 +7,7 @@ ACE {
 		on ok (
 			Categories.render 
 		)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast  common.Logout)
 	}
 	async CreateCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.resetNewCategoryValues) triggers (LoadCategories)
@@ -15,11 +15,11 @@ ACE {
 	}
 	async UpdateCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.resetEditCategoryValues) triggers (LoadCategories)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 	async DeleteCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.hideConfirmCategoryDelete) triggers (LoadCategories)
-		on unauthorized ( common.Common.displayError Categories.hideConfirmCategoryDelete) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError Categories.hideConfirmCategoryDelete) triggers (common.ClearToast  common.Logout)
 	}
 	
 	NameOfNewCategoryChanged {
@@ -47,15 +47,15 @@ ACE {
 	
 	async CreateCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.resetNewCardValues) triggers (LoadCategories)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers ( common.ClearToast common.Logout)
 	}
 	async UpdateCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.resetEditCardValues) triggers (LoadCategories)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers ( common.ClearToast common.Logout)
 	}
 	async DeleteCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok (Categories.hideConfirmCardDelete) triggers (LoadCategories)
-		on unauthorized ( common.Common.displayError Categories.hideConfirmCardDelete) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError Categories.hideConfirmCardDelete) triggers ( common.ClearToast common.Logout)
 	}
 	
 	GivenOfNewCardChanged {
@@ -64,7 +64,7 @@ ACE {
 	async SearchDuplicateCards preUpdateUI (Categories.displayNewCardSpinner) postUpdateUI (Categories.hideNewCardSpinner) {
 		on ok (Categories.initDuplicates)
 		on tooShort (Categories.resetDuplicates)
-		on unauthorized ( common.Common.displayError) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError) triggers (common.ClearToast common.Logout)
 	}
 	WantedOfNewCardChanged {
 		on ok (Categories.wantedOfNewCardChanged) triggers (SearchDuplicateCards)
@@ -165,13 +165,13 @@ ACE {
 	}
 	async ScheduleSelectedCards preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers (LoadCategories)
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
 	}
 
 	async InviteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers (LoadCategories)
-		on userDoesNotExist (common.Common.displayError) triggers (LoadCategories )
-		on unauthorized ( common.Common.displayError ) triggers (common.Logout)
+		on userDoesNotExist (common.Common.displayError) triggers (common.ClearToast  LoadCategories )
+		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast  common.Logout)
 	}
 }
 

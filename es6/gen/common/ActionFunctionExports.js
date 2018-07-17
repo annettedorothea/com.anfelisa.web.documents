@@ -11,6 +11,7 @@ import ConfirmEmailAction from "../../src/common/actions/ConfirmEmailAction";
 import ResetPasswordAction from "../../src/common/actions/ResetPasswordAction";
 import DisplayErrorAction from "../../src/common/actions/DisplayErrorAction";
 import DisplayMessageAction from "../../src/common/actions/DisplayMessageAction";
+import ClearToastAction from "../../src/common/actions/ClearToastAction";
 
 export function init(actionData) {
     new InitAction(actionData).apply();
@@ -62,6 +63,10 @@ export function displayError(actionData) {
 
 export function displayMessage(actionData) {
     new DisplayMessageAction(actionData).apply();
+}
+
+export function clearToast(actionData) {
+    new ClearToastAction(actionData).apply();
 }
 
 

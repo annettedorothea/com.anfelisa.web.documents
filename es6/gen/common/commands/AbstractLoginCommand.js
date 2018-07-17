@@ -4,6 +4,7 @@ import LoginSaveInLocalStorageEvent from "../../../src/common/events/LoginSaveIn
 import LoginDoNotSaveInLocalStorageEvent from "../../../src/common/events/LoginDoNotSaveInLocalStorageEvent";
 import LoginUnauthorizedEvent from "../../../src/common/events/LoginUnauthorizedEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
+import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoginCommand extends Command {
@@ -28,6 +29,7 @@ export default class AbstractLoginCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new LoginUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

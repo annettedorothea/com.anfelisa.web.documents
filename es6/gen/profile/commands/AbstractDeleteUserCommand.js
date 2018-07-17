@@ -2,6 +2,7 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import DeleteUserUnauthorizedEvent from "../../../src/profile/events/DeleteUserUnauthorizedEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
+import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 
 export default class AbstractDeleteUserCommand extends Command {
     constructor(commandData) {
@@ -19,6 +20,7 @@ export default class AbstractDeleteUserCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new DeleteUserUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

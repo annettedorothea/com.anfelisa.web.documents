@@ -33,6 +33,7 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.ResetPasswordErrorEvent', CommonView.displayError);
 		ACEController.registerListener('common.DisplayErrorOkEvent', CommonView.displayError);
 		ACEController.registerListener('common.DisplayMessageOkEvent', CommonView.displayMessage);
+		ACEController.registerListener('common.ClearToastOkEvent', CommonView.clearToast);
 	}
 
 }

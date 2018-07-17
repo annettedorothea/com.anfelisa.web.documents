@@ -5,6 +5,7 @@ import LoadNextCardDoNotScheduleNextEvent from "../../../src/box/events/LoadNext
 import LoadNextCardUnauthorizedEvent from "../../../src/box/events/LoadNextCardUnauthorizedEvent";
 import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
 import ScheduleNextCardAction from "../../../src/box/actions/ScheduleNextCardAction";
+import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadNextCardCommand extends Command {
@@ -33,6 +34,7 @@ export default class AbstractLoadNextCardCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new LoadNextCardUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

@@ -27,33 +27,31 @@ export default class CommonView {
     }
 
     static displayError(eventData) {
-        let errors = App.container.state.errors;
-        errors.push(eventData.error);
+        let state = App.container.state;
+        const toast = {
+            type: "error",
+            text: state.texts.errors[eventData.error.errorKey][state.language]
+        };
         App.container.setState({
-            errors
+            toast
         });
-        setTimeout(function () {
-            let errors = App.container.state.errors;
-            errors.shift();
-            App.container.setState({
-                errors
-            });
-        }, 7000);
     }
 
     static displayMessage(eventData) {
-        let messages = App.container.state.messages;
-        messages.push(eventData.messageKey);
+        let state = App.container.state;
+        const toast = {
+            type: "info",
+            text: state.texts.messages[eventData.messageKey][state.language]
+        };
         App.container.setState({
-            messages
+            toast
         });
-        setTimeout(function () {
-            let messages = App.container.state.messages;
-            messages.shift();
-            App.container.setState({
-                messages
-            });
-        }, 7000);
+    }
+
+    static clearToast(eventData) {
+        App.container.setState({
+            toast: undefined
+        });
     }
 
     static initUser(eventData) {

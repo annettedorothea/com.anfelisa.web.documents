@@ -3,6 +3,7 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import SearchDuplicateCardsOkEvent from "../../../src/author/events/SearchDuplicateCardsOkEvent";
 import SearchDuplicateCardsTooShortEvent from "../../../src/author/events/SearchDuplicateCardsTooShortEvent";
 import SearchDuplicateCardsUnauthorizedEvent from "../../../src/author/events/SearchDuplicateCardsUnauthorizedEvent";
+import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractSearchDuplicateCardsCommand extends Command {
@@ -25,6 +26,7 @@ export default class AbstractSearchDuplicateCardsCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new SearchDuplicateCardsUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:
