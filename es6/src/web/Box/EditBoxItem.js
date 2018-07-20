@@ -3,6 +3,8 @@ import CancelEditBoxAction from "../../box/actions/CancelEditBoxAction";
 import ToggleMaxIntervalOfBoxAction from "../../box/actions/ToggleMaxIntervalOfBoxAction";
 import MaxIntervalChangedOfBoxAction from "../../box/actions/MaxIntervalChangedOfBoxAction";
 import UpdateBoxAction from "../../box/actions/UpdateBoxAction";
+import RouteAction from "../../common/actions/RouteAction";
+import BoxInfo from "./BoxInfo";
 
 export default class EditBoxItem extends React.Component {
 
@@ -39,6 +41,34 @@ export default class EditBoxItem extends React.Component {
 
     render() {
         return (
+            <span className="tile double">
+
+                <h2>{this.props.categoryName}</h2>
+
+                <div className="tileContent form">
+                    <div className="line">
+                        <input id="maxIntervalCheckbox" type={"checkbox"}
+                               checked={this.props.editedBox.maxIntervalChecked === true}
+                               onChange={this.onMaxIntervalCheckedChange}/>
+                        <label
+                            htmlFor="maxIntervalCheckbox">{this.props.texts.editBox.maxInterval[this.props.language]}</label>
+                    </div>
+
+                    <div className="line">
+                        <input type="number" value={this.props.editedBox.maxInterval}
+                               onChange={this.onMaxIntervalChange}
+                               disabled={!this.props.editedBox.maxIntervalChecked}/>
+                    </div>
+                </div>
+
+                <div className="buttons">
+                    <i className="fas fa-check fa-lg primary" onClick={this.onUpdate}/>
+                    <i className="fas fa-times fa-lg primary" onClick={this.onCancel}/>
+                </div>
+            </span>
+        );
+
+        /*return (
             <div>
                 <h1>{this.props.categoryName} - {this.props.totalCards} {this.props.texts.box.totalCards[this.props.language]}</h1>
 
@@ -62,7 +92,7 @@ export default class EditBoxItem extends React.Component {
                 <button onClick={() => this.onUpdate(this.props.boxId)}>{"\u2713"}</button>
                 <button onClick={() => this.onCancel(this.props.boxId)}>{"\u2717"}</button>
             </div>
-        );
+        );*/
     }
 }
 

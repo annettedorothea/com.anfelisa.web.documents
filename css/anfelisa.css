@@ -1,5 +1,10 @@
 /* common */
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-size: 100% 100%;
     font-size: 16px;
@@ -16,11 +21,15 @@ input, button, textarea, select {
     font-family: Helvetica, sans-serif;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=number] {
     border: 2px solid #ccc;
     border-radius: 4px;
     padding: 4px;
     line-height: 20px;
+}
+
+input[readonly], input[disabled] {
+    background-color: #eee;
 }
 
 button {
@@ -38,6 +47,20 @@ button.primary {
     color: #eee;
 }
 
+button.danger {
+    border-color: #990000;
+    background-color: #E53C16;
+    color: #eee;
+}
+
+i.primary {
+    color: #337ab7;
+}
+
+i.danger {
+    color: #E53C16;
+}
+
 a {
     color: #337ab7;
     cursor: pointer;
@@ -50,6 +73,84 @@ a:hover {
 h1 {
     color: #337ab7;
     font-size: 24px;
+    font-weight: normal;
+}
+
+h2 {
+    color: #337ab7;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.header {
+    padding: 48px 0 24px 0;
+    margin: 0 8px;
+}
+
+@media screen and (max-width: 600px) {
+    .header {
+        padding: 12px 0 12px 0;
+    }
+}
+
+.header a.title {
+    color: #337ab7;
+    font-size: 48px;
+}
+
+@media screen and (max-width: 600px) {
+    .header a.title {
+        font-size: 36px;
+    }
+}
+
+div.wrapper {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.content {
+    margin: 0 8px;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 8px 0;
+}
+
+table, th, td {
+    border: none;
+    text-align: left;
+}
+
+th, td {
+    padding: 4px 16px 4px 0;
+}
+
+/* modal */
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal .modalContent {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 24px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 50%;
+}
+
+.modal .modalContent .message {
+    margin: 24px 0;
 }
 
 /* helper */
@@ -117,6 +218,14 @@ h1 {
     display: none;
 }
 
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
 /* toast */
 
 .toastContainer {
@@ -133,7 +242,7 @@ h1 {
     color: #fff;
     text-align: center;
     border-radius: 4px;
-    margin: 20px;
+    margin: 24px;
     display: inline-block;
     float: right;
 }
@@ -154,7 +263,7 @@ h1 {
 /* form */
 
 .form {
-    margin: 0 8px;
+    max-width: 400px;
 }
 
 .form .line {
@@ -196,11 +305,157 @@ h1 {
     font-size: smaller;
 }
 
+/* tile */
 
+.tile {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 20px 20px;
+    background-color: #eee;
+    margin: 12px 24px 12px 0;
+    position: relative;
+    overflow: hidden;
+}
 
+.tile.double {
+    width: 308px;
+    height: 240px;
+}
 
+a:hover.tile {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
 
+a:hover.tile h2 {
+    color: #ffa84c;
+}
 
+.tile .buttons {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.tile .buttons i {
+    margin: 4px;
+}
+
+a:hover.tile .icon::before {
+    color: #ffa84c;
+}
+
+.tile table {
+    width: 100%;
+
+}
+
+.tile .tileContent {
+    margin: 24px 0;
+}
+
+.tile h2 {
+    text-align: center;
+}
+
+.tile .statistics {
+    width: 308px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+/* icons */
+
+.icon::before {
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-size: 80px;
+    position: absolute;
+    line-height: 120px;
+    height: auto;
+    left: 0;
+    right: 0;
+    color: #ccc;
+    text-align: center;
+}
+
+.userList::before {
+    content: "\f500";
+    font-weight: 900;
+}
+
+.categories::before {
+    content: "\f0ce";
+    font-weight: 900;
+}
+
+/* statistics */
+
+.statistics {
+    height: 24px;
+}
+
+.statistics div {
+    height: 24px;
+    display: inline-block;
+}
+
+.statistics .quality0 {
+    background-color: #FF5DB1;
+}
+
+.statistics .quality1 {
+    background-color: #E53C16;
+}
+
+.statistics .quality2 {
+    background-color: #ffa84c;
+}
+
+.statistics .quality3 {
+    background-color: #2AABD2;
+}
+
+.statistics .quality4 {
+    background-color: #337ab7;
+}
+
+.statistics .quality5 {
+    background-color: #669E00;
+}
+
+/* cards */
+
+.lastQuality_0, .quality0 {
+    border-color: pink;
+}
+
+.lastQuality_1, .quality1 {
+    border-color: red;
+}
+
+.lastQuality_2, .quality2 {
+    border-color: orange;
+}
+
+.lastQuality_3, .quality3 {
+    border-color: cyan;
+}
+
+.lastQuality_4, .quality4 {
+    border-color: blue;
+}
+
+.lastQuality_5, .quality5 {
+    border-color: green;
+}
 
 
 
@@ -228,14 +483,6 @@ iframe {
     height: 500px;
 }
 
-table {
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px dotted gray;
-}
-
 img.preview {
     max-height: 70px;
     max-width: 120px;
@@ -255,29 +502,5 @@ img.preview {
 img.image {
     max-height: 600px;
     max-width: 100%;
-}
-
-.lastQuality_0 {
-    border-color: pink;
-}
-
-.lastQuality_1 {
-    border-color: red;
-}
-
-.lastQuality_2 {
-    border-color: orange;
-}
-
-.lastQuality_3 {
-    border-color: cyan;
-}
-
-.lastQuality_4 {
-    border-color: blue;
-}
-
-.lastQuality_5 {
-    border-color: green;
 }
 

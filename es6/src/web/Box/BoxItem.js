@@ -3,6 +3,7 @@ import DeleteBoxClickAction from "../../box/actions/DeleteBoxClickAction";
 import EditBoxAction from "../../box/actions/EditBoxAction";
 import RouteAction from "../../common/actions/RouteAction";
 import BoxInfo from "./BoxInfo";
+import Statistics from "./Statistics";
 
 export default class BoxItem extends React.Component {
 
@@ -12,11 +13,13 @@ export default class BoxItem extends React.Component {
         this.onDeleteClick = this.onDeleteClick.bind(this);
     }
 
-    onDeleteClick() {
+    onDeleteClick(e) {
+        e.stopPropagation();
         new DeleteBoxClickAction({boxId: this.props.boxId}).apply();
     }
 
-    onEdit() {
+    onEdit(e) {
+        e.stopPropagation();
         const data = {
             boxId: this.props.boxId,
             maxInterval: this.props.maxInterval ? this.props.maxInterval : "",
@@ -27,18 +30,26 @@ export default class BoxItem extends React.Component {
 
     render() {
         return (
-            <div>
-                <BoxInfo {...this.props} loadList={true}/>
-
-                <button onClick={() => this.onDeleteClick(this.props.boxId)}>{"\u2717"}</button>
-                <button onClick={() => this.onEdit(this.props.boxId)}>{"\u270E"}</button>
-                <button onClick={() => new RouteAction(
+            <a
+                className="tile double"
+                onClick={() => new RouteAction(
                     {
                         username: this.props.username,
                         password: this.props.password,
                         hash: `#box/${this.props.boxId}`
-                    }).apply()}>{this.props.texts.box.nextCard[this.props.language]}</button>
-            </div>
+                    }).apply()}>
+
+                <h2>{this.props.categoryName}</h2>
+
+                <BoxInfo {...this.props} loadList={true}/>
+
+                <Statistics {...this.props}/>
+
+                <div className="buttons">
+                    <i className="fas fa-pencil-alt fa-lg primary" onClick={(e) => this.onEdit(e)}/>
+                    <i className="fas fa-times fa-lg danger" onClick={(e) => this.onDeleteClick(e)}/>
+                </div>
+            </a>
         );
     }
 }

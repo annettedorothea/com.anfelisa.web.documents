@@ -19,16 +19,13 @@ export default class Dashboard extends React.Component {
         }
         return (
             <div>
-                <h1>{this.props.texts.dashboard.title[this.props.language]}</h1>
-                <button onClick={() => new RouteAction(
-                    {
-                        hash: "#profile",
-                        username: this.props.username,
-                        password: this.props.password
-                    }).apply()}>{this.props.texts.dashboard.profile[this.props.language]}</button>
-                {adminContent}
-                {authorContent}
-                {userContent}
+                <div>
+                    {adminContent}
+                    {authorContent}
+                </div>
+                <div>
+                    {userContent}
+                </div>
             </div>
         );
     }

@@ -8,11 +8,13 @@ export default class Confirm extends React.Component {
 
     render() {
         return (
-            <div>
-                <div>{this.props.title}</div>
-                <div>{this.props.message}</div>
-                <button onClick={this.props.ok}>{this.props.okText}</button>
-                <button onClick={this.props.cancel}>{this.props.cancelText}</button>
+            <div className="modal">
+                <div className="modalContent">
+                    <h2>{this.props.title}</h2>
+                    <div className="message">{this.props.message}</div>
+                    <button onClick={this.props.ok}>{this.props.okText}</button>
+                    <button onClick={this.props.cancel}>{this.props.cancelText}</button>
+                </div>
             </div>
         );
     }

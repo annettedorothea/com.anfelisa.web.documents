@@ -4,6 +4,8 @@ import Card from "./Card";
 import RouteAction from "../../common/actions/RouteAction";
 import ReinforceCard from "./ReinforceCard";
 import BoxInfo from "./BoxInfo";
+import DaysBehindSchedule from "./DaysBehindSchedule";
+import Statistics from "./Statistics";
 
 export default class QueryCards extends React.Component {
 
@@ -42,6 +44,8 @@ export default class QueryCards extends React.Component {
         }
         return (
             <div>
+                <h1>{this.props.data.categoryName}</h1>
+
                 <BoxInfo
                     {...this.props.data}
                     username={this.props.username}
@@ -50,6 +54,19 @@ export default class QueryCards extends React.Component {
                     language={this.props.language}
                     loadList={false}
                 />
+
+                <DaysBehindSchedule
+                    boxId={this.props.data.boxId}
+                    daysBehindSchedule={this.props.data.daysBehindSchedule}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                    username={this.props.username}
+                    password={this.props.password}
+                    loadList={this.props.loadList}
+                />
+
+                <Statistics {...this.props.data}/>
+
                 {content}
             </div>
         );

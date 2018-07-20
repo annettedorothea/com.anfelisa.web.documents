@@ -5,14 +5,17 @@ export default class AuthorDashboard extends React.Component {
 
     render() {
         return (
-            <div>
-                <button onClick={() => new RouteAction(
-                    {
-                        username: this.props.username,
-                        password: this.props.password,
-                        hash: "#categories"
-                    }).apply()}>{this.props.texts.authorDashboard.categories[this.props.language]}</button>
-            </div>
+            <a className="tile " onClick={() => new RouteAction(
+                {
+                    username: this.props.username,
+                    password: this.props.password,
+                    hash: "#categories"
+                }).apply()}>
+                <h2>
+                    {this.props.texts.authorDashboard.categories[this.props.language]}
+                </h2>
+                <div className="icon categories"/>
+            </a>
         );
     }
 }

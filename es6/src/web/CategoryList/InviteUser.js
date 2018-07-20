@@ -1,6 +1,4 @@
 import React from "react";
-import RouteAction from "../../common/actions/RouteAction";
-import RevokeUserAccessClickAction from "../../author/actions/RevokeUserAccessClickAction";
 import InviteUserAction from "../../author/actions/InviteUserAction";
 
 export default class InviteUser extends React.Component {

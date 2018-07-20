@@ -34,7 +34,6 @@ export default class Profile extends React.Component {
     }
 
     render() {
-        console.log("this.props.data", this.props.data);
         return (
             <div>
                 {this.state.confirmDeleteUser === true &&
@@ -49,9 +48,9 @@ export default class Profile extends React.Component {
                             cancel: this.onDeleteCancel
                         }}/>
                 </div>}
-                <h1>{this.props.texts.profile.title[this.props.language]}</h1>
-                <div>
-                    <div>
+                <div className="form">
+                    <h1>{this.props.texts.profile.title[this.props.language]}</h1>
+                    <div className="line">
                         <label>{this.props.texts.profile.username[this.props.language]}</label>
                         <input
                             type={"text"}
@@ -60,7 +59,7 @@ export default class Profile extends React.Component {
                             readOnly={true}
                         />
                     </div>
-                    <div>
+                    <div className="line">
                         <label>{this.props.texts.profile.email[this.props.language]}</label>
                         <input
                             type={"text"}
@@ -69,7 +68,7 @@ export default class Profile extends React.Component {
                             readOnly={true}
                         />
                     </div>
-                    <div>
+                    <div className="line">
                         <label>{this.props.texts.profile.role[this.props.language]}</label>
                         <input
                             type={"text"}
@@ -79,7 +78,7 @@ export default class Profile extends React.Component {
                         />
                     </div>
                 </div>
-                <button onClick={this.onDeleteClick}>{this.props.texts.profile.delete[this.props.language]}</button>
+                <button className="danger" onClick={this.onDeleteClick}>{this.props.texts.profile.delete[this.props.language]}</button>
                 <button
                     onClick={() => new RouteAction({
                         username: this.props.username,

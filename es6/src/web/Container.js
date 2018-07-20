@@ -1,6 +1,5 @@
 import React from 'react';
 import Spinner from "./Spinner";
-import Toast from "./Toast";
 import AnonymousContainer from "./AnonymousContainer";
 import UserContainer from "./UserContainer";
 import ToastContainer from "./ToastContainer";

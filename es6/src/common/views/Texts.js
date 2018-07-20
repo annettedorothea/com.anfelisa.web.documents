@@ -25,10 +25,13 @@ export const Texts = {
             }
         },
         maxIntervalOne: {
-            de: "Karten im Abstand von maximal einem Tag erneut abfragen."
+            de: "ein Tag"
+        },
+        maxIntervalMore: {
+            de: "{0} Tage"
         },
         maxInterval: {
-            de: "Karten im Abstand von maximal {0} Tagen erneut abfragen."
+            de: "maximaler Abstand"
         },
         myCards: {
             de: "Bearbeitete Karten"
@@ -180,14 +183,6 @@ export const Texts = {
             de: "Linugee Wörterbuch anzeigen"
         }
     },
-    dashboard: {
-        profile: {
-            de: "Profil"
-        },
-        title: {
-            de: "Übersicht"
-        }
-    },
     editBox: {
         maxInterval: {
             de: "maximaler Abstand im Tagen"
@@ -287,7 +282,7 @@ export const Texts = {
                 de: "Nein"
             },
             message: {
-                de: "Soll der Benutzer wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle mit dem Benutzer verbundenen Daten werden dann auch gelöscht."
+                de: "Soll der Benutzer wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
             },
             ok: {
                 de: "Ja"

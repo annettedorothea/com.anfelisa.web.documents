@@ -11,7 +11,6 @@ import EditCategory from "./CategoryList/EditCategory"
 import CategoryItem from "./CategoryList/CategoryItem"
 import UserAccessItem from "./CategoryList/UserAccessItem"
 import CreateBoxAction from "../box/actions/CreateBoxAction";
-import InviteUserAction from "../author/actions/InviteUserAction";
 import CancelRevokeUserAccessAction from "../author/actions/CancelRevokeUserAccessAction";
 import RevokeUserAccessAction from "../author/actions/RevokeUserAccessAction";
 import InviteUser from "./CategoryList/InviteUser";
@@ -219,7 +218,8 @@ export default class CategoryList extends React.Component {
                         username: this.props.username,
                         password: this.props.password,
                         hash: backLink
-                    }).apply()}>{this.props.texts.categoryList.back[this.props.language]}
+                    }).apply()}>
+                    {this.props.texts.categoryList.back[this.props.language]}
                 </button>
 
                 {this.props.data.parentCategoryId && <CardList {...this.props} />}

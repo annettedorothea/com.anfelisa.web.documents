@@ -34,6 +34,13 @@ export default class BoxView {
         data.totalCards = eventData.data.totalCards;
         data.reinforceCards = eventData.data.reinforceCards;
         data.categoryName = eventData.data.categoryName;
+        data.maxInterval = eventData.data.maxInterval;
+        data.quality0Count = eventData.data.quality0Count;
+        data.quality1Count = eventData.data.quality1Count;
+        data.quality2Count = eventData.data.quality2Count;
+        data.quality3Count = eventData.data.quality3Count;
+        data.quality4Count = eventData.data.quality4Count;
+        data.quality5Count = eventData.data.quality5Count;
         App.container.setState({
             data
         });

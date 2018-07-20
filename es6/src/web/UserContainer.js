@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import UserList from "./UserList";
 import CategoryList from "./CategoryList";
 import QueryCards from "./Box/QueryCards";
+import RouteAction from "../common/actions/RouteAction";
 
 export default class UserContainer extends React.Component {
 
@@ -32,9 +33,17 @@ export default class UserContainer extends React.Component {
         }
 
         return (
-            <div>
-                <Logout {...this.props} />
-                <div>
+            <div className="wrapper">
+                <div className="header">
+                    <a onClick={() => new RouteAction({
+                        username: this.props.username,
+                        password: this.props.password,
+                        hash: "#dashboard"
+                    }).apply()}
+                       className="title">Anfelisa</a>
+                    <Logout {...this.props} />
+                </div>
+                <div className="content">
                     {content}
                 </div>
             </div>
