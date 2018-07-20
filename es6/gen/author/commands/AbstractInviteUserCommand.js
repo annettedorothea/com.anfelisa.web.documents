@@ -1,5 +1,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import InviteUserOkEvent from "../../../src/author/events/InviteUserOkEvent";
 import InviteUserUserDoesNotExistEvent from "../../../src/author/events/InviteUserUserDoesNotExistEvent";
 import InviteUserUnauthorizedEvent from "../../../src/author/events/InviteUserUnauthorizedEvent";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
@@ -19,6 +20,7 @@ export default class AbstractInviteUserCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
+			promises.push(new InviteUserOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
 			break;
 		case this.userDoesNotExist:

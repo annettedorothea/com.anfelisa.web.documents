@@ -9,6 +9,7 @@ export default class InviteUserCommand extends AbstractInviteUserCommand {
             };
             this.httpPost("api/category/invite", [], data).then((data) => {
                 this.commandData.outcome = this.ok;
+                this.commandData.messageKey = "userAdded";
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

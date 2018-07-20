@@ -102,6 +102,20 @@ export const Texts = {
         nameAlreadyExists: {
             de: "Name wird bereits verwendet."
         },
+        confirmRevokeUserAccess: {
+            cancel: {
+                de: "Nein"
+            },
+            ok: {
+                de: "Ja"
+            },
+            message: {
+                de: "Soll dieser Benutzer wirklich keinen Zugriff mehr auf die gesamte Kategorie haben?"
+            },
+            title: {
+                de: "Zugriff entziehen"
+            }
+        },
         subscribe: {
             de: "Neue Lernkartei anlegen"
         },
@@ -260,8 +274,11 @@ export const Texts = {
         passwordRequestSubmitted: {
             de: "Eine Email mit einem Link zur Eingabe eines neues Passortes wurde an die angegebene Email-Adresse verschickt."
         },
-        passwordResetted: {
+        passwordReset: {
             de: "Das Passwort wurde geändert."
+        },
+        userAdded: {
+            de: "Der Benutzer wurde hizugefügt."
         }
     },
     profile: {

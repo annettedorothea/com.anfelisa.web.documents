@@ -57,7 +57,12 @@ export default class CategoriesView {
             parentEditable: eventData.data.parentEditable,
             rootDictionaryLookup: eventData.data.rootDictionaryLookup,
             scheduleCardSelection: [],
-            hasBox: eventData.data.hasBox
+            hasBox: eventData.data.hasBox,
+            userList: eventData.data.userList,
+            revokeUserAccess: {
+                confirmDelete: false,
+                userId: ""
+            }
         };
         App.container.setState({
             route: "category-list",
@@ -442,6 +447,30 @@ export default class CategoriesView {
             data
         });
     }
+
+    static displayRevokeUserAccess(eventData) {
+        let data = App.container.state.data;
+        data.revokeUserAccess = {
+            confirmDelete: true,
+            userId: eventData.userId
+        };
+        App.container.setState({
+            data
+        });
+    };
+
+    static hideRevokeUserAccess(eventData) {
+        let data = App.container.state.data;
+        data.revokeUserAccess = {
+            confirmDelete: false,
+            userId: ""
+        };
+        App.container.setState({
+            data
+        });
+    };
+
+
 
 }
 

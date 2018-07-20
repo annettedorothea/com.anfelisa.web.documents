@@ -9,8 +9,12 @@ import CardList from "./CardList";
 import NewCategory from "./CategoryList/NewCategory"
 import EditCategory from "./CategoryList/EditCategory"
 import CategoryItem from "./CategoryList/CategoryItem"
+import UserAccessItem from "./CategoryList/UserAccessItem"
 import CreateBoxAction from "../box/actions/CreateBoxAction";
 import InviteUserAction from "../author/actions/InviteUserAction";
+import CancelRevokeUserAccessAction from "../author/actions/CancelRevokeUserAccessAction";
+import RevokeUserAccessAction from "../author/actions/RevokeUserAccessAction";
+import InviteUser from "./CategoryList/InviteUser";
 
 export default class CategoryList extends React.Component {
 
@@ -20,6 +24,8 @@ export default class CategoryList extends React.Component {
         this.onDelete = this.onDelete.bind(this);
         this.onDeleteClick = this.onDeleteClick.bind(this);
         this.onDeleteCancel = this.onDeleteCancel.bind(this);
+        this.onRevokeUserAccess = this.onRevokeUserAccess.bind(this);
+        this.onRevokeUserAccessCancel = this.onRevokeUserAccessCancel.bind(this);
     }
 
     onDeleteClick(categoryId) {
@@ -49,16 +55,6 @@ export default class CategoryList extends React.Component {
         new CreateBoxAction(data).apply();
     }
 
-    onInvite(categoryId, invitedUsername) {
-        const data = {
-            username: this.props.username,
-            password: this.props.password,
-            categoryId: categoryId,
-            invitedUsername
-        };
-        new InviteUserAction(data).apply();
-    }
-
     onDelete() {
         const data = {
             username: this.props.username,
@@ -71,6 +67,21 @@ export default class CategoryList extends React.Component {
 
     onDeleteCancel() {
         new CancelDeleteCategoryAction().apply();
+    }
+
+    onRevokeUserAccess() {
+        const data = {
+            username: this.props.username,
+            categoryId: this.props.data.parentCategoryId,
+            password: this.props.password,
+            revokedUserId: this.props.data.revokeUserAccess.userId,
+            parentCategoryId: this.props.data.parentCategoryId
+        };
+        new RevokeUserAccessAction(data).apply();
+    }
+
+    onRevokeUserAccessCancel() {
+        new CancelRevokeUserAccessAction().apply();
     }
 
     render() {
@@ -111,7 +122,6 @@ export default class CategoryList extends React.Component {
                     onDeleteClick={this.onDeleteClick}
                     onEdit={() => this.onEdit(category.categoryId, category.categoryName, category.categoryIndex, category.dictionaryLookup, category.givenLanguage, category.wantedLanguage)}
                     onSubscribe={() => this.onSubscribe(category.categoryId)}
-                    onInvite={(invitedUsername) => this.onInvite(category.categoryId, invitedUsername)}
                     username={this.props.username}
                     password={this.props.password}
                     userRole={this.props.role}
@@ -141,6 +151,27 @@ export default class CategoryList extends React.Component {
                 />
             );
         }
+        const users = this.props.data.userList === null ? [] : this.props.data.userList.map((user) => {
+            return <UserAccessItem
+                {...user}
+                texts={this.props.texts}
+                language={this.props.language}
+                canRevoke={this.props.data.parentEditable && this.props.data.userList.length > 1}
+                key={user.userId}
+            />
+        });
+        if (this.props.data.parentEditable === true && this.props.data.userList !== null) {
+            users.push(
+                <InviteUser
+                    texts={this.props.texts}
+                    language={this.props.language}
+                    key="inviteUser"
+                    parentCategoryId={this.props.data.parentCategoryId}
+                    username={this.props.username}
+                    password={this.props.password}
+                />)
+        }
+
         return (
             <div>
                 {this.props.data.deleteCategory.confirmDelete === true &&
@@ -155,10 +186,25 @@ export default class CategoryList extends React.Component {
                             cancel: this.onDeleteCancel
                         }}/>
                 </div>}
+                {this.props.data.revokeUserAccess.confirmDelete === true &&
+                <div>
+                    <Confirm {...
+                        {
+                            title: this.props.texts.categoryList.confirmRevokeUserAccess.title[this.props.language],
+                            message: this.props.texts.categoryList.confirmRevokeUserAccess.message[this.props.language],
+                            okText: this.props.texts.categoryList.confirmRevokeUserAccess.ok[this.props.language],
+                            cancelText: this.props.texts.categoryList.confirmRevokeUserAccess.cancel[this.props.language],
+                            ok: this.onRevokeUserAccess,
+                            cancel: this.onRevokeUserAccessCancel
+                        }}/>
+                </div>}
                 <h1>
                     {this.props.data.parentCategoryName && this.props.data.parentCategoryName}
                     {!this.props.data.parentCategoryName && this.props.texts.categoryList.title[this.props.language]}
                 </h1>
+                <ul>
+                    {users}
+                </ul>
                 <table>
                     <thead>
 

@@ -42,6 +42,9 @@ import ToggleScheduleCardSelectionAction from "../../src/author/actions/ToggleSc
 import ToggleAllScheduleCardSelectionAction from "../../src/author/actions/ToggleAllScheduleCardSelectionAction";
 import ScheduleSelectedCardsAction from "../../src/author/actions/ScheduleSelectedCardsAction";
 import InviteUserAction from "../../src/author/actions/InviteUserAction";
+import RevokeUserAccessClickAction from "../../src/author/actions/RevokeUserAccessClickAction";
+import CancelRevokeUserAccessAction from "../../src/author/actions/CancelRevokeUserAccessAction";
+import RevokeUserAccessAction from "../../src/author/actions/RevokeUserAccessAction";
 
 export default class ActionFactoryRegistrationAuthor {
 
@@ -89,6 +92,9 @@ export default class ActionFactoryRegistrationAuthor {
 		ACEController.registerFactory('author.ToggleAllScheduleCardSelectionAction', (actionData) => new ToggleAllScheduleCardSelectionAction(actionData));
 		ACEController.registerFactory('author.ScheduleSelectedCardsAction', (actionData) => new ScheduleSelectedCardsAction(actionData));
 		ACEController.registerFactory('author.InviteUserAction', (actionData) => new InviteUserAction(actionData));
+		ACEController.registerFactory('author.RevokeUserAccessClickAction', (actionData) => new RevokeUserAccessClickAction(actionData));
+		ACEController.registerFactory('author.CancelRevokeUserAccessAction', (actionData) => new CancelRevokeUserAccessAction(actionData));
+		ACEController.registerFactory('author.RevokeUserAccessAction', (actionData) => new RevokeUserAccessAction(actionData));
 	}
 
 }

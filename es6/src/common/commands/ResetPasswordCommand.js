@@ -15,7 +15,7 @@ export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
             this.commandData.hash = "#";
             this.httpPut("api/users/resetpassword", queryParams).then(() => {
                 this.commandData.outcome = this.ok;
-                this.commandData.messageKey = "passwordResetted";
+                this.commandData.messageKey = "passwordReset";
                 resolve();
             }, (error) => {
                 error.errorKey = "failedToResetPassword";

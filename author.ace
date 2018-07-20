@@ -169,10 +169,22 @@ ACE {
 	}
 
 	async InviteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
-		on ok triggers (LoadCategories)
+		on ok (common.Common.displayMessage) triggers (LoadCategories)
 		on userDoesNotExist (common.Common.displayError) triggers (common.ClearToast  LoadCategories )
 		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast  common.Logout)
 	}
+	
+	RevokeUserAccessClick {
+		on ok (Categories.displayRevokeUserAccess)
+	}
+	CancelRevokeUserAccess {
+		on ok (Categories.hideRevokeUserAccess)
+	}
+	async RevokeUserAccess preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+		on ok (Categories.hideRevokeUserAccess) triggers (LoadCategories)
+		on unauthorized ( common.Common.displayError Categories.hideRevokeUserAccess) triggers (common.ClearToast common.Logout)
+	}
+	
 }
 
 views {
@@ -204,6 +216,9 @@ views {
 		
 		displayConfirmCardDelete
 		hideConfirmCardDelete
+		
+		displayRevokeUserAccess
+		hideRevokeUserAccess
 		
 		displayNewCardSpinner
 		hideNewCardSpinner

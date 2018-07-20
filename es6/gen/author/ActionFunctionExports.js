@@ -41,6 +41,9 @@ import ToggleScheduleCardSelectionAction from "../../src/author/actions/ToggleSc
 import ToggleAllScheduleCardSelectionAction from "../../src/author/actions/ToggleAllScheduleCardSelectionAction";
 import ScheduleSelectedCardsAction from "../../src/author/actions/ScheduleSelectedCardsAction";
 import InviteUserAction from "../../src/author/actions/InviteUserAction";
+import RevokeUserAccessClickAction from "../../src/author/actions/RevokeUserAccessClickAction";
+import CancelRevokeUserAccessAction from "../../src/author/actions/CancelRevokeUserAccessAction";
+import RevokeUserAccessAction from "../../src/author/actions/RevokeUserAccessAction";
 
 export function loadCategories(actionData) {
     new LoadCategoriesAction(actionData).apply();
@@ -212,6 +215,18 @@ export function scheduleSelectedCards(actionData) {
 
 export function inviteUser(actionData) {
     new InviteUserAction(actionData).apply();
+}
+
+export function revokeUserAccessClick(actionData) {
+    new RevokeUserAccessClickAction(actionData).apply();
+}
+
+export function cancelRevokeUserAccess(actionData) {
+    new CancelRevokeUserAccessAction(actionData).apply();
+}
+
+export function revokeUserAccess(actionData) {
+    new RevokeUserAccessAction(actionData).apply();
 }
 
 
