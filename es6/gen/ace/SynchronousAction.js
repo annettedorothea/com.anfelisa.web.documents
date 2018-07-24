@@ -12,8 +12,8 @@ export default class SynchronousAction extends Action {
     applyAction() {
         if (ACEController.execution === ACEController.LIVE) {
             this.actionData.uuid = AppUtils.createUUID();
+	        this.initActionData();
         }
-        this.initActionData();
         ACEController.addItemToTimeLine({action: this});
         let command = this.getCommand();
         if (command) {

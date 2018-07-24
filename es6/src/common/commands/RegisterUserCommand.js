@@ -7,7 +7,8 @@ export default class RegisterUserCommand extends AbstractRegisterUserCommand {
                 password: this.commandData.password,
                 username: this.commandData.username,
                 email: this.commandData.email,
-                language: this.commandData.language
+                language: this.commandData.language,
+                token: this.commandData.token
             };
             this.httpPost("api/users/register", [], data).then(() => {
                 this.commandData.outcome = this.ok;

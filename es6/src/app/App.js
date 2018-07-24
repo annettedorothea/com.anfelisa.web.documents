@@ -31,6 +31,12 @@ export const container = ReactDOM.render(
     document.getElementById('root')
 );
 
+export let appState = {};
+
+export function mergeIntoAppState(newAppState) {
+
+};
+
 window.onhashchange = () => {
     new RouteChangedAction(
         {

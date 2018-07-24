@@ -10,6 +10,7 @@ ACE {
 	async DeleteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers ( common.Logout )
 		on unauthorized ( common.Common.displayError ) triggers (common.ClearToast common.Logout)
+		on badRequest ( common.Common.displayError ) triggers (common.ClearToast)
 	}
 	
 }

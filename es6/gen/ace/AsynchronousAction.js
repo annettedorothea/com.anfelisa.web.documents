@@ -14,8 +14,8 @@ export default class AsynchronousAction extends Action {
             this.preUpdateUI();
             if (ACEController.execution === ACEController.LIVE) {
                 this.actionData.uuid = AppUtils.createUUID();
+	            this.initActionData();
             }
-            this.initActionData();
             ACEController.addItemToTimeLine({action: this});
             let command = this.getCommand();
             if (command) {

@@ -17,6 +17,11 @@ export default class DeleteUserCommand extends AbstractDeleteUserCommand {
                     this.commandData.error = error;
                     this.commandData.outcome = this.unauthorized;
                     resolve();
+                } else if (error.code === 400) {
+                    error.errorKey = "badRequestDeleteUser";
+                    this.commandData.error = error;
+                    this.commandData.outcome = this.badRequest;
+                    resolve();
                 } else {
                     reject(error.text);
                 }

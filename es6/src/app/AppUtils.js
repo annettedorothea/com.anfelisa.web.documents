@@ -28,7 +28,7 @@ export default class AppUtils {
         return "http://ace.anfelisa.com/";
     }
 
-    static httpGet(url, queryParams, commandData) {
+    static httpGet(url, queryParams, commandData, adjustUrl = true) {
 		return new Promise((resolve, reject) => {
 		    let authorization = commandData ? AppUtils.basicAuth(commandData.username, commandData.password) : undefined;
 		    const headers = new Headers();
@@ -44,8 +44,11 @@ export default class AppUtils {
 		        mode: 'cors',
 		        cache: 'no-cache'
 		    };
-		
-		    const adjustedUrl = AppUtils.url(url);
+
+		    let adjustedUrl = url;
+		    if (adjustUrl === true) {
+                adjustedUrl = AppUtils.url(url);
+			}
 		    const completeUrl = adjustedUrl + AppUtils.queryParamString(adjustedUrl, queryParams);
 		    const request = new Request(completeUrl, options);
 		
@@ -71,7 +74,7 @@ export default class AppUtils {
 		});
     }
 
-    static httpChange(methodType, url, queryParams, data, commandData) {
+    static httpChange(methodType, url, queryParams, data, commandData, adjustUrl = true) {
 		return new Promise((resolve, reject) => {
 		    let authorization = commandData ? AppUtils.basicAuth(commandData.username, commandData.password) : undefined;
 		    const headers = new Headers();
@@ -88,8 +91,11 @@ export default class AppUtils {
 		        cache: 'no-cache',
 		        body: JSON.stringify(data)
 		    };
-		
-		    const adjustedUrl = AppUtils.url(url);
+
+            let adjustedUrl = url;
+            if (adjustUrl === true) {
+                adjustedUrl = AppUtils.url(url);
+            }
 		    const completeUrl = adjustedUrl + AppUtils.queryParamString(adjustedUrl, queryParams);
 		    const request = new Request(completeUrl, options);
 		

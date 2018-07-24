@@ -189,8 +189,8 @@ export const Texts = {
         }
     },
     errors: {
-        registerUserFailed: {
-            de: "Die Registrierung ist fehlgeschlagen."
+        badRequestDeleteUser: {
+            de: "Der Benutzer konnte nicht gelöscht werden, weil er der letzte Administator ist."
         },
         loginFailed: {
             de: "Anmeldung fehlgeschlagen."
@@ -206,6 +206,9 @@ export const Texts = {
         },
         noImageFile: {
             de: "Es dürfen nur Bilder hochgeladen werden."
+        },
+        registerUserFailed: {
+            de: "Die Registrierung ist fehlgeschlagen."
         },
         unauthorized: {
             de: "Zugriff verweigert."
