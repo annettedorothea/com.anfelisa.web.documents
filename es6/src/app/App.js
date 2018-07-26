@@ -26,16 +26,29 @@ export * from "../../gen/common/ActionFunctionExports";
 const React = require('react');
 const ReactDOM = require('react-dom');
 
+export let appState = {
+    route: "",
+    data: {
+        username: "",
+        saveInLocalStorage: false
+    }
+};
+
 export const container = ReactDOM.render(
     <Container/>,
     document.getElementById('root')
 );
 
-export let appState = {};
 
-export function mergeIntoAppState(newAppState) {
+export function deepMergeState(newAppState) {
+    appState = AppUtils.deepMerge(newAppState, appState);
+    container.setState(appState);
+}
 
-};
+export function mergeState(newAppState) {
+    appState = AppUtils.merge(newAppState, appState);
+    container.setState(appState);
+}
 
 window.onhashchange = () => {
     new RouteChangedAction(

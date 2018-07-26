@@ -280,6 +280,10 @@ th, td {
     box-sizing: border-box;
 }
 
+.form input[type=checkbox] {
+    margin-right: 8px;
+}
+
 .form .inputContainer {
     position: relative;
     width: calc(100% - 32px);

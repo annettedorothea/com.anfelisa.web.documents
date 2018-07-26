@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/SynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractEditCardOkEvent extends Event {
     constructor(eventData) {
         super(eventData, 'author.EditCardOkEvent');
     }
-	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.editCard" ];
-	}
 }
 
 

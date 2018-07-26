@@ -1,6 +1,4 @@
 import stringify from "json-stable-stringify";
-import * as App from "./App";
-import AppUtils from "./AppUtils";
 
 export default class ReplayUtils {
 
@@ -21,31 +19,12 @@ export default class ReplayUtils {
     static prepareReplay() {
         localStorage.removeItem("username");
         localStorage.removeItem("password");
-        App.container.setState({
-            route: "",
-            data : {},
-            username: undefined,
-            password: undefined,
-            role: undefined,
-            language: undefined,
-            toast: undefined,
-            displaySpinner: false
-        });
     }
 
     static tearDownReplay() {
         localStorage.removeItem("username");
         localStorage.removeItem("password");
-        App.container.setState({
-            route: "",
-            data : {},
-            username: undefined,
-            password: undefined,
-            role: undefined,
-            language: undefined,
-            toast: undefined,
-            displaySpinner: false
-        });
+        window.location.hash = "#";
     }
 
 }

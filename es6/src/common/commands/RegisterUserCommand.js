@@ -16,7 +16,6 @@ export default class RegisterUserCommand extends AbstractRegisterUserCommand {
                 this.commandData.messageKey = "confirmEmail";
                 resolve();
             }, (error) => {
-                error.errorKey = "registerUserFailed";
                 this.commandData.error = error;
                 this.commandData.outcome = this.error;
                 resolve();

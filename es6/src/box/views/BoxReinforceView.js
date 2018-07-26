@@ -6,33 +6,33 @@ export default class BoxReinforceView {
         data.index = 0;
         data.enableScoreButtons = false;
         data.displayImage = false;
-        App.container.setState({
+        App.mergeState({
             route: "reinforce-card",
             data
         });
 	};
 	
 	static displayNextItem(eventData) {
-        let data = App.container.state.data;
-        data.index = eventData.index;
-        App.container.setState({
-            data
+        App.deepMergeState({
+            data: {
+                index: eventData.index
+            }
         });
 	};
 	
 	static displayImage(eventData) {
-        let data = App.container.state.data;
-        data.displayImage = true;
-        App.container.setState({
-            data
+        App.deepMergeState({
+            data: {
+                displayImage: true
+            }
         });
 	};
 	
 	static enableScoreButtons(eventData) {
-        let data = App.container.state.data;
-        data.enableScoreButtons = true;
-        App.container.setState({
-            data
+        App.deepMergeState({
+            data: {
+                enableScoreButtons: true
+            }
         });
 	};
 	

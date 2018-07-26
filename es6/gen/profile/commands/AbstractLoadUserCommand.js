@@ -2,7 +2,6 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadUserOkEvent from "../../../src/profile/events/LoadUserOkEvent";
 import LoadUserUnauthorizedEvent from "../../../src/profile/events/LoadUserUnauthorizedEvent";
-import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadUserCommand extends Command {
@@ -21,7 +20,6 @@ export default class AbstractLoadUserCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new LoadUserUnauthorizedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

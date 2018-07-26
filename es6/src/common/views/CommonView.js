@@ -8,54 +8,62 @@ export default class CommonView {
     };
 
     static initTexts(eventData) {
-        App.container.setState({
+        App.mergeState({
             texts: Texts,
-            language: eventData.language
+            language: eventData.language,
+            toast: undefined,
+            username: undefined,
+            password: undefined,
+            role: undefined,
+            displaySpinner: false,
+            route: "",
+            data: {
+                username: "",
+                saveInLocalStorage: false
+            }
         });
     }
 
     static displaySpinner(eventData) {
-        App.container.setState({
+        App.deepMergeState({
             displaySpinner: true
         });
     }
 
     static hideSpinner(eventData) {
-        App.container.setState({
+        App.deepMergeState({
             displaySpinner: false
         });
     }
 
     static displayError(eventData) {
-        let state = App.container.state;
-        const toast = {
-            type: "error",
-            text: state.texts.errors[eventData.error.errorKey][state.language]
-        };
-        App.container.setState({
-            toast
+        const text = App.appState.texts.errors[eventData.error.errorKey] && App.appState.texts.errors[eventData.error.errorKey][App.appState.language] ?
+            App.appState.texts.errors[eventData.error.errorKey][App.appState.language] : App.appState.texts.errors["unknownError"][App.appState.language].replace("{0}", eventData.error.errorKey);
+        App.deepMergeState({
+            toast: {
+                type: "error",
+                text
+            }
         });
     }
 
     static displayMessage(eventData) {
-        let state = App.container.state;
-        const toast = {
-            type: "info",
-            text: state.texts.messages[eventData.messageKey][state.language]
-        };
-        App.container.setState({
-            toast
+        App.deepMergeState({
+            toast: {
+                type: "info",
+                text: App.appState.texts.messages[eventData.messageKey][App.appState.language]
+            }
         });
     }
 
     static clearToast(eventData) {
-        App.container.setState({
+        App.deepMergeState({
             toast: undefined
         });
     }
 
     static initUser(eventData) {
-        App.container.setState({
+        App.deepMergeState({
             username: eventData.username,
             password: eventData.password,
             role: eventData.role
@@ -67,8 +75,8 @@ export default class CommonView {
         localStorage.setItem("password", eventData.password);
     }
 
-    static resetUser(eventData) {
-        App.container.setState({
+    static resetUser() {
+        App.deepMergeState({
             username: undefined,
             password: undefined,
             role: undefined

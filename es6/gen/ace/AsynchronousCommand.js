@@ -9,23 +9,17 @@ export default class AsynchronousCommand extends Command {
 			if (ACEController.execution !== ACEController.REPLAY) {
 			    this.execute().then(() => {
 			        ACEController.addItemToTimeLine({command: this});
-			        this.publishEvents().then(() => {
-			            resolve();
-			        }, (error) => {
-			            reject(error + "\n" + this.commandName);
-			        });
+			        this.publishEvents();
+			        resolve();
 			    }, (error) => {
-			        reject(error + "\n" + this.commandName);
+			        reject(error);
 			    });
 			} else {
 			    const timelineCommand = ACEController.getCommandByUuid(this.commandData.uuid);
 			    this.commandData = timelineCommand.commandData;
 			    ACEController.addItemToTimeLine({command: this});
-			    this.publishEvents().then(() => {
-			        resolve();
-			    }, (error) => {
-			        reject(error + "\n" + this.commandName);
-			    });
+		        this.publishEvents();
+		        resolve();
 			}
         });
     }

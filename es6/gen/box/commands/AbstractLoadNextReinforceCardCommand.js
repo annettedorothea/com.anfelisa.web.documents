@@ -4,7 +4,6 @@ import LoadNextReinforceCardOkEvent from "../../../src/box/events/LoadNextReinfo
 import LoadNextReinforceCardUnauthorizedEvent from "../../../src/box/events/LoadNextReinforceCardUnauthorizedEvent";
 import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
-import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadNextReinforceCardCommand extends Command {
@@ -28,7 +27,6 @@ export default class AbstractLoadNextReinforceCardCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new LoadNextReinforceCardUnauthorizedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

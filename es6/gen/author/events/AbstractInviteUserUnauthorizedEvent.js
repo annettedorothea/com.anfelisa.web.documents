@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/AsynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractInviteUserUnauthorizedEvent extends Event {
     constructor(eventData) {
         super(eventData, 'author.InviteUserUnauthorizedEvent');
     }
-	getNotifiedListeners() {
-	    return [ "common.views.CommonView.displayError" ];
-	}
 }
 
 

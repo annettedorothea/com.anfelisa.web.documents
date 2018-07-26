@@ -3,7 +3,6 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import CreateCardOkEvent from "../../../src/author/events/CreateCardOkEvent";
 import CreateCardUnauthorizedEvent from "../../../src/author/events/CreateCardUnauthorizedEvent";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
-import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractCreateCardCommand extends Command {
@@ -23,7 +22,6 @@ export default class AbstractCreateCardCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new CreateCardUnauthorizedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

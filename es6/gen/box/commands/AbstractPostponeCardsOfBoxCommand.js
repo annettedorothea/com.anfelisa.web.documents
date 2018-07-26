@@ -3,7 +3,6 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import PostponeCardsOfBoxUnauthorizedEvent from "../../../src/box/events/PostponeCardsOfBoxUnauthorizedEvent";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
-import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractPostponeCardsOfBoxCommand extends Command {
@@ -26,7 +25,6 @@ export default class AbstractPostponeCardsOfBoxCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new PostponeCardsOfBoxUnauthorizedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

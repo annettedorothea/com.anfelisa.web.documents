@@ -3,7 +3,6 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import UpdateCategoryOkEvent from "../../../src/author/events/UpdateCategoryOkEvent";
 import UpdateCategoryUnauthorizedEvent from "../../../src/author/events/UpdateCategoryUnauthorizedEvent";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
-import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractUpdateCategoryCommand extends Command {
@@ -23,7 +22,6 @@ export default class AbstractUpdateCategoryCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new UpdateCategoryUnauthorizedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

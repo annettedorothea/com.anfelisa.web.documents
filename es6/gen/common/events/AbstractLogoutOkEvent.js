@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/SynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractLogoutOkEvent extends Event {
     constructor(eventData) {
         super(eventData, 'common.LogoutOkEvent');
     }
-	getNotifiedListeners() {
-	    return [ "common.views.CommonView.resetUser" ];
-	}
 }
 
 

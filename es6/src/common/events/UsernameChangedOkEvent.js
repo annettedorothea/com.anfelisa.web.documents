@@ -1,7 +1,7 @@
-import AbstractLoginUnauthorizedEvent from "../../../gen/common/events/AbstractLoginUnauthorizedEvent";
+import AbstractUsernameChangedOkEvent from "../../../gen/common/events/AbstractUsernameChangedOkEvent";
 import AppUtils from "../../app/AppUtils";
 
-export default class LoginUnauthorizedEvent extends AbstractLoginUnauthorizedEvent {
+export default class UsernameChangedOkEvent extends AbstractUsernameChangedOkEvent {
     prepareDataForView() {
         this.eventData = AppUtils.deepCopy(this.eventData);
         if (this.eventData.data === undefined) {

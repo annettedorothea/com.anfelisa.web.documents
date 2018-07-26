@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/SynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractPassValueToDictionaryOkEvent extends Event {
     constructor(eventData) {
         super(eventData, 'author.PassValueToDictionaryOkEvent');
     }
-	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.setDictionaryValue" ];
-	}
 }
 
 

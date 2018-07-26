@@ -1,4 +1,5 @@
 import AppUtils from "../../src/app/AppUtils";
+import ACEController from "./ACEController";
 
 export default class Event {
     constructor(eventData, eventName) {
@@ -10,8 +11,24 @@ export default class Event {
         throw "no prepareDataForView method defined for " + this.eventName;
     }
 
-    getNotifiedListeners() {
-        return [];
+    publish() {
+        this.prepareDataForView();
+        this.notifyListeners();
+        this.eventData.appState = AppUtils.getAppState();
+		ACEController.addItemToTimeLine({event: this});
+    }
+
+    notifyListeners() {
+        let i, listener;
+        if (this.eventName !== undefined) {
+            const listenersForEvent = ACEController.listeners[this.eventName];
+            if (listenersForEvent !== undefined) {
+                for (i = 0; i < listenersForEvent.length; i += 1) {
+                    listener = listenersForEvent[i];
+					listener(AppUtils.deepCopy(this.eventData));
+                }
+            }
+        }
     }
 
 }

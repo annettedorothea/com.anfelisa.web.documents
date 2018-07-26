@@ -2,7 +2,7 @@ import * as App from "../../app/App";
 
 export default class ForgotPasswordView {
     static render(eventData) {
-        App.container.setState({
+        App.mergeState({
             route: "forgot-password",
             data: {}
         });

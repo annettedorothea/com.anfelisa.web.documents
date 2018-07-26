@@ -2,15 +2,15 @@ import React from 'react';
 import CryptoJS from "crypto-js";
 import RouteAction from "../common/actions/RouteAction";
 import LoginAction from "../common/actions/LoginAction";
+import UsernameChangedInLoginAction from "../common/actions/UsernameChangedInLoginAction";
+import ToggleSaveInLocalStorageAction from "../common/actions/ToggleSaveInLocalStorageAction";
 
 export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            password: "",
-            saveInLocalStorage: false
+            password: ""
         };
         this.onUsernameChange = this.onUsernameChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
@@ -20,7 +20,7 @@ export default class Login extends React.Component {
 
     onUsernameChange(event) {
         const username = event.target.value;
-        this.setState({username});
+        new UsernameChangedInLoginAction({username}).apply();
     }
 
     onPasswordChange(event) {
@@ -29,15 +29,14 @@ export default class Login extends React.Component {
     }
 
     onToggleSaveInLocalStorage() {
-        const saveInLocalStorage = !this.state.saveInLocalStorage;
-        this.setState({saveInLocalStorage});
+        new ToggleSaveInLocalStorageAction({
+            saveInLocalStorage: this.props.data.saveInLocalStorage
+        }).apply();
     }
 
     onLogin() {
         const data = {
-            username: this.state.username,
-            password: this.state.password,
-            saveInLocalStorage: this.state.saveInLocalStorage
+            password: this.state.password
         };
         new LoginAction(data).apply();
     }
@@ -52,6 +51,7 @@ export default class Login extends React.Component {
                         <input
                             type={"text"}
                             onChange={this.onUsernameChange}
+                            value={this.props.data.username}
                         />
                         <a onClick={() => new RouteAction({hash: "#registration"}).apply()}>{this.props.texts.login.registration[this.props.language]}</a>
                     </div>
@@ -64,7 +64,12 @@ export default class Login extends React.Component {
                         <a onClick={() => new RouteAction({hash: "#forgotpassword"}).apply()}>{this.props.texts.login.forgotPassword[this.props.language]}</a>
                     </div>
                     <div className="line">
-                        <input id="saveInLocalStorage" type={"checkbox"} onChange={this.onToggleSaveInLocalStorage}/>
+                        <input
+                            id="saveInLocalStorage"
+                            type={"checkbox"}
+                            onChange={this.onToggleSaveInLocalStorage}
+                            value={this.props.data.saveInLocalStorage}
+                        />
                         <label htmlFor="saveInLocalStorage">
                             {this.props.texts.login.saveInLocalStorage[this.props.language]}
                         </label>
@@ -72,7 +77,8 @@ export default class Login extends React.Component {
                             className="small-font">{this.props.texts.login.saveInLocalStorageHint[this.props.language]}</div>
                     </div>
                     <div className="moreMarginLine hCenter">
-                        <button className="primary" onClick={this.onLogin}>{this.props.texts.login.signin[this.props.language]}</button>
+                        <button className="primary"
+                                onClick={this.onLogin}>{this.props.texts.login.signin[this.props.language]}</button>
                     </div>
                 </div>
             </div>

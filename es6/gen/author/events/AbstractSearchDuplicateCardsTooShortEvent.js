@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/AsynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractSearchDuplicateCardsTooShortEvent extends Event {
     constructor(eventData) {
         super(eventData, 'author.SearchDuplicateCardsTooShortEvent');
     }
-	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.resetDuplicates" ];
-	}
 }
 
 

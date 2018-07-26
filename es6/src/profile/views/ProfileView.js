@@ -2,7 +2,7 @@ import * as App from "../../app/App";
 
 export default class ProfileView {
 	static render(eventData) {
-        App.container.setState({
+        App.mergeState({
             route: "profile",
             data : eventData
         });

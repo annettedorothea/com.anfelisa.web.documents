@@ -1,20 +1,19 @@
 import React from 'react';
 import CryptoJS from "crypto-js";
 import RouteAction from "../common/actions/RouteAction";
-import CheckUsernameAction from "../common/actions/CheckUsernameAction"
-import CreateUserAction from "../common/actions/RegisterUserAction";
+import RegisterUserAction from "../common/actions/RegisterUserAction";
+import AppUtils from "../app/AppUtils";
+import UsernameChangedAction from "../common/actions/UsernameChangedAction";
+import PasswordChangedAction from "../common/actions/PasswordChangedAction";
+import EmailChangedAction from "../common/actions/EmailChangedAction";
 
 export default class Registration extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            email: '',
             password: '',
-            passwordRepetition: '',
-            passwordMismatch: false,
-            emailInvalid: false
+            passwordRepetition: ''
         };
         this.onUsernameChange = this.onUsernameChange.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
@@ -25,28 +24,25 @@ export default class Registration extends React.Component {
 
     onUsernameChange(event) {
         const username = event.target.value;
-        this.setState({username});
-        new CheckUsernameAction({username}).apply();
+        new UsernameChangedAction({username}).apply();
     }
 
     onEmailChange(event) {
         const email = event.target.value;
-        let emailInvalid = false;
-        if (/(.+)@(.+){2,}\.(.+){2,}/.test(email) === false) {
-            emailInvalid = true;
-        } else {
-        }
-        this.setState({email, emailInvalid});
+        new EmailChangedAction({email}).apply();
     }
 
     onPasswordChange(event) {
         const password = CryptoJS.MD5(event.target.value).toString();
         this.setState(
             {
-                password,
-                passwordMismatch: password !== this.state.passwordRepetition
+                password
             }
         );
+        new PasswordChangedAction({
+            password,
+            passwordRepetition: this.state.passwordRepetition
+        }).apply();
     }
 
     onPasswordRepetitionChange(event) {
@@ -54,20 +50,22 @@ export default class Registration extends React.Component {
         this.setState({passwordRepetition});
         this.setState(
             {
-                passwordRepetition,
-                passwordMismatch: passwordRepetition !== this.state.password
+                passwordRepetition
             }
         );
+        new PasswordChangedAction({
+            passwordRepetition,
+            password: this.state.password
+        }).apply();
     }
 
     onRegister() {
         const data = {
-            username: this.state.username,
-            email: this.state.email,
             password: this.state.password,
-            language: this.props.language
+            language: this.props.language,
+            token: AppUtils.createUUID()
         };
-        new CreateUserAction(data).apply();
+        new RegisterUserAction(data).apply();
     }
 
     render() {
@@ -82,13 +80,13 @@ export default class Registration extends React.Component {
                                 type={"text"}
                                 onChange={this.onUsernameChange}
                                 autoComplete="off"
-                                value={this.state.username}
+                                value={this.props.data.username}
                             />
                             {this.props.data.displayUsernameSpinner === true &&
                             <i className="fas fa-cog fa-spin inside"/>}
-                            {this.props.data.usernameAvailable === true && this.state.username.length > 0 &&
+                            {this.props.data.usernameAvailable === true && this.props.data.username.length > 0 &&
                             <i className="fas fa-check outside success"/>}
-                            {this.props.data.usernameAvailable === false && this.state.username.length > 0 &&
+                            {this.props.data.usernameAvailable === false && this.props.data.username.length > 0 &&
                             <i className="fas fa-times outside error"/>}
                         </div>
                     </div>
@@ -110,7 +108,7 @@ export default class Registration extends React.Component {
                                 onChange={this.onPasswordRepetitionChange}
                                 autoComplete="off"
                             />
-                            {this.state.passwordMismatch === true &&
+                            {this.props.data.passwordMismatch === true &&
                             <i className="fas fa-times outside error"/>}
                         </div>
                     </div>
@@ -121,19 +119,19 @@ export default class Registration extends React.Component {
                                 type={"text"}
                                 onChange={this.onEmailChange}
                                 autoComplete="off"
-                                value={this.state.email}
+                                value={this.props.data.email}
                             />
-                            {this.state.emailInvalid === true && this.state.email.length > 0 &&
+                            {this.props.data.emailInvalid === true && this.props.data.email.length > 0 &&
                             <i className="fas fa-times outside error"/>}
                         </div>
                     </div>
                     <div className="moreMarginLine hCenter">
                         <button onClick={this.onRegister}
                                 disabled={this.props.data.usernameAvailable === false ||
-                                this.state.username.length === 0 ||
-                                this.state.email.length === 0 ||
+                                this.props.data.username.length === 0 ||
+                                this.props.data.email.length === 0 ||
                                 this.state.password.length === 0 ||
-                                this.state.passwordMismatch === true
+                                this.props.data.passwordMismatch === true
                                 }>
                             {this.props.texts.registration.register[this.props.language]}
                         </button>

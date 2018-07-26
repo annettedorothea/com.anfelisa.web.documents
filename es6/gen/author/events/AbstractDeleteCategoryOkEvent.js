@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/AsynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractDeleteCategoryOkEvent extends Event {
     constructor(eventData) {
         super(eventData, 'author.DeleteCategoryOkEvent');
     }
-	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.hideConfirmCategoryDelete" ];
-	}
 }
 
 

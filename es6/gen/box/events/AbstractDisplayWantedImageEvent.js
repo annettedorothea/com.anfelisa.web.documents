@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/SynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractDisplayWantedImageEvent extends Event {
     constructor(eventData) {
         super(eventData, 'box.DisplayWantedImageEvent');
     }
-	getNotifiedListeners() {
-	    return [ "box.views.BoxView.displayImage", "box.views.BoxView.enableScoreButtons" ];
-	}
 }
 
 

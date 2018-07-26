@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/AsynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractLoadBoxStatisticsOkEvent extends Event {
     constructor(eventData) {
         super(eventData, 'box.LoadBoxStatisticsOkEvent');
     }
-	getNotifiedListeners() {
-	    return [ "box.views.BoxView.renderStatistics" ];
-	}
 }
 
 

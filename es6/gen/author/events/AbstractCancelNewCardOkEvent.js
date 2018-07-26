@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/SynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractCancelNewCardOkEvent extends Event {
     constructor(eventData) {
         super(eventData, 'author.CancelNewCardOkEvent');
     }
-	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.resetNewCardValues" ];
-	}
 }
 
 

@@ -3,7 +3,6 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import DeleteCategoryOkEvent from "../../../src/author/events/DeleteCategoryOkEvent";
 import DeleteCategoryUnauthorizedEvent from "../../../src/author/events/DeleteCategoryUnauthorizedEvent";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
-import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractDeleteCategoryCommand extends Command {
@@ -23,7 +22,6 @@ export default class AbstractDeleteCategoryCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new DeleteCategoryUnauthorizedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:

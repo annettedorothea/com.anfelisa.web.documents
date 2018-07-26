@@ -3,21 +3,13 @@ import Spinner from "./Spinner";
 import AnonymousContainer from "./AnonymousContainer";
 import UserContainer from "./UserContainer";
 import ToastContainer from "./ToastContainer";
+import * as App from "../app/App";
 
 export default class Container extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            toast: undefined,
-            username: undefined,
-            password: undefined,
-            role: undefined,
-            language: undefined,
-            displaySpinner: false,
-            route: "",
-            data: {}
-        };
+        this.state = App.appState;
     }
 
     render() {

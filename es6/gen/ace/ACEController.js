@@ -76,8 +76,7 @@ export default class ACEController {
 			        setTimeout(ACEController.applyNextActions, pauseInMillis);
 			    }, (error) => {
 			        ACEController.actionIsProcessing = false;
-			        console.error(error + "\n" + action.actionName);
-			        AppUtils.displayUnexpectedError(error + "\n" + action.actionName);
+			        AppUtils.displayUnexpectedError(error);
 			    });
 			} else {
 				try {
@@ -85,8 +84,7 @@ export default class ACEController {
 			        setTimeout(ACEController.applyNextActions, pauseInMillis);
 				} catch(error) {
 			        ACEController.actionIsProcessing = false;
-			        console.error(error + "\n" + action.actionName);
-			        AppUtils.displayUnexpectedError(error + "\n" + action.actionName);
+			        AppUtils.displayUnexpectedError(error);
 			        setTimeout(ACEController.applyNextActions, pauseInMillis);
 				}
 			}

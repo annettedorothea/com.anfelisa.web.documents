@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/SynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractDeleteCardClickOkEvent extends Event {
     constructor(eventData) {
         super(eventData, 'author.DeleteCardClickOkEvent');
     }
-	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.displayConfirmCardDelete" ];
-	}
 }
 
 

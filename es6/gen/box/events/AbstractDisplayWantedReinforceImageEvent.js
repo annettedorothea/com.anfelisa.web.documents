@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/SynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractDisplayWantedReinforceImageEvent extends Event {
     constructor(eventData) {
         super(eventData, 'box.DisplayWantedReinforceImageEvent');
     }
-	getNotifiedListeners() {
-	    return [ "box.views.BoxReinforceView.displayImage", "box.views.BoxReinforceView.enableScoreButtons" ];
-	}
 }
 
 

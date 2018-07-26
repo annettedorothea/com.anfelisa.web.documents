@@ -2,39 +2,98 @@ import * as App from "../../app/App";
 
 export default class RegistrationView {
 
-	static render(eventData) {
-        App.container.setState({
+	static render() {
+        App.mergeState({
             route: "registration",
             data: {
                 displayUsernameSpinner: false,
-                usernameAvailable: undefined
+                usernameAvailable: undefined,
+                username: "",
+                email: "",
+                emailInvalid: false,
+                passwordMismatch: false
+            }
+        });
+	};
+	
+	static usernameChanged(eventData) {
+        App.deepMergeState({
+            data : {
+                username: eventData.username
             }
         });
 	};
 	
 	static usernameAvailable(eventData) {
-	    let data = App.container.state.data;
-	    data.usernameAvailable = true;
-        App.container.setState({data});
+        App.deepMergeState({
+            data : {
+                usernameAvailable: true
+            }
+        });
 	};
-	
-	static usernameNotAvailable(eventData) {
-        let data = App.container.state.data;
-        data.usernameAvailable = false;
-        App.container.setState({data});
+
+	static usernameNotAvailable() {
+        App.deepMergeState({
+            data : {
+                usernameAvailable: false
+            }
+        });
 	};
 
     static displayUsernameSpinner() {
-        let data = App.container.state.data;
-        data.displayUsernameSpinner = true;
-        App.container.setState({data});
+        App.deepMergeState({
+            data : {
+                displayUsernameSpinner: true
+            }
+        });
     };
 
     static hideUsernameSpinner() {
-        let data = App.container.state.data;
-        data.displayUsernameSpinner = false;
-        App.container.setState({data});
+        App.deepMergeState({
+            data : {
+                displayUsernameSpinner: false
+            }
+        });
     };
+
+    static emailChanged(eventData) {
+        App.deepMergeState({
+            data : {
+                email: eventData.email
+            }
+        });
+    }
+
+    static emailValid() {
+        App.deepMergeState({
+            data : {
+                emailInvalid: false
+            }
+        });
+    }
+
+    static emailInvalid() {
+        App.deepMergeState({
+            data : {
+                emailInvalid: true
+            }
+        });
+    }
+
+    static passwordMismatch() {
+        App.deepMergeState({
+            data : {
+                passwordMismatch: true
+            }
+        });
+    }
+    static passwordMatch() {
+        App.deepMergeState({
+            data : {
+                passwordMismatch: false
+            }
+        });
+    }
 
 }
 

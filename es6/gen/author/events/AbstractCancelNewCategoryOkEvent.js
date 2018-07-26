@@ -1,12 +1,9 @@
-import Event from "../../../gen/ace/SynchronousEvent";
+import Event from "../../../gen/ace/Event";
 
 export default class AbstractCancelNewCategoryOkEvent extends Event {
     constructor(eventData) {
         super(eventData, 'author.CancelNewCategoryOkEvent');
     }
-	getNotifiedListeners() {
-	    return [ "author.views.CategoriesView.resetNewCategoryValues" ];
-	}
 }
 
 

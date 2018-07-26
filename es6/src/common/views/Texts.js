@@ -204,14 +204,20 @@ export const Texts = {
         fileTooBig: {
             de: "Die Datei ist zu groß."
         },
+        failedToSendEmail: {
+            de: "Die Email konnte nicht versendet werden."
+        },
         noImageFile: {
             de: "Es dürfen nur Bilder hochgeladen werden."
         },
-        registerUserFailed: {
-            de: "Die Registrierung ist fehlgeschlagen."
+        usernameAlreadyTaken: {
+            de: "Die Registrierung ist fehlgeschlagen, weil der Benutzername nicht mehr frei ist. Bitte versuche es mit einem anderen Benutzernamen."
         },
         unauthorized: {
             de: "Zugriff verweigert."
+        },
+        unknownError: {
+            de: "Unbekannter Fehler: {0}."
         },
         userDoesNotExist: {
             de: "Benutzer wurde nicht gefunden."
@@ -245,7 +251,7 @@ export const Texts = {
             de: "Angemeldet bleiben."
         },
         saveInLocalStorageHint: {
-            de: "Wenn Du angemeldet bleiben willst, wird ein Cookie gesetzt. Das bedeutet, dass Deine Logindaten verschlüsselt in Deinem Browser gespeichert werden und Du Dich später nicht erneut anmelden musst."
+            de: "Wenn Du angemeldet bleiben willst, werden Deine Logindaten verschlüsselt in Deinem Browser gespeichert, so dass du dich später nicht erneut anmelden musst."
         },
         signin: {
             de: "Anmelden"

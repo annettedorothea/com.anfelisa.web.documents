@@ -2,7 +2,6 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadCategoriesOkEvent from "../../../src/author/events/LoadCategoriesOkEvent";
 import LoadCategoriesUnauthorizedEvent from "../../../src/author/events/LoadCategoriesUnauthorizedEvent";
-import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadCategoriesCommand extends Command {
@@ -21,7 +20,6 @@ export default class AbstractLoadCategoriesCommand extends Command {
 			break;
 		case this.unauthorized:
 			promises.push(new LoadCategoriesUnauthorizedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new ClearToastAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:
