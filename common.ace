@@ -50,7 +50,7 @@ ACE {
 	}
 	async InitialLogin preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
 		on ok ( Common.initUser ) triggers ( RouteChanged )
-		on unauthorized ( Common.displayError ) triggers ( Logout )
+		on unauthorized triggers ( DisplayError Logout )
 	}
 	UsernameChangedInLogin {
 		on ok (Login.usernameChanged)
@@ -67,15 +67,15 @@ ACE {
 		on ok ( Common.resetUser ) triggers ( Route )
 	}
 	async ForgotPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok (Common.displayMessage) triggers ( Route )
+		on ok triggers ( DisplayMessage Route )
 	}
 	async ConfirmEmail preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok (Common.displayMessage) triggers (Route)
-		on error (Common.displayError) triggers (Route)
+		on ok triggers ( DisplayMessage Route)
+		on error triggers (DisplayError Route)
 	}
 	async ResetPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok (Common.displayMessage) triggers (Route)
-		on error (Common.displayError) triggers ( Route)
+		on ok triggers (DisplayMessage Route)
+		on error triggers (DisplayError Route)
 	}
 	DisplayError {
 		on ok (Common.displayError) triggers (ClearToast)

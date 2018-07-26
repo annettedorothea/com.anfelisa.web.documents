@@ -59,7 +59,6 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.ToggleScheduleCardSelectionOkEvent', CategoriesView.toggleScheduleCardSelection);
 		ACEController.registerListener('author.ToggleAllScheduleCardSelectionOkEvent', CategoriesView.toggleAllScheduleCardSelection);
 		ACEController.registerListener('author.ScheduleSelectedCardsUnauthorizedEvent', CommonView.displayError);
-		ACEController.registerListener('author.InviteUserOkEvent', CommonView.displayMessage);
 		ACEController.registerListener('author.InviteUserUserDoesNotExistEvent', CommonView.displayError);
 		ACEController.registerListener('author.InviteUserUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.RevokeUserAccessClickOkEvent', CategoriesView.displayRevokeUserAccess);

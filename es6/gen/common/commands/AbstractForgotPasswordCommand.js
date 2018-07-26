@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ForgotPasswordOkEvent from "../../../src/common/events/ForgotPasswordOkEvent";
+import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractForgotPasswordCommand extends Command {
@@ -14,7 +14,7 @@ export default class AbstractForgotPasswordCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new ForgotPasswordOkEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new DisplayMessageAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
 			break;
 		default:

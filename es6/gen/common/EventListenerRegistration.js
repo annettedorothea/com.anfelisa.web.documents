@@ -27,18 +27,12 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.PasswordRepetitionChangedMismatchEvent', RegistrationView.passwordMismatch);
 		ACEController.registerListener('common.PasswordRepetitionChangedMatchEvent', RegistrationView.passwordMatch);
 		ACEController.registerListener('common.InitialLoginOkEvent', CommonView.initUser);
-		ACEController.registerListener('common.InitialLoginUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('common.UsernameChangedInLoginOkEvent', LoginView.usernameChanged);
 		ACEController.registerListener('common.ToggleSaveInLocalStorageOkEvent', LoginView.toggleSaveInLocalStorage);
 		ACEController.registerListener('common.LoginSaveInLocalStorageEvent', CommonView.initUser);
 		ACEController.registerListener('common.LoginSaveInLocalStorageEvent', CommonView.saveInLocalStorage);
 		ACEController.registerListener('common.LoginDoNotSaveInLocalStorageEvent', CommonView.initUser);
 		ACEController.registerListener('common.LogoutOkEvent', CommonView.resetUser);
-		ACEController.registerListener('common.ForgotPasswordOkEvent', CommonView.displayMessage);
-		ACEController.registerListener('common.ConfirmEmailOkEvent', CommonView.displayMessage);
-		ACEController.registerListener('common.ConfirmEmailErrorEvent', CommonView.displayError);
-		ACEController.registerListener('common.ResetPasswordOkEvent', CommonView.displayMessage);
-		ACEController.registerListener('common.ResetPasswordErrorEvent', CommonView.displayError);
 		ACEController.registerListener('common.DisplayErrorOkEvent', CommonView.displayError);
 		ACEController.registerListener('common.DisplayErrorAndLogoutOkEvent', CommonView.displayError);
 		ACEController.registerListener('common.DisplayMessageOkEvent', CommonView.displayMessage);

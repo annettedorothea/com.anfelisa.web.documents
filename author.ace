@@ -169,7 +169,7 @@ ACE {
 	}
 
 	async InviteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
-		on ok (common.Common.displayMessage) triggers (LoadCategories)
+		on ok triggers (common.DisplayMessage LoadCategories)
 		on userDoesNotExist (common.Common.displayError) triggers (  LoadCategories )
 		on unauthorized ( common.Common.displayError ) triggers (  common.Logout)
 	}
