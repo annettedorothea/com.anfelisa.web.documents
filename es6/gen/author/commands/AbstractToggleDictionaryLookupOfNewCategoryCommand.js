@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ToggleDictionaryLookupOfNewCategoryOkEvent from "../../../src/author/events/ToggleDictionaryLookupOfNewCategoryOkEvent";
+import ToggleDictionaryLookupOfNewCategoryOkEvent from "../../../gen/author/events/ToggleDictionaryLookupOfNewCategoryOkEvent";
 
 export default class AbstractToggleDictionaryLookupOfNewCategoryCommand extends Command {
     constructor(commandData) {

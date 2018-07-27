@@ -8,13 +8,13 @@ ACE {
 		on noUser ( Common.initTexts ) triggers ( RouteChanged )
 	}
 	RouteChanged {
-		on login (  Login.render )
-		on registration ( Registration.render )
+		on login (  login.Login.render )
+		on registration ( registration.Registration.render )
 		on dashboard triggers (box.LoadBoxes)
 		on profile triggers ( profile.LoadUser )
-		on forgotPassword ( ForgotPassword.render )
-		on confirmEmail triggers (ConfirmEmail)
-		on resetPassword (ResetPassword.render)
+		on forgotPassword ( password.ForgotPassword.render )
+		on confirmEmail triggers (registration.ConfirmEmail)
+		on resetPassword (password.ResetPassword.render)
 		on userList triggers (admin.GetAllUsers) 
 		on categories triggers (author.LoadCategories )
 		on nextCard triggers (box.LoadNextCard)
@@ -24,58 +24,12 @@ ACE {
 	Route {
 		on ok ( Common.updateHash )
 	}
-	UsernameChanged {
-		on ok (Registration.usernameChanged) triggers (CheckUsername)
-	}
-	async CheckUsername preUpdateUI (Registration.displayUsernameSpinner) postUpdateUI (Registration.hideUsernameSpinner) {
-		on empty
-		on available ( Registration.usernameAvailable )
-		on notAvailable ( Registration.usernameNotAvailable )
-	}
-	EmailChanged {
-		on valid (Registration.emailChanged Registration.emailValid)
-		on invalid (Registration.emailChanged Registration.emailInvalid)
-	}
-	PasswordChanged {
-		on mismatch (Registration.passwordMismatch )
-		on match (Registration.passwordMatch )
-	}
-	PasswordRepetitionChanged {
-		on mismatch (Registration.passwordMismatch)
-		on match (Registration.passwordMatch)
-	}
-	async RegisterUser preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok  triggers ( DisplayMessage Route)
-		on error triggers (DisplayError) 
-	}
 	async InitialLogin preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
 		on ok ( Common.initUser ) triggers ( RouteChanged )
 		on unauthorized triggers ( DisplayError Logout )
 	}
-	UsernameChangedInLogin {
-		on ok (Login.usernameChanged)
-	}
-	ToggleSaveInLocalStorage {
-		on ok (Login.toggleSaveInLocalStorage)
-	}
-	async Login preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on saveInLocalStorage ( Common.initUser Common.saveInLocalStorage ) triggers ( Route )
-		on doNotSaveInLocalStorage ( Common.initUser ) triggers ( Route )
-		on unauthorized triggers ( Logout DisplayError)
-	}
 	Logout {
 		on ok ( Common.resetUser ) triggers ( Route )
-	}
-	async ForgotPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok triggers ( DisplayMessage Route )
-	}
-	async ConfirmEmail preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok triggers ( DisplayMessage Route)
-		on error triggers (DisplayError Route)
-	}
-	async ResetPassword preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok triggers (DisplayMessage Route)
-		on error triggers (DisplayError Route)
 	}
 	DisplayError {
 		on ok (Common.displayError) triggers (ClearToast)
@@ -103,29 +57,5 @@ views {
 		saveInLocalStorage
 		resetUser
 		updateHash
-	}
-	Login {
-		render
-		usernameChanged
-		toggleSaveInLocalStorage
-	}
-	Registration {
-		render
-		usernameAvailable
-		usernameNotAvailable
-		displayUsernameSpinner
-		hideUsernameSpinner
-		usernameChanged
-		emailChanged
-		emailValid
-		emailInvalid
-		passwordMismatch
-		passwordMatch
-	}
-	ForgotPassword {
-		render
-	}
-	ResetPassword {
-		render
 	}
 }

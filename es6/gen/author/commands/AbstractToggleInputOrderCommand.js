@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ToggleInputOrderOkEvent from "../../../src/author/events/ToggleInputOrderOkEvent";
+import ToggleInputOrderOkEvent from "../../../gen/author/events/ToggleInputOrderOkEvent";
 
 export default class AbstractToggleInputOrderCommand extends Command {
     constructor(commandData) {

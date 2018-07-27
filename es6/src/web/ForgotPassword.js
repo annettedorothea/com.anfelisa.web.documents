@@ -1,29 +1,26 @@
 import React from 'react';
 import RouteAction from "../common/actions/RouteAction";
-import ForgotPasswordAction from "../common/actions/ForgotPasswordAction";
+import ForgotPasswordAction from "../password/actions/ForgotPasswordAction";
+import UsernameChangedAction from "../password/actions/UsernameChangedAction";
+import AppUtils from "../app/AppUtils";
 
 export default class ForgotPassword extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            username: ''
-        };
         this.onUsernameChange = this.onUsernameChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
     onUsernameChange(event) {
         const username = event.target.value;
-        this.setState({username});
+        new UsernameChangedAction({username}).apply();
     }
 
     onSubmit() {
-        const data = {
-            username: this.state.username,
-            language: this.props.language
-        };
-        new ForgotPasswordAction(data).apply();
+        new ForgotPasswordAction({
+            token: AppUtils.createUUID()
+        }).apply();
     }
 
     render() {
@@ -37,12 +34,12 @@ export default class ForgotPassword extends React.Component {
                             type={"text"}
                             onChange={this.onUsernameChange}
                             autoComplete="off"
-                            value={this.state.username}
+                            value={this.props.data.username}
                         />
                     </div>
                     <div className="moreMarginLine hCenter">
                         <button onClick={this.onSubmit}
-                                disabled={this.state.username.length === 0}>
+                                disabled={this.props.data.username.length === 0}>
                             {this.props.texts.forgotPassword.submit[this.props.language]}
                         </button>
                         <button

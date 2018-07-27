@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import LoadWantedImageOfNewCardOkEvent from "../../../src/author/events/LoadWantedImageOfNewCardOkEvent";
+import LoadWantedImageOfNewCardOkEvent from "../../../gen/author/events/LoadWantedImageOfNewCardOkEvent";
 
 export default class AbstractLoadWantedImageOfNewCardCommand extends Command {
     constructor(commandData) {

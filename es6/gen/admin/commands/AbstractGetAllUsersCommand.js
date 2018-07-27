@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import GetAllUsersOkEvent from "../../../src/admin/events/GetAllUsersOkEvent";
-import GetAllUsersUnauthorizedEvent from "../../../src/admin/events/GetAllUsersUnauthorizedEvent";
+import GetAllUsersOkEvent from "../../../gen/admin/events/GetAllUsersOkEvent";
+import GetAllUsersUnauthorizedEvent from "../../../gen/admin/events/GetAllUsersUnauthorizedEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractGetAllUsersCommand extends Command {

@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DeleteCardClickOkEvent from "../../../src/author/events/DeleteCardClickOkEvent";
+import DeleteCardClickOkEvent from "../../../gen/author/events/DeleteCardClickOkEvent";
 
 export default class AbstractDeleteCardClickCommand extends Command {
     constructor(commandData) {

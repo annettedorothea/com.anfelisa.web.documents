@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DeleteUserUnauthorizedEvent from "../../../src/profile/events/DeleteUserUnauthorizedEvent";
-import DeleteUserBadRequestEvent from "../../../src/profile/events/DeleteUserBadRequestEvent";
+import DeleteUserUnauthorizedEvent from "../../../gen/profile/events/DeleteUserUnauthorizedEvent";
+import DeleteUserBadRequestEvent from "../../../gen/profile/events/DeleteUserBadRequestEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractDeleteUserCommand extends Command {

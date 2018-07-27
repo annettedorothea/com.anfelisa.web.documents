@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import PassValueToDictionaryOkEvent from "../../../src/author/events/PassValueToDictionaryOkEvent";
+import PassValueToDictionaryOkEvent from "../../../gen/author/events/PassValueToDictionaryOkEvent";
 
 export default class AbstractPassValueToDictionaryCommand extends Command {
     constructor(commandData) {

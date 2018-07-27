@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RouteOkEvent from "../../../src/common/events/RouteOkEvent";
+import RouteOkEvent from "../../../gen/common/events/RouteOkEvent";
 
 export default class AbstractRouteCommand extends Command {
     constructor(commandData) {

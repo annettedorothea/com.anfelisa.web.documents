@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import NameOfEditedCategoryChangedOkEvent from "../../../src/author/events/NameOfEditedCategoryChangedOkEvent";
+import NameOfEditedCategoryChangedOkEvent from "../../../gen/author/events/NameOfEditedCategoryChangedOkEvent";
 
 export default class AbstractNameOfEditedCategoryChangedCommand extends Command {
     constructor(commandData) {

@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import EditBoxOkEvent from "../../../src/box/events/EditBoxOkEvent";
+import EditBoxOkEvent from "../../../gen/box/events/EditBoxOkEvent";
 
 export default class AbstractEditBoxCommand extends Command {
     constructor(commandData) {

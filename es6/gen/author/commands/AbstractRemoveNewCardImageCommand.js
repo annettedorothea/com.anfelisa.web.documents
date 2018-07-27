@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RemoveNewCardImageOkEvent from "../../../src/author/events/RemoveNewCardImageOkEvent";
+import RemoveNewCardImageOkEvent from "../../../gen/author/events/RemoveNewCardImageOkEvent";
 
 export default class AbstractRemoveNewCardImageCommand extends Command {
     constructor(commandData) {

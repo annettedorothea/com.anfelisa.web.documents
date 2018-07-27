@@ -1,8 +1,8 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DisplayWantedReinforceAllEvent from "../../../src/box/events/DisplayWantedReinforceAllEvent";
-import DisplayWantedReinforceNotAllEvent from "../../../src/box/events/DisplayWantedReinforceNotAllEvent";
-import DisplayWantedReinforceImageEvent from "../../../src/box/events/DisplayWantedReinforceImageEvent";
+import DisplayWantedReinforceAllEvent from "../../../gen/box/events/DisplayWantedReinforceAllEvent";
+import DisplayWantedReinforceNotAllEvent from "../../../gen/box/events/DisplayWantedReinforceNotAllEvent";
+import DisplayWantedReinforceImageEvent from "../../../gen/box/events/DisplayWantedReinforceImageEvent";
 
 export default class AbstractDisplayWantedReinforceCommand extends Command {
     constructor(commandData) {

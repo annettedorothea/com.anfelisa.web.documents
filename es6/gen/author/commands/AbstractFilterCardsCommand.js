@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import FilterCardsOkEvent from "../../../src/author/events/FilterCardsOkEvent";
+import FilterCardsOkEvent from "../../../gen/author/events/FilterCardsOkEvent";
 
 export default class AbstractFilterCardsCommand extends Command {
     constructor(commandData) {

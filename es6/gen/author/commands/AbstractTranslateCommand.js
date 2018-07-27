@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import TranslateWantedFetchedEvent from "../../../src/author/events/TranslateWantedFetchedEvent";
-import TranslateGivenFetchedEvent from "../../../src/author/events/TranslateGivenFetchedEvent";
+import TranslateWantedFetchedEvent from "../../../gen/author/events/TranslateWantedFetchedEvent";
+import TranslateGivenFetchedEvent from "../../../gen/author/events/TranslateGivenFetchedEvent";
 import SearchDuplicateCardsAction from "../../../src/author/actions/SearchDuplicateCardsAction";
 
 export default class AbstractTranslateCommand extends Command {

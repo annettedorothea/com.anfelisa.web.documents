@@ -210,14 +210,6 @@ th, td {
     font-size: 24px;
 }
 
-.shown {
-    display: block;
-}
-
-.hidden {
-    display: none;
-}
-
 .left {
     float: left;
 }
@@ -243,12 +235,11 @@ th, td {
     text-align: center;
     border-radius: 4px;
     margin: 24px;
-    display: inline-block;
-    float: right;
+    display: block;
 }
 
 .toastWrapper {
-    width: auto;
+    width: 400px;
     display: block;
 }
 
@@ -258,6 +249,18 @@ th, td {
 
 .toast.info {
     background-color: #337ab7;
+}
+
+.toastVisible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s linear;
+}
+
+.toastHidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.5s, opacity 0.5s linear;
 }
 
 /* form */
@@ -460,16 +463,6 @@ a:hover.tile .icon::before {
 .lastQuality_5, .quality5 {
     border-color: green;
 }
-
-
-
-
-
-
-
-
-
-
 
 .dictionaryWrapper {
     width: 100%;

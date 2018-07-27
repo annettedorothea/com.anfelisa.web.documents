@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import CreateCardOkEvent from "../../../src/author/events/CreateCardOkEvent";
-import CreateCardUnauthorizedEvent from "../../../src/author/events/CreateCardUnauthorizedEvent";
+import CreateCardOkEvent from "../../../gen/author/events/CreateCardOkEvent";
+import CreateCardUnauthorizedEvent from "../../../gen/author/events/CreateCardUnauthorizedEvent";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 

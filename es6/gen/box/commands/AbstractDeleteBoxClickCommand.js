@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DeleteBoxClickOkEvent from "../../../src/box/events/DeleteBoxClickOkEvent";
+import DeleteBoxClickOkEvent from "../../../gen/box/events/DeleteBoxClickOkEvent";
 
 export default class AbstractDeleteBoxClickCommand extends Command {
     constructor(commandData) {

@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import PostponeCardsOfBoxUnauthorizedEvent from "../../../src/box/events/PostponeCardsOfBoxUnauthorizedEvent";
+import PostponeCardsOfBoxUnauthorizedEvent from "../../../gen/box/events/PostponeCardsOfBoxUnauthorizedEvent";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";

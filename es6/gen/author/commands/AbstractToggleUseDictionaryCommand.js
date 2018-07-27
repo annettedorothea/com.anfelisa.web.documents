@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ToggleUseDictionaryOkEvent from "../../../src/author/events/ToggleUseDictionaryOkEvent";
+import ToggleUseDictionaryOkEvent from "../../../gen/author/events/ToggleUseDictionaryOkEvent";
 
 export default class AbstractToggleUseDictionaryCommand extends Command {
     constructor(commandData) {

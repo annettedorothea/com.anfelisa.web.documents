@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import EditCardOkEvent from "../../../src/author/events/EditCardOkEvent";
+import EditCardOkEvent from "../../../gen/author/events/EditCardOkEvent";
 
 export default class AbstractEditCardCommand extends Command {
     constructor(commandData) {

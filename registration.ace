@@ -1,0 +1,46 @@
+registration
+
+target ES6 
+
+ACE {
+	UsernameChanged {
+		on ok (Registration.usernameChanged) triggers (CheckUsername)
+	}
+	async CheckUsername preUpdateUI (Registration.displayUsernameSpinner) postUpdateUI (Registration.hideUsernameSpinner) {
+		on empty
+		on available ( Registration.usernameAvailable )
+		on notAvailable ( Registration.usernameNotAvailable )
+	}
+	EmailChanged {
+		on valid (Registration.emailChanged Registration.emailValid)
+		on invalid (Registration.emailChanged Registration.emailInvalid)
+	}
+	PasswordChanged {
+		on mismatch (Registration.passwordMismatch )
+		on match (Registration.passwordMatch )
+	}
+	async RegisterUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+		on ok  triggers ( common.DisplayMessage common.Route)
+		on error triggers (common.DisplayError) 
+	}
+	async ConfirmEmail preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+		on ok triggers ( common.DisplayMessage common.Route)
+	}
+	
+}
+
+views {
+	Registration {
+		render
+		usernameAvailable
+		usernameNotAvailable
+		displayUsernameSpinner
+		hideUsernameSpinner
+		usernameChanged
+		emailChanged
+		emailValid
+		emailInvalid
+		passwordMismatch
+		passwordMatch
+	}
+}

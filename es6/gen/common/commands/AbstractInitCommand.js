@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import InitUserEvent from "../../../src/common/events/InitUserEvent";
-import InitNoUserEvent from "../../../src/common/events/InitNoUserEvent";
+import InitUserEvent from "../../../gen/common/events/InitUserEvent";
+import InitNoUserEvent from "../../../gen/common/events/InitNoUserEvent";
 import InitialLoginAction from "../../../src/common/actions/InitialLoginAction";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
 

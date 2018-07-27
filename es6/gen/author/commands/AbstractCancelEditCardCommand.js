@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import CancelEditCardOkEvent from "../../../src/author/events/CancelEditCardOkEvent";
+import CancelEditCardOkEvent from "../../../gen/author/events/CancelEditCardOkEvent";
 
 export default class AbstractCancelEditCardCommand extends Command {
     constructor(commandData) {

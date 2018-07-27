@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import GivenLanguageOfNewCategoryChangedOkEvent from "../../../src/author/events/GivenLanguageOfNewCategoryChangedOkEvent";
+import GivenLanguageOfNewCategoryChangedOkEvent from "../../../gen/author/events/GivenLanguageOfNewCategoryChangedOkEvent";
 
 export default class AbstractGivenLanguageOfNewCategoryChangedCommand extends Command {
     constructor(commandData) {

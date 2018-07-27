@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import WantedOfNewCardChangedOkEvent from "../../../src/author/events/WantedOfNewCardChangedOkEvent";
+import WantedOfNewCardChangedOkEvent from "../../../gen/author/events/WantedOfNewCardChangedOkEvent";
 import SearchDuplicateCardsAction from "../../../src/author/actions/SearchDuplicateCardsAction";
 
 export default class AbstractWantedOfNewCardChangedCommand extends Command {

@@ -1,7 +1,8 @@
 import React from 'react';
 import RouteAction from "../common/actions/RouteAction";
 import CryptoJS from "crypto-js";
-import ResetPasswordAction from "../common/actions/ResetPasswordAction";
+import ResetPasswordAction from "../password/actions/ResetPasswordAction";
+import PasswordChangedAction from "../registration/actions/PasswordChangedAction";
 
 export default class ResetPassword extends React.Component {
 
@@ -9,8 +10,7 @@ export default class ResetPassword extends React.Component {
         super(props);
         this.state = {
             password: '',
-            passwordRepetition: '',
-            passwordMismatch: false
+            passwordRepetition: ''
         };
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onPasswordRepetitionChange = this.onPasswordRepetitionChange.bind(this);
@@ -19,23 +19,24 @@ export default class ResetPassword extends React.Component {
 
     onPasswordChange(event) {
         const password = CryptoJS.MD5(event.target.value).toString();
-        this.setState(
-            {
-                password,
-                passwordMismatch: password !== this.state.passwordRepetition
-            }
-        );
+        this.setState({
+            password
+        });
+        new PasswordChangedAction({
+            password,
+            passwordRepetition: this.state.passwordRepetition
+        }).apply();
     }
 
     onPasswordRepetitionChange(event) {
         const passwordRepetition = CryptoJS.MD5(event.target.value).toString();
-        this.setState({passwordRepetition});
-        this.setState(
-            {
-                passwordRepetition,
-                passwordMismatch: passwordRepetition !== this.state.password
-            }
-        );
+        this.setState({
+            passwordRepetition
+        });
+        new PasswordChangedAction({
+            passwordRepetition,
+            password: this.state.password
+        }).apply();
     }
 
     onSubmit() {
@@ -69,14 +70,14 @@ export default class ResetPassword extends React.Component {
                                 onChange={this.onPasswordRepetitionChange}
                                 autoComplete="off"
                             />
-                            {this.state.passwordMismatch === true &&
+                            {this.props.data.passwordMismatch === true &&
                             <i className="fas fa-times outside error"/>}
                         </div>
                     </div>
                     <div className="moreMarginLine hCenter">
                         <button onClick={this.onSubmit}
                                 disabled={this.state.password.length === 0 ||
-                                this.state.passwordMismatch === true
+                                this.props.data.passwordMismatch === true
                                 }>
                             {this.props.texts.resetPassword.submit[this.props.language]}
                         </button>

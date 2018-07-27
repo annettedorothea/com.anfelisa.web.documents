@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import LoadUserOkEvent from "../../../src/profile/events/LoadUserOkEvent";
-import LoadUserUnauthorizedEvent from "../../../src/profile/events/LoadUserUnauthorizedEvent";
+import LoadUserOkEvent from "../../../gen/profile/events/LoadUserOkEvent";
+import LoadUserUnauthorizedEvent from "../../../gen/profile/events/LoadUserUnauthorizedEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadUserCommand extends Command {

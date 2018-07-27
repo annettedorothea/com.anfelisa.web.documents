@@ -1,8 +1,8 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import SearchDuplicateCardsOkEvent from "../../../src/author/events/SearchDuplicateCardsOkEvent";
-import SearchDuplicateCardsTooShortEvent from "../../../src/author/events/SearchDuplicateCardsTooShortEvent";
-import SearchDuplicateCardsUnauthorizedEvent from "../../../src/author/events/SearchDuplicateCardsUnauthorizedEvent";
+import SearchDuplicateCardsOkEvent from "../../../gen/author/events/SearchDuplicateCardsOkEvent";
+import SearchDuplicateCardsTooShortEvent from "../../../gen/author/events/SearchDuplicateCardsTooShortEvent";
+import SearchDuplicateCardsUnauthorizedEvent from "../../../gen/author/events/SearchDuplicateCardsUnauthorizedEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractSearchDuplicateCardsCommand extends Command {

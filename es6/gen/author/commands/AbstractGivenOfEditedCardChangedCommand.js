@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import GivenOfEditedCardChangedOkEvent from "../../../src/author/events/GivenOfEditedCardChangedOkEvent";
+import GivenOfEditedCardChangedOkEvent from "../../../gen/author/events/GivenOfEditedCardChangedOkEvent";
 
 export default class AbstractGivenOfEditedCardChangedCommand extends Command {
     constructor(commandData) {

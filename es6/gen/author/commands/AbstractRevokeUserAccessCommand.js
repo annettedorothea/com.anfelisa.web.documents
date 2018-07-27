@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RevokeUserAccessOkEvent from "../../../src/author/events/RevokeUserAccessOkEvent";
-import RevokeUserAccessUnauthorizedEvent from "../../../src/author/events/RevokeUserAccessUnauthorizedEvent";
+import RevokeUserAccessOkEvent from "../../../gen/author/events/RevokeUserAccessOkEvent";
+import RevokeUserAccessUnauthorizedEvent from "../../../gen/author/events/RevokeUserAccessUnauthorizedEvent";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 

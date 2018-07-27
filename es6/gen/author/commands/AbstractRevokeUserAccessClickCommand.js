@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RevokeUserAccessClickOkEvent from "../../../src/author/events/RevokeUserAccessClickOkEvent";
+import RevokeUserAccessClickOkEvent from "../../../gen/author/events/RevokeUserAccessClickOkEvent";
 
 export default class AbstractRevokeUserAccessClickCommand extends Command {
     constructor(commandData) {

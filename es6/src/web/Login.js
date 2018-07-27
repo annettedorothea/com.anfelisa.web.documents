@@ -1,9 +1,9 @@
 import React from 'react';
 import CryptoJS from "crypto-js";
 import RouteAction from "../common/actions/RouteAction";
-import LoginAction from "../common/actions/LoginAction";
-import UsernameChangedInLoginAction from "../common/actions/UsernameChangedInLoginAction";
-import ToggleSaveInLocalStorageAction from "../common/actions/ToggleSaveInLocalStorageAction";
+import LoginAction from "../login/actions/LoginAction";
+import UsernameChangedAction from "../login/actions/UsernameChangedAction";
+import ToggleSaveInLocalStorageAction from "../login/actions/ToggleSaveInLocalStorageAction";
 
 export default class Login extends React.Component {
 
@@ -20,7 +20,7 @@ export default class Login extends React.Component {
 
     onUsernameChange(event) {
         const username = event.target.value;
-        new UsernameChangedInLoginAction({username}).apply();
+        new UsernameChangedAction({username}).apply();
     }
 
     onPasswordChange(event) {

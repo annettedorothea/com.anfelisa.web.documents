@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DeleteCardOkEvent from "../../../src/author/events/DeleteCardOkEvent";
-import DeleteCardUnauthorizedEvent from "../../../src/author/events/DeleteCardUnauthorizedEvent";
+import DeleteCardOkEvent from "../../../gen/author/events/DeleteCardOkEvent";
+import DeleteCardUnauthorizedEvent from "../../../gen/author/events/DeleteCardUnauthorizedEvent";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 

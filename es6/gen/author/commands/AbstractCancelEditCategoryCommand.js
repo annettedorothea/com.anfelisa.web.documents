@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import CancelEditCategoryOkEvent from "../../../src/author/events/CancelEditCategoryOkEvent";
+import CancelEditCategoryOkEvent from "../../../gen/author/events/CancelEditCategoryOkEvent";
 
 export default class AbstractCancelEditCategoryCommand extends Command {
     constructor(commandData) {

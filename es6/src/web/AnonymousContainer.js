@@ -7,7 +7,7 @@ import ResetPassword from "./ResetPassword";
 export default class AnonymousContainer extends React.Component {
 
     render() {
-        let content;
+        let content = "";
         switch (this.props.route) {
             case "registration":
                 content = <Registration {...this.props} />;
@@ -19,7 +19,6 @@ export default class AnonymousContainer extends React.Component {
                 content = <ResetPassword {...this.props} />;
                 break;
             case "login":
-            default:
                 content = <Login {...this.props} />;
         }
 

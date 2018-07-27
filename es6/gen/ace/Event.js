@@ -7,12 +7,7 @@ export default class Event {
         this.eventData = AppUtils.deepCopy(eventData);
     }
 
-    prepareDataForView() {
-        throw "no prepareDataForView method defined for " + this.eventName;
-    }
-
     publish() {
-        this.prepareDataForView();
         this.notifyListeners();
         this.eventData.appState = AppUtils.getAppState();
 		ACEController.addItemToTimeLine({event: this});

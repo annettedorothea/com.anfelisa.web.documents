@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import InitialLoginOkEvent from "../../../src/common/events/InitialLoginOkEvent";
+import InitialLoginOkEvent from "../../../gen/common/events/InitialLoginOkEvent";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";

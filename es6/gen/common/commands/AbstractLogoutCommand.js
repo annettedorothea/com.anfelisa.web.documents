@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import LogoutOkEvent from "../../../src/common/events/LogoutOkEvent";
+import LogoutOkEvent from "../../../gen/common/events/LogoutOkEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractLogoutCommand extends Command {

@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ClearToastOkEvent from "../../../src/common/events/ClearToastOkEvent";
+import ClearToastOkEvent from "../../../gen/common/events/ClearToastOkEvent";
 
 export default class AbstractClearToastCommand extends Command {
     constructor(commandData) {

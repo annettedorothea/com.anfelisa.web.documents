@@ -1,8 +1,8 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DisplayWantedAllEvent from "../../../src/box/events/DisplayWantedAllEvent";
-import DisplayWantedNotAllEvent from "../../../src/box/events/DisplayWantedNotAllEvent";
-import DisplayWantedImageEvent from "../../../src/box/events/DisplayWantedImageEvent";
+import DisplayWantedAllEvent from "../../../gen/box/events/DisplayWantedAllEvent";
+import DisplayWantedNotAllEvent from "../../../gen/box/events/DisplayWantedNotAllEvent";
+import DisplayWantedImageEvent from "../../../gen/box/events/DisplayWantedImageEvent";
 
 export default class AbstractDisplayWantedCommand extends Command {
     constructor(commandData) {

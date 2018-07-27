@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import CreateBoxUnauthorizedEvent from "../../../src/box/events/CreateBoxUnauthorizedEvent";
+import CreateBoxUnauthorizedEvent from "../../../gen/box/events/CreateBoxUnauthorizedEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 

@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import LoadBoxesOkEvent from "../../../src/box/events/LoadBoxesOkEvent";
-import LoadBoxesUnauthorizedEvent from "../../../src/box/events/LoadBoxesUnauthorizedEvent";
+import LoadBoxesOkEvent from "../../../gen/box/events/LoadBoxesOkEvent";
+import LoadBoxesUnauthorizedEvent from "../../../gen/box/events/LoadBoxesUnauthorizedEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadBoxesCommand extends Command {

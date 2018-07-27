@@ -15,6 +15,15 @@ import ActionFactoryRegistrationCommon from "../../gen/common/ActionFactoryRegis
 import EventListenerRegistrationProfile from "../../gen/profile/EventListenerRegistration";
 import ActionFactoryRegistrationProfile from "../../gen/profile/ActionFactoryRegistration";
 
+import EventListenerRegistrationRegistration from "../../gen/registration/EventListenerRegistration";
+import ActionFactoryRegistrationRegistration from "../../gen/registration/ActionFactoryRegistration";
+
+import EventListenerRegistrationLogin from "../../gen/login/EventListenerRegistration";
+import ActionFactoryRegistrationLogin from "../../gen/login/ActionFactoryRegistration";
+
+import EventListenerRegistrationPassword from "../../gen/password/EventListenerRegistration";
+import ActionFactoryRegistrationPassword from "../../gen/password/ActionFactoryRegistration";
+
 import Container from "../web/Container";
 import RouteChangedAction from "../common/actions/RouteChangedAction";
 
@@ -28,10 +37,7 @@ const ReactDOM = require('react-dom');
 
 export let appState = {
     route: "",
-    data: {
-        username: "",
-        saveInLocalStorage: false
-    }
+    data: {}
 };
 
 export const container = ReactDOM.render(
@@ -75,6 +81,15 @@ ActionFactoryRegistrationCommon.init();
 
 EventListenerRegistrationProfile.init();
 ActionFactoryRegistrationProfile.init();
+
+EventListenerRegistrationRegistration.init();
+ActionFactoryRegistrationRegistration.init();
+
+EventListenerRegistrationLogin.init();
+ActionFactoryRegistrationLogin.init();
+
+EventListenerRegistrationPassword.init();
+ActionFactoryRegistrationPassword.init();
 
 AppUtils.start();
 

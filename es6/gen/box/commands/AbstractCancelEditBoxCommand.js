@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import CancelEditBoxOkEvent from "../../../src/box/events/CancelEditBoxOkEvent";
+import CancelEditBoxOkEvent from "../../../gen/box/events/CancelEditBoxOkEvent";
 
 export default class AbstractCancelEditBoxCommand extends Command {
     constructor(commandData) {

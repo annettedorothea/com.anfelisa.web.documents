@@ -8,8 +8,8 @@ export default class Toast extends React.Component {
 
     render() {
         return (
-            <div className="toastWrapper">
-            <div className={`toast ${this.props.type}`}>{this.props.text}</div>
+            <div className={`toastWrapper ${this.props.visible === true ? "toastVisible": "toastHidden" }`}>
+                <div className={`toast ${this.props.type}`}>{this.props.text}</div>
             </div>
         );
     }

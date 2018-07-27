@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ToggleAllScheduleCardSelectionOkEvent from "../../../src/author/events/ToggleAllScheduleCardSelectionOkEvent";
+import ToggleAllScheduleCardSelectionOkEvent from "../../../gen/author/events/ToggleAllScheduleCardSelectionOkEvent";
 
 export default class AbstractToggleAllScheduleCardSelectionCommand extends Command {
     constructor(commandData) {

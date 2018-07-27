@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import CancelNewCategoryOkEvent from "../../../src/author/events/CancelNewCategoryOkEvent";
+import CancelNewCategoryOkEvent from "../../../gen/author/events/CancelNewCategoryOkEvent";
 
 export default class AbstractCancelNewCategoryCommand extends Command {
     constructor(commandData) {

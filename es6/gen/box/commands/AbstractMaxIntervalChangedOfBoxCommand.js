@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import MaxIntervalChangedOfBoxOkEvent from "../../../src/box/events/MaxIntervalChangedOfBoxOkEvent";
+import MaxIntervalChangedOfBoxOkEvent from "../../../gen/box/events/MaxIntervalChangedOfBoxOkEvent";
 
 export default class AbstractMaxIntervalChangedOfBoxCommand extends Command {
     constructor(commandData) {

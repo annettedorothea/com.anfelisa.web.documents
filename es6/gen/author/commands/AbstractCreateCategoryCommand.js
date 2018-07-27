@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import CreateCategoryOkEvent from "../../../src/author/events/CreateCategoryOkEvent";
-import CreateCategoryUnauthorizedEvent from "../../../src/author/events/CreateCategoryUnauthorizedEvent";
+import CreateCategoryOkEvent from "../../../gen/author/events/CreateCategoryOkEvent";
+import CreateCategoryUnauthorizedEvent from "../../../gen/author/events/CreateCategoryUnauthorizedEvent";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 

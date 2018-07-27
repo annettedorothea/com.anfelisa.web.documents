@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import SaveRoleUnauthorizedEvent from "../../../src/admin/events/SaveRoleUnauthorizedEvent";
+import SaveRoleUnauthorizedEvent from "../../../gen/admin/events/SaveRoleUnauthorizedEvent";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 

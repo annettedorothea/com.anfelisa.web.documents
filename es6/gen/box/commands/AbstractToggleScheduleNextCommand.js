@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ToggleScheduleNextOkEvent from "../../../src/box/events/ToggleScheduleNextOkEvent";
+import ToggleScheduleNextOkEvent from "../../../gen/box/events/ToggleScheduleNextOkEvent";
 
 export default class AbstractToggleScheduleNextCommand extends Command {
     constructor(commandData) {

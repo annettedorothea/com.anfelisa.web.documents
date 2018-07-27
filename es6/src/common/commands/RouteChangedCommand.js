@@ -34,7 +34,8 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 this.commandData.outcome = this.forgotPassword;
             } else if (this.commandData.hash.startsWith("#confirmemail")) {
                 const hashes = this.commandData.hash.split("/");
-                this.commandData.token = hashes[1] ? hashes[1] : "";
+                this.commandData.username = hashes[1] ? hashes[1] : "";
+                this.commandData.token = hashes[2] ? hashes[2] : "";
                 this.commandData.outcome = this.confirmEmail;
             } else if (this.commandData.hash.startsWith("#resetpassword")) {
                 const hashes = this.commandData.hash.split("/");

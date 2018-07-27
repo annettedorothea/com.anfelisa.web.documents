@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ToggleDictionaryLookupOfEditedCategoryOkEvent from "../../../src/author/events/ToggleDictionaryLookupOfEditedCategoryOkEvent";
+import ToggleDictionaryLookupOfEditedCategoryOkEvent from "../../../gen/author/events/ToggleDictionaryLookupOfEditedCategoryOkEvent";
 
 export default class AbstractToggleDictionaryLookupOfEditedCategoryCommand extends Command {
     constructor(commandData) {

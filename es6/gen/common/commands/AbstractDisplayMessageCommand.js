@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DisplayMessageOkEvent from "../../../src/common/events/DisplayMessageOkEvent";
+import DisplayMessageOkEvent from "../../../gen/common/events/DisplayMessageOkEvent";
 import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 
 export default class AbstractDisplayMessageCommand extends Command {

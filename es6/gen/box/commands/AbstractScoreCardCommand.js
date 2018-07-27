@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ScoreCardUnauthorizedEvent from "../../../src/box/events/ScoreCardUnauthorizedEvent";
+import ScoreCardUnauthorizedEvent from "../../../gen/box/events/ScoreCardUnauthorizedEvent";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 

@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import WantedLanguageOfEditedCategoryChangedOkEvent from "../../../src/author/events/WantedLanguageOfEditedCategoryChangedOkEvent";
+import WantedLanguageOfEditedCategoryChangedOkEvent from "../../../gen/author/events/WantedLanguageOfEditedCategoryChangedOkEvent";
 
 export default class AbstractWantedLanguageOfEditedCategoryChangedCommand extends Command {
     constructor(commandData) {

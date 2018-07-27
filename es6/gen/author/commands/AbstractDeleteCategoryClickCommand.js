@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DeleteCategoryClickOkEvent from "../../../src/author/events/DeleteCategoryClickOkEvent";
+import DeleteCategoryClickOkEvent from "../../../gen/author/events/DeleteCategoryClickOkEvent";
 
 export default class AbstractDeleteCategoryClickCommand extends Command {
     constructor(commandData) {

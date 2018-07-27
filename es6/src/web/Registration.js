@@ -1,11 +1,11 @@
 import React from 'react';
 import CryptoJS from "crypto-js";
 import RouteAction from "../common/actions/RouteAction";
-import RegisterUserAction from "../common/actions/RegisterUserAction";
+import RegisterUserAction from "../registration/actions/RegisterUserAction";
 import AppUtils from "../app/AppUtils";
-import UsernameChangedAction from "../common/actions/UsernameChangedAction";
-import PasswordChangedAction from "../common/actions/PasswordChangedAction";
-import EmailChangedAction from "../common/actions/EmailChangedAction";
+import UsernameChangedAction from "../registration/actions/UsernameChangedAction";
+import PasswordChangedAction from "../registration/actions/PasswordChangedAction";
+import EmailChangedAction from "../registration/actions/EmailChangedAction";
 
 export default class Registration extends React.Component {
 

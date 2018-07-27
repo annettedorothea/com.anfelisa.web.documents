@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ScoreReinforceCardUnauthorizedEvent from "../../../src/box/events/ScoreReinforceCardUnauthorizedEvent";
+import ScoreReinforceCardUnauthorizedEvent from "../../../gen/box/events/ScoreReinforceCardUnauthorizedEvent";
 import LoadNextReinforceCardAction from "../../../src/box/actions/LoadNextReinforceCardAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 

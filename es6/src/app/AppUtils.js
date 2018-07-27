@@ -209,13 +209,7 @@ export default class AppUtils {
     static getAppState() {
         const appState = AppUtils.deepCopy(App.appState);
         delete appState.texts;
-        return {
-            appState,
-            localStorage: {
-                username: localStorage.username,
-                password: localStorage.password
-            }
-        };
+        return  appState;
     }
 
     static deepMerge(newState, appState) {

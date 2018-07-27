@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import CancelDeleteBoxOkEvent from "../../../src/box/events/CancelDeleteBoxOkEvent";
+import CancelDeleteBoxOkEvent from "../../../gen/box/events/CancelDeleteBoxOkEvent";
 
 export default class AbstractCancelDeleteBoxCommand extends Command {
     constructor(commandData) {

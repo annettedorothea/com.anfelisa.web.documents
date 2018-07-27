@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DisplayErrorOkEvent from "../../../src/common/events/DisplayErrorOkEvent";
+import DisplayErrorOkEvent from "../../../gen/common/events/DisplayErrorOkEvent";
 import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 
 export default class AbstractDisplayErrorCommand extends Command {

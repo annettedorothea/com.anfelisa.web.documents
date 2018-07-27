@@ -1,7 +1,7 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import LoadCategoriesOkEvent from "../../../src/author/events/LoadCategoriesOkEvent";
-import LoadCategoriesUnauthorizedEvent from "../../../src/author/events/LoadCategoriesUnauthorizedEvent";
+import LoadCategoriesOkEvent from "../../../gen/author/events/LoadCategoriesOkEvent";
+import LoadCategoriesUnauthorizedEvent from "../../../gen/author/events/LoadCategoriesUnauthorizedEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadCategoriesCommand extends Command {
