@@ -130,7 +130,7 @@ export default class CategoryList extends React.Component {
                 />
             }
         });
-        if (this.props.data.parentEditable) {
+        if (this.props.data.parentCategoryId === null || this.props.data.parentEditable === true) {
             categoryItems.push(
                 <NewCategory
                     key="new"
@@ -171,8 +171,9 @@ export default class CategoryList extends React.Component {
                 />)
         }
 
+
         return (
-            <div>
+            <div className="categoryList">
                 {this.props.data.deleteCategory.confirmDelete === true &&
                 <div>
                     <Confirm {...
@@ -197,11 +198,17 @@ export default class CategoryList extends React.Component {
                             cancel: this.onRevokeUserAccessCancel
                         }}/>
                 </div>}
+                <button
+                    onClick={() => new RouteAction({
+                        hash: backLink
+                    }).apply()}>
+                    {this.props.texts.categoryList.back[this.props.language]}
+                </button>
                 <h1>
                     {this.props.data.parentCategoryName && this.props.data.parentCategoryName}
                     {!this.props.data.parentCategoryName && this.props.texts.categoryList.title[this.props.language]}
                 </h1>
-                <ul>
+                <ul className="invitedUsers">
                     {users}
                 </ul>
                 <table>
@@ -212,15 +219,6 @@ export default class CategoryList extends React.Component {
                     {categoryItems}
                     </tbody>
                 </table>
-
-                <button
-                    onClick={() => new RouteAction({
-                        username: this.props.username,
-                        password: this.props.password,
-                        hash: backLink
-                    }).apply()}>
-                    {this.props.texts.categoryList.back[this.props.language]}
-                </button>
 
                 {this.props.data.parentCategoryId && <CardList {...this.props} />}
 

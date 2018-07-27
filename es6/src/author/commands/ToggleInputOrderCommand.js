@@ -2,6 +2,7 @@ import AbstractToggleInputOrderCommand from "../../../gen/author/commands/Abstra
 
 export default class ToggleInputOrderCommand extends AbstractToggleInputOrderCommand {
     execute() {
+        this.commandData.naturalInputOrder = !this.commandData.naturalInputOrder;
         this.commandData.outcome = this.ok;
     }
 }

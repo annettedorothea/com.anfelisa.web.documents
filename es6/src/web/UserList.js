@@ -3,38 +3,28 @@ import RouteAction from "../common/actions/RouteAction";
 import DeleteUserAction from "../admin/actions/DeleteUserAction";
 import Confirm from "./Confirm";
 import SaveRoleAction from "../admin/actions/SaveRoleAction";
+import DeleteUserClickAction from "../admin/actions/DeleteUserClickAction";
+import DeleteUserCancelAction from "../admin/actions/DeleteUserCancelAction";
 
 export default class UserList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            confirmDeleteUser: false
-        };
         this.onDelete = this.onDelete.bind(this);
         this.onDeleteClick = this.onDeleteClick.bind(this);
         this.onDeleteCancel = this.onDeleteCancel.bind(this);
     }
 
-    onDeleteClick(deletedUsername) {
-        this.setState({
-            confirmDeleteUser: true,
-            deletedUsername
-        });
+    onDeleteClick(usernameToBeDeleted) {
+        new DeleteUserClickAction({usernameToBeDeleted}).apply();
     }
 
     onDelete() {
-        const data = {
-            username: this.props.username,
-            deletedUsername: this.state.deletedUsername,
-            password: this.props.password
-        };
-        this.setState({confirmDeleteUser: false});
-        new DeleteUserAction(data).apply();
+        new DeleteUserAction().apply();
     }
 
     onDeleteCancel() {
-        this.setState({confirmDeleteUser: false});
+        new DeleteUserCancelAction().apply();
     }
 
     render() {
@@ -51,7 +41,7 @@ export default class UserList extends React.Component {
         });
         return (
             <div>
-                {this.state.confirmDeleteUser === true &&
+                {this.props.data.showDeleteUserDialog === true &&
                 <div>
                     <Confirm {...
                         {
@@ -64,7 +54,7 @@ export default class UserList extends React.Component {
                         }}/>
                 </div>}
                 <h1>{this.props.texts.userList.title[this.props.language]}</h1>
-                <table>
+                <table className="adminUserList">
                     <thead>
 
                     </thead>
@@ -74,8 +64,6 @@ export default class UserList extends React.Component {
                 </table>
                 <button
                     onClick={() => new RouteAction({
-                        username: this.props.username,
-                        password: this.props.password,
                         hash: "#dashboard"
                     }).apply()}>{this.props.texts.userList.back[this.props.language]}
                 </button>
@@ -93,11 +81,16 @@ class UserItem extends React.Component {
                 <td>{this.props.username}</td>
                 <td><RoleSelect {...this.props} /></td>
                 <td>{this.props.email}</td>
-                <td>{this.props.emailConfirmed === true ? "\u2713" : ""}</td>
-                <td><button
-                    disabled={this.props.username === this.props.myUsername}
-                    onClick={() => this.props.onDeleteClick(this.props.username)}
-                >{"\u2717"}</button></td>
+                <td>{this.props.emailConfirmed === true ? <i className="fas fa-check success"/> :
+                    <i className="fas fa-times error"/>}</td>
+                <td>
+                    <button
+                        disabled={this.props.username === this.props.myUsername}
+                        onClick={() => this.props.onDeleteClick(this.props.username)}
+                        className="danger">
+                        <i className="fas fa-times"/>
+                    </button>
+                </td>
             </tr>
         );
     }
@@ -113,9 +106,7 @@ class RoleSelect extends React.Component {
     onChangeRole(event) {
         const data = {
             userId: this.props.userId,
-            role: event.target.value,
-            username: this.props.myUsername,
-            password: this.props.myPassword,
+            role: event.target.value
         };
         new SaveRoleAction(data).apply();
     }

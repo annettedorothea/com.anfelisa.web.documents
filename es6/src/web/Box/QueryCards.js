@@ -29,14 +29,10 @@ export default class QueryCards extends React.Component {
                     }).apply()}>{this.props.texts.queryCards.scheduleNextCard[this.props.language]}</button>
                 <button onClick={() => new RouteAction(
                     {
-                        username: this.props.username,
-                        password: this.props.password,
                         hash: `#box/reinforce/${this.props.data.boxId}`
                     }).apply()}>{this.props.texts.queryCards.reinforceCard[this.props.language]}</button>
                 <button
                     onClick={() => new RouteAction({
-                        username: this.props.username,
-                        password: this.props.password,
                         hash: "#dashboard"
                     }).apply()}>{this.props.texts.queryCards.back[this.props.language]}
                 </button>

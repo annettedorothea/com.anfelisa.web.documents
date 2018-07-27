@@ -4,7 +4,7 @@ target ES6
 
 ACE {
 	Init {
-		on user ( Common.initTexts ) triggers ( InitialLogin )
+		on user ( Common.initTexts Common.initUser ) triggers ( InitialLogin )
 		on noUser ( Common.initTexts ) triggers ( RouteChanged )
 	}
 	RouteChanged {
@@ -25,7 +25,7 @@ ACE {
 		on ok ( Common.updateHash )
 	}
 	async InitialLogin preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
-		on ok ( Common.initUser ) triggers ( RouteChanged )
+		on ok ( Common.initRole ) triggers ( RouteChanged )
 		on unauthorized triggers ( DisplayError Logout )
 	}
 	Logout {
@@ -54,6 +54,7 @@ views {
 		hideSpinner
 		initTexts
 		initUser
+		initRole
 		saveInLocalStorage
 		resetUser
 		updateHash

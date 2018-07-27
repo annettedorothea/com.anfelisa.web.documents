@@ -7,8 +7,6 @@ export default class AuthorDashboard extends React.Component {
         return (
             <a className="tile " onClick={() => new RouteAction(
                 {
-                    username: this.props.username,
-                    password: this.props.password,
                     hash: "#categories"
                 }).apply()}>
                 <h2>

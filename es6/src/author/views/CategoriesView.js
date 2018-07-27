@@ -46,8 +46,8 @@ export default class CategoriesView {
                 cardId: ""
             },
             filter: "",
-            naturalInputOrder: App.container.state && App.container.state.data && App.container.state.data.naturalInputOrder !== undefined ? App.container.state.data.naturalInputOrder : true,
-            useDictionary: App.container.state && App.container.state.data && App.container.state.data.useDictionary !== undefined ? App.container.state.data.useDictionary : false,
+            naturalInputOrder: eventData.data.naturalInputOrder,
+            useDictionary: eventData.useDictionary,
             dictionaryValue: "",
             categoryList: eventData.data.categoryList,
             cardList: eventData.data.cardList,
@@ -64,50 +64,55 @@ export default class CategoriesView {
                 userId: ""
             }
         };
-        App.container.setState({
+        App.mergeState({
             route: "category-list",
             data
         });
     };
 
     static nameOfNewCategoryChanged(eventData) {
-        let data = App.container.state.data;
-        data.newCategory.name = eventData.name;
-        data.newCategory.nameAlreadyExists = eventData.nameAlreadyExists;
-        App.container.setState({
+        const data = {
+            newCategory: {
+                name: eventData.name,
+                nameAlreadyExists: eventData.nameAlreadyExists
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static resetNewCategoryValues(eventData) {
-        let data = App.container.state.data;
-        if (data) {
-            data.newCategory = {
+        const data = {
+            newCategory: {
                 name: "",
                 nameAlreadyExists: false,
-                dictionaryLookup: eventData.data.parentDictionaryLookup ? eventData.data.parentDictionaryLookup : false,
-                givenLanguage: eventData.data.parentGivenLanguage ? eventData.data.parentGivenLanguage : "",
-                wantedLanguage: eventData.data.parentWantedLanguage ? eventData.data.parentWantedLanguage : ""
-            };
-            App.container.setState({
-                data
-            });
-        }
+                dictionaryLookup: eventData.parentDictionaryLookup ? eventData.parentDictionaryLookup : false,
+                givenLanguage: eventData.parentGivenLanguage ? eventData.parentGivenLanguage : "",
+                wantedLanguage: eventData.parentWantedLanguage ? eventData.parentWantedLanguage : ""
+            }
+        };
+        App.deepMergeState({
+            data
+        });
     };
 
     static nameOfEditedCategoryChanged(eventData) {
-        let data = App.container.state.data;
-        data.editedCategory.name = eventData.name;
-        data.editedCategory.nameAlreadyExists = eventData.nameAlreadyExists;
-        App.container.setState({
+        const data = {
+            editedCategory: {
+                name: eventData.name,
+                nameAlreadyExists: eventData.nameAlreadyExists
+
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static resetEditCategoryValues(eventData) {
-        let data = App.container.state.data;
-        if (data) {
-            data.editedCategory = {
+        const data = {
+            editedCategory: {
                 name: "",
                 index: "",
                 nameAlreadyExists: false,
@@ -115,311 +120,377 @@ export default class CategoriesView {
                 dictionaryLookup: false,
                 givenLanguage: "",
                 wantedLanguage: ""
-            };
-            App.container.setState({
-                data
-            });
-        }
+            }
+        };
+        App.deepMergeState({
+            data
+        });
     };
 
     static editCategory(eventData) {
-        let data = App.container.state.data;
-        data.editedCategory = {
-            categoryId: eventData.categoryId,
-            name: eventData.name,
-            index: eventData.index,
-            nameAlreadyExists: false,
-            dictionaryLookup: eventData.dictionaryLookup ? eventData.dictionaryLookup : false,
-            givenLanguage: eventData.givenLanguage ? eventData.givenLanguage : "",
-            wantedLanguage: eventData.wantedLanguage ? eventData.wantedLanguage : ""
+        const data = {
+            editedCategory: {
+                categoryId: eventData.categoryId,
+                name: eventData.name,
+                index: eventData.index,
+                nameAlreadyExists: false,
+                dictionaryLookup: eventData.dictionaryLookup ? eventData.dictionaryLookup : false,
+                givenLanguage: eventData.givenLanguage ? eventData.givenLanguage : "",
+                wantedLanguage: eventData.wantedLanguage ? eventData.wantedLanguage : ""
+            }
         };
-        App.container.setState({
+        App.deepMergeState({
             data
         });
     };
 
     static displayConfirmCategoryDelete(eventData) {
-        let data = App.container.state.data;
-        data.deleteCategory = {
-            confirmDelete: true,
-            categoryId: eventData.categoryId
+        const data = {
+            deleteCategory: {
+                confirmDelete: true,
+                categoryId: eventData.categoryId
+            }
         };
-        App.container.setState({
+        App.deepMergeState({
             data
         });
     };
 
     static hideConfirmCategoryDelete(eventData) {
-        let data = App.container.state.data;
-        data.deleteCategory = {
-            confirmDelete: false,
-            categoryId: ""
+        const data = {
+            deleteCategory: {
+                confirmDelete: false,
+                categoryId: ""
+            }
         };
-        App.container.setState({
+        App.deepMergeState({
             data
         });
     };
 
     static givenOfNewCardChanged(eventData) {
-        let data = App.container.state.data;
-        data.newCard.given = eventData.given;
-        App.container.setState({
+        const data = {
+            newCard: {
+                given: eventData.given
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static wantedOfNewCardChanged(eventData) {
-        let data = App.container.state.data;
-        data.newCard.wanted = eventData.wanted;
-        App.container.setState({
+        const data = {
+            newCard: {
+                wanted: eventData.wanted
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static resetNewCardValues(eventData) {
-        let data = App.container.state.data;
-        if (data) {
-            data.newCard.wanted = "";
-            data.newCard.given = "";
-            data.newCard.image = "";
-            data.cardDuplicates = [];
-            App.container.setState({
-                data
-            });
-        }
+        const data = {
+            newCard: {
+                wanted: "",
+                given: "",
+                image: "",
+            },
+            cardDuplicates: []
+        };
+        App.deepMergeState({
+            data
+        });
     };
 
     static givenOfEditedCardChanged(eventData) {
-        let data = App.container.state.data;
-        data.editedCard.given = eventData.given;
-        App.container.setState({
+        const data = {
+            editedCard: {
+                given: eventData.given
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static wantedOfEditedCardChanged(eventData) {
-        let data = App.container.state.data;
-        data.editedCard.wanted = eventData.wanted;
-        App.container.setState({
+        const data = {
+            editedCard: {
+                wanted: eventData.wanted
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static resetEditCardValues(eventData) {
-        let data = App.container.state.data;
-        if (data) {
-            data.editedCard = {
+        const data = {
+            editedCard: {
                 wanted: "",
                 given: "",
                 image: "",
                 index: ""
-            };
-            App.container.setState({
-                data
-            });
-        }
+            }
+        };
+        App.deepMergeState({
+            data
+        });
     };
 
     static editCard(eventData) {
-        let data = App.container.state.data;
-        data.editedCard = {
-            cardId: eventData.cardId,
-            given: eventData.given,
-            wanted: eventData.wanted,
-            index: eventData.index,
-            image: eventData.image
+        const data = {
+            editedCard: {
+                cardId: eventData.cardId,
+                given: eventData.given,
+                wanted: eventData.wanted,
+                index: eventData.index,
+                image: eventData.image
+            }
         };
-        App.container.setState({
+        App.deepMergeState({
             data
         });
     };
 
     static displayConfirmCardDelete(eventData) {
-        let data = App.container.state.data;
-        data.deleteCard = {
-            confirmDelete: true,
-            cardId: eventData.cardId
+        const data = {
+            deleteCard: {
+                confirmDelete: true,
+                cardId: eventData.cardId
+            }
         };
-        App.container.setState({
+        App.deepMergeState({
             data
         });
     };
 
     static hideConfirmCardDelete() {
-        let data = App.container.state.data;
-        data.deleteCard = {
-            confirmDelete: false,
-            cardId: ""
+        const data = {
+            deleteCard: {
+                confirmDelete: false,
+                cardId: ""
+            }
         };
-        App.container.setState({
+        App.deepMergeState({
             data
         });
     };
 
     static displayNewCardSpinner() {
-        let data = App.container.state.data;
-        data.newCard.displaySpinner = true;
-        App.container.setState({
+        const data = {
+            newCard: {
+                displaySpinner: true
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static hideNewCardSpinner() {
-        let data = App.container.state.data;
-        data.newCard.displaySpinner = false;
-        App.container.setState({
+        const data = {
+            newCard: {
+                displaySpinner: false
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static displayTranslateSpinner() {
-        let data = App.container.state.data;
-        data.newCard.displayTranslateSpinner = true;
-        App.container.setState({
+        const data = {
+            newCard: {
+                displayTranslateSpinner: true
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static hideTranslateSpinner() {
-        let data = App.container.state.data;
-        data.newCard.displayTranslateSpinner = false;
-        App.container.setState({
+        const data = {
+            newCard: {
+                displayTranslateSpinner: true
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static initDuplicates(eventData) {
-        let data = App.container.state.data;
-        data.cardDuplicates = eventData.data.cardList;
-        App.container.setState({
+        const data = {
+            cardDuplicates: eventData.data.cardList
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static resetDuplicates(eventData) {
-        let data = App.container.state.data;
-        data.cardDuplicates = [];
-        App.container.setState({
+        const data = {
+            cardDuplicates: []
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static filterChanged(eventData) {
-        let data = App.container.state.data;
-        data.filter = eventData.filter;
-        App.container.setState({
+        const data = {
+            filter: eventData.filter
+        };
+        App.deepMergeState({
             data
         });
     };
 
-    static toggleDictionaryLookupOfNewCategory() {
-        let data = App.container.state.data;
-        data.newCategory.dictionaryLookup = !data.newCategory.dictionaryLookup;
-        if (data.newCategory.dictionaryLookup === false) {
-            data.newCategory.givenLanguage = "";
-            data.newCategory.wantedLanguage = "";
-        }
-        App.container.setState({
+    static toggleDictionaryLookupOfNewCategory(eventData) {
+        const data = {
+            newCategory: {
+                dictionaryLookup: eventData.dictionaryLookup,
+                givenLanguage: "",
+                wantedLanguage: ""
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
-    static toggleDictionaryLookupOfEditedCategory() {
-        let data = App.container.state.data;
-        data.editedCategory.dictionaryLookup = !data.editedCategory.dictionaryLookup;
-        if (data.editedCategory.dictionaryLookup === false) {
-            data.editedCategory.givenLanguage = "";
-            data.editedCategory.wantedLanguage = "";
-        }
-        App.container.setState({
+    static toggleDictionaryLookupOfEditedCategory(eventData) {
+        const data = {
+            editedCategory: {
+                dictionaryLookup: eventData.dictionaryLookup,
+                givenLanguage: "",
+                wantedLanguage: ""
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static givenLanguageOfNewCategoryChanged(eventData) {
-        let data = App.container.state.data;
-        data.newCategory.givenLanguage = eventData.givenLanguage;
-        App.container.setState({
+        const data = {
+            newCategory: {
+                givenLanguage: eventData.givenLanguage
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static givenLanguageOfEditedCategoryChanged(eventData) {
-        let data = App.container.state.data;
-        data.editedCategory.givenLanguage = eventData.givenLanguage;
-        App.container.setState({
+        const data = {
+            editedCategory: {
+                givenLanguage: eventData.givenLanguage
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static wantedLanguageOfNewCategoryChanged(eventData) {
-        let data = App.container.state.data;
-        data.newCategory.wantedLanguage = eventData.wantedLanguage;
-        App.container.setState({
+        const data = {
+            newCategory: {
+                wantedLanguage: eventData.wantedLanguage
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static wantedLanguageOfEditedCategoryChanged(eventData) {
-        let data = App.container.state.data;
-        data.editedCategory.wantedLanguage = eventData.wantedLanguage;
-        App.container.setState({
+        const data = {
+            editedCategory: {
+                wantedLanguage: eventData.wantedLanguage
+            }
+        };
+        App.deepMergeState({
             data
         });
     };
 
-    static toggleInputOrder() {
-        let data = App.container.state.data;
-        data.naturalInputOrder = !data.naturalInputOrder;
-        App.container.setState({
+    static toggleInputOrder(eventData) {
+        const data = {
+            naturalInputOrder: eventData.naturalInputOrder
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static setDictionaryValue(eventData) {
-        let data = App.container.state.data;
-        data.dictionaryValue = eventData.dictionaryValue;
-        App.container.setState({
+        const data = {
+            dictionaryValue: eventData.dictionaryValue
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static toggleUseDictionary() {
-        let data = App.container.state.data;
-        data.useDictionary = !data.useDictionary;
-        App.container.setState({
+        const data = {
+            useDictionary: eventData.useDictionary
+        };
+        App.deepMergeState({
             data
         });
     };
 
     static displayImageOfNewCard(eventData) {
-        let data = App.container.state.data;
-        data.newCard.image = eventData.image;
-        App.container.setState({
+        const data = {
+            newCard:
+                {
+                    image: eventData.image
+                }
+        };
+        App.deepMergeState({
             data
         });
     }
 
     static displayImageOfEditedCard(eventData) {
-        let data = App.container.state.data;
-        data.editedCard.image = eventData.image;
-        App.container.setState({
+        const data = {
+            editedCard:
+                {
+                    image: eventData.image
+                }
+        };
+        App.deepMergeState({
             data
         });
     }
 
     static removeNewCardImage() {
-        let data = App.container.state.data;
-        data.newCard.image = "";
-        App.container.setState({
+        const data = {
+            newCard:
+                {
+                    image: ""
+                }
+        };
+        App.deepMergeState({
             data
         });
     }
 
     static removeEditedCardImage() {
-        let data = App.container.state.data;
-        data.editedCard.image = "";
-        App.container.setState({
+        const data = {
+            editedCard:
+                {
+                    image: ""
+                }
+        };
+        App.deepMergeState({
             data
         });
     }
@@ -441,7 +512,9 @@ export default class CategoriesView {
         let data = App.container.state.data;
         data.scheduleCardSelection = [];
         if (eventData.selectAll === true) {
-            data.cardList.forEach(card => {data.scheduleCardSelection.push(card.cardId)});
+            data.cardList.forEach(card => {
+                data.scheduleCardSelection.push(card.cardId)
+            });
         }
         App.container.setState({
             data
@@ -449,27 +522,28 @@ export default class CategoriesView {
     }
 
     static displayRevokeUserAccess(eventData) {
-        let data = App.container.state.data;
-        data.revokeUserAccess = {
-            confirmDelete: true,
-            userId: eventData.userId
+        const data = {
+            revokeUserAccess: {
+                confirmDelete: true,
+                userId: eventData.userId
+            }
         };
-        App.container.setState({
+        App.deepMergeState({
             data
         });
     };
 
     static hideRevokeUserAccess(eventData) {
-        let data = App.container.state.data;
-        data.revokeUserAccess = {
-            confirmDelete: false,
-            userId: ""
+        const data = {
+            revokeUserAccess: {
+                confirmDelete: false,
+                userId: ""
+            }
         };
-        App.container.setState({
+        App.deepMergeState({
             data
         });
     };
-
 
 
 }

@@ -49,7 +49,7 @@ export default class NewCategory extends React.Component {
     }
 
     onDictionayLookupChange() {
-        new ToggleDictionaryLookupOfNewCategoryAction().apply();
+        new ToggleDictionaryLookupOfNewCategoryAction({dictionaryLookup: this.props.dictionaryLookup}).apply();
     }
 
     onGivenLanguageChange(e) {
@@ -69,7 +69,6 @@ export default class NewCategory extends React.Component {
     render() {
         return (
             <tr>
-                <td/>
                 <td>
                     <input
                         type={"text"}
@@ -80,7 +79,7 @@ export default class NewCategory extends React.Component {
                         onKeyUp={this.onKeyUp}
                     />
                     {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
-                    <label>{this.props.texts.categoryList.nameAlreadyExists[this.props.language]}</label>}
+                        <i className="fas fa-times error"/>}
                 </td>
                 <td/>
                 {this.props.rootDictionaryLookup === true &&
@@ -89,9 +88,9 @@ export default class NewCategory extends React.Component {
                         type={"checkbox"}
                         onChange={this.onDictionayLookupChange}
                         checked={this.props.dictionaryLookup}
+                        value={this.props.dictionaryLookup}
                         id="dictionaryLookupNewCheckbox"
                     />
-                    <label htmlFor="dictionaryLookupNewCheckbox">{this.props.texts.categoryList.dictionaryLookup[this.props.language]}</label>
                     <select value={this.props.givenLanguage} onChange={this.onGivenLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
                         <option value="">{this.props.texts.categoryList.languages.emtpy[this.props.language]}</option>
@@ -113,9 +112,9 @@ export default class NewCategory extends React.Component {
                         disabled={this.props.nameAlreadyExists === true || !this.props.name || this.props.name.length === 0 || this.props.dictionaryLookup && (this.props.givenLanguage.length === 0 || this.props.wantedLanguage.length === 0)}
                         onClick={this.onNewCategory}
                     >
-                        {"\u2713"}
+                        <i className="fas fa-check"/>
                     </button>
-                    <button onClick={this.onCancel}>{"\u2717"}</button>
+                    <button onClick={this.onCancel}><i className="fas fa-times"/></button>
                 </td>
             </tr>
         );

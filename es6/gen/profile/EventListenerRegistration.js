@@ -6,9 +6,9 @@ export default class EventListenerRegistrationProfile {
 
 	static init() {
 		ACEController.registerListener('profile.LoadUserOkEvent', ProfileView.render);
-		ACEController.registerListener('profile.LoadUserUnauthorizedEvent', CommonView.displayError);
-		ACEController.registerListener('profile.DeleteUserUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('profile.DeleteUserBadRequestEvent', CommonView.displayError);
+		ACEController.registerListener('profile.DeleteUserClickOkEvent', ProfileView.displayDeleteUserDialog);
+		ACEController.registerListener('profile.DeleteUserCancelOkEvent', ProfileView.hideDeleteUserDialog);
 	}
 
 }

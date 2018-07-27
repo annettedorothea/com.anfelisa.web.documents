@@ -15,8 +15,8 @@ export default class UserAccessItem extends React.Component {
     render() {
         return (
             <li>
+                {this.props.canRevoke === true && <button onClick={this.onDelete}><i className="fas fa-times"/></button>}
                 {this.props.username}
-                {this.props.canRevoke === true && <button onClick={this.onDelete}>DELETE</button>}
             </li>
         );
     }

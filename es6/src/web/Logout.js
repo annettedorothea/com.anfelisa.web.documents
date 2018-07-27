@@ -9,9 +9,7 @@ export default class Logout extends React.Component {
             <div className="right">
                 <a onClick={() => new RouteAction(
                     {
-                        hash: "#profile",
-                        username: this.props.username,
-                        password: this.props.password
+                        hash: "#profile"
                     }).apply()}>
                     {this.props.username}
                 </a>

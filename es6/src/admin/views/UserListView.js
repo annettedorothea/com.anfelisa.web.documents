@@ -8,6 +8,24 @@ export default class UserListView {
         });
 	};
 	
+	static displayDeleteUserDialog(eventData) {
+        App.deepMergeState({
+            data : {
+                showDeleteUserDialog: true,
+                usernameToBeDeleted: eventData.usernameToBeDeleted
+            }
+        });
+	};
+
+	static hideDeleteUserDialog() {
+        App.deepMergeState({
+            data : {
+                showDeleteUserDialog: false,
+                usernameToBeDeleted: undefined
+            }
+        });
+	};
+
 }
 
 /*                    S.D.G.                    */

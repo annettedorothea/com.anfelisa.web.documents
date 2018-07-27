@@ -10,6 +10,7 @@ export default class EventListenerRegistrationLogin {
 		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', CommonView.initUser);
 		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', CommonView.saveInLocalStorage);
 		ACEController.registerListener('login.LoginDoNotSaveInLocalStorageEvent', CommonView.initUser);
+		ACEController.registerListener('login.GetRoleOkEvent', CommonView.initRole);
 	}
 
 }

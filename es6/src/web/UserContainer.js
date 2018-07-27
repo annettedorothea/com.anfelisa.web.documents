@@ -36,8 +36,6 @@ export default class UserContainer extends React.Component {
             <div className="wrapper">
                 <div className="header">
                     <a onClick={() => new RouteAction({
-                        username: this.props.username,
-                        password: this.props.password,
                         hash: "#dashboard"
                     }).apply()}
                        className="title">Anfelisa</a>

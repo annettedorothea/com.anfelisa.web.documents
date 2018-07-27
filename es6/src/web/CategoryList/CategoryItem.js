@@ -11,8 +11,6 @@ export default class CategoryItem extends React.Component {
     onClick() {
         new RouteAction(
             {
-                username: this.props.username,
-                password: this.props.password,
                 hash: `#categories/${this.props.categoryId}`
             }).apply();
     }
@@ -20,7 +18,7 @@ export default class CategoryItem extends React.Component {
     renderDictionayLookup() {
         if (this.props.givenLanguage && this.props.wantedLanguage) {
             return <td
-                onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.givenLanguage][this.props.language]} {"\u2192"} {this.props.texts.categoryList.languages[this.props.wantedLanguage][this.props.language]}</td>
+                onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.givenLanguage][this.props.language]} <i className="fas fa-arrow-right"/> {this.props.texts.categoryList.languages[this.props.wantedLanguage][this.props.language]}</td>
         } else {
             return <td onClick={this.onClick}/>
         }
@@ -29,18 +27,17 @@ export default class CategoryItem extends React.Component {
     render() {
         return (
             <tr>
-                <td onClick={this.onClick}>{this.props.categoryIndex}</td>
                 <td onClick={this.onClick}>{this.props.categoryName}</td>
                 <td onClick={this.onClick}>{this.props.categoryAuthor}</td>
                 {this.props.rootDictionaryLookup === true && this.renderDictionayLookup()}
                 <td>
                     {this.props.editable === true &&
-                    <button disabled={!this.props.empty}
-                            onClick={() => this.props.onDeleteClick(this.props.categoryId)}>{"\u2717"}</button>}
+                    <button onClick={() => this.props.onEdit()}><i className="fas fa-pen"/></button>}
                     {this.props.editable === true &&
-                    <button onClick={() => this.props.onEdit()}>{"\u270E"}</button>}
+                    <button disabled={!this.props.empty}
+                            onClick={() => this.props.onDeleteClick(this.props.categoryId)}><i className="fas fa-times"/></button>}
                     {this.props.isRoot === true && this.props.hasBox === false &&
-                    <button onClick={() => this.props.onSubscribe()}>{this.props.texts.categoryList.subscribe[this.props.language]}</button>}
+                    <button onClick={() => this.props.onSubscribe()}><i className="fas fa-align-justify"/></button>}
                 </td>
             </tr>
         );

@@ -34,8 +34,6 @@ export default class BoxItem extends React.Component {
                 className="tile double"
                 onClick={() => new RouteAction(
                     {
-                        username: this.props.username,
-                        password: this.props.password,
                         hash: `#box/${this.props.boxId}`
                     }).apply()}>
 

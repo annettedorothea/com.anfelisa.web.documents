@@ -3,8 +3,6 @@ import CancelEditBoxAction from "../../box/actions/CancelEditBoxAction";
 import ToggleMaxIntervalOfBoxAction from "../../box/actions/ToggleMaxIntervalOfBoxAction";
 import MaxIntervalChangedOfBoxAction from "../../box/actions/MaxIntervalChangedOfBoxAction";
 import UpdateBoxAction from "../../box/actions/UpdateBoxAction";
-import RouteAction from "../../common/actions/RouteAction";
-import BoxInfo from "./BoxInfo";
 
 export default class EditBoxItem extends React.Component {
 

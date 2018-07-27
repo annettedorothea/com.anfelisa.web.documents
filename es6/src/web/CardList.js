@@ -84,7 +84,7 @@ export default class CardList extends React.Component {
     }
 
     onToggleInputOrder() {
-        new ToggleInputOrderAction().apply();
+        new ToggleInputOrderAction({naturalInputOrder: this.props.data.naturalInputOrder}).apply();
     }
 
     onUseDictionaryChange() {
@@ -92,6 +92,7 @@ export default class CardList extends React.Component {
     }
 
     render() {
+        console.log(this.props.data);
         const cardItems = this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).map((card) => {
             if (card.cardId === this.props.data.editedCard.cardId) {
                 return <EditCard
@@ -194,13 +195,14 @@ export default class CardList extends React.Component {
                     this.props.texts.cardList.title.cards[this.props.language].replace("{1}", this.props.data.cardList.length)
                         .replace("{0}", this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).length)}
                 </h1>
+                {this.props.data.cardList.length > 0 &&
                 <input
                     type={"text"}
                     onChange={this.onFilterChange}
                     autoComplete="off"
                     value={this.props.data.filter}
                     placeholder={this.props.texts.cardList.filter[this.props.language]}
-                />
+                />}
                 {this.props.data.newCard.dictionaryLookup === true && this.props.data.parentEditable &&
                 <span>
                         <input
@@ -209,11 +211,12 @@ export default class CardList extends React.Component {
                             checked={this.props.data.useDictionary}
                             id="useDictionaryCheckbox"
                         />
-                        <label htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary[this.props.language]}</label>
+                        <label
+                            htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary[this.props.language]}</label>
                     </span>
                 }
 
-                <button onClick={this.onToggleInputOrder}>{"\u21c4"}</button>
+                <button onClick={this.onToggleInputOrder}><i className="fas fa-arrows-alt-h"/></button>
                 {this.props.data.hasBox === true &&
                 <button onClick={this.onSchedule}
                         disabled={this.props.data.scheduleCardSelection.length === 0}>{this.props.texts.cardList.scheduleSelectedCards[this.props.language]}</button>

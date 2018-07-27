@@ -53,7 +53,7 @@ export default class EditCategory extends React.Component {
     }
 
     onDictionayLookupChange() {
-        new ToggleDictionaryLookupOfEditedCategoryAction().apply();
+        new ToggleDictionaryLookupOfEditedCategoryAction({dictionaryLookup: this.props.dictionaryLookup}).apply();
     }
 
     onGivenLanguageChange(e) {
@@ -73,7 +73,6 @@ export default class EditCategory extends React.Component {
     render() {
         return (
             <tr>
-                <td>{this.props.index}</td>
                 <td>
                     <input
                         type={"text"}
@@ -93,9 +92,9 @@ export default class EditCategory extends React.Component {
                         type={"checkbox"}
                         onChange={this.onDictionayLookupChange}
                         checked={this.props.dictionaryLookup}
+                        value={this.props.dictionaryLookup}
                         id="dictionaryLookupEditCheckbox"
                     />
-                    <label htmlFor="dictionaryLookupEditCheckbox">{this.props.texts.categoryList.dictionaryLookup[this.props.language]}</label>
                     <select value={this.props.givenLanguage} onChange={this.onGivenLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
                         <option value="">{this.props.texts.categoryList.languages.emtpy[this.props.language]}</option>
@@ -115,11 +114,13 @@ export default class EditCategory extends React.Component {
                 <td>
                     <button
                         disabled={this.props.nameAlreadyExists === true || !this.props.name || this.props.name.length === 0 || this.props.dictionaryLookup && (this.props.givenLanguage.length === 0 || this.props.wantedLanguage.length === 0)}
-                        onClick={this.onUpdate}
-                    >{"\u2713"}</button>
+                        onClick={this.onUpdate}>
+                        <i className="fas fa-check"/>
+                    </button>
                     <button
-                        onClick={this.onCancel}
-                    >{"\u2717"}</button>
+                        onClick={this.onCancel}>
+                        <i className="fas fa-times"/>
+                    </button>
                 </td>
             </tr>
         );

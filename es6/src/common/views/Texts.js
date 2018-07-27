@@ -76,9 +76,6 @@ export const Texts = {
                 de: "Löschen"
             }
         },
-        dictionaryLookup: {
-            de: "im Wörterbuch nachschlagen"
-        },
         index: {
             de: "Index"
         },
@@ -100,10 +97,7 @@ export const Texts = {
             },
         },
         name: {
-            de: "Name"
-        },
-        nameAlreadyExists: {
-            de: "Name wird bereits verwendet."
+            de: "Neue Kategorie"
         },
         confirmRevokeUserAccess: {
             cancel: {
@@ -118,9 +112,6 @@ export const Texts = {
             title: {
                 de: "Zugriff entziehen"
             }
-        },
-        subscribe: {
-            de: "Neue Lernkartei anlegen"
         },
         title: {
             de: "Alle Kategorien"
@@ -189,8 +180,8 @@ export const Texts = {
         }
     },
     errors: {
-        badRequestDeleteUser: {
-            de: "Der Benutzer konnte nicht gelöscht werden, weil er der letzte Administator ist."
+        lastAdminMustNotBeDeleted: {
+            de: "Der Benutzer konnte nicht gelöscht werden, weil er der letzte Administrator ist."
         },
         loginFailed: {
             de: "Anmeldung fehlgeschlagen."

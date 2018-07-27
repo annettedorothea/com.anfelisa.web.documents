@@ -56,7 +56,7 @@ export default class CommonView {
         });
     }
 
-    static clearToast(eventData) {
+    static clearToast() {
         App.deepMergeState({
             toast: undefined
         });
@@ -65,7 +65,12 @@ export default class CommonView {
     static initUser(eventData) {
         App.deepMergeState({
             username: eventData.username,
-            password: eventData.password,
+            password: eventData.password
+        });
+    }
+
+    static initRole(eventData) {
+        App.deepMergeState({
             role: eventData.role
         });
     }

@@ -2,41 +2,36 @@ import React from 'react';
 import RouteAction from "../common/actions/RouteAction";
 import DeleteUserAction from "../profile/actions/DeleteUserAction";
 import Confirm from "./Confirm";
+import DeleteUserClickAction from "../profile/actions/DeleteUserClickAction";
+import DeleteUserCancelAction from "../profile/actions/DeleteUserCancelAction";
 
 export default class Profile extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            confirmDeleteUser: false
-        };
         this.onDelete = this.onDelete.bind(this);
         this.onDeleteClick = this.onDeleteClick.bind(this);
         this.onDeleteCancel = this.onDeleteCancel.bind(this);
     }
 
     onDeleteClick() {
-        this.setState({confirmDeleteUser: true});
+        new DeleteUserClickAction().apply();
     }
 
     onDelete() {
-        const data = {
-            username: this.props.username,
-            deletedUsername: this.props.username,
-            password: this.props.password
-        };
-        this.setState({confirmDeleteUser: false});
-        new DeleteUserAction(data).apply();
+        new DeleteUserAction({
+            usernameToBeDeleted: this.props.username
+        }).apply();
     }
 
     onDeleteCancel() {
-        this.setState({confirmDeleteUser: false});
+        new DeleteUserCancelAction().apply();
     }
 
     render() {
         return (
             <div>
-                {this.state.confirmDeleteUser === true &&
+                {this.props.data.showDeleteUserDialog === true &&
                 <div>
                     <Confirm {...
                         {
@@ -78,11 +73,10 @@ export default class Profile extends React.Component {
                         />
                     </div>
                 </div>
-                <button className="danger" onClick={this.onDeleteClick}>{this.props.texts.profile.delete[this.props.language]}</button>
+                <button className="danger"
+                        onClick={this.onDeleteClick}>{this.props.texts.profile.delete[this.props.language]}</button>
                 <button
                     onClick={() => new RouteAction({
-                        username: this.props.username,
-                        password: this.props.password,
                         hash: "#dashboard"
                     }).apply()}>{this.props.texts.profile.back[this.props.language]}</button>
             </div>

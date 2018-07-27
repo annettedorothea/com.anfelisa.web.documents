@@ -32,7 +32,7 @@ export default class AppUtils {
 
     static httpGet(url, queryParams, commandData, adjustUrl = true) {
         return new Promise((resolve, reject) => {
-            let authorization = commandData ? AppUtils.basicAuth(commandData.username, commandData.password) : undefined;
+            let authorization = AppUtils.basicAuth();
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
             headers.append("Accept", "application/json");
@@ -87,7 +87,7 @@ export default class AppUtils {
 
     static httpChange(methodType, url, queryParams, data, commandData, adjustUrl = true) {
         return new Promise((resolve, reject) => {
-            let authorization = commandData ? AppUtils.basicAuth(commandData.username, commandData.password) : undefined;
+            let authorization = AppUtils.basicAuth();
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
             headers.append("Accept", "text/plain");
@@ -172,9 +172,9 @@ export default class AppUtils {
         }
     }
 
-    static basicAuth(username, password) {
-        if (username !== undefined && password !== undefined) {
-            const wordArray = CryptoJS.enc.Utf8.parse(username + ':' + password);
+    static basicAuth() {
+        if (App.appState.username !== undefined && App.appState.password !== undefined) {
+            const wordArray = CryptoJS.enc.Utf8.parse(App.appState.username + ':' + App.appState.password);
             const hash = CryptoJS.enc.Base64.stringify(wordArray);
             return "anfelisaBasic " + hash;
         }
@@ -187,15 +187,23 @@ export default class AppUtils {
 
     static displayUnexpectedError(error) {
         console.error(error);
-        if (error.code === 401) {
-            error.errorKey = "unauthorized";
-            new DisplayErrorAndLogoutAction({error}).apply();
-        } else if (error.code === 400) {
-            new DisplayErrorAction({error}).apply();
+        if (typeof error !== "object") {
+            error = {
+                errorKey: error
+            };
         } else {
-            error.errorKey = error.text;
-            new DisplayErrorAction({error}).apply();
+            if (error.code === 401) {
+                error.errorKey = "unauthorized";
+                new DisplayErrorAndLogoutAction({error}).apply();
+            } else if (error.code === 400) {
+                new DisplayErrorAction({error}).apply();
+            } else {
+                error = {
+                    errorKey: error.text
+                }
+            }
         }
+        new DisplayErrorAction({error}).apply();
     }
 
     static deepCopy(object) {
@@ -209,7 +217,7 @@ export default class AppUtils {
     static getAppState() {
         const appState = AppUtils.deepCopy(App.appState);
         delete appState.texts;
-        return  appState;
+        return appState;
     }
 
     static deepMerge(newState, appState) {

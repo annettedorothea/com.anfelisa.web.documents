@@ -3,6 +3,7 @@ import AbstractToggleDictionaryLookupOfEditedCategoryCommand
 
 export default class ToggleDictionaryLookupOfEditedCategoryCommand extends AbstractToggleDictionaryLookupOfEditedCategoryCommand {
     execute() {
+        this.commandData.dictionaryLookup = !this.commandData.dictionaryLookup;
         this.commandData.outcome = this.ok;
     }
 }
