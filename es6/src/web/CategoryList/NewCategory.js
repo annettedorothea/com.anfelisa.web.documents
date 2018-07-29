@@ -79,7 +79,7 @@ export default class NewCategory extends React.Component {
                         onKeyUp={this.onKeyUp}
                     />
                     {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
-                        <i className="fas fa-times error"/>}
+                    <i className="fas fa-times error"/>}
                 </td>
                 <td/>
                 {this.props.rootDictionaryLookup === true &&
@@ -93,28 +93,30 @@ export default class NewCategory extends React.Component {
                     />
                     <select value={this.props.givenLanguage} onChange={this.onGivenLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
-                        <option value="">{this.props.texts.categoryList.languages.emtpy[this.props.language]}</option>
+                        <option
+                            value="">{this.props.texts.categoryList.languages.emtpyFrom[this.props.language]}</option>
                         <option value="de">{this.props.texts.categoryList.languages.de[this.props.language]}</option>
                         <option value="en">{this.props.texts.categoryList.languages.en[this.props.language]}</option>
                         <option value="fr">{this.props.texts.categoryList.languages.fr[this.props.language]}</option>
                     </select>
                     <select value={this.props.wantedLanguage} onChange={this.onWantedLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
-                        <option value="">{this.props.texts.categoryList.languages.emtpy[this.props.language]}</option>
+                        <option value="">{this.props.texts.categoryList.languages.emtpyTo[this.props.language]}</option>
                         <option value="de">{this.props.texts.categoryList.languages.de[this.props.language]}</option>
                         <option value="en">{this.props.texts.categoryList.languages.en[this.props.language]}</option>
                         <option value="fr">{this.props.texts.categoryList.languages.fr[this.props.language]}</option>
                     </select>
                 </td>
                 }
-                <td>
+                <td className="noBreak">
                     <button
                         disabled={this.props.nameAlreadyExists === true || !this.props.name || this.props.name.length === 0 || this.props.dictionaryLookup && (this.props.givenLanguage.length === 0 || this.props.wantedLanguage.length === 0)}
-                        onClick={this.onNewCategory}
-                    >
+                        onClick={this.onNewCategory}>
                         <i className="fas fa-check"/>
                     </button>
-                    <button onClick={this.onCancel}><i className="fas fa-times"/></button>
+                    <button onClick={this.onCancel}>
+                        <i className="fas fa-times"/>
+                    </button>
                 </td>
             </tr>
         );

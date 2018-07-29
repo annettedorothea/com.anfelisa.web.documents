@@ -16,36 +16,21 @@ export default class ToastContainer extends React.Component {
             toasts.push(nextProps.toast);
             this.setState({toasts});
             setTimeout(() => {
-                let toasts = Object.assign([], this.state.toasts);
-                toasts[toasts.length - 1].visible = true;
+                let toasts = Object.assign([],this.state.toasts);
+                toasts.shift();
                 this.setState({toasts});
-                setTimeout(() => {
-                    let toasts = Object.assign([], this.state.toasts);
-                    toasts[toasts.length - 1].visible = false;
-                    this.setState({toasts});
-                    setTimeout(() => {
-                        let toasts = Object.assign([], this.state.toasts);
-                        toasts.shift();
-                        this.setState({toasts});
-                    }, 100);
-                }, 5000);
-            }, 100);
+            }, 7000);
             return true;
         }
         if (nextState.toasts.length !== this.state.toasts.length) {
             return true;
-        }
-        for (let i = 0; i < this.state.toasts.length; i++) {
-            if (this.state.toasts[i].visible !== undefined) {
-                return true;
-            }
         }
         return false;
     }
 
     render() {
         const toasts = this.state.toasts ? this.state.toasts.map((toast, index) => {
-            return <Toast type={toast.type} key={index} text={toast.text} visible={toast.visible === true}/>;
+            return <Toast type={toast.type} key={index} text={toast.text}/>;
         }) : [];
         return (
             <div className="toastContainer">

@@ -86,8 +86,11 @@ export const Texts = {
             de: {
                 de: "Deutsch"
             },
-            emtpy: {
-                de: "Bitte wählen"
+            emtpyFrom: {
+                de: "von"
+            },
+            emtpyTo: {
+                de: "nach"
             },
             en: {
                 de: "Englisch"
@@ -112,6 +115,9 @@ export const Texts = {
             title: {
                 de: "Zugriff entziehen"
             }
+        },
+        subCategories: {
+            de: "Unterkategorien"
         },
         title: {
             de: "Alle Kategorien"
@@ -152,9 +158,6 @@ export const Texts = {
         },
         searchingDuplicates: {
             de: "Nach doppelten Karten suchen"
-        },
-        loadingTranslation: {
-            de: "Übersetzungsvorschlag laden"
         },
         scheduleSelectedCards: {
             de: "Selektierte Karten heute noch abfragen"

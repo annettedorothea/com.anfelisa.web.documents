@@ -92,7 +92,6 @@ export default class CardList extends React.Component {
     }
 
     render() {
-        console.log(this.props.data);
         const cardItems = this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).map((card) => {
             if (card.cardId === this.props.data.editedCard.cardId) {
                 return <EditCard

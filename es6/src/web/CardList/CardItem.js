@@ -14,7 +14,8 @@ export default class CardItem extends React.Component {
 
     renderGiven() {
         return (
-            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {}}>
+            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {
+            }}>
                 <pre>{this.props.given}</pre>
             </td>
         );
@@ -22,7 +23,8 @@ export default class CardItem extends React.Component {
 
     renderWanted() {
         return (
-            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {}}>
+            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {
+            }}>
                 <pre>{this.props.wanted}</pre>
             </td>
         );
@@ -30,7 +32,8 @@ export default class CardItem extends React.Component {
 
     renderImage() {
         return (
-            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {}}>
+            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {
+            }}>
                 <img className="preview" src={this.props.image}/>
             </td>
         );
@@ -48,7 +51,6 @@ export default class CardItem extends React.Component {
                     />
                 </td>
                 }
-                <td>{this.props.cardIndex}</td>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
@@ -56,11 +58,15 @@ export default class CardItem extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td>{this.props.cardAuthor}</td>
-                <td>
+                <td className="noBreak">
                     {this.props.editable === true &&
-                    <button onClick={() => this.props.onDeleteClick(this.props.cardId)}>{"\u2717"}</button>}
+                    <button onClick={() => this.props.onEdit()}>
+                        <i className="fas fa-pen"/>
+                    </button>}
                     {this.props.editable === true &&
-                    <button onClick={() => this.props.onEdit()}>{"\u270E"}</button>}
+                    <button onClick={() => this.props.onDeleteClick(this.props.cardId)}>
+                        <i className="fas fa-times"/>
+                    </button>}
                 </td>
             </tr>
         );

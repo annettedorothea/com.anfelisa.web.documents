@@ -198,7 +198,7 @@ export default class CategoryList extends React.Component {
                             cancel: this.onRevokeUserAccessCancel
                         }}/>
                 </div>}
-                <button
+                <button className="backButton"
                     onClick={() => new RouteAction({
                         hash: backLink
                     }).apply()}>
@@ -208,9 +208,12 @@ export default class CategoryList extends React.Component {
                     {this.props.data.parentCategoryName && this.props.data.parentCategoryName}
                     {!this.props.data.parentCategoryName && this.props.texts.categoryList.title[this.props.language]}
                 </h1>
-                <ul className="invitedUsers">
+                {users.length > 0 && <ul className="invitedUsers">
                     {users}
-                </ul>
+                </ul>}
+                <h1>
+                    {this.props.texts.categoryList.subCategories[this.props.language]}
+                </h1>
                 <table>
                     <thead>
 

@@ -26,18 +26,24 @@ export default class CategoryItem extends React.Component {
 
     render() {
         return (
-            <tr>
+            <tr className="clickable">
                 <td onClick={this.onClick}>{this.props.categoryName}</td>
                 <td onClick={this.onClick}>{this.props.categoryAuthor}</td>
                 {this.props.rootDictionaryLookup === true && this.renderDictionayLookup()}
-                <td>
+                <td className="noBreak">
                     {this.props.editable === true &&
-                    <button onClick={() => this.props.onEdit()}><i className="fas fa-pen"/></button>}
+                    <button onClick={() => this.props.onEdit()}>
+                        <i className="fas fa-pen"/>
+                    </button>}
                     {this.props.editable === true &&
                     <button disabled={!this.props.empty}
-                            onClick={() => this.props.onDeleteClick(this.props.categoryId)}><i className="fas fa-times"/></button>}
+                            onClick={() => this.props.onDeleteClick(this.props.categoryId)}>
+                        <i className="fas fa-times"/>
+                    </button>}
                     {this.props.isRoot === true && this.props.hasBox === false &&
-                    <button onClick={() => this.props.onSubscribe()}><i className="fas fa-align-justify"/></button>}
+                    <button onClick={() => this.props.onSubscribe()}>
+                        <i className="fas fa-align-justify"/>
+                    </button>}
                 </td>
             </tr>
         );

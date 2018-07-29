@@ -232,7 +232,8 @@ export default class CategoriesView {
                 wanted: "",
                 given: "",
                 image: "",
-                index: ""
+                index: "",
+                cardId: ""
             }
         };
         App.deepMergeState({
@@ -438,7 +439,7 @@ export default class CategoriesView {
         });
     };
 
-    static toggleUseDictionary() {
+    static toggleUseDictionary(eventData) {
         const data = {
             useDictionary: eventData.useDictionary
         };

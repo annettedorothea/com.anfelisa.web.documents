@@ -201,8 +201,7 @@ export default class NewCard extends React.Component {
             <td>
                 <div>
                     <textarea
-                        rows="7"
-                        cols="40"
+                        rows="4"
                         onChange={this.onGivenChange}
                         autoComplete="off"
                         value={this.props.given}
@@ -218,7 +217,7 @@ export default class NewCard extends React.Component {
                 {this.props.displaySpinner === true &&
                 <label>{this.props.texts.cardList.searchingDuplicates[this.props.language]}</label>}
                 {this.props.displayTranslateSpinner === true &&
-                <label>{this.props.texts.cardList.loadingTranslation[this.props.language]}</label>}
+                <label>LADEN</label>}
             </td>
         )
     }
@@ -227,8 +226,7 @@ export default class NewCard extends React.Component {
         return (
             <td>
                 <textarea
-                    rows="7"
-                    cols="40"
+                    rows="4"
                     onChange={this.onWantedChange}
                     autoComplete="off"
                     value={this.props.wanted}
@@ -249,13 +247,16 @@ export default class NewCard extends React.Component {
             return (
                 <td>
                     <img className="preview" src={this.props.image}/>
-                    <button onClick={this.onRemoveImage}>{"\u2717"}</button>
+                    <button className="preview"  onClick={this.onRemoveImage}>
+                        <i className="fas fa-times"/>
+                    </button>
                 </td>
             )
         }
         return (
             <td>
-                <input type="file" onChange={this.onWantedFileChange} value={this.props.file}/>
+                <input type="file" name="file" id="file" className="inputfile" onChange={this.onWantedFileChange} value={this.props.file}/>
+                <label htmlFor="file">Choose a file</label>
             </td>
         )
     }
@@ -272,7 +273,6 @@ export default class NewCard extends React.Component {
         return (
             <tr>
                 {this.props.hasBox && <td/>}
-                <td/>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
@@ -280,14 +280,16 @@ export default class NewCard extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td/>
-                <td>
+                <td className="noBreak">
                     <button
                         disabled={!this.isValid()}
-                        onClick={this.onNewCard}
-                    >{"\u2713"}</button>
+                        onClick={this.onNewCard}>
+                        <i className="fas fa-check"/>
+                    </button>
                     <button
-                        onClick={this.onCancel}
-                    >{"\u2717"}</button>
+                        onClick={this.onCancel}>
+                        <i className="fas fa-times"/>
+                    </button>
                 </td>
             </tr>
         );

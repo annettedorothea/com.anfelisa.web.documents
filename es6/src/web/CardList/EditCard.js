@@ -61,6 +61,7 @@ export default class EditCard extends React.Component {
     }
 
     onCancel() {
+        console.log("onCancel");
         new CancelEditCardAction().apply();
     }
 
@@ -93,7 +94,6 @@ export default class EditCard extends React.Component {
             <td>
                 <textarea
                     rows="4"
-                    cols="40"
                     onChange={this.onGivenChange}
                     autoComplete="off"
                     value={this.props.given}
@@ -109,7 +109,6 @@ export default class EditCard extends React.Component {
             <td>
                 <textarea
                     rows="4"
-                    cols="40"
                     onChange={this.onWantedChange}
                     autoComplete="off"
                     value={this.props.wanted}
@@ -152,7 +151,6 @@ export default class EditCard extends React.Component {
                     />
                 </td>
                 }
-                <td>{this.props.index}</td>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
@@ -160,14 +158,16 @@ export default class EditCard extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 <td/>
-                <td>
+                <td className="noBreak">
                     <button
                         disabled={!this.isValid()}
-                        onClick={this.onUpdate}
-                    >{"\u2713"}</button>
+                        onClick={this.onUpdate}>
+                        <i className="fas fa-check"/>
+                    </button>
                     <button
-                        onClick={this.onCancel}
-                    >{"\u2717"}</button>
+                        onClick={this.onCancel}>
+                        <i className="fas fa-times"/>
+                    </button>
                 </td>
             </tr>
         );
