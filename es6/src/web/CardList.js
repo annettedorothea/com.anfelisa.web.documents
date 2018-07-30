@@ -227,7 +227,7 @@ export default class CardList extends React.Component {
                                 checked={this.props.data.scheduleCardSelection.length === this.props.data.cardList.length}
                             />
                         </th>
-                        <th colspan={5}>
+                        <th colSpan={5}>
                             <button onClick={this.onSchedule}
                                     disabled={this.props.data.scheduleCardSelection.length === 0}>{this.props.texts.cardList.scheduleSelectedCards[this.props.language]}
                             </button>

@@ -145,7 +145,7 @@ export default class EditCard extends React.Component {
     render() {
         return (
             <tr>
-                {this.props.hasBox &&
+                {this.props.hasBox === true &&
                 <td>
                     <input
                         type={"checkbox"}
@@ -154,6 +154,7 @@ export default class EditCard extends React.Component {
                     />
                 </td>
                 }
+                {this.props.hasBox === false && <td/>}
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}

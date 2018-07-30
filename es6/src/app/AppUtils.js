@@ -227,6 +227,8 @@ export default class AppUtils {
                     appState[property] = newState[property];
                 } else if (newState[property] === undefined) {
                     appState[property] = undefined;
+                } else if (Array.isArray(newState[property])) {
+                    appState[property] = newState[property];
                 } else if (typeof newState[property] === 'object') {
                     AppUtils.deepMerge(newState[property], appState[property]);
                 } else {

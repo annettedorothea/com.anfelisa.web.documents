@@ -159,9 +159,6 @@ export const Texts = {
         wanted: {
             de: "Gesucht"
         },
-        searchingDuplicates: {
-            de: "Nach doppelten Karten suchen"
-        },
         scheduleSelectedCards: {
             de: "Selektierte Karten heute noch abfragen"
         },

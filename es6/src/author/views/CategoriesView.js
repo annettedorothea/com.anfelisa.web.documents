@@ -316,7 +316,7 @@ export default class CategoriesView {
     static hideTranslateSpinner() {
         const data = {
             newCard: {
-                displayTranslateSpinner: true
+                displayTranslateSpinner: false
             }
         };
         App.deepMergeState({
@@ -325,6 +325,7 @@ export default class CategoriesView {
     };
 
     static initDuplicates(eventData) {
+        console.log("initDuplicates", eventData.data.cardList);
         const data = {
             cardDuplicates: eventData.data.cardList
         };

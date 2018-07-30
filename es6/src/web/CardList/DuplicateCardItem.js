@@ -32,8 +32,8 @@ export default class DuplicateCardItem extends React.Component {
     renderImage() {
         if (this.props.image.length > 0) {
             return (
-                <td>
-                    <img className="preview" src={this.props.image}/>
+                <td className="preview">
+                    <img src={this.props.image}/>
                 </td>
             )
         }
@@ -46,7 +46,8 @@ export default class DuplicateCardItem extends React.Component {
     render() {
         return (
             <tr>
-                {this.props.hasBox && <td/>}
+                {this.props.hasBox === true && <td/>}
+                {this.props.hasBox === false && <td/>}
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}

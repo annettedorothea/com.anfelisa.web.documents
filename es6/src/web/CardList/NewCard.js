@@ -201,25 +201,19 @@ export default class NewCard extends React.Component {
     renderGiven() {
         return (
             <td>
-                <div>
-                    <textarea
-                        rows="4"
-                        onChange={this.onGivenChange}
-                        autoComplete="off"
-                        value={this.props.given}
-                        placeholder={`${this.props.texts.cardList.given[this.props.language]} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.givenLanguage][this.props.language] + ")" : "" }`}
-                        ref={textarea => {
-                            this.givenInput = textarea;
-                        }}
-                        onKeyUp={this.onAltKeyUp}
-                        onBlur={this.onBlurGiven}
-                        id="given"
-                    />
-                </div>
-                {this.props.displaySpinner === true &&
-                <label>{this.props.texts.cardList.searchingDuplicates[this.props.language]}</label>}
-                {this.props.displayTranslateSpinner === true &&
-                <label>LADEN</label>}
+                <textarea
+                    rows="4"
+                    onChange={this.onGivenChange}
+                    autoComplete="off"
+                    value={this.props.given}
+                    placeholder={`${this.props.texts.cardList.given[this.props.language]} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.givenLanguage][this.props.language] + ")" : "" }`}
+                    ref={textarea => {
+                        this.givenInput = textarea;
+                    }}
+                    onKeyUp={this.onAltKeyUp}
+                    onBlur={this.onBlurGiven}
+                    id="given"
+                />
             </td>
         )
     }
@@ -272,7 +266,10 @@ export default class NewCard extends React.Component {
     render() {
         return (
             <tr>
-                {this.props.hasBox && <td/>}
+                <td>
+                    {(this.props.displayTranslateSpinner === true || this.props.displaySpinner === true) &&
+                    <i className="fas fa-cog fa-spin"/>}
+                </td>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
