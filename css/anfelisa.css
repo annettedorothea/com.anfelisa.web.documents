@@ -21,7 +21,7 @@ input, button, textarea, select {
     font-family: Helvetica, sans-serif;
 }
 
-input[type=text], input[type=password], input[type=number] {
+input[type=text], input[type=password], input[type=number], textarea {
     border: 2px solid #ccc;
     border-radius: 4px;
     padding: 4px;
@@ -308,8 +308,8 @@ th, td {
     margin-bottom: 20px;
 }
 
-.form input[type=text], .form input[type=password] {
-    display: block;
+.form input[type=text],
+.form input[type=password] {
     width: 100%;
     box-sizing: border-box;
 }
@@ -505,22 +505,6 @@ a:hover.tile .icon::before {
     border-color: green;
 }
 
-.dictionaryWrapper {
-    width: 100%;
-    height: 500px;
-}
-
-iframe {
-    width: 100%;
-    height: 100%
-}
-
-.iframePlaceholder {
-    background-color: darkgray;
-    width: 100%;
-    height: 500px;
-}
-
 .given, .wanted {
     border: gray solid 3px;
     border-radius: 7px;
@@ -598,8 +582,42 @@ img.image {
     outline: -webkit-focus-ring-color auto 5px;
 }
 
-.categoryList img.preview {
+.categoryList .preview {
+    position: relative;
+
+}
+
+.categoryList .preview img {
     max-height: 70px;
     max-width: 120px;
 }
+
+.categoryList .preview button {
+    border: none;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.dictionaryWrapper {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 32px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%
+}
+
+.iframePlaceholder {
+    background-color: #ccc;
+    width: 100%;
+    height: 500px;
+    margin-bottom: 32px;
+}
+
 

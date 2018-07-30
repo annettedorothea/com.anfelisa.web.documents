@@ -8,6 +8,8 @@ import CancelNewCardAction from "../../author/actions/CancelNewCardAction";
 import LoadWantedImageOfNewCardAction from "../../author/actions/LoadWantedImageOfNewCardAction";
 import RemoveNewCardImageAction from "../../author/actions/RemoveNewCardImageAction";
 import PassValueToDictionaryAction from "../../author/actions/PassValueToDictionaryAction";
+import Preview from "./Preview";
+import FileInput from "./FileInput";
 
 export default class NewCard extends React.Component {
 
@@ -244,20 +246,18 @@ export default class NewCard extends React.Component {
 
     renderImage() {
         if (this.props.image.length > 0) {
-            return (
-                <td>
-                    <img className="preview" src={this.props.image}/>
-                    <button className="preview"  onClick={this.onRemoveImage}>
-                        <i className="fas fa-times"/>
-                    </button>
-                </td>
-            )
+            return <Preview
+                image={this.props.image}
+                onRemoveImage={this.onRemoveImage}
+            />
         }
         return (
-            <td>
-                <input type="file" name="file" id="file" className="inputfile" onChange={this.onWantedFileChange} value={this.props.file}/>
-                <label htmlFor="file">Choose a file</label>
-            </td>
+            <FileInput
+                onWantedFileChange={this.onWantedFileChange}
+                file={this.props.file}
+                texts={this.props.texts}
+                language={this.props.language}
+            />
         )
     }
 

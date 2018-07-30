@@ -7,6 +7,8 @@ import RemoveEditedCardImageAction from "../../author/actions/RemoveEditedCardIm
 import DisplayErrorAction from "../../common/actions/DisplayErrorAction";
 import LoadWantedImageOfEditedCardAction from "../../author/actions/LoadWantedImageOfEditedCardAction";
 import ToggleScheduleCardSelectionAction from "../../author/actions/ToggleScheduleCardSelectionAction";
+import Preview from "./Preview";
+import FileInput from "./FileInput";
 
 export default class EditCard extends React.Component {
 
@@ -121,17 +123,18 @@ export default class EditCard extends React.Component {
 
     renderImage() {
         if (this.props.image.length > 0) {
-            return (
-                <td>
-                    <img className="preview" src={this.props.image}/>
-                    <button onClick={this.onRemoveImage}>{"\u2717"}</button>
-                </td>
-            )
+            return <Preview
+                image={this.props.image}
+                onRemoveImage={this.onRemoveImage}
+            />
         }
         return (
-            <td>
-                <input type="file" onChange={this.onWantedFileChange} value={this.props.file}/>
-            </td>
+            <FileInput
+                onWantedFileChange={this.onWantedFileChange}
+                file={this.props.file}
+                texts={this.props.texts}
+                language={this.props.language}
+            />
         )
     }
 

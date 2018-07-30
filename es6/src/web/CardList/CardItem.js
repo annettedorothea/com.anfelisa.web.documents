@@ -32,9 +32,14 @@ export default class CardItem extends React.Component {
 
     renderImage() {
         return (
-            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {
-            }}>
-                <img className="preview" src={this.props.image}/>
+            <td
+                className="preview"
+                onDoubleClick={
+                    this.props.editable === true ? () => this.props.onEdit() : () => {
+                    }
+                }
+            >
+                <img src={this.props.image}/>
             </td>
         );
     }

@@ -2,6 +2,7 @@ import AbstractToggleUseDictionaryCommand from "../../../gen/author/commands/Abs
 
 export default class ToggleUseDictionaryCommand extends AbstractToggleUseDictionaryCommand {
     execute() {
+        this.commandData.useDictionary = !this.commandData.useDictionary;
         this.commandData.outcome = this.ok;
     }
 }

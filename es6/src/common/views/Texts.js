@@ -127,6 +127,9 @@ export const Texts = {
         }
     },
     cardList: {
+        chooseFile: {
+            de: "Datei hochladen"
+        },
         confirmDelete: {
             cancel: {
                 de: "Nein"
