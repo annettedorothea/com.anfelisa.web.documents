@@ -2,6 +2,7 @@ import AbstractToggleScheduleNextCommand from "../../../gen/box/commands/Abstrac
 
 export default class ToggleScheduleNextCommand extends AbstractToggleScheduleNextCommand {
     execute() {
+        this.commandData.scheduleNext = !this.commandData.scheduleNext;
         this.commandData.outcome = this.ok;
     }
 }

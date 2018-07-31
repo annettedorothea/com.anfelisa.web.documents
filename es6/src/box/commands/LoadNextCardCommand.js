@@ -14,6 +14,10 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
             });
             this.httpGet("api/box/next-card", queryParams).then((data) => {
                 this.commandData.data = data;
+                this.commandData.data.index = 0;
+                this.commandData.data.enableScoreButtons = false;
+                this.commandData.data.displayImage = false;
+                this.commandData.data.scheduleNext = false;
                 if (data.scheduledCardId) {
                     this.commandData.outcome = this.ok;
                 } else {

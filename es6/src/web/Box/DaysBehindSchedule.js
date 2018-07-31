@@ -10,8 +10,6 @@ export default class DaysBehindSchedule extends React.Component {
 
     onPostpone() {
         const data = {
-            username: this.props.username,
-            password: this.props.password,
             boxId: this.props.boxId,
             loadList: this.props.loadList
         };

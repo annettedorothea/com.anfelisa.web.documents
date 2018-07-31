@@ -2,7 +2,7 @@ import AbstractLoadBoxStatisticsAction from "../../../gen/box/actions/AbstractLo
 
 export default class LoadBoxStatisticsAction extends AbstractLoadBoxStatisticsAction {
 
-    initActionData() {
+    extendActionData() {
         let date = new Date();
         date.setHours(24,0,0,0);
         this.actionData.today = date.toISOString();

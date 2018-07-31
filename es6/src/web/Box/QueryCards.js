@@ -21,12 +21,7 @@ export default class QueryCards extends React.Component {
             content = <ReinforceCard {...this.props}/>
         } else {
             content = <div>
-                <button onClick={() => new ScheduleNextCardAction(
-                    {
-                        username: this.props.username,
-                        password: this.props.password,
-                        boxId: this.props.data.boxId
-                    }).apply()}>{this.props.texts.queryCards.scheduleNextCard[this.props.language]}</button>
+                <button onClick={() => new ScheduleNextCardAction().apply()}>{this.props.texts.queryCards.scheduleNextCard[this.props.language]}</button>
                 <button onClick={() => new RouteAction(
                     {
                         hash: `#box/reinforce/${this.props.data.boxId}`

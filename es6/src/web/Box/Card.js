@@ -16,12 +16,7 @@ export default class Card extends React.Component {
 
     scoreButtonClick(quality) {
         const data = {
-            boxId: this.props.data.boxId,
-            scheduledCardId: this.props.data.scheduledCardId,
-            quality,
-            username: this.props.username,
-            password: this.props.password,
-            scheduleNext: this.props.data.scheduleNext
+            quality
         };
         new ScoreCardAction(data).apply();
     }
@@ -64,9 +59,15 @@ export default class Card extends React.Component {
                     displayImage={this.props.data.displayImage}
                 />
                 <div>
-                    <input id="scheduleNextCheckbox" type={"checkbox"} checked={this.props.data.scheduleNext}
-                           onChange={this.onScheduleNextCheckedChange}/>
-                    <label htmlFor="scheduleNextCheckbox">{this.props.texts.queryCards.scheduleNext[this.props.language]}</label>
+                    <input
+                        id="scheduleNextCheckbox"
+                        type={"checkbox"}
+                        checked={this.props.data.scheduleNext}
+                        value={this.props.data.scheduleNext}
+                        onChange={this.onScheduleNextCheckedChange}
+                    />
+                    <label
+                        htmlFor="scheduleNextCheckbox">{this.props.texts.queryCards.scheduleNext[this.props.language]}</label>
                 </div>
                 <div>
                     {scoreButtons}

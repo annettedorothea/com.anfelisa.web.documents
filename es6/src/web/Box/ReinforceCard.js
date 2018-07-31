@@ -14,11 +14,7 @@ export default class ReinforceCard extends React.Component {
 
     scoreButtonClick(quality) {
         const data = {
-            reinforceCardId: this.props.data.reinforceCardId,
-            boxId: this.props.data.boxId,
             quality,
-            username: this.props.username,
-            password: this.props.password
         };
         new ScoreReinforceCardAction(data).apply();
     }

@@ -65,32 +65,6 @@ export default class EditBoxItem extends React.Component {
                 </div>
             </span>
         );
-
-        /*return (
-            <div>
-                <h1>{this.props.categoryName} - {this.props.totalCards} {this.props.texts.box.totalCards[this.props.language]}</h1>
-
-                <input id="maxIntervalCheckbox" type={"checkbox"} checked={this.props.editedBox.maxIntervalChecked === true} onChange={this.onMaxIntervalCheckedChange}/>
-                <label htmlFor="maxIntervalCheckbox">{this.props.texts.editBox.maxInterval[this.props.language]}</label>
-
-                <input type="number" value={this.props.editedBox.maxInterval} onChange={this.onMaxIntervalChange} disabled={!this.props.editedBox.maxIntervalChecked}/>
-
-                <table>
-                    <tbody>
-                    <tr>
-                        <td>{this.props.texts.box.todaysCards[this.props.language]}</td>
-                        <td>{this.props.todaysCards}</td>
-                    </tr>
-                    <tr>
-                        <td>{this.props.texts.box.myCards[this.props.language]}</td>
-                        <td>{this.props.myCards}</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <button onClick={() => this.onUpdate(this.props.boxId)}>{"\u2713"}</button>
-                <button onClick={() => this.onCancel(this.props.boxId)}>{"\u2717"}</button>
-            </div>
-        );*/
     }
 }
 
