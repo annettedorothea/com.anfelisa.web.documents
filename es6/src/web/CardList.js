@@ -195,12 +195,12 @@ export default class CardList extends React.Component {
                         .replace("{0}", this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).length)}
                 </h1>
 
-                <table>
+                <table className="cardTable">
                     <thead>
                     <tr>
                         <th/>
                         {this.props.data.cardList.length > 0 &&
-                        <th>
+                        <th colSpan={4}>
                             <input
                                 type={"text"}
                                 onChange={this.onFilterChange}
@@ -218,6 +218,24 @@ export default class CardList extends React.Component {
                         </th>
                     </tr>
 
+                    {this.props.data.newCard.dictionaryLookup === true && this.props.data.parentEditable &&
+                    <tr>
+                        <th>
+                            <input
+                                type={"checkbox"}
+                                onChange={this.onUseDictionaryChange}
+                                checked={this.props.data.useDictionary}
+                                id="useDictionaryCheckbox"
+                            />
+                        </th>
+                        <th colSpan={5}>
+                            <label
+                                htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary[this.props.language]}
+                            </label>
+                        </th>
+                    </tr>
+                    }
+
                     {this.props.data.cardList.length > 0 && this.props.data.hasBox === true &&
                     <tr>
                         <th>
@@ -234,7 +252,9 @@ export default class CardList extends React.Component {
                         </th>
                     </tr>
                     }
+
                     </thead>
+
                     <tbody>
                     {cardItems}
                     {duplicateCards.length > 0 && <tr>
@@ -242,23 +262,6 @@ export default class CardList extends React.Component {
                         <td colSpan={5}>{this.props.texts.cardList.duplicateCards[this.props.language]}</td>
                     </tr>}
                     {duplicateCards}
-                    {this.props.data.newCard.dictionaryLookup === true && this.props.data.parentEditable &&
-                    <tr>
-                        <td>
-                            <input
-                                type={"checkbox"}
-                                onChange={this.onUseDictionaryChange}
-                                checked={this.props.data.useDictionary}
-                                id="useDictionaryCheckbox"
-                            />
-                        </td>
-                        <td colSpan={5}>
-                            <label
-                                htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary[this.props.language]}
-                            </label>
-                        </td>
-                    </tr>
-                    }
 
                     </tbody>
                 </table>

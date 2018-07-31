@@ -147,6 +147,7 @@ table {
 table, th, td {
     border: none;
     text-align: left;
+    font-weight: normal;
 }
 
 th, td {
@@ -530,6 +531,17 @@ img.image {
 .categoryList table {
     width: 100%;
     margin-bottom: 32px;
+}
+
+.categoryList table.cardTable tbody,
+.categoryList table.cardTable thead {
+    display: block;
+}
+
+.categoryList table.cardTable tbody {
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .categoryList td {
