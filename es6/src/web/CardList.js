@@ -173,7 +173,7 @@ export default class CardList extends React.Component {
 
         });
         return (
-            <div>
+            <div className="largeMargin">
                 {this.props.data.deleteCard.confirmDelete === true &&
                 <div>
                     <Confirm {...
@@ -200,7 +200,7 @@ export default class CardList extends React.Component {
                     <tr>
                         <th/>
                         {this.props.data.cardList.length > 0 &&
-                        <th colSpan={4}>
+                        <th>
                             <input
                                 type={"text"}
                                 onChange={this.onFilterChange}
@@ -238,7 +238,8 @@ export default class CardList extends React.Component {
                     <tbody>
                     {cardItems}
                     {duplicateCards.length > 0 && <tr>
-                        <td colSpan={6}>{this.props.texts.cardList.duplicateCards[this.props.language]}</td>
+                        <td/>
+                        <td colSpan={5}>{this.props.texts.cardList.duplicateCards[this.props.language]}</td>
                     </tr>}
                     {duplicateCards}
                     {this.props.data.newCard.dictionaryLookup === true && this.props.data.parentEditable &&

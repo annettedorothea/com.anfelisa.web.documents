@@ -145,7 +145,7 @@ export const Texts = {
             }
         },
         duplicateCards: {
-            de: "Doppelte Karten"
+            de: "Ähnliche Karten"
         },
         filter: {
             de: "Suchen und filtern"

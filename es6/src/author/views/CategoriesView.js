@@ -46,7 +46,7 @@ export default class CategoriesView {
                 cardId: ""
             },
             filter: "",
-            naturalInputOrder: eventData.data.naturalInputOrder,
+            naturalInputOrder: eventData.naturalInputOrder,
             useDictionary: eventData.useDictionary,
             dictionaryValue: "",
             categoryList: eventData.data.categoryList,
@@ -325,7 +325,6 @@ export default class CategoriesView {
     };
 
     static initDuplicates(eventData) {
-        console.log("initDuplicates", eventData.data.cardList);
         const data = {
             cardDuplicates: eventData.data.cardList
         };

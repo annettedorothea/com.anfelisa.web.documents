@@ -63,7 +63,6 @@ export default class EditCard extends React.Component {
     }
 
     onCancel() {
-        console.log("onCancel");
         new CancelEditCardAction().apply();
     }
 
