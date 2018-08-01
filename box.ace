@@ -41,7 +41,6 @@ ACE {
 	
 	async PostponeCardsOfBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on next triggers (LoadNextCard)
-		on list triggers (LoadBoxes)
 		on unauthorized ( common.Common.displayError ) triggers ( common.Logout)
 	}
 	

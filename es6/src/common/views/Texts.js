@@ -34,7 +34,7 @@ export const Texts = {
             de: "maximaler Abstand"
         },
         myCards: {
-            de: "Bearbeitete Karten"
+            de: "Karten in der Box"
         },
         nextCard: {
             de: "Karten abfragen"

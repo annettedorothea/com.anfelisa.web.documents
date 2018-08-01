@@ -10,8 +10,7 @@ export default class DaysBehindSchedule extends React.Component {
 
     onPostpone() {
         const data = {
-            boxId: this.props.boxId,
-            loadList: this.props.loadList
+            boxId: this.props.boxId
         };
         new PostponeCardsOfBoxAction(data).apply();
     }
@@ -20,13 +19,7 @@ export default class DaysBehindSchedule extends React.Component {
         if (!this.props.daysBehindSchedule || this.props.daysBehindSchedule <= 0) {
             return "";
         }
-        let message = "";
-        if (this.props.daysBehindSchedule === 1) {
-            message = this.props.texts.box.daysBehindScheduleMessageOne[this.props.language];
-        } else {
-            message = this.props.texts.box.daysBehindScheduleMessage[this.props.language].replace("{0}", this.props.daysBehindSchedule);
-        }
-        return <div>{message}
+        return <div>
             <button onClick={this.onPostpone}>{this.props.texts.box.postpone[this.props.language]}</button>
         </div>;
         s

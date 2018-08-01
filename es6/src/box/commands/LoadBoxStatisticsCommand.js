@@ -14,6 +14,8 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
             });
             this.httpGet("api/box/get", queryParams).then((data) => {
                 this.commandData.data = data;
+                this.commandData.data.scheduleNext = this.commandData.scheduleNext === true && data.myCards === data.totalCards ? false : this.commandData.scheduleNext;
+                console.log("LoadBoxStatisticsCommand", this.commandData.data.scheduleNext);
                 this.commandData.outcome = this.ok;
                 resolve();
             }, (error) => {

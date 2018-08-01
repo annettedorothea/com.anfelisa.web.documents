@@ -20,45 +20,58 @@ export default class QueryCards extends React.Component {
         } else if (this.props.data.reinforceCardId) {
             content = <ReinforceCard {...this.props}/>
         } else {
-            content = <div>
-                <button onClick={() => new ScheduleNextCardAction().apply()}>{this.props.texts.queryCards.scheduleNextCard[this.props.language]}</button>
-                <button onClick={() => new RouteAction(
+            content = <div className="buttons">
+                <button
+                    onClick={() => new ScheduleNextCardAction().apply()}
+                    disabled={this.props.data.myCards === this.props.data.totalCards}
+                >
+                    {this.props.texts.queryCards.scheduleNextCard[this.props.language]}
+                </button>
+                <button
+                    onClick={() => new RouteAction(
                     {
                         hash: `#box/reinforce/${this.props.data.boxId}`
-                    }).apply()}>{this.props.texts.queryCards.reinforceCard[this.props.language]}</button>
-                <button
-                    onClick={() => new RouteAction({
-                        hash: "#dashboard"
-                    }).apply()}>{this.props.texts.queryCards.back[this.props.language]}
+                    }).apply()}
+                    disabled={this.props.data.reinforceCards === 0}
+                >
+                    {this.props.texts.queryCards.reinforceCard[this.props.language]}
                 </button>
             </div>;
         }
         return (
-            <div>
+            <div className="box">
+                <button
+                    className="backButton"
+                    onClick={() => new RouteAction({
+                        hash: "#dashboard"
+                    }).apply()}>{this.props.texts.queryCards.back[this.props.language]}
+                </button>
+
                 <h1>{this.props.data.categoryName}</h1>
 
-                <BoxInfo
-                    {...this.props.data}
-                    username={this.props.username}
-                    password={this.props.password}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                    loadList={false}
-                />
-
-                <DaysBehindSchedule
-                    boxId={this.props.data.boxId}
-                    daysBehindSchedule={this.props.data.daysBehindSchedule}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                    username={this.props.username}
-                    password={this.props.password}
-                    loadList={this.props.loadList}
-                />
-
-                <Statistics {...this.props.data}/>
-
                 {content}
+
+                <div className="infoAndStatistics">
+                    <BoxInfo
+                        {...this.props.data}
+                        username={this.props.username}
+                        password={this.props.password}
+                        texts={this.props.texts}
+                        language={this.props.language}
+                    />
+
+                    <DaysBehindSchedule
+                        boxId={this.props.data.boxId}
+                        daysBehindSchedule={this.props.data.daysBehindSchedule}
+                        texts={this.props.texts}
+                        language={this.props.language}
+                        username={this.props.username}
+                        password={this.props.password}
+                    />
+
+                    <Statistics {...this.props.data}/>
+
+                </div>
             </div>
         );
     }

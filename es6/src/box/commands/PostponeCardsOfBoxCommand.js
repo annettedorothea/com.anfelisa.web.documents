@@ -13,11 +13,7 @@ export default class PostponeCardsOfBoxCommand extends AbstractPostponeCardsOfBo
                 value: this.commandData.today
             });
             this.httpPut("api/cards/postpone", queryParams).then((data) => {
-                if (this.commandData.loadList === true) {
-                    this.commandData.outcome = this.list;
-                } else {
-                    this.commandData.outcome = this.next;
-                }
+                this.commandData.outcome = this.next;
                 resolve();
             }, (error) => {
                 if (error.code === 401) {

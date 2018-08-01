@@ -12,6 +12,7 @@ export default class Card extends React.Component {
         super(props);
         this.scoreButtonClick = this.scoreButtonClick.bind(this);
         this.onScheduleNextCheckedChange = this.onScheduleNextCheckedChange.bind(this);
+        this.scoreButton = this.scoreButton.bind(this);
     }
 
     scoreButtonClick(quality) {
@@ -25,21 +26,19 @@ export default class Card extends React.Component {
         new ToggleScheduleNextAction().apply();
     }
 
+    scoreButton(quality) {
+        return <ScoreButton
+            key={quality}
+            quality={quality}
+            scoreButtonClick={this.scoreButtonClick}
+            texts={this.props.texts}
+            disabled={!this.props.data.enableScoreButtons}
+            language={this.props.language}
+        />;
+    }
+
     render() {
         const lines = this.props.data.wanted.split("\n");
-        const scoreButtons = [];
-        for (let i = 5; i >= 0; i--) {
-            scoreButtons.push(
-                <ScoreButton
-                    key={i}
-                    quality={i}
-                    scoreButtonClick={this.scoreButtonClick}
-                    texts={this.props.texts}
-                    disabled={!this.props.data.enableScoreButtons}
-                    language={this.props.language}
-                />
-            );
-        }
         return (
             <div>
                 <Given
@@ -58,30 +57,40 @@ export default class Card extends React.Component {
                     image={this.props.data.image}
                     displayImage={this.props.data.displayImage}
                 />
-                <div>
+                <div className="scheduleNextCheckbox">
                     <input
                         id="scheduleNextCheckbox"
                         type={"checkbox"}
                         checked={this.props.data.scheduleNext}
                         value={this.props.data.scheduleNext}
                         onChange={this.onScheduleNextCheckedChange}
+                        disabled={this.props.data.myCards === this.props.data.totalCards}
                     />
                     <label
-                        htmlFor="scheduleNextCheckbox">{this.props.texts.queryCards.scheduleNext[this.props.language]}</label>
+                        htmlFor="scheduleNextCheckbox">{this.props.texts.queryCards.scheduleNext[this.props.language]}
+                    </label>
                 </div>
-                <div>
-                    {scoreButtons}
+                <div className="categoryLink">
+                    <a
+                        onClick={() => new RouteAction({
+                            hash: `#categories/${this.props.data.categoryId}`
+                        }).apply()}
+                    >{this.props.texts.queryCards.category[this.props.language]}</a>
                 </div>
-                <button
-                    onClick={() => new RouteAction({
-                        hash: `#categories/${this.props.data.categoryId}`
-                    }).apply()}>{this.props.texts.queryCards.category[this.props.language]}
-                </button>
-                <button
-                    onClick={() => new RouteAction({
-                        hash: "#dashboard"
-                    }).apply()}>{this.props.texts.queryCards.back[this.props.language]}
-                </button>
+                <div className="scoreButtons">
+                    <div>
+                        {this.scoreButton(5)}
+                        {this.scoreButton(2)}
+                    </div>
+                    <div>
+                        {this.scoreButton(4)}
+                        {this.scoreButton(1)}
+                    </div>
+                    <div>
+                        {this.scoreButton(3)}
+                        {this.scoreButton(0)}
+                    </div>
+                </div>
             </div>
         );
     }

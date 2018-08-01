@@ -39,7 +39,7 @@ export default class BoxItem extends React.Component {
 
                 <h2>{this.props.categoryName}</h2>
 
-                <BoxInfo {...this.props} loadList={true}/>
+                <BoxInfo {...this.props}/>
 
                 <Statistics {...this.props}/>
 

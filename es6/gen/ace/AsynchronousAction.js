@@ -13,8 +13,8 @@ export default class AsynchronousAction extends Action {
         return new Promise((resolve, reject) => {
             this.preUpdateUI();
             if (ACEController.execution === ACEController.LIVE) {
-                this.extendActionData();
                 this.actionData.uuid = AppUtils.createUUID();
+                this.extendActionData();
             }
             this.initActionData();
             ACEController.addItemToTimeLine({action: this});

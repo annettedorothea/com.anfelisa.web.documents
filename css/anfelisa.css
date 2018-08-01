@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -33,6 +34,10 @@ input[readonly], input[disabled] {
     color: #777;
 }
 
+input:disabled+label {
+    color: #ccc;
+}
+
 button {
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -42,7 +47,7 @@ button {
     margin-right: 8px;
 }
 
-button:hover {
+button:hover:not[disabled] {
     border-color: #004784;
     background-color: #337ab7;
     color: #eee;
@@ -54,26 +59,25 @@ button.primary {
     color: #eee;
 }
 
-button.primary:hover {
+button.primary:hover:not[disabled] {
     background-color: #004784;
     color: #eee;
 }
 
 button.danger {
-    border-color: #990000;
+    border-color: #CC2300;
     background-color: #E53C16;
     color: #eee;
 }
 
-button.danger:hover {
-    background-color: #990000;
+button.danger:hover:not[disabled] {
+    background-color: #CC2300;
     color: #eee;
 }
 
-button.primary[disabled], button.danger[disabled] {
-    background-color: #eee;
-    border: 2px solid #ccc;
-    color: #777;
+button.disabled, button[disabled] {
+    cursor: not-allowed;
+    opacity: .65;
 }
 
 i.primary {
@@ -97,6 +101,7 @@ h1 {
     color: #337ab7;
     font-size: 24px;
     font-weight: normal;
+    margin-bottom: 16px;
 }
 
 h2 {
@@ -127,7 +132,7 @@ h2 {
 
 @media screen and (max-width: 600px) {
     .header a.title {
-        font-size: 36px;
+        font-size: 24px;
     }
 }
 
@@ -316,7 +321,6 @@ th, td {
 .form input[type=text],
 .form input[type=password] {
     width: 100%;
-    box-sizing: border-box;
 }
 
 .form input[type=checkbox] {
@@ -352,8 +356,8 @@ th, td {
 
 .tile {
     display: inline-block;
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     border: 2px solid #ccc;
     border-radius: 4px;
     padding: 20px 20px;
@@ -364,8 +368,8 @@ th, td {
 }
 
 .tile.double {
-    width: 308px;
-    height: 240px;
+    width: 300px;
+    height: 260px;
 }
 
 a:hover.tile {
@@ -406,7 +410,7 @@ a:hover.tile .icon::before {
 }
 
 .tile .statistics {
-    width: 308px;
+    width: 260px;
     position: absolute;
     bottom: 20px;
     left: 20px;
@@ -486,66 +490,139 @@ a:hover.tile .icon::before {
 
 /* cards */
 
-.lastQuality_0, .quality0 {
-    border-color: pink;
+.box input[type=checkbox] {
+    margin-right: 8px;
 }
 
-.lastQuality_1, .quality1 {
-    border-color: red;
+.box .categoryLink {
+    margin-bottom: 20px;
 }
 
-.lastQuality_2, .quality2 {
-    border-color: orange;
-}
-
-.lastQuality_3, .quality3 {
-    border-color: cyan;
-}
-
-.lastQuality_4, .quality4 {
-    border-color: blue;
-}
-
-.lastQuality_5, .quality5 {
-    border-color: green;
-}
-
-.given, .wanted {
+.box .given, .box .wanted {
     border: gray solid 3px;
     border-radius: 7px;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-img.image {
+
+.box .lastQuality_0 {
+    border-color: #FF5DB1;
+}
+
+.box .lastQuality_1 {
+    border-color: #E53C16;
+}
+
+.box .lastQuality_2 {
+    border-color: #ffa84c;
+}
+
+.box .lastQuality_3 {
+    border-color: #2AABD2;
+}
+
+.box .lastQuality_4 {
+    border-color: #337ab7;
+}
+
+.box .lastQuality_5 {
+    border-color: #669E00;
+}
+
+.box .scoreButtons {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.box .scoreButtons button {
+    border: none;
+    color: #fff;
+    padding: 8px 8px;
+    width: 140px;
+    margin: 0 4px 16px 4px;
+}
+.box button.quality_0 {
+    background-color: #FF5DB1;
+}
+
+.box button.quality_1 {
+    background-color: #E53C16;
+}
+
+.box button.quality_2 {
+    background-color: #ffa84c;
+}
+
+.box button.quality_3 {
+    background-color: #2AABD2;
+}
+
+.box button.quality_4 {
+    background-color: #337ab7;
+}
+
+.box button.quality_5 {
+    background-color: #669E00;
+}
+
+.box img.image {
     max-height: 600px;
     max-width: 100%;
 }
 
-/* categories */
-
-.categoryList h1 {
-    margin-bottom: 16px;
+.box .scheduleNextCheckbox {
+    margin-bottom: 20px;
 }
+
+.infoAndStatistics {
+    width: 300px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.box .statistics {
+    margin-bottom: 120px;
+}
+
+.box table {
+    margin-bottom: 20px;
+}
+
+.box h2 {
+    margin-bottom: 20px;
+}
+
+.box .buttons {
+    margin-bottom: 120px;
+}
+
+
+/* categories */
 
 .categoryList table {
     width: 100%;
     margin-bottom: 32px;
+    table-layout: fixed;
 }
 
-.categoryList table.cardTable tbody,
-.categoryList table.cardTable thead {
+.categoryList table tbody,
+.categoryList table thead {
     display: block;
 }
 
-.categoryList table.cardTable tbody {
-    height: 400px;
+.categoryList table tbody {
+    max-height: 50vh;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 .categoryList td {
     border-bottom: 1px dotted #ccc;
+    line-height: 34px;
 }
 
 .categoryList input, .categoryList select {
