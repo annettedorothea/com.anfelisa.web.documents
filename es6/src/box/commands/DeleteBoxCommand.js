@@ -2,7 +2,7 @@ import AbstractDeleteBoxCommand from "../../../gen/box/commands/AbstractDeleteBo
 
 export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let queryParams = [];
             queryParams.push({
                 key: "boxId",
@@ -11,15 +11,6 @@ export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
             this.httpDelete("api/box/delete", queryParams).then((data) => {
                 this.commandData.outcome = this.ok;
                 resolve();
-            }, (error) => {
-                if (error.code === 401) {
-                    error.errorKey = "unauthorized";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.unauthorized;
-                    resolve();
-                } else {
-                    reject(error.text);
-                }
             });
         });
     }

@@ -15,8 +15,6 @@ export default class StudentDashboard extends React.Component {
 
     onDelete() {
         const data = {
-            username: this.props.username,
-            password: this.props.password,
             boxId: this.props.data.deleteBox.boxId
         };
         new DeleteBoxAction(data).apply();

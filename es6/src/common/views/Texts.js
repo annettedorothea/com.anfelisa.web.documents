@@ -277,6 +277,9 @@ export const Texts = {
         },
         userAdded: {
             de: "Der Benutzer wurde hizugefügt."
+        },
+        userRemoved: {
+            de: "Der Benutzer wurde entfernt."
         }
     },
     profile: {

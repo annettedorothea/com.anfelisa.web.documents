@@ -2,7 +2,7 @@ import AbstractUpdateBoxCommand from "../../../gen/box/commands/AbstractUpdateBo
 
 export default class UpdateBoxCommand extends AbstractUpdateBoxCommand {
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             const data = {
                 boxId: this.commandData.boxId,
                 maxInterval: this.commandData.maxInterval
@@ -10,15 +10,6 @@ export default class UpdateBoxCommand extends AbstractUpdateBoxCommand {
             this.httpPut("api/box/update", [], data).then((data) => {
                 this.commandData.outcome = this.ok;
                 resolve();
-            }, (error) => {
-                if (error.code === 401) {
-                    error.errorKey = "unauthorized";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.unauthorized;
-                    resolve();
-                } else {
-                    reject(error.text);
-                }
             });
         });
     }

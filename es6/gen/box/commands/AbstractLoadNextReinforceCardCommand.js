@@ -1,17 +1,14 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadNextReinforceCardOkEvent from "../../../gen/box/events/LoadNextReinforceCardOkEvent";
-import LoadNextReinforceCardUnauthorizedEvent from "../../../gen/box/events/LoadNextReinforceCardUnauthorizedEvent";
 import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
-import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadNextReinforceCardCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.LoadNextReinforceCardCommand");
         this.ok = "ok";
         this.noCard = "noCard";
-        this.unauthorized = "unauthorized";
     }
 
     publishEvents() {
@@ -24,10 +21,6 @@ export default class AbstractLoadNextReinforceCardCommand extends Command {
 			break;
 		case this.noCard:
 			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
-			break;
-		case this.unauthorized:
-			promises.push(new LoadNextReinforceCardUnauthorizedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('LoadNextReinforceCardCommand unhandled outcome: ' + this.commandData.outcome)});

@@ -2,7 +2,7 @@ import AbstractLoadCategoriesCommand from "../../../gen/author/commands/Abstract
 
 export default class LoadCategoriesCommand extends AbstractLoadCategoriesCommand {
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let queryParams = [];
             if (this.commandData.parentCategoryId) {
                 queryParams.push({
@@ -16,15 +16,6 @@ export default class LoadCategoriesCommand extends AbstractLoadCategoriesCommand
                 this.commandData.useDictionary = this.commandData.useDictionary === undefined? false : this.commandData.useDictionary;
                 this.commandData.outcome = this.ok;
                 resolve();
-            }, (error) => {
-                if (error.code === 401) {
-                    error.errorKey = "unauthorized";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.unauthorized;
-                    resolve();
-                } else {
-                    reject(error.text);
-                }
             });
         });
     }

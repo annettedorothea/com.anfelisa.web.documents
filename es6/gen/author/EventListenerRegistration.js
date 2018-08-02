@@ -6,14 +6,9 @@ export default class EventListenerRegistrationAuthor {
 
 	static init() {
 		ACEController.registerListener('author.LoadCategoriesOkEvent', CategoriesView.render);
-		ACEController.registerListener('author.LoadCategoriesUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.CreateCategoryOkEvent', CategoriesView.resetNewCategoryValues);
-		ACEController.registerListener('author.CreateCategoryUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.UpdateCategoryOkEvent', CategoriesView.resetEditCategoryValues);
-		ACEController.registerListener('author.UpdateCategoryUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.DeleteCategoryOkEvent', CategoriesView.hideConfirmCategoryDelete);
-		ACEController.registerListener('author.DeleteCategoryUnauthorizedEvent', CommonView.displayError);
-		ACEController.registerListener('author.DeleteCategoryUnauthorizedEvent', CategoriesView.hideConfirmCategoryDelete);
 		ACEController.registerListener('author.NameOfNewCategoryChangedOkEvent', CategoriesView.nameOfNewCategoryChanged);
 		ACEController.registerListener('author.CancelNewCategoryOkEvent', CategoriesView.resetNewCategoryValues);
 		ACEController.registerListener('author.NameOfEditedCategoryChangedOkEvent', CategoriesView.nameOfEditedCategoryChanged);
@@ -22,16 +17,11 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.DeleteCategoryClickOkEvent', CategoriesView.displayConfirmCategoryDelete);
 		ACEController.registerListener('author.CancelDeleteCategoryOkEvent', CategoriesView.hideConfirmCategoryDelete);
 		ACEController.registerListener('author.CreateCardOkEvent', CategoriesView.resetNewCardValues);
-		ACEController.registerListener('author.CreateCardUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.UpdateCardOkEvent', CategoriesView.resetEditCardValues);
-		ACEController.registerListener('author.UpdateCardUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.DeleteCardOkEvent', CategoriesView.hideConfirmCardDelete);
-		ACEController.registerListener('author.DeleteCardUnauthorizedEvent', CommonView.displayError);
-		ACEController.registerListener('author.DeleteCardUnauthorizedEvent', CategoriesView.hideConfirmCardDelete);
 		ACEController.registerListener('author.GivenOfNewCardChangedOkEvent', CategoriesView.givenOfNewCardChanged);
 		ACEController.registerListener('author.SearchDuplicateCardsOkEvent', CategoriesView.initDuplicates);
 		ACEController.registerListener('author.SearchDuplicateCardsTooShortEvent', CategoriesView.resetDuplicates);
-		ACEController.registerListener('author.SearchDuplicateCardsUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.WantedOfNewCardChangedOkEvent', CategoriesView.wantedOfNewCardChanged);
 		ACEController.registerListener('author.CancelNewCardOkEvent', CategoriesView.resetNewCardValues);
 		ACEController.registerListener('author.GivenOfEditedCardChangedOkEvent', CategoriesView.givenOfEditedCardChanged);
@@ -58,14 +48,10 @@ export default class EventListenerRegistrationAuthor {
 		ACEController.registerListener('author.RemoveEditedCardImageOkEvent', CategoriesView.removeEditedCardImage);
 		ACEController.registerListener('author.ToggleScheduleCardSelectionOkEvent', CategoriesView.toggleScheduleCardSelection);
 		ACEController.registerListener('author.ToggleAllScheduleCardSelectionOkEvent', CategoriesView.toggleAllScheduleCardSelection);
-		ACEController.registerListener('author.ScheduleSelectedCardsUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.InviteUserUserDoesNotExistEvent', CommonView.displayError);
-		ACEController.registerListener('author.InviteUserUnauthorizedEvent', CommonView.displayError);
 		ACEController.registerListener('author.RevokeUserAccessClickOkEvent', CategoriesView.displayRevokeUserAccess);
 		ACEController.registerListener('author.CancelRevokeUserAccessOkEvent', CategoriesView.hideRevokeUserAccess);
 		ACEController.registerListener('author.RevokeUserAccessOkEvent', CategoriesView.hideRevokeUserAccess);
-		ACEController.registerListener('author.RevokeUserAccessUnauthorizedEvent', CommonView.displayError);
-		ACEController.registerListener('author.RevokeUserAccessUnauthorizedEvent', CategoriesView.hideRevokeUserAccess);
 	}
 
 }

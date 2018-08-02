@@ -5,8 +5,7 @@ export default class ScoreCardAction extends AbstractScoreCardAction {
 
     initActionData() {
         this.actionData.boxId = App.appState.data === undefined || App.appState.data.boxId === undefined ? undefined : App.appState.data.boxId;
-        this.actionData.scheduledCardId = App.appState.data === undefined || App.appState.data.scheduledCardId === undefined ? false : App.appState.data.scheduledCardId;
-        this.actionData.scheduleNext = App.appState.data === undefined || App.appState.data.scheduleNext === undefined ? false : App.appState.data.scheduleNext;
+        this.actionData.scoredCardScheduledCardId = App.appState.data === undefined || App.appState.data.scheduledCardId === undefined ? false : App.appState.data.scheduledCardId;
     }
 
 }

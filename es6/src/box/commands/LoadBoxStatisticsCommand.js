@@ -2,7 +2,7 @@ import AbstractLoadBoxStatisticsCommand from "../../../gen/box/commands/Abstract
 
 export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsCommand {
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let queryParams = [];
             queryParams.push({
                 key: "today",
@@ -18,15 +18,6 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
                 console.log("LoadBoxStatisticsCommand", this.commandData.data.scheduleNext);
                 this.commandData.outcome = this.ok;
                 resolve();
-            }, (error) => {
-                if (error.code === 401) {
-                    error.errorKey = "unauthorized";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.unauthorized;
-                    resolve();
-                } else {
-                    reject(error.text);
-                }
             });
         });
     }

@@ -2,10 +2,8 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadNextCardOkEvent from "../../../gen/box/events/LoadNextCardOkEvent";
 import LoadNextCardDoNotScheduleNextEvent from "../../../gen/box/events/LoadNextCardDoNotScheduleNextEvent";
-import LoadNextCardUnauthorizedEvent from "../../../gen/box/events/LoadNextCardUnauthorizedEvent";
 import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
 import ScheduleNextCardAction from "../../../src/box/actions/ScheduleNextCardAction";
-import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadNextCardCommand extends Command {
     constructor(commandData) {
@@ -13,7 +11,6 @@ export default class AbstractLoadNextCardCommand extends Command {
         this.ok = "ok";
         this.scheduleNext = "scheduleNext";
         this.doNotScheduleNext = "doNotScheduleNext";
-        this.unauthorized = "unauthorized";
     }
 
     publishEvents() {
@@ -30,10 +27,6 @@ export default class AbstractLoadNextCardCommand extends Command {
 		case this.doNotScheduleNext:
 			promises.push(new LoadNextCardDoNotScheduleNextEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish());
-			break;
-		case this.unauthorized:
-			promises.push(new LoadNextCardUnauthorizedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('LoadNextCardCommand unhandled outcome: ' + this.commandData.outcome)});

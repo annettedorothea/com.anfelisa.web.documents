@@ -2,7 +2,7 @@ import AbstractTranslateCommand from "../../../gen/author/commands/AbstractTrans
 
 export default class TranslateCommand extends AbstractTranslateCommand {
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             if (this.commandData.naturalInputOrder === true && (!this.commandData.given || this.commandData.given.length === 0)) {
                 this.commandData.outcome = this.empty;
                 resolve();
@@ -38,15 +38,6 @@ export default class TranslateCommand extends AbstractTranslateCommand {
                         this.commandData.outcome = this.givenFetched;
                     }
                     resolve();
-                }, (error) => {
-                    if (error.code === 401) {
-                        error.errorKey = "unauthorized";
-                        this.commandData.error = error;
-                        this.commandData.outcome = this.unauthorized;
-                        resolve();
-                    } else {
-                        reject(error.text);
-                    }
                 });
             }
         });

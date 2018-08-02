@@ -37,7 +37,7 @@ export default class AsynchronousCommand extends Command {
         return Utils.prepareAction(this.commandData.uuid).then(() => {
             queryParams = this.addUuidToQueryParams(queryParams);
             data = this.addUuidToData(data);
-            return AppUtils.httpPost(url, queryParams, data, this.commandData);
+            return AppUtils.httpPost(url, queryParams, data);
         }, (error) => {
             reject(error);
         });
@@ -47,7 +47,7 @@ export default class AsynchronousCommand extends Command {
         return Utils.prepareAction(this.commandData.uuid).then(() => {
             queryParams = this.addUuidToQueryParams(queryParams);
             data = this.addUuidToData(data);
-            return AppUtils.httpPut(url, queryParams, data, this.commandData);
+            return AppUtils.httpPut(url, queryParams, data);
         }, (error) => {
             reject(error);
         });
@@ -57,7 +57,7 @@ export default class AsynchronousCommand extends Command {
         return Utils.prepareAction(this.commandData.uuid).then(() => {
             queryParams = this.addUuidToQueryParams(queryParams);
             data = this.addUuidToData(data);
-            return AppUtils.httpDelete(url, queryParams, data, this.commandData);
+            return AppUtils.httpDelete(url, queryParams, data);
         }, (error) => {
             reject(error);
         });

@@ -1,15 +1,13 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import RevokeUserAccessOkEvent from "../../../gen/author/events/RevokeUserAccessOkEvent";
-import RevokeUserAccessUnauthorizedEvent from "../../../gen/author/events/RevokeUserAccessUnauthorizedEvent";
+import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
-import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractRevokeUserAccessCommand extends Command {
     constructor(commandData) {
         super(commandData, "author.RevokeUserAccessCommand");
         this.ok = "ok";
-        this.unauthorized = "unauthorized";
     }
 
     publishEvents() {
@@ -18,11 +16,8 @@ export default class AbstractRevokeUserAccessCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new RevokeUserAccessOkEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new DisplayMessageAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
-			break;
-		case this.unauthorized:
-			promises.push(new RevokeUserAccessUnauthorizedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('RevokeUserAccessCommand unhandled outcome: ' + this.commandData.outcome)});

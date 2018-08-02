@@ -2,7 +2,7 @@ import AbstractLoadNextReinforceCardCommand from "../../../gen/box/commands/Abst
 
 export default class LoadNextReinforceCardCommand extends AbstractLoadNextReinforceCardCommand {
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let queryParams = [];
             queryParams.push({
                 key: "boxId",
@@ -20,15 +20,6 @@ export default class LoadNextReinforceCardCommand extends AbstractLoadNextReinfo
                     this.commandData.hash = `#box/${this.commandData.boxId}`;
                 }
                 resolve();
-            }, (error) => {
-                if (error.code === 401) {
-                    error.errorKey = "unauthorized";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.unauthorized;
-                    resolve();
-                } else {
-                    reject(error.text);
-                }
             });
         });
     }

@@ -2,7 +2,7 @@ import AbstractDeleteCardCommand from "../../../gen/author/commands/AbstractDele
 
 export default class DeleteCardCommand extends AbstractDeleteCardCommand {
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let queryParams = [];
             queryParams.push({
                 key: "cardId",
@@ -11,15 +11,6 @@ export default class DeleteCardCommand extends AbstractDeleteCardCommand {
             this.httpDelete("api/card/delete", queryParams).then((data) => {
                 this.commandData.outcome = this.ok;
                 resolve();
-            }, (error) => {
-                if (error.code === 401) {
-                    error.errorKey = "unauthorized";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.unauthorized;
-                    resolve();
-                } else {
-                    reject(error.text);
-                }
             });
         });
     }

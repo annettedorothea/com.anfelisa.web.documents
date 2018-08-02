@@ -70,9 +70,7 @@ export default class CategoryList extends React.Component {
 
     onRevokeUserAccess() {
         const data = {
-            username: this.props.username,
             categoryId: this.props.data.parentCategoryId,
-            password: this.props.password,
             revokedUserId: this.props.data.revokeUserAccess.userId,
             parentCategoryId: this.props.data.parentCategoryId
         };

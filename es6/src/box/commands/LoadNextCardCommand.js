@@ -2,7 +2,7 @@ import AbstractLoadNextCardCommand from "../../../gen/box/commands/AbstractLoadN
 
 export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let queryParams = [];
             queryParams.push({
                 key: "today",
@@ -18,7 +18,6 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
                 this.commandData.data.enableScoreButtons = false;
                 this.commandData.data.displayImage = false;
                 this.commandData.data.scheduleNext = this.commandData.scheduleNext;
-                console.log("LoadNextCardCommand", this.commandData.data.scheduleNext);
                 if (data.scheduledCardId) {
                     this.commandData.outcome = this.ok;
                 } else {
@@ -29,15 +28,6 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
                     }
                 }
                 resolve();
-            }, (error) => {
-                if (error.code === 401) {
-                    error.errorKey = "unauthorized";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.unauthorized;
-                    resolve();
-                } else {
-                    reject(error.text);
-                }
             });
         });
     }

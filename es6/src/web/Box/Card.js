@@ -17,7 +17,7 @@ export default class Card extends React.Component {
 
     scoreButtonClick(quality) {
         const data = {
-            quality
+            scoredCardQuality: quality
         };
         new ScoreCardAction(data).apply();
     }

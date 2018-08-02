@@ -1,14 +1,11 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadBoxStatisticsOkEvent from "../../../gen/box/events/LoadBoxStatisticsOkEvent";
-import LoadBoxStatisticsUnauthorizedEvent from "../../../gen/box/events/LoadBoxStatisticsUnauthorizedEvent";
-import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoadBoxStatisticsCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.LoadBoxStatisticsCommand");
         this.ok = "ok";
-        this.unauthorized = "unauthorized";
     }
 
     publishEvents() {
@@ -17,10 +14,6 @@ export default class AbstractLoadBoxStatisticsCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new LoadBoxStatisticsOkEvent(this.commandData).publish());
-			break;
-		case this.unauthorized:
-			promises.push(new LoadBoxStatisticsUnauthorizedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('LoadBoxStatisticsCommand unhandled outcome: ' + this.commandData.outcome)});

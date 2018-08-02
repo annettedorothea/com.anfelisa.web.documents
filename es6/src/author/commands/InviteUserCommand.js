@@ -12,18 +12,13 @@ export default class InviteUserCommand extends AbstractInviteUserCommand {
                 this.commandData.messageKey = "userAdded";
                 resolve();
             }, (error) => {
-                if (error.code === 401) {
-                    error.errorKey = "unauthorized";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.unauthorized;
-                    resolve();
-                } else if (error.code === 400) {
+                if (error.code === 400) {
                     error.errorKey = "userDoesNotExist";
                     this.commandData.error = error;
                     this.commandData.outcome = this.userDoesNotExist;
                     resolve();
                 } else {
-                    reject(error.text);
+                    reject(error);
                 }
             });
         });

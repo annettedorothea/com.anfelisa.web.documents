@@ -2,28 +2,20 @@ import AbstractRevokeUserAccessCommand from "../../../gen/author/commands/Abstra
 
 export default class RevokeUserAccessCommand extends AbstractRevokeUserAccessCommand {
     execute() {
-        return new Promise((resolve, reject) => {
-            const data = {
-                categoryId: this.commandData.categoryId,
-                revokedUserId: this.commandData.revokedUserId
-            };
-            this.httpDelete("api/category/revoke", [], data).then((data) => {
+        return new Promise((resolve) => {
+            let queryParams = [];
+            queryParams.push({
+                key: "revokedUserId",
+                value: this.commandData.revokedUserId
+            });
+            queryParams.push({
+                key: "categoryId",
+                value: this.commandData.categoryId
+            });
+            this.httpDelete("api/category/revoke", queryParams).then((data) => {
                 this.commandData.outcome = this.ok;
+                this.commandData.messageKey = "userRemoved";
                 resolve();
-            }, (error) => {
-                if (error.code === 401) {
-                    error.errorKey = "unauthorized";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.unauthorized;
-                    resolve();
-                } else if (error.code === 400) {
-                    error.errorKey = "userDoesNotExist";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.userDoesNotExist;
-                    resolve();
-                } else {
-                    reject(error.text);
-                }
             });
         });
     }
