@@ -2,10 +2,12 @@ import AbstractScheduleSelectedCardsCommand from "../../../gen/author/commands/A
 
 export default class ScheduleSelectedCardsCommand extends AbstractScheduleSelectedCardsCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             this.httpPost("api/cards/schedule", [], {cardIds: this.commandData.cardIds}).then((data) => {
                 this.commandData.outcome = this.ok;
                 resolve();
+            }, error => {
+                reject(error)
             });
         });
     }

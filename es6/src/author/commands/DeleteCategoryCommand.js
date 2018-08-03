@@ -2,7 +2,7 @@ import AbstractDeleteCategoryCommand from "../../../gen/author/commands/Abstract
 
 export default class DeleteCategoryCommand extends AbstractDeleteCategoryCommand {
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let queryParams = [];
             queryParams.push({
                 key: "categoryId",
@@ -10,6 +10,10 @@ export default class DeleteCategoryCommand extends AbstractDeleteCategoryCommand
             });
             this.httpDelete("api/category/delete", queryParams).then((data) => {
                 this.commandData.outcome = this.ok;
+                resolve();
+            }, error => {
+                this.commandData.error = error;
+                this.commandData.outcome = this.error;
                 resolve();
             });
         });

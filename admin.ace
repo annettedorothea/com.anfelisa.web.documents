@@ -11,6 +11,7 @@ ACE {
 	}
 	async DeleteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers ( GetAllUsers )
+		on error (UserList.hideDeleteUserDialog) triggers (common.DisplayError)
 	}
 	DeleteUserClick {
 		on ok (UserList.displayDeleteUserDialog)

@@ -2,7 +2,7 @@ import AbstractUpdateCategoryCommand from "../../../gen/author/commands/Abstract
 
 export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             const data = {
                 categoryId: this.commandData.categoryId,
                 categoryName: this.commandData.categoryName,
@@ -14,6 +14,8 @@ export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand
             this.httpPut("api/category/update", [], data).then((data) => {
                 this.commandData.outcome = this.ok;
                 resolve();
+            }, error => {
+                reject(error)
             });
         });
     }

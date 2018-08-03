@@ -2,7 +2,7 @@ import AbstractCreateBoxCommand from "../../../gen/box/commands/AbstractCreateBo
 
 export default class CreateBoxCommand extends AbstractCreateBoxCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             const data = {
                 categoryId: this.commandData.categoryId,
                 maxInterval: this.commandData.maxInterval
@@ -11,6 +11,8 @@ export default class CreateBoxCommand extends AbstractCreateBoxCommand {
                 this.commandData.outcome = this.ok;
                 this.commandData.hash = "#dashboard";
                 resolve();
+            }, error => {
+                reject(error)
             });
         });
     }

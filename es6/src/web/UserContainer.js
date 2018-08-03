@@ -3,9 +3,9 @@ import Dashboard from "./Dashboard";
 import Logout from "./Logout";
 import Profile from "./Profile";
 import UserList from "./UserList";
-import CategoryList from "./CategoryList";
 import QueryCards from "./Box/QueryCards";
 import RouteAction from "../common/actions/RouteAction";
+import CategoryOverview from "./CategoryOverview";
 
 export default class UserContainer extends React.Component {
 
@@ -16,7 +16,7 @@ export default class UserContainer extends React.Component {
                 content = <UserList {...this.props} />;
                 break;
             case "category-list":
-                content = <CategoryList {...this.props} />;
+                content = <CategoryOverview {...this.props} />;
                 break;
             case "profile":
                 content = <Profile {...this.props} />;

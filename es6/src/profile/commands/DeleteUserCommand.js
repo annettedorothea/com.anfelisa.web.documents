@@ -6,12 +6,10 @@ export default class DeleteUserCommand extends AbstractDeleteUserCommand {
             this.httpDelete("api/user/delete", [], this.commandData).then((data) => {
                 this.commandData.outcome = this.ok;
                 resolve();
-            }, (error) => {
-                if (error.code === 400) {
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.badRequest;
-                    resolve();
-                }
+            }, error => {
+                this.commandData.error = error;
+                this.commandData.outcome = this.error;
+                resolve();
             });
         });
     }

@@ -19,8 +19,8 @@ export default class DaysBehindSchedule extends React.Component {
         if (!this.props.daysBehindSchedule || this.props.daysBehindSchedule <= 0) {
             return "";
         }
-        return <div>
-            <button onClick={this.onPostpone}>{this.props.texts.box.postpone[this.props.language]}</button>
+        return <div className="daysBehindSchedule">
+            <button className="primary" onClick={this.onPostpone}>{this.props.texts.box.postpone[this.props.language]}</button>
         </div>;
         s
     }

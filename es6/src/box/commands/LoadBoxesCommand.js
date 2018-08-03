@@ -2,7 +2,7 @@ import AbstractLoadBoxesCommand from "../../../gen/box/commands/AbstractLoadBoxe
 
 export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "today",
@@ -12,6 +12,8 @@ export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
                 this.commandData.data = data;
                 this.commandData.outcome = this.ok;
                 resolve();
+            }, error => {
+                reject(error)
             });
         });
     }

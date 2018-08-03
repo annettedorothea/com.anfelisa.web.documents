@@ -19,11 +19,13 @@ export default class Dashboard extends React.Component {
         return (
             <div>
                 <div>
-                    {adminContent}
+                    {userContent}
+                </div>
+                <div>
                     {authorContent}
                 </div>
                 <div>
-                    {userContent}
+                    {adminContent}
                 </div>
             </div>
         );

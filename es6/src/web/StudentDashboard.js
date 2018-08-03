@@ -50,7 +50,7 @@ export default class StudentDashboard extends React.Component {
             });
         }
         return (
-            <div>
+            <div className="bottomMargin">
                 {this.props.data && this.props.data.deleteBox && this.props.data.deleteBox.confirmDelete === true &&
                 <div>
                     <Confirm {...

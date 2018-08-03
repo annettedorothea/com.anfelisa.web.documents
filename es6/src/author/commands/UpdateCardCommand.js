@@ -2,7 +2,7 @@ import AbstractUpdateCardCommand from "../../../gen/author/commands/AbstractUpda
 
 export default class UpdateCardCommand extends AbstractUpdateCardCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             const data = {
                 cardId: this.commandData.cardId,
                 given: this.commandData.given,
@@ -13,6 +13,8 @@ export default class UpdateCardCommand extends AbstractUpdateCardCommand {
             this.httpPut("api/card/update", [], data).then((data) => {
                 this.commandData.outcome = this.ok;
                 resolve();
+            }, error => {
+                reject(error)
             });
         });
     }

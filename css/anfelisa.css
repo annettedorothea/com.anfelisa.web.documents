@@ -7,9 +7,16 @@
 }
 
 body {
-    background-size: 100% 100%;
+    background-size: cover;
     font-size: 16px;
     font-family: Helvetica, sans-serif;
+    background: url(img/bg_water.jpg) fixed;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        background: none;
+    }
 }
 
 body pre {
@@ -34,7 +41,7 @@ input[readonly], input[disabled] {
     color: #777;
 }
 
-input:disabled+label {
+input:disabled + label {
     color: #ccc;
 }
 
@@ -106,8 +113,9 @@ h1 {
 
 h2 {
     color: #337ab7;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: normal;
+    margin-bottom: 16px;
 }
 
 .header {
@@ -138,7 +146,96 @@ h2 {
 
 div.wrapper {
     max-width: 1000px;
+    margin: auto auto;
+    background-color: #fff;
+    min-height: 100vh;
+    padding-bottom: 240px;
+}
+
+.center {
+    height: 450px;
+    width: 400px;
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     margin: auto;
+
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+
+    background-color: #fff;
+    padding: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .center {
+        height: auto;
+        width: auto;
+
+        position: relative;
+        margin: auto;
+    }
+}
+
+.footer {
+    background-color: #000;
+    opacity: 0.8;
+    color: #fff;
+    position: fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 120px;
+    width: 100vw;
+}
+
+
+.footer .footerContent {
+    width: 1000px;
+    margin: auto;
+    padding: 24px;
+    text-align: center;
+}
+
+.footer .footerContent a {
+    color: #fff;
+}
+
+.footer .footerContent h1 {
+    color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+    .footer {
+        height: 80px;
+        position: relative;
+        background-color: #fff;
+        color: #000;
+    }
+    .footer .footerContent {
+        width: auto;
+        padding: 4px;
+    }
+    .footer .footerContent h1 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    .footer .footerContent p {
+        font-size: 10px;
+        margin-bottom: 4px;
+    }
+    .footer .footerContent a {
+        color: #000;
+    }
+
+    .footer .footerContent h1 {
+        color: #000;
+    }
 }
 
 .content {
@@ -191,36 +288,6 @@ th, td {
     text-align: center;
 }
 
-.center {
-    height: 420px;
-    width: 400px;
-
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-
-    max-width: 100%;
-    max-height: 100%;
-    overflow: auto;
-}
-
-@media screen and (max-width: 600px) {
-    .center {
-        height: auto;
-        width: auto;
-
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-    }
-}
-
 .error {
     color: #E53C16;
 }
@@ -266,8 +333,8 @@ th, td {
     visibility: hidden;
 }
 
-.largeMargin {
-    margin-bottom: 240px;
+.bottomMargin {
+    margin-bottom: 20px;
 }
 
 /* toast */
@@ -356,20 +423,14 @@ th, td {
 
 .tile {
     display: inline-block;
-    width: 160px;
-    height: 160px;
+    width: 300px;
+    height: 260px;
     border: 2px solid #ccc;
     border-radius: 4px;
     padding: 20px 20px;
     background-color: #eee;
     margin: 12px 24px 12px 0;
     position: relative;
-    overflow: hidden;
-}
-
-.tile.double {
-    width: 300px;
-    height: 260px;
 }
 
 a:hover.tile {
@@ -382,6 +443,21 @@ a:hover.tile h2 {
     color: #ffa84c;
 }
 
+.tile .badge {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    background-color: #E53C16;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 24px;
+    padding: 2px;
+}
+
 .tile .buttons {
     position: absolute;
     top: 8px;
@@ -392,12 +468,14 @@ a:hover.tile h2 {
     margin: 4px;
 }
 
-a:hover.tile .icon::before {
-    color: #ffa84c;
-}
-
 .tile table {
     width: 100%;
+
+}
+
+.tile table td {
+    width: 100%;
+    white-space: nowrap;
 
 }
 
@@ -424,33 +502,6 @@ a:hover.tile .icon::before {
 
 .adminUserList td {
     border-bottom: 1px dotted #ccc;
-}
-
-/* icons */
-
-.icon::before {
-    display: inline-block;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    font-family: "Font Awesome 5 Free";
-    font-size: 80px;
-    position: absolute;
-    line-height: 120px;
-    height: auto;
-    left: 0;
-    right: 0;
-    color: #ccc;
-    text-align: center;
-}
-
-.userList::before {
-    content: "\f500";
-    font-weight: 900;
-}
-
-.categories::before {
-    content: "\f0ce";
-    font-weight: 900;
 }
 
 /* statistics */
@@ -505,7 +556,6 @@ a:hover.tile .icon::before {
     margin-bottom: 20px;
 }
 
-
 .box .lastQuality_0 {
     border-color: #FF5DB1;
 }
@@ -542,6 +592,7 @@ a:hover.tile .icon::before {
     width: 140px;
     margin: 0 4px 16px 4px;
 }
+
 .box button.quality_0 {
     background-color: #FF5DB1;
 }
@@ -600,29 +651,36 @@ a:hover.tile .icon::before {
     margin-bottom: 120px;
 }
 
+.box .daysBehindSchedule {
+    margin-bottom: 20px;
+}
 
 /* categories */
 
 .categoryList table {
     width: 100%;
     margin-bottom: 32px;
-    table-layout: fixed;
-}
-
-.categoryList table tbody,
-.categoryList table thead {
-    display: block;
-}
-
-.categoryList table tbody {
-    max-height: 50vh;
-    overflow-y: auto;
-    overflow-x: auto;
 }
 
 .categoryList td {
     border-bottom: 1px dotted #ccc;
     line-height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.categoryList table.root td:last-child {
+    max-width: 250px;
+    width: 250px;
+}
+
+.categoryList table.sub td:last-child {
+    max-width: 170px;
+    width: 170px;
+}
+
+.categoryList table i {
+    margin: 0 8px;
 }
 
 .categoryList input, .categoryList select {
@@ -630,10 +688,7 @@ a:hover.tile .icon::before {
 }
 
 .categoryList .invitedUsers {
-    border: 1px solid #ccc;
-    border-radius: 4px;
     margin-bottom: 32px;
-    padding: 24px;
 }
 
 .categoryList .invitedUsers li {
@@ -697,6 +752,11 @@ a:hover.tile .icon::before {
 .categoryList textarea {
     min-width: 80px;
     min-height: 80px;
+}
+
+.categoryList table.cardTable td:first-child {
+    min-width: 36px;
+    padding: 0;
 }
 
 .dictionaryWrapper {

@@ -79,7 +79,7 @@ export default class EditCategory extends React.Component {
                         onChange={this.onNameChange}
                         autoComplete="off"
                         value={this.props.name}
-                        placeholder={this.props.texts.categoryList.name[this.props.language]}
+                        placeholder={this.props.parentCategoryId === null ? this.props.texts.categoryList.newRootCategory[this.props.language] : this.props.texts.categoryList.newCategory[this.props.language]}
                         onKeyUp={this.onKeyUp}
                     />
                     {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
@@ -87,7 +87,7 @@ export default class EditCategory extends React.Component {
                 </td>
                 <td/>
                 {this.props.rootDictionaryLookup === true &&
-                <td>
+                <td className="noBreak">
                     <input
                         type={"checkbox"}
                         onChange={this.onDictionayLookupChange}

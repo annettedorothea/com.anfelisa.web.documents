@@ -11,6 +11,10 @@ export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
             this.httpDelete("api/box/delete", queryParams).then((data) => {
                 this.commandData.outcome = this.ok;
                 resolve();
+            }, error => {
+                this.commandData.error = error;
+                this.commandData.outcome = this.error;
+                resolve();
             });
         });
     }

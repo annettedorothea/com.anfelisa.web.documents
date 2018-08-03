@@ -172,8 +172,11 @@ export default class CardList extends React.Component {
             />
 
         });
+        if (this.props.data.cardList.length === 0 && this.props.data.parentEditable === false) {
+            return <h2>{this.props.texts.cardList.noCards[this.props.language]}</h2>
+        }
         return (
-            <div className="largeMargin">
+            <div>
                 {this.props.data.deleteCard.confirmDelete === true &&
                 <div>
                     <Confirm {...
@@ -186,21 +189,14 @@ export default class CardList extends React.Component {
                             cancel: this.onDeleteCancel
                         }}/>
                 </div>}
-                <h1>
-                    {this.props.data.cardList.length === 0 && this.props.texts.cardList.title.noCards[this.props.language]}
-                    {this.props.data.cardList.length === 1 &&
-                    this.props.texts.cardList.title.oneCard[this.props.language].replace("{0}", this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).length)}
-                    {this.props.data.cardList.length > 1 &&
-                    this.props.texts.cardList.title.cards[this.props.language].replace("{1}", this.props.data.cardList.length)
-                        .replace("{0}", this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).length)}
-                </h1>
 
                 <table className="cardTable">
                     <thead>
                     <tr>
-                        <th/>
+                        {this.props.data.hasBox === true && <th/>}
+                        {this.props.data.hasBox === false && this.props.data.parentEditable === true && <th/>}
                         {this.props.data.cardList.length > 0 &&
-                        <th colSpan={4}>
+                        <th colSpan={5}>
                             <input
                                 type={"text"}
                                 onChange={this.onFilterChange}
@@ -208,27 +204,23 @@ export default class CardList extends React.Component {
                                 value={this.props.data.filter}
                                 placeholder={this.props.texts.cardList.filter[this.props.language]}
                             />
-                        </th>
-                        }
-                        {this.props.data.cardList.length === 0 &&
-                        <th colSpan={4}/>
-                        }
-                        <th>
+                            {this.props.data.parentEditable === true &&
                             <button onClick={this.onToggleInputOrder}><i className="fas fa-arrows-alt-h"/></button>
+                            }
                         </th>
+                        }
                     </tr>
 
-                    {this.props.data.newCard.dictionaryLookup === true && this.props.data.parentEditable &&
+                    {this.props.data.newCard.dictionaryLookup === true && this.props.data.parentEditable === true &&
                     <tr>
-                        <th>
+                        <th/>
+                        <th colSpan={6}>
                             <input
                                 type={"checkbox"}
                                 onChange={this.onUseDictionaryChange}
                                 checked={this.props.data.useDictionary}
                                 id="useDictionaryCheckbox"
                             />
-                        </th>
-                        <th colSpan={5}>
                             <label
                                 htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary[this.props.language]}
                             </label>
@@ -266,7 +258,7 @@ export default class CardList extends React.Component {
                     </tbody>
                 </table>
 
-                {this.props.data.useDictionary &&
+                {this.props.data.useDictionary && this.props.data.rootDictionaryLookup &&
                 <Dictionary
                     given={this.props.data.newCard.given}
                     wanted={this.props.data.newCard.wanted}

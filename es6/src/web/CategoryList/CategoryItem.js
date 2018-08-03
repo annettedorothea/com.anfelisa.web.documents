@@ -18,7 +18,12 @@ export default class CategoryItem extends React.Component {
     renderDictionayLookup() {
         if (this.props.givenLanguage && this.props.wantedLanguage) {
             return <td
-                onClick={this.onClick}>{this.props.texts.categoryList.languages[this.props.givenLanguage][this.props.language]} <i className="fas fa-arrow-right"/> {this.props.texts.categoryList.languages[this.props.wantedLanguage][this.props.language]}</td>
+                onClick={this.onClick}
+                className="noBreak"
+            >
+                {this.props.texts.categoryList.languages[this.props.givenLanguage][this.props.language]}
+                <i className="fas fa-arrow-right"/> {this.props.texts.categoryList.languages[this.props.wantedLanguage][this.props.language]}
+            </td>
         } else {
             return <td onClick={this.onClick}/>
         }
@@ -42,7 +47,7 @@ export default class CategoryItem extends React.Component {
                     </button>}
                     {this.props.isRoot === true && this.props.hasBox === false &&
                     <button onClick={() => this.props.onSubscribe()}>
-                        <i className="fas fa-align-justify"/>
+                        <i className="fas fa-sign-in-alt"/>
                     </button>}
                 </td>
             </tr>

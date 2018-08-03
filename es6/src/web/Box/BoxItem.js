@@ -29,9 +29,10 @@ export default class BoxItem extends React.Component {
     }
 
     render() {
+        const count = this.props.todaysCards + this.props.reinforceCards;
         return (
             <a
-                className="tile double"
+                className="tile"
                 onClick={() => new RouteAction(
                     {
                         hash: `#box/${this.props.boxId}`
@@ -47,6 +48,7 @@ export default class BoxItem extends React.Component {
                     <i className="fas fa-pencil-alt fa-lg primary" onClick={(e) => this.onEdit(e)}/>
                     <i className="fas fa-times fa-lg danger" onClick={(e) => this.onDeleteClick(e)}/>
                 </div>
+                {count > 0 && <span className="badge">{count}</span>}
             </a>
         );
     }

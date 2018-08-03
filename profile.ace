@@ -7,8 +7,8 @@ ACE {
 		on ok (Profile.render)
 	}
 	async DeleteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
-		on ok triggers ( common.Logout )
-		on badRequest ( common.Common.displayError ) triggers (LoadUser)
+		on ok ( Profile.hideDeleteUserDialog ) triggers ( common.Logout )
+		on error ( Profile.hideDeleteUserDialog ) triggers (LoadUser common.DisplayError)
 	}
 	DeleteUserClick {
 		on ok (Profile.displayDeleteUserDialog)

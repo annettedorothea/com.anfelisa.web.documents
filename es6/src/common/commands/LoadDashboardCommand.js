@@ -14,7 +14,7 @@ export default class LoadDashboardCommand extends AbstractLoadDashboardCommand {
                     this.commandData.outcome = this.unauthorized;
                     resolve();
                 } else {
-                    reject(error.text);
+                    reject(error);
                 }
             });
         });

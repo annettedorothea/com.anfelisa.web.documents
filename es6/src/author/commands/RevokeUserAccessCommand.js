@@ -16,6 +16,10 @@ export default class RevokeUserAccessCommand extends AbstractRevokeUserAccessCom
                 this.commandData.outcome = this.ok;
                 this.commandData.messageKey = "userRemoved";
                 resolve();
+            }, error => {
+                this.commandData.error = error;
+                this.commandData.outcome = this.error;
+                resolve();
             });
         });
     }

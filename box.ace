@@ -33,6 +33,7 @@ ACE {
 	}
 	async DeleteBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
 		on ok triggers (LoadBoxes)
+		on error (BoxList.hideConfirmDelete) triggers (common.DisplayError)
 	}
 	
 	async PostponeCardsOfBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {

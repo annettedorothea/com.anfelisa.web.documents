@@ -191,6 +191,7 @@ export default class AppUtils {
             error = {
                 errorKey: error
             };
+            new DisplayErrorAction({error}).apply();
         } else {
             if (error.code === 401) {
                 error.errorKey = "unauthorized";
@@ -200,10 +201,10 @@ export default class AppUtils {
             } else {
                 error = {
                     errorKey: error.text
-                }
+                };
+                new DisplayErrorAction({error}).apply();
             }
         }
-        new DisplayErrorAction({error}).apply();
     }
 
     static deepCopy(object) {

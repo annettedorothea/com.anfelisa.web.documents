@@ -169,6 +169,9 @@ export default class CategoryList extends React.Component {
                 />)
         }
 
+        if (this.props.data.categoryList.length === 0 && this.props.data.parentEditable === false) {
+            return <h2>{this.props.texts.categoryList.noCategories[this.props.language]}</h2>
+        }
 
         return (
             <div className="categoryList">
@@ -196,23 +199,7 @@ export default class CategoryList extends React.Component {
                             cancel: this.onRevokeUserAccessCancel
                         }}/>
                 </div>}
-                <button className="backButton"
-                    onClick={() => new RouteAction({
-                        hash: backLink
-                    }).apply()}>
-                    {this.props.texts.categoryList.back[this.props.language]}
-                </button>
-                <h1>
-                    {this.props.data.parentCategoryName && this.props.data.parentCategoryName}
-                    {!this.props.data.parentCategoryName && this.props.texts.categoryList.title[this.props.language]}
-                </h1>
-                {users.length > 0 && <ul className="invitedUsers">
-                    {users}
-                </ul>}
-                <h1>
-                    {this.props.texts.categoryList.subCategories[this.props.language]}
-                </h1>
-                <table>
+                <table className={this.props.data.parentCategoryId === null ? "root" : "sub"}>
                     <thead>
 
                     </thead>
@@ -220,8 +207,6 @@ export default class CategoryList extends React.Component {
                     {categoryItems}
                     </tbody>
                 </table>
-
-                {this.props.data.parentCategoryId && <CardList {...this.props} />}
 
             </div>
         );

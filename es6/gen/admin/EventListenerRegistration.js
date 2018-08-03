@@ -5,6 +5,7 @@ export default class EventListenerRegistrationAdmin {
 
 	static init() {
 		ACEController.registerListener('admin.GetAllUsersOkEvent', UserListView.render);
+		ACEController.registerListener('admin.DeleteUserErrorEvent', UserListView.hideDeleteUserDialog);
 		ACEController.registerListener('admin.DeleteUserClickOkEvent', UserListView.displayDeleteUserDialog);
 		ACEController.registerListener('admin.DeleteUserCancelOkEvent', UserListView.hideDeleteUserDialog);
 	}

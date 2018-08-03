@@ -23,12 +23,12 @@ export default class BoxInfo extends React.Component {
                         <td>{this.props.todaysCards}</td>
                     </tr>
                     <tr>
-                        <td>{this.props.texts.box.myCards[this.props.language]}</td>
-                        <td>{this.props.myCards}</td>
-                    </tr>
-                    <tr>
                         <td>{this.props.texts.box.reinforceCards[this.props.language]}</td>
                         <td>{this.props.reinforceCards}</td>
+                    </tr>
+                    <tr>
+                        <td>{this.props.texts.box.myCards[this.props.language]}</td>
+                        <td>{this.props.myCards}</td>
                     </tr>
                     <tr>
                         <td>{this.props.texts.box.totalCards[this.props.language]}</td>

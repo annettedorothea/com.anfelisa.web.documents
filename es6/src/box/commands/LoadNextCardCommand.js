@@ -2,7 +2,7 @@ import AbstractLoadNextCardCommand from "../../../gen/box/commands/AbstractLoadN
 
 export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "today",
@@ -28,6 +28,8 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
                     }
                 }
                 resolve();
+            }, error => {
+                reject(error)
             });
         });
     }

@@ -2,7 +2,7 @@ import AbstractUpdateBoxCommand from "../../../gen/box/commands/AbstractUpdateBo
 
 export default class UpdateBoxCommand extends AbstractUpdateBoxCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             const data = {
                 boxId: this.commandData.boxId,
                 maxInterval: this.commandData.maxInterval
@@ -10,6 +10,8 @@ export default class UpdateBoxCommand extends AbstractUpdateBoxCommand {
             this.httpPut("api/box/update", [], data).then((data) => {
                 this.commandData.outcome = this.ok;
                 resolve();
+            }, error => {
+                reject(error)
             });
         });
     }

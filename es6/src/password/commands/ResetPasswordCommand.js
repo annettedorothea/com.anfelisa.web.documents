@@ -10,7 +10,6 @@ export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
                 resolve();
             }, (error) => {
                 this.commandData.hash = "#";
-                error.errorKey = "failedToResetPassword";
                 this.commandData.error = error;
                 this.commandData.outcome = this.error;
                 resolve();

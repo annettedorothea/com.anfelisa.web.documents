@@ -1,12 +1,12 @@
 export const Texts = {
     adminDashboard: {
         users: {
-            de: "Benutzerliste"
+            de: "Zur Benutzerverwaltung"
         }
     },
     authorDashboard: {
         categories: {
-            de: "Kategorien"
+            de: "Zur Lernkarteiverwaltung"
         }
     },
     box: {
@@ -34,7 +34,7 @@ export const Texts = {
             de: "maximaler Abstand"
         },
         myCards: {
-            de: "Karten in der Box"
+            de: "Karten in der Lernkartei"
         },
         nextCard: {
             de: "Karten abfragen"
@@ -70,10 +70,24 @@ export const Texts = {
                 de: "Ja"
             },
             message: {
-                de: "Soll die Kategorie wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht."
+                de: "Soll der Ordner wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht."
             },
             title: {
                 de: "Löschen"
+            }
+        },
+        confirmRevokeUserAccess: {
+            cancel: {
+                de: "Nein"
+            },
+            ok: {
+                de: "Ja"
+            },
+            message: {
+                de: "Soll dieser Benutzer wirklich keinen Zugriff mehr auf die gesamte Lernkartei haben?"
+            },
+            title: {
+                de: "Zugriff entziehen"
             }
         },
         index: {
@@ -99,28 +113,20 @@ export const Texts = {
                 de: "Französisch"
             },
         },
-        name: {
-            de: "Neue Kategorie"
+        newCategory: {
+            de: "Neuer Ordner"
         },
-        confirmRevokeUserAccess: {
-            cancel: {
-                de: "Nein"
-            },
-            ok: {
-                de: "Ja"
-            },
-            message: {
-                de: "Soll dieser Benutzer wirklich keinen Zugriff mehr auf die gesamte Kategorie haben?"
-            },
-            title: {
-                de: "Zugriff entziehen"
-            }
+        newRootCategory: {
+            de: "Neue Lernkartei"
+        },
+        noCategories: {
+            de: "Hier gibt es noch keine Ordner."
         },
         subCategories: {
-            de: "Unterkategorien"
+            de: "Ordner"
         },
         title: {
-            de: "Alle Kategorien"
+            de: "Alle Lernkarteien"
         },
         username: {
             de: "Benutzer"
@@ -153,6 +159,9 @@ export const Texts = {
         index: {
             de: "Index"
         },
+        noCards: {
+            de: "Hier gibt es noch keine Karten."
+        },
         given: {
             de: "Gegeben"
         },
@@ -161,17 +170,6 @@ export const Texts = {
         },
         scheduleSelectedCards: {
             de: "Selektierte Karten heute noch abfragen"
-        },
-        title: {
-            noCards: {
-                de: "Noch keine Karten"
-            },
-            oneCard: {
-                de: "{0} von einer Karte"
-            },
-            cards: {
-                de: "{0} von {1} Karten"
-            }
         },
         useDictionary: {
             de: "Linugee Wörterbuch anzeigen"
@@ -183,6 +181,18 @@ export const Texts = {
         }
     },
     errors: {
+        atLeastOneUserMustHaveAccessToCategory: {
+            de: "Wenigstens ein Benutzer muss Zugriff zu der Lernkartei haben."
+        },
+        boxDoesNotExist: {
+            de: "Lernkartei wurde nicht gefunden."
+        },
+        cardDoesNotExist: {
+            de: "Karte wurde nicht gefunden."
+        },
+        categoryDoesNotExist: {
+            de: "Lernkartei bzw. Ordner wurde nicht gefunden."
+        },
         lastAdminMustNotBeDeleted: {
             de: "Der Benutzer konnte nicht gelöscht werden, weil er der letzte Administrator ist."
         },
@@ -201,8 +211,20 @@ export const Texts = {
         failedToSendEmail: {
             de: "Die Email konnte nicht versendet werden."
         },
+        invalidLanguage: {
+            de: "Ungültige Sprache."
+        },
+        invalidRole: {
+            de: "Ungültige Rolle."
+        },
+        noCardsLeft: {
+            de: "Es gibt keine neuen Karten mehr."
+        },
         noImageFile: {
             de: "Es dürfen nur Bilder hochgeladen werden."
+        },
+        tokenDoesNotExist: {
+            de: "Token wurde nicht gefunden."
         },
         usernameAlreadyTaken: {
             de: "Die Registrierung ist fehlgeschlagen, weil der Benutzername nicht mehr frei ist. Bitte versuche es mit einem anderen Benutzernamen."
@@ -327,7 +349,7 @@ export const Texts = {
             de: "Zurück"
         },
         category: {
-            de: "Zur Kategorie"
+            de: "Zur Lernkartei"
         },
         count: {
             de: "{0}x abgefragt"

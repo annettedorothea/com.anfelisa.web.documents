@@ -27,6 +27,17 @@ export default class Container extends React.Component {
                 <ToastContainer toast={this.state.toast}/>
                 {this.state.displaySpinner && <Spinner/>}
                 {content}
+                <div className="footer">
+                    <div className="footerContent">
+                        <h1>Impressum</h1>
+                        <p>
+                            Annette Pohl &middot; St.-Josef-Str. 20 &middot; 56068 Koblenz
+                        </p>
+                        <p>
+                            0261 1393793 &middot; <a href="mailto:info@anfelisa.com">info@anfelisa.com</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         );
     }

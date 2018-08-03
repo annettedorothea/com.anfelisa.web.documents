@@ -2,7 +2,7 @@ import AbstractConfirmEmailCommand from "../../../gen/registration/commands/Abst
 
 export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             const data = {
                 username: this.commandData.username,
                 token: this.commandData.token
@@ -12,6 +12,8 @@ export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
                 this.commandData.outcome = this.ok;
                 this.commandData.messageKey = "emailConfirmed";
                 resolve();
+            }, error => {
+                reject(error)
             });
         });
     }

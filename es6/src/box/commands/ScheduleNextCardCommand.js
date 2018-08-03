@@ -2,7 +2,7 @@ import AbstractScheduleNextCardCommand from "../../../gen/box/commands/AbstractS
 
 export default class ScheduleNextCardCommand extends AbstractScheduleNextCardCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             let queryParams = [];
             queryParams.push({
                 key: "boxId",
@@ -12,6 +12,8 @@ export default class ScheduleNextCardCommand extends AbstractScheduleNextCardCom
                 this.commandData.outcome = this.ok;
                 this.commandData.data = data;
                 resolve();
+            }, error => {
+                reject(error)
             });
         });
     }

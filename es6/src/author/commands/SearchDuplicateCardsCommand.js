@@ -2,7 +2,7 @@ import AbstractSearchDuplicateCardsCommand from "../../../gen/author/commands/Ab
 
 export default class SearchDuplicateCardsCommand extends AbstractSearchDuplicateCardsCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if (this.commandData.given && this.commandData.given.length > 2 || this.commandData.wanted && this.commandData.wanted.length > 2) {
                 let queryParams = [];
                 queryParams.push({
@@ -25,6 +25,8 @@ export default class SearchDuplicateCardsCommand extends AbstractSearchDuplicate
                     this.commandData.data = data;
                     this.commandData.outcome = this.ok;
                     resolve();
+                }, error => {
+                    reject(error)
                 });
             } else {
                 this.commandData.outcome = this.tooShort;

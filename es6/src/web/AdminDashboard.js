@@ -5,15 +5,12 @@ export default class AdminDashboard extends React.Component {
 
     render() {
         return (
-            <a className="tile " onClick={() => new RouteAction(
+            <button className="bottomMargin" onClick={() => new RouteAction(
                 {
                     hash: "#users"
                 }).apply()}>
-                <h2>
-                    {this.props.texts.adminDashboard.users[this.props.language]}
-                </h2>
-                <div className="icon userList"/>
-            </a>
+                {this.props.texts.adminDashboard.users[this.props.language]}
+            </button>
         );
     }
 }

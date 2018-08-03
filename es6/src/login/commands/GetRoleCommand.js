@@ -2,7 +2,7 @@ import AbstractGetRoleCommand from "../../../gen/login/commands/AbstractGetRoleC
 
 export default class GetRoleCommand extends AbstractGetRoleCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             this.httpGet("api/user/role").then((data) => {
                 this.commandData.role = data.role;
                 this.commandData.hash = "#dashboard";
@@ -14,6 +14,8 @@ export default class GetRoleCommand extends AbstractGetRoleCommand {
                     this.commandData.error = error;
                     this.commandData.outcome = this.unauthorized;
                     resolve();
+                } else {
+                    reject(error);
                 }
             });
         });

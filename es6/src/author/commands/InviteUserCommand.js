@@ -13,9 +13,8 @@ export default class InviteUserCommand extends AbstractInviteUserCommand {
                 resolve();
             }, (error) => {
                 if (error.code === 400) {
-                    error.errorKey = "userDoesNotExist";
                     this.commandData.error = error;
-                    this.commandData.outcome = this.userDoesNotExist;
+                    this.commandData.outcome = this.badRequest;
                     resolve();
                 } else {
                     reject(error);

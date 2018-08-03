@@ -2,7 +2,7 @@ import AbstractCheckUsernameCommand from "../../../gen/registration/commands/Abs
 
 export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if (!this.commandData.username) {
                 this.commandData.outcome = this.empty;
                 resolve();
@@ -19,6 +19,8 @@ export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
                         this.commandData.outcome = this.notAvailable;
                     }
                     resolve();
+                }, error => {
+                    reject(error)
                 });
             }
         });

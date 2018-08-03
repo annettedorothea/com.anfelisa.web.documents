@@ -2,7 +2,7 @@ import AbstractTranslateCommand from "../../../gen/author/commands/AbstractTrans
 
 export default class TranslateCommand extends AbstractTranslateCommand {
     execute() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if (this.commandData.naturalInputOrder === true && (!this.commandData.given || this.commandData.given.length === 0)) {
                 this.commandData.outcome = this.empty;
                 resolve();
@@ -38,6 +38,8 @@ export default class TranslateCommand extends AbstractTranslateCommand {
                         this.commandData.outcome = this.givenFetched;
                     }
                     resolve();
+                }, error => {
+                    reject(error)
                 });
             }
         });

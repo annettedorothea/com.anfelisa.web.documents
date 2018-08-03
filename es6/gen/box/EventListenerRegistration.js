@@ -13,6 +13,7 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.CancelEditBoxOkEvent', BoxListView.cancelEditBox);
 		ACEController.registerListener('box.DeleteBoxClickOkEvent', BoxListView.displayConfirmDelete);
 		ACEController.registerListener('box.CancelDeleteBoxOkEvent', BoxListView.hideConfirmDelete);
+		ACEController.registerListener('box.DeleteBoxErrorEvent', BoxListView.hideConfirmDelete);
 		ACEController.registerListener('box.LoadNextCardOkEvent', BoxView.render);
 		ACEController.registerListener('box.LoadNextCardDoNotScheduleNextEvent', BoxView.render);
 		ACEController.registerListener('box.ToggleScheduleNextOkEvent', BoxView.toggleScheduleNext);

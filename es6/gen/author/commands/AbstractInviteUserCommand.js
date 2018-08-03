@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import InviteUserUserDoesNotExistEvent from "../../../gen/author/events/InviteUserUserDoesNotExistEvent";
+import InviteUserBadRequestEvent from "../../../gen/author/events/InviteUserBadRequestEvent";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
 
@@ -8,7 +8,7 @@ export default class AbstractInviteUserCommand extends Command {
     constructor(commandData) {
         super(commandData, "author.InviteUserCommand");
         this.ok = "ok";
-        this.userDoesNotExist = "userDoesNotExist";
+        this.badRequest = "badRequest";
     }
 
     publishEvents() {
@@ -19,8 +19,8 @@ export default class AbstractInviteUserCommand extends Command {
 			promises.push(new TriggerAction(new DisplayMessageAction(this.commandData)).publish());
 			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
 			break;
-		case this.userDoesNotExist:
-			promises.push(new InviteUserUserDoesNotExistEvent(this.commandData).publish());
+		case this.badRequest:
+			promises.push(new InviteUserBadRequestEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
 			break;
 		default:

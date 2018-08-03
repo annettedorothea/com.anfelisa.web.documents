@@ -56,7 +56,7 @@ export default class CardItem extends React.Component {
                     />
                 </td>
                 }
-                {this.props.hasBox === false && <td/>}
+                {this.props.hasBox === false && this.props.editable === true && <td/>}
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
