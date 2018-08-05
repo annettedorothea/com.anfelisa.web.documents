@@ -72,7 +72,7 @@ export default class CategoryOverview extends React.Component {
                     {this.props.data.parentCategoryName && this.props.data.parentCategoryName}
                     {!this.props.data.parentCategoryName && this.props.texts.categoryList.title[this.props.language]}
                 </h1>
-                {users.length > 0 && this.props.data.editable &&
+                {users.length > 0 && this.props.data.parentEditable &&
                 <div>
                     <ul className="invitedUsers">
                         {users}

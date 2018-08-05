@@ -31,7 +31,7 @@ export default class InviteUser extends React.Component {
 
     render() {
         return (
-            <div>
+            <li>
                 <input
                     type={"text"}
                     placeholder={this.props.texts.categoryList.username[this.props.language]}
@@ -40,7 +40,7 @@ export default class InviteUser extends React.Component {
                     value={this.state.username}
                 />
                 <button onClick={this.onInvite}>{this.props.texts.categoryList.invite[this.props.language]}</button>
-            </div>
+            </li>
         );
     }
 }

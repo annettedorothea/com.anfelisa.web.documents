@@ -67,7 +67,6 @@ export default class NewCategory extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <tr>
                 <td>

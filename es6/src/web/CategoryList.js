@@ -148,28 +148,8 @@ export default class CategoryList extends React.Component {
                 />
             );
         }
-        const users = this.props.data.userList === null ? [] : this.props.data.userList.map((user) => {
-            return <UserAccessItem
-                {...user}
-                texts={this.props.texts}
-                language={this.props.language}
-                canRevoke={this.props.data.parentEditable && this.props.data.userList.length > 1}
-                key={user.userId}
-            />
-        });
-        if (this.props.data.parentEditable === true && this.props.data.userList !== null) {
-            users.push(
-                <InviteUser
-                    texts={this.props.texts}
-                    language={this.props.language}
-                    key="inviteUser"
-                    parentCategoryId={this.props.data.parentCategoryId}
-                    username={this.props.username}
-                    password={this.props.password}
-                />)
-        }
 
-        if (this.props.data.categoryList.length === 0 && this.props.data.parentEditable === false) {
+        if (categoryItems.length === 0) {
             return <h2>{this.props.texts.categoryList.noCategories[this.props.language]}</h2>
         }
 
