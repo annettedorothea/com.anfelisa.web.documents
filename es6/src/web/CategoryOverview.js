@@ -60,7 +60,7 @@ export default class CategoryOverview extends React.Component {
         }
 
         return (
-            <div className="categoryList">
+            <div className="categoryOverview">
 
                 <button className="backButton"
                         onClick={() => new RouteAction({

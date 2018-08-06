@@ -27,7 +27,7 @@ export default class Container extends React.Component {
                 <ToastContainer toast={this.state.toast}/>
                 {this.state.displaySpinner && <Spinner/>}
                 {content}
-                <div className="footer">
+                <div className={`footer ${this.state.username === undefined ? "fixed" : ""}`}>
                     <div className="footerContent">
                         <h1>Impressum</h1>
                         <p>
