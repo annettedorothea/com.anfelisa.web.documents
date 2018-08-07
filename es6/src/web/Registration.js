@@ -70,7 +70,7 @@ export default class Registration extends React.Component {
 
     render() {
         return (
-            <div className="center">
+            <div className="center bigger">
                 <div className="form">
                     <h1>{this.props.texts.registration.title[this.props.language]}</h1>
                     <div className="line">
@@ -141,6 +141,10 @@ export default class Registration extends React.Component {
                     <div className="line">
                         <div
                             className="small-font">{this.props.texts.registration.terms[this.props.language]}</div>
+                    </div>
+                    <div className="line">
+                        <div
+                            className="small-font">{this.props.texts.registration.disclaimer[this.props.language]}</div>
                     </div>
                 </div>
             </div>

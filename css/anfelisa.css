@@ -175,6 +175,10 @@ h2 {
     padding: 20px;
 }
 
+.center.bigger {
+    height: 700px;
+}
+
 @media screen and (max-width: 600px) {
     .center {
         height: auto;
@@ -671,45 +675,45 @@ a:hover.tile h2 {
 /* categories */
 
 .categoryOverview table {
-    max-width: 400px;
+    width: 100%;
+    max-width: 1200px;
     margin-bottom: 32px;
 }
 
-.categoryList td {
+.categoryOverview td {
     border-bottom: 1px dotted #ccc;
     line-height: 34px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-width: 50vw;
 }
 
-.categoryList table.root td:last-child {
+.categoryOverview table.root td:last-child {
     max-width: 250px;
     width: 250px;
 }
 
-.categoryList table.sub td:last-child {
+.categoryOverview table.sub td:last-child {
     max-width: 170px;
     width: 170px;
 }
 
-.categoryList table i {
+.categoryOverview table i {
     margin: 0 8px;
 }
 
-.categoryList input, .categoryList select {
+.categoryOverview input, .categoryList select {
     margin-right: 4px;
 }
 
-.categoryList .invitedUsers {
+.categoryOverview .invitedUsers {
     margin-bottom: 32px;
 }
 
-.categoryList .invitedUsers li {
+.categoryOverview .invitedUsers li {
     list-style-type: none;
     margin-bottom: 4px;
 }
 
-.categoryList .inputfile {
+.categoryOverview .inputfile {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
@@ -718,7 +722,7 @@ a:hover.tile h2 {
     z-index: -1;
 }
 
-.categoryList .inputfile + label {
+.categoryOverview .inputfile + label {
     display: inline-block;
     cursor: pointer;
     font-size: 16px;
@@ -731,28 +735,28 @@ a:hover.tile h2 {
     margin-right: 8px;
 }
 
-.categoryList .inputfile:focus + label,
-.categoryList .inputfile + label:hover {
+.categoryOverview .inputfile:focus + label,
+.categoryOverview .inputfile + label:hover {
     border-color: #004784;
     background-color: #337ab7;
     color: #eee;
 }
 
-.categoryList .inputfile:focus + label {
+.categoryOverview .inputfile:focus + label {
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
 }
 
-.categoryList .preview {
+.categoryOverview .preview {
     position: relative;
 
 }
 
-.categoryList .preview img {
+.categoryOverview .preview img {
     width: 240px;
 }
 
-.categoryList .preview button {
+.categoryOverview .preview button {
     border: none;
     padding: 0;
     width: 24px;
@@ -762,27 +766,32 @@ a:hover.tile h2 {
     right: 0;
 }
 
-.categoryList textarea {
-    min-width: 80px;
+.categoryOverview textarea {
+    min-width: 120px;
     min-height: 80px;
+    width: 100%;
+    height: 100%;
 }
 
-.categoryList table.cardTable {
+.categoryOverview table.cardTable {
     max-width: 984px;
 }
 
-.categoryList table.cardTable td {
-}
-
-.categoryList table.cardTable td pre {
+.categoryOverview table.cardTable td pre {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
-.categoryList table.cardTable td:first-child {
+.categoryOverview table.cardTable td:first-child {
     min-width: 36px;
     padding: 0;
+}
+
+.categoryOverview div.google {
+    background: url(img/google-translate.png) no-repeat;
+    width: 176px;
+    height: 16px;
+    margin-bottom: 8px;
 }
 
 .dictionaryWrapper {

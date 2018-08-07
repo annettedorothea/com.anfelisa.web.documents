@@ -94,7 +94,6 @@ export default class EditCard extends React.Component {
         return (
             <td>
                 <textarea
-                    rows="4"
                     onChange={this.onGivenChange}
                     autoComplete="off"
                     value={this.props.given}
@@ -105,11 +104,10 @@ export default class EditCard extends React.Component {
         );
     }
 
-    renderWanted() {
+    renderWanted(renderGoogleLogo) {
         return (
             <td>
                 <textarea
-                    rows="4"
                     onChange={this.onWantedChange}
                     autoComplete="off"
                     value={this.props.wanted}

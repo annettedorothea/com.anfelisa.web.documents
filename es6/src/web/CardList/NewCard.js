@@ -198,11 +198,10 @@ export default class NewCard extends React.Component {
         }
     }
 
-    renderGiven() {
+    renderGiven(renderGoogleLogo) {
         return (
             <td>
                 <textarea
-                    rows="4"
                     onChange={this.onGivenChange}
                     autoComplete="off"
                     value={this.props.given}
@@ -214,15 +213,15 @@ export default class NewCard extends React.Component {
                     onBlur={this.onBlurGiven}
                     id="given"
                 />
+                {renderGoogleLogo === true && <div className="google" />}
             </td>
         )
     }
 
-    renderWanted() {
+    renderWanted(renderGoogleLogo) {
         return (
             <td>
                 <textarea
-                    rows="4"
                     onChange={this.onWantedChange}
                     autoComplete="off"
                     value={this.props.wanted}
@@ -234,6 +233,7 @@ export default class NewCard extends React.Component {
                     onBlur={this.onBlurWanted}
                     id="wanted"
                 />
+                {renderGoogleLogo === true && <div className="google" />}
             </td>
         )
     }
@@ -271,11 +271,11 @@ export default class NewCard extends React.Component {
                     <i className="fas fa-cog fa-spin"/>}
                 </td>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
-                {this.props.naturalInputOrder === true && this.renderWanted()}
+                {this.props.naturalInputOrder === true && this.renderWanted(this.props.dictionaryLookup)}
                 {this.props.naturalInputOrder === true && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderImage()}
-                {this.props.naturalInputOrder === false && this.renderGiven()}
+                {this.props.naturalInputOrder === false && this.renderGiven(this.props.dictionaryLookup)}
                 <td/>
                 <td className="noBreak">
                     <button
