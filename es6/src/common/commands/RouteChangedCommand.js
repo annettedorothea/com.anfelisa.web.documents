@@ -15,7 +15,9 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 this.commandData.outcome = this.categories;
             } else if (this.commandData.hash.startsWith("#box/reinforce")) {
                 const hashes = this.commandData.hash.split("/");
+                console.log("hashes", hashes);
                 this.commandData.boxId = hashes[2] ? hashes[2] : "";
+                console.log("boxId", this.commandData.boxId);
                 this.commandData.outcome = this.reinforceCard;
             } else if (this.commandData.hash.startsWith("#box")) {
                 const hashes = this.commandData.hash.split("/");

@@ -68,7 +68,7 @@ export default class Login extends React.Component {
                             id="saveInLocalStorage"
                             type={"checkbox"}
                             onChange={this.onToggleSaveInLocalStorage}
-                            value={this.props.data.saveInLocalStorage}
+                            checked={this.props.data.saveInLocalStorage}
                         />
                         <label htmlFor="saveInLocalStorage">
                             {this.props.texts.login.saveInLocalStorage[this.props.language]}

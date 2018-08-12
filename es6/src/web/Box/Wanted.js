@@ -34,8 +34,10 @@ export default class Wanted extends React.Component {
 
         return (
             <div className={`wanted lastQuality_${this.props.lastQuality}`} onClick={() => this.onClick(lines)}>
-                {lineItems}
-                {this.props.image && <img src={this.props.image} className={this.props.displayImage === true ? "image" : "hidden image"}/>}
+                <div className="wanted-word">
+                    {lineItems}
+                    {this.props.image && <img src={this.props.image} className={this.props.displayImage === true ? "image" : "hidden image"}/>}
+                </div>
             </div>
         );
     }

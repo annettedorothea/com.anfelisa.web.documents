@@ -90,6 +90,17 @@ export default class Card extends React.Component {
                         {this.scoreButton(3)}
                         {this.scoreButton(0)}
                     </div>
+                    <div>
+                        <button className="reinforce"
+                            onClick={() => new RouteAction(
+                                {
+                                    hash: `#box/reinforce/${this.props.data.boxId}`
+                                }).apply()}
+                            disabled={this.props.data.reinforceCards === 0}
+                        >
+                            {this.props.texts.queryCards.reinforceCard[this.props.language]}
+                        </button>
+                    </div>
                 </div>
             </div>
         );

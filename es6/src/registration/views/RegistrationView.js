@@ -16,14 +16,6 @@ export default class RegistrationView {
         });
 	};
 	
-	static usernameChanged(eventData) {
-        App.deepMergeState({
-            data : {
-                username: eventData.username
-            }
-        });
-	};
-	
 	static usernameAvailable(eventData) {
         App.deepMergeState({
             data : {

@@ -61,8 +61,8 @@ export default class CardItem extends React.Component {
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderWanted()}
-                {this.props.naturalInputOrder === false && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
+                {this.props.naturalInputOrder === false && this.renderImage()}
                 <td>{this.props.cardAuthor}</td>
                 <td className="noBreak">
                     {this.props.editable === true &&

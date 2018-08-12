@@ -1,13 +1,8 @@
-import UsernameChangedAction from "../../src/registration/actions/UsernameChangedAction";
 import CheckUsernameAction from "../../src/registration/actions/CheckUsernameAction";
 import EmailChangedAction from "../../src/registration/actions/EmailChangedAction";
 import PasswordChangedAction from "../../src/registration/actions/PasswordChangedAction";
 import RegisterUserAction from "../../src/registration/actions/RegisterUserAction";
 import ConfirmEmailAction from "../../src/registration/actions/ConfirmEmailAction";
-
-export function usernameChanged(actionData) {
-    new UsernameChangedAction(actionData).apply();
-}
 
 export function checkUsername(actionData) {
     new CheckUsernameAction(actionData).apply();

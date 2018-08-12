@@ -19,7 +19,7 @@ export default class AppUtils {
     }
 
     static getClientVersion() {
-        return "1.0.0";
+        return "3.0.2";
     }
 
     static getApiKey() {

@@ -3,17 +3,18 @@ import CryptoJS from "crypto-js";
 import RouteAction from "../common/actions/RouteAction";
 import RegisterUserAction from "../registration/actions/RegisterUserAction";
 import AppUtils from "../app/AppUtils";
-import UsernameChangedAction from "../registration/actions/UsernameChangedAction";
 import PasswordChangedAction from "../registration/actions/PasswordChangedAction";
 import EmailChangedAction from "../registration/actions/EmailChangedAction";
+import CheckUsernameAction from "../registration/actions/CheckUsernameAction";
 
 export default class Registration extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            password: '',
-            passwordRepetition: ''
+            username:"",
+            password: "",
+            passwordRepetition: ""
         };
         this.onUsernameChange = this.onUsernameChange.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
@@ -24,7 +25,8 @@ export default class Registration extends React.Component {
 
     onUsernameChange(event) {
         const username = event.target.value;
-        new UsernameChangedAction({username}).apply();
+        this.setState({username});
+        new CheckUsernameAction({username}).apply();
     }
 
     onEmailChange(event) {
@@ -63,14 +65,15 @@ export default class Registration extends React.Component {
         const data = {
             password: this.state.password,
             language: this.props.language,
-            token: AppUtils.createUUID()
+            token: AppUtils.createUUID(),
+            username: this.state.username
         };
         new RegisterUserAction(data).apply();
     }
 
     render() {
         return (
-            <div className="center bigger">
+            <div className="center">
                 <div className="form">
                     <h1>{this.props.texts.registration.title[this.props.language]}</h1>
                     <div className="line">
@@ -80,13 +83,13 @@ export default class Registration extends React.Component {
                                 type={"text"}
                                 onChange={this.onUsernameChange}
                                 autoComplete="off"
-                                value={this.props.data.username}
+                                value={this.state.username}
                             />
                             {this.props.data.displayUsernameSpinner === true &&
                             <i className="fas fa-cog fa-spin inside"/>}
-                            {this.props.data.usernameAvailable === true && this.props.data.username.length > 0 &&
+                            {this.props.data.usernameAvailable === true && this.state.username.length > 0 &&
                             <i className="fas fa-check outside success"/>}
-                            {this.props.data.usernameAvailable === false && this.props.data.username.length > 0 &&
+                            {this.props.data.usernameAvailable === false && this.state.username.length > 0 &&
                             <i className="fas fa-times outside error"/>}
                         </div>
                     </div>
@@ -128,7 +131,7 @@ export default class Registration extends React.Component {
                     <div className="moreMarginLine hCenter">
                         <button onClick={this.onRegister}
                                 disabled={this.props.data.usernameAvailable === false ||
-                                this.props.data.username.length === 0 ||
+                                this.state.username.length === 0 ||
                                 this.props.data.email.length === 0 ||
                                 this.state.password.length === 0 ||
                                 this.props.data.passwordMismatch === true

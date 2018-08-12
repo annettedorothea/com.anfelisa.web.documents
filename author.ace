@@ -54,14 +54,14 @@ ACE {
 	}
 	
 	GivenOfNewCardChanged {
-		on ok (Categories.givenOfNewCardChanged) triggers (SearchDuplicateCards)
+		on ok (Categories.givenOfNewCardChanged) 
 	}
 	async SearchDuplicateCards preUpdateUI (Categories.displayNewCardSpinner) postUpdateUI (Categories.hideNewCardSpinner) {
 		on ok (Categories.initDuplicates)
 		on tooShort (Categories.resetDuplicates)
 	}
 	WantedOfNewCardChanged {
-		on ok (Categories.wantedOfNewCardChanged) triggers (SearchDuplicateCards)
+		on ok (Categories.wantedOfNewCardChanged)
 	}
 	CancelNewCard {
 		on ok (Categories.resetNewCardValues )
