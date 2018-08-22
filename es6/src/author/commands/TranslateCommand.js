@@ -30,6 +30,7 @@ export default class TranslateCommand extends AbstractTranslateCommand {
                     value: this.commandData.naturalInputOrder === true ? this.commandData.wantedLanguage : this.commandData.givenLanguage
                 });
                 this.httpGet("api/card/translation", queryParams).then((data) => {
+                    console.log("TranslateCommand", data);
                     if (this.commandData.naturalInputOrder === true) {
                         this.commandData.wanted = data.targetValue;
                         this.commandData.outcome = this.wantedFetched;

@@ -78,8 +78,8 @@ export default class EditCard extends React.Component {
             username: this.props.username,
             password: this.props.password,
             cardId: this.props.cardId,
-            given: this.props.given,
-            wanted: this.props.wanted,
+            given: this.props.given.trim(),
+            wanted: this.props.wanted.trim(),
             image: this.props.image,
             parentCategoryId: this.props.categoryId
         };
@@ -151,7 +151,6 @@ export default class EditCard extends React.Component {
                     />
                 </td>
                 }
-                {this.props.hasBox === false && this.props.editable === true && <td/>}
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
@@ -170,6 +169,7 @@ export default class EditCard extends React.Component {
                         <i className="fas fa-times"/>
                     </button>
                 </td>
+                {this.props.hasBox === false && this.props.editable === true && <td/>}
             </tr>
         );
     }

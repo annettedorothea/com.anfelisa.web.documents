@@ -1,12 +1,11 @@
 {
   "name": "anfelisa",
-  "version": "3.0.1",
+  "version": "3.0.6",
   "description": "",
   "scripts": {
-    "min": "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa_3_0_2.min.js",
-    "uglify": "uglifyjs lib/anfelisa.js --compress --mangle --output lib/anfelisa_3_0_2_min.js",
-    "build": "browserify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa_3_0_2.js -dv",
-    "server": "watchify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa_3_0_2.js -dv & live-server --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8082/replay/' --browser='Google Chrome'"
+    "uglify": "uglifyjs lib/anfelisa_3.0.6.js --compress --mangle --output lib/anfelisa_3.0.6.min.js",
+    "build": "browserify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa_3.0.6.js -dv",
+    "server": "watchify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa_3.0.6.js -dv & live-server --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8082/replay/' --browser='Google Chrome'"
   },
   "author": "Annette Pohl",
   "license": "ISC",

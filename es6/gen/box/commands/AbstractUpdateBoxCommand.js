@@ -1,6 +1,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
+import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
 
 export default class AbstractUpdateBoxCommand extends Command {
     constructor(commandData) {
@@ -13,7 +13,7 @@ export default class AbstractUpdateBoxCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new TriggerAction(new LoadBoxesAction(this.commandData)).publish());
+			promises.push(new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('UpdateBoxCommand unhandled outcome: ' + this.commandData.outcome)});

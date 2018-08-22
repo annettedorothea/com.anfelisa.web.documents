@@ -6,24 +6,21 @@ ACE {
 	async LoadBoxes preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
 		on ok (BoxList.render)
 	}
-	
 	async CreateBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
 		on ok triggers (common.Route)
 	}
 	EditBox {
-		on ok (BoxList.editBox)
-	}
-	ToggleMaxIntervalOfBox {
-		on ok (BoxList.toggleMaxInterval)
-	}
-	MaxIntervalChangedOfBox {
-		on ok (BoxList.maxIntervalChanged)
+		on ok (Box.editBox)
 	}
 	CancelEditBox {
-		on ok (BoxList.cancelEditBox)
+		on ok (Box.cancelEditBox)
+	}
+	MaxIntervalChanged {
+		on ok (Box.maxIntervalChanged)
+		on invalid
 	}
 	async UpdateBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
-		on ok triggers (LoadBoxes)
+		on ok triggers (LoadBoxStatistics)
 	}
 	DeleteBoxClick {
 		on ok (BoxList.displayConfirmDelete)
@@ -79,10 +76,6 @@ ACE {
 views {
 	BoxList {
 		render
-		toggleMaxInterval
-		maxIntervalChanged
-		editBox
-		cancelEditBox
 		displayConfirmDelete
 		hideConfirmDelete
 	}
@@ -93,6 +86,9 @@ views {
 		enableScoreButtons
 		toggleScheduleNext
 		renderStatistics
+		maxIntervalChanged
+		editBox
+		cancelEditBox
 	}
 	BoxReinforce {
 		render

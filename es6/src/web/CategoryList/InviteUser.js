@@ -34,12 +34,12 @@ export default class InviteUser extends React.Component {
             <li>
                 <input
                     type={"text"}
-                    placeholder={this.props.texts.categoryList.username[this.props.language]}
+                    placeholder={this.props.texts.categoryList.invitedUsers.username[this.props.language]}
                     onChange={this.onUsernameChange}
                     autoComplete="off"
                     value={this.state.username}
                 />
-                <button onClick={this.onInvite}>{this.props.texts.categoryList.invite[this.props.language]}</button>
+                <button onClick={this.onInvite}>{this.props.texts.categoryList.invitedUsers.invite[this.props.language]}</button>
             </li>
         );
     }

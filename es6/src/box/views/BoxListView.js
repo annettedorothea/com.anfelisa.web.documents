@@ -7,11 +7,6 @@ export default class BoxListView {
             route: "dashboard",
             data: {
                 boxList: eventData.data.boxList,
-                editedBox: {
-                    boxId: "",
-                    maxIntervalChecked: false,
-                    maxInterval: ""
-                },
                 deleteBox: {
                     confirmDelete: false,
                     boxId: ""
@@ -20,39 +15,6 @@ export default class BoxListView {
         });
 	};
 	
-	static toggleMaxInterval() {
-        App.deepMergeState({
-            data: {
-                editedBox: {
-                    maxIntervalChecked: !App.appState.data.editedBox.maxIntervalChecked,
-                    maxInterval: ""
-                }
-            }
-        });
-	};
-	
-	static maxIntervalChanged(eventData) {
-        App.deepMergeState({
-            data: {
-                editedBox: {
-                    maxInterval: eventData.maxInterval
-                }
-            }
-        });
-	};
-	
-	static editBox(eventData) {
-        App.deepMergeState({
-            data: {
-                editedBox: {
-                    boxId: eventData.boxId,
-                    maxIntervalChecked: eventData.maxIntervalChecked,
-                    maxInterval: eventData.maxInterval
-                }
-            }
-        });
-	};
-
 	static cancelEditBox(eventData) {
         App.deepMergeState({
             data: {

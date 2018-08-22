@@ -24,7 +24,12 @@ export default class EditCategory extends React.Component {
 
     onNameChange(event) {
         const name = event.target.value;
-        new NameOfEditedCategoryChangedAction({name, categoryList: this.props.categoryList}).apply();
+        new NameOfEditedCategoryChangedAction(
+            {
+                name,
+                categoryList: this.props.categoryList,
+                originalName: this.props.originalName
+            }).apply();
     }
 
     onCancel() {
@@ -83,7 +88,7 @@ export default class EditCategory extends React.Component {
                         onKeyUp={this.onKeyUp}
                     />
                     {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
-                    <label>{this.props.texts.categoryList.nameAlreadyExists[this.props.language]}</label>}
+                    <i className="fas fa-times error"/>}
                 </td>
                 <td/>
                 {this.props.rootDictionaryLookup === true &&
@@ -97,7 +102,8 @@ export default class EditCategory extends React.Component {
                     />
                     <select value={this.props.givenLanguage} onChange={this.onGivenLanguageChange}
                             disabled={!this.props.dictionaryLookup}>
-                        <option value="">{this.props.texts.categoryList.languages.emtpyFrom[this.props.language]}</option>
+                        <option
+                            value="">{this.props.texts.categoryList.languages.emtpyFrom[this.props.language]}</option>
                         <option value="de">{this.props.texts.categoryList.languages.de[this.props.language]}</option>
                         <option value="en">{this.props.texts.categoryList.languages.en[this.props.language]}</option>
                         <option value="fr">{this.props.texts.categoryList.languages.fr[this.props.language]}</option>

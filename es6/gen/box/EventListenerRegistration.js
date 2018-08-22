@@ -7,10 +7,9 @@ export default class EventListenerRegistrationBox {
 
 	static init() {
 		ACEController.registerListener('box.LoadBoxesOkEvent', BoxListView.render);
-		ACEController.registerListener('box.EditBoxOkEvent', BoxListView.editBox);
-		ACEController.registerListener('box.ToggleMaxIntervalOfBoxOkEvent', BoxListView.toggleMaxInterval);
-		ACEController.registerListener('box.MaxIntervalChangedOfBoxOkEvent', BoxListView.maxIntervalChanged);
-		ACEController.registerListener('box.CancelEditBoxOkEvent', BoxListView.cancelEditBox);
+		ACEController.registerListener('box.EditBoxOkEvent', BoxView.editBox);
+		ACEController.registerListener('box.CancelEditBoxOkEvent', BoxView.cancelEditBox);
+		ACEController.registerListener('box.MaxIntervalChangedOkEvent', BoxView.maxIntervalChanged);
 		ACEController.registerListener('box.DeleteBoxClickOkEvent', BoxListView.displayConfirmDelete);
 		ACEController.registerListener('box.CancelDeleteBoxOkEvent', BoxListView.hideConfirmDelete);
 		ACEController.registerListener('box.DeleteBoxErrorEvent', BoxListView.hideConfirmDelete);

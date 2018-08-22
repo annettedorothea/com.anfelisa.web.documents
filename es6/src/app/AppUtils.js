@@ -9,25 +9,57 @@ import DisplayErrorAndLogoutAction from "../common/actions/DisplayErrorAndLogout
 export default class AppUtils {
 
     static start() {
-        const data = {
-            username: localStorage.getItem("username"),
-            password: localStorage.getItem("password"),
-            language: "de",
-            hash: window.location.hash
-        };
-        new InitAction(data).apply();
+        AppUtils.loadSettings().then((settings) => {
+            AppUtils.settings = settings;
+            const data = {
+                username: localStorage.getItem("username"),
+                password: localStorage.getItem("password"),
+                language: "de",
+                hash: window.location.hash
+            };
+            new InitAction(data).apply();
+        });
+    }
+
+    static loadSettings() {
+        return new Promise((resolve, reject) => {
+            const headers = new Headers();
+            headers.append("Content-Type", "application/json");
+            headers.append("Accept", "application/json");
+
+            const options = {
+                method: 'GET',
+                headers: headers,
+                mode: 'cors',
+                cache: 'no-cache'
+            };
+
+            const request = new Request("settings.json", options);
+
+            fetch(request).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                    resolve(data);
+            }).catch(function (error) {
+                reject(error);
+            });
+        });
     }
 
     static getClientVersion() {
-        return "3.0.2";
+        return AppUtils.settings.clientVersion;
     }
 
-    static getApiKey() {
-        return "5081f590-d2da-4014-b8eb-3ce48efdc3c9";
+    static isDevelopment() {
+        return AppUtils.settings.development;
+    }
+
+    static getAceScenariosApiKey() {
+        return AppUtils.settings.aceScenariosApiKey;
     }
 
     static getAceScenariosBaseUrl() {
-        return "http://ace.anfelisa.com/";
+        return AppUtils.settings.aceScenariosBaseUrl;
     }
 
     static httpGet(url, queryParams, commandData, adjustUrl = true) {
@@ -228,6 +260,8 @@ export default class AppUtils {
                     appState[property] = newState[property];
                 } else if (newState[property] === undefined) {
                     appState[property] = undefined;
+                } else if (newState[property] === null) {
+                    appState[property] = null;
                 } else if (Array.isArray(newState[property])) {
                     appState[property] = newState[property];
                 } else if (typeof newState[property] === 'object') {

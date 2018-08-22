@@ -1,9 +1,8 @@
 import LoadBoxesAction from "../../src/box/actions/LoadBoxesAction";
 import CreateBoxAction from "../../src/box/actions/CreateBoxAction";
 import EditBoxAction from "../../src/box/actions/EditBoxAction";
-import ToggleMaxIntervalOfBoxAction from "../../src/box/actions/ToggleMaxIntervalOfBoxAction";
-import MaxIntervalChangedOfBoxAction from "../../src/box/actions/MaxIntervalChangedOfBoxAction";
 import CancelEditBoxAction from "../../src/box/actions/CancelEditBoxAction";
+import MaxIntervalChangedAction from "../../src/box/actions/MaxIntervalChangedAction";
 import UpdateBoxAction from "../../src/box/actions/UpdateBoxAction";
 import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
 import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
@@ -31,16 +30,12 @@ export function editBox(actionData) {
     new EditBoxAction(actionData).apply();
 }
 
-export function toggleMaxIntervalOfBox(actionData) {
-    new ToggleMaxIntervalOfBoxAction(actionData).apply();
-}
-
-export function maxIntervalChangedOfBox(actionData) {
-    new MaxIntervalChangedOfBoxAction(actionData).apply();
-}
-
 export function cancelEditBox(actionData) {
     new CancelEditBoxAction(actionData).apply();
+}
+
+export function maxIntervalChanged(actionData) {
+    new MaxIntervalChangedAction(actionData).apply();
 }
 
 export function updateBox(actionData) {

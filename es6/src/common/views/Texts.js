@@ -30,6 +30,9 @@ export const Texts = {
         maxIntervalMore: {
             de: "{0} Tage"
         },
+        maxIntervalNull: {
+            de: "keine Begrenzung"
+        },
         maxInterval: {
             de: "maximaler Abstand"
         },
@@ -90,11 +93,22 @@ export const Texts = {
                 de: "Zugriff entziehen"
             }
         },
+        folders: {
+            de: "Ordner"
+        },
         index: {
             de: "Index"
         },
-        invite: {
-            de: "einladen"
+        invitedUsers: {
+            invite: {
+                de: "einladen"
+            },
+            title: {
+                de: "Benutzer mit Zugriff"
+            },
+            username: {
+                de: "Benutzer"
+            }
         },
         languages: {
             de: {
@@ -127,9 +141,6 @@ export const Texts = {
         },
         title: {
             de: "Alle Lernkarteien"
-        },
-        username: {
-            de: "Benutzer"
         }
     },
     cardList: {
@@ -171,13 +182,19 @@ export const Texts = {
         scheduleSelectedCards: {
             de: "Selektierte Karten heute noch abfragen"
         },
+        title: {
+            de: "Karten in diesem Ordner"
+        },
         useDictionary: {
             de: "Linugee Wörterbuch anzeigen"
         }
     },
-    editBox: {
-        maxInterval: {
-            de: "maximaler Abstand im Tagen"
+    container: {
+        about: {
+            de: "Impressum"
+        },
+        version: {
+            de: "Version"
         }
     },
     errors: {

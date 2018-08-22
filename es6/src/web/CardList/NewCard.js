@@ -132,8 +132,8 @@ export default class NewCard extends React.Component {
         const data = {
             username: this.props.username,
             password: this.props.password,
-            given: this.props.given,
-            wanted: this.props.wanted,
+            given: this.props.given.trim(),
+            wanted: this.props.wanted.trim(),
             parentCategoryId: this.props.categoryId,
             image: this.props.image
         };
@@ -200,7 +200,7 @@ export default class NewCard extends React.Component {
 
     renderGiven(renderGoogleLogo) {
         return (
-            <td>
+            <td className="textarea">
                 <textarea
                     onChange={this.onGivenChange}
                     autoComplete="off"
@@ -213,14 +213,18 @@ export default class NewCard extends React.Component {
                     onBlur={this.onBlurGiven}
                     id="given"
                 />
-                {renderGoogleLogo === true && <div className="google" />}
+                {renderGoogleLogo === true &&
+                <div className="google">
+                    {(this.props.displayTranslateSpinner === true || this.props.displaySpinner === true) &&
+                    <i className="fas fa-cog fa-spin"/>}
+                </div>}
             </td>
         )
     }
 
     renderWanted(renderGoogleLogo) {
         return (
-            <td>
+            <td className="textarea">
                 <textarea
                     onChange={this.onWantedChange}
                     autoComplete="off"
@@ -233,7 +237,11 @@ export default class NewCard extends React.Component {
                     onBlur={this.onBlurWanted}
                     id="wanted"
                 />
-                {renderGoogleLogo === true && <div className="google" />}
+                {renderGoogleLogo === true &&
+                <div className="google">
+                    {(this.props.displayTranslateSpinner === true || this.props.displaySpinner === true) &&
+                    <i className="fas fa-cog fa-spin"/>}
+                </div>}
             </td>
         )
     }
@@ -266,10 +274,7 @@ export default class NewCard extends React.Component {
     render() {
         return (
             <tr>
-                <td>
-                    {(this.props.displayTranslateSpinner === true || this.props.displaySpinner === true) &&
-                    <i className="fas fa-cog fa-spin"/>}
-                </td>
+                {this.props.hasBox === true && <td/>}
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted(this.props.dictionaryLookup)}
                 {this.props.naturalInputOrder === true && this.renderImage()}

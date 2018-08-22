@@ -93,6 +93,7 @@ export default class CategoryList extends React.Component {
                     key={category.categoryId}
                     categoryId={this.props.data.editedCategory.categoryId}
                     name={this.props.data.editedCategory.name}
+                    originalName={category.categoryName}
                     index={this.props.data.editedCategory.index}
                     nameAlreadyExists={this.props.data.editedCategory.nameAlreadyExists}
                     categoryList={this.props.data.categoryList}
@@ -175,6 +176,7 @@ export default class CategoryList extends React.Component {
                             cancel: this.onRevokeUserAccessCancel
                         }}/>
                 </div>}
+                {this.props.data.parentCategoryId !== null && <h2>{this.props.texts.categoryList.folders[this.props.language]}</h2>}
                 <table className={this.props.data.parentCategoryId === null ? "root" : "sub"}>
                     <thead>
 

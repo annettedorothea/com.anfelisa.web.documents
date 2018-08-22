@@ -190,13 +190,12 @@ export default class CardList extends React.Component {
                         }}/>
                 </div>}
 
+                <h2>{this.props.texts.cardList.title[this.props.language]}</h2>
+
                 <table className="cardTable">
                     <thead>
                     <tr>
-                        {this.props.data.hasBox === true && <th/>}
-                        {this.props.data.hasBox === false && this.props.data.parentEditable === true && <th/>}
-                        {this.props.data.cardList.length > 0 &&
-                        <th colSpan={5}>
+                        <th colSpan={6}>
                             <input
                                 type={"text"}
                                 onChange={this.onFilterChange}
@@ -208,12 +207,10 @@ export default class CardList extends React.Component {
                             <button onClick={this.onToggleInputOrder}><i className="fas fa-arrows-alt-h"/></button>
                             }
                         </th>
-                        }
                     </tr>
 
                     {this.props.data.newCard.dictionaryLookup === true && this.props.data.parentEditable === true &&
                     <tr>
-                        <th/>
                         <th colSpan={6}>
                             <input
                                 type={"checkbox"}
@@ -225,6 +222,7 @@ export default class CardList extends React.Component {
                                 htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary[this.props.language]}
                             </label>
                         </th>
+                        <th/>
                     </tr>
                     }
 
@@ -250,7 +248,7 @@ export default class CardList extends React.Component {
                     <tbody>
                     {cardItems}
                     {duplicateCards.length > 0 && <tr>
-                        <td/>
+                        {this.props.hasBox === true && <td/>}
                         <td colSpan={5}>{this.props.texts.cardList.duplicateCards[this.props.language]}</td>
                     </tr>}
                     {duplicateCards}

@@ -46,6 +46,32 @@ export default class BoxView {
         });
     };
 
+    static maxIntervalChanged(eventData) {
+        App.deepMergeState({
+            data: {
+                editedMaxInterval: eventData.maxInterval
+            }
+        });
+    };
+
+    static editBox(eventData) {
+        App.deepMergeState({
+            data: {
+                editedMaxInterval: eventData.maxInterval,
+                editMaxInterval: true
+            }
+        });
+    };
+
+    static cancelEditBox() {
+        App.deepMergeState({
+            data: {
+                editedMaxInterval: undefined,
+                editMaxInterval: false
+            }
+        });
+    };
+
 }
 
 /*                    S.D.G.                    */
