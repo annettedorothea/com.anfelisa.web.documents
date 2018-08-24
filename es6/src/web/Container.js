@@ -40,7 +40,7 @@ export default class Container extends React.Component {
                         <p>
                             {this.state.texts.container.version[this.state.language]} {AppUtils.getClientVersion()}
                         </p>
-                        {AppUtils.isDevelopment() === true && <a href={`${AppUtils.getAceScenariosBaseUrl()}/#/${AppUtils.getAceScenariosApiKey()}/scenarios`} target="ace">ace-scenarios</a>}
+                        {AppUtils.isDevelopment() === true && <a href={`${AppUtils.getAceScenariosBaseUrl()}#/${AppUtils.getAceScenariosApiKey()}/scenarios`} target="ace">ace-scenarios</a>}
                     </div>
                 </div>
             </div>
