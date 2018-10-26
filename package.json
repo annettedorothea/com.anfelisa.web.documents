@@ -8,7 +8,7 @@
     "server": "watchify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa_3.0.6.js -dv & live-server --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8082/replay/' --browser='Google Chrome'"
   },
   "author": "Annette Pohl",
-  "license": "ISC",
+  "license": "GPL",
   "browserify": {
     "transform": [
       [
@@ -23,7 +23,6 @@
     ]
   },
   "dependencies": {
-    "babel-core": "^6.26.0",
     "crypto-js": "^3.1.9-1",
     "json-stable-stringify": "^1.0.1",
     "react": "^16.3.2",
