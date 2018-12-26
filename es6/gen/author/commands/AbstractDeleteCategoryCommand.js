@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/AsynchronousCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import DeleteCategoryOkEvent from "../../../gen/author/events/DeleteCategoryOkEvent";
 import DeleteCategoryErrorEvent from "../../../gen/author/events/DeleteCategoryErrorEvent";
@@ -13,21 +13,18 @@ export default class AbstractDeleteCategoryCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new DeleteCategoryOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCategoriesAction(this.commandData)).publish());
+			new DeleteCategoryOkEvent(this.commandData).publish();
+			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
 			break;
 		case this.error:
-			promises.push(new DeleteCategoryErrorEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData)).publish());
+			new DeleteCategoryErrorEvent(this.commandData).publish();
+			new TriggerAction(new DisplayErrorAction(this.commandData)).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('DeleteCategoryCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'DeleteCategoryCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

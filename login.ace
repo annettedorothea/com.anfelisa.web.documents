@@ -1,28 +1,28 @@
+ES6
 login
 
-target ES6 
-
-ACE {
-	UsernameChanged {
+ACE 
+	UsernameChanged 
 		on ok (Login.usernameChanged)
-	}
-	ToggleSaveInLocalStorage {
+	
+	ToggleSaveInLocalStorage 
 		on ok (Login.toggleSaveInLocalStorage)
-	}
-	Login  {
+	
+	Login  
 		on saveInLocalStorage ( common.Common.initUser common.Common.saveInLocalStorage ) triggers ( GetRole )
 		on doNotSaveInLocalStorage ( common.Common.initUser ) triggers ( GetRole )
-	}
-	async GetRole preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 GetRole preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (common.Common.initRole) triggers ( common.Route )
 		on unauthorized triggers ( common.Logout common.DisplayError)
-	}
-}
+	
 
-views {
+
+views 
 	Login {
 		render
 		usernameChanged
 		toggleSaveInLocalStorage
+	
+	
 	}
-}

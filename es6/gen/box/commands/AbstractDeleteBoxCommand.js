@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/AsynchronousCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import DeleteBoxErrorEvent from "../../../gen/box/events/DeleteBoxErrorEvent";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
@@ -12,20 +12,17 @@ export default class AbstractDeleteBoxCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new TriggerAction(new LoadBoxesAction(this.commandData)).publish());
+			new TriggerAction(new LoadBoxesAction(this.commandData)).publish();
 			break;
 		case this.error:
-			promises.push(new DeleteBoxErrorEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData)).publish());
+			new DeleteBoxErrorEvent(this.commandData).publish();
+			new TriggerAction(new DisplayErrorAction(this.commandData)).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('DeleteBoxCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'DeleteBoxCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

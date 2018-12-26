@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/AsynchronousCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
@@ -10,17 +10,14 @@ export default class AbstractForgotPasswordCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new TriggerAction(new DisplayMessageAction(this.commandData)).publish());
-			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
+			new TriggerAction(new DisplayMessageAction(this.commandData)).publish();
+			new TriggerAction(new RouteAction(this.commandData)).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('ForgotPasswordCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'ForgotPasswordCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

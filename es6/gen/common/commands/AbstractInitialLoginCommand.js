@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/AsynchronousCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import InitialLoginOkEvent from "../../../gen/common/events/InitialLoginOkEvent";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
@@ -13,21 +13,18 @@ export default class AbstractInitialLoginCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new InitialLoginOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new RouteChangedAction(this.commandData)).publish());
+			new InitialLoginOkEvent(this.commandData).publish();
+			new TriggerAction(new RouteChangedAction(this.commandData)).publish();
 			break;
 		case this.unauthorized:
-			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData)).publish());
-			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
+			new TriggerAction(new DisplayErrorAction(this.commandData)).publish();
+			new TriggerAction(new LogoutAction(this.commandData)).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('InitialLoginCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'InitialLoginCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

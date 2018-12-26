@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/AsynchronousCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import DeleteUserOkEvent from "../../../gen/profile/events/DeleteUserOkEvent";
 import DeleteUserErrorEvent from "../../../gen/profile/events/DeleteUserErrorEvent";
@@ -14,22 +14,19 @@ export default class AbstractDeleteUserCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new DeleteUserOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LogoutAction(this.commandData)).publish());
+			new DeleteUserOkEvent(this.commandData).publish();
+			new TriggerAction(new LogoutAction(this.commandData)).publish();
 			break;
 		case this.error:
-			promises.push(new DeleteUserErrorEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadUserAction(this.commandData)).publish());
-			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData)).publish());
+			new DeleteUserErrorEvent(this.commandData).publish();
+			new TriggerAction(new LoadUserAction(this.commandData)).publish();
+			new TriggerAction(new DisplayErrorAction(this.commandData)).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('DeleteUserCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'DeleteUserCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

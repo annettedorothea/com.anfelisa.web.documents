@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/AsynchronousCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadNextReinforceCardOkEvent from "../../../gen/box/events/LoadNextReinforceCardOkEvent";
 import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
@@ -12,20 +12,17 @@ export default class AbstractLoadNextReinforceCardCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new LoadNextReinforceCardOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish());
+			new LoadNextReinforceCardOkEvent(this.commandData).publish();
+			new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish();
 			break;
 		case this.noCard:
-			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
+			new TriggerAction(new RouteAction(this.commandData)).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('LoadNextReinforceCardCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'LoadNextReinforceCardCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

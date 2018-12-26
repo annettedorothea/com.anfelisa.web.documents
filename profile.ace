@@ -1,27 +1,25 @@
+ES6
 profile
 
-target ES6
-
-ACE {
-	async LoadUser preUpdateUI ( common.Common.displaySpinner ) postUpdateUI (common.Common.hideSpinner) {
+ACE 
+	LoadUser preCall ( common.Common.displaySpinner ) postCall (common.Common.hideSpinner) 
 		on ok (Profile.render)
-	}
-	async DeleteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	DeleteUser preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok ( Profile.hideDeleteUserDialog ) triggers ( common.Logout )
 		on error ( Profile.hideDeleteUserDialog ) triggers (LoadUser common.DisplayError)
-	}
-	DeleteUserClick {
+	
+	DeleteUserClick 
 		on ok (Profile.displayDeleteUserDialog)
-	}
-	DeleteUserCancel {
+	
+	DeleteUserCancel 
 		on ok (Profile.hideDeleteUserDialog)
-	}
-}
+	
 
-views {
+
+views 
 	Profile {
 		render	
 		displayDeleteUserDialog
 		hideDeleteUserDialog
 	}
-}

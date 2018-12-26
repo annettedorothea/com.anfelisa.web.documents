@@ -1,185 +1,185 @@
+ES6
 author
 
-target ES6
-
-ACE {
-	async LoadCategories preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
+ACE 
+	LoadCategories preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (
 			Categories.render 
 		)
-	}
-	async CreateCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 CreateCategory preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (Categories.resetNewCategoryValues) triggers (LoadCategories)
-	}
-	async UpdateCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 UpdateCategory preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (Categories.resetEditCategoryValues) triggers (LoadCategories)
-	}
-	async DeleteCategory preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 DeleteCategory preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (Categories.hideConfirmCategoryDelete) triggers (LoadCategories)
 		on error (Categories.hideConfirmCategoryDelete) triggers (common.DisplayError)
-	}
 	
-	NameOfNewCategoryChanged {
+	
+	NameOfNewCategoryChanged 
 		on ok (Categories.nameOfNewCategoryChanged)
-	}
-	CancelNewCategory {
+	
+	CancelNewCategory 
 		on ok (Categories.resetNewCategoryValues )
-	}
 	
-	NameOfEditedCategoryChanged {
+	
+	NameOfEditedCategoryChanged 
 		on ok (Categories.nameOfEditedCategoryChanged)
-	}
-	CancelEditCategory {
-		on ok (Categories.resetEditCategoryValues)
-	}
-	EditCategory {
-		on ok (Categories.editCategory)
-	}
-	DeleteCategoryClick {
-		on ok (Categories.displayConfirmCategoryDelete)
-	}
-	CancelDeleteCategory {
-		on ok (Categories.hideConfirmCategoryDelete)
-	}
 	
-	async CreateCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	CancelEditCategory 
+		on ok (Categories.resetEditCategoryValues)
+	
+	EditCategory 
+		on ok (Categories.editCategory)
+	
+	DeleteCategoryClick 
+		on ok (Categories.displayConfirmCategoryDelete)
+	
+	CancelDeleteCategory 
+		on ok (Categories.hideConfirmCategoryDelete)
+	
+	
+	 CreateCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (Categories.resetNewCardValues) triggers (LoadCategories)
-	}
-	async UpdateCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 UpdateCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (Categories.resetEditCardValues) triggers (LoadCategories)
-	}
-	async DeleteCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+
+	 DeleteCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (Categories.hideConfirmCardDelete) triggers (LoadCategories)
 		on error (Categories.hideConfirmCardDelete) triggers (common.DisplayError)
-	}
 	
-	GivenOfNewCardChanged {
+	
+	GivenOfNewCardChanged 
 		on ok (Categories.givenOfNewCardChanged) 
-	}
-	async SearchDuplicateCards preUpdateUI (Categories.displayNewCardSpinner) postUpdateUI (Categories.hideNewCardSpinner) {
+	
+	 SearchDuplicateCards preCall (Categories.displayNewCardSpinner) postCall (Categories.hideNewCardSpinner) 
 		on ok (Categories.initDuplicates)
 		on tooShort (Categories.resetDuplicates)
-	}
-	WantedOfNewCardChanged {
+	
+	WantedOfNewCardChanged 
 		on ok (Categories.wantedOfNewCardChanged)
-	}
-	CancelNewCard {
+	
+	CancelNewCard 
 		on ok (Categories.resetNewCardValues )
-	}
 	
-	GivenOfEditedCardChanged {
+	
+	GivenOfEditedCardChanged 
 		on ok (Categories.givenOfEditedCardChanged)
-	}
-	WantedOfEditedCardChanged {
+	
+	WantedOfEditedCardChanged 
 		on ok (Categories.wantedOfEditedCardChanged)
-	}
-	CancelEditCard {
+	
+	CancelEditCard 
 		on ok (Categories.resetEditCardValues)
-	}
-	EditCard {
+	
+	EditCard 
 		on ok (Categories.editCard)
-	}
-	DeleteCardClick {
+	
+	DeleteCardClick 
 		on ok (Categories.displayConfirmCardDelete)
-	}
-	CancelDeleteCard {
+	
+	CancelDeleteCard 
 		on ok (Categories.hideConfirmCardDelete)
-	}
 	
-	FilterCards {
+	
+	FilterCards 
 		on ok (Categories.filterChanged)
-	}
 	
-	async Translate preUpdateUI (Categories.displayTranslateSpinner) postUpdateUI (Categories.hideTranslateSpinner) {
+	
+	 Translate preCall (Categories.displayTranslateSpinner) postCall (Categories.hideTranslateSpinner) 
 		on wantedFetched (Categories.wantedOfNewCardChanged ) triggers (SearchDuplicateCards)
 		on givenFetched (Categories.givenOfNewCardChanged ) triggers (SearchDuplicateCards)
 		on error
 		on empty
 		on targetNotEmtpy
-	}
 	
-	PassValueToDictionary {
+	
+	PassValueToDictionary 
 		on ok (Categories.setDictionaryValue)
-	}
 	
-	ToggleDictionaryLookupOfNewCategory {
+	
+	ToggleDictionaryLookupOfNewCategory 
 		on ok (Categories.toggleDictionaryLookupOfNewCategory)
-	}
 	
-	ToggleDictionaryLookupOfEditedCategory {
+	
+	ToggleDictionaryLookupOfEditedCategory 
 		on ok (Categories.toggleDictionaryLookupOfEditedCategory)
-	}
 	
-	GivenLanguageOfNewCategoryChanged {
+	
+	GivenLanguageOfNewCategoryChanged 
 		on ok (Categories.givenLanguageOfNewCategoryChanged)
-	}
 	
-	GivenLanguageOfEditedCategoryChanged {
+	
+	GivenLanguageOfEditedCategoryChanged 
 		on ok (Categories.givenLanguageOfEditedCategoryChanged) 
-	}
 	
-	WantedLanguageOfNewCategoryChanged {
+	
+	WantedLanguageOfNewCategoryChanged 
 		on ok (Categories.wantedLanguageOfNewCategoryChanged)
-	}
 	
-	WantedLanguageOfEditedCategoryChanged {
+	
+	WantedLanguageOfEditedCategoryChanged 
 		on ok (Categories.wantedLanguageOfEditedCategoryChanged)
-	}
 	
-	ToggleInputOrder {
+	
+	ToggleInputOrder 
 		on ok (Categories.toggleInputOrder)
-	}
 	
-	ToggleUseDictionary {
+	
+	ToggleUseDictionary 
 		on ok (Categories.toggleUseDictionary)
-	}
 	
-	LoadWantedImageOfNewCard {
+	
+	LoadWantedImageOfNewCard 
 		on ok (Categories.displayImageOfNewCard)
 		on error
-	}
 	
-	LoadWantedImageOfEditedCard {
+	
+	LoadWantedImageOfEditedCard 
 		on ok (Categories.displayImageOfEditedCard)
 		on error
-	}
 	
-	RemoveNewCardImage {
+	
+	RemoveNewCardImage 
 		on ok (Categories.removeNewCardImage)
-	}
 	
-	RemoveEditedCardImage {
+	
+	RemoveEditedCardImage 
 		on ok (Categories.removeEditedCardImage)
-	}
-	ToggleScheduleCardSelection {
+	
+	ToggleScheduleCardSelection 
 		on ok (Categories.toggleScheduleCardSelection)
-	}
-	ToggleAllScheduleCardSelection {
+	
+	ToggleAllScheduleCardSelection 
 		on ok (Categories.toggleAllScheduleCardSelection)
-	}
-	async ScheduleSelectedCards preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 ScheduleSelectedCards preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok triggers (LoadCategories)
-	}
+	
 
-	async InviteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	 InviteUser preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok triggers (common.DisplayMessage LoadCategories)
 		on badRequest (common.Common.displayError) triggers (  LoadCategories )
-	}
 	
-	RevokeUserAccessClick {
+	
+	RevokeUserAccessClick 
 		on ok (Categories.displayRevokeUserAccess)
-	}
-	CancelRevokeUserAccess {
+	
+	CancelRevokeUserAccess 
 		on ok (Categories.hideRevokeUserAccess)
-	}
-	async RevokeUserAccess preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 RevokeUserAccess preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (Categories.hideRevokeUserAccess) triggers ( common.DisplayMessage LoadCategories)
 		on error (Categories.hideRevokeUserAccess) triggers (common.DisplayError)
-	}
 	
-}
+	
 
-views {
+
+views 
 	Categories {
 		render
 		
@@ -238,4 +238,3 @@ views {
 		toggleScheduleCardSelection
 		toggleAllScheduleCardSelection
 	}
-}

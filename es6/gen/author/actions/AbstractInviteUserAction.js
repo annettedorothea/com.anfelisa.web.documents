@@ -1,4 +1,4 @@
-import Action from "../../ace/AsynchronousAction";
+import Action from "../../ace/SynchronousAction";
 import InviteUserCommand from "../../../src/author/commands/InviteUserCommand";
 import CommonView from "../../../src/common/views/CommonView";
 
@@ -6,20 +6,12 @@ export default class AbstractInviteUserAction extends Action {
 
     constructor(actionData) {
         super(actionData, 'author.InviteUserAction');
-		this.postUpdateUI = this.postUpdateUI.bind(this);
     }
 
 	getCommand() {
 		return new InviteUserCommand(this.actionData);
 	}
 
-		preUpdateUI() {
-			CommonView.displaySpinner(this.actionData);
-		}
-	
-		postUpdateUI() {
-			CommonView.hideSpinner(this.actionData);
-		}
 
 }
 

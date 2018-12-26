@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/AsynchronousCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadBoxesOkEvent from "../../../gen/box/events/LoadBoxesOkEvent";
 
@@ -9,16 +9,13 @@ export default class AbstractLoadBoxesCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new LoadBoxesOkEvent(this.commandData).publish());
+			new LoadBoxesOkEvent(this.commandData).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('LoadBoxesCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'LoadBoxesCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

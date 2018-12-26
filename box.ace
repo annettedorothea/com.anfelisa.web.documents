@@ -1,79 +1,81 @@
+ES6
 box
 
-target ES6
-
-ACE {
-	async LoadBoxes preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
+ACE 
+	LoadBoxes preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner)  
 		on ok (BoxList.render)
-	}
-	async CreateBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) { 
+	
+	CreateBox 
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.box.CreateBox
+		postCall (common.Common.hideSpinner)  
 		on ok triggers (common.Route)
-	}
-	EditBox {
+	
+	EditBox 
 		on ok (Box.editBox)
-	}
-	CancelEditBox {
+	
+	CancelEditBox 
 		on ok (Box.cancelEditBox)
-	}
-	MaxIntervalChanged {
+	
+	MaxIntervalChanged 
 		on ok (Box.maxIntervalChanged)
 		on invalid
-	}
-	async UpdateBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 UpdateBox preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok triggers (LoadBoxStatistics)
-	}
-	DeleteBoxClick {
+	
+	DeleteBoxClick 
 		on ok (BoxList.displayConfirmDelete)
-	}
-	CancelDeleteBox {
+	
+	CancelDeleteBox 
 		on ok (BoxList.hideConfirmDelete)
-	}
-	async DeleteBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 DeleteBox preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok triggers (LoadBoxes)
 		on error (BoxList.hideConfirmDelete) triggers (common.DisplayError)
-	}
 	
-	async PostponeCardsOfBox preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 PostponeCardsOfBox preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on next triggers (LoadNextCard)
-	}
 	
-	async LoadNextCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 LoadNextCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (Box.render) triggers (LoadBoxStatistics)
 		on scheduleNext triggers (ScheduleNextCard)
 		on doNotScheduleNext (Box.render) triggers (LoadBoxStatistics)
-	}
-	async ScheduleNextCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 ScheduleNextCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok triggers (LoadNextCard)
-	}
-	ToggleScheduleNext {
+	
+	ToggleScheduleNext 
 		on ok (Box.toggleScheduleNext)
-	}
-	DisplayWanted {
+	
+	DisplayWanted 
 		on all (Box.displayNextItem Box.enableScoreButtons)
 		on notAll (Box.displayNextItem)
 		on image (Box.displayImage Box.enableScoreButtons)
-	}
-	async ScoreCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 ScoreCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok triggers (LoadNextCard)
-	}
-	async LoadNextReinforceCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 LoadNextReinforceCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (BoxReinforce.render) triggers (LoadBoxStatistics)
 		on noCard triggers (common.Route)
-	}
-	DisplayWantedReinforce {
+	
+	DisplayWantedReinforce 
 		on all (BoxReinforce.displayNextItem BoxReinforce.enableScoreButtons)
 		on notAll (BoxReinforce.displayNextItem)
 		on image (BoxReinforce.displayImage BoxReinforce.enableScoreButtons)
-	}
-	async ScoreReinforceCard preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 ScoreReinforceCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok triggers (LoadNextReinforceCard)
-	}
-	async LoadBoxStatistics preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	 LoadBoxStatistics preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (Box.renderStatistics)
-	}
-}
+	
 
-views {
+
+views 
 	BoxList {
 		render
 		displayConfirmDelete
@@ -96,4 +98,3 @@ views {
 		displayImage
 		enableScoreButtons
 	}
-}

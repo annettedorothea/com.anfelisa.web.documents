@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/AsynchronousCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 
@@ -9,16 +9,13 @@ export default class AbstractScoreCardCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new TriggerAction(new LoadNextCardAction(this.commandData)).publish());
+			new TriggerAction(new LoadNextCardAction(this.commandData)).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('ScoreCardCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'ScoreCardCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

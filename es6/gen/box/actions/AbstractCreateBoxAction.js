@@ -6,18 +6,18 @@ export default class AbstractCreateBoxAction extends Action {
 
     constructor(actionData) {
         super(actionData, 'box.CreateBoxAction');
-		this.postUpdateUI = this.postUpdateUI.bind(this);
+		this.postCall = this.postCall.bind(this);
     }
 
 	getCommand() {
 		return new CreateBoxCommand(this.actionData);
 	}
 
-		preUpdateUI() {
+		preCall() {
 			CommonView.displaySpinner(this.actionData);
 		}
 	
-		postUpdateUI() {
+		postCall() {
 			CommonView.hideSpinner(this.actionData);
 		}
 

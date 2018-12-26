@@ -20,6 +20,19 @@ export default class AbstractCreateBoxCommand extends Command {
 		}
 		return Promise.all(promises);
     }
+    
+	execute() {
+	    return new Promise((resolve, reject) => {
+	    	let queryParams = [];
+			this.httpPost("/api/box/create", true, queryParams, this.commandData).then((data) => {
+				this.handleResponse(data);
+			    resolve();
+			}, (error) => {
+			    reject(error);
+			});
+	    });
+	}
+
 }
 
 /*       S.D.G.       */

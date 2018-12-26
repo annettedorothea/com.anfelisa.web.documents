@@ -1,32 +1,31 @@
+ES6
 registration
 
-target ES6 
-
-ACE {
-	async CheckUsername preUpdateUI (Registration.displayUsernameSpinner) postUpdateUI (Registration.hideUsernameSpinner) {
+ACE 
+	CheckUsername preCall (Registration.displayUsernameSpinner) postCall (Registration.hideUsernameSpinner) 
 		on empty
 		on available ( Registration.usernameAvailable )
 		on notAvailable ( Registration.usernameNotAvailable )
-	}
-	EmailChanged {
+	
+	EmailChanged 
 		on valid (Registration.emailChanged Registration.emailValid)
 		on invalid (Registration.emailChanged Registration.emailInvalid)
-	}
-	PasswordChanged {
+	
+	PasswordChanged 
 		on mismatch (Registration.passwordMismatch )
 		on match (Registration.passwordMatch )
-	}
-	async RegisterUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	RegisterUser preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok  triggers ( common.DisplayMessage common.Route)
 		on error triggers (common.DisplayError) 
-	}
-	async ConfirmEmail preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
-		on ok triggers ( common.DisplayMessage common.Route)
-	}
 	
-}
+	ConfirmEmail preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+		on ok triggers ( common.DisplayMessage common.Route)
+	
+	
 
-views {
+
+views 
 	Registration {
 		render
 		usernameAvailable
@@ -39,4 +38,3 @@ views {
 		passwordMismatch
 		passwordMatch
 	}
-}

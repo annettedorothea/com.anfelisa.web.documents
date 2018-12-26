@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/AsynchronousCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import TranslateWantedFetchedEvent from "../../../gen/author/events/TranslateWantedFetchedEvent";
 import TranslateGivenFetchedEvent from "../../../gen/author/events/TranslateGivenFetchedEvent";
@@ -15,16 +15,14 @@ export default class AbstractTranslateCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.wantedFetched:
-			promises.push(new TranslateWantedFetchedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new SearchDuplicateCardsAction(this.commandData)).publish());
+			new TranslateWantedFetchedEvent(this.commandData).publish();
+			new TriggerAction(new SearchDuplicateCardsAction(this.commandData)).publish();
 			break;
 		case this.givenFetched:
-			promises.push(new TranslateGivenFetchedEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new SearchDuplicateCardsAction(this.commandData)).publish());
+			new TranslateGivenFetchedEvent(this.commandData).publish();
+			new TriggerAction(new SearchDuplicateCardsAction(this.commandData)).publish();
 			break;
 		case this.error:
 			break;
@@ -33,9 +31,8 @@ export default class AbstractTranslateCommand extends Command {
 		case this.targetNotEmtpy:
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('TranslateCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'TranslateCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

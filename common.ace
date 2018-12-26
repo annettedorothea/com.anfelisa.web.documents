@@ -1,13 +1,12 @@
+ES6
 common
 
-target ES6 
-
-ACE {
-	Init {
+ACE 
+	Init 
 		on user ( Common.initTexts Common.initUser ) triggers ( InitialLogin )
 		on noUser ( Common.initTexts ) triggers ( RouteChanged )
-	}
-	RouteChanged {
+	
+	RouteChanged 
 		on login (  login.Login.render )
 		on registration ( registration.Registration.render )
 		on dashboard triggers (box.LoadBoxes)
@@ -20,32 +19,33 @@ ACE {
 		on nextCard triggers (box.LoadNextCard)
 		on reinforceCard triggers (box.LoadNextReinforceCard)
 		on invalid triggers (Route)
-	}
-	Route {
+	
+	Route 
 		on ok ( Common.updateHash )
-	}
-	async InitialLogin preUpdateUI (Common.displaySpinner) postUpdateUI (Common.hideSpinner) {
+	
+	 InitialLogin 
+	 	preCall (Common.displaySpinner) 
+	 	postCall (Common.hideSpinner) 
 		on ok ( Common.initRole ) triggers ( RouteChanged )
 		on unauthorized triggers ( DisplayError Logout )
-	}
-	Logout {
+	
+	Logout 
 		on ok ( Common.resetUser ) triggers ( Route )
-	}
-	DisplayError {
+	
+	DisplayError 
 		on ok (Common.displayError) triggers (ClearToast)
-	}
-	DisplayErrorAndLogout {
+	
+	DisplayErrorAndLogout 
 		on ok (Common.displayError) triggers (ClearToast Logout)
-	}
-	DisplayMessage {
+	
+	DisplayMessage 
 		on ok (Common.displayMessage) triggers (ClearToast )
-	}
-	ClearToast {
+	
+	ClearToast 
 		on ok (Common.clearToast)
-	}
-}
+	
 
-views {
+views 
 	Common {
 		displayError
 		displayMessage
@@ -58,5 +58,6 @@ views {
 		saveInLocalStorage
 		resetUser
 		updateHash
-	}
-}
+		
+		}
+	

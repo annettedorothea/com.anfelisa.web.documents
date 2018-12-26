@@ -1,30 +1,34 @@
+ES6 
 admin
 
-target ES6
-
-ACE {
-	async GetAllUsers preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+ACE 
+	
+	GetAllUsers 
+			preCall (common.Common.displaySpinner) 
+			postCall (common.Common.hideSpinner) 
 		on ok (UserList.render )
-	}
-	async SaveRole preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	SaveRole 
+			preCall (common.Common.displaySpinner) 
+			postCall(common.Common.hideSpinner) 
 		on ok triggers (GetAllUsers)
-	}
-	async DeleteUser preUpdateUI (common.Common.displaySpinner) postUpdateUI (common.Common.hideSpinner) {
+	
+	DeleteUser 
+			preCall (common.Common.displaySpinner) 
+			postCall (common.Common.hideSpinner) 
 		on ok triggers ( GetAllUsers )
 		on error (UserList.hideDeleteUserDialog) triggers (common.DisplayError)
-	}
-	DeleteUserClick {
+	
+	DeleteUserClick 
 		on ok (UserList.displayDeleteUserDialog)
-	}
-	DeleteUserCancel {
+	
+	DeleteUserCancel 
 		on ok (UserList.hideDeleteUserDialog)
-	}
-}
+	
 
-views {
+views 
 	UserList {
 		render
 		displayDeleteUserDialog
 		hideDeleteUserDialog
 	}
-}

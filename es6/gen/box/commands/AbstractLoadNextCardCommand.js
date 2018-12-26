@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/AsynchronousCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadNextCardOkEvent from "../../../gen/box/events/LoadNextCardOkEvent";
 import LoadNextCardDoNotScheduleNextEvent from "../../../gen/box/events/LoadNextCardDoNotScheduleNextEvent";
@@ -14,24 +14,21 @@ export default class AbstractLoadNextCardCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new LoadNextCardOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish());
+			new LoadNextCardOkEvent(this.commandData).publish();
+			new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish();
 			break;
 		case this.scheduleNext:
-			promises.push(new TriggerAction(new ScheduleNextCardAction(this.commandData)).publish());
+			new TriggerAction(new ScheduleNextCardAction(this.commandData)).publish();
 			break;
 		case this.doNotScheduleNext:
-			promises.push(new LoadNextCardDoNotScheduleNextEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish());
+			new LoadNextCardDoNotScheduleNextEvent(this.commandData).publish();
+			new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('LoadNextCardCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'LoadNextCardCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 

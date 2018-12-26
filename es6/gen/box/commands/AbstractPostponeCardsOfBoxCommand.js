@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/AsynchronousCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 
@@ -9,16 +9,13 @@ export default class AbstractPostponeCardsOfBoxCommand extends Command {
     }
 
     publishEvents() {
-		let promises = [];
-	    	
 		switch (this.commandData.outcome) {
 		case this.next:
-			promises.push(new TriggerAction(new LoadNextCardAction(this.commandData)).publish());
+			new TriggerAction(new LoadNextCardAction(this.commandData)).publish();
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('PostponeCardsOfBoxCommand unhandled outcome: ' + this.commandData.outcome)});
+			throw 'PostponeCardsOfBoxCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		return Promise.all(promises);
     }
 }
 
