@@ -1,20 +1,23 @@
 import AbstractDeleteUserCommand from "../../../gen/admin/commands/AbstractDeleteUserCommand";
+import * as App from "../../app/App";
 
 export default class DeleteUserCommand extends AbstractDeleteUserCommand {
-    execute() {
-        return new Promise((resolve) => {
-            const data = {
-                usernameToBeDeleted: this.commandData.usernameToBeDeleted
-            };
-            this.httpDelete("api/user/delete", [], data).then((data) => {
-                this.commandData.outcome = this.ok;
-                resolve();
-            }, error => {
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
-            });
-        });
+
+    initCommandData() {
+        this.commandData.usernameToBeDeleted = App.appState.data.usernameToBeDeleted;
+    }
+
+    isCommandDataValid() {
+    	return true;
+    }
+
+    handleResponse(resolve, reject) {
+        this.commandData.outcome = this.ok;
+    	resolve();
+    }
+    handleError(resolve, reject) {
+        this.commandData.outcome = this.error;
+        resolve();
     }
 }
 

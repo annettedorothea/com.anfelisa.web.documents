@@ -2,24 +2,27 @@ ES6
 admin
 
 ACE 
-	
+
 	GetAllUsers 
-			preCall (common.Common.displaySpinner) 
-			postCall (common.Common.hideSpinner) 
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.user.GetAllUsers
+		postCall (common.Common.hideSpinner) 
 		on ok (UserList.render )
 	
-	SaveRole 
-			preCall (common.Common.displaySpinner) 
-			postCall(common.Common.hideSpinner) 
+	SaveRole <editedUserId, newRole>
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.user.ChangeUserRole
+		postCall(common.Common.hideSpinner) 
 		on ok triggers (GetAllUsers)
 	
 	DeleteUser 
-			preCall (common.Common.displaySpinner) 
-			postCall (common.Common.hideSpinner) 
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.user.DeleteUser
+		postCall (common.Common.hideSpinner) 
 		on ok triggers ( GetAllUsers )
 		on error (UserList.hideDeleteUserDialog) triggers (common.DisplayError)
 	
-	DeleteUserClick 
+	DeleteUserClick<usernameToBeDeleted>
 		on ok (UserList.displayDeleteUserDialog)
 	
 	DeleteUserCancel 

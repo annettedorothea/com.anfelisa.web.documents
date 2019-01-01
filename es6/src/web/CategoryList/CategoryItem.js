@@ -9,10 +9,7 @@ export default class CategoryItem extends React.Component {
     }
 
     onClick() {
-        new RouteAction(
-            {
-                hash: `#categories/${this.props.categoryId}`
-            }).apply();
+        new RouteAction(`#categories/${this.props.categoryId}`).apply();
     }
 
     renderDictionayLookup() {

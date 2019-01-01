@@ -35,9 +35,7 @@ export default class UserContainer extends React.Component {
         return (
             <div className="wrapper">
                 <div className="header">
-                    <a onClick={() => new RouteAction({
-                        hash: "#dashboard"
-                    }).apply()}
+                    <a onClick={() => new RouteAction("#dashboard").apply()}
                        className="title">Anfelisa</a>
                     <Logout {...this.props} />
                 </div>

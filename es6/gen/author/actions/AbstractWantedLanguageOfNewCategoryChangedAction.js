@@ -3,8 +3,8 @@ import WantedLanguageOfNewCategoryChangedCommand from "../../../src/author/comma
 
 export default class AbstractWantedLanguageOfNewCategoryChangedAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.WantedLanguageOfNewCategoryChangedAction');
+    constructor() {
+        super({}, 'author.WantedLanguageOfNewCategoryChangedAction');
     }
 
 	getCommand() {

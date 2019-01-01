@@ -3,8 +3,8 @@ import PasswordChangedCommand from "../../../src/registration/commands/PasswordC
 
 export default class AbstractPasswordChangedAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'registration.PasswordChangedAction');
+    constructor( password, passwordRepetition) {
+        super({password, passwordRepetition}, 'registration.PasswordChangedAction');
     }
 
 	getCommand() {

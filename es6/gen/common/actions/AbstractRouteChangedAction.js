@@ -3,8 +3,8 @@ import RouteChangedCommand from "../../../src/common/commands/RouteChangedComman
 
 export default class AbstractRouteChangedAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'common.RouteChangedAction');
+    constructor( hash) {
+        super({hash}, 'common.RouteChangedAction');
     }
 
 	getCommand() {

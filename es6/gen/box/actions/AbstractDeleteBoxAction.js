@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractDeleteBoxAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'box.DeleteBoxAction');
+    constructor() {
+        super({}, 'box.DeleteBoxAction');
     }
 
 	getCommand() {

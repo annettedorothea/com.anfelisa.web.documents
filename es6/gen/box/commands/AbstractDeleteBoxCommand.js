@@ -14,11 +14,11 @@ export default class AbstractDeleteBoxCommand extends Command {
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new TriggerAction(new LoadBoxesAction(this.commandData)).publish();
+			new TriggerAction(new LoadBoxesAction()).publish();
 			break;
 		case this.error:
 			new DeleteBoxErrorEvent(this.commandData).publish();
-			new TriggerAction(new DisplayErrorAction(this.commandData)).publish();
+			new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish();
 			break;
 		default:
 			throw 'DeleteBoxCommand unhandled outcome: ' + this.commandData.outcome;

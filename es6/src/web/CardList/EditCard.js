@@ -45,11 +45,11 @@ export default class EditCard extends React.Component {
             const file = files[0];
             event.target.value = null;
             if (!file.type.match('image.*')) {
-                new DisplayErrorAction({error: {errorKey: "noImageFile"}}).apply();
+                new DisplayErrorAction({errorKey: "noImageFile"}).apply();
                 return;
             }
             if (file.size > 2000000) {
-                new DisplayErrorAction({error: {errorKey: "fileTooBig"}}).apply();
+                new DisplayErrorAction({errorKey: "fileTooBig"}).apply();
                 return;
             }
             const reader = new FileReader();

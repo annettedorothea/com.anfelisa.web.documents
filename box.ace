@@ -2,7 +2,10 @@ ES6
 box
 
 ACE 
-	LoadBoxes preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner)  
+	LoadBoxes 
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.box.GetBoxes
+		postCall (common.Common.hideSpinner)  
 		on ok (BoxList.render)
 	
 	CreateBox 

@@ -15,11 +15,11 @@ export default class AbstractLoginCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.saveInLocalStorage:
 			new LoginSaveInLocalStorageEvent(this.commandData).publish();
-			new TriggerAction(new GetRoleAction(this.commandData)).publish();
+			new TriggerAction(new GetRoleAction()).publish();
 			break;
 		case this.doNotSaveInLocalStorage:
 			new LoginDoNotSaveInLocalStorageEvent(this.commandData).publish();
-			new TriggerAction(new GetRoleAction(this.commandData)).publish();
+			new TriggerAction(new GetRoleAction()).publish();
 			break;
 		default:
 			throw 'LoginCommand unhandled outcome: ' + this.commandData.outcome;

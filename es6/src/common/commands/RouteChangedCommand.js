@@ -1,8 +1,9 @@
 import AbstractRouteChangedCommand from "../../../gen/common/commands/AbstractRouteChangedCommand";
+import * as App from "../../app/App";
 
 export default class RouteChangedCommand extends AbstractRouteChangedCommand {
     execute() {
-        if (this.commandData.password && this.commandData.username) {
+        if (App.appState.password && App.appState.username) {
             if (this.commandData.hash === "#dashboard") {
                 this.commandData.outcome = this.dashboard;
             } else if (this.commandData.hash === "#profile") {

@@ -48,6 +48,8 @@ export default class CommonView {
     }
 
     static displayMessage(eventData) {
+        console.log("eventData.messageKey", eventData.messageKey);
+        console.log("App.appState.language", App.appState.language);
         App.deepMergeState({
             toast: {
                 type: "info",

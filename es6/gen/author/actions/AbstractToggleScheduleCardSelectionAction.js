@@ -3,8 +3,8 @@ import ToggleScheduleCardSelectionCommand from "../../../src/author/commands/Tog
 
 export default class AbstractToggleScheduleCardSelectionAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.ToggleScheduleCardSelectionAction');
+    constructor() {
+        super({}, 'author.ToggleScheduleCardSelectionAction');
     }
 
 	getCommand() {

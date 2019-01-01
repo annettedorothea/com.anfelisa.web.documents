@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractResetPasswordAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'password.ResetPasswordAction');
+    constructor() {
+        super({}, 'password.ResetPasswordAction');
     }
 
 	getCommand() {

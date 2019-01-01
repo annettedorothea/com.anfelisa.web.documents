@@ -7,6 +7,7 @@ export default class AsynchronousCommand extends Command {
     executeCommand() {
         return new Promise((resolve, reject) => {
 			if (ACEController.execution !== ACEController.REPLAY) {
+				this.initCommandData();
 				if (this.isCommandDataValid() === true) {
 				    this.execute().then(() => {
 				        ACEController.addItemToTimeLine({command: this});
@@ -16,6 +17,8 @@ export default class AsynchronousCommand extends Command {
 				        reject(error);
 				    });
 				} else {
+			        ACEController.addItemToTimeLine({command: this});
+			        this.publishEvents();
 					resolve();
 				}
 			} else {
@@ -26,6 +29,13 @@ export default class AsynchronousCommand extends Command {
 		        resolve();
 			}
         });
+    }
+
+    initCommandData() {
+    }
+
+    isCommandDataValid() {
+    	return true;
     }
 
     httpGet(url, authorize, queryParams) {

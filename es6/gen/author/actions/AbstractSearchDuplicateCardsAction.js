@@ -4,8 +4,8 @@ import CategoriesView from "../../../src/author/views/CategoriesView";
 
 export default class AbstractSearchDuplicateCardsAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.SearchDuplicateCardsAction');
+    constructor() {
+        super({}, 'author.SearchDuplicateCardsAction');
     }
 
 	getCommand() {

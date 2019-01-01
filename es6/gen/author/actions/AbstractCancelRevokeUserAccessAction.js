@@ -3,8 +3,8 @@ import CancelRevokeUserAccessCommand from "../../../src/author/commands/CancelRe
 
 export default class AbstractCancelRevokeUserAccessAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.CancelRevokeUserAccessAction');
+    constructor() {
+        super({}, 'author.CancelRevokeUserAccessAction');
     }
 
 	getCommand() {

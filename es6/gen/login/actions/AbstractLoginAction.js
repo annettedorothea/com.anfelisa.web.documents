@@ -3,8 +3,8 @@ import LoginCommand from "../../../src/login/commands/LoginCommand";
 
 export default class AbstractLoginAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'login.LoginAction');
+    constructor() {
+        super({}, 'login.LoginAction');
     }
 
 	getCommand() {

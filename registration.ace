@@ -2,24 +2,33 @@ ES6
 registration
 
 ACE 
-	CheckUsername preCall (Registration.displayUsernameSpinner) postCall (Registration.hideUsernameSpinner) 
+	CheckUsername<username>
+		preCall (Registration.displayUsernameSpinner) 
+		call com.anfelisa.user.UsernameAvailable
+		postCall (Registration.hideUsernameSpinner) 
 		on empty
 		on available ( Registration.usernameAvailable )
 		on notAvailable ( Registration.usernameNotAvailable )
 	
-	EmailChanged 
+	EmailChanged<email>
 		on valid (Registration.emailChanged Registration.emailValid)
 		on invalid (Registration.emailChanged Registration.emailInvalid)
 	
-	PasswordChanged 
+	PasswordChanged<password, passwordRepetition> 
 		on mismatch (Registration.passwordMismatch )
 		on match (Registration.passwordMatch )
 	
-	RegisterUser preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	RegisterUser<username, password>
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.user.RegisterUser
+		postCall (common.Common.hideSpinner) 
 		on ok  triggers ( common.DisplayMessage common.Route)
 		on error triggers (common.DisplayError) 
 	
-	ConfirmEmail preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	ConfirmEmail <username, token>
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.user.ConfirmEmail
+		postCall (common.Common.hideSpinner) 
 		on ok triggers ( common.DisplayMessage common.Route)
 	
 	

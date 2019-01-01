@@ -1,15 +1,21 @@
 import AbstractSaveRoleCommand from "../../../gen/admin/commands/AbstractSaveRoleCommand";
 
 export default class SaveRoleCommand extends AbstractSaveRoleCommand {
-    execute() {
-        return new Promise((resolve, reject) => {
-            this.httpPut("api/user/role", [], this.commandData).then(() => {
-                this.commandData.outcome = this.ok;
-                resolve();
-            }, error => {
-                reject(error)
-            });
-        });
+
+    initCommandData() {
+    	//add from appState to commandData 
+    }
+
+    isCommandDataValid() {
+    	return true;
+    }
+
+    handleResponse(resolve, reject) {
+    	this.commandData.outcome = this.ok;
+    	resolve();
+    }
+    handleError(resolve, reject) {
+    	reject(this.commandData.error);
     }
 }
 

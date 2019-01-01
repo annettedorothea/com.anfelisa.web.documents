@@ -3,8 +3,8 @@ import DeleteUserClickCommand from "../../../src/admin/commands/DeleteUserClickC
 
 export default class AbstractDeleteUserClickAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'admin.DeleteUserClickAction');
+    constructor( usernameToBeDeleted) {
+        super({usernameToBeDeleted}, 'admin.DeleteUserClickAction');
     }
 
 	getCommand() {

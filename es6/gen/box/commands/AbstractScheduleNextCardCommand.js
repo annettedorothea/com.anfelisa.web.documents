@@ -11,7 +11,7 @@ export default class AbstractScheduleNextCardCommand extends Command {
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new TriggerAction(new LoadNextCardAction(this.commandData)).publish();
+			new TriggerAction(new LoadNextCardAction()).publish();
 			break;
 		default:
 			throw 'ScheduleNextCardCommand unhandled outcome: ' + this.commandData.outcome;

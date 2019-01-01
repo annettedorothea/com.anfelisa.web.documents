@@ -14,12 +14,12 @@ export default class AbstractInviteUserCommand extends Command {
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new TriggerAction(new DisplayMessageAction(this.commandData)).publish();
-			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
+			new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish();
+			new TriggerAction(new LoadCategoriesAction()).publish();
 			break;
 		case this.badRequest:
 			new InviteUserBadRequestEvent(this.commandData).publish();
-			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
+			new TriggerAction(new LoadCategoriesAction()).publish();
 			break;
 		default:
 			throw 'InviteUserCommand unhandled outcome: ' + this.commandData.outcome;

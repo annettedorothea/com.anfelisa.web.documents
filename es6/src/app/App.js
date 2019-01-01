@@ -57,13 +57,7 @@ export function mergeState(newAppState) {
 }
 
 window.onhashchange = () => {
-    new RouteChangedAction(
-        {
-            hash: window.location.hash,
-            username: container.state.username,
-            password: container.state.password
-        }
-    ).apply();
+    new RouteChangedAction(window.location.hash).apply();
     window.scrollTo(0, 0);
 };
 
@@ -92,6 +86,7 @@ EventListenerRegistrationPassword.init();
 ActionFactoryRegistrationPassword.init();
 
 AppUtils.start();
+
 
 /*       S.D.G.       */
 

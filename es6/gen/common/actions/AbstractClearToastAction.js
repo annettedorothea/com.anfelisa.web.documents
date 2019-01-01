@@ -3,8 +3,8 @@ import ClearToastCommand from "../../../src/common/commands/ClearToastCommand";
 
 export default class AbstractClearToastAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'common.ClearToastAction');
+    constructor() {
+        super({}, 'common.ClearToastAction');
     }
 
 	getCommand() {

@@ -238,3 +238,12 @@ views
 		toggleScheduleCardSelection
 		toggleAllScheduleCardSelection
 	}
+	
+models 
+	Category extends com.anfelisa.category.Category {
+		edited
+	}
+	CategoryView {
+		List categoryList {Category}
+	}
+

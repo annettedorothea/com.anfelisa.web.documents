@@ -11,7 +11,7 @@ export default class AbstractScoreCardCommand extends Command {
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new TriggerAction(new LoadNextCardAction(this.commandData)).publish();
+			new TriggerAction(new LoadNextCardAction()).publish();
 			break;
 		default:
 			throw 'ScoreCardCommand unhandled outcome: ' + this.commandData.outcome;

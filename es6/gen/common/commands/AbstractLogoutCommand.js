@@ -13,7 +13,7 @@ export default class AbstractLogoutCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new LogoutOkEvent(this.commandData).publish();
-			new TriggerAction(new RouteAction(this.commandData)).publish();
+			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
 			break;
 		default:
 			throw 'LogoutCommand unhandled outcome: ' + this.commandData.outcome;

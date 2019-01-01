@@ -3,8 +3,8 @@ import RevokeUserAccessClickCommand from "../../../src/author/commands/RevokeUse
 
 export default class AbstractRevokeUserAccessClickAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.RevokeUserAccessClickAction');
+    constructor() {
+        super({}, 'author.RevokeUserAccessClickAction');
     }
 
 	getCommand() {

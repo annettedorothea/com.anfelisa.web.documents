@@ -76,9 +76,7 @@ export default class Profile extends React.Component {
                 <button className="danger"
                         onClick={this.onDeleteClick}>{this.props.texts.profile.delete[this.props.language]}</button>
                 <button
-                    onClick={() => new RouteAction({
-                        hash: "#dashboard"
-                    }).apply()}>{this.props.texts.profile.back[this.props.language]}</button>
+                    onClick={() => new RouteAction("#dashboard").apply()}>{this.props.texts.profile.back[this.props.language]}</button>
             </div>
         );
     }

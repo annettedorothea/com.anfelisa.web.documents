@@ -11,7 +11,7 @@ export default class AbstractScoreReinforceCardCommand extends Command {
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new TriggerAction(new LoadNextReinforceCardAction(this.commandData)).publish();
+			new TriggerAction(new LoadNextReinforceCardAction()).publish();
 			break;
 		default:
 			throw 'ScoreReinforceCardCommand unhandled outcome: ' + this.commandData.outcome;

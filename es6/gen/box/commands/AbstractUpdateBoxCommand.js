@@ -11,7 +11,7 @@ export default class AbstractUpdateBoxCommand extends Command {
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish();
+			new TriggerAction(new LoadBoxStatisticsAction()).publish();
 			break;
 		default:
 			throw 'UpdateBoxCommand unhandled outcome: ' + this.commandData.outcome;

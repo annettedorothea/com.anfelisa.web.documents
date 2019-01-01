@@ -16,11 +16,11 @@ export default class AbstractGetRoleCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new GetRoleOkEvent(this.commandData).publish();
-			new TriggerAction(new RouteAction(this.commandData)).publish();
+			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
 			break;
 		case this.unauthorized:
-			new TriggerAction(new LogoutAction(this.commandData)).publish();
-			new TriggerAction(new DisplayErrorAction(this.commandData)).publish();
+			new TriggerAction(new LogoutAction()).publish();
+			new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish();
 			break;
 		default:
 			throw 'GetRoleCommand unhandled outcome: ' + this.commandData.outcome;

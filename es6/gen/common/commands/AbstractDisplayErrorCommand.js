@@ -13,7 +13,7 @@ export default class AbstractDisplayErrorCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new DisplayErrorOkEvent(this.commandData).publish();
-			new TriggerAction(new ClearToastAction(this.commandData)).publish();
+			new TriggerAction(new ClearToastAction()).publish();
 			break;
 		default:
 			throw 'DisplayErrorCommand unhandled outcome: ' + this.commandData.outcome;

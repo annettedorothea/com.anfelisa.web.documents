@@ -16,11 +16,11 @@ export default class AbstractDeleteCategoryCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new DeleteCategoryOkEvent(this.commandData).publish();
-			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
+			new TriggerAction(new LoadCategoriesAction()).publish();
 			break;
 		case this.error:
 			new DeleteCategoryErrorEvent(this.commandData).publish();
-			new TriggerAction(new DisplayErrorAction(this.commandData)).publish();
+			new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish();
 			break;
 		default:
 			throw 'DeleteCategoryCommand unhandled outcome: ' + this.commandData.outcome;

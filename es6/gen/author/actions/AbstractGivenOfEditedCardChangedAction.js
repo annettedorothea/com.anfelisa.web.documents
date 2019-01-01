@@ -3,8 +3,8 @@ import GivenOfEditedCardChangedCommand from "../../../src/author/commands/GivenO
 
 export default class AbstractGivenOfEditedCardChangedAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.GivenOfEditedCardChangedAction');
+    constructor() {
+        super({}, 'author.GivenOfEditedCardChangedAction');
     }
 
 	getCommand() {

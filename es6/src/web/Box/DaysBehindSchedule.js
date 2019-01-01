@@ -27,7 +27,6 @@ export default class DaysBehindSchedule extends React.Component {
             </div>
             <button className="primary" onClick={this.onPostpone}>{this.props.texts.box.postpone[this.props.language]}</button>
         </div>;
-        s
     }
 }
 

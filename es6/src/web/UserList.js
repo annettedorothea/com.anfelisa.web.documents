@@ -16,7 +16,7 @@ export default class UserList extends React.Component {
     }
 
     onDeleteClick(usernameToBeDeleted) {
-        new DeleteUserClickAction({usernameToBeDeleted}).apply();
+        new DeleteUserClickAction(usernameToBeDeleted).apply();
     }
 
     onDelete() {
@@ -63,9 +63,7 @@ export default class UserList extends React.Component {
                     </tbody>
                 </table>
                 <button
-                    onClick={() => new RouteAction({
-                        hash: "#dashboard"
-                    }).apply()}>{this.props.texts.userList.back[this.props.language]}
+                    onClick={() => new RouteAction("#dashboard").apply()}>{this.props.texts.userList.back[this.props.language]}
                 </button>
 
             </div>
@@ -104,11 +102,7 @@ class RoleSelect extends React.Component {
     }
 
     onChangeRole(event) {
-        const data = {
-            userId: this.props.userId,
-            role: event.target.value
-        };
-        new SaveRoleAction(data).apply();
+        new SaveRoleAction(this.props.userId, event.target.value).apply();
     }
 
     render() {

@@ -13,7 +13,7 @@ export default class AbstractCreateBoxCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new TriggerAction(new RouteAction(this.commandData)).publish());
+			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('CreateBoxCommand unhandled outcome: ' + this.commandData.outcome)});
@@ -23,12 +23,17 @@ export default class AbstractCreateBoxCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-	    	let queryParams = [];
-			this.httpPost("/api/box/create", true, queryParams, this.commandData).then((data) => {
-				this.handleResponse(data);
-			    resolve();
+			let queryParams = [];
+	        let payload = {	
+	        	categoryId : this.commandData.categoryId,
+	        	maxInterval : this.commandData.maxInterval,
+	        	};
+
+			this.httpPost(`/api/box/create`, true, queryParams, payload).then((data) => {
+				this.handleResponse(resolve, reject);
 			}, (error) => {
-			    reject(error);
+				this.commandData.error = error;
+				this.handleError(resolve, reject);
 			});
 	    });
 	}

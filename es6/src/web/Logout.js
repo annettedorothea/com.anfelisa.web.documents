@@ -7,10 +7,7 @@ export default class Logout extends React.Component {
     render() {
         return (
             <div className="right">
-                <a onClick={() => new RouteAction(
-                    {
-                        hash: "#profile"
-                    }).apply()}>
+                <a onClick={() => new RouteAction("#profile").apply()}>
                     {this.props.username}
                 </a>
                 <button

@@ -3,8 +3,8 @@ import GivenLanguageOfNewCategoryChangedCommand from "../../../src/author/comman
 
 export default class AbstractGivenLanguageOfNewCategoryChangedAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.GivenLanguageOfNewCategoryChangedAction');
+    constructor() {
+        super({}, 'author.GivenLanguageOfNewCategoryChangedAction');
     }
 
 	getCommand() {

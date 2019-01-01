@@ -3,8 +3,8 @@ import DeleteUserClickCommand from "../../../src/profile/commands/DeleteUserClic
 
 export default class AbstractDeleteUserClickAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'profile.DeleteUserClickAction');
+    constructor() {
+        super({}, 'profile.DeleteUserClickAction');
     }
 
 	getCommand() {

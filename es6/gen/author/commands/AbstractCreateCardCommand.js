@@ -13,7 +13,7 @@ export default class AbstractCreateCardCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new CreateCardOkEvent(this.commandData).publish();
-			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
+			new TriggerAction(new LoadCategoriesAction()).publish();
 			break;
 		default:
 			throw 'CreateCardCommand unhandled outcome: ' + this.commandData.outcome;

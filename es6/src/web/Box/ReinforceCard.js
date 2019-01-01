@@ -54,9 +54,7 @@ export default class ReinforceCard extends React.Component {
                 />
                 <div className="categoryLink">
                     <a
-                        onClick={() => new RouteAction({
-                            hash: `#categories/${this.props.data.categoryId}`
-                        }).apply()}
+                        onClick={() => new RouteAction(`#categories/${this.props.data.categoryId}`).apply()}
                     >{this.props.texts.queryCards.category[this.props.language]}</a>
                 </div>
                 <div className="scoreButtons">

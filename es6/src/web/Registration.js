@@ -2,7 +2,6 @@ import React from 'react';
 import CryptoJS from "crypto-js";
 import RouteAction from "../common/actions/RouteAction";
 import RegisterUserAction from "../registration/actions/RegisterUserAction";
-import AppUtils from "../app/AppUtils";
 import PasswordChangedAction from "../registration/actions/PasswordChangedAction";
 import EmailChangedAction from "../registration/actions/EmailChangedAction";
 import CheckUsernameAction from "../registration/actions/CheckUsernameAction";
@@ -12,7 +11,7 @@ export default class Registration extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username:"",
+            username: "",
             password: "",
             passwordRepetition: ""
         };
@@ -26,12 +25,12 @@ export default class Registration extends React.Component {
     onUsernameChange(event) {
         const username = event.target.value;
         this.setState({username});
-        new CheckUsernameAction({username}).apply();
+        new CheckUsernameAction(username).apply();
     }
 
     onEmailChange(event) {
         const email = event.target.value;
-        new EmailChangedAction({email}).apply();
+        new EmailChangedAction(email).apply();
     }
 
     onPasswordChange(event) {
@@ -41,34 +40,17 @@ export default class Registration extends React.Component {
                 password
             }
         );
-        new PasswordChangedAction({
-            password,
-            passwordRepetition: this.state.passwordRepetition
-        }).apply();
+        new PasswordChangedAction(password, this.state.passwordRepetition).apply();
     }
 
     onPasswordRepetitionChange(event) {
         const passwordRepetition = CryptoJS.MD5(event.target.value).toString();
         this.setState({passwordRepetition});
-        this.setState(
-            {
-                passwordRepetition
-            }
-        );
-        new PasswordChangedAction({
-            passwordRepetition,
-            password: this.state.password
-        }).apply();
+        new PasswordChangedAction(passwordRepetition, this.state.password).apply();
     }
 
     onRegister() {
-        const data = {
-            password: this.state.password,
-            language: this.props.language,
-            token: AppUtils.createUUID(),
-            username: this.state.username
-        };
-        new RegisterUserAction(data).apply();
+        new RegisterUserAction(this.state.username, this.state.password).apply();
     }
 
     render() {
@@ -139,7 +121,7 @@ export default class Registration extends React.Component {
                             {this.props.texts.registration.register[this.props.language]}
                         </button>
                         <button
-                            onClick={() => new RouteAction({hash: "#"}).apply()}>{this.props.texts.registration.cancel[this.props.language]}</button>
+                            onClick={() => new RouteAction("#").apply()}>{this.props.texts.registration.cancel[this.props.language]}</button>
                     </div>
                     <div className="line">
                         <div

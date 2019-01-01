@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractGetRoleAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'login.GetRoleAction');
+    constructor() {
+        super({}, 'login.GetRoleAction');
     }
 
 	getCommand() {

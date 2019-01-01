@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractLoadCategoriesAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.LoadCategoriesAction');
+    constructor() {
+        super({}, 'author.LoadCategoriesAction');
     }
 
 	getCommand() {

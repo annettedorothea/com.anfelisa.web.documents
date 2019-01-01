@@ -39,34 +39,34 @@ export default class AbstractRouteChangedCommand extends Command {
 			new RouteChangedRegistrationEvent(this.commandData).publish();
 			break;
 		case this.dashboard:
-			new TriggerAction(new LoadBoxesAction(this.commandData)).publish();
+			new TriggerAction(new LoadBoxesAction()).publish();
 			break;
 		case this.profile:
-			new TriggerAction(new LoadUserAction(this.commandData)).publish();
+			new TriggerAction(new LoadUserAction()).publish();
 			break;
 		case this.forgotPassword:
 			new RouteChangedForgotPasswordEvent(this.commandData).publish();
 			break;
 		case this.confirmEmail:
-			new TriggerAction(new ConfirmEmailAction(this.commandData)).publish();
+			new TriggerAction(new ConfirmEmailAction(this.commandData.username, this.commandData.token)).publish();
 			break;
 		case this.resetPassword:
 			new RouteChangedResetPasswordEvent(this.commandData).publish();
 			break;
 		case this.userList:
-			new TriggerAction(new GetAllUsersAction(this.commandData)).publish();
+			new TriggerAction(new GetAllUsersAction()).publish();
 			break;
 		case this.categories:
-			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
+			new TriggerAction(new LoadCategoriesAction()).publish();
 			break;
 		case this.nextCard:
-			new TriggerAction(new LoadNextCardAction(this.commandData)).publish();
+			new TriggerAction(new LoadNextCardAction()).publish();
 			break;
 		case this.reinforceCard:
-			new TriggerAction(new LoadNextReinforceCardAction(this.commandData)).publish();
+			new TriggerAction(new LoadNextReinforceCardAction()).publish();
 			break;
 		case this.invalid:
-			new TriggerAction(new RouteAction(this.commandData)).publish();
+			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
 			break;
 		default:
 			throw 'RouteChangedCommand unhandled outcome: ' + this.commandData.outcome;

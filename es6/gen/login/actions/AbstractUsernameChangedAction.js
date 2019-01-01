@@ -3,8 +3,8 @@ import UsernameChangedCommand from "../../../src/login/commands/UsernameChangedC
 
 export default class AbstractUsernameChangedAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'login.UsernameChangedAction');
+    constructor() {
+        super({}, 'login.UsernameChangedAction');
     }
 
 	getCommand() {

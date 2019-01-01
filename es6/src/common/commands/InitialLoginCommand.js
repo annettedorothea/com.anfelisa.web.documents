@@ -1,23 +1,27 @@
 import AbstractInitialLoginCommand from "../../../gen/common/commands/AbstractInitialLoginCommand";
 
 export default class InitialLoginCommand extends AbstractInitialLoginCommand {
-    execute() {
-        return new Promise((resolve, reject) => {
-            this.httpGet("api/user/role").then((data) => {
-                this.commandData.role = data.role;
-                this.commandData.outcome = this.ok;
-                resolve();
-            }, (error) => {
-                if (error.code === 401) {
-                    error.errorKey = "loginFailed";
-                    this.commandData.error = error;
-                    this.commandData.outcome = this.unauthorized;
-                    resolve();
-                } else {
-                    reject(error);
-                }
-            });
-        });
+
+    initCommandData() {
+    }
+
+    isCommandDataValid() {
+        return true;
+    }
+
+    handleResponse(resolve) {
+        this.commandData.outcome = this.ok;
+        resolve();
+    }
+
+    handleError(resolve, reject) {
+        if (error.code === 401) {
+            this.commandData.error.errorKey = "loginFailed";
+            this.commandData.outcome = this.unauthorized;
+            resolve();
+        } else {
+            reject(error);
+        }
     }
 }
 

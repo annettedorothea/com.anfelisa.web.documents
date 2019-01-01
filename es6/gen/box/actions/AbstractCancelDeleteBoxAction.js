@@ -3,8 +3,8 @@ import CancelDeleteBoxCommand from "../../../src/box/commands/CancelDeleteBoxCom
 
 export default class AbstractCancelDeleteBoxAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'box.CancelDeleteBoxAction');
+    constructor() {
+        super({}, 'box.CancelDeleteBoxAction');
     }
 
 	getCommand() {

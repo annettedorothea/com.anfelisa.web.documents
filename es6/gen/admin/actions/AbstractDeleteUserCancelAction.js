@@ -3,8 +3,8 @@ import DeleteUserCancelCommand from "../../../src/admin/commands/DeleteUserCance
 
 export default class AbstractDeleteUserCancelAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'admin.DeleteUserCancelAction');
+    constructor() {
+        super({}, 'admin.DeleteUserCancelAction');
     }
 
 	getCommand() {

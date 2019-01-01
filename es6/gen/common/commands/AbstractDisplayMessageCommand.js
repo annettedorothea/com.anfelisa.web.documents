@@ -13,7 +13,7 @@ export default class AbstractDisplayMessageCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new DisplayMessageOkEvent(this.commandData).publish();
-			new TriggerAction(new ClearToastAction(this.commandData)).publish();
+			new TriggerAction(new ClearToastAction()).publish();
 			break;
 		default:
 			throw 'DisplayMessageCommand unhandled outcome: ' + this.commandData.outcome;

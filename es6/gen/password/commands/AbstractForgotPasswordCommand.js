@@ -12,8 +12,8 @@ export default class AbstractForgotPasswordCommand extends Command {
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new TriggerAction(new DisplayMessageAction(this.commandData)).publish();
-			new TriggerAction(new RouteAction(this.commandData)).publish();
+			new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish();
+			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
 			break;
 		default:
 			throw 'ForgotPasswordCommand unhandled outcome: ' + this.commandData.outcome;

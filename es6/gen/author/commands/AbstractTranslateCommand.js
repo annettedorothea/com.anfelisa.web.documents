@@ -18,11 +18,11 @@ export default class AbstractTranslateCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.wantedFetched:
 			new TranslateWantedFetchedEvent(this.commandData).publish();
-			new TriggerAction(new SearchDuplicateCardsAction(this.commandData)).publish();
+			new TriggerAction(new SearchDuplicateCardsAction()).publish();
 			break;
 		case this.givenFetched:
 			new TranslateGivenFetchedEvent(this.commandData).publish();
-			new TriggerAction(new SearchDuplicateCardsAction(this.commandData)).publish();
+			new TriggerAction(new SearchDuplicateCardsAction()).publish();
 			break;
 		case this.error:
 			break;

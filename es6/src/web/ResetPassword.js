@@ -82,7 +82,7 @@ export default class ResetPassword extends React.Component {
                             {this.props.texts.resetPassword.submit[this.props.language]}
                         </button>
                         <button
-                            onClick={() => new RouteAction({hash: "#"}).apply()}>{this.props.texts.resetPassword.cancel[this.props.language]}</button>
+                            onClick={() => new RouteAction("#").apply()}>{this.props.texts.resetPassword.cancel[this.props.language]}</button>
                     </div>
                 </div>
             </div>

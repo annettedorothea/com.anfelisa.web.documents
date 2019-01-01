@@ -15,10 +15,10 @@ export default class AbstractLoadNextReinforceCardCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new LoadNextReinforceCardOkEvent(this.commandData).publish();
-			new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish();
+			new TriggerAction(new LoadBoxStatisticsAction()).publish();
 			break;
 		case this.noCard:
-			new TriggerAction(new RouteAction(this.commandData)).publish();
+			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
 			break;
 		default:
 			throw 'LoadNextReinforceCardCommand unhandled outcome: ' + this.commandData.outcome;

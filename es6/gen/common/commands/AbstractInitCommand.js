@@ -16,11 +16,11 @@ export default class AbstractInitCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.user:
 			new InitUserEvent(this.commandData).publish();
-			new TriggerAction(new InitialLoginAction(this.commandData)).publish();
+			new TriggerAction(new InitialLoginAction(this.commandData.hash)).publish();
 			break;
 		case this.noUser:
 			new InitNoUserEvent(this.commandData).publish();
-			new TriggerAction(new RouteChangedAction(this.commandData)).publish();
+			new TriggerAction(new RouteChangedAction(this.commandData.hash)).publish();
 			break;
 		default:
 			throw 'InitCommand unhandled outcome: ' + this.commandData.outcome;

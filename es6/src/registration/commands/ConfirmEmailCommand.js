@@ -1,21 +1,24 @@
 import AbstractConfirmEmailCommand from "../../../gen/registration/commands/AbstractConfirmEmailCommand";
 
 export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
-    execute() {
-        return new Promise((resolve, reject) => {
-            const data = {
-                username: this.commandData.username,
-                token: this.commandData.token
-            };
-            this.httpPut("api/users/confirm", [], data).then(() => {
-                this.commandData.hash = "#";
-                this.commandData.outcome = this.ok;
-                this.commandData.messageKey = "emailConfirmed";
-                resolve();
-            }, error => {
-                reject(error)
-            });
-        });
+
+    initCommandData() {
+        //add from appState to commandData
+    }
+
+    isCommandDataValid() {
+        return true;
+    }
+
+    handleResponse(resolve) {
+        this.commandData.hash = "#";
+        this.commandData.messageKey = "emailConfirmed";
+        this.commandData.outcome = this.ok;
+        resolve();
+    }
+
+    handleError(resolve, reject) {
+        reject(this.commandData.error);
     }
 }
 

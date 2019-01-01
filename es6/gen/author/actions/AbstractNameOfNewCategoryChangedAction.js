@@ -3,8 +3,8 @@ import NameOfNewCategoryChangedCommand from "../../../src/author/commands/NameOf
 
 export default class AbstractNameOfNewCategoryChangedAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.NameOfNewCategoryChangedAction');
+    constructor() {
+        super({}, 'author.NameOfNewCategoryChangedAction');
     }
 
 	getCommand() {

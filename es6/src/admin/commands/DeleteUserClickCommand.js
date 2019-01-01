@@ -2,7 +2,7 @@ import AbstractDeleteUserClickCommand from "../../../gen/admin/commands/Abstract
 
 export default class DeleteUserClickCommand extends AbstractDeleteUserClickCommand {
     execute() {
-        this.commandData.outcome = this.ok;
+    	this.commandData.outcome = this.ok;
     }
 }
 

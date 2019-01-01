@@ -3,8 +3,8 @@ import DeleteUserCancelCommand from "../../../src/profile/commands/DeleteUserCan
 
 export default class AbstractDeleteUserCancelAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'profile.DeleteUserCancelAction');
+    constructor() {
+        super({}, 'profile.DeleteUserCancelAction');
     }
 
 	getCommand() {

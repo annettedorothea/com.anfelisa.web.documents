@@ -1,7 +1,10 @@
 import AbstractSaveRoleAction from "../../../gen/admin/actions/AbstractSaveRoleAction";
-import * as App from "../../app/App";
 
 export default class SaveRoleAction extends AbstractSaveRoleAction {
+
+    initActionData() {
+    	//add not replayable data to action data in order to freeze for replay (e.g. time or date)
+    }
 
 }
 

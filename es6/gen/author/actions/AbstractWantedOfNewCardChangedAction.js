@@ -3,8 +3,8 @@ import WantedOfNewCardChangedCommand from "../../../src/author/commands/WantedOf
 
 export default class AbstractWantedOfNewCardChangedAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.WantedOfNewCardChangedAction');
+    constructor() {
+        super({}, 'author.WantedOfNewCardChangedAction');
     }
 
 	getCommand() {

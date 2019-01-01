@@ -17,12 +17,12 @@ export default class AbstractDeleteUserCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new DeleteUserOkEvent(this.commandData).publish();
-			new TriggerAction(new LogoutAction(this.commandData)).publish();
+			new TriggerAction(new LogoutAction()).publish();
 			break;
 		case this.error:
 			new DeleteUserErrorEvent(this.commandData).publish();
-			new TriggerAction(new LoadUserAction(this.commandData)).publish();
-			new TriggerAction(new DisplayErrorAction(this.commandData)).publish();
+			new TriggerAction(new LoadUserAction()).publish();
+			new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish();
 			break;
 		default:
 			throw 'DeleteUserCommand unhandled outcome: ' + this.commandData.outcome;

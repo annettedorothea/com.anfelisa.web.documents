@@ -794,8 +794,8 @@ a:hover.tile h2 {
 }
 
 .categoryOverview table.cardTable td:last-child {
-    max-width: 87px;
-    width: 87px;
+    max-width: 100px;
+    width: 100px;
     padding: 4px 4px 4px 0;
 }
 

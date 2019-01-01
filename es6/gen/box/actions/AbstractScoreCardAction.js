@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractScoreCardAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'box.ScoreCardAction');
+    constructor() {
+        super({}, 'box.ScoreCardAction');
     }
 
 	getCommand() {

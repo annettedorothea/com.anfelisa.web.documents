@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractForgotPasswordAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'password.ForgotPasswordAction');
+    constructor() {
+        super({}, 'password.ForgotPasswordAction');
     }
 
 	getCommand() {

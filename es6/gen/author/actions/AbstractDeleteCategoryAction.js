@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractDeleteCategoryAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.DeleteCategoryAction');
+    constructor() {
+        super({}, 'author.DeleteCategoryAction');
     }
 
 	getCommand() {

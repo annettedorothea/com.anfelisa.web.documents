@@ -3,8 +3,8 @@ import DisplayErrorAndLogoutCommand from "../../../src/common/commands/DisplayEr
 
 export default class AbstractDisplayErrorAndLogoutAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'common.DisplayErrorAndLogoutAction');
+    constructor( error) {
+        super({error}, 'common.DisplayErrorAndLogoutAction');
     }
 
 	getCommand() {

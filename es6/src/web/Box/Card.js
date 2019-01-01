@@ -72,9 +72,7 @@ export default class Card extends React.Component {
                 </div>
                 <div className="categoryLink">
                     <a
-                        onClick={() => new RouteAction({
-                            hash: `#categories/${this.props.data.categoryId}`
-                        }).apply()}
+                        onClick={() => new RouteAction(`#categories/${this.props.data.categoryId}`).apply()}
                     >{this.props.texts.queryCards.category[this.props.language]}</a>
                 </div>
                 <div className="scoreButtons">
@@ -92,11 +90,8 @@ export default class Card extends React.Component {
                     </div>
                     <div>
                         <button className="reinforce"
-                            onClick={() => new RouteAction(
-                                {
-                                    hash: `#box/reinforce/${this.props.data.boxId}`
-                                }).apply()}
-                            disabled={this.props.data.reinforceCards === 0}
+                                onClick={() => new RouteAction(`#box/reinforce/${this.props.data.boxId}`).apply()}
+                                disabled={this.props.data.reinforceCards === 0}
                         >
                             {this.props.texts.queryCards.reinforceCard[this.props.language]}
                         </button>

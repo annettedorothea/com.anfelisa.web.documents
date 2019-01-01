@@ -14,8 +14,8 @@ export default class AbstractDisplayErrorAndLogoutCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new DisplayErrorAndLogoutOkEvent(this.commandData).publish();
-			new TriggerAction(new ClearToastAction(this.commandData)).publish();
-			new TriggerAction(new LogoutAction(this.commandData)).publish();
+			new TriggerAction(new ClearToastAction()).publish();
+			new TriggerAction(new LogoutAction()).publish();
 			break;
 		default:
 			throw 'DisplayErrorAndLogoutCommand unhandled outcome: ' + this.commandData.outcome;

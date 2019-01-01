@@ -11,7 +11,7 @@ export default class AbstractScheduleSelectedCardsCommand extends Command {
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
+			new TriggerAction(new LoadCategoriesAction()).publish();
 			break;
 		default:
 			throw 'ScheduleSelectedCardsCommand unhandled outcome: ' + this.commandData.outcome;

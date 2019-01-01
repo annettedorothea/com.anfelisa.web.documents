@@ -17,12 +17,12 @@ export default class AbstractRevokeUserAccessCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new RevokeUserAccessOkEvent(this.commandData).publish();
-			new TriggerAction(new DisplayMessageAction(this.commandData)).publish();
-			new TriggerAction(new LoadCategoriesAction(this.commandData)).publish();
+			new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish();
+			new TriggerAction(new LoadCategoriesAction()).publish();
 			break;
 		case this.error:
 			new RevokeUserAccessErrorEvent(this.commandData).publish();
-			new TriggerAction(new DisplayErrorAction(this.commandData)).publish();
+			new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish();
 			break;
 		default:
 			throw 'RevokeUserAccessCommand unhandled outcome: ' + this.commandData.outcome;

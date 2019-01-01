@@ -14,12 +14,12 @@ export default class AbstractResetPasswordCommand extends Command {
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new TriggerAction(new DisplayMessageAction(this.commandData)).publish();
-			new TriggerAction(new RouteAction(this.commandData)).publish();
+			new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish();
+			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
 			break;
 		case this.error:
-			new TriggerAction(new DisplayErrorAction(this.commandData)).publish();
-			new TriggerAction(new RouteAction(this.commandData)).publish();
+			new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish();
+			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
 			break;
 		default:
 			throw 'ResetPasswordCommand unhandled outcome: ' + this.commandData.outcome;

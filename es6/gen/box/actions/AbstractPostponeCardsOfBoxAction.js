@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractPostponeCardsOfBoxAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'box.PostponeCardsOfBoxAction');
+    constructor() {
+        super({}, 'box.PostponeCardsOfBoxAction');
     }
 
 	getCommand() {

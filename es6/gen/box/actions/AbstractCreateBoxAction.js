@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractCreateBoxAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'box.CreateBoxAction');
+    constructor() {
+        super({}, 'box.CreateBoxAction');
 		this.postCall = this.postCall.bind(this);
     }
 
@@ -13,13 +13,13 @@ export default class AbstractCreateBoxAction extends Action {
 		return new CreateBoxCommand(this.actionData);
 	}
 
-		preCall() {
-			CommonView.displaySpinner(this.actionData);
-		}
+	preCall() {
+		CommonView.displaySpinner(this.actionData);
+	}
 	
-		postCall() {
-			CommonView.hideSpinner(this.actionData);
-		}
+	postCall() {
+		CommonView.hideSpinner(this.actionData);
+	}
 
 }
 

@@ -4,8 +4,8 @@ import CategoriesView from "../../../src/author/views/CategoriesView";
 
 export default class AbstractTranslateAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.TranslateAction');
+    constructor() {
+        super({}, 'author.TranslateAction');
     }
 
 	getCommand() {

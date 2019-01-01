@@ -2,11 +2,11 @@ ES6
 common
 
 ACE 
-	Init 
+	Init <username, password, language, hash>
 		on user ( Common.initTexts Common.initUser ) triggers ( InitialLogin )
 		on noUser ( Common.initTexts ) triggers ( RouteChanged )
 	
-	RouteChanged 
+	RouteChanged<hash> 
 		on login (  login.Login.render )
 		on registration ( registration.Registration.render )
 		on dashboard triggers (box.LoadBoxes)
@@ -20,11 +20,12 @@ ACE
 		on reinforceCard triggers (box.LoadNextReinforceCard)
 		on invalid triggers (Route)
 	
-	Route 
+	Route<hash> 
 		on ok ( Common.updateHash )
 	
-	 InitialLogin 
+	InitialLogin<hash> 
 	 	preCall (Common.displaySpinner) 
+	 	call com.anfelisa.user.GetRole
 	 	postCall (Common.hideSpinner) 
 		on ok ( Common.initRole ) triggers ( RouteChanged )
 		on unauthorized triggers ( DisplayError Logout )
@@ -32,13 +33,13 @@ ACE
 	Logout 
 		on ok ( Common.resetUser ) triggers ( Route )
 	
-	DisplayError 
+	DisplayError<error> 
 		on ok (Common.displayError) triggers (ClearToast)
 	
-	DisplayErrorAndLogout 
+	DisplayErrorAndLogout<error> 
 		on ok (Common.displayError) triggers (ClearToast Logout)
 	
-	DisplayMessage 
+	DisplayMessage<messageKey>
 		on ok (Common.displayMessage) triggers (ClearToast )
 	
 	ClearToast 
@@ -59,5 +60,26 @@ views
 		resetUser
 		updateHash
 		
-		}
+	}
 	
+models 
+Root {
+	main {
+		User | Registration | Login | author.CategoryView
+	}
+	setting {Setting}
+}
+User extends com.anfelisa.user.User {
+	username
+	role
+}
+Registration {
+	
+}	
+Login {
+	
+}
+Setting {
+	language
+	user {User}
+}

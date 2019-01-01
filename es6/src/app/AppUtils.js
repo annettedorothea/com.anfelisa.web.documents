@@ -11,13 +11,7 @@ export default class AppUtils {
     static start() {
         AppUtils.loadSettings().then((settings) => {
             AppUtils.settings = settings;
-            const data = {
-                username: localStorage.getItem("username"),
-                password: localStorage.getItem("password"),
-                language: "de",
-                hash: window.location.hash
-            };
-            new InitAction(data).apply();
+            new InitAction(localStorage.getItem("username"), localStorage.getItem("password"), "de", window.location.hash).apply();
         });
     }
 
@@ -39,7 +33,7 @@ export default class AppUtils {
             fetch(request).then(function (response) {
                 return response.json();
             }).then(function (data) {
-                    resolve(data);
+                resolve(data);
             }).catch(function (error) {
                 reject(error);
             });
@@ -62,14 +56,16 @@ export default class AppUtils {
         return AppUtils.settings.aceScenariosBaseUrl;
     }
 
-    static httpGet(url, queryParams, commandData, adjustUrl = true) {
+    static httpGet(url, authorize, queryParams, adjustUrl = true) {
         return new Promise((resolve, reject) => {
-            let authorization = AppUtils.basicAuth();
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
             headers.append("Accept", "application/json");
-            if (authorization !== undefined) {
-                headers.append("Authorization", authorization);
+            if (authorize === true) {
+                let authorization = AppUtils.basicAuth();
+                if (authorization !== undefined) {
+                    headers.append("Authorization", authorization);
+                }
             }
 
             const options = {
@@ -117,14 +113,16 @@ export default class AppUtils {
         });
     }
 
-    static httpChange(methodType, url, queryParams, data, commandData, adjustUrl = true) {
+    static httpChange(methodType, url, authorize, queryParams, data, adjustUrl = true) {
         return new Promise((resolve, reject) => {
-            let authorization = AppUtils.basicAuth();
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
             headers.append("Accept", "text/plain");
-            if (authorization !== undefined) {
-                headers.append("Authorization", authorization);
+            if (authorize === true) {
+                let authorization = AppUtils.basicAuth();
+                if (authorization !== undefined) {
+                    headers.append("Authorization", authorization);
+                }
             }
 
             const options = {
@@ -169,16 +167,16 @@ export default class AppUtils {
         });
     }
 
-    static httpPost(url, queryParams, data, commandData) {
-        return AppUtils.httpChange("POST", url, queryParams, data, commandData);
+    static httpPost(url, authorize, queryParams, data) {
+        return AppUtils.httpChange("POST", url, authorize, queryParams, data);
     }
 
-    static httpPut(url, queryParams, data, commandData) {
-        return AppUtils.httpChange("PUT", url, queryParams, data, commandData);
+    static httpPut(url, authorize, queryParams, data) {
+        return AppUtils.httpChange("PUT", url, authorize, queryParams, data);
     }
 
-    static httpDelete(url, queryParams, data, commandData) {
-        return AppUtils.httpChange("DELETE", url, queryParams, data, commandData);
+    static httpDelete(url, authorize, queryParams, data) {
+        return AppUtils.httpChange("DELETE", url, authorize, queryParams, data);
     }
 
     static queryParamString(url, queryParams) {
@@ -219,23 +217,27 @@ export default class AppUtils {
 
     static displayUnexpectedError(error) {
         console.error(error);
-        if (typeof error !== "object") {
-            error = {
-                errorKey: error
-            };
-            new DisplayErrorAction({error}).apply();
-        } else {
-            if (error.code === 401) {
-                error.errorKey = "unauthorized";
-                new DisplayErrorAndLogoutAction({error}).apply();
-            } else if (error.code === 400) {
-                new DisplayErrorAction({error}).apply();
-            } else {
+        try {
+            if (typeof error !== "object") {
                 error = {
-                    errorKey: error.text
+                    errorKey: error
                 };
-                new DisplayErrorAction({error}).apply();
+                new DisplayErrorAction(error).apply();
+            } else {
+                if (error.code === 401) {
+                    error.errorKey = "unauthorized";
+                    new DisplayErrorAndLogoutAction({error}).apply();
+                } else if (error.code === 400) {
+                    new DisplayErrorAction(error).apply();
+                } else {
+                    error = {
+                        errorKey: error.text
+                    };
+                    new DisplayErrorAction(error).apply();
+                }
             }
+        } catch (e) {
+            console.error(e);
         }
     }
 

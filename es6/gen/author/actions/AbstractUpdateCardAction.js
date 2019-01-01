@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractUpdateCardAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.UpdateCardAction');
+    constructor() {
+        super({}, 'author.UpdateCardAction');
     }
 
 	getCommand() {

@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractLoadNextReinforceCardAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'box.LoadNextReinforceCardAction');
+    constructor() {
+        super({}, 'box.LoadNextReinforceCardAction');
     }
 
 	getCommand() {

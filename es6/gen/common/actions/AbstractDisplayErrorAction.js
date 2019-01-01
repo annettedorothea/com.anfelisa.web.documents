@@ -3,8 +3,8 @@ import DisplayErrorCommand from "../../../src/common/commands/DisplayErrorComman
 
 export default class AbstractDisplayErrorAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'common.DisplayErrorAction');
+    constructor( error) {
+        super({error}, 'common.DisplayErrorAction');
     }
 
 	getCommand() {

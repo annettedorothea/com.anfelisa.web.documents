@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractLoadUserAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'profile.LoadUserAction');
+    constructor() {
+        super({}, 'profile.LoadUserAction');
     }
 
 	getCommand() {

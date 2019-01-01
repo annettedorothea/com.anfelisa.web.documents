@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractScheduleNextCardAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'box.ScheduleNextCardAction');
+    constructor() {
+        super({}, 'box.ScheduleNextCardAction');
     }
 
 	getCommand() {

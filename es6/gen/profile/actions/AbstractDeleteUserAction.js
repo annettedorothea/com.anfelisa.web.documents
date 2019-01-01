@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractDeleteUserAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'profile.DeleteUserAction');
+    constructor() {
+        super({}, 'profile.DeleteUserAction');
     }
 
 	getCommand() {

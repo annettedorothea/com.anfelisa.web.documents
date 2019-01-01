@@ -3,8 +3,8 @@ import ToggleDictionaryLookupOfNewCategoryCommand from "../../../src/author/comm
 
 export default class AbstractToggleDictionaryLookupOfNewCategoryAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.ToggleDictionaryLookupOfNewCategoryAction');
+    constructor() {
+        super({}, 'author.ToggleDictionaryLookupOfNewCategoryAction');
     }
 
 	getCommand() {

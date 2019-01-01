@@ -63,9 +63,7 @@ export default class CategoryOverview extends React.Component {
             <div className="categoryOverview">
 
                 <button className="backButton"
-                        onClick={() => new RouteAction({
-                            hash: backLink
-                        }).apply()}>
+                        onClick={() => new RouteAction(backLink).apply()}>
                     {this.props.texts.categoryList.back[this.props.language]}
                 </button>
                 <h1>

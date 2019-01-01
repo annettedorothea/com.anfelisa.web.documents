@@ -53,7 +53,7 @@ export default class Login extends React.Component {
                             onChange={this.onUsernameChange}
                             value={this.props.data.username}
                         />
-                        <a onClick={() => new RouteAction({hash: "#registration"}).apply()}>{this.props.texts.login.registration[this.props.language]}</a>
+                        <a onClick={() => new RouteAction("#registration").apply()}>{this.props.texts.login.registration[this.props.language]}</a>
                     </div>
                     <div className="line">
                         <label>{this.props.texts.login.password[this.props.language]}</label>
@@ -61,7 +61,7 @@ export default class Login extends React.Component {
                             type={"password"}
                             onChange={this.onPasswordChange}
                         />
-                        <a onClick={() => new RouteAction({hash: "#forgotpassword"}).apply()}>{this.props.texts.login.forgotPassword[this.props.language]}</a>
+                        <a onClick={() => new RouteAction("#forgotpassword").apply()}>{this.props.texts.login.forgotPassword[this.props.language]}</a>
                     </div>
                     <div className="line">
                         <input

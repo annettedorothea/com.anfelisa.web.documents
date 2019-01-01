@@ -22,10 +22,8 @@ export default class ToastContainer extends React.Component {
             }, 7000);
             return true;
         }
-        if (nextState.toasts.length !== this.state.toasts.length) {
-            return true;
-        }
-        return false;
+        return nextState.toasts.length !== this.state.toasts.length;
+
     }
 
     render() {

@@ -1,17 +1,23 @@
 import AbstractGetAllUsersCommand from "../../../gen/admin/commands/AbstractGetAllUsersCommand";
 
 export default class GetAllUsersCommand extends AbstractGetAllUsersCommand {
-    execute() {
-        return new Promise((resolve, reject) => {
-            this.httpGet("api/users/all").then((data) => {
-                this.commandData.userList = data.userList;
-                this.commandData.showDeleteUserDialog = false;
-                this.commandData.outcome = this.ok;
-                resolve();
-            }, error => {
-                reject(error)
-            });
-        });
+
+    initCommandData() {
+    	//add from appState to commandData 
+    }
+
+    isCommandDataValid() {
+    	return true;
+    }
+
+    handleResponse(resolve, reject) {
+        this.commandData.userList = data.userList;
+        this.commandData.showDeleteUserDialog = false;
+    	this.commandData.outcome = this.ok;
+    	resolve();
+    }
+    handleError(resolve, reject) {
+    	reject(this.commandData.error);
     }
 }
 

@@ -3,8 +3,8 @@ import EmailChangedCommand from "../../../src/registration/commands/EmailChanged
 
 export default class AbstractEmailChangedAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'registration.EmailChangedAction');
+    constructor( email) {
+        super({email}, 'registration.EmailChangedAction');
     }
 
 	getCommand() {

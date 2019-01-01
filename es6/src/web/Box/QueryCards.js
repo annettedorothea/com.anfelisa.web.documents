@@ -28,10 +28,7 @@ export default class QueryCards extends React.Component {
                     {this.props.texts.queryCards.scheduleNextCard[this.props.language]}
                 </button>
                 <button
-                    onClick={() => new RouteAction(
-                    {
-                        hash: `#box/reinforce/${this.props.data.boxId}`
-                    }).apply()}
+                    onClick={() => new RouteAction(`#box/reinforce/${this.props.data.boxId}`).apply()}
                     disabled={this.props.data.reinforceCards === 0}
                 >
                     {this.props.texts.queryCards.reinforceCard[this.props.language]}
@@ -42,9 +39,7 @@ export default class QueryCards extends React.Component {
             <div className="box">
                 <button
                     className="backButton"
-                    onClick={() => new RouteAction({
-                        hash: "#dashboard"
-                    }).apply()}>{this.props.texts.queryCards.back[this.props.language]}
+                    onClick={() => new RouteAction("#dashboard").apply()}>{this.props.texts.queryCards.back[this.props.language]}
                 </button>
 
                 <h1>{this.props.data.categoryName}</h1>

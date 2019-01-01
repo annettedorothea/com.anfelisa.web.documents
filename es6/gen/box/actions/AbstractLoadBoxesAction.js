@@ -1,17 +1,25 @@
-import Action from "../../ace/SynchronousAction";
+import Action from "../../ace/AsynchronousAction";
 import LoadBoxesCommand from "../../../src/box/commands/LoadBoxesCommand";
 import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractLoadBoxesAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'box.LoadBoxesAction');
+    constructor() {
+        super({}, 'box.LoadBoxesAction');
+		this.postCall = this.postCall.bind(this);
     }
 
 	getCommand() {
 		return new LoadBoxesCommand(this.actionData);
 	}
 
+	preCall() {
+		CommonView.displaySpinner(this.actionData);
+	}
+	
+	postCall() {
+		CommonView.hideSpinner(this.actionData);
+	}
 
 }
 

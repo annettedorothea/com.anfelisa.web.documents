@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractInviteUserAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'author.InviteUserAction');
+    constructor() {
+        super({}, 'author.InviteUserAction');
     }
 
 	getCommand() {

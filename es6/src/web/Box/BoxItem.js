@@ -21,10 +21,7 @@ export default class BoxItem extends React.Component {
         return (
             <a
                 className="tile"
-                onClick={() => new RouteAction(
-                    {
-                        hash: `#box/${this.props.boxId}`
-                    }).apply()}>
+                onClick={() => new RouteAction(`#box/${this.props.boxId}`).apply()}>
 
                 <h2>{this.props.categoryName}</h2>
 

@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractLoadBoxStatisticsAction extends Action {
 
-    constructor(actionData) {
-        super(actionData, 'box.LoadBoxStatisticsAction');
+    constructor() {
+        super({}, 'box.LoadBoxStatisticsAction');
     }
 
 	getCommand() {

@@ -11,7 +11,7 @@ export default class AbstractPostponeCardsOfBoxCommand extends Command {
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.next:
-			new TriggerAction(new LoadNextCardAction(this.commandData)).publish();
+			new TriggerAction(new LoadNextCardAction()).publish();
 			break;
 		default:
 			throw 'PostponeCardsOfBoxCommand unhandled outcome: ' + this.commandData.outcome;

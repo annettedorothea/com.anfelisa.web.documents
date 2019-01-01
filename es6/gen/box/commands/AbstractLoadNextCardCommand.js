@@ -17,14 +17,14 @@ export default class AbstractLoadNextCardCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new LoadNextCardOkEvent(this.commandData).publish();
-			new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish();
+			new TriggerAction(new LoadBoxStatisticsAction()).publish();
 			break;
 		case this.scheduleNext:
-			new TriggerAction(new ScheduleNextCardAction(this.commandData)).publish();
+			new TriggerAction(new ScheduleNextCardAction()).publish();
 			break;
 		case this.doNotScheduleNext:
 			new LoadNextCardDoNotScheduleNextEvent(this.commandData).publish();
-			new TriggerAction(new LoadBoxStatisticsAction(this.commandData)).publish();
+			new TriggerAction(new LoadBoxStatisticsAction()).publish();
 			break;
 		default:
 			throw 'LoadNextCardCommand unhandled outcome: ' + this.commandData.outcome;
