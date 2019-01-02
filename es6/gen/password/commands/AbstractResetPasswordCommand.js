@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/SynchronousCommand";
+import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
@@ -12,19 +12,40 @@ export default class AbstractResetPasswordCommand extends Command {
     }
 
     publishEvents() {
+		let promises = [];
+	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish();
-			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
+			promises.push(new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish());
+			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
 			break;
 		case this.error:
-			new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish();
-			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
+			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish());
+			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
 			break;
 		default:
-			throw 'ResetPasswordCommand unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('ResetPasswordCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
+		return Promise.all(promises);
     }
+    
+	execute() {
+	    return new Promise((resolve, reject) => {
+			let queryParams = [];
+	        let payload = {	
+	        	password : this.commandData.password,
+	        	token : this.commandData.token,
+	        	};
+
+			this.httpPut(`/api/users/resetpassword`, false, queryParams, payload).then((data) => {
+				this.handleResponse(resolve, reject);
+			}, (error) => {
+				this.commandData.error = error;
+				this.handleError(resolve, reject);
+			});
+	    });
+	}
+
 }
 
 /*       S.D.G.       */

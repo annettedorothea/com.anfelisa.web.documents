@@ -4,13 +4,13 @@ export default class BoxView {
     static render(eventData) {
         App.mergeState({
             route: "card",
-            data: eventData.data
+            data: eventData
         });
     };
 
     static renderStatistics(eventData) {
         App.deepMergeState({
-            data: eventData.data
+            data: eventData
         });
     };
 

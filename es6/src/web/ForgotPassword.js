@@ -14,13 +14,11 @@ export default class ForgotPassword extends React.Component {
 
     onUsernameChange(event) {
         const username = event.target.value;
-        new UsernameChangedAction({username}).apply();
+        new UsernameChangedAction(username).apply();
     }
 
     onSubmit() {
-        new ForgotPasswordAction({
-            token: AppUtils.createUUID()
-        }).apply();
+        new ForgotPasswordAction().apply();
     }
 
     render() {

@@ -6,7 +6,7 @@ export default class AbstractCancelDeleteCardAction extends Action {
     constructor() {
         super({}, 'author.CancelDeleteCardAction');
     }
-
+    
 	getCommand() {
 		return new CancelDeleteCardCommand(this.actionData);
 	}

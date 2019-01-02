@@ -3,10 +3,10 @@ import ToggleSaveInLocalStorageCommand from "../../../src/login/commands/ToggleS
 
 export default class AbstractToggleSaveInLocalStorageAction extends Action {
 
-    constructor() {
-        super({}, 'login.ToggleSaveInLocalStorageAction');
+    constructor( saveInLocalStorage) {
+        super({saveInLocalStorage}, 'login.ToggleSaveInLocalStorageAction');
     }
-
+    
 	getCommand() {
 		return new ToggleSaveInLocalStorageCommand(this.actionData);
 	}

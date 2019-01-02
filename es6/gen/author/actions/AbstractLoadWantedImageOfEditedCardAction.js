@@ -6,7 +6,7 @@ export default class AbstractLoadWantedImageOfEditedCardAction extends Action {
     constructor() {
         super({}, 'author.LoadWantedImageOfEditedCardAction');
     }
-
+    
 	getCommand() {
 		return new LoadWantedImageOfEditedCardCommand(this.actionData);
 	}

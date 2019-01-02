@@ -6,7 +6,7 @@ export default class AbstractGivenLanguageOfNewCategoryChangedAction extends Act
     constructor() {
         super({}, 'author.GivenLanguageOfNewCategoryChangedAction');
     }
-
+    
 	getCommand() {
 		return new GivenLanguageOfNewCategoryChangedCommand(this.actionData);
 	}

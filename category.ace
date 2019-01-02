@@ -1,0 +1,23 @@
+ES6
+category
+
+ACE
+
+LoadCategoryTree <pathToSelected>
+	preCall (common.Common.displaySpinner)
+	call com.anfelisa.category.GetCategoryTree
+	postCall (common.Common.hideSpinner)
+	on ok ( CategoryTree.render )
+
+ExpandTreeItem < categoryId >
+	on ok (CategoryTree.expandTreeItem)
+
+CollapseTreeItem < categoryId >
+	on ok (CategoryTree.collapseTreeItem)
+
+views
+CategoryTree {
+	render
+	expandTreeItem
+	collapseTreeItem
+}

@@ -4,7 +4,7 @@ export default class BoxReinforceView {
 	static render(eventData) {
         App.mergeState({
             route: "reinforce-card",
-            data: eventData.data
+            data: eventData
         });
 	};
 	

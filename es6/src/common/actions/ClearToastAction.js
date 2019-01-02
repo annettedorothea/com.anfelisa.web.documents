@@ -2,9 +2,6 @@ import AbstractClearToastAction from "../../../gen/common/actions/AbstractClearT
 
 export default class ClearToastAction extends AbstractClearToastAction {
 
-    initActionData() {
-    }
-
 }
 
 /*       S.D.G.       */

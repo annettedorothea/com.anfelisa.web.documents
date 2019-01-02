@@ -6,7 +6,7 @@ export default class AbstractDeleteCategoryClickAction extends Action {
     constructor() {
         super({}, 'author.DeleteCategoryClickAction');
     }
-
+    
 	getCommand() {
 		return new DeleteCategoryClickCommand(this.actionData);
 	}

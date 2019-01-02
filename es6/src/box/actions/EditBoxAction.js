@@ -4,7 +4,6 @@ import * as App from "../../app/App";
 export default class EditBoxAction extends AbstractEditBoxAction {
 
     initActionData() {
-        this.actionData.editedMaxInterval = App.appState.data.maxInterval;
     }
 
 }

@@ -27,7 +27,7 @@ export default class AbstractRegisterUserCommand extends Command {
 		}
 		return Promise.all(promises);
     }
-
+    
 	execute() {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];

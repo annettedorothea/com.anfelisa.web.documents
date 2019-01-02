@@ -2,7 +2,7 @@ import React from 'react';
 import RouteAction from "../common/actions/RouteAction";
 import CryptoJS from "crypto-js";
 import ResetPasswordAction from "../password/actions/ResetPasswordAction";
-import PasswordChangedAction from "../registration/actions/PasswordChangedAction";
+import PasswordChangedAction from "../password/actions/PasswordChangedAction";
 
 export default class ResetPassword extends React.Component {
 
@@ -22,10 +22,7 @@ export default class ResetPassword extends React.Component {
         this.setState({
             password
         });
-        new PasswordChangedAction({
-            password,
-            passwordRepetition: this.state.passwordRepetition
-        }).apply();
+        new PasswordChangedAction(password, this.state.passwordRepetition).apply();
     }
 
     onPasswordRepetitionChange(event) {
@@ -33,18 +30,11 @@ export default class ResetPassword extends React.Component {
         this.setState({
             passwordRepetition
         });
-        new PasswordChangedAction({
-            passwordRepetition,
-            password: this.state.password
-        }).apply();
+        new PasswordChangedAction(this.state.password, passwordRepetition).apply();
     }
 
     onSubmit() {
-        const data = {
-            password: this.state.password,
-            token: this.props.data.token
-        };
-        new ResetPasswordAction(data).apply();
+        new ResetPasswordAction(this.state.password, this.props.data.token).apply();
     }
 
     render() {

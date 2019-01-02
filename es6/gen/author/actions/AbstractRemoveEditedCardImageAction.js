@@ -6,7 +6,7 @@ export default class AbstractRemoveEditedCardImageAction extends Action {
     constructor() {
         super({}, 'author.RemoveEditedCardImageAction');
     }
-
+    
 	getCommand() {
 		return new RemoveEditedCardImageCommand(this.actionData);
 	}

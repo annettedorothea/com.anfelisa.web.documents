@@ -6,7 +6,7 @@ export default class AbstractToggleScheduleNextAction extends Action {
     constructor() {
         super({}, 'box.ToggleScheduleNextAction');
     }
-
+    
 	getCommand() {
 		return new ToggleScheduleNextCommand(this.actionData);
 	}

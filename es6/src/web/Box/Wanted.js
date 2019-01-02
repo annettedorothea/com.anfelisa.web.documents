@@ -13,12 +13,11 @@ export default class Wanted extends React.Component {
         const index = this.props.index;
         const image = this.props.image;
         const hasImage = !!image;
-        const data = {
+        new DisplayWantedAction(
             wantedItemsLength,
             index,
             hasImage
-        };
-        new DisplayWantedAction(data).apply();
+        ).apply();
     }
 
     render() {
@@ -36,7 +35,8 @@ export default class Wanted extends React.Component {
             <div className={`wanted lastQuality_${this.props.lastQuality}`} onClick={() => this.onClick(lines)}>
                 <div className="wanted-word">
                     {lineItems}
-                    {this.props.image && <img src={this.props.image} className={this.props.displayImage === true ? "image" : "hidden image"}/>}
+                    {this.props.image && <img src={this.props.image}
+                                              className={this.props.displayImage === true ? "image" : "hidden image"}/>}
                 </div>
             </div>
         );

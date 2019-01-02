@@ -9,10 +9,7 @@ export default class DaysBehindSchedule extends React.Component {
     }
 
     onPostpone() {
-        const data = {
-            boxId: this.props.boxId
-        };
-        new PostponeCardsOfBoxAction(data).apply();
+        new PostponeCardsOfBoxAction(this.props.boxId).apply();
     }
 
     render() {

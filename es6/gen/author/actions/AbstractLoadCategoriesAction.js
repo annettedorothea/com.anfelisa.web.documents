@@ -7,7 +7,7 @@ export default class AbstractLoadCategoriesAction extends Action {
     constructor() {
         super({}, 'author.LoadCategoriesAction');
     }
-
+    
 	getCommand() {
 		return new LoadCategoriesCommand(this.actionData);
 	}

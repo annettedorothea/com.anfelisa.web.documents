@@ -13,7 +13,7 @@ export default class BoxItem extends React.Component {
 
     onDeleteClick(e) {
         e.stopPropagation();
-        new DeleteBoxClickAction({boxId: this.props.boxId}).apply();
+        new DeleteBoxClickAction(this.props.boxId).apply();
     }
 
     render() {

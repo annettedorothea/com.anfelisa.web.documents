@@ -6,7 +6,7 @@ export default class AbstractToggleDictionaryLookupOfEditedCategoryAction extend
     constructor() {
         super({}, 'author.ToggleDictionaryLookupOfEditedCategoryAction');
     }
-
+    
 	getCommand() {
 		return new ToggleDictionaryLookupOfEditedCategoryCommand(this.actionData);
 	}

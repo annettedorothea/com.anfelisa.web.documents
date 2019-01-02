@@ -3,10 +3,10 @@ import PasswordChangedCommand from "../../../src/password/commands/PasswordChang
 
 export default class AbstractPasswordChangedAction extends Action {
 
-    constructor() {
-        super({}, 'password.PasswordChangedAction');
+    constructor( password, passwordRepetition) {
+        super({password, passwordRepetition}, 'password.PasswordChangedAction');
     }
-
+    
 	getCommand() {
 		return new PasswordChangedCommand(this.actionData);
 	}

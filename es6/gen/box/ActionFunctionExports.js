@@ -14,7 +14,6 @@ import ToggleScheduleNextAction from "../../src/box/actions/ToggleScheduleNextAc
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
 import LoadNextReinforceCardAction from "../../src/box/actions/LoadNextReinforceCardAction";
-import DisplayWantedReinforceAction from "../../src/box/actions/DisplayWantedReinforceAction";
 import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
 import LoadBoxStatisticsAction from "../../src/box/actions/LoadBoxStatisticsAction";
 
@@ -80,10 +79,6 @@ export function scoreCard(actionData) {
 
 export function loadNextReinforceCard(actionData) {
     new LoadNextReinforceCardAction(actionData).apply();
-}
-
-export function displayWantedReinforce(actionData) {
-    new DisplayWantedReinforceAction(actionData).apply();
 }
 
 export function scoreReinforceCard(actionData) {

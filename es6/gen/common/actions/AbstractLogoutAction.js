@@ -6,7 +6,7 @@ export default class AbstractLogoutAction extends Action {
     constructor() {
         super({}, 'common.LogoutAction');
     }
-
+    
 	getCommand() {
 		return new LogoutCommand(this.actionData);
 	}

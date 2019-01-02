@@ -2,14 +2,6 @@ import AbstractConfirmEmailCommand from "../../../gen/registration/commands/Abst
 
 export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
 
-    initCommandData() {
-        //add from appState to commandData
-    }
-
-    isCommandDataValid() {
-        return true;
-    }
-
     handleResponse(resolve) {
         this.commandData.hash = "#";
         this.commandData.messageKey = "emailConfirmed";

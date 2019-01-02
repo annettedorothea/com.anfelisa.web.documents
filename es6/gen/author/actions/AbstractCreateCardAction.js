@@ -7,7 +7,7 @@ export default class AbstractCreateCardAction extends Action {
     constructor() {
         super({}, 'author.CreateCardAction');
     }
-
+    
 	getCommand() {
 		return new CreateCardCommand(this.actionData);
 	}

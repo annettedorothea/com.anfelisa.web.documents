@@ -15,32 +15,30 @@ import ToggleScheduleNextAction from "../../src/box/actions/ToggleScheduleNextAc
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
 import LoadNextReinforceCardAction from "../../src/box/actions/LoadNextReinforceCardAction";
-import DisplayWantedReinforceAction from "../../src/box/actions/DisplayWantedReinforceAction";
 import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
 import LoadBoxStatisticsAction from "../../src/box/actions/LoadBoxStatisticsAction";
 
 export default class ActionFactoryRegistrationBox {
 
 	static init() {
-		ACEController.registerFactory('box.LoadBoxesAction', (actionData) => new LoadBoxesAction(actionData));
-		ACEController.registerFactory('box.CreateBoxAction', (actionData) => new CreateBoxAction(actionData));
-		ACEController.registerFactory('box.EditBoxAction', (actionData) => new EditBoxAction(actionData));
-		ACEController.registerFactory('box.CancelEditBoxAction', (actionData) => new CancelEditBoxAction(actionData));
-		ACEController.registerFactory('box.MaxIntervalChangedAction', (actionData) => new MaxIntervalChangedAction(actionData));
-		ACEController.registerFactory('box.UpdateBoxAction', (actionData) => new UpdateBoxAction(actionData));
-		ACEController.registerFactory('box.DeleteBoxClickAction', (actionData) => new DeleteBoxClickAction(actionData));
-		ACEController.registerFactory('box.CancelDeleteBoxAction', (actionData) => new CancelDeleteBoxAction(actionData));
-		ACEController.registerFactory('box.DeleteBoxAction', (actionData) => new DeleteBoxAction(actionData));
-		ACEController.registerFactory('box.PostponeCardsOfBoxAction', (actionData) => new PostponeCardsOfBoxAction(actionData));
-		ACEController.registerFactory('box.LoadNextCardAction', (actionData) => new LoadNextCardAction(actionData));
-		ACEController.registerFactory('box.ScheduleNextCardAction', (actionData) => new ScheduleNextCardAction(actionData));
-		ACEController.registerFactory('box.ToggleScheduleNextAction', (actionData) => new ToggleScheduleNextAction(actionData));
-		ACEController.registerFactory('box.DisplayWantedAction', (actionData) => new DisplayWantedAction(actionData));
-		ACEController.registerFactory('box.ScoreCardAction', (actionData) => new ScoreCardAction(actionData));
-		ACEController.registerFactory('box.LoadNextReinforceCardAction', (actionData) => new LoadNextReinforceCardAction(actionData));
-		ACEController.registerFactory('box.DisplayWantedReinforceAction', (actionData) => new DisplayWantedReinforceAction(actionData));
-		ACEController.registerFactory('box.ScoreReinforceCardAction', (actionData) => new ScoreReinforceCardAction(actionData));
-		ACEController.registerFactory('box.LoadBoxStatisticsAction', (actionData) => new LoadBoxStatisticsAction(actionData));
+		ACEController.registerFactory('box.LoadBoxesAction', (actionData) => new LoadBoxesAction(actionData, 'box.LoadBoxesAction'));
+		ACEController.registerFactory('box.CreateBoxAction', (actionData) => new CreateBoxAction(actionData, 'box.CreateBoxAction'));
+		ACEController.registerFactory('box.EditBoxAction', (actionData) => new EditBoxAction(actionData, 'box.EditBoxAction'));
+		ACEController.registerFactory('box.CancelEditBoxAction', (actionData) => new CancelEditBoxAction(actionData, 'box.CancelEditBoxAction'));
+		ACEController.registerFactory('box.MaxIntervalChangedAction', (actionData) => new MaxIntervalChangedAction(actionData, 'box.MaxIntervalChangedAction'));
+		ACEController.registerFactory('box.UpdateBoxAction', (actionData) => new UpdateBoxAction(actionData, 'box.UpdateBoxAction'));
+		ACEController.registerFactory('box.DeleteBoxClickAction', (actionData) => new DeleteBoxClickAction(actionData, 'box.DeleteBoxClickAction'));
+		ACEController.registerFactory('box.CancelDeleteBoxAction', (actionData) => new CancelDeleteBoxAction(actionData, 'box.CancelDeleteBoxAction'));
+		ACEController.registerFactory('box.DeleteBoxAction', (actionData) => new DeleteBoxAction(actionData, 'box.DeleteBoxAction'));
+		ACEController.registerFactory('box.PostponeCardsOfBoxAction', (actionData) => new PostponeCardsOfBoxAction(actionData, 'box.PostponeCardsOfBoxAction'));
+		ACEController.registerFactory('box.LoadNextCardAction', (actionData) => new LoadNextCardAction(actionData, 'box.LoadNextCardAction'));
+		ACEController.registerFactory('box.ScheduleNextCardAction', (actionData) => new ScheduleNextCardAction(actionData, 'box.ScheduleNextCardAction'));
+		ACEController.registerFactory('box.ToggleScheduleNextAction', (actionData) => new ToggleScheduleNextAction(actionData, 'box.ToggleScheduleNextAction'));
+		ACEController.registerFactory('box.DisplayWantedAction', (actionData) => new DisplayWantedAction(actionData, 'box.DisplayWantedAction'));
+		ACEController.registerFactory('box.ScoreCardAction', (actionData) => new ScoreCardAction(actionData, 'box.ScoreCardAction'));
+		ACEController.registerFactory('box.LoadNextReinforceCardAction', (actionData) => new LoadNextReinforceCardAction(actionData, 'box.LoadNextReinforceCardAction'));
+		ACEController.registerFactory('box.ScoreReinforceCardAction', (actionData) => new ScoreReinforceCardAction(actionData, 'box.ScoreReinforceCardAction'));
+		ACEController.registerFactory('box.LoadBoxStatisticsAction', (actionData) => new LoadBoxStatisticsAction(actionData, 'box.LoadBoxStatisticsAction'));
 	}
 
 }

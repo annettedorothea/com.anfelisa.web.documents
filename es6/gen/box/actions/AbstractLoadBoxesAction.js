@@ -8,7 +8,7 @@ export default class AbstractLoadBoxesAction extends Action {
         super({}, 'box.LoadBoxesAction');
 		this.postCall = this.postCall.bind(this);
     }
-
+    
 	getCommand() {
 		return new LoadBoxesCommand(this.actionData);
 	}

@@ -7,7 +7,7 @@ export default class AbstractTranslateAction extends Action {
     constructor() {
         super({}, 'author.TranslateAction');
     }
-
+    
 	getCommand() {
 		return new TranslateCommand(this.actionData);
 	}

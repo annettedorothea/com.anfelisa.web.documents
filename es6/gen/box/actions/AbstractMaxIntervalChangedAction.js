@@ -3,10 +3,10 @@ import MaxIntervalChangedCommand from "../../../src/box/commands/MaxIntervalChan
 
 export default class AbstractMaxIntervalChangedAction extends Action {
 
-    constructor() {
-        super({}, 'box.MaxIntervalChangedAction');
+    constructor( maxInterval) {
+        super({maxInterval}, 'box.MaxIntervalChangedAction');
     }
-
+    
 	getCommand() {
 		return new MaxIntervalChangedCommand(this.actionData);
 	}

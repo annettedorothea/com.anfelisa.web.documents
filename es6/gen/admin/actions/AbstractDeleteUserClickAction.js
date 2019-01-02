@@ -6,7 +6,7 @@ export default class AbstractDeleteUserClickAction extends Action {
     constructor( usernameToBeDeleted) {
         super({usernameToBeDeleted}, 'admin.DeleteUserClickAction');
     }
-
+    
 	getCommand() {
 		return new DeleteUserClickCommand(this.actionData);
 	}

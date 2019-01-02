@@ -6,12 +6,7 @@ export default class GetAllUsersCommand extends AbstractGetAllUsersCommand {
     	//add from appState to commandData 
     }
 
-    isCommandDataValid() {
-    	return true;
-    }
-
     handleResponse(resolve, reject) {
-        this.commandData.userList = data.userList;
         this.commandData.showDeleteUserDialog = false;
     	this.commandData.outcome = this.ok;
     	resolve();

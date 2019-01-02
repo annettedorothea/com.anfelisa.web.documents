@@ -7,7 +7,7 @@ export default class AbstractInviteUserAction extends Action {
     constructor() {
         super({}, 'author.InviteUserAction');
     }
-
+    
 	getCommand() {
 		return new InviteUserCommand(this.actionData);
 	}

@@ -1,27 +1,17 @@
 import AbstractLoadBoxStatisticsCommand from "../../../gen/box/commands/AbstractLoadBoxStatisticsCommand";
+import * as App from "../../app/App";
 
 export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsCommand {
-    execute() {
-        return new Promise((resolve, reject) => {
-            let queryParams = [];
-            queryParams.push({
-                key: "today",
-                value: this.commandData.today
-            });
-            queryParams.push({
-                key: "boxId",
-                value: this.commandData.boxId
-            });
-            this.httpGet("api/box/get", queryParams).then((data) => {
-                this.commandData.data = data;
-                this.commandData.data.scheduleNext = this.commandData.scheduleNext === true && data.myCards === data.totalCards ? false : this.commandData.scheduleNext;
-                this.commandData.data.editMaxInterval = false;
-                this.commandData.outcome = this.ok;
-                resolve();
-            }, error => {
-                reject(error)
-            });
-        });
+
+    handleResponse(resolve, reject) {
+        const scheduleNext = App.appState.data === undefined || App.appState.data.scheduleNext === undefined ? false : App.appState.data.scheduleNext;
+        this.commandData.scheduleNext = scheduleNext === true && this.commandData.myCards === this.commandData.totalCards ? false : this.commandData.scheduleNext;
+        this.commandData.editMaxInterval = false;
+        this.commandData.outcome = this.ok;
+    	resolve();
+    }
+    handleError(resolve, reject) {
+    	reject(this.commandData.error);
     }
 }
 

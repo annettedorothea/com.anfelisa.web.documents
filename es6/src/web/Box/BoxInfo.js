@@ -16,12 +16,12 @@ export default class BoxInfo extends React.Component {
     }
 
     onEditClick() {
-        new EditBoxAction({maxInterval: this.props.maxInterval === null ? "" : this.props.maxInterval}).apply();
+        new EditBoxAction(this.props.maxInterval === null ? "" : this.props.maxInterval).apply();
     }
 
     onMaxIntervalChange(e) {
         const maxInterval = e.target.value;
-        new MaxIntervalChangedAction({maxInterval}).apply();
+        new MaxIntervalChangedAction(maxInterval).apply();
     }
 
     onUpdate(e) {

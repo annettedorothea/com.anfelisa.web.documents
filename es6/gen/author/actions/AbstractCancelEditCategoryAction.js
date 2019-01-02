@@ -6,7 +6,7 @@ export default class AbstractCancelEditCategoryAction extends Action {
     constructor() {
         super({}, 'author.CancelEditCategoryAction');
     }
-
+    
 	getCommand() {
 		return new CancelEditCategoryCommand(this.actionData);
 	}

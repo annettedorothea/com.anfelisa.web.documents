@@ -6,7 +6,7 @@ export default class AbstractFilterCardsAction extends Action {
     constructor() {
         super({}, 'author.FilterCardsAction');
     }
-
+    
 	getCommand() {
 		return new FilterCardsCommand(this.actionData);
 	}

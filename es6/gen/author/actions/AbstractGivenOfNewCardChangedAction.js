@@ -6,7 +6,7 @@ export default class AbstractGivenOfNewCardChangedAction extends Action {
     constructor() {
         super({}, 'author.GivenOfNewCardChangedAction');
     }
-
+    
 	getCommand() {
 		return new GivenOfNewCardChangedCommand(this.actionData);
 	}

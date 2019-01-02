@@ -1,49 +1,46 @@
-ES6
-registration
+ES6 registration
 
 ACE 
-	CheckUsername<username>
-		preCall (Registration.displayUsernameSpinner) 
-		call com.anfelisa.user.UsernameAvailable
-		postCall (Registration.hideUsernameSpinner) 
-		on empty
-		on available ( Registration.usernameAvailable )
-		on notAvailable ( Registration.usernameNotAvailable )
-	
-	EmailChanged<email>
-		on valid (Registration.emailChanged Registration.emailValid)
-		on invalid (Registration.emailChanged Registration.emailInvalid)
-	
-	PasswordChanged<password, passwordRepetition> 
-		on mismatch (Registration.passwordMismatch )
-		on match (Registration.passwordMatch )
-	
-	RegisterUser<username, password>
-		preCall (common.Common.displaySpinner) 
-		call com.anfelisa.user.RegisterUser
-		postCall (common.Common.hideSpinner) 
-		on ok  triggers ( common.DisplayMessage common.Route)
-		on error triggers (common.DisplayError) 
-	
-	ConfirmEmail <username, token>
-		preCall (common.Common.displaySpinner) 
-		call com.anfelisa.user.ConfirmEmail
-		postCall (common.Common.hideSpinner) 
-		on ok triggers ( common.DisplayMessage common.Route)
-	
-	
+CheckUsername <username>
+	preCall (Registration.displayUsernameSpinner) 
+	call com.anfelisa.user.UsernameAvailable
+	postCall (Registration.hideUsernameSpinner) 
+	on empty
+	on available ( Registration.usernameAvailable )
+	on notAvailable ( Registration.usernameNotAvailable )
+
+EmailChanged <email>
+	on valid (Registration.emailChanged Registration.emailValid)
+	on invalid (Registration.emailChanged Registration.emailInvalid)
+
+PasswordChanged <password, passwordRepetition> 
+	on mismatch (Registration.passwordMismatch )
+	on match (Registration.passwordMatch )
+
+RegisterUser <username, password>
+	preCall (common.Common.displaySpinner) 
+	call com.anfelisa.user.RegisterUser
+	postCall (common.Common.hideSpinner) 
+	on ok  triggers ( common.DisplayMessage common.Route)
+	on error triggers (common.DisplayError) 
+
+ConfirmEmail <username, token>
+	preCall (common.Common.displaySpinner) 
+	call com.anfelisa.user.ConfirmEmail
+	postCall (common.Common.hideSpinner) 
+	on ok triggers ( common.DisplayMessage common.Route)
 
 
 views 
-	Registration {
-		render
-		usernameAvailable
-		usernameNotAvailable
-		displayUsernameSpinner
-		hideUsernameSpinner
-		emailChanged
-		emailValid
-		emailInvalid
-		passwordMismatch
-		passwordMatch
-	}
+Registration {
+	render
+	usernameAvailable
+	usernameNotAvailable
+	displayUsernameSpinner
+	hideUsernameSpinner
+	emailChanged
+	emailValid
+	emailInvalid
+	passwordMismatch
+	passwordMatch
+}

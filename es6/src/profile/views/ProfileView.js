@@ -4,7 +4,7 @@ export default class ProfileView {
 	static render(eventData) {
         App.mergeState({
             route: "profile",
-            data : eventData.data
+            data : eventData
         });
 	};
 

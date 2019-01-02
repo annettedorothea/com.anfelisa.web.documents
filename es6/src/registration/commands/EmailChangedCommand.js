@@ -7,7 +7,6 @@ export default class EmailChangedCommand extends AbstractEmailChangedCommand {
         } else {
             this.commandData.outcome = this.valid;
         }
-        console.log("EmailChangedCommand", this.commandData);
     }
 }
 

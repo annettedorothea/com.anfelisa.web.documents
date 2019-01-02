@@ -22,11 +22,6 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.DisplayWantedImageEvent', BoxView.displayImage);
 		ACEController.registerListener('box.DisplayWantedImageEvent', BoxView.enableScoreButtons);
 		ACEController.registerListener('box.LoadNextReinforceCardOkEvent', BoxReinforceView.render);
-		ACEController.registerListener('box.DisplayWantedReinforceAllEvent', BoxReinforceView.displayNextItem);
-		ACEController.registerListener('box.DisplayWantedReinforceAllEvent', BoxReinforceView.enableScoreButtons);
-		ACEController.registerListener('box.DisplayWantedReinforceNotAllEvent', BoxReinforceView.displayNextItem);
-		ACEController.registerListener('box.DisplayWantedReinforceImageEvent', BoxReinforceView.displayImage);
-		ACEController.registerListener('box.DisplayWantedReinforceImageEvent', BoxReinforceView.enableScoreButtons);
 		ACEController.registerListener('box.LoadBoxStatisticsOkEvent', BoxView.renderStatistics);
 	}
 

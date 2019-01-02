@@ -7,7 +7,7 @@ export default class AbstractScheduleSelectedCardsAction extends Action {
     constructor() {
         super({}, 'author.ScheduleSelectedCardsAction');
     }
-
+    
 	getCommand() {
 		return new ScheduleSelectedCardsCommand(this.actionData);
 	}

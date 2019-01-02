@@ -6,7 +6,7 @@ export default class AbstractNameOfEditedCategoryChangedAction extends Action {
     constructor() {
         super({}, 'author.NameOfEditedCategoryChangedAction');
     }
-
+    
 	getCommand() {
 		return new NameOfEditedCategoryChangedCommand(this.actionData);
 	}

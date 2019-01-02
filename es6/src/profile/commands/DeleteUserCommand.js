@@ -1,17 +1,18 @@
 import AbstractDeleteUserCommand from "../../../gen/profile/commands/AbstractDeleteUserCommand";
 
 export default class DeleteUserCommand extends AbstractDeleteUserCommand {
-    execute() {
-        return new Promise((resolve) => {
-            this.httpDelete("api/user/delete", [], this.commandData).then((data) => {
-                this.commandData.outcome = this.ok;
-                resolve();
-            }, error => {
-                this.commandData.error = error;
-                this.commandData.outcome = this.error;
-                resolve();
-            });
-        });
+
+    initCommandData() {
+    	//add from appState to commandData 
+    }
+
+    handleResponse(resolve, reject) {
+        this.commandData.outcome = this.ok;
+    	resolve();
+    }
+    handleError(resolve, reject) {
+        this.commandData.outcome = this.error;
+    	reject(this.commandData.error);
     }
 }
 

@@ -3,10 +3,10 @@ import UsernameChangedCommand from "../../../src/password/commands/UsernameChang
 
 export default class AbstractUsernameChangedAction extends Action {
 
-    constructor() {
-        super({}, 'password.UsernameChangedAction');
+    constructor( username) {
+        super({username}, 'password.UsernameChangedAction');
     }
-
+    
 	getCommand() {
 		return new UsernameChangedCommand(this.actionData);
 	}

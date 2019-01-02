@@ -829,4 +829,38 @@ iframe {
     margin-bottom: 32px;
 }
 
+.categoryTree .categoryItem i {
+    margin: 4px;
+    width: 20px;
+    height: 20px;
+}
+.categoryTree .categoryTreeItems,
+.categoryTree .expandedCategoryItem {
+    margin-bottom: 20px;
+}
+.categoryTree .categoryItem.depth_0 {
+    margin-left: 0px;
+}
+.categoryTree .categoryItem.depth_1 {
+    margin-left: 10px;
+}
+.categoryTree .categoryItem.depth_2 {
+    margin-left: 20px;
+}
+.categoryTree .categoryItem.depth_3 {
+    margin-left: 30px;
+}
+.categoryTree .categoryItem.depth_4 {
+    margin-left: 40px;
+}
+.categoryTree .categoryItem.depth_5 {
+    margin-left: 50px;
+}
+.categoryTree .categoryItem.depth_6 {
+    margin-left: 60px;
+}
+.categoryTree .categoryItem.depth_7 {
+    margin-left: 70px;
+}
+
 

@@ -2,10 +2,16 @@ ES6
 profile
 
 ACE 
-	LoadUser preCall ( common.Common.displaySpinner ) postCall (common.Common.hideSpinner) 
+	LoadUser 
+		preCall ( common.Common.displaySpinner ) 
+		call com.anfelisa.user.GetUserProfile
+		postCall (common.Common.hideSpinner) 
 		on ok (Profile.render)
 	
-	DeleteUser preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	DeleteUser <usernameToBeDeleted>
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.user.DeleteUser
+		postCall (common.Common.hideSpinner) 
 		on ok ( Profile.hideDeleteUserDialog ) triggers ( common.Logout )
 		on error ( Profile.hideDeleteUserDialog ) triggers (LoadUser common.DisplayError)
 	

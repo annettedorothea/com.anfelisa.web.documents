@@ -5,7 +5,7 @@ import Profile from "./Profile";
 import UserList from "./UserList";
 import QueryCards from "./Box/QueryCards";
 import RouteAction from "../common/actions/RouteAction";
-import CategoryOverview from "./CategoryOverview";
+import CategoryTree from "./CategoryTree";
 
 export default class UserContainer extends React.Component {
 
@@ -15,8 +15,8 @@ export default class UserContainer extends React.Component {
             case "user-list":
                 content = <UserList {...this.props} />;
                 break;
-            case "category-list":
-                content = <CategoryOverview {...this.props} />;
+            case "category-tree":
+                content = <CategoryTree {...this.props} />;
                 break;
             case "profile":
                 content = <Profile {...this.props} />;

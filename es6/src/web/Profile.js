@@ -19,9 +19,7 @@ export default class Profile extends React.Component {
     }
 
     onDelete() {
-        new DeleteUserAction({
-            usernameToBeDeleted: this.props.username
-        }).apply();
+        new DeleteUserAction(this.props.username).apply();
     }
 
     onDeleteCancel() {
@@ -68,7 +66,7 @@ export default class Profile extends React.Component {
                         <input
                             type={"text"}
                             placeholder={this.props.texts.profile.role[this.props.language]}
-                            value={this.props.texts.profile.role[this.props.data.role][this.props.language]}
+                            value={this.props.texts.profile.role[this.props.role][this.props.language]}
                             readOnly={true}
                         />
                     </div>

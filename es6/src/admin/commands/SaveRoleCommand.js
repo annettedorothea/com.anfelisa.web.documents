@@ -6,10 +6,6 @@ export default class SaveRoleCommand extends AbstractSaveRoleCommand {
     	//add from appState to commandData 
     }
 
-    isCommandDataValid() {
-    	return true;
-    }
-
     handleResponse(resolve, reject) {
     	this.commandData.outcome = this.ok;
     	resolve();

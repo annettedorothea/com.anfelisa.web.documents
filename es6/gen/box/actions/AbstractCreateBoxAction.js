@@ -8,7 +8,7 @@ export default class AbstractCreateBoxAction extends Action {
         super({}, 'box.CreateBoxAction');
 		this.postCall = this.postCall.bind(this);
     }
-
+    
 	getCommand() {
 		return new CreateBoxCommand(this.actionData);
 	}

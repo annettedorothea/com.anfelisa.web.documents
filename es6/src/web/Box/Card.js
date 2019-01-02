@@ -16,10 +16,7 @@ export default class Card extends React.Component {
     }
 
     scoreButtonClick(quality) {
-        const data = {
-            scoredCardQuality: quality
-        };
-        new ScoreCardAction(data).apply();
+        new ScoreCardAction(quality).apply();
     }
 
     onScheduleNextCheckedChange() {

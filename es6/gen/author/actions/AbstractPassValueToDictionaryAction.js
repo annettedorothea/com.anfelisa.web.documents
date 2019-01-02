@@ -6,7 +6,7 @@ export default class AbstractPassValueToDictionaryAction extends Action {
     constructor() {
         super({}, 'author.PassValueToDictionaryAction');
     }
-
+    
 	getCommand() {
 		return new PassValueToDictionaryCommand(this.actionData);
 	}

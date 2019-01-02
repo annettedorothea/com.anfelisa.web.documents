@@ -1,21 +1,18 @@
 import AbstractScheduleNextCardCommand from "../../../gen/box/commands/AbstractScheduleNextCardCommand";
+import * as App from "../../app/App";
 
 export default class ScheduleNextCardCommand extends AbstractScheduleNextCardCommand {
-    execute() {
-        return new Promise((resolve, reject) => {
-            let queryParams = [];
-            queryParams.push({
-                key: "boxId",
-                value: this.commandData.boxId
-            });
-            this.httpPost("api/card/schedule-next", [], {boxId: this.commandData.boxId}).then((data) => {
-                this.commandData.outcome = this.ok;
-                this.commandData.data = data;
-                resolve();
-            }, error => {
-                reject(error)
-            });
-        });
+
+    initCommandData() {
+        this.commandData.boxId = App.appState.data === undefined || App.appState.data.boxId === undefined ? undefined : App.appState.data.boxId;
+    }
+
+    handleResponse(resolve, reject) {
+    	this.commandData.outcome = this.ok;
+    	resolve();
+    }
+    handleError(resolve, reject) {
+    	reject(this.commandData.error);
     }
 }
 

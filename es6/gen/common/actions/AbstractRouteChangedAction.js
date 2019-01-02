@@ -6,7 +6,7 @@ export default class AbstractRouteChangedAction extends Action {
     constructor( hash) {
         super({hash}, 'common.RouteChangedAction');
     }
-
+    
 	getCommand() {
 		return new RouteChangedCommand(this.actionData);
 	}

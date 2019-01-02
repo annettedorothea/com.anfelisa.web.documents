@@ -1,4 +1,4 @@
-import Command from "../../../gen/ace/SynchronousCommand";
+import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import DeleteBoxErrorEvent from "../../../gen/box/events/DeleteBoxErrorEvent";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
@@ -12,18 +12,36 @@ export default class AbstractDeleteBoxCommand extends Command {
     }
 
     publishEvents() {
+		let promises = [];
+	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new TriggerAction(new LoadBoxesAction()).publish();
+			promises.push(new TriggerAction(new LoadBoxesAction()).publish());
 			break;
 		case this.error:
-			new DeleteBoxErrorEvent(this.commandData).publish();
-			new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish();
+			promises.push(new DeleteBoxErrorEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish());
 			break;
 		default:
-			throw 'DeleteBoxCommand unhandled outcome: ' + this.commandData.outcome;
+			return new Promise((resolve, reject) => {reject('DeleteBoxCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
+		return Promise.all(promises);
     }
+    
+	execute() {
+	    return new Promise((resolve, reject) => {
+			let queryParams = [];
+		    queryParams.push({key: "boxId",value: this.commandData.boxId});
+	        
+			this.httpDelete(`/api/box/delete`, true, queryParams).then((data) => {
+				this.handleResponse(resolve, reject);
+			}, (error) => {
+				this.commandData.error = error;
+				this.handleError(resolve, reject);
+			});
+	    });
+	}
+
 }
 
 /*       S.D.G.       */

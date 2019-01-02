@@ -7,7 +7,7 @@ ACE
 			Categories.render 
 		)
 	
-	 CreateCategory preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	CreateCategory preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
 		on ok (Categories.resetNewCategoryValues) triggers (LoadCategories)
 	
 	 UpdateCategory preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
@@ -239,11 +239,3 @@ views
 		toggleAllScheduleCardSelection
 	}
 	
-models 
-	Category extends com.anfelisa.category.Category {
-		edited
-	}
-	CategoryView {
-		List categoryList {Category}
-	}
-

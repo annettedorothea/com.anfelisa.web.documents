@@ -14,10 +14,7 @@ export default class ReinforceCard extends React.Component {
     }
 
     scoreButtonClick(quality) {
-        const data = {
-            quality,
-        };
-        new ScoreReinforceCardAction(data).apply();
+        new ScoreReinforceCardAction(quality).apply();
     }
 
     scoreButton(quality) {

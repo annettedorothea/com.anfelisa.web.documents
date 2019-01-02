@@ -13,10 +13,7 @@ export default class StudentDashboard extends React.Component {
     }
 
     onDelete() {
-        const data = {
-            boxId: this.props.data.deleteBox.boxId
-        };
-        new DeleteBoxAction(data).apply();
+        new DeleteBoxAction(this.props.data.deleteBox.boxId).apply();
     }
 
     onDeleteCancel() {

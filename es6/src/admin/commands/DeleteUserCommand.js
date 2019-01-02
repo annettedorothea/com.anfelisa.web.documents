@@ -7,10 +7,6 @@ export default class DeleteUserCommand extends AbstractDeleteUserCommand {
         this.commandData.usernameToBeDeleted = App.appState.data.usernameToBeDeleted;
     }
 
-    isCommandDataValid() {
-    	return true;
-    }
-
     handleResponse(resolve, reject) {
         this.commandData.outcome = this.ok;
     	resolve();

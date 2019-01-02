@@ -7,7 +7,7 @@ export default class AbstractUpdateCardAction extends Action {
     constructor() {
         super({}, 'author.UpdateCardAction');
     }
-
+    
 	getCommand() {
 		return new UpdateCardCommand(this.actionData);
 	}

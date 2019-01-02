@@ -12,15 +12,15 @@ import ClearToastAction from "../../src/common/actions/ClearToastAction";
 export default class ActionFactoryRegistrationCommon {
 
 	static init() {
-		ACEController.registerFactory('common.InitAction', (actionData) => new InitAction(actionData));
-		ACEController.registerFactory('common.RouteChangedAction', (actionData) => new RouteChangedAction(actionData));
-		ACEController.registerFactory('common.RouteAction', (actionData) => new RouteAction(actionData));
-		ACEController.registerFactory('common.InitialLoginAction', (actionData) => new InitialLoginAction(actionData));
-		ACEController.registerFactory('common.LogoutAction', (actionData) => new LogoutAction(actionData));
-		ACEController.registerFactory('common.DisplayErrorAction', (actionData) => new DisplayErrorAction(actionData));
-		ACEController.registerFactory('common.DisplayErrorAndLogoutAction', (actionData) => new DisplayErrorAndLogoutAction(actionData));
-		ACEController.registerFactory('common.DisplayMessageAction', (actionData) => new DisplayMessageAction(actionData));
-		ACEController.registerFactory('common.ClearToastAction', (actionData) => new ClearToastAction(actionData));
+		ACEController.registerFactory('common.InitAction', (actionData) => new InitAction(actionData, 'common.InitAction'));
+		ACEController.registerFactory('common.RouteChangedAction', (actionData) => new RouteChangedAction(actionData, 'common.RouteChangedAction'));
+		ACEController.registerFactory('common.RouteAction', (actionData) => new RouteAction(actionData, 'common.RouteAction'));
+		ACEController.registerFactory('common.InitialLoginAction', (actionData) => new InitialLoginAction(actionData, 'common.InitialLoginAction'));
+		ACEController.registerFactory('common.LogoutAction', (actionData) => new LogoutAction(actionData, 'common.LogoutAction'));
+		ACEController.registerFactory('common.DisplayErrorAction', (actionData) => new DisplayErrorAction(actionData, 'common.DisplayErrorAction'));
+		ACEController.registerFactory('common.DisplayErrorAndLogoutAction', (actionData) => new DisplayErrorAndLogoutAction(actionData, 'common.DisplayErrorAndLogoutAction'));
+		ACEController.registerFactory('common.DisplayMessageAction', (actionData) => new DisplayMessageAction(actionData, 'common.DisplayMessageAction'));
+		ACEController.registerFactory('common.ClearToastAction', (actionData) => new ClearToastAction(actionData, 'common.ClearToastAction'));
 	}
 
 }

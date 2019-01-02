@@ -15,7 +15,7 @@ ACE
 		postCall(common.Common.hideSpinner) 
 		on ok triggers (GetAllUsers)
 	
-	DeleteUser 
+	DeleteUser <usernameToBeDeleted>
 		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.user.DeleteUser
 		postCall (common.Common.hideSpinner) 

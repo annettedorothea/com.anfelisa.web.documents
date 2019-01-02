@@ -3,8 +3,8 @@ import AppUtils from "./AppUtils";
 import EventListenerRegistrationAdmin from "../../gen/admin/EventListenerRegistration";
 import ActionFactoryRegistrationAdmin from "../../gen/admin/ActionFactoryRegistration";
 
-import EventListenerRegistrationAuthor from "../../gen/author/EventListenerRegistration";
-import ActionFactoryRegistrationAuthor from "../../gen/author/ActionFactoryRegistration";
+import EventListenerRegistrationCategory from "../../gen/category/EventListenerRegistration";
+import ActionFactoryRegistrationCategory from "../../gen/category/ActionFactoryRegistration";
 
 import EventListenerRegistrationBox from "../../gen/box/EventListenerRegistration";
 import ActionFactoryRegistrationBox from "../../gen/box/ActionFactoryRegistration";
@@ -64,8 +64,8 @@ window.onhashchange = () => {
 EventListenerRegistrationAdmin.init();
 ActionFactoryRegistrationAdmin.init();
 
-EventListenerRegistrationAuthor.init();
-ActionFactoryRegistrationAuthor.init();
+EventListenerRegistrationCategory.init();
+ActionFactoryRegistrationCategory.init();
 
 EventListenerRegistrationBox.init();
 ActionFactoryRegistrationBox.init();

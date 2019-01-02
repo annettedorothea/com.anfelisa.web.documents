@@ -7,7 +7,7 @@ export default class AbstractUpdateCategoryAction extends Action {
     constructor() {
         super({}, 'author.UpdateCategoryAction');
     }
-
+    
 	getCommand() {
 		return new UpdateCategoryCommand(this.actionData);
 	}

@@ -2,9 +2,6 @@ import AbstractDisplayErrorAction from "../../../gen/common/actions/AbstractDisp
 
 export default class DisplayErrorAction extends AbstractDisplayErrorAction {
 
-    initActionData() {
-    }
-
 }
 
 /*       S.D.G.       */

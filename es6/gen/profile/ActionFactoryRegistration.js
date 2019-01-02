@@ -7,10 +7,10 @@ import DeleteUserCancelAction from "../../src/profile/actions/DeleteUserCancelAc
 export default class ActionFactoryRegistrationProfile {
 
 	static init() {
-		ACEController.registerFactory('profile.LoadUserAction', (actionData) => new LoadUserAction(actionData));
-		ACEController.registerFactory('profile.DeleteUserAction', (actionData) => new DeleteUserAction(actionData));
-		ACEController.registerFactory('profile.DeleteUserClickAction', (actionData) => new DeleteUserClickAction(actionData));
-		ACEController.registerFactory('profile.DeleteUserCancelAction', (actionData) => new DeleteUserCancelAction(actionData));
+		ACEController.registerFactory('profile.LoadUserAction', (actionData) => new LoadUserAction(actionData, 'profile.LoadUserAction'));
+		ACEController.registerFactory('profile.DeleteUserAction', (actionData) => new DeleteUserAction(actionData, 'profile.DeleteUserAction'));
+		ACEController.registerFactory('profile.DeleteUserClickAction', (actionData) => new DeleteUserClickAction(actionData, 'profile.DeleteUserClickAction'));
+		ACEController.registerFactory('profile.DeleteUserCancelAction', (actionData) => new DeleteUserCancelAction(actionData, 'profile.DeleteUserCancelAction'));
 	}
 
 }

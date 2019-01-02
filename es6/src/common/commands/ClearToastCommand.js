@@ -2,7 +2,7 @@ import AbstractClearToastCommand from "../../../gen/common/commands/AbstractClea
 
 export default class ClearToastCommand extends AbstractClearToastCommand {
     execute() {
-        this.commandData.outcome = this.ok;
+    	this.commandData.outcome = this.ok;
     }
 }
 

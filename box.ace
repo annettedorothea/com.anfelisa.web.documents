@@ -14,69 +14,87 @@ ACE
 		postCall (common.Common.hideSpinner)  
 		on ok triggers (common.Route)
 	
-	EditBox 
+	EditBox <maxInterval>
 		on ok (Box.editBox)
 	
 	CancelEditBox 
 		on ok (Box.cancelEditBox)
 	
-	MaxIntervalChanged 
+	MaxIntervalChanged <maxInterval>
 		on ok (Box.maxIntervalChanged)
 		on invalid
 	
-	 UpdateBox preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	UpdateBox 
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.box.UpdateBox
+		postCall (common.Common.hideSpinner) 
 		on ok triggers (LoadBoxStatistics)
 	
-	DeleteBoxClick 
+	DeleteBoxClick <boxId>
 		on ok (BoxList.displayConfirmDelete)
 	
 	CancelDeleteBox 
 		on ok (BoxList.hideConfirmDelete)
 	
-	 DeleteBox preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	DeleteBox<boxId> 
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.box.DeleteBox
+		postCall (common.Common.hideSpinner) 
 		on ok triggers (LoadBoxes)
 		on error (BoxList.hideConfirmDelete) triggers (common.DisplayError)
 	
-	
-	 PostponeCardsOfBox preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	PostponeCardsOfBox <boxId> 
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.box.PostponeCards
+		postCall (common.Common.hideSpinner) 
 		on next triggers (LoadNextCard)
 	
-	
-	 LoadNextCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	LoadNextCard <boxId>
+	 	preCall (common.Common.displaySpinner) 
+	 	call com.anfelisa.box.LoadNextCard
+	 	postCall (common.Common.hideSpinner) 
 		on ok (Box.render) triggers (LoadBoxStatistics)
 		on scheduleNext triggers (ScheduleNextCard)
 		on doNotScheduleNext (Box.render) triggers (LoadBoxStatistics)
 	
-	 ScheduleNextCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	ScheduleNextCard 
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.box.ScheduleNextCard
+		postCall (common.Common.hideSpinner) 
 		on ok triggers (LoadNextCard)
 	
 	ToggleScheduleNext 
 		on ok (Box.toggleScheduleNext)
 	
-	DisplayWanted 
+	DisplayWanted <wantedItemsLength, index, hasImage> 
 		on all (Box.displayNextItem Box.enableScoreButtons)
 		on notAll (Box.displayNextItem)
 		on image (Box.displayImage Box.enableScoreButtons)
 	
-	 ScoreCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	ScoreCard <scoredCardQuality>
+	 	preCall (common.Common.displaySpinner) 
+	 	call com.anfelisa.box.ScoreCard
+	 	postCall (common.Common.hideSpinner) 
 		on ok triggers (LoadNextCard)
 	
-	 LoadNextReinforceCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	LoadNextReinforceCard <boxId>
+	 	preCall (common.Common.displaySpinner) 
+	 	call com.anfelisa.box.LoadNextReinforceCard
+	 	postCall (common.Common.hideSpinner) 
 		on ok (BoxReinforce.render) triggers (LoadBoxStatistics)
 		on noCard triggers (common.Route)
 	
-	DisplayWantedReinforce 
-		on all (BoxReinforce.displayNextItem BoxReinforce.enableScoreButtons)
-		on notAll (BoxReinforce.displayNextItem)
-		on image (BoxReinforce.displayImage BoxReinforce.enableScoreButtons)
-	
-	 ScoreReinforceCard preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	ScoreReinforceCard <quality>
+		preCall (common.Common.displaySpinner) 
+		call com.anfelisa.box.ScoreReinforceCard
+		postCall (common.Common.hideSpinner) 
 		on ok triggers (LoadNextReinforceCard)
 	
-	 LoadBoxStatistics preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	LoadBoxStatistics <boxId>
+	 	preCall (common.Common.displaySpinner) 
+	 	call com.anfelisa.box.GetBox
+	 	postCall (common.Common.hideSpinner) 
 		on ok (Box.renderStatistics)
-	
-
 
 views 
 	BoxList {

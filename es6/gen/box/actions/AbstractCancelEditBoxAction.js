@@ -6,7 +6,7 @@ export default class AbstractCancelEditBoxAction extends Action {
     constructor() {
         super({}, 'box.CancelEditBoxAction');
     }
-
+    
 	getCommand() {
 		return new CancelEditBoxCommand(this.actionData);
 	}

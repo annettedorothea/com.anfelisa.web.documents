@@ -6,7 +6,7 @@ export default class AbstractEditCardAction extends Action {
     constructor() {
         super({}, 'author.EditCardAction');
     }
-
+    
 	getCommand() {
 		return new EditCardCommand(this.actionData);
 	}

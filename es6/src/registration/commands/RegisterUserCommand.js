@@ -8,15 +8,10 @@ export default class RegisterUserCommand extends AbstractRegisterUserCommand {
         this.commandData.language = App.appState.language;
     }
 
-    isCommandDataValid() {
-        return true;
-    }
-
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.outcome = this.ok;
         this.commandData.hash = "#";
         this.commandData.messageKey = "confirmEmail";
-        console.log("RegisterUserCommand", this.commandData);
         resolve();
     }
 

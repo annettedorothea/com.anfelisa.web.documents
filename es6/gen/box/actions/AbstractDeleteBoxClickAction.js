@@ -3,10 +3,10 @@ import DeleteBoxClickCommand from "../../../src/box/commands/DeleteBoxClickComma
 
 export default class AbstractDeleteBoxClickAction extends Action {
 
-    constructor() {
-        super({}, 'box.DeleteBoxClickAction');
+    constructor( boxId) {
+        super({boxId}, 'box.DeleteBoxClickAction');
     }
-
+    
 	getCommand() {
 		return new DeleteBoxClickCommand(this.actionData);
 	}

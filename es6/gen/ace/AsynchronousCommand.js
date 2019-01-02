@@ -8,19 +8,13 @@ export default class AsynchronousCommand extends Command {
         return new Promise((resolve, reject) => {
 			if (ACEController.execution !== ACEController.REPLAY) {
 				this.initCommandData();
-				if (this.isCommandDataValid() === true) {
-				    this.execute().then(() => {
-				        ACEController.addItemToTimeLine({command: this});
-				        this.publishEvents();
-				        resolve();
-				    }, (error) => {
-				        reject(error);
-				    });
-				} else {
+			    this.execute().then(() => {
 			        ACEController.addItemToTimeLine({command: this});
 			        this.publishEvents();
-					resolve();
-				}
+			        resolve();
+			    }, (error) => {
+			        reject(error);
+			    });
 			} else {
 			    const timelineCommand = ACEController.getCommandByUuid(this.commandData.uuid);
 			    this.commandData = timelineCommand.commandData;
@@ -32,10 +26,6 @@ export default class AsynchronousCommand extends Command {
     }
 
     initCommandData() {
-    }
-
-    isCommandDataValid() {
-    	return true;
     }
 
     httpGet(url, authorize, queryParams) {

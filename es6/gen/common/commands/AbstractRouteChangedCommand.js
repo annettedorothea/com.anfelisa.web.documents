@@ -8,7 +8,7 @@ import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import ConfirmEmailAction from "../../../src/registration/actions/ConfirmEmailAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
-import LoadCategoriesAction from "../../../src/author/actions/LoadCategoriesAction";
+import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import LoadNextReinforceCardAction from "../../../src/box/actions/LoadNextReinforceCardAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
@@ -57,13 +57,13 @@ export default class AbstractRouteChangedCommand extends Command {
 			new TriggerAction(new GetAllUsersAction()).publish();
 			break;
 		case this.categories:
-			new TriggerAction(new LoadCategoriesAction()).publish();
+			new TriggerAction(new LoadCategoryTreeAction(this.commandData.pathToSelected)).publish();
 			break;
 		case this.nextCard:
-			new TriggerAction(new LoadNextCardAction()).publish();
+			new TriggerAction(new LoadNextCardAction(this.commandData.boxId)).publish();
 			break;
 		case this.reinforceCard:
-			new TriggerAction(new LoadNextReinforceCardAction()).publish();
+			new TriggerAction(new LoadNextReinforceCardAction(this.commandData.boxId)).publish();
 			break;
 		case this.invalid:
 			new TriggerAction(new RouteAction(this.commandData.hash)).publish();

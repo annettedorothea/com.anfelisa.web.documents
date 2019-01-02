@@ -2,13 +2,6 @@ import AbstractCheckUsernameCommand from "../../../gen/registration/commands/Abs
 
 export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
 
-    initCommandData() {
-    }
-
-    isCommandDataValid() {
-    	return true;
-    }
-
     handleResponse(resolve) {
         if (this.commandData.available === true) {
             this.commandData.outcome = this.available;

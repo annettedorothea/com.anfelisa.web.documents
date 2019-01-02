@@ -6,7 +6,7 @@ export default class AbstractCancelRevokeUserAccessAction extends Action {
     constructor() {
         super({}, 'author.CancelRevokeUserAccessAction');
     }
-
+    
 	getCommand() {
 		return new CancelRevokeUserAccessCommand(this.actionData);
 	}

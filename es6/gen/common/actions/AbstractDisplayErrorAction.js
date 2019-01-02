@@ -6,7 +6,7 @@ export default class AbstractDisplayErrorAction extends Action {
     constructor( error) {
         super({error}, 'common.DisplayErrorAction');
     }
-
+    
 	getCommand() {
 		return new DisplayErrorCommand(this.actionData);
 	}

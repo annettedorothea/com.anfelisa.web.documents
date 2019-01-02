@@ -2,13 +2,6 @@ import AbstractInitialLoginCommand from "../../../gen/common/commands/AbstractIn
 
 export default class InitialLoginCommand extends AbstractInitialLoginCommand {
 
-    initCommandData() {
-    }
-
-    isCommandDataValid() {
-        return true;
-    }
-
     handleResponse(resolve) {
         this.commandData.outcome = this.ok;
         resolve();

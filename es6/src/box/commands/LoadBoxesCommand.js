@@ -2,15 +2,7 @@ import AbstractLoadBoxesCommand from "../../../gen/box/commands/AbstractLoadBoxe
 
 export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
 
-    initCommandData() {
-    	//add from appState to commandData 
-    }
-
-    isCommandDataValid() {
-    	return true;
-    }
-
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
     	this.commandData.outcome = this.ok;
     	resolve();
     }

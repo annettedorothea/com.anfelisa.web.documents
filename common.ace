@@ -1,85 +1,60 @@
-ES6
-common
+ES6 common
 
 ACE 
-	Init <username, password, language, hash>
-		on user ( Common.initTexts Common.initUser ) triggers ( InitialLogin )
-		on noUser ( Common.initTexts ) triggers ( RouteChanged )
+Init <username, password, language, hash> 
+	on user ( Common.initTexts Common.initUser ) triggers ( InitialLogin )
+	on noUser ( Common.initTexts ) triggers ( RouteChanged )
 	
-	RouteChanged<hash> 
-		on login (  login.Login.render )
-		on registration ( registration.Registration.render )
-		on dashboard triggers (box.LoadBoxes)
-		on profile triggers ( profile.LoadUser )
-		on forgotPassword ( password.ForgotPassword.render )
-		on confirmEmail triggers (registration.ConfirmEmail)
-		on resetPassword (password.ResetPassword.render)
-		on userList triggers (admin.GetAllUsers) 
-		on categories triggers (author.LoadCategories )
-		on nextCard triggers (box.LoadNextCard)
-		on reinforceCard triggers (box.LoadNextReinforceCard)
-		on invalid triggers (Route)
+RouteChanged <hash> 
+	on login (  login.Login.render )
+	on registration ( registration.Registration.render )
+	on dashboard triggers (box.LoadBoxes)
+	on profile triggers ( profile.LoadUser )
+	on forgotPassword ( password.ForgotPassword.render )
+	on confirmEmail triggers (registration.ConfirmEmail)
+	on resetPassword (password.ResetPassword.render)
+	on userList triggers (admin.GetAllUsers) 
+	on categories triggers (category.LoadCategoryTree )
+	on nextCard triggers (box.LoadNextCard)
+	on reinforceCard triggers (box.LoadNextReinforceCard)
+	on invalid triggers (Route)
 	
-	Route<hash> 
-		on ok ( Common.updateHash )
+Route <hash> 
+	on ok ( Common.updateHash )
 	
-	InitialLogin<hash> 
-	 	preCall (Common.displaySpinner) 
-	 	call com.anfelisa.user.GetRole
-	 	postCall (Common.hideSpinner) 
-		on ok ( Common.initRole ) triggers ( RouteChanged )
-		on unauthorized triggers ( DisplayError Logout )
+InitialLogin <hash>
+	preCall (Common.displaySpinner)
+	call com.anfelisa.user.GetRole
+	postCall (Common.hideSpinner) 
+	on ok ( Common.initRole ) triggers ( RouteChanged )
+	on unauthorized triggers ( DisplayError Logout )
 	
-	Logout 
-		on ok ( Common.resetUser ) triggers ( Route )
-	
-	DisplayError<error> 
-		on ok (Common.displayError) triggers (ClearToast)
-	
-	DisplayErrorAndLogout<error> 
-		on ok (Common.displayError) triggers (ClearToast Logout)
-	
-	DisplayMessage<messageKey>
-		on ok (Common.displayMessage) triggers (ClearToast )
-	
-	ClearToast 
-		on ok (Common.clearToast)
-	
+Logout 
+	on ok ( Common.resetUser ) triggers ( Route )
 
+DisplayError <error> 
+	on ok (Common.displayError) triggers (ClearToast)
+
+DisplayErrorAndLogout <error> 
+	on ok (Common.displayError) triggers (ClearToast Logout)
+
+DisplayMessage <messageKey> 
+	on ok (Common.displayMessage) triggers (ClearToast )
+
+ClearToast 
+	on ok (Common.clearToast)
+	
 views 
-	Common {
-		displayError
-		displayMessage
-		clearToast
-		displaySpinner
-		hideSpinner
-		initTexts
-		initUser
-		initRole
-		saveInLocalStorage
-		resetUser
-		updateHash
-		
-	}
-	
-models 
-Root {
-	main {
-		User | Registration | Login | author.CategoryView
-	}
-	setting {Setting}
-}
-User extends com.anfelisa.user.User {
-	username
-	role
-}
-Registration {
-	
-}	
-Login {
-	
-}
-Setting {
-	language
-	user {User}
+Common {
+	displayError
+	displayMessage
+	clearToast
+	displaySpinner
+	hideSpinner
+	initTexts
+	initUser
+	initRole
+	saveInLocalStorage
+	resetUser
+	updateHash
 }

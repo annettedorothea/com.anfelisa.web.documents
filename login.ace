@@ -1,18 +1,20 @@
-ES6
-login
+ES6 login
 
 ACE 
-	UsernameChanged 
+	UsernameChanged <username> 
 		on ok (Login.usernameChanged)
 	
-	ToggleSaveInLocalStorage 
+	ToggleSaveInLocalStorage <saveInLocalStorage>
 		on ok (Login.toggleSaveInLocalStorage)
 	
-	Login  
+	Login <password> 
 		on saveInLocalStorage ( common.Common.initUser common.Common.saveInLocalStorage ) triggers ( GetRole )
 		on doNotSaveInLocalStorage ( common.Common.initUser ) triggers ( GetRole )
 	
-	 GetRole preCall (common.Common.displaySpinner) postCall (common.Common.hideSpinner) 
+	 GetRole 
+	 	preCall (common.Common.displaySpinner) 
+	 	call com.anfelisa.user.GetRole
+	 	postCall (common.Common.hideSpinner) 
 		on ok (common.Common.initRole) triggers ( common.Route )
 		on unauthorized triggers ( common.Logout common.DisplayError)
 	
@@ -23,6 +25,4 @@ views
 		render
 		usernameChanged
 		toggleSaveInLocalStorage
-	
-	
 	}

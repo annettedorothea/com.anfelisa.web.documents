@@ -6,7 +6,7 @@ export default class AbstractToggleUseDictionaryAction extends Action {
     constructor() {
         super({}, 'author.ToggleUseDictionaryAction');
     }
-
+    
 	getCommand() {
 		return new ToggleUseDictionaryCommand(this.actionData);
 	}

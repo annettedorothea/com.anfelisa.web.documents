@@ -1,38 +1,33 @@
 import AbstractLoadNextCardCommand from "../../../gen/box/commands/AbstractLoadNextCardCommand";
+import * as App from "../../app/App";
 
 export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
-    execute() {
-        return new Promise((resolve, reject) => {
-            let queryParams = [];
-            queryParams.push({
-                key: "today",
-                value: this.commandData.today
-            });
-            queryParams.push({
-                key: "boxId",
-                value: this.commandData.boxId
-            });
-            this.httpGet("api/box/next-card", queryParams).then((data) => {
-                this.commandData.data = data;
-                this.commandData.data.index = 0;
-                this.commandData.data.enableScoreButtons = false;
-                this.commandData.data.displayImage = false;
-                this.commandData.data.scheduleNext = this.commandData.scheduleNext;
-                if (data.scheduledCardId) {
-                    this.commandData.outcome = this.ok;
-                } else {
-                    if (this.commandData.scheduleNext === true) {
-                        this.commandData.outcome = this.scheduleNext;
-                    } else {
-                        this.commandData.outcome = this.doNotScheduleNext;
-                    }
-                }
-                resolve();
-            }, error => {
-                reject(error)
-            });
-        });
+
+    initCommandData() {
+    	//add from appState to commandData 
+    }
+
+    handleResponse(resolve) {
+        this.commandData.index = 0;
+        this.commandData.enableScoreButtons = false;
+        this.commandData.displayImage = false;
+        this.commandData.scheduleNext = App.appState.data === undefined || App.appState.data.scheduleNext === undefined ? false : App.appState.data.scheduleNext;
+        if (this.commandData.scheduledCardId) {
+            this.commandData.outcome = this.ok;
+        } else {
+            if (this.commandData.scheduleNext === true) {
+                this.commandData.outcome = this.scheduleNext;
+            } else {
+                this.commandData.outcome = this.doNotScheduleNext;
+            }
+        }
+    	resolve();
+    }
+
+    handleError(resolve, reject) {
+    	reject(this.commandData.error);
     }
 }
 
 /*       S.D.G.       */
+

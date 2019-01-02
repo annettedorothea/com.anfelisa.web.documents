@@ -2,9 +2,6 @@ import AbstractDisplayErrorAndLogoutAction from "../../../gen/common/actions/Abs
 
 export default class DisplayErrorAndLogoutAction extends AbstractDisplayErrorAndLogoutAction {
 
-    initActionData() {
-    }
-
 }
 
 /*       S.D.G.       */

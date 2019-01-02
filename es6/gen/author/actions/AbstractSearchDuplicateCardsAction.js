@@ -7,7 +7,7 @@ export default class AbstractSearchDuplicateCardsAction extends Action {
     constructor() {
         super({}, 'author.SearchDuplicateCardsAction');
     }
-
+    
 	getCommand() {
 		return new SearchDuplicateCardsCommand(this.actionData);
 	}

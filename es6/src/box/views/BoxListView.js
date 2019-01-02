@@ -6,7 +6,7 @@ export default class BoxListView {
         App.mergeState({
             route: "dashboard",
             data: {
-                boxList: eventData.data.boxList,
+                boxList: eventData.boxList,
                 deleteBox: {
                     confirmDelete: false,
                     boxId: ""

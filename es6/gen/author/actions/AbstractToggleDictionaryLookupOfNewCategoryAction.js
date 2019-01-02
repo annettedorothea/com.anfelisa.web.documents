@@ -6,7 +6,7 @@ export default class AbstractToggleDictionaryLookupOfNewCategoryAction extends A
     constructor() {
         super({}, 'author.ToggleDictionaryLookupOfNewCategoryAction');
     }
-
+    
 	getCommand() {
 		return new ToggleDictionaryLookupOfNewCategoryCommand(this.actionData);
 	}

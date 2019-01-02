@@ -8,7 +8,7 @@ export default class AbstractSaveRoleAction extends Action {
         super({editedUserId, newRole}, 'admin.SaveRoleAction');
 		this.postCall = this.postCall.bind(this);
     }
-
+    
 	getCommand() {
 		return new SaveRoleCommand(this.actionData);
 	}

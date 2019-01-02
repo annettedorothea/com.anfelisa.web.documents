@@ -8,11 +8,11 @@ import ConfirmEmailAction from "../../src/registration/actions/ConfirmEmailActio
 export default class ActionFactoryRegistrationRegistration {
 
 	static init() {
-		ACEController.registerFactory('registration.CheckUsernameAction', (actionData) => new CheckUsernameAction(actionData));
-		ACEController.registerFactory('registration.EmailChangedAction', (actionData) => new EmailChangedAction(actionData));
-		ACEController.registerFactory('registration.PasswordChangedAction', (actionData) => new PasswordChangedAction(actionData));
-		ACEController.registerFactory('registration.RegisterUserAction', (actionData) => new RegisterUserAction(actionData));
-		ACEController.registerFactory('registration.ConfirmEmailAction', (actionData) => new ConfirmEmailAction(actionData));
+		ACEController.registerFactory('registration.CheckUsernameAction', (actionData) => new CheckUsernameAction(actionData, 'registration.CheckUsernameAction'));
+		ACEController.registerFactory('registration.EmailChangedAction', (actionData) => new EmailChangedAction(actionData, 'registration.EmailChangedAction'));
+		ACEController.registerFactory('registration.PasswordChangedAction', (actionData) => new PasswordChangedAction(actionData, 'registration.PasswordChangedAction'));
+		ACEController.registerFactory('registration.RegisterUserAction', (actionData) => new RegisterUserAction(actionData, 'registration.RegisterUserAction'));
+		ACEController.registerFactory('registration.ConfirmEmailAction', (actionData) => new ConfirmEmailAction(actionData, 'registration.ConfirmEmailAction'));
 	}
 
 }

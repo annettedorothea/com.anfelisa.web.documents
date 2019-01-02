@@ -20,7 +20,7 @@ export default class Login extends React.Component {
 
     onUsernameChange(event) {
         const username = event.target.value;
-        new UsernameChangedAction({username}).apply();
+        new UsernameChangedAction(username).apply();
     }
 
     onPasswordChange(event) {
@@ -29,16 +29,11 @@ export default class Login extends React.Component {
     }
 
     onToggleSaveInLocalStorage() {
-        new ToggleSaveInLocalStorageAction({
-            saveInLocalStorage: this.props.data.saveInLocalStorage
-        }).apply();
+        new ToggleSaveInLocalStorageAction(this.props.data.saveInLocalStorage).apply();
     }
 
     onLogin() {
-        const data = {
-            password: this.state.password
-        };
-        new LoginAction(data).apply();
+        new LoginAction(this.state.password).apply();
     }
 
     render() {
