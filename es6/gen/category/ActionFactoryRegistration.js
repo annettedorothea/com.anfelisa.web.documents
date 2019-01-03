@@ -6,13 +6,17 @@ import SelectTreeItemAction from "../../src/category/actions/SelectTreeItemActio
 import DeselectTreeItemAction from "../../src/category/actions/DeselectTreeItemAction";
 import NewCategoryClickAction from "../../src/category/actions/NewCategoryClickAction";
 import CancelNewCategoryAction from "../../src/category/actions/CancelNewCategoryAction";
-import NameOfNewCategoryChangedAction from "../../src/category/actions/NameOfNewCategoryChangedAction";
+import CategoryNameChangedAction from "../../src/category/actions/CategoryNameChangedAction";
 import DictionaryLookupChangedAction from "../../src/category/actions/DictionaryLookupChangedAction";
 import GivenLanguageChangedAction from "../../src/category/actions/GivenLanguageChangedAction";
 import WantedLanguageChangedAction from "../../src/category/actions/WantedLanguageChangedAction";
 import CreateCategoryAction from "../../src/category/actions/CreateCategoryAction";
 import DeleteCategoryClickAction from "../../src/category/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../../src/category/actions/CancelDeleteCategoryAction";
+import DeleteCategoryAction from "../../src/category/actions/DeleteCategoryAction";
+import EditCategoryClickAction from "../../src/category/actions/EditCategoryClickAction";
+import CancelEditCategoryAction from "../../src/category/actions/CancelEditCategoryAction";
+import UpdateCategoryAction from "../../src/category/actions/UpdateCategoryAction";
 
 export default class ActionFactoryRegistrationCategory {
 
@@ -24,13 +28,17 @@ export default class ActionFactoryRegistrationCategory {
 		ACEController.registerFactory('category.DeselectTreeItemAction', (actionData) => new DeselectTreeItemAction(actionData, 'category.DeselectTreeItemAction'));
 		ACEController.registerFactory('category.NewCategoryClickAction', (actionData) => new NewCategoryClickAction(actionData, 'category.NewCategoryClickAction'));
 		ACEController.registerFactory('category.CancelNewCategoryAction', (actionData) => new CancelNewCategoryAction(actionData, 'category.CancelNewCategoryAction'));
-		ACEController.registerFactory('category.NameOfNewCategoryChangedAction', (actionData) => new NameOfNewCategoryChangedAction(actionData, 'category.NameOfNewCategoryChangedAction'));
+		ACEController.registerFactory('category.CategoryNameChangedAction', (actionData) => new CategoryNameChangedAction(actionData, 'category.CategoryNameChangedAction'));
 		ACEController.registerFactory('category.DictionaryLookupChangedAction', (actionData) => new DictionaryLookupChangedAction(actionData, 'category.DictionaryLookupChangedAction'));
 		ACEController.registerFactory('category.GivenLanguageChangedAction', (actionData) => new GivenLanguageChangedAction(actionData, 'category.GivenLanguageChangedAction'));
 		ACEController.registerFactory('category.WantedLanguageChangedAction', (actionData) => new WantedLanguageChangedAction(actionData, 'category.WantedLanguageChangedAction'));
 		ACEController.registerFactory('category.CreateCategoryAction', (actionData) => new CreateCategoryAction(actionData, 'category.CreateCategoryAction'));
 		ACEController.registerFactory('category.DeleteCategoryClickAction', (actionData) => new DeleteCategoryClickAction(actionData, 'category.DeleteCategoryClickAction'));
 		ACEController.registerFactory('category.CancelDeleteCategoryAction', (actionData) => new CancelDeleteCategoryAction(actionData, 'category.CancelDeleteCategoryAction'));
+		ACEController.registerFactory('category.DeleteCategoryAction', (actionData) => new DeleteCategoryAction(actionData, 'category.DeleteCategoryAction'));
+		ACEController.registerFactory('category.EditCategoryClickAction', (actionData) => new EditCategoryClickAction(actionData, 'category.EditCategoryClickAction'));
+		ACEController.registerFactory('category.CancelEditCategoryAction', (actionData) => new CancelEditCategoryAction(actionData, 'category.CancelEditCategoryAction'));
+		ACEController.registerFactory('category.UpdateCategoryAction', (actionData) => new UpdateCategoryAction(actionData, 'category.UpdateCategoryAction'));
 	}
 
 }

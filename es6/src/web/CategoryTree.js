@@ -6,6 +6,10 @@ import NewCategory from "./CategoryTree/NewCategory";
 import Confirm from "./Confirm";
 import CancelDeleteCategoryAction from "../category/actions/CancelDeleteCategoryAction";
 import DeleteCategoryClickAction from "../category/actions/DeleteCategoryClickAction";
+import DeleteCategoryAction from "../category/actions/DeleteCategoryAction";
+import EditCategory from "./CategoryTree/EditCategory";
+import EditCategoryClickAction from "../category/actions/EditCategoryClickAction";
+import CreateBoxAction from "../box/actions/CreateBoxAction";
 
 export default class CategoryTree extends React.Component {
 
@@ -14,7 +18,6 @@ export default class CategoryTree extends React.Component {
     }
 
     render() {
-
         const categoryItems = this.props.data.categoryList.map((category) => {
             return <CategoryItem
                 {...category}
@@ -32,7 +35,18 @@ export default class CategoryTree extends React.Component {
                 {this.props.data.displayNewCategory &&
                 <NewCategory
                     selectedCategory={this.props.data.selectedCategory}
-                    newCategoryName={this.props.data.newCategoryName}
+                    categoryName={this.props.data.categoryName}
+                    categoryNameAlreadyExists={this.props.data.categoryNameAlreadyExists}
+                    givenLanguage={this.props.data.givenLanguage}
+                    wantedLanguage={this.props.data.wantedLanguage}
+                    dictionaryLookup={this.props.data.dictionaryLookup}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />}
+                {this.props.data.displayEditCategory &&
+                <EditCategory
+                    selectedCategory={this.props.data.selectedCategory}
+                    categoryName={this.props.data.categoryName}
                     categoryNameAlreadyExists={this.props.data.categoryNameAlreadyExists}
                     givenLanguage={this.props.data.givenLanguage}
                     wantedLanguage={this.props.data.wantedLanguage}
@@ -47,7 +61,7 @@ export default class CategoryTree extends React.Component {
                         message: this.props.texts.categoryTree.confirmDelete.message[this.props.language],
                         okText: this.props.texts.categoryTree.confirmDelete.ok[this.props.language],
                         cancelText: this.props.texts.categoryTree.confirmDelete.cancel[this.props.language],
-                        ok: () => {},
+                        ok: () => new DeleteCategoryAction().apply(),
                         cancel: () => new CancelDeleteCategoryAction().apply()
                     }}/>
                 }
@@ -63,16 +77,9 @@ export default class CategoryTree extends React.Component {
                     <i className="fas fa-plus"/>
                 </button>
                 <button
-                    disabled={!this.props.data.selectedCategory}
-                    onClick={() => {
-                        console.log(this.props)
-                    }}>
-                    <i className="fas fa-info"/>
-                </button>
-                <button
                     disabled={!this.props.data.selectedCategory || !this.props.data.selectedCategory.editable}
                     onClick={() => {
-                        console.log(this.props)
+                        new EditCategoryClickAction().apply()
                     }}>
                     <i className="fas fa-pen"/>
                 </button>
@@ -82,9 +89,9 @@ export default class CategoryTree extends React.Component {
                     <i className="fas fa-times"/>
                 </button>
                 <button
-                    disabled={!this.props.data.selectedCategory || this.props.data.selectedCategory.hasBox === undefined || this.props.data.selectedCategory.hasBox === true}
+                    disabled={!this.props.data.selectedCategory || this.props.data.selectedCategory.parentCategoryId !== undefined || this.props.data.selectedCategory.hasBox === undefined || this.props.data.selectedCategory.hasBox === true}
                     onClick={() => {
-                        console.log(this.props)
+                        new CreateBoxAction().apply();
                     }}>
                     <i className="fas fa-sign-in-alt"/>
                 </button>

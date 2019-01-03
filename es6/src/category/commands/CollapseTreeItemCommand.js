@@ -7,12 +7,13 @@ export default class CollapseTreeItemCommand extends AbstractCollapseTreeItemCom
         const data = getAppState().data;
         let category = findCategory(data.categoryList, this.commandData.categoryId);
         category.expanded = false;
-        if (data.selectedCategory && isCategoryChildOfParent(category, data.selectedCategory.categoryId)) {
-            this.commandData.selectedCategory = null;
-        }
         this.commandData.categoryList = data.categoryList;
-        this.commandData.categoryId = undefined;
-        this.commandData.outcome = this.ok;
+        if (data.selectedCategory && isCategoryChildOfParent(category, data.selectedCategory.categoryId)) {
+            this.commandData.selectedCategory = undefined;
+            this.commandData.outcome = this.deselectCategory;
+        } else {
+            this.commandData.outcome = this.ok;
+        }
     }
 }
 

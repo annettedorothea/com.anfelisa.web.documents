@@ -1,39 +1,32 @@
-import AbstractCreateCategoryCommand from "../../../gen/category/commands/AbstractCreateCategoryCommand";
+import AbstractUpdateCategoryCommand from "../../../gen/category/commands/AbstractUpdateCategoryCommand";
 import {getAppState} from "../../app/App";
 
-export default class CreateCategoryCommand extends AbstractCreateCategoryCommand {
+export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand {
 
     initCommandData() {
         const data = getAppState().data;
-        let categoryIndex;
-        if (data.selectedCategory) {
-            categoryIndex = data.selectedCategory.childCategories.length+1;
-        } else {
-            categoryIndex = data.categoryList.length+1;
-        }
+        this.commandData.categoryId = data.selectedCategory.categoryId;
         this.commandData.categoryName = data.categoryName;
-        this.commandData.categoryIndex = categoryIndex;
-        this.commandData.parentCategoryId = data.selectedCategory ? data.selectedCategory.categoryId : null;
         this.commandData.dictionaryLookup = data.dictionaryLookup;
         this.commandData.givenLanguage = data.givenLanguage;
         this.commandData.wantedLanguage = data.wantedLanguage;
     }
 
     handleResponse(resolve, reject) {
-    	this.commandData.outcome = this.ok;
+        this.commandData.outcome = this.ok;
         this.commandData.dictionaryLookup = false;
         this.commandData.wantedLanguage = "";
         this.commandData.givenLanguage = "";
-        this.commandData.displayNewCategory = false;
-        this.commandData.selectedCategoryId = this.commandData.uuid;
-    	resolve();
+        this.commandData.displayEditCategory = false;
+        this.commandData.selectedCategoryId = this.commandData.categoryId;
+        resolve();
     }
     handleError(resolve, reject) {
         this.commandData.outcome = this.error;
         this.commandData.dictionaryLookup = false;
         this.commandData.wantedLanguage = "";
         this.commandData.givenLanguage = "";
-        this.commandData.displayNewCategory = false;
+        this.commandData.displayEditCategory = false;
         resolve();
     }
 }

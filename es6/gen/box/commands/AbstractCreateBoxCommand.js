@@ -26,7 +26,6 @@ export default class AbstractCreateBoxCommand extends Command {
 			let queryParams = [];
 	        let payload = {	
 	        	categoryId : this.commandData.categoryId,
-	        	maxInterval : this.commandData.maxInterval,
 	        	};
 
 			this.httpPost(`/api/box/create`, true, queryParams, payload).then((data) => {

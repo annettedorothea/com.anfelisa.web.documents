@@ -1,12 +1,11 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import CreateCategoryOkEvent from "../../../gen/category/events/CreateCategoryOkEvent";
-import CreateCategoryErrorEvent from "../../../gen/category/events/CreateCategoryErrorEvent";
+import UpdateCategoryErrorEvent from "../../../gen/category/events/UpdateCategoryErrorEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 
-export default class AbstractCreateCategoryCommand extends Command {
+export default class AbstractUpdateCategoryCommand extends Command {
     constructor(commandData) {
-        super(commandData, "category.CreateCategoryCommand");
+        super(commandData, "category.UpdateCategoryCommand");
         this.ok = "ok";
         this.error = "error";
     }
@@ -16,14 +15,13 @@ export default class AbstractCreateCategoryCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new CreateCategoryOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.pathToSelected, this.commandData.selectedCategoryId)).publish());
 			break;
 		case this.error:
-			promises.push(new CreateCategoryErrorEvent(this.commandData).publish());
+			promises.push(new UpdateCategoryErrorEvent(this.commandData).publish());
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('CreateCategoryCommand unhandled outcome: ' + this.commandData.outcome)});
+			return new Promise((resolve, reject) => {reject('UpdateCategoryCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }
@@ -32,15 +30,14 @@ export default class AbstractCreateCategoryCommand extends Command {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
 	        let payload = {	
+	        	categoryId : this.commandData.categoryId,
 	        	categoryName : this.commandData.categoryName,
-	        	categoryIndex : this.commandData.categoryIndex,
-	        	parentCategoryId : this.commandData.parentCategoryId,
 	        	dictionaryLookup : this.commandData.dictionaryLookup,
 	        	givenLanguage : this.commandData.givenLanguage,
 	        	wantedLanguage : this.commandData.wantedLanguage,
 	        	};
 
-			this.httpPost(`/api/category/create`, true, queryParams, payload).then((data) => {
+			this.httpPut(`/api/category/update`, true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

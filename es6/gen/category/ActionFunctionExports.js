@@ -5,13 +5,17 @@ import SelectTreeItemAction from "../../src/category/actions/SelectTreeItemActio
 import DeselectTreeItemAction from "../../src/category/actions/DeselectTreeItemAction";
 import NewCategoryClickAction from "../../src/category/actions/NewCategoryClickAction";
 import CancelNewCategoryAction from "../../src/category/actions/CancelNewCategoryAction";
-import NameOfNewCategoryChangedAction from "../../src/category/actions/NameOfNewCategoryChangedAction";
+import CategoryNameChangedAction from "../../src/category/actions/CategoryNameChangedAction";
 import DictionaryLookupChangedAction from "../../src/category/actions/DictionaryLookupChangedAction";
 import GivenLanguageChangedAction from "../../src/category/actions/GivenLanguageChangedAction";
 import WantedLanguageChangedAction from "../../src/category/actions/WantedLanguageChangedAction";
 import CreateCategoryAction from "../../src/category/actions/CreateCategoryAction";
 import DeleteCategoryClickAction from "../../src/category/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../../src/category/actions/CancelDeleteCategoryAction";
+import DeleteCategoryAction from "../../src/category/actions/DeleteCategoryAction";
+import EditCategoryClickAction from "../../src/category/actions/EditCategoryClickAction";
+import CancelEditCategoryAction from "../../src/category/actions/CancelEditCategoryAction";
+import UpdateCategoryAction from "../../src/category/actions/UpdateCategoryAction";
 
 export function loadCategoryTree(actionData) {
     new LoadCategoryTreeAction(actionData).apply();
@@ -41,8 +45,8 @@ export function cancelNewCategory(actionData) {
     new CancelNewCategoryAction(actionData).apply();
 }
 
-export function nameOfNewCategoryChanged(actionData) {
-    new NameOfNewCategoryChangedAction(actionData).apply();
+export function categoryNameChanged(actionData) {
+    new CategoryNameChangedAction(actionData).apply();
 }
 
 export function dictionaryLookupChanged(actionData) {
@@ -67,6 +71,22 @@ export function deleteCategoryClick(actionData) {
 
 export function cancelDeleteCategory(actionData) {
     new CancelDeleteCategoryAction(actionData).apply();
+}
+
+export function deleteCategory(actionData) {
+    new DeleteCategoryAction(actionData).apply();
+}
+
+export function editCategoryClick(actionData) {
+    new EditCategoryClickAction(actionData).apply();
+}
+
+export function cancelEditCategory(actionData) {
+    new CancelEditCategoryAction(actionData).apply();
+}
+
+export function updateCategory(actionData) {
+    new UpdateCategoryAction(actionData).apply();
 }
 
 

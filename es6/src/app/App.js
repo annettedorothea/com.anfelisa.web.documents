@@ -54,13 +54,11 @@ export function getAppState() {
 
 export function deepMergeState(newAppState) {
     appState = AppUtils.deepMerge(newAppState, appState);
-    console.log("deepMergeState", appState);
     container.setState(appState);
 }
 
 export function mergeState(newAppState) {
     appState = AppUtils.merge(newAppState, appState);
-    console.log("mergeState", appState);
     container.setState(appState);
 }
 

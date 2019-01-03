@@ -1,8 +1,7 @@
-import AbstractNameOfNewCategoryChangedCommand
-    from "../../../gen/category/commands/AbstractNameOfNewCategoryChangedCommand";
+import AbstractCategoryNameChangedCommand from "../../../gen/category/commands/AbstractCategoryNameChangedCommand";
 import {getAppState} from "../../app/App";
 
-export default class NameOfNewCategoryChangedCommand extends AbstractNameOfNewCategoryChangedCommand {
+export default class CategoryNameChangedCommand extends AbstractCategoryNameChangedCommand {
     execute() {
         this.commandData.outcome = this.ok;
         let categories;
@@ -14,7 +13,7 @@ export default class NameOfNewCategoryChangedCommand extends AbstractNameOfNewCa
         }
         if (categories) {
             this.commandData.categoryNameAlreadyExists = categories.filter(
-                (c) => c.categoryName === this.commandData.newCategoryName
+                (c) => c.categoryName === this.commandData.categoryName
             ).length > 0;
         }
     }

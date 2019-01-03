@@ -161,6 +161,40 @@ export const Texts = {
                 de: "Löschen"
             }
         },
+        editCategory: {
+            cancel: {
+                de: "Abbrechen"
+            },
+            childCategory: {
+                de: "Ordner"
+            },
+            rootCategory: {
+                de: "Lernkartei"
+            },
+            ok: {
+                de: "OK"
+            },
+            title: {
+                de: "Bearbeiten"
+            }
+        },
+        languages: {
+            de: {
+                de: "Deutsch"
+            },
+            emtpyFrom: {
+                de: "von"
+            },
+            emtpyTo: {
+                de: "nach"
+            },
+            en: {
+                de: "Englisch"
+            },
+            fr: {
+                de: "Französisch"
+            },
+        },
         newCategory: {
             cancel: {
                 de: "Abbrechen"
@@ -175,7 +209,7 @@ export const Texts = {
                 de: "OK"
             },
             title: {
-                de: "Neue Kategorie"
+                de: "Neu"
             }
         }
     },

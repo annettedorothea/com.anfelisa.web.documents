@@ -3,10 +3,10 @@ import CategoryNameChangedAction from "../../category/actions/CategoryNameChange
 import DictionaryLookupChangedAction from "../../category/actions/DictionaryLookupChangedAction";
 import GivenLanguageChangedAction from "../../category/actions/GivenLanguageChangedAction";
 import WantedLanguageChangedAction from "../../category/actions/WantedLanguageChangedAction";
-import CreateCategoryAction from "../../category/actions/CreateCategoryAction";
-import CancelNewCategoryAction from "../../category/actions/CancelNewCategoryAction";
+import UpdateCategoryAction from "../../category/actions/UpdateCategoryAction";
+import CancelEditCategoryAction from "../../category/actions/CancelEditCategoryAction";
 
-export default class NewCategory extends React.Component {
+export default class EditCategory extends React.Component {
 
     constructor(props) {
         super(props);
@@ -21,7 +21,7 @@ export default class NewCategory extends React.Component {
         return (
             <div className="modal">
                 <div className="modalContent">
-                    <h2>{this.props.texts.categoryTree.newCategory.title[this.props.language]}</h2>
+                    <h2>{this.props.texts.categoryTree.editCategory.title[this.props.language]}</h2>
                     <div>
                         <input
                             type={"text"}
@@ -30,7 +30,7 @@ export default class NewCategory extends React.Component {
                             }}
                             autoComplete="off"
                             value={this.props.categoryName}
-                            placeholder={this.props.selectedCategory === undefined ? this.props.texts.categoryTree.newCategory.newRootCategory[this.props.language] : this.props.texts.categoryTree.newCategory.newChildCategory[this.props.language]}
+                            placeholder={this.props.selectedCategory.parentCategoryId === undefined ? this.props.texts.categoryTree.editCategory.rootCategory[this.props.language] : this.props.texts.categoryTree.editCategory.childCategory[this.props.language]}
                         />
                         {this.props.categoryNameAlreadyExists === true && this.props.categoryName && this.props.categoryName.length > 0 &&
                         <i className="fas fa-times error"/>}
@@ -68,11 +68,11 @@ export default class NewCategory extends React.Component {
                     </div>
                     <button
                         disabled={disabled}
-                        onClick={() => {new CreateCategoryAction().apply()}}
-                    >{this.props.texts.categoryTree.newCategory.ok[this.props.language]}</button>
+                        onClick={() => {new UpdateCategoryAction().apply()}}
+                    >{this.props.texts.categoryTree.editCategory.ok[this.props.language]}</button>
                     <button
-                        onClick={() => {new CancelNewCategoryAction().apply()}}
-                    >{this.props.texts.categoryTree.newCategory.cancel[this.props.language]}</button>
+                        onClick={() => {new CancelEditCategoryAction().apply()}}
+                    >{this.props.texts.categoryTree.editCategory.cancel[this.props.language]}</button>
                 </div>
             </div>
         );

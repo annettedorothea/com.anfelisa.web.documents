@@ -6,7 +6,6 @@ export default class SelectTreeItemCommand extends AbstractSelectTreeItemCommand
     execute() {
         const data = getAppState().data;
         this.commandData.selectedCategory = findCategory(data.categoryList, this.commandData.categoryId);
-        this.commandData.categoryId = undefined;
     	this.commandData.outcome = this.ok;
     }
 }

@@ -7,53 +7,80 @@ LoadCategoryTree <pathToSelected, selectedCategoryId>
 	preCall (common.Common.displaySpinner)
 	call com.anfelisa.category.GetCategoryTree
 	postCall (common.Common.hideSpinner)
-	on ok ( CategoryTree.render )
+	on ok ( CategoryTree.mergeDataAndRoute )
 
 ExpandTreeItem < categoryId >
-	on ok (common.Common.deepMerge)
+	on ok (CategoryTree.setCategoryList)
 
 CollapseTreeItem < categoryId >
-	on ok (common.Common.deepMerge)
+	on ok (CategoryTree.setCategoryList)
+	on deselectCategory (CategoryTree.setCategoryList CategoryTree.setSelectedCategory)
 
 SelectTreeItem < categoryId >
-	on ok (common.Common.deepMerge) triggers( card.LoadCards)
+	on ok (CategoryTree.setSelectedCategory) triggers( card.LoadCards)
 
 DeselectTreeItem
-	on ok (common.Common.deepMerge card.CardList.hide) 
+	on ok (CategoryTree.setSelectedCategory card.CardList.hide) 
 	
 NewCategoryClick
-	on ok (common.Common.deepMerge)
+	on ok (CategoryTree.setCategoryDialogData)
 	
 CancelNewCategory
-	on ok (common.Common.deepMerge)
+	on ok (CategoryTree.setCategoryDialogData)
 	
-NameOfNewCategoryChanged<newCategoryName>
-	on ok (common.Common.deepMerge)
+CategoryNameChanged<categoryName>
+	on ok (CategoryTree.mergeCategoryDialogData)
 	
 DictionaryLookupChanged
-	on ok (common.Common.deepMerge)
+	on ok (CategoryTree.mergeCategoryDialogData)
 	
 GivenLanguageChanged<givenLanguage>
-	on ok (common.Common.deepMerge)
+	on ok (CategoryTree.mergeCategoryDialogData)
 	
 WantedLanguageChanged<wantedLanguage>
-	on ok (common.Common.deepMerge)
+	on ok (CategoryTree.mergeCategoryDialogData)
 	
 CreateCategory
 	preCall (common.Common.displaySpinner)
 	call com.anfelisa.category.CreateCategory
 	postCall (common.Common.hideSpinner)
-	on ok triggers (LoadCategoryTree)
-	on error (common.Common.deepMerge)
+	on ok (CategoryTree.setCategoryDialogData) triggers (LoadCategoryTree)
+	on error (CategoryTree.setCategoryDialogData)
 
 DeleteCategoryClick
-	on ok (common.Common.deepMerge)
+	on ok (CategoryTree.setDisplayDeleteCategory)
 	
 CancelDeleteCategory
-	on ok (common.Common.deepMerge)
+	on ok (CategoryTree.setDisplayDeleteCategory)
+
+DeleteCategory
+	preCall (common.Common.displaySpinner)
+	call com.anfelisa.category.DeleteCategory
+	postCall (common.Common.hideSpinner)
+	on ok (CategoryTree.setDisplayDeleteCategory) triggers (LoadCategoryTree)
+	on error (CategoryTree.setDisplayDeleteCategory)
+
+EditCategoryClick
+	on ok (CategoryTree.setCategoryDialogData)
+	
+CancelEditCategory
+	on ok (CategoryTree.setCategoryDialogData)
+	
+UpdateCategory
+	preCall (common.Common.displaySpinner)
+	call com.anfelisa.category.UpdateCategory
+	postCall (common.Common.hideSpinner)
+	on ok triggers (LoadCategoryTree)
+	on error (CategoryTree.setCategoryDialogData)
+
 	
 	
 views
 CategoryTree {
-	render
+	mergeDataAndRoute
+	setSelectedCategory
+	setCategoryList
+	setDisplayDeleteCategory
+	setCategoryDialogData
+	mergeCategoryDialogData
 }

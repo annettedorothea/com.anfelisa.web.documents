@@ -10,14 +10,11 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
 
     handleResponse(resolve, reject) {
         this.commandData.outcome = this.ok;
-        this.commandData.newCategoryName = "";
-        this.commandData.categoryNameAlreadyExists = false;
         const data = getAppState().data;
         const expandedCategories = [];
         if (data.categoryList) {
             findExpandedCategories(data.categoryList, expandedCategories);
         }
-        console.log("expandedCategories", expandedCategories);
         initExpandedState(this.commandData.categoryList, expandedCategories);
 
         this.commandData.selectedCategory = initSelected(this.commandData.categoryList, this.commandData.selectedCategoryId);

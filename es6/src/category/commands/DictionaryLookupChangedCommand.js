@@ -5,7 +5,6 @@ export default class DictionaryLookupChangedCommand extends AbstractDictionaryLo
     execute() {
         const appState = getAppState();
         this.commandData.dictionaryLookup = !appState.data.dictionaryLookup;
-        console.log("DictionaryLookupChangedCommand", this.commandData);
     	this.commandData.outcome = this.ok;
     }
 }

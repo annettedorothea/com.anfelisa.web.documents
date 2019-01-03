@@ -2,7 +2,7 @@ import AbstractDeselectTreeItemCommand from "../../../gen/category/commands/Abst
 
 export default class DeselectTreeItemCommand extends AbstractDeselectTreeItemCommand {
     execute() {
-        this.commandData.selectedCategory = null;
+        this.commandData.selectedCategory = undefined;
         this.commandData.outcome = this.ok;
     }
 }

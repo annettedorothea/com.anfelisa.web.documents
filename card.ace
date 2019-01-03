@@ -3,7 +3,7 @@ ES6 card
 ACE
 LoadCards<categoryId>
 	preCall (common.Common.displaySpinner)
-	call com.anfelisa.category.GetCategoryTree
+	call com.anfelisa.card.GetCards
 	postCall (common.Common.hideSpinner)
 	on ok ( CardList.render )
 	
