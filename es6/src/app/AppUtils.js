@@ -2,7 +2,7 @@ import ACEController from "../../gen/ace/ACEController";
 import InitAction from "../../src/common/actions/InitAction";
 import uuid from "uuid";
 import CryptoJS from "crypto-js";
-import * as App from "./App";
+import {getAppState} from "./App";
 import DisplayErrorAction from "../common/actions/DisplayErrorAction";
 import DisplayErrorAndLogoutAction from "../common/actions/DisplayErrorAndLogoutAction";
 
@@ -203,8 +203,9 @@ export default class AppUtils {
     }
 
     static basicAuth() {
-        if (App.appState.username !== undefined && App.appState.password !== undefined) {
-            const wordArray = CryptoJS.enc.Utf8.parse(App.appState.username + ':' + App.appState.password);
+        const appState = getAppState();
+        if (appState.username !== undefined && appState.password !== undefined) {
+            const wordArray = CryptoJS.enc.Utf8.parse(appState.username + ':' + appState.password);
             const hash = CryptoJS.enc.Base64.stringify(wordArray);
             return "anfelisaBasic " + hash;
         }
@@ -249,19 +250,11 @@ export default class AppUtils {
         return 2000;
     }
 
-    static getAppState() {
-        const appState = AppUtils.deepCopy(App.appState);
-        delete appState.texts;
-        return appState;
-    }
-
     static deepMerge(newState, appState) {
         for (let property in newState) {
             if (newState.hasOwnProperty(property)) {
-                if (appState[property] === undefined) {
+                if (appState[property] === undefined || appState[property] === null) {
                     appState[property] = newState[property];
-                } else if (newState[property] === undefined) {
-                    appState[property] = undefined;
                 } else if (newState[property] === null) {
                     appState[property] = null;
                 } else if (Array.isArray(newState[property])) {

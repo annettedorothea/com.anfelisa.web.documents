@@ -1,11 +1,12 @@
 import AbstractForgotPasswordCommand from "../../../gen/password/commands/AbstractForgotPasswordCommand";
-import * as App from "../../app/App";
+import {getAppState} from "../../app/App";
 
 export default class ForgotPasswordCommand extends AbstractForgotPasswordCommand {
 
     initCommandData() {
-        this.commandData.username = App.appState.data.username;
-        this.commandData.language = App.appState.language;
+        const appState = getAppState();
+        this.commandData.username = appState.data.username;
+        this.commandData.language = appState.language;
     }
 
     handleResponse(resolve) {

@@ -57,7 +57,7 @@ export default class AbstractRouteChangedCommand extends Command {
 			new TriggerAction(new GetAllUsersAction()).publish();
 			break;
 		case this.categories:
-			new TriggerAction(new LoadCategoryTreeAction(this.commandData.pathToSelected)).publish();
+			new TriggerAction(new LoadCategoryTreeAction(this.commandData.pathToSelected, this.commandData.selectedCategoryId)).publish();
 			break;
 		case this.nextCard:
 			new TriggerAction(new LoadNextCardAction(this.commandData.boxId)).publish();

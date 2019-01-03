@@ -1,8 +1,8 @@
-import * as App from "../../app/App";
+import {mergeState, deepMergeState} from "../../app/App";
 
 export default class ResetPasswordView {
 	static render(eventData) {
-        App.mergeState({
+        mergeState({
             route: "reset-password",
             data: {
                 token: eventData.token,
@@ -12,14 +12,14 @@ export default class ResetPasswordView {
 	};
 
     static passwordMismatch() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 passwordMismatch: true
             }
         });
     }
     static passwordMatch() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 passwordMismatch: false
             }

@@ -1,8 +1,8 @@
-import * as App from "../../app/App";
+import {mergeState, deepMergeState} from "../../app/App";
 
 export default class ForgotPasswordView {
     static render() {
-        App.mergeState({
+        mergeState({
             route: "forgot-password",
             data: {
                 username: ""
@@ -11,7 +11,7 @@ export default class ForgotPasswordView {
     };
 
     static usernameChanged(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 username: eventData.username
             }

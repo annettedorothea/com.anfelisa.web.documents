@@ -9,10 +9,22 @@ export default class CategoryItem extends React.Component {
     }
 
     render() {
+        const expanded = this.props.expanded === true;
+        const selected = this.props.selectedCategory && this.props.selectedCategory.categoryId === this.props.categoryId;
         return (
             <div className={`categoryItem depth_${this.props.depth}`}>
-                {this.props.expanded === true && <ExpandedCategoryItem {...this.props} depth={this.props.depth+1}/>}
-                {this.props.expanded === false && <CollapsedCategoryItem {...this.props}/>}
+                {expanded &&
+                <ExpandedCategoryItem
+                    {...this.props}
+                    selected={selected}
+                    selectedCategory={this.props.selectedCategory}
+                    depth={this.props.depth + 1}
+                />}
+                {!expanded &&
+                <CollapsedCategoryItem
+                    {...this.props}
+                    selected={selected}
+                />}
             </div>
         );
     }

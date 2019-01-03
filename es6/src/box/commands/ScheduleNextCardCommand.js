@@ -1,10 +1,11 @@
 import AbstractScheduleNextCardCommand from "../../../gen/box/commands/AbstractScheduleNextCardCommand";
-import * as App from "../../app/App";
+import {getAppState} from "../../app/App";
 
 export default class ScheduleNextCardCommand extends AbstractScheduleNextCardCommand {
 
     initCommandData() {
-        this.commandData.boxId = App.appState.data === undefined || App.appState.data.boxId === undefined ? undefined : App.appState.data.boxId;
+        const appState = getAppState();
+        this.commandData.boxId = appState.data === undefined || appState.data.boxId === undefined ? undefined : appState.data.boxId;
     }
 
     handleResponse(resolve, reject) {

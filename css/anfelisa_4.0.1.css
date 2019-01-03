@@ -834,6 +834,16 @@ iframe {
     width: 20px;
     height: 20px;
 }
+.categoryTree .categoryItem .selected {
+    border: #337ab7 dotted 1px;
+    border-radius: 4px;
+    padding: 4px;
+    line-height: 20px;
+}
+.categoryTree .categoryItem .notSelected {
+    padding: 5px;
+    line-height: 20px;
+}
 .categoryTree .categoryTreeItems,
 .categoryTree .expandedCategoryItem {
     margin-bottom: 20px;

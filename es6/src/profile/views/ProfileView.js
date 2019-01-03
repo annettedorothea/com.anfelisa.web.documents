@@ -1,15 +1,15 @@
-import * as App from "../../app/App";
+import {mergeState, deepMergeState} from "../../app/App";
 
 export default class ProfileView {
 	static render(eventData) {
-        App.mergeState({
+        mergeState({
             route: "profile",
             data : eventData
         });
 	};
 
     static displayDeleteUserDialog() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 showDeleteUserDialog: true
             }
@@ -17,7 +17,7 @@ export default class ProfileView {
     };
 
     static hideDeleteUserDialog() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 showDeleteUserDialog: false
             }

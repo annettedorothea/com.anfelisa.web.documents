@@ -1,15 +1,15 @@
-import * as App from "../../app/App";
+import {mergeState, deepMergeState} from "../../app/App";
 
 export default class UserListView {
 	static render(eventData) {
-        App.mergeState({
+        mergeState({
             route: "user-list",
             data : eventData
         });
 	};
 	
 	static displayDeleteUserDialog(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 showDeleteUserDialog: true,
                 usernameToBeDeleted: eventData.usernameToBeDeleted
@@ -18,7 +18,7 @@ export default class UserListView {
 	};
 
 	static hideDeleteUserDialog() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 showDeleteUserDialog: false,
                 usernameToBeDeleted: undefined

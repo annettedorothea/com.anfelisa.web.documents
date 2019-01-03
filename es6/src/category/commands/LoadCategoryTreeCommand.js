@@ -1,17 +1,32 @@
 import AbstractLoadCategoryTreeCommand from "../../../gen/category/commands/AbstractLoadCategoryTreeCommand";
+import {getAppState} from "../../app/App";
+import {findExpandedCategories, initExpandedState, initSelected} from "../utils/CategoryTreeUtils"
 
 export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCommand {
 
     initCommandData() {
-    	//add from appState to commandData 
+        //add from appState to commandData
     }
 
     handleResponse(resolve, reject) {
-    	this.commandData.outcome = this.ok;
-    	resolve();
+        this.commandData.outcome = this.ok;
+        this.commandData.newCategoryName = "";
+        this.commandData.categoryNameAlreadyExists = false;
+        const data = getAppState().data;
+        const expandedCategories = [];
+        if (data.categoryList) {
+            findExpandedCategories(data.categoryList, expandedCategories);
+        }
+        console.log("expandedCategories", expandedCategories);
+        initExpandedState(this.commandData.categoryList, expandedCategories);
+
+        this.commandData.selectedCategory = initSelected(this.commandData.categoryList, this.commandData.selectedCategoryId);
+        this.commandData.selectedCategoryId = undefined;
+        resolve();
     }
+
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+        reject(this.commandData.error);
     }
 }
 

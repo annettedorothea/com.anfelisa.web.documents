@@ -1,9 +1,9 @@
-import * as App from "../../app/App";
+import {mergeState, deepMergeState} from "../../app/App";
 
 export default class RegistrationView {
 
 	static render() {
-        App.mergeState({
+        mergeState({
             route: "registration",
             data: {
                 displayUsernameSpinner: false,
@@ -17,7 +17,7 @@ export default class RegistrationView {
 	};
 	
 	static usernameAvailable(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 usernameAvailable: true
             }
@@ -25,7 +25,7 @@ export default class RegistrationView {
 	};
 
 	static usernameNotAvailable() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 usernameAvailable: false
             }
@@ -33,7 +33,7 @@ export default class RegistrationView {
 	};
 
     static displayUsernameSpinner() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 displayUsernameSpinner: true
             }
@@ -41,7 +41,7 @@ export default class RegistrationView {
     };
 
     static hideUsernameSpinner() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 displayUsernameSpinner: false
             }
@@ -49,7 +49,7 @@ export default class RegistrationView {
     };
 
     static emailChanged(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 email: eventData.email
             }
@@ -57,7 +57,7 @@ export default class RegistrationView {
     }
 
     static emailValid() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 emailInvalid: false
             }
@@ -65,7 +65,7 @@ export default class RegistrationView {
     }
 
     static emailInvalid() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 emailInvalid: true
             }
@@ -73,14 +73,14 @@ export default class RegistrationView {
     }
 
     static passwordMismatch() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 passwordMismatch: true
             }
         });
     }
     static passwordMatch() {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 passwordMismatch: false
             }

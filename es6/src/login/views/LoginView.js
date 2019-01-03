@@ -1,9 +1,9 @@
-import * as App from "../../app/App";
+import {mergeState, deepMergeState} from "../../app/App";
 
 export default class LoginView {
 
 	static render() {
-        App.mergeState({
+        mergeState({
             route: "login",
             data : {
                 username: "",
@@ -13,7 +13,7 @@ export default class LoginView {
 	};
 
 	static usernameChanged(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 username: eventData.username
             }
@@ -21,7 +21,7 @@ export default class LoginView {
     }
 	
 	static toggleSaveInLocalStorage(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data : {
                 saveInLocalStorage: eventData.saveInLocalStorage
             }

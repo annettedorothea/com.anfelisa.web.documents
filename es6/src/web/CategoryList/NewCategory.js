@@ -74,11 +74,11 @@ export default class NewCategory extends React.Component {
                         type={"text"}
                         onChange={this.onNameChange}
                         autoComplete="off"
-                        value={this.props.name}
+                        value={this.props.newCategoryName}
                         placeholder={this.props.parentCategoryId === null ? this.props.texts.categoryList.newRootCategory[this.props.language] : this.props.texts.categoryList.newCategory[this.props.language]}
                         onKeyUp={this.onKeyUp}
                     />
-                    {this.props.nameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
+                    {this.props.categoryNameAlreadyExists === true && this.props.name && this.props.name.length > 0 &&
                     <i className="fas fa-times error"/>}
                 </td>
                 <td/>

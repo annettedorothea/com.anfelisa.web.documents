@@ -1,9 +1,10 @@
 import AbstractRouteChangedCommand from "../../../gen/common/commands/AbstractRouteChangedCommand";
-import * as App from "../../app/App";
+import {getAppState} from "../../app/App";
 
 export default class RouteChangedCommand extends AbstractRouteChangedCommand {
     execute() {
-        if (App.appState.password && App.appState.username) {
+        const appState = getAppState();
+        if (appState.password && appState.username) {
             if (this.commandData.hash === "#dashboard") {
                 this.commandData.outcome = this.dashboard;
             } else if (this.commandData.hash === "#profile") {
@@ -12,7 +13,7 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 this.commandData.outcome = this.userList;
             } else if (this.commandData.hash.startsWith("#categories")) {
                 const hashes = this.commandData.hash.split("/");
-                this.commandData.parentCategoryId = hashes[1] ? hashes[1] : "";
+                this.commandData.selectedCategoryId = hashes[1] ? hashes[1] : "";
                 this.commandData.outcome = this.categories;
             } else if (this.commandData.hash.startsWith("#box/reinforce")) {
                 const hashes = this.commandData.hash.split("/");

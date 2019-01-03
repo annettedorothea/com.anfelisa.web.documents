@@ -1,9 +1,8 @@
-import * as App from "../../app/App";
-import {Texts} from "../../common/views/Texts";
+import {mergeState, deepMergeState} from "../../app/App";
 
 export default class BoxListView {
 	static render(eventData) {
-        App.mergeState({
+        mergeState({
             route: "dashboard",
             data: {
                 boxList: eventData.boxList,
@@ -16,7 +15,7 @@ export default class BoxListView {
 	};
 	
 	static cancelEditBox(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 editedBox: {
                     boxId: ""
@@ -26,7 +25,7 @@ export default class BoxListView {
 	};
 
 	static displayConfirmDelete(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 deleteBox: {
                     confirmDelete: true,
@@ -37,7 +36,7 @@ export default class BoxListView {
 	};
 
 	static hideConfirmDelete(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 deleteBox: {
                     confirmDelete: false,

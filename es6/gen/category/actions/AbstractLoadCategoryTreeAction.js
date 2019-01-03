@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractLoadCategoryTreeAction extends Action {
 
-    constructor( pathToSelected) {
-        super({pathToSelected}, 'category.LoadCategoryTreeAction');
+    constructor( pathToSelected, selectedCategoryId) {
+        super({pathToSelected, selectedCategoryId}, 'category.LoadCategoryTreeAction');
 		this.postCall = this.postCall.bind(this);
     }
     

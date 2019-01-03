@@ -1,11 +1,12 @@
 import AbstractRegisterUserCommand from "../../../gen/registration/commands/AbstractRegisterUserCommand";
-import * as App from "../../app/App";
+import {getAppState} from "../../app/App";
 
 export default class RegisterUserCommand extends AbstractRegisterUserCommand {
 
     initCommandData() {
-        this.commandData.email = App.appState.data.email;
-        this.commandData.language = App.appState.language;
+        const appState = getAppState();
+        this.commandData.email = appState.data.email;
+        this.commandData.language = appState.language;
     }
 
     handleResponse(resolve) {

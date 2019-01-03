@@ -1,5 +1,6 @@
 import React from 'react';
 import ExpandTreeItemAction from "../../category/actions/ExpandTreeItemAction";
+import SelectableCategoryItem from "./SelectableCategoryItem";
 
 export default class CollapsedCategoryItem extends React.Component {
 
@@ -15,7 +16,11 @@ export default class CollapsedCategoryItem extends React.Component {
                    onClick={() => new ExpandTreeItemAction(this.props.categoryId).apply()}/>
                 }
                 {this.props.empty === true && <i className="fas"/>}
-                {this.props.categoryName}
+                <SelectableCategoryItem
+                    selected={this.props.selected}
+                    categoryName={this.props.categoryName}
+                    categoryId={this.props.categoryId}
+                />
             </div>
         );
     }

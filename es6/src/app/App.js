@@ -6,6 +6,9 @@ import ActionFactoryRegistrationAdmin from "../../gen/admin/ActionFactoryRegistr
 import EventListenerRegistrationCategory from "../../gen/category/EventListenerRegistration";
 import ActionFactoryRegistrationCategory from "../../gen/category/ActionFactoryRegistration";
 
+import EventListenerRegistrationCard from "../../gen/card/EventListenerRegistration";
+import ActionFactoryRegistrationCard from "../../gen/card/ActionFactoryRegistration";
+
 import EventListenerRegistrationBox from "../../gen/box/EventListenerRegistration";
 import ActionFactoryRegistrationBox from "../../gen/box/ActionFactoryRegistration";
 
@@ -45,14 +48,19 @@ export const container = ReactDOM.render(
     document.getElementById('root')
 );
 
+export function getAppState() {
+    return AppUtils.deepCopy(appState);
+}
 
 export function deepMergeState(newAppState) {
     appState = AppUtils.deepMerge(newAppState, appState);
+    console.log("deepMergeState", appState);
     container.setState(appState);
 }
 
 export function mergeState(newAppState) {
     appState = AppUtils.merge(newAppState, appState);
+    console.log("mergeState", appState);
     container.setState(appState);
 }
 
@@ -66,6 +74,9 @@ ActionFactoryRegistrationAdmin.init();
 
 EventListenerRegistrationCategory.init();
 ActionFactoryRegistrationCategory.init();
+
+EventListenerRegistrationCard.init();
+ActionFactoryRegistrationCard.init();
 
 EventListenerRegistrationBox.init();
 ActionFactoryRegistrationBox.init();

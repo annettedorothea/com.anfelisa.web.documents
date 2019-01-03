@@ -1,5 +1,5 @@
 import AbstractScoreReinforceCardCommand from "../../../gen/box/commands/AbstractScoreReinforceCardCommand";
-import * as App from "../../app/App";
+import {getAppState} from "../../app/App";
 
 export default class ScoreReinforceCardCommand extends AbstractScoreReinforceCardCommand {
 
@@ -8,7 +8,8 @@ export default class ScoreReinforceCardCommand extends AbstractScoreReinforceCar
     }
 
     handleResponse(resolve, reject) {
-        this.commandData.boxId = App.appState.data === undefined || App.appState.data.boxId === undefined ? undefined : App.appState.data.boxId;
+        const appState = getAppState();
+        this.commandData.boxId = appState.data === undefined || appState.data.boxId === undefined ? undefined : appState.data.boxId;
     	this.commandData.outcome = this.ok;
     	resolve();
     }

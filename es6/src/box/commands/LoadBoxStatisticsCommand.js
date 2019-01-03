@@ -1,10 +1,11 @@
 import AbstractLoadBoxStatisticsCommand from "../../../gen/box/commands/AbstractLoadBoxStatisticsCommand";
-import * as App from "../../app/App";
+import {getAppState} from "../../app/App";
 
 export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsCommand {
 
-    handleResponse(resolve, reject) {
-        const scheduleNext = App.appState.data === undefined || App.appState.data.scheduleNext === undefined ? false : App.appState.data.scheduleNext;
+    handleResponse(resolve) {
+        const appState = getAppState();
+        const scheduleNext = appState.data === undefined || appState.data.scheduleNext === undefined ? false : appState.data.scheduleNext;
         this.commandData.scheduleNext = scheduleNext === true && this.commandData.myCards === this.commandData.totalCards ? false : this.commandData.scheduleNext;
         this.commandData.editMaxInterval = false;
         this.commandData.outcome = this.ok;

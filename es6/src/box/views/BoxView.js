@@ -1,21 +1,21 @@
-import * as App from "../../app/App";
+import {mergeState, deepMergeState} from "../../app/App";
 
 export default class BoxView {
     static render(eventData) {
-        App.mergeState({
+        mergeState({
             route: "card",
             data: eventData
         });
     };
 
     static renderStatistics(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data: eventData
         });
     };
 
     static displayNextItem(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 index: eventData.index
             }
@@ -23,7 +23,7 @@ export default class BoxView {
     };
 
     static displayImage() {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 displayImage: true
             }
@@ -31,7 +31,7 @@ export default class BoxView {
     };
 
     static enableScoreButtons() {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 enableScoreButtons: true
             }
@@ -39,7 +39,7 @@ export default class BoxView {
     };
 
     static toggleScheduleNext(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 scheduleNext: eventData.scheduleNext
             }
@@ -47,7 +47,7 @@ export default class BoxView {
     };
 
     static maxIntervalChanged(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 editedMaxInterval: eventData.maxInterval
             }
@@ -55,7 +55,7 @@ export default class BoxView {
     };
 
     static editBox(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 editedMaxInterval: eventData.maxInterval,
                 editMaxInterval: true
@@ -64,7 +64,7 @@ export default class BoxView {
     };
 
     static cancelEditBox() {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 editedMaxInterval: undefined,
                 editMaxInterval: false

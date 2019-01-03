@@ -143,6 +143,42 @@ export const Texts = {
             de: "Alle Lernkarteien"
         }
     },
+    categoryTree: {
+        back : {
+            de: "Zurück"
+        },
+        confirmDelete: {
+            cancel: {
+                de: "Nein"
+            },
+            ok: {
+                de: "Ja"
+            },
+            message: {
+                de: "Soll der Ordner wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht."
+            },
+            title: {
+                de: "Löschen"
+            }
+        },
+        newCategory: {
+            cancel: {
+                de: "Abbrechen"
+            },
+            newChildCategory: {
+                de: "Neuer Ordner"
+            },
+            newRootCategory: {
+                de: "Neue Lernkartei"
+            },
+            ok: {
+                de: "OK"
+            },
+            title: {
+                de: "Neue Kategorie"
+            }
+        }
+    },
     cardList: {
         chooseFile: {
             de: "Datei hochladen"

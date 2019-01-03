@@ -1,15 +1,15 @@
-import * as App from "../../app/App";
+import {mergeState, deepMergeState} from "../../app/App";
 
 export default class BoxReinforceView {
 	static render(eventData) {
-        App.mergeState({
+        mergeState({
             route: "reinforce-card",
             data: eventData
         });
 	};
 	
 	static displayNextItem(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 index: eventData.index
             }
@@ -17,7 +17,7 @@ export default class BoxReinforceView {
 	};
 	
 	static displayImage(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 displayImage: true
             }
@@ -25,7 +25,7 @@ export default class BoxReinforceView {
 	};
 	
 	static enableScoreButtons(eventData) {
-        App.deepMergeState({
+        deepMergeState({
             data: {
                 enableScoreButtons: true
             }

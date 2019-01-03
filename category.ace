@@ -3,21 +3,57 @@ category
 
 ACE
 
-LoadCategoryTree <pathToSelected>
+LoadCategoryTree <pathToSelected, selectedCategoryId>
 	preCall (common.Common.displaySpinner)
 	call com.anfelisa.category.GetCategoryTree
 	postCall (common.Common.hideSpinner)
 	on ok ( CategoryTree.render )
 
 ExpandTreeItem < categoryId >
-	on ok (CategoryTree.expandTreeItem)
+	on ok (common.Common.deepMerge)
 
 CollapseTreeItem < categoryId >
-	on ok (CategoryTree.collapseTreeItem)
+	on ok (common.Common.deepMerge)
 
+SelectTreeItem < categoryId >
+	on ok (common.Common.deepMerge) triggers( card.LoadCards)
+
+DeselectTreeItem
+	on ok (common.Common.deepMerge card.CardList.hide) 
+	
+NewCategoryClick
+	on ok (common.Common.deepMerge)
+	
+CancelNewCategory
+	on ok (common.Common.deepMerge)
+	
+NameOfNewCategoryChanged<newCategoryName>
+	on ok (common.Common.deepMerge)
+	
+DictionaryLookupChanged
+	on ok (common.Common.deepMerge)
+	
+GivenLanguageChanged<givenLanguage>
+	on ok (common.Common.deepMerge)
+	
+WantedLanguageChanged<wantedLanguage>
+	on ok (common.Common.deepMerge)
+	
+CreateCategory
+	preCall (common.Common.displaySpinner)
+	call com.anfelisa.category.CreateCategory
+	postCall (common.Common.hideSpinner)
+	on ok triggers (LoadCategoryTree)
+	on error (common.Common.deepMerge)
+
+DeleteCategoryClick
+	on ok (common.Common.deepMerge)
+	
+CancelDeleteCategory
+	on ok (common.Common.deepMerge)
+	
+	
 views
 CategoryTree {
 	render
-	expandTreeItem
-	collapseTreeItem
 }

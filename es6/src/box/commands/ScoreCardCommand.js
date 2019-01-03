@@ -1,11 +1,12 @@
 import AbstractScoreCardCommand from "../../../gen/box/commands/AbstractScoreCardCommand";
-import * as App from "../../app/App";
+import {getAppState} from "../../app/App";
 
 export default class ScoreCardCommand extends AbstractScoreCardCommand {
 
     initCommandData() {
-        this.commandData.boxId = App.appState.data === undefined || App.appState.data.boxId === undefined ? undefined : App.appState.data.boxId;
-        this.commandData.scoredCardScheduledCardId = App.appState.data === undefined || App.appState.data.scheduledCardId === undefined ? false : App.appState.data.scheduledCardId;
+        const appState = getAppState();
+        this.commandData.boxId = appState.data === undefined || appState.data.boxId === undefined ? undefined : appState.data.boxId;
+        this.commandData.scoredCardScheduledCardId = appState.data === undefined || appState.data.scheduledCardId === undefined ? false : appState.data.scheduledCardId;
     }
 
     handleResponse(resolve, reject) {
