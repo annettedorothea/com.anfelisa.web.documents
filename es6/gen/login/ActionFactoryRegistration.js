@@ -7,10 +7,14 @@ import GetRoleAction from "../../src/login/actions/GetRoleAction";
 export default class ActionFactoryRegistrationLogin {
 
 	static init() {
-		ACEController.registerFactory('login.UsernameChangedAction', (actionData) => new UsernameChangedAction(actionData, 'login.UsernameChangedAction'));
-		ACEController.registerFactory('login.ToggleSaveInLocalStorageAction', (actionData) => new ToggleSaveInLocalStorageAction(actionData, 'login.ToggleSaveInLocalStorageAction'));
-		ACEController.registerFactory('login.LoginAction', (actionData) => new LoginAction(actionData, 'login.LoginAction'));
-		ACEController.registerFactory('login.GetRoleAction', (actionData) => new GetRoleAction(actionData, 'login.GetRoleAction'));
+		ACEController.registerFactory('login.UsernameChangedAction', 
+			(actionData) => new UsernameChangedAction(actionData.username));
+		ACEController.registerFactory('login.ToggleSaveInLocalStorageAction', 
+			(actionData) => new ToggleSaveInLocalStorageAction(actionData.saveInLocalStorage));
+		ACEController.registerFactory('login.LoginAction', 
+			(actionData) => new LoginAction(actionData.password));
+		ACEController.registerFactory('login.GetRoleAction', 
+			(actionData) => new GetRoleAction());
 	}
 
 }

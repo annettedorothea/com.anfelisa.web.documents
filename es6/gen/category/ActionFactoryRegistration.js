@@ -21,24 +21,42 @@ import UpdateCategoryAction from "../../src/category/actions/UpdateCategoryActio
 export default class ActionFactoryRegistrationCategory {
 
 	static init() {
-		ACEController.registerFactory('category.LoadCategoryTreeAction', (actionData) => new LoadCategoryTreeAction(actionData, 'category.LoadCategoryTreeAction'));
-		ACEController.registerFactory('category.ExpandTreeItemAction', (actionData) => new ExpandTreeItemAction(actionData, 'category.ExpandTreeItemAction'));
-		ACEController.registerFactory('category.CollapseTreeItemAction', (actionData) => new CollapseTreeItemAction(actionData, 'category.CollapseTreeItemAction'));
-		ACEController.registerFactory('category.SelectTreeItemAction', (actionData) => new SelectTreeItemAction(actionData, 'category.SelectTreeItemAction'));
-		ACEController.registerFactory('category.DeselectTreeItemAction', (actionData) => new DeselectTreeItemAction(actionData, 'category.DeselectTreeItemAction'));
-		ACEController.registerFactory('category.NewCategoryClickAction', (actionData) => new NewCategoryClickAction(actionData, 'category.NewCategoryClickAction'));
-		ACEController.registerFactory('category.CancelNewCategoryAction', (actionData) => new CancelNewCategoryAction(actionData, 'category.CancelNewCategoryAction'));
-		ACEController.registerFactory('category.CategoryNameChangedAction', (actionData) => new CategoryNameChangedAction(actionData, 'category.CategoryNameChangedAction'));
-		ACEController.registerFactory('category.DictionaryLookupChangedAction', (actionData) => new DictionaryLookupChangedAction(actionData, 'category.DictionaryLookupChangedAction'));
-		ACEController.registerFactory('category.GivenLanguageChangedAction', (actionData) => new GivenLanguageChangedAction(actionData, 'category.GivenLanguageChangedAction'));
-		ACEController.registerFactory('category.WantedLanguageChangedAction', (actionData) => new WantedLanguageChangedAction(actionData, 'category.WantedLanguageChangedAction'));
-		ACEController.registerFactory('category.CreateCategoryAction', (actionData) => new CreateCategoryAction(actionData, 'category.CreateCategoryAction'));
-		ACEController.registerFactory('category.DeleteCategoryClickAction', (actionData) => new DeleteCategoryClickAction(actionData, 'category.DeleteCategoryClickAction'));
-		ACEController.registerFactory('category.CancelDeleteCategoryAction', (actionData) => new CancelDeleteCategoryAction(actionData, 'category.CancelDeleteCategoryAction'));
-		ACEController.registerFactory('category.DeleteCategoryAction', (actionData) => new DeleteCategoryAction(actionData, 'category.DeleteCategoryAction'));
-		ACEController.registerFactory('category.EditCategoryClickAction', (actionData) => new EditCategoryClickAction(actionData, 'category.EditCategoryClickAction'));
-		ACEController.registerFactory('category.CancelEditCategoryAction', (actionData) => new CancelEditCategoryAction(actionData, 'category.CancelEditCategoryAction'));
-		ACEController.registerFactory('category.UpdateCategoryAction', (actionData) => new UpdateCategoryAction(actionData, 'category.UpdateCategoryAction'));
+		ACEController.registerFactory('category.LoadCategoryTreeAction', 
+			(actionData) => new LoadCategoryTreeAction(actionData.pathToSelected, actionData.selectedCategoryId));
+		ACEController.registerFactory('category.ExpandTreeItemAction', 
+			(actionData) => new ExpandTreeItemAction(actionData.categoryId));
+		ACEController.registerFactory('category.CollapseTreeItemAction', 
+			(actionData) => new CollapseTreeItemAction(actionData.categoryId));
+		ACEController.registerFactory('category.SelectTreeItemAction', 
+			(actionData) => new SelectTreeItemAction(actionData.categoryId));
+		ACEController.registerFactory('category.DeselectTreeItemAction', 
+			(actionData) => new DeselectTreeItemAction());
+		ACEController.registerFactory('category.NewCategoryClickAction', 
+			(actionData) => new NewCategoryClickAction());
+		ACEController.registerFactory('category.CancelNewCategoryAction', 
+			(actionData) => new CancelNewCategoryAction());
+		ACEController.registerFactory('category.CategoryNameChangedAction', 
+			(actionData) => new CategoryNameChangedAction(actionData.categoryName));
+		ACEController.registerFactory('category.DictionaryLookupChangedAction', 
+			(actionData) => new DictionaryLookupChangedAction());
+		ACEController.registerFactory('category.GivenLanguageChangedAction', 
+			(actionData) => new GivenLanguageChangedAction(actionData.givenLanguage));
+		ACEController.registerFactory('category.WantedLanguageChangedAction', 
+			(actionData) => new WantedLanguageChangedAction(actionData.wantedLanguage));
+		ACEController.registerFactory('category.CreateCategoryAction', 
+			(actionData) => new CreateCategoryAction());
+		ACEController.registerFactory('category.DeleteCategoryClickAction', 
+			(actionData) => new DeleteCategoryClickAction());
+		ACEController.registerFactory('category.CancelDeleteCategoryAction', 
+			(actionData) => new CancelDeleteCategoryAction());
+		ACEController.registerFactory('category.DeleteCategoryAction', 
+			(actionData) => new DeleteCategoryAction());
+		ACEController.registerFactory('category.EditCategoryClickAction', 
+			(actionData) => new EditCategoryClickAction());
+		ACEController.registerFactory('category.CancelEditCategoryAction', 
+			(actionData) => new CancelEditCategoryAction());
+		ACEController.registerFactory('category.UpdateCategoryAction', 
+			(actionData) => new UpdateCategoryAction());
 	}
 
 }

@@ -8,11 +8,16 @@ import ConfirmEmailAction from "../../src/registration/actions/ConfirmEmailActio
 export default class ActionFactoryRegistrationRegistration {
 
 	static init() {
-		ACEController.registerFactory('registration.CheckUsernameAction', (actionData) => new CheckUsernameAction(actionData, 'registration.CheckUsernameAction'));
-		ACEController.registerFactory('registration.EmailChangedAction', (actionData) => new EmailChangedAction(actionData, 'registration.EmailChangedAction'));
-		ACEController.registerFactory('registration.PasswordChangedAction', (actionData) => new PasswordChangedAction(actionData, 'registration.PasswordChangedAction'));
-		ACEController.registerFactory('registration.RegisterUserAction', (actionData) => new RegisterUserAction(actionData, 'registration.RegisterUserAction'));
-		ACEController.registerFactory('registration.ConfirmEmailAction', (actionData) => new ConfirmEmailAction(actionData, 'registration.ConfirmEmailAction'));
+		ACEController.registerFactory('registration.CheckUsernameAction', 
+			(actionData) => new CheckUsernameAction(actionData.username));
+		ACEController.registerFactory('registration.EmailChangedAction', 
+			(actionData) => new EmailChangedAction(actionData.email));
+		ACEController.registerFactory('registration.PasswordChangedAction', 
+			(actionData) => new PasswordChangedAction(actionData.password, actionData.passwordRepetition));
+		ACEController.registerFactory('registration.RegisterUserAction', 
+			(actionData) => new RegisterUserAction(actionData.username, actionData.password));
+		ACEController.registerFactory('registration.ConfirmEmailAction', 
+			(actionData) => new ConfirmEmailAction(actionData.username, actionData.token));
 	}
 
 }

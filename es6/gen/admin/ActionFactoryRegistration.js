@@ -8,11 +8,16 @@ import DeleteUserCancelAction from "../../src/admin/actions/DeleteUserCancelActi
 export default class ActionFactoryRegistrationAdmin {
 
 	static init() {
-		ACEController.registerFactory('admin.GetAllUsersAction', (actionData) => new GetAllUsersAction(actionData, 'admin.GetAllUsersAction'));
-		ACEController.registerFactory('admin.SaveRoleAction', (actionData) => new SaveRoleAction(actionData, 'admin.SaveRoleAction'));
-		ACEController.registerFactory('admin.DeleteUserAction', (actionData) => new DeleteUserAction(actionData, 'admin.DeleteUserAction'));
-		ACEController.registerFactory('admin.DeleteUserClickAction', (actionData) => new DeleteUserClickAction(actionData, 'admin.DeleteUserClickAction'));
-		ACEController.registerFactory('admin.DeleteUserCancelAction', (actionData) => new DeleteUserCancelAction(actionData, 'admin.DeleteUserCancelAction'));
+		ACEController.registerFactory('admin.GetAllUsersAction', 
+			(actionData) => new GetAllUsersAction());
+		ACEController.registerFactory('admin.SaveRoleAction', 
+			(actionData) => new SaveRoleAction(actionData.editedUserId, actionData.newRole));
+		ACEController.registerFactory('admin.DeleteUserAction', 
+			(actionData) => new DeleteUserAction());
+		ACEController.registerFactory('admin.DeleteUserClickAction', 
+			(actionData) => new DeleteUserClickAction(actionData.usernameToBeDeleted));
+		ACEController.registerFactory('admin.DeleteUserCancelAction', 
+			(actionData) => new DeleteUserCancelAction());
 	}
 
 }
