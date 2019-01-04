@@ -6,6 +6,7 @@ export default class ScoreReinforceCardCommand extends AbstractScoreReinforceCar
     initCommandData() {
         const appState = getAppState();
         this.commandData.reinforceCardId = appState.data === undefined || appState.data.reinforceCardId === undefined ? undefined : appState.data.reinforceCardId;
+        return true;
     }
 
     handleResponse(resolve, reject) {

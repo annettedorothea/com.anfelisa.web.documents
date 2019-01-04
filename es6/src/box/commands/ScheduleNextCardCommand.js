@@ -6,6 +6,7 @@ export default class ScheduleNextCardCommand extends AbstractScheduleNextCardCom
     initCommandData() {
         const appState = getAppState();
         this.commandData.boxId = appState.data === undefined || appState.data.boxId === undefined ? undefined : appState.data.boxId;
+        return true;
     }
 
     handleResponse(resolve, reject) {

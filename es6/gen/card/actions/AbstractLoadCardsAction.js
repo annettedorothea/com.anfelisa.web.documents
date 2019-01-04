@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractLoadCardsAction extends Action {
 
-    constructor( categoryId) {
-        super({categoryId}, 'card.LoadCardsAction');
+    constructor() {
+        super({}, 'card.LoadCardsAction');
 		this.postCall = this.postCall.bind(this);
     }
     

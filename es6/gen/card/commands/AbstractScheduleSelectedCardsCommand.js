@@ -13,7 +13,7 @@ export default class AbstractScheduleSelectedCardsCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new TriggerAction(new LoadCardsAction(this.commandData.categoryId)).publish());
+			promises.push(new TriggerAction(new LoadCardsAction()).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('ScheduleSelectedCardsCommand unhandled outcome: ' + this.commandData.outcome)});

@@ -7,6 +7,7 @@ export default class ScoreCardCommand extends AbstractScoreCardCommand {
         const appState = getAppState();
         this.commandData.boxId = appState.data === undefined || appState.data.boxId === undefined ? undefined : appState.data.boxId;
         this.commandData.scoredCardScheduledCardId = appState.data === undefined || appState.data.scheduledCardId === undefined ? false : appState.data.scheduledCardId;
+        return true;
     }
 
     handleResponse(resolve, reject) {

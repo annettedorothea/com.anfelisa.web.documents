@@ -3,7 +3,7 @@ import AbstractPostponeCardsOfBoxCommand from "../../../gen/box/commands/Abstrac
 export default class PostponeCardsOfBoxCommand extends AbstractPostponeCardsOfBoxCommand {
 
     initCommandData() {
-    	//add from appState to commandData
+        return true;
     }
 
     handleResponse(resolve, reject) {

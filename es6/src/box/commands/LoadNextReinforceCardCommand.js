@@ -3,6 +3,7 @@ import AbstractLoadNextReinforceCardCommand from "../../../gen/box/commands/Abst
 export default class LoadNextReinforceCardCommand extends AbstractLoadNextReinforceCardCommand {
 
     initCommandData() {
+        return true;
     }
 
     handleResponse(resolve) {

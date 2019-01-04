@@ -7,6 +7,7 @@ export default class RegisterUserCommand extends AbstractRegisterUserCommand {
         const appState = getAppState();
         this.commandData.email = appState.data.email;
         this.commandData.language = appState.language;
+        return true;
     }
 
     handleResponse(resolve) {

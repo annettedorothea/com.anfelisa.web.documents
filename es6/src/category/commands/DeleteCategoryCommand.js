@@ -6,6 +6,7 @@ export default class DeleteCategoryCommand extends AbstractDeleteCategoryCommand
     initCommandData() {
         const data = getAppState().data;
         this.commandData.categoryId = data.selectedCategory.categoryId;
+        return true;
     }
 
     handleResponse(resolve, reject) {

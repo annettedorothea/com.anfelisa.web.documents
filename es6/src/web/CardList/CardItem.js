@@ -1,20 +1,34 @@
 import React from "react";
 import ToggleScheduleCardSelectionAction from "../../card/actions/ToggleScheduleCardSelectionAction";
+import EditCardAction from "../../card/actions/EditCardAction";
+import DeleteCardClickAction from "../../card/actions/DeleteCardClickAction";
+import DeleteCardAction from "../../card/actions/DeleteCardAction";
+import CancelDeleteCardAction from "../../card/actions/CancelDeleteCardAction";
 
 export default class CardItem extends React.Component {
 
     constructor(props) {
         super(props);
         this.toggleScheduleCardSelection = this.toggleScheduleCardSelection.bind(this);
+        this.onEdit = this.onEdit.bind(this);
+        this.onDeleteClick = this.onDeleteClick.bind(this);
     }
 
-    toggleScheduleCardSelection(cardId) {
-        new ToggleScheduleCardSelectionAction(cardId).apply();
+    onEdit() {
+        new EditCardAction(this.props.cardId).apply();
+    }
+
+    toggleScheduleCardSelection() {
+        new ToggleScheduleCardSelectionAction(this.props.cardId).apply();
+    }
+
+    onDeleteClick() {
+        new DeleteCardClickAction(this.props.cardId).apply();
     }
 
     renderGiven() {
         return (
-            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {
+            <td onDoubleClick={this.props.editable === true ? () => this.onEdit() : () => {
             }}>
                 <pre>{this.props.given}</pre>
             </td>
@@ -23,7 +37,7 @@ export default class CardItem extends React.Component {
 
     renderWanted() {
         return (
-            <td onDoubleClick={this.props.editable === true ? () => this.props.onEdit() : () => {
+            <td onDoubleClick={this.props.editable === true ? () => this.onEdit() : () => {
             }}>
                 <pre>{this.props.wanted}</pre>
             </td>
@@ -35,7 +49,7 @@ export default class CardItem extends React.Component {
             <td
                 className="preview"
                 onDoubleClick={
-                    this.props.editable === true ? () => this.props.onEdit() : () => {
+                    this.props.editable === true ? () => this.onEdit() : () => {
                     }
                 }
             >
@@ -52,7 +66,7 @@ export default class CardItem extends React.Component {
                 <td>
                     <input
                         type={"checkbox"}
-                        onChange={() => this.toggleScheduleCardSelection(this.props.cardId)}
+                        onChange={() => this.toggleScheduleCardSelection()}
                         checked={this.props.scheduleCardSelection.indexOf(this.props.cardId) >= 0}
                     />
                 </td>
@@ -65,11 +79,11 @@ export default class CardItem extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderImage()}
                 <td className="noBreak">
                     {this.props.editable === true &&
-                    <button onClick={() => this.props.onEdit()}>
+                    <button onClick={() => this.onEdit()}>
                         <i className="fas fa-pen"/>
                     </button>}
                     {this.props.editable === true &&
-                    <button onClick={() => this.props.onDeleteClick(this.props.cardId)}>
+                    <button onClick={() => this.onDeleteClick()}>
                         <i className="fas fa-times"/>
                     </button>}
                 </td>

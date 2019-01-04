@@ -803,6 +803,10 @@ a:hover.tile h2 {
     margin-bottom: 8px;
 }
 
+.categoryCardSplitView .cardTable input[type=checkbox] {
+    margin-right: 8px;
+}
+
 .categoryCardSplitView div.google i {
     margin: 0;
 }
@@ -829,16 +833,19 @@ iframe {
     margin: 4px;
     width: 20px;
     height: 20px;
+
 }
 .categoryTree .categoryItem .selected {
     border: #337ab7 dotted 1px;
     border-radius: 4px;
     padding: 4px;
     line-height: 20px;
+    cursor: pointer;
 }
 .categoryTree .categoryItem .notSelected {
     padding: 5px;
     line-height: 20px;
+    cursor: pointer;
 }
 .categoryTree .categoryTreeItems,
 .categoryTree .expandedCategoryItem {
@@ -869,4 +876,7 @@ iframe {
     margin-left: 70px;
 }
 
+.categoryTree i.disabled {
+    color: #ccc;
+}
 

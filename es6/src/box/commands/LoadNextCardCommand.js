@@ -4,7 +4,7 @@ import {getAppState} from "../../app/App";
 export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
 
     initCommandData() {
-        //add from appState to commandData
+        return true;
     }
 
     handleResponse(resolve) {

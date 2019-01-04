@@ -7,6 +7,7 @@ export default class UpdateBoxCommand extends AbstractUpdateBoxCommand {
         const appState = getAppState();
         this.commandData.boxId = appState.data.boxId;
         this.commandData.maxInterval = appState.data.editedMaxInterval;
+        return true;
     }
 
     handleResponse(resolve, reject) {

@@ -15,7 +15,7 @@ export default class AbstractUpdateCardCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new UpdateCardOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCardsAction(this.commandData.categoryId)).publish());
+			promises.push(new TriggerAction(new LoadCardsAction()).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('UpdateCardCommand unhandled outcome: ' + this.commandData.outcome)});

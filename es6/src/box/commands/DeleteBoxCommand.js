@@ -3,7 +3,7 @@ import AbstractDeleteBoxCommand from "../../../gen/box/commands/AbstractDeleteBo
 export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
 
     initCommandData() {
-    	//add from appState to commandData 
+        return true;
     }
 
     handleResponse(resolve, reject) {

@@ -1,33 +1,31 @@
 import React from 'react';
-import Confirm from "./Confirm";
-import DeleteCardAction from "../card/actions/DeleteCardAction";
-import EditCardAction from "../card/actions/EditCardAction";
-import DeleteCardClickAction from "../card/actions/DeleteCardClickAction";
-import CancelDeleteCardAction from "../card/actions/CancelDeleteCardAction";
-import FilterCardsAction from "../card/actions/FilterCardsAction";
-import ToggleInputOrderAction from "../card/actions/ToggleInputOrderAction";
-import ToggleUseDictionaryAction from "../card/actions/ToggleUseDictionaryAction";
-import Dictionary from "./CardList/Dictionary";
-import DuplicateCardItem from "./CardList/DuplicateCardItem";
-import NewCard from "./CardList/NewCard";
-import EditCard from "./CardList/EditCard";
-import CardItem from "./CardList/CardItem";
-import ToggleAllScheduleCardSelectionAction from "../card/actions/ToggleAllScheduleCardSelectionAction";
-import ScheduleSelectedCardsAction from "../card/actions/ScheduleSelectedCardsAction";
+import Confirm from "../Confirm";
+import DeleteCardAction from "../../card/actions/DeleteCardAction";
+import EditCardAction from "../../card/actions/EditCardAction";
+import DeleteCardClickAction from "../../card/actions/DeleteCardClickAction";
+import CancelDeleteCardAction from "../../card/actions/CancelDeleteCardAction";
+import FilterCardsAction from "../../card/actions/FilterCardsAction";
+import ToggleInputOrderAction from "../../card/actions/ToggleInputOrderAction";
+import ToggleUseDictionaryAction from "../../card/actions/ToggleUseDictionaryAction";
+import Dictionary from "./Dictionary";
+import DuplicateCardItem from "./DuplicateCardItem";
+import NewCard from "./NewCard";
+import EditCard from "./EditCard";
+import CardItem from "./CardItem";
+import ToggleAllScheduleCardSelectionAction from "../../card/actions/ToggleAllScheduleCardSelectionAction";
+import ScheduleSelectedCardsAction from "../../card/actions/ScheduleSelectedCardsAction";
 
 export default class CardList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onEdit = this.onEdit.bind(this);
-        this.onDelete = this.onDelete.bind(this);
-        this.onDeleteClick = this.onDeleteClick.bind(this);
-        this.onDeleteCancel = this.onDeleteCancel.bind(this);
         this.onFilterChange = this.onFilterChange.bind(this);
         this.onToggleInputOrder = this.onToggleInputOrder.bind(this);
         this.onUseDictionaryChange = this.onUseDictionaryChange.bind(this);
         this.toggleAllScheduleCardSelection = this.toggleAllScheduleCardSelection.bind(this);
         this.onSchedule = this.onSchedule.bind(this);
+        this.onDelete = this.onDelete.bind(this);
+        this.onDeleteCancel = this.onDeleteCancel.bind(this);
     }
 
     onSchedule() {
@@ -41,57 +39,32 @@ export default class CardList extends React.Component {
         ).apply();
     }
 
-    onDeleteClick(cardId) {
-        new DeleteCardClickAction({cardId}).apply();
+    toggleAllScheduleCardSelection() {
+        new ToggleAllScheduleCardSelectionAction().apply();
     }
 
-    onEdit(cardId, given, wanted, image, index) {
-        const data = {
-            cardId,
-            given,
-            wanted,
-            image,
-            index
-        };
-        new EditCardAction(data).apply();
+    onFilterChange(event) {
+        new FilterCardsAction(event.target.value).apply();
+    }
+
+    onToggleInputOrder() {
+        new ToggleInputOrderAction(this.props.data.naturalInputOrder).apply();
+    }
+
+    onUseDictionaryChange() {
+        new ToggleUseDictionaryAction().apply();
     }
 
     onDelete() {
-        const data = {
-            username: this.props.username,
-            cardId: this.props.data.deleteCard.cardId,
-            password: this.props.password,
-            parentCategoryId: this.props.data.parentCategoryId
-        };
-        new DeleteCardAction(data).apply();
-    }
-
-    toggleAllScheduleCardSelection() {
-        new ToggleAllScheduleCardSelectionAction().apply();
+        new DeleteCardAction().apply();
     }
 
     onDeleteCancel() {
         new CancelDeleteCardAction().apply();
     }
 
-    onFilterChange(event) {
-        const filter = event.target.value;
-        new FilterCardsAction(
-            {
-                filter
-            }
-        ).apply();
-    }
-
-    onToggleInputOrder() {
-        new ToggleInputOrderAction({naturalInputOrder: this.props.data.naturalInputOrder}).apply();
-    }
-
-    onUseDictionaryChange() {
-        new ToggleUseDictionaryAction({useDictionary: this.props.data.useDictionary}).apply();
-    }
-
     render() {
+        //console.log("CardList", this.props);
         const cardItems = this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).map((card) => {
             if (card.cardId === this.props.data.editedCard.cardId) {
                 return <EditCard
@@ -118,7 +91,6 @@ export default class CardList extends React.Component {
                     texts={this.props.texts}
                     language={this.props.language}
                     onDeleteClick={this.onDeleteClick}
-                    onEdit={() => this.onEdit(card.cardId, card.given, card.wanted, card.image, card.cardIndex)}
                     username={this.props.username}
                     password={this.props.password}
                     userRole={this.props.role}
@@ -143,9 +115,9 @@ export default class CardList extends React.Component {
                     username={this.props.username}
                     password={this.props.password}
                     categoryId={this.props.data.parentCategoryId}
-                    dictionaryLookup={this.props.data.newCard.dictionaryLookup}
-                    givenLanguage={this.props.data.newCard.givenLanguage}
-                    wantedLanguage={this.props.data.newCard.wantedLanguage}
+                    dictionaryLookup={this.props.data.selectedCategory.dictionaryLookup}
+                    givenLanguage={this.props.data.selectedCategory.givenLanguage}
+                    wantedLanguage={this.props.data.selectedCategory.wantedLanguage}
                     texts={this.props.texts}
                     language={this.props.language}
                     naturalInputOrder={this.props.data.naturalInputOrder}
@@ -190,12 +162,13 @@ export default class CardList extends React.Component {
                         }}/>
                 </div>}
 
-                <h2>{this.props.texts.cardList.title[this.props.language]}</h2>
-
                 <table className="cardTable">
                     <thead>
                     <tr>
-                        <th colSpan={6}>
+                        {this.props.data.selectedCategory.hasBox === true &&<th/>}
+                        <th colSpan={4}>
+                            {this.props.data.selectedCategory.editable === true &&
+                            <button onClick={this.onToggleInputOrder}><i className="fas fa-arrows-alt-h"/></button>}
                             <input
                                 type={"text"}
                                 onChange={this.onFilterChange}
@@ -203,15 +176,13 @@ export default class CardList extends React.Component {
                                 value={this.props.data.filter}
                                 placeholder={this.props.texts.cardList.filter[this.props.language]}
                             />
-                            {this.props.data.selectedCategory.editable === true &&
-                            <button onClick={this.onToggleInputOrder}><i className="fas fa-arrows-alt-h"/></button>
-                            }
                         </th>
                     </tr>
 
-                    {this.props.data.newCard.dictionaryLookup === true && this.props.data.selectedCategory.editable === true &&
+                    {this.props.data.selectedCategory.dictionaryLookup === true && this.props.data.selectedCategory.editable === true &&
                     <tr>
-                        <th colSpan={6}>
+                        {this.props.data.selectedCategory.hasBox === true &&<th/>}
+                        <th colSpan={4}>
                             <input
                                 type={"checkbox"}
                                 onChange={this.onUseDictionaryChange}
@@ -235,7 +206,7 @@ export default class CardList extends React.Component {
                                 checked={this.props.data.scheduleCardSelection.length === this.props.data.cardList.length}
                             />
                         </th>
-                        <th colSpan={5}>
+                        <th colSpan={4}>
                             <button onClick={this.onSchedule}
                                     disabled={this.props.data.scheduleCardSelection.length === 0}>{this.props.texts.cardList.scheduleSelectedCards[this.props.language]}
                             </button>
@@ -256,7 +227,7 @@ export default class CardList extends React.Component {
                     </tbody>
                 </table>
 
-                {this.props.data.useDictionary && this.props.data.rootDictionaryLookup &&
+                {!!this.props.data.useDictionary && !!this.props.data.selectedCategory.dictionaryLookup &&
                 <Dictionary
                     given={this.props.data.newCard.given}
                     wanted={this.props.data.newCard.wanted}

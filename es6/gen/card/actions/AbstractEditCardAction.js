@@ -3,8 +3,8 @@ import EditCardCommand from "../../../src/card/commands/EditCardCommand";
 
 export default class AbstractEditCardAction extends Action {
 
-    constructor() {
-        super({}, 'card.EditCardAction');
+    constructor( cardId) {
+        super({cardId}, 'card.EditCardAction');
     }
     
 	getCommand() {

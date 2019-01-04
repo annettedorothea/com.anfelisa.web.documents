@@ -3,7 +3,7 @@ import AbstractResetPasswordCommand from "../../../gen/password/commands/Abstrac
 export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
 
     initCommandData() {
-    	//add from appState to commandData 
+        return true;
     }
 
     handleResponse(resolve, reject) {

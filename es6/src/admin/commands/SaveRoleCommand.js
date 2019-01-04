@@ -3,7 +3,7 @@ import AbstractSaveRoleCommand from "../../../gen/admin/commands/AbstractSaveRol
 export default class SaveRoleCommand extends AbstractSaveRoleCommand {
 
     initCommandData() {
-    	//add from appState to commandData 
+        return true;
     }
 
     handleResponse(resolve, reject) {

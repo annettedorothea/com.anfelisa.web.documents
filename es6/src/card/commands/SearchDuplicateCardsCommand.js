@@ -3,7 +3,7 @@ import AbstractSearchDuplicateCardsCommand from "../../../gen/card/commands/Abst
 export default class SearchDuplicateCardsCommand extends AbstractSearchDuplicateCardsCommand {
 
     initCommandData() {
-    	//add from appState to commandData 
+        return true;
     }
 
     handleResponse(resolve, reject) {

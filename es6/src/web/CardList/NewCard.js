@@ -89,53 +89,21 @@ export default class NewCard extends React.Component {
     }
 
     onGivenChange(event) {
-        const given = event.target.value;
-        new GivenOfNewCardChangedAction(
-            {
-                given,
-                wanted: this.props.wanted,
-                username: this.props.username,
-                password: this.props.password,
-                categoryId: this.props.categoryId,
-                naturalInputOrder: this.props.naturalInputOrder
-            }
-        ).apply();
+        new GivenOfNewCardChangedAction(event.target.value).apply();
     }
 
     onWantedChange(event) {
         const wanted = event.target.value;
-        new WantedOfNewCardChangedAction(
-            {
-                wanted,
-                given: this.props.given,
-                username: this.props.username,
-                password: this.props.password,
-                categoryId: this.props.categoryId,
-                naturalInputOrder: this.props.naturalInputOrder,
-            }
-        ).apply();
+        new WantedOfNewCardChangedAction(event.target.value).apply();
     }
 
     onCancel() {
-        const data = {
-            parentDictionaryLookup: this.props.dictionaryLookup,
-            parentGivenLanguage: this.props.givenLanguage,
-            parentWantedLanguage: this.props.wantedLanguage
-        };
-        new CancelNewCardAction(data).apply();
+        new CancelNewCardAction().apply();
         this.setFocusByInputOrder();
     }
 
     onNewCard() {
-        const data = {
-            username: this.props.username,
-            password: this.props.password,
-            given: this.props.given.trim(),
-            wanted: this.props.wanted.trim(),
-            parentCategoryId: this.props.categoryId,
-            image: this.props.image
-        };
-        new CreateCardAction(data).apply();
+        new CreateCardAction().apply();
         this.setFocusByInputOrder();
     }
 
@@ -147,7 +115,7 @@ export default class NewCard extends React.Component {
                 wantedLanguage: this.props.wantedLanguage,
                 naturalInputOrder: this.props.naturalInputOrder
             };
-            new PassValueToDictionaryAction(data).apply();
+            //new PassValueToDictionaryAction(data).apply();
         }
         if (this.props.naturalInputOrder === true && this.props.dictionaryLookup === true) {
             const data = {
@@ -172,7 +140,7 @@ export default class NewCard extends React.Component {
                 wantedLanguage: this.props.wantedLanguage,
                 naturalInputOrder: this.props.naturalInputOrder
             };
-            new PassValueToDictionaryAction(data).apply();
+            //new PassValueToDictionaryAction(data).apply();
         }
         if (this.props.naturalInputOrder === false && this.props.dictionaryLookup === true) {
             const data = {

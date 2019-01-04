@@ -30,7 +30,7 @@ export default class ActionFactoryRegistrationCard {
 
 	static init() {
 		ACEController.registerFactory('card.LoadCardsAction', 
-			(actionData) => new LoadCardsAction(actionData.categoryId));
+			(actionData) => new LoadCardsAction());
 		ACEController.registerFactory('card.CreateCardAction', 
 			(actionData) => new CreateCardAction());
 		ACEController.registerFactory('card.UpdateCardAction', 
@@ -52,23 +52,23 @@ export default class ActionFactoryRegistrationCard {
 		ACEController.registerFactory('card.CancelEditCardAction', 
 			(actionData) => new CancelEditCardAction());
 		ACEController.registerFactory('card.EditCardAction', 
-			(actionData) => new EditCardAction());
+			(actionData) => new EditCardAction(actionData.cardId));
 		ACEController.registerFactory('card.DeleteCardClickAction', 
-			(actionData) => new DeleteCardClickAction());
+			(actionData) => new DeleteCardClickAction(actionData.cardId));
 		ACEController.registerFactory('card.CancelDeleteCardAction', 
 			(actionData) => new CancelDeleteCardAction());
 		ACEController.registerFactory('card.FilterCardsAction', 
-			(actionData) => new FilterCardsAction());
+			(actionData) => new FilterCardsAction(actionData.filter));
 		ACEController.registerFactory('card.TranslateAction', 
 			(actionData) => new TranslateAction());
 		ACEController.registerFactory('card.PassValueToDictionaryAction', 
 			(actionData) => new PassValueToDictionaryAction());
 		ACEController.registerFactory('card.ToggleInputOrderAction', 
-			(actionData) => new ToggleInputOrderAction());
+			(actionData) => new ToggleInputOrderAction(actionData.naturalInputOrder));
 		ACEController.registerFactory('card.ToggleUseDictionaryAction', 
 			(actionData) => new ToggleUseDictionaryAction());
 		ACEController.registerFactory('card.LoadWantedImageOfNewCardAction', 
-			(actionData) => new LoadWantedImageOfNewCardAction());
+			(actionData) => new LoadWantedImageOfNewCardAction(actionData.image));
 		ACEController.registerFactory('card.LoadWantedImageOfEditedCardAction', 
 			(actionData) => new LoadWantedImageOfEditedCardAction(actionData.image));
 		ACEController.registerFactory('card.RemoveNewCardImageAction', 

@@ -3,6 +3,7 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import CreateCategoryOkEvent from "../../../gen/category/events/CreateCategoryOkEvent";
 import CreateCategoryErrorEvent from "../../../gen/category/events/CreateCategoryErrorEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
+import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractCreateCategoryCommand extends Command {
     constructor(commandData) {
@@ -18,6 +19,7 @@ export default class AbstractCreateCategoryCommand extends Command {
 		case this.ok:
 			promises.push(new CreateCategoryOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.pathToSelected, this.commandData.selectedCategoryId)).publish());
+			promises.push(new TriggerAction(new LoadCardsAction()).publish());
 			break;
 		case this.error:
 			promises.push(new CreateCategoryErrorEvent(this.commandData).publish());

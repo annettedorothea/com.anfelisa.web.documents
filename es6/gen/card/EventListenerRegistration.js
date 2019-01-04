@@ -5,6 +5,7 @@ export default class EventListenerRegistrationCard {
 
 	static init() {
 		ACEController.registerListener('card.LoadCardsOkEvent', CardListView.render);
+		ACEController.registerListener('card.LoadCardsNoCategorySelectedEvent', CardListView.hide);
 		ACEController.registerListener('card.CreateCardOkEvent', CardListView.resetNewCardValues);
 		ACEController.registerListener('card.UpdateCardOkEvent', CardListView.resetEditCardValues);
 		ACEController.registerListener('card.DeleteCardOkEvent', CardListView.hideConfirmCardDelete);
@@ -30,8 +31,8 @@ export default class EventListenerRegistrationCard {
 		ACEController.registerListener('card.LoadWantedImageOfEditedCardOkEvent', CardListView.displayImageOfEditedCard);
 		ACEController.registerListener('card.RemoveNewCardImageOkEvent', CardListView.removeNewCardImage);
 		ACEController.registerListener('card.RemoveEditedCardImageOkEvent', CardListView.removeEditedCardImage);
-		ACEController.registerListener('card.ToggleScheduleCardSelectionOkEvent', CardListView.toggleScheduleCardSelection);
-		ACEController.registerListener('card.ToggleAllScheduleCardSelectionOkEvent', CardListView.toggleAllScheduleCardSelection);
+		ACEController.registerListener('card.ToggleScheduleCardSelectionOkEvent', CardListView.setScheduleCardSelection);
+		ACEController.registerListener('card.ToggleAllScheduleCardSelectionOkEvent', CardListView.setScheduleCardSelection);
 	}
 
 }

@@ -252,9 +252,6 @@ export const Texts = {
         scheduleSelectedCards: {
             de: "Selektierte Karten heute noch abfragen"
         },
-        title: {
-            de: "Karten in diesem Ordner"
-        },
         useDictionary: {
             de: "Linugee Wörterbuch anzeigen"
         }

@@ -10,6 +10,7 @@ export default class EventListenerRegistrationCategory {
 		ACEController.registerListener('category.CollapseTreeItemOkEvent', CategoryTreeView.setCategoryList);
 		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', CategoryTreeView.setCategoryList);
 		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', CategoryTreeView.setSelectedCategory);
+		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', CardListView.hide);
 		ACEController.registerListener('category.SelectTreeItemOkEvent', CategoryTreeView.setSelectedCategory);
 		ACEController.registerListener('category.DeselectTreeItemOkEvent', CategoryTreeView.setSelectedCategory);
 		ACEController.registerListener('category.DeselectTreeItemOkEvent', CardListView.hide);

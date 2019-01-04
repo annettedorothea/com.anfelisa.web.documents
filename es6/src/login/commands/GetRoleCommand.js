@@ -3,7 +3,7 @@ import AbstractGetRoleCommand from "../../../gen/login/commands/AbstractGetRoleC
 export default class GetRoleCommand extends AbstractGetRoleCommand {
 
     initCommandData() {
-    	//add from appState to commandData 
+        return true;
     }
 
     handleResponse(resolve) {

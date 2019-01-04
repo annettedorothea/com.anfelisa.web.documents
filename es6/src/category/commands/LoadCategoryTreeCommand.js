@@ -5,7 +5,7 @@ import {findExpandedCategories, initExpandedState, initSelected} from "../utils/
 export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCommand {
 
     initCommandData() {
-        //add from appState to commandData
+        return true;
     }
 
     handleResponse(resolve, reject) {

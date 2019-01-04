@@ -3,7 +3,7 @@ import AbstractDeleteUserCommand from "../../../gen/profile/commands/AbstractDel
 export default class DeleteUserCommand extends AbstractDeleteUserCommand {
 
     initCommandData() {
-    	//add from appState to commandData 
+        return true;
     }
 
     handleResponse(resolve, reject) {

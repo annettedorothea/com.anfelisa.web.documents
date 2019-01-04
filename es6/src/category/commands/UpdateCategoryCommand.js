@@ -10,6 +10,7 @@ export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand
         this.commandData.dictionaryLookup = data.dictionaryLookup;
         this.commandData.givenLanguage = data.givenLanguage;
         this.commandData.wantedLanguage = data.wantedLanguage;
+        return true;
     }
 
     handleResponse(resolve, reject) {

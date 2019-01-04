@@ -3,7 +3,7 @@ import AbstractLoadUserCommand from "../../../gen/profile/commands/AbstractLoadU
 export default class LoadUserCommand extends AbstractLoadUserCommand {
 
     initCommandData() {
-    	//add from appState to commandData 
+        return true;
     }
 
     handleResponse(resolve, reject) {

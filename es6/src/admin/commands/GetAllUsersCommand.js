@@ -3,7 +3,7 @@ import AbstractGetAllUsersCommand from "../../../gen/admin/commands/AbstractGetA
 export default class GetAllUsersCommand extends AbstractGetAllUsersCommand {
 
     initCommandData() {
-    	//add from appState to commandData 
+        return true;
     }
 
     handleResponse(resolve, reject) {

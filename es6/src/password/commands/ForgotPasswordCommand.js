@@ -7,6 +7,7 @@ export default class ForgotPasswordCommand extends AbstractForgotPasswordCommand
         const appState = getAppState();
         this.commandData.username = appState.data.username;
         this.commandData.language = appState.language;
+        return true;
     }
 
     handleResponse(resolve) {

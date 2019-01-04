@@ -6,6 +6,7 @@ export default class CreateBoxCommand extends AbstractCreateBoxCommand {
     initCommandData() {
         const data = getAppState().data;
         this.commandData.categoryId = data.selectedCategory.categoryId;
+        return true;
     }
 
     handleResponse(resolve, reject) {

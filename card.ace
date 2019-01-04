@@ -1,11 +1,12 @@
 ES6 card
 
 ACE
-LoadCards<categoryId>
+LoadCards
 	preCall (common.Common.displaySpinner)
 	call com.anfelisa.card.GetCards
 	postCall (common.Common.hideSpinner)
 	on ok ( CardList.render )
+	on noCategorySelected ( CardList.hide )
 
  CreateCard 
  	preCall (common.Common.displaySpinner) 
@@ -54,17 +55,17 @@ WantedOfEditedCardChanged <wanted>
 CancelEditCard 
 	on ok (CardList.resetEditCardValues)
 
-EditCard 
+EditCard <cardId>
 	on ok (CardList.editCard)
 
-DeleteCardClick 
+DeleteCardClick <cardId>
 	on ok (CardList.displayConfirmCardDelete)
 
 CancelDeleteCard 
 	on ok (CardList.hideConfirmCardDelete)
 
 
-FilterCards 
+FilterCards <filter>
 	on ok (CardList.filterChanged)
 
 
@@ -83,7 +84,7 @@ PassValueToDictionary
 	on ok (CardList.setDictionaryValue)
 
 
-ToggleInputOrder 
+ToggleInputOrder <naturalInputOrder>
 	on ok (CardList.toggleInputOrder)
 
 
@@ -91,15 +92,11 @@ ToggleUseDictionary
 	on ok (CardList.toggleUseDictionary)
 
 
-LoadWantedImageOfNewCard 
+LoadWantedImageOfNewCard <image>
 	on ok (CardList.displayImageOfNewCard)
-	on error
-
 
 LoadWantedImageOfEditedCard <image>
 	on ok (CardList.displayImageOfEditedCard)
-	on error
-
 
 RemoveNewCardImage 
 	on ok (CardList.removeNewCardImage)
@@ -109,10 +106,10 @@ RemoveEditedCardImage
 	on ok (CardList.removeEditedCardImage)
 
 ToggleScheduleCardSelection <cardId>
-	on ok (CardList.toggleScheduleCardSelection)
+	on ok (CardList.setScheduleCardSelection)
 
 ToggleAllScheduleCardSelection 
-	on ok (CardList.toggleAllScheduleCardSelection)
+	on ok (CardList.setScheduleCardSelection)
 
  ScheduleSelectedCards 
  	preCall (common.Common.displaySpinner) 
@@ -165,7 +162,6 @@ CardList {
 	removeNewCardImage
 	removeEditedCardImage
 	
-	toggleScheduleCardSelection
-	toggleAllScheduleCardSelection
+	setScheduleCardSelection
 	
 }

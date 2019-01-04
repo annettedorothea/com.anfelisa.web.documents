@@ -1,11 +1,13 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadCardsOkEvent from "../../../gen/card/events/LoadCardsOkEvent";
+import LoadCardsNoCategorySelectedEvent from "../../../gen/card/events/LoadCardsNoCategorySelectedEvent";
 
 export default class AbstractLoadCardsCommand extends Command {
     constructor(commandData) {
         super(commandData, "card.LoadCardsCommand");
         this.ok = "ok";
+        this.noCategorySelected = "noCategorySelected";
     }
 
     publishEvents() {
@@ -14,6 +16,9 @@ export default class AbstractLoadCardsCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new LoadCardsOkEvent(this.commandData).publish());
+			break;
+		case this.noCategorySelected:
+			promises.push(new LoadCardsNoCategorySelectedEvent(this.commandData).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('LoadCardsCommand unhandled outcome: ' + this.commandData.outcome)});

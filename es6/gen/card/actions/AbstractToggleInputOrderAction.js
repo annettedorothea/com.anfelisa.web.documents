@@ -3,8 +3,8 @@ import ToggleInputOrderCommand from "../../../src/card/commands/ToggleInputOrder
 
 export default class AbstractToggleInputOrderAction extends Action {
 
-    constructor() {
-        super({}, 'card.ToggleInputOrderAction');
+    constructor( naturalInputOrder) {
+        super({naturalInputOrder}, 'card.ToggleInputOrderAction');
     }
     
 	getCommand() {

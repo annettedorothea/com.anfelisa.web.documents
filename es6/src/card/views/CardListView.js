@@ -8,17 +8,13 @@ export default class CardListView {
                 wanted: "",
                 image: "",
                 displaySpinner: false,
-                displayTranslateSpinner: false,
-                dictionaryLookup: true,
-                givenLanguage: "de",
-                wantedLanguage: "en"
+                displayTranslateSpinner: false
             },
             editedCard: {
                 cardId: "",
                 given: "",
                 wanted: "",
-                image: "",
-                index: ""
+                image: ""
             },
             cardDuplicates: [],
             deleteCard: {
@@ -119,7 +115,6 @@ export default class CardListView {
                 wanted: "",
                 given: "",
                 image: "",
-                index: "",
                 cardId: ""
             }
         };
@@ -130,13 +125,7 @@ export default class CardListView {
 
     static editCard(eventData) {
         const data = {
-            editedCard: {
-                cardId: eventData.cardId,
-                given: eventData.given,
-                wanted: eventData.wanted,
-                index: eventData.index,
-                image: eventData.image
-            }
+            editedCard: eventData
         };
         deepMergeState({
             data
@@ -357,28 +346,9 @@ export default class CardListView {
         });
     }
 
-    static toggleScheduleCardSelection(eventData) {
-        console.log("toggleScheduleCardSelection", eventData);
+    static setScheduleCardSelection(eventData) {
         let data = getAppState().data;
-        const index = data.scheduleCardSelection.indexOf(eventData.cardId);
-        if (index !== -1) {
-            data.scheduleCardSelection.splice(index, 1);
-        } else {
-            data.scheduleCardSelection.push(eventData.cardId);
-        }
-        mergeState({
-            data
-        });
-    }
-
-    static toggleAllScheduleCardSelection(eventData) {
-        let data = getAppState().data;
-        data.scheduleCardSelection = [];
-        if (data.scheduleCardSelection.length < data.cardList.length) {
-            data.cardList.forEach(card => {
-                data.scheduleCardSelection.push(card.cardId)
-            });
-        }
+        data.scheduleCardSelection = eventData.scheduleCardSelection;
         mergeState({
             data
         });

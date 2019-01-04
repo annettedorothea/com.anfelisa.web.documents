@@ -4,6 +4,13 @@ import {getAppState} from "../../app/App";
 export default class LoadCardsCommand extends AbstractLoadCardsCommand {
 
     initCommandData() {
+        const data = getAppState().data;
+        if (!data.selectedCategory) {
+            this.commandData.outcome = this.noCategorySelected;
+            return false;
+        }
+        this.commandData.categoryId = data.selectedCategory.categoryId;
+        return true;
     }
 
     handleResponse(resolve, reject) {

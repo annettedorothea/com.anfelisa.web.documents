@@ -15,7 +15,7 @@ export default class AbstractCreateCardCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new CreateCardOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCardsAction(this.commandData.categoryId)).publish());
+			promises.push(new TriggerAction(new LoadCardsAction()).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('CreateCardCommand unhandled outcome: ' + this.commandData.outcome)});
@@ -30,7 +30,6 @@ export default class AbstractCreateCardCommand extends Command {
 	        	wanted : this.commandData.wanted,
 	        	given : this.commandData.given,
 	        	image : this.commandData.image,
-	        	cardIndex : this.commandData.cardIndex,
 	        	categoryId : this.commandData.categoryId,
 	        	};
 

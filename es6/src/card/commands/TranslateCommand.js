@@ -3,7 +3,7 @@ import AbstractTranslateCommand from "../../../gen/card/commands/AbstractTransla
 export default class TranslateCommand extends AbstractTranslateCommand {
 
     initCommandData() {
-    	//add from appState to commandData 
+        return true;
     }
 
     handleResponse(resolve, reject) {

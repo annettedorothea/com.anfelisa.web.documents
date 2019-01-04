@@ -13,7 +13,7 @@ export default class AbstractSelectTreeItemCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new SelectTreeItemOkEvent(this.commandData).publish();
-			new TriggerAction(new LoadCardsAction(this.commandData.categoryId)).publish();
+			new TriggerAction(new LoadCardsAction()).publish();
 			break;
 		default:
 			throw 'SelectTreeItemCommand unhandled outcome: ' + this.commandData.outcome;

@@ -1,5 +1,5 @@
 import React from 'react';
-import CardList from "./CardList";
+import CardList from "./CardList/CardList";
 import CategoryTree from "./CategoryTree/CategoryTree";
 
 export default class CategoryCardSplitView extends React.Component {

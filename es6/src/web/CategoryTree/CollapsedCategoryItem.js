@@ -15,7 +15,7 @@ export default class CollapsedCategoryItem extends React.Component {
                 <i className="fas fa-caret-right"
                    onClick={() => new ExpandTreeItemAction(this.props.categoryId).apply()}/>
                 }
-                {this.props.empty === true && <i className="fas"/>}
+                {this.props.empty === true && <i className="fas fa-caret-right disabled"/>}
                 <SelectableCategoryItem
                     selected={this.props.selected}
                     categoryName={this.props.categoryName}

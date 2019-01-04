@@ -18,7 +18,7 @@ export default class AbstractDeleteCardCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new DeleteCardOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCardsAction(this.commandData.categoryId)).publish());
+			promises.push(new TriggerAction(new LoadCardsAction()).publish());
 			break;
 		case this.error:
 			promises.push(new DeleteCardErrorEvent(this.commandData).publish());
