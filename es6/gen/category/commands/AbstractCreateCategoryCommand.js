@@ -35,7 +35,6 @@ export default class AbstractCreateCategoryCommand extends Command {
 			let queryParams = [];
 	        let payload = {	
 	        	categoryName : this.commandData.categoryName,
-	        	categoryIndex : this.commandData.categoryIndex,
 	        	parentCategoryId : this.commandData.parentCategoryId,
 	        	dictionaryLookup : this.commandData.dictionaryLookup,
 	        	givenLanguage : this.commandData.givenLanguage,

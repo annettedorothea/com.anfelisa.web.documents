@@ -11,9 +11,9 @@ export default class SelectableCategoryItem extends React.Component {
     render() {
         return (
             <span>
-                {!this.props.selected && <span className="notSelected"
+                {!this.props.selected && <span className="item notSelected"
                                                onClick={() => new SelectTreeItemAction(this.props.categoryId).apply()}>{this.props.categoryName}</span>}
-                {this.props.selected && <span className="selected"
+                {this.props.selected && <span className="item selected"
                                               onClick={() => new DeselectTreeItemAction().apply()}>{this.props.categoryName}</span>}
             </span>
         );

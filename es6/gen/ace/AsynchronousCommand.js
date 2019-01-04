@@ -16,6 +16,8 @@ export default class AsynchronousCommand extends Command {
 				        reject(error);
 				    });
 				} else {
+			        ACEController.addItemToTimeLine({command: this});
+			        this.publishEvents();
 					resolve();
 				}
 			} else {
@@ -29,6 +31,7 @@ export default class AsynchronousCommand extends Command {
     }
 
     initCommandData() {
+    	return true;
     }
 
     httpGet(url, authorize, queryParams) {

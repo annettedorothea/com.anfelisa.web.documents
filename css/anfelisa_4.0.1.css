@@ -829,26 +829,30 @@ iframe {
     margin-bottom: 32px;
 }
 
+.categoryTree .categoryItem {
+    margin: 4px;
+
+}
 .categoryTree .categoryItem i {
     margin: 4px;
     width: 20px;
     height: 20px;
 
 }
-.categoryTree .categoryItem .selected {
-    border: #337ab7 dotted 1px;
+.categoryTree .categoryItem .item {
     border-radius: 4px;
-    padding: 4px;
+    padding: 4px 12px;
     line-height: 20px;
     cursor: pointer;
+}
+.categoryTree .categoryItem .selected {
+    background-color: #337ab7;
+    color: #fff;
 }
 .categoryTree .categoryItem .notSelected {
-    padding: 5px;
-    line-height: 20px;
-    cursor: pointer;
 }
-.categoryTree .categoryTreeItems,
-.categoryTree .expandedCategoryItem {
+
+.categoryTree .categoryTreeItems {
     margin-bottom: 20px;
 }
 .categoryTree .categoryItem.depth_0 {

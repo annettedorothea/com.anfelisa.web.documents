@@ -3,6 +3,9 @@ import {getAppState} from "../../app/App";
 
 export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsCommand {
 
+    initCommandData() {
+        return true;
+    }
     handleResponse(resolve) {
         const appState = getAppState();
         const scheduleNext = appState.data === undefined || appState.data.scheduleNext === undefined ? false : appState.data.scheduleNext;

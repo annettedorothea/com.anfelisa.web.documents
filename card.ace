@@ -30,7 +30,7 @@ LoadCards
 
 
 GivenOfNewCardChanged <given>
-	on ok (CardList.givenOfNewCardChanged) 
+	on ok (CardList.givenOfNewCardChanged) triggers (SearchDuplicateCards)
 
 SearchDuplicateCards 
 	preCall (CardList.displayNewCardSpinner) 
@@ -40,7 +40,7 @@ SearchDuplicateCards
 	on tooShort (CardList.resetDuplicates)
 
 WantedOfNewCardChanged <wanted>
-	on ok (CardList.wantedOfNewCardChanged)
+	on ok (CardList.wantedOfNewCardChanged) triggers (SearchDuplicateCards)
 
 CancelNewCard 
 	on ok (CardList.resetNewCardValues )

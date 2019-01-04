@@ -31,7 +31,6 @@ export default class CardListView {
         deepMergeState({
             data
         });
-        console.log(getAppState().data);
     };
 
     static hide() {
@@ -202,7 +201,7 @@ export default class CardListView {
 
     static initDuplicates(eventData) {
         const data = {
-            cardDuplicates: eventData.data.cardList
+            cardDuplicates: eventData.cardList
         };
         deepMergeState({
             data

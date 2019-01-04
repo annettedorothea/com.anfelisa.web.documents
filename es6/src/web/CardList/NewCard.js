@@ -109,51 +109,19 @@ export default class NewCard extends React.Component {
 
     onBlurGiven() {
         if (this.props.naturalInputOrder === true && this.props.useDictionary === true && (!this.props.wanted || this.props.wanted.length === 0)) {
-            const data = {
-                dictionaryValue: this.props.given,
-                givenLanguage: this.props.givenLanguage,
-                wantedLanguage: this.props.wantedLanguage,
-                naturalInputOrder: this.props.naturalInputOrder
-            };
-            //new PassValueToDictionaryAction(data).apply();
+            new PassValueToDictionaryAction().apply();
         }
         if (this.props.naturalInputOrder === true && this.props.dictionaryLookup === true) {
-            const data = {
-                given: this.props.given,
-                wanted: this.props.wanted,
-                givenLanguage: this.props.givenLanguage,
-                wantedLanguage: this.props.wantedLanguage,
-                naturalInputOrder: this.props.naturalInputOrder,
-                username: this.props.username,
-                password: this.props.password,
-                categoryId: this.props.categoryId
-            };
-            //new TranslateAction(data).apply();
+            new TranslateAction().apply();
         }
     }
 
     onBlurWanted() {
         if (this.props.naturalInputOrder === false && this.props.useDictionary === true && (!this.props.given || this.props.given.length === 0)) {
-            const data = {
-                dictionaryValue: this.props.wanted,
-                givenLanguage: this.props.givenLanguage,
-                wantedLanguage: this.props.wantedLanguage,
-                naturalInputOrder: this.props.naturalInputOrder
-            };
-            //new PassValueToDictionaryAction(data).apply();
+            new PassValueToDictionaryAction().apply();
         }
         if (this.props.naturalInputOrder === false && this.props.dictionaryLookup === true) {
-            const data = {
-                given: this.props.given,
-                wanted: this.props.wanted,
-                givenLanguage: this.props.givenLanguage,
-                wantedLanguage: this.props.wantedLanguage,
-                naturalInputOrder: this.props.naturalInputOrder,
-                username: this.props.username,
-                password: this.props.password,
-                categoryId: this.props.categoryId
-            };
-            //new TranslateAction(data).apply();
+            new TranslateAction().apply();
         }
     }
 

@@ -2,6 +2,9 @@ import AbstractConfirmEmailCommand from "../../../gen/registration/commands/Abst
 
 export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
 
+    initCommandData() {
+        return true;
+    }
     handleResponse(resolve) {
         this.commandData.hash = "#";
         this.commandData.messageKey = "emailConfirmed";

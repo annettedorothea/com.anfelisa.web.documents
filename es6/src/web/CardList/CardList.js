@@ -29,14 +29,7 @@ export default class CardList extends React.Component {
     }
 
     onSchedule() {
-        new ScheduleSelectedCardsAction(
-            {
-                username: this.props.username,
-                password: this.props.password,
-                cardIds: this.props.data.scheduleCardSelection,
-                parentCategoryId: this.props.data.parentCategoryId
-            }
-        ).apply();
+        new ScheduleSelectedCardsAction().apply();
     }
 
     toggleAllScheduleCardSelection() {
@@ -140,7 +133,7 @@ export default class CardList extends React.Component {
                 userRole={this.props.role}
                 naturalInputOrder={this.props.data.naturalInputOrder}
                 parentCategoryId={this.props.data.parentCategoryId}
-                hasBox={this.props.data.hasBox}
+                hasBox={this.props.data.selectedCategory.hasBox}
             />
 
         });
@@ -231,8 +224,8 @@ export default class CardList extends React.Component {
                 <Dictionary
                     given={this.props.data.newCard.given}
                     wanted={this.props.data.newCard.wanted}
-                    givenLanguage={this.props.data.newCard.givenLanguage}
-                    wantedLanguage={this.props.data.newCard.wantedLanguage}
+                    givenLanguage={this.props.data.selectedCategory.givenLanguage}
+                    wantedLanguage={this.props.data.selectedCategory.wantedLanguage}
                     naturalInputOrder={this.props.data.naturalInputOrder}
                     value={this.props.data.dictionaryValue}
                     setFocus={() => this.newCard.setFocus()}
