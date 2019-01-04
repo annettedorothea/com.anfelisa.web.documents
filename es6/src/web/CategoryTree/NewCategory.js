@@ -20,9 +20,9 @@ export default class NewCategory extends React.Component {
             this.props.dictionaryLookup && (this.props.givenLanguage.length === 0 || this.props.wantedLanguage.length === 0);
         return (
             <div className="modal">
-                <div className="modalContent">
+                <div className="modalContent form">
                     <h2>{this.props.texts.categoryTree.newCategory.title[this.props.language]}</h2>
-                    <div>
+                    <div className="line">
                         <input
                             type={"text"}
                             onChange={(event) => {
@@ -35,7 +35,7 @@ export default class NewCategory extends React.Component {
                         {this.props.categoryNameAlreadyExists === true && this.props.categoryName && this.props.categoryName.length > 0 &&
                         <i className="fas fa-times error"/>}
                     </div>
-                    <div className="noBreak">
+                    <div className="noBreak line">
                         <input
                             type={"checkbox"}
                             onChange={() => {new DictionaryLookupChangedAction().apply()}}

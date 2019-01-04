@@ -14,7 +14,7 @@ export default class BoxListView {
         });
 	};
 	
-	static cancelEditBox(eventData) {
+	static cancelEditBox() {
         deepMergeState({
             data: {
                 editedBox: {
@@ -35,7 +35,7 @@ export default class BoxListView {
         });
 	};
 
-	static hideConfirmDelete(eventData) {
+	static hideConfirmDelete() {
         deepMergeState({
             data: {
                 deleteBox: {

@@ -1,13 +1,13 @@
-import TranslateAction from "../../author/actions/TranslateAction";
-import CreateCardAction from "../../author/actions/CreateCardAction";
+import TranslateAction from "../../card/actions/TranslateAction";
+import CreateCardAction from "../../card/actions/CreateCardAction";
 import DisplayErrorAction from "../../common/actions/DisplayErrorAction";
-import GivenOfNewCardChangedAction from "../../author/actions/GivenOfNewCardChangedAction";
+import GivenOfNewCardChangedAction from "../../card/actions/GivenOfNewCardChangedAction";
 import React from "react";
-import WantedOfNewCardChangedAction from "../../author/actions/WantedOfNewCardChangedAction";
-import CancelNewCardAction from "../../author/actions/CancelNewCardAction";
-import LoadWantedImageOfNewCardAction from "../../author/actions/LoadWantedImageOfNewCardAction";
-import RemoveNewCardImageAction from "../../author/actions/RemoveNewCardImageAction";
-import PassValueToDictionaryAction from "../../author/actions/PassValueToDictionaryAction";
+import WantedOfNewCardChangedAction from "../../card/actions/WantedOfNewCardChangedAction";
+import CancelNewCardAction from "../../card/actions/CancelNewCardAction";
+import LoadWantedImageOfNewCardAction from "../../card/actions/LoadWantedImageOfNewCardAction";
+import RemoveNewCardImageAction from "../../card/actions/RemoveNewCardImageAction";
+import PassValueToDictionaryAction from "../../card/actions/PassValueToDictionaryAction";
 import Preview from "./Preview";
 import FileInput from "./FileInput";
 
@@ -73,18 +73,16 @@ export default class NewCard extends React.Component {
             const file = files[0];
             event.target.value = null;
             if (!file.type.match('image.*')) {
-                new DisplayErrorAction({errorKey: "noImageFile"}).apply();
+                new DisplayErrorAction("noImageFile").apply();
                 return;
             }
             if (file.size > 2000000) {
-                new DisplayErrorAction({errorKey: "fileTooBig"}).apply();
+                new DisplayErrorAction("fileTooBig").apply();
                 return;
             }
             const reader = new FileReader();
             reader.onload = function (e) {
-                new LoadWantedImageOfNewCardAction({
-                    image: e.target.result
-                }).apply();
+                new LoadWantedImageOfNewCardAction(e.target.result).apply();
             };
             reader.readAsDataURL(file);
         }
@@ -162,7 +160,7 @@ export default class NewCard extends React.Component {
                 password: this.props.password,
                 categoryId: this.props.categoryId
             };
-            new TranslateAction(data).apply();
+            //new TranslateAction(data).apply();
         }
     }
 
@@ -187,7 +185,7 @@ export default class NewCard extends React.Component {
                 password: this.props.password,
                 categoryId: this.props.categoryId
             };
-            new TranslateAction(data).apply();
+            //new TranslateAction(data).apply();
         }
     }
 
@@ -281,7 +279,6 @@ export default class NewCard extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderGiven(this.props.dictionaryLookup)}
                 {this.props.naturalInputOrder === false && this.renderImage()}
-                <td/>
                 <td className="noBreak">
                     <button
                         disabled={!this.isValid()}

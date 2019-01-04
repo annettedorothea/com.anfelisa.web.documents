@@ -24,7 +24,7 @@ export default class BoxInfo extends React.Component {
         new MaxIntervalChangedAction(maxInterval).apply();
     }
 
-    onUpdate(e) {
+    onUpdate() {
         new UpdateBoxAction().apply();
     }
 

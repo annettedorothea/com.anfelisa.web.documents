@@ -33,7 +33,7 @@ export default class AsynchronousCommand extends Command {
             queryParams = this.addUuidToQueryParams(queryParams);
             return AppUtils.httpGet(url, authorize, queryParams, this.commandData);
         }, (error) => {
-            reject(error);
+            throw error;
         });
     }
 
@@ -43,7 +43,7 @@ export default class AsynchronousCommand extends Command {
             data = this.addUuidToData(data);
             return AppUtils.httpPost(url, authorize, queryParams, data);
         }, (error) => {
-            reject(error);
+            throw error;
         });
     }
 
@@ -53,7 +53,7 @@ export default class AsynchronousCommand extends Command {
             data = this.addUuidToData(data);
             return AppUtils.httpPut(url, authorize, queryParams, data);
         }, (error) => {
-            reject(error);
+            throw error;
         });
     }
 
@@ -63,7 +63,7 @@ export default class AsynchronousCommand extends Command {
             data = this.addUuidToData(data);
             return AppUtils.httpDelete(url, authorize, queryParams, data);
         }, (error) => {
-            reject(error);
+            throw error;
         });
     }
 

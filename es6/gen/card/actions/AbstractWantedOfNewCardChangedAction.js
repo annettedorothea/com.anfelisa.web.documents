@@ -1,0 +1,17 @@
+import Action from "../../ace/SynchronousAction";
+import WantedOfNewCardChangedCommand from "../../../src/card/commands/WantedOfNewCardChangedCommand";
+
+export default class AbstractWantedOfNewCardChangedAction extends Action {
+
+    constructor( wanted) {
+        super({wanted}, 'card.WantedOfNewCardChangedAction');
+    }
+    
+	getCommand() {
+		return new WantedOfNewCardChangedCommand(this.actionData);
+	}
+
+
+}
+
+/*       S.D.G.       */

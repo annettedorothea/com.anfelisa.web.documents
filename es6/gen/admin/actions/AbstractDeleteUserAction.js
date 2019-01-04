@@ -4,8 +4,8 @@ import CommonView from "../../../src/common/views/CommonView";
 
 export default class AbstractDeleteUserAction extends Action {
 
-    constructor( usernameToBeDeleted) {
-        super({usernameToBeDeleted}, 'admin.DeleteUserAction');
+    constructor() {
+        super({}, 'admin.DeleteUserAction');
 		this.postCall = this.postCall.bind(this);
     }
     

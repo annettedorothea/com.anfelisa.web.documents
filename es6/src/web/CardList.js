@@ -1,19 +1,19 @@
 import React from 'react';
 import Confirm from "./Confirm";
-import DeleteCardAction from "../author/actions/DeleteCardAction";
-import EditCardAction from "../author/actions/EditCardAction";
-import DeleteCardClickAction from "../author/actions/DeleteCardClickAction";
-import CancelDeleteCardAction from "../author/actions/CancelDeleteCardAction";
-import FilterCardsAction from "../author/actions/FilterCardsAction";
-import ToggleInputOrderAction from "../author/actions/ToggleInputOrderAction";
-import ToggleUseDictionaryAction from "../author/actions/ToggleUseDictionaryAction";
+import DeleteCardAction from "../card/actions/DeleteCardAction";
+import EditCardAction from "../card/actions/EditCardAction";
+import DeleteCardClickAction from "../card/actions/DeleteCardClickAction";
+import CancelDeleteCardAction from "../card/actions/CancelDeleteCardAction";
+import FilterCardsAction from "../card/actions/FilterCardsAction";
+import ToggleInputOrderAction from "../card/actions/ToggleInputOrderAction";
+import ToggleUseDictionaryAction from "../card/actions/ToggleUseDictionaryAction";
 import Dictionary from "./CardList/Dictionary";
 import DuplicateCardItem from "./CardList/DuplicateCardItem";
 import NewCard from "./CardList/NewCard";
 import EditCard from "./CardList/EditCard";
 import CardItem from "./CardList/CardItem";
-import ToggleAllScheduleCardSelectionAction from "../author/actions/ToggleAllScheduleCardSelectionAction";
-import ScheduleSelectedCardsAction from "../author/actions/ScheduleSelectedCardsAction";
+import ToggleAllScheduleCardSelectionAction from "../card/actions/ToggleAllScheduleCardSelectionAction";
+import ScheduleSelectedCardsAction from "../card/actions/ScheduleSelectedCardsAction";
 
 export default class CardList extends React.Component {
 
@@ -67,7 +67,7 @@ export default class CardList extends React.Component {
     }
 
     toggleAllScheduleCardSelection() {
-        new ToggleAllScheduleCardSelectionAction({selectAll: this.props.data.scheduleCardSelection.length < this.props.data.cardList.length}).apply();
+        new ToggleAllScheduleCardSelectionAction().apply();
     }
 
     onDeleteCancel() {
@@ -108,7 +108,7 @@ export default class CardList extends React.Component {
                     texts={this.props.texts}
                     language={this.props.language}
                     scheduleCardSelection={this.props.data.scheduleCardSelection}
-                    hasBox={this.props.data.hasBox}
+                    hasBox={this.props.data.selectedCategory.hasBox}
                 />
             } else {
                 return <CardItem
@@ -123,12 +123,12 @@ export default class CardList extends React.Component {
                     password={this.props.password}
                     userRole={this.props.role}
                     naturalInputOrder={this.props.data.naturalInputOrder}
-                    hasBox={this.props.data.hasBox}
-                    editable={this.props.data.parentEditable}
+                    hasBox={this.props.data.selectedCategory.hasBox}
+                    editable={this.props.data.selectedCategory.editable}
                 />
             }
         });
-        if (this.props.data.parentEditable) {
+        if (this.props.data.selectedCategory.editable) {
             cardItems.push(
                 <NewCard
                     key="new"
@@ -153,7 +153,7 @@ export default class CardList extends React.Component {
                     ref={component => {
                         this.newCard = component;
                     }}
-                    hasBox={this.props.data.hasBox}
+                    hasBox={this.props.data.selectedCategory.hasBox}
                 />
             );
         }
@@ -172,7 +172,7 @@ export default class CardList extends React.Component {
             />
 
         });
-        if (this.props.data.cardList.length === 0 && this.props.data.parentEditable === false) {
+        if (this.props.data.cardList.length === 0 && this.props.data.selectedCategory.editable === false) {
             return <h2>{this.props.texts.cardList.noCards[this.props.language]}</h2>
         }
         return (
@@ -203,13 +203,13 @@ export default class CardList extends React.Component {
                                 value={this.props.data.filter}
                                 placeholder={this.props.texts.cardList.filter[this.props.language]}
                             />
-                            {this.props.data.parentEditable === true &&
+                            {this.props.data.selectedCategory.editable === true &&
                             <button onClick={this.onToggleInputOrder}><i className="fas fa-arrows-alt-h"/></button>
                             }
                         </th>
                     </tr>
 
-                    {this.props.data.newCard.dictionaryLookup === true && this.props.data.parentEditable === true &&
+                    {this.props.data.newCard.dictionaryLookup === true && this.props.data.selectedCategory.editable === true &&
                     <tr>
                         <th colSpan={6}>
                             <input
@@ -226,7 +226,7 @@ export default class CardList extends React.Component {
                     </tr>
                     }
 
-                    {this.props.data.cardList.length > 0 && this.props.data.hasBox === true &&
+                    {this.props.data.cardList.length > 0 && this.props.data.selectedCategory.hasBox === true &&
                     <tr>
                         <th>
                             <input

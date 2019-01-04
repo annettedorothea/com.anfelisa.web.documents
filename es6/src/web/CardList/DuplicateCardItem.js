@@ -53,7 +53,6 @@ export default class DuplicateCardItem extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 {this.props.naturalInputOrder === false && this.renderImage()}
-                <td>{this.props.cardAuthor}</td>
                 {this.renderPath()}
                 {this.props.hasBox === false && <td/>}
             </tr>

@@ -4,7 +4,8 @@ import {getAppState} from "../../app/App";
 export default class ScoreReinforceCardCommand extends AbstractScoreReinforceCardCommand {
 
     initCommandData() {
-        this.commandData.reinforceCardId = App.appState.data === undefined || App.appState.data.reinforceCardId === undefined ? undefined : App.appState.data.reinforceCardId;
+        const appState = getAppState();
+        this.commandData.reinforceCardId = appState.data === undefined || appState.data.reinforceCardId === undefined ? undefined : appState.data.reinforceCardId;
     }
 
     handleResponse(resolve, reject) {

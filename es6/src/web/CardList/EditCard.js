@@ -1,12 +1,12 @@
-import UpdateCardAction from "../../author/actions/UpdateCardAction";
+import UpdateCardAction from "../../card/actions/UpdateCardAction";
 import React from "react";
-import CancelEditCardAction from "../../author/actions/CancelEditCardAction";
-import WantedOfEditedCardChangedAction from "../../author/actions/WantedOfEditedCardChangedAction";
-import GivenOfEditedCardChangedAction from "../../author/actions/GivenOfEditedCardChangedAction";
-import RemoveEditedCardImageAction from "../../author/actions/RemoveEditedCardImageAction";
+import CancelEditCardAction from "../../card/actions/CancelEditCardAction";
+import WantedOfEditedCardChangedAction from "../../card/actions/WantedOfEditedCardChangedAction";
+import GivenOfEditedCardChangedAction from "../../card/actions/GivenOfEditedCardChangedAction";
+import RemoveEditedCardImageAction from "../../card/actions/RemoveEditedCardImageAction";
 import DisplayErrorAction from "../../common/actions/DisplayErrorAction";
-import LoadWantedImageOfEditedCardAction from "../../author/actions/LoadWantedImageOfEditedCardAction";
-import ToggleScheduleCardSelectionAction from "../../author/actions/ToggleScheduleCardSelectionAction";
+import LoadWantedImageOfEditedCardAction from "../../card/actions/LoadWantedImageOfEditedCardAction";
+import ToggleScheduleCardSelectionAction from "../../card/actions/ToggleScheduleCardSelectionAction";
 import Preview from "./Preview";
 import FileInput from "./FileInput";
 
@@ -25,17 +25,17 @@ export default class EditCard extends React.Component {
     }
 
     toggleScheduleCardSelection(cardId) {
-        new ToggleScheduleCardSelectionAction({cardId}).apply();
+        new ToggleScheduleCardSelectionAction(cardId).apply();
     }
 
     onGivenChange(event) {
         const given = event.target.value;
-        new GivenOfEditedCardChangedAction({given}).apply();
+        new GivenOfEditedCardChangedAction(given).apply();
     }
 
     onWantedChange(event) {
         const wanted = event.target.value;
-        new WantedOfEditedCardChangedAction({wanted}).apply();
+        new WantedOfEditedCardChangedAction(wanted).apply();
     }
 
     onWantedFileChange(event) {
@@ -45,18 +45,16 @@ export default class EditCard extends React.Component {
             const file = files[0];
             event.target.value = null;
             if (!file.type.match('image.*')) {
-                new DisplayErrorAction({errorKey: "noImageFile"}).apply();
+                new DisplayErrorAction("noImageFile").apply();
                 return;
             }
             if (file.size > 2000000) {
-                new DisplayErrorAction({errorKey: "fileTooBig"}).apply();
+                new DisplayErrorAction("fileTooBig").apply();
                 return;
             }
             const reader = new FileReader();
             reader.onload = function (e) {
-                new LoadWantedImageOfEditedCardAction({
-                    image: e.target.result
-                }).apply();
+                new LoadWantedImageOfEditedCardAction(e.target.result).apply();
             };
             reader.readAsDataURL(file);
         }
@@ -74,16 +72,7 @@ export default class EditCard extends React.Component {
     }
 
     onUpdate() {
-        const data = {
-            username: this.props.username,
-            password: this.props.password,
-            cardId: this.props.cardId,
-            given: this.props.given.trim(),
-            wanted: this.props.wanted.trim(),
-            image: this.props.image,
-            parentCategoryId: this.props.categoryId
-        };
-        new UpdateCardAction(data).apply();
+        new UpdateCardAction().apply();
     }
 
     onRemoveImage() {
@@ -157,7 +146,6 @@ export default class EditCard extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 {this.props.naturalInputOrder === false && this.renderImage()}
-                <td/>
                 <td className="noBreak">
                     <button
                         disabled={!this.isValid()}

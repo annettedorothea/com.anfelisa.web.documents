@@ -6,9 +6,166 @@ LoadCards<categoryId>
 	call com.anfelisa.card.GetCards
 	postCall (common.Common.hideSpinner)
 	on ok ( CardList.render )
+
+ CreateCard 
+ 	preCall (common.Common.displaySpinner) 
+ 	call com.anfelisa.card.CreateCard
+ 	postCall (common.Common.hideSpinner) 
+	on ok (CardList.resetNewCardValues) triggers (LoadCards)
+
+ UpdateCard 
+ 	preCall (common.Common.displaySpinner) 
+ 	call com.anfelisa.card.UpdateCard
+ 	postCall (common.Common.hideSpinner) 
+	on ok (CardList.resetEditCardValues) triggers (LoadCards)
+
+
+ DeleteCard 
+ 	preCall (common.Common.displaySpinner) 
+ 	call com.anfelisa.card.DeleteCard
+ 	postCall (common.Common.hideSpinner) 
+	on ok (CardList.hideConfirmCardDelete) triggers (LoadCards)
+	on error (CardList.hideConfirmCardDelete) triggers (common.DisplayError)
+
+
+GivenOfNewCardChanged <given>
+	on ok (CardList.givenOfNewCardChanged) 
+
+SearchDuplicateCards 
+	preCall (CardList.displayNewCardSpinner) 
+	call com.anfelisa.card.GetDuplicates
+	postCall (CardList.hideNewCardSpinner) 
+	on ok (CardList.initDuplicates)
+	on tooShort (CardList.resetDuplicates)
+
+WantedOfNewCardChanged <wanted>
+	on ok (CardList.wantedOfNewCardChanged)
+
+CancelNewCard 
+	on ok (CardList.resetNewCardValues )
+
+
+GivenOfEditedCardChanged <given>
+	on ok (CardList.givenOfEditedCardChanged)
+
+WantedOfEditedCardChanged <wanted>
+	on ok (CardList.wantedOfEditedCardChanged)
+
+CancelEditCard 
+	on ok (CardList.resetEditCardValues)
+
+EditCard 
+	on ok (CardList.editCard)
+
+DeleteCardClick 
+	on ok (CardList.displayConfirmCardDelete)
+
+CancelDeleteCard 
+	on ok (CardList.hideConfirmCardDelete)
+
+
+FilterCards 
+	on ok (CardList.filterChanged)
+
+
+Translate 
+	preCall (CardList.displayTranslateSpinner) 
+	call com.anfelisa.card.GetTranslation
+	postCall (CardList.hideTranslateSpinner) 
+	on wantedFetched (CardList.wantedOfNewCardChanged ) triggers (SearchDuplicateCards)
+	on givenFetched (CardList.givenOfNewCardChanged ) triggers (SearchDuplicateCards)
+	on error
+	on empty
+	on targetNotEmtpy
+
+
+PassValueToDictionary 
+	on ok (CardList.setDictionaryValue)
+
+
+ToggleInputOrder 
+	on ok (CardList.toggleInputOrder)
+
+
+ToggleUseDictionary 
+	on ok (CardList.toggleUseDictionary)
+
+
+LoadWantedImageOfNewCard 
+	on ok (CardList.displayImageOfNewCard)
+	on error
+
+
+LoadWantedImageOfEditedCard <image>
+	on ok (CardList.displayImageOfEditedCard)
+	on error
+
+
+RemoveNewCardImage 
+	on ok (CardList.removeNewCardImage)
+
+
+RemoveEditedCardImage 
+	on ok (CardList.removeEditedCardImage)
+
+ToggleScheduleCardSelection <cardId>
+	on ok (CardList.toggleScheduleCardSelection)
+
+ToggleAllScheduleCardSelection 
+	on ok (CardList.toggleAllScheduleCardSelection)
+
+ ScheduleSelectedCards 
+ 	preCall (common.Common.displaySpinner) 
+ 	call com.anfelisa.box.ScheduleCards
+ 	postCall (common.Common.hideSpinner) 
+	on ok triggers (LoadCards)
+	
+	
 	
 views 
 CardList {
 	render
 	hide
+	givenOfNewCardChanged
+	wantedOfNewCardChanged
+	givenLanguageOfNewCategoryChanged
+	wantedLanguageOfNewCategoryChanged
+	resetNewCardValues
+	
+	givenOfEditedCardChanged
+	wantedOfEditedCardChanged
+	givenLanguageOfEditedCategoryChanged
+	wantedLanguageOfEditedCategoryChanged
+	resetEditCardValues
+	editCard
+	
+	displayConfirmCardDelete
+	hideConfirmCardDelete
+	
+	displayRevokeUserAccess
+	hideRevokeUserAccess
+	
+	displayNewCardSpinner
+	hideNewCardSpinner
+	
+	displayTranslateSpinner
+	hideTranslateSpinner
+	
+	initDuplicates
+	resetDuplicates
+	
+	filterChanged
+	
+	toggleInputOrder
+	toggleUseDictionary
+	setDictionaryValue
+	
+	displayImageOfNewCard
+	displayImageOfEditedCard
+	removeNewCardImage
+	removeEditedCardImage
+	
+	toggleScheduleCardSelection
+	toggleAllScheduleCardSelection
+	
 }

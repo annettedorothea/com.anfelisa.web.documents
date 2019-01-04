@@ -669,16 +669,16 @@ a:hover.tile h2 {
 
 /* categories */
 
-.categoryOverview .panel {
+.categoryCardSplitView .panel {
     border: 2px solid #ccc;
     border-radius: 4px;
 }
 
-.categoryOverview table {
+.categoryCardSplitView table {
     margin-bottom: 32px;
 }
 
-.categoryOverview td {
+.categoryCardSplitView td {
     border-bottom: 1px dotted #ccc;
     line-height: 34px;
     overflow: hidden;
@@ -686,45 +686,41 @@ a:hover.tile h2 {
     max-width: 400px;
 }
 
-.categoryOverview tr.clickable:hover {
+.categoryCardSplitView tr.clickable:hover {
     color: #337ab7;
 }
 
-.categoryOverview table.root td:last-child {
+.categoryCardSplitView table.root td:last-child {
     max-width: 127px;
     width: 127px;
     padding: 4px 4px 4px 0;
 }
 
-.categoryOverview table.sub td:last-child {
+.categoryCardSplitView table.sub td:last-child {
     max-width: 87px;
     width: 87px;
     padding: 4px 4px 4px 0;
 }
 
-.categoryOverview input, .categoryList select {
-    margin-right: 4px;
-}
-
-.categoryOverview .invitedUsers {
+.categoryCardSplitView .invitedUsers {
     margin-bottom: 32px;
 }
 
-.categoryOverview .invitedUsers li {
+.categoryCardSplitView .invitedUsers li {
     list-style-type: none;
     margin-bottom: 4px;
 }
 
-.categoryOverview .invitedUsers button.smaller {
+.categoryCardSplitView .invitedUsers button.smaller {
     padding: 2px 2px;
     margin-right: 4px;
 }
 
-.categoryOverview .invitedUsers button.smaller i {
+.categoryCardSplitView .invitedUsers button.smaller i {
     margin: 0 8px;
 }
 
-.categoryOverview .inputfile {
+.categoryCardSplitView .inputfile {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
@@ -733,7 +729,7 @@ a:hover.tile h2 {
     z-index: -1;
 }
 
-.categoryOverview .inputfile + label {
+.categoryCardSplitView .inputfile + label {
     display: inline-block;
     cursor: pointer;
     font-size: 16px;
@@ -746,28 +742,28 @@ a:hover.tile h2 {
     margin-right: 8px;
 }
 
-.categoryOverview .inputfile:focus + label,
-.categoryOverview .inputfile + label:hover {
+.categoryCardSplitView .inputfile:focus + label,
+.categoryCardSplitView .inputfile + label:hover {
     border-color: #004784;
     background-color: #337ab7;
     color: #eee;
 }
 
-.categoryOverview .inputfile:focus + label {
+.categoryCardSplitView .inputfile:focus + label {
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
 }
 
-.categoryOverview .preview {
+.categoryCardSplitView .preview {
     position: relative;
 
 }
 
-.categoryOverview .preview img {
+.categoryCardSplitView .preview img {
     width: 240px;
 }
 
-.categoryOverview .preview button {
+.categoryCardSplitView .preview button {
     border: none;
     padding: 0;
     width: 24px;
@@ -777,29 +773,29 @@ a:hover.tile h2 {
     right: 0;
 }
 
-.categoryOverview textarea {
+.categoryCardSplitView textarea {
     min-width: 120px;
     min-height: 80px;
     width: 100%;
     height: 100%;
 }
 
-.categoryOverview table.cardTable td pre {
+.categoryCardSplitView table.cardTable td pre {
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.categoryOverview table.cardTable td.textarea {
+.categoryCardSplitView table.cardTable td.textarea {
     vertical-align: top;
 }
 
-.categoryOverview table.cardTable td:last-child {
+.categoryCardSplitView table.cardTable td:last-child {
     max-width: 100px;
     width: 100px;
     padding: 4px 4px 4px 0;
 }
 
-.categoryOverview div.google {
+.categoryCardSplitView div.google {
     background: url(img/google-translate.png) no-repeat;
     background-position: right center;
     width: 210px;
@@ -807,7 +803,7 @@ a:hover.tile h2 {
     margin-bottom: 8px;
 }
 
-.categoryOverview div.google i {
+.categoryCardSplitView div.google i {
     margin: 0;
 }
 

@@ -24,13 +24,13 @@ export default class CommonView {
         });
     }
 
-    static displaySpinner(eventData) {
+    static displaySpinner() {
         deepMergeState({
             displaySpinner: true
         });
     }
 
-    static hideSpinner(eventData) {
+    static hideSpinner() {
         deepMergeState({
             displaySpinner: false
         });
@@ -49,10 +49,11 @@ export default class CommonView {
     }
 
     static displayMessage(eventData) {
+        const appState = getAppState();
         deepMergeState({
             toast: {
                 type: "info",
-                text: App.appState.texts.messages[eventData.messageKey][App.appState.language]
+                text: appState.texts.messages[eventData.messageKey][appState.language]
             }
         });
     }

@@ -41,14 +41,12 @@ export default class CategoryTreeView {
 		data.categoryName = eventData.categoryName;
 		data.displayEditCategory = eventData.displayEditCategory;
 		data.displayNewCategory = eventData.displayNewCategory;
-		console.log("setCategoryDialogData", data);
 		mergeState({
 			data
 		});
 	};
 
 	static mergeCategoryDialogData(eventData) {
-		const data = getAppState().data;
 		deepMergeState({
 			data: eventData
 		});

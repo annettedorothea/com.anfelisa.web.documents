@@ -16,7 +16,7 @@ export default class BoxReinforceView {
         });
 	};
 	
-	static displayImage(eventData) {
+	static displayImage() {
         deepMergeState({
             data: {
                 displayImage: true
@@ -24,7 +24,7 @@ export default class BoxReinforceView {
         });
 	};
 	
-	static enableScoreButtons(eventData) {
+	static enableScoreButtons() {
         deepMergeState({
             data: {
                 enableScoreButtons: true
