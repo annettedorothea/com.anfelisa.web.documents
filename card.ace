@@ -111,14 +111,21 @@ ToggleScheduleCardSelection <cardId>
 ToggleAllScheduleCardSelection 
 	on ok (CardList.setScheduleCardSelection)
 
- ScheduleSelectedCards 
+ScheduleSelectedCards 
  	preCall (common.Common.displaySpinner) 
  	call com.anfelisa.box.ScheduleCards
  	postCall (common.Common.hideSpinner) 
 	on ok triggers (LoadCards)
 	
+MoveCardsStarted
+	on ok (CardList.setMovedCards)
 	
-	
+MoveCards
+ 	preCall (common.Common.displaySpinner) 
+ 	call com.anfelisa.card.MoveCards
+ 	postCall (common.Common.hideSpinner) 
+	on ok (card.CardList.resetMovedCards) triggers (category.LoadCategoryTree)
+		
 views 
 CardList {
 	render
@@ -164,4 +171,6 @@ CardList {
 	
 	setScheduleCardSelection
 	
+	setMovedCards
+	resetMovedCards
 }

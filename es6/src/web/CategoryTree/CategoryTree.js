@@ -10,6 +10,7 @@ import DeleteCategoryAction from "../../category/actions/DeleteCategoryAction";
 import EditCategory from "./EditCategory";
 import EditCategoryClickAction from "../../category/actions/EditCategoryClickAction";
 import CreateBoxAction from "../../box/actions/CreateBoxAction";
+import SelectableCategoryItem from "./CollapsedCategoryItem";
 
 export default class CategoryTree extends React.Component {
 
@@ -27,6 +28,8 @@ export default class CategoryTree extends React.Component {
                 texts={this.props.texts}
                 language={this.props.language}
                 key={category.categoryId}
+                dropAllowed={this.props.data.dropAllowed}
+                dropTargetCategoryId={this.props.data.dropTargetCategoryId}
             />
         });
 

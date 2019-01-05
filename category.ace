@@ -7,7 +7,7 @@ LoadCategoryTree <pathToSelected, selectedCategoryId>
 	preCall (common.Common.displaySpinner)
 	call com.anfelisa.category.GetCategoryTree
 	postCall (common.Common.hideSpinner)
-	on ok ( CategoryTree.mergeDataAndRoute )
+	on ok ( CategoryTree.mergeDataAndRoute ) triggers (card.LoadCards)
 
 ExpandTreeItem < categoryId >
 	on ok (CategoryTree.setCategoryList)
@@ -73,8 +73,13 @@ UpdateCategory
 	on ok triggers (LoadCategoryTree card.LoadCards)
 	on error (CategoryTree.setCategoryDialogData)
 
-	
-	
+CheckDropAllowed<categoryId>
+	on ok (CategoryTree.setDropData)
+
+ItemDropped
+	on card triggers (card.MoveCards)
+	on self (CategoryTree.resetDropData card.CardList.resetMovedCards)
+
 views
 CategoryTree {
 	mergeDataAndRoute
@@ -83,4 +88,6 @@ CategoryTree {
 	setDisplayDeleteCategory
 	setCategoryDialogData
 	mergeCategoryDialogData
+	setDropData
+	resetDropData
 }

@@ -17,6 +17,8 @@ import DeleteCategoryAction from "../../src/category/actions/DeleteCategoryActio
 import EditCategoryClickAction from "../../src/category/actions/EditCategoryClickAction";
 import CancelEditCategoryAction from "../../src/category/actions/CancelEditCategoryAction";
 import UpdateCategoryAction from "../../src/category/actions/UpdateCategoryAction";
+import CheckDropAllowedAction from "../../src/category/actions/CheckDropAllowedAction";
+import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
 
 export default class ActionFactoryRegistrationCategory {
 
@@ -57,6 +59,10 @@ export default class ActionFactoryRegistrationCategory {
 			(actionData) => new CancelEditCategoryAction());
 		ACEController.registerFactory('category.UpdateCategoryAction', 
 			(actionData) => new UpdateCategoryAction());
+		ACEController.registerFactory('category.CheckDropAllowedAction', 
+			(actionData) => new CheckDropAllowedAction(actionData.categoryId));
+		ACEController.registerFactory('category.ItemDroppedAction', 
+			(actionData) => new ItemDroppedAction());
 	}
 
 }

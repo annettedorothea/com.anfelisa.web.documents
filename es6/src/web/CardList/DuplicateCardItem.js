@@ -24,9 +24,9 @@ export default class DuplicateCardItem extends React.Component {
 
     renderPath() {
         if (this.props.categoryId === this.props.parentCategoryId) {
-            return <td>{this.props.path}</td>
+            return <td colSpan="2">{this.props.path}</td>
         }
-        return <td><a href={`#categories/${this.props.categoryId}`}>{this.props.path}</a></td>
+        return <td colSpan="2"><a href={`#categories/${this.props.categoryId}`}>{this.props.path}</a></td>
     }
 
     renderImage() {
@@ -46,7 +46,7 @@ export default class DuplicateCardItem extends React.Component {
     render() {
         return (
             <tr>
-                {this.props.hasBox === true && <td/>}
+                <td/>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
@@ -54,7 +54,6 @@ export default class DuplicateCardItem extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 {this.props.naturalInputOrder === false && this.renderImage()}
                 {this.renderPath()}
-                {this.props.hasBox === false && <td/>}
             </tr>
         );
     }

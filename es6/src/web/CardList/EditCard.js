@@ -131,15 +131,13 @@ export default class EditCard extends React.Component {
     render() {
         return (
             <tr>
-                {this.props.hasBox === true &&
                 <td>
                     <input
                         type={"checkbox"}
                         onChange={() => this.toggleScheduleCardSelection(this.props.cardId)}
-                        checked={this.props.scheduleCardSelection.indexOf(this.props.cardId) >= 0}
+                        checked={this.props.selectedCardIds.indexOf(this.props.cardId) >= 0}
                     />
                 </td>
-                }
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
@@ -157,7 +155,6 @@ export default class EditCard extends React.Component {
                         <i className="fas fa-times"/>
                     </button>
                 </td>
-                {this.props.hasBox === false && this.props.editable === true && <td/>}
             </tr>
         );
     }

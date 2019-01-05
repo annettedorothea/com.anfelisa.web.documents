@@ -57,7 +57,6 @@ export default class CardList extends React.Component {
     }
 
     render() {
-        //console.log("CardList", this.props);
         const cardItems = this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).map((card) => {
             if (card.cardId === this.props.data.editedCard.cardId) {
                 return <EditCard
@@ -73,14 +72,14 @@ export default class CardList extends React.Component {
                     image={this.props.data.editedCard.image}
                     texts={this.props.texts}
                     language={this.props.language}
-                    scheduleCardSelection={this.props.data.scheduleCardSelection}
+                    selectedCardIds={this.props.data.selectedCardIds}
                     hasBox={this.props.data.selectedCategory.hasBox}
                 />
             } else {
                 return <CardItem
                     {...card}
                     key={card.cardId}
-                    scheduleCardSelection={this.props.data.scheduleCardSelection}
+                    selectedCardIds={this.props.data.selectedCardIds}
                     texts={this.props.texts}
                     language={this.props.language}
                     onDeleteClick={this.onDeleteClick}
@@ -158,7 +157,6 @@ export default class CardList extends React.Component {
                 <table className="cardTable">
                     <thead>
                     <tr>
-                        {this.props.data.selectedCategory.hasBox === true &&<th/>}
                         <th colSpan={4}>
                             {this.props.data.selectedCategory.editable === true &&
                             <button onClick={this.onToggleInputOrder}><i className="fas fa-arrows-alt-h"/></button>}
@@ -174,19 +172,19 @@ export default class CardList extends React.Component {
 
                     {this.props.data.selectedCategory.dictionaryLookup === true && this.props.data.selectedCategory.editable === true &&
                     <tr>
-                        {this.props.data.selectedCategory.hasBox === true &&<th/>}
-                        <th colSpan={4}>
+                        <th>
                             <input
                                 type={"checkbox"}
                                 onChange={this.onUseDictionaryChange}
                                 checked={this.props.data.useDictionary}
                                 id="useDictionaryCheckbox"
                             />
+                        </th>
+                        <th colSpan={4}>
                             <label
                                 htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary[this.props.language]}
                             </label>
                         </th>
-                        <th/>
                     </tr>
                     }
 
@@ -196,12 +194,12 @@ export default class CardList extends React.Component {
                             <input
                                 type={"checkbox"}
                                 onChange={this.toggleAllScheduleCardSelection}
-                                checked={this.props.data.scheduleCardSelection.length === this.props.data.cardList.length}
+                                checked={this.props.data.selectedCardIds.length === this.props.data.cardList.length}
                             />
                         </th>
                         <th colSpan={4}>
                             <button onClick={this.onSchedule}
-                                    disabled={this.props.data.scheduleCardSelection.length === 0}>{this.props.texts.cardList.scheduleSelectedCards[this.props.language]}
+                                    disabled={this.props.data.selectedCardIds.length === 0}>{this.props.texts.cardList.scheduleSelectedCards[this.props.language]}
                             </button>
                         </th>
                     </tr>
@@ -212,7 +210,7 @@ export default class CardList extends React.Component {
                     <tbody>
                     {cardItems}
                     {duplicateCards.length > 0 && <tr>
-                        {this.props.hasBox === true && <td/>}
+                        <td/>
                         <td colSpan={5}>{this.props.texts.cardList.duplicateCards[this.props.language]}</td>
                     </tr>}
                     {duplicateCards}

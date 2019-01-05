@@ -25,6 +25,8 @@ import RemoveEditedCardImageAction from "../../src/card/actions/RemoveEditedCard
 import ToggleScheduleCardSelectionAction from "../../src/card/actions/ToggleScheduleCardSelectionAction";
 import ToggleAllScheduleCardSelectionAction from "../../src/card/actions/ToggleAllScheduleCardSelectionAction";
 import ScheduleSelectedCardsAction from "../../src/card/actions/ScheduleSelectedCardsAction";
+import MoveCardsStartedAction from "../../src/card/actions/MoveCardsStartedAction";
+import MoveCardsAction from "../../src/card/actions/MoveCardsAction";
 
 export default class ActionFactoryRegistrationCard {
 
@@ -81,6 +83,10 @@ export default class ActionFactoryRegistrationCard {
 			(actionData) => new ToggleAllScheduleCardSelectionAction());
 		ACEController.registerFactory('card.ScheduleSelectedCardsAction', 
 			(actionData) => new ScheduleSelectedCardsAction());
+		ACEController.registerFactory('card.MoveCardsStartedAction', 
+			(actionData) => new MoveCardsStartedAction());
+		ACEController.registerFactory('card.MoveCardsAction', 
+			(actionData) => new MoveCardsAction());
 	}
 
 }

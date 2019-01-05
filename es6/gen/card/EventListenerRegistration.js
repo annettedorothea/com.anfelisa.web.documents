@@ -33,6 +33,8 @@ export default class EventListenerRegistrationCard {
 		ACEController.registerListener('card.RemoveEditedCardImageOkEvent', CardListView.removeEditedCardImage);
 		ACEController.registerListener('card.ToggleScheduleCardSelectionOkEvent', CardListView.setScheduleCardSelection);
 		ACEController.registerListener('card.ToggleAllScheduleCardSelectionOkEvent', CardListView.setScheduleCardSelection);
+		ACEController.registerListener('card.MoveCardsStartedOkEvent', CardListView.setMovedCards);
+		ACEController.registerListener('card.MoveCardsOkEvent', CardListView.resetMovedCards);
 	}
 
 }

@@ -12,12 +12,12 @@ export default class InitialLoginCommand extends AbstractInitialLoginCommand {
     }
 
     handleError(resolve, reject) {
-        if (error.code === 401) {
+        if (this.commandData.error.code === 401) {
             this.commandData.error.errorKey = "loginFailed";
             this.commandData.outcome = this.unauthorized;
             resolve();
         } else {
-            reject(error);
+            reject(this.commandData.error);
         }
     }
 }

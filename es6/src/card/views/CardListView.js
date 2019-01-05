@@ -26,7 +26,7 @@ export default class CardListView {
             useDictionary: eventData.useDictionary,
             dictionaryValue: "",
             cardList: eventData.cardList,
-            scheduleCardSelection: [],
+            selectedCardIds: [],
         };
         deepMergeState({
             data
@@ -44,7 +44,7 @@ export default class CardListView {
         data.naturalInputOrder = undefined;
         data.useDictionary = undefined;
         data.dictionaryValue = undefined;
-        data.scheduleCardSelection = undefined;
+        data.selectedCardIds = undefined;
         mergeState({
             data
         });
@@ -347,7 +347,23 @@ export default class CardListView {
 
     static setScheduleCardSelection(eventData) {
         let data = getAppState().data;
-        data.scheduleCardSelection = eventData.scheduleCardSelection;
+        data.selectedCardIds = eventData.selectedCardIds;
+        mergeState({
+            data
+        });
+    }
+
+    static setMovedCards(eventData) {
+        let data = getAppState().data;
+        data.movedCardIds = data.selectedCardIds;
+        mergeState({
+            data
+        });
+    }
+
+    static resetMovedCards(eventData) {
+        let data = getAppState().data;
+        data.movedCardIds = [];
         mergeState({
             data
         });

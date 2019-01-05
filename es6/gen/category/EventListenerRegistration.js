@@ -29,6 +29,9 @@ export default class EventListenerRegistrationCategory {
 		ACEController.registerListener('category.EditCategoryClickOkEvent', CategoryTreeView.setCategoryDialogData);
 		ACEController.registerListener('category.CancelEditCategoryOkEvent', CategoryTreeView.setCategoryDialogData);
 		ACEController.registerListener('category.UpdateCategoryErrorEvent', CategoryTreeView.setCategoryDialogData);
+		ACEController.registerListener('category.CheckDropAllowedOkEvent', CategoryTreeView.setDropData);
+		ACEController.registerListener('category.ItemDroppedSelfEvent', CategoryTreeView.resetDropData);
+		ACEController.registerListener('category.ItemDroppedSelfEvent', CardListView.resetMovedCards);
 	}
 
 }

@@ -52,6 +52,24 @@ export default class CategoryTreeView {
 		});
 	};
 
+	static setDropData(eventData) {
+		const data = getAppState().data;
+		data.dropAllowed = eventData.dropAllowed;
+		data.dropTargetCategoryId = eventData.dropTargetCategoryId;
+		mergeState({
+			data
+		});
+	};
+
+	static resetDropData(eventData) {
+		const data = getAppState().data;
+		data.dropAllowed = undefined;
+		data.dropTargetCategoryId = undefined;
+		mergeState({
+			data
+		});
+	};
+
 }
 
 /*                    S.D.G.                    */

@@ -32,7 +32,6 @@ import RouteChangedAction from "../common/actions/RouteChangedAction";
 
 export * from "../../gen/ace/Scenario";
 export * from "../../gen/ace/Bug";
-export * from "../../gen/common/ActionFunctionExports";
 
 
 const React = require('react');

@@ -1,6 +1,7 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadCategoryTreeOkEvent from "../../../gen/category/events/LoadCategoryTreeOkEvent";
+import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractLoadCategoryTreeCommand extends Command {
     constructor(commandData) {
@@ -14,6 +15,7 @@ export default class AbstractLoadCategoryTreeCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new LoadCategoryTreeOkEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new LoadCardsAction()).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('LoadCategoryTreeCommand unhandled outcome: ' + this.commandData.outcome)});

@@ -21,6 +21,8 @@ export default class ExpandedCategoryItem extends React.Component {
                     key={category.categoryId}
                     texts={this.props.texts}
                     language={this.props.language}
+                    dropAllowed={this.props.dropAllowed}
+                    dropTargetCategoryId={this.props.dropTargetCategoryId}
                 />
             });
         }
@@ -32,6 +34,9 @@ export default class ExpandedCategoryItem extends React.Component {
                     selected={this.props.selected}
                     categoryName={this.props.categoryName}
                     categoryId={this.props.categoryId}
+                    dropAllowed={this.props.dropAllowed}
+                    dropTargetCategoryId={this.props.dropTargetCategoryId}
+                    depth={this.props.depth}
                 />
                 <div>
                     {children}

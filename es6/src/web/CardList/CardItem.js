@@ -4,6 +4,7 @@ import EditCardAction from "../../card/actions/EditCardAction";
 import DeleteCardClickAction from "../../card/actions/DeleteCardClickAction";
 import DeleteCardAction from "../../card/actions/DeleteCardAction";
 import CancelDeleteCardAction from "../../card/actions/CancelDeleteCardAction";
+import {moveCardsStarted} from "../../../gen/card/ActionFunctions";
 
 export default class CardItem extends React.Component {
 
@@ -59,18 +60,15 @@ export default class CardItem extends React.Component {
     }
 
     render() {
-        //console.log("CardItem", this.props);
         return (
             <tr>
-                {this.props.hasBox === true &&
                 <td>
                     <input
                         type={"checkbox"}
                         onChange={() => this.toggleScheduleCardSelection()}
-                        checked={this.props.scheduleCardSelection.indexOf(this.props.cardId) >= 0}
+                        checked={this.props.selectedCardIds.indexOf(this.props.cardId) >= 0}
                     />
                 </td>
-                }
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
@@ -86,8 +84,11 @@ export default class CardItem extends React.Component {
                     <button onClick={() => this.onDeleteClick()}>
                         <i className="fas fa-times"/>
                     </button>}
+                    {this.props.editable === true && this.props.selectedCardIds.indexOf(this.props.cardId) >= 0 &&
+                    <i id={this.props.cardId} className="fas fa-align-justify" draggable="true"
+                       onDragStart={() => moveCardsStarted()}/>
+                    }
                 </td>
-                {this.props.hasBox === false && this.props.editable === true && <td/>}
             </tr>
         );
     }

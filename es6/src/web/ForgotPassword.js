@@ -1,24 +1,11 @@
 import React from 'react';
-import RouteAction from "../common/actions/RouteAction";
-import ForgotPasswordAction from "../password/actions/ForgotPasswordAction";
-import UsernameChangedAction from "../password/actions/UsernameChangedAction";
-import AppUtils from "../app/AppUtils";
+import {forgotPassword, usernameForgotPasswordChanged} from "../../gen/password/ActionFunctions";
+import {route} from "../../gen/common/ActionFunctions";
 
 export default class ForgotPassword extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onUsernameChange = this.onUsernameChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-    }
-
-    onUsernameChange(event) {
-        const username = event.target.value;
-        new UsernameChangedAction(username).apply();
-    }
-
-    onSubmit() {
-        new ForgotPasswordAction().apply();
     }
 
     render() {
@@ -30,18 +17,18 @@ export default class ForgotPassword extends React.Component {
                         <label>{this.props.texts.forgotPassword.username[this.props.language]}</label>
                         <input
                             type={"text"}
-                            onChange={this.onUsernameChange}
+                            onChange={(event) => usernameForgotPasswordChanged(event.target.value)}
                             autoComplete="off"
                             value={this.props.data.username}
                         />
                     </div>
                     <div className="moreMarginLine hCenter">
-                        <button onClick={this.onSubmit}
+                        <button onClick={() => forgotPassword()}
                                 disabled={this.props.data.username.length === 0}>
                             {this.props.texts.forgotPassword.submit[this.props.language]}
                         </button>
                         <button
-                            onClick={() => new RouteAction("#").apply()}>{this.props.texts.forgotPassword.cancel[this.props.language]}</button>
+                            onClick={() => route("#")}>{this.props.texts.forgotPassword.cancel[this.props.language]}</button>
                     </div>
                 </div>
             </div>

@@ -26,10 +26,6 @@ export default class NewCard extends React.Component {
         this.onRemoveImage = this.onRemoveImage.bind(this);
     }
 
-    componentDidMount() {
-        this.setFocus();
-    }
-
     setFocus() {
         if (this.props.naturalInputOrder === true) {
             if (!this.props.given || this.props.given.length === 0) {
@@ -208,7 +204,7 @@ export default class NewCard extends React.Component {
     render() {
         return (
             <tr>
-                {this.props.hasBox === true && <td/>}
+                <td/>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted(this.props.dictionaryLookup)}
                 {this.props.naturalInputOrder === true && this.renderImage()}

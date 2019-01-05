@@ -4,7 +4,7 @@ import {getAppState} from "../../app/App";
 export default class ScheduleSelectedCardsCommand extends AbstractScheduleSelectedCardsCommand {
 
     initCommandData() {
-        this.commandData.cardIds = getAppState().data.scheduleCardSelection;
+        this.commandData.cardIds = getAppState().data.selectedCardIds;
         return true;
     }
 
