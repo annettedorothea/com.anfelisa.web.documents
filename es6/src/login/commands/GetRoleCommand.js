@@ -17,7 +17,7 @@ export default class GetRoleCommand extends AbstractGetRoleCommand {
             this.commandData.outcome = this.unauthorized;
             resolve();
         } else {
-            reject(error);
+            reject(this.commandData.error);
         }
     }
 }

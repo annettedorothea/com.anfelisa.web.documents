@@ -30,8 +30,11 @@ export default class EventListenerRegistrationCategory {
 		ACEController.registerListener('category.CancelEditCategoryOkEvent', CategoryTreeView.setCategoryDialogData);
 		ACEController.registerListener('category.UpdateCategoryErrorEvent', CategoryTreeView.setCategoryDialogData);
 		ACEController.registerListener('category.CheckDropAllowedOkEvent', CategoryTreeView.setDropData);
-		ACEController.registerListener('category.ItemDroppedSelfEvent', CategoryTreeView.resetDropData);
-		ACEController.registerListener('category.ItemDroppedSelfEvent', CardListView.resetMovedCards);
+		ACEController.registerListener('category.MoveCategoryStartedOkEvent', CategoryTreeView.setMovedCategory);
+		ACEController.registerListener('category.MoveCategoryOkEvent', CategoryTreeView.resetMovedCategory);
+		ACEController.registerListener('category.InviteUserClickOkEvent', CategoryTreeView.setInviteUserDialogData);
+		ACEController.registerListener('category.CloseInviteUserOkEvent', CategoryTreeView.setInviteUserDialogData);
+		ACEController.registerListener('category.InvitedUsernameChangedOkEvent', CategoryTreeView.mergeInviteUserDialogData);
 	}
 
 }

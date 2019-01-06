@@ -78,7 +78,42 @@ CheckDropAllowed<categoryId>
 
 ItemDropped
 	on card triggers (card.MoveCards)
-	on self (CategoryTree.resetDropData card.CardList.resetMovedCards)
+	on category triggers (MoveCategory)
+
+MoveCategoryStarted<movedCategoryId>
+	on ok (CategoryTree.setMovedCategory)
+	
+MoveCategory
+ 	preCall (common.Common.displaySpinner) 
+ 	call com.anfelisa.category.MoveCategory
+ 	postCall (common.Common.hideSpinner) 
+	on ok (CategoryTree.resetMovedCategory) triggers (category.LoadCategoryTree)
+
+InviteUserClick
+ 	preCall (common.Common.displaySpinner) 
+ 	call com.anfelisa.category.GetUsersWithAccess
+ 	postCall (common.Common.hideSpinner) 
+	on ok (CategoryTree.setInviteUserDialogData)
+	
+CloseInviteUser
+	on ok (CategoryTree.setInviteUserDialogData ) triggers (LoadCategoryTree)
+	
+InvitedUsernameChanged<invitedUsername>
+	on ok (CategoryTree.mergeInviteUserDialogData)
+	
+InviteUser
+	preCall (common.Common.displaySpinner)
+	call com.anfelisa.category.InviteUser
+	postCall (common.Common.hideSpinner)
+	on ok triggers (InviteUserClick)
+
+RevokeUserAccess<revokedUserId>
+	preCall (common.Common.displaySpinner)
+	call com.anfelisa.category.RevokeUserAccess
+	postCall (common.Common.hideSpinner)
+	on ok triggers (InviteUserClick )
+
+		
 
 views
 CategoryTree {
@@ -88,6 +123,10 @@ CategoryTree {
 	setDisplayDeleteCategory
 	setCategoryDialogData
 	mergeCategoryDialogData
+	setInviteUserDialogData
+	mergeInviteUserDialogData
 	setDropData
 	resetDropData
+	resetMovedCategory
+	setMovedCategory
 }

@@ -49,8 +49,6 @@ export default class QueryCards extends React.Component {
                     daysBehindSchedule={this.props.data.daysBehindSchedule}
                     texts={this.props.texts}
                     language={this.props.language}
-                    username={this.props.username}
-                    password={this.props.password}
                 />
 
                 {content}
@@ -58,8 +56,6 @@ export default class QueryCards extends React.Component {
                 <div className="infoAndStatistics">
                     <BoxInfo
                         {...this.props.data}
-                        username={this.props.username}
-                        password={this.props.password}
                         texts={this.props.texts}
                         language={this.props.language}
                     />

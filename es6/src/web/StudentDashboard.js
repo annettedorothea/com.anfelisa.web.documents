@@ -29,8 +29,6 @@ export default class StudentDashboard extends React.Component {
                     {...box}
                     texts={this.props.texts}
                     language={this.props.language}
-                    username={this.props.username}
-                    password={this.props.password}
                 />
             });
         }

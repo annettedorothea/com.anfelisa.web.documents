@@ -52,6 +52,22 @@ export default class CategoryTreeView {
 		});
 	};
 
+	static setInviteUserDialogData(eventData) {
+		const data = getAppState().data;
+		data.displayInviteUser = eventData.displayInviteUser;
+		data.invitedUsername = eventData.invitedUsername;
+		data.userList = eventData.userList;
+		mergeState({
+			data
+		});
+	};
+
+	static mergeInviteUserDialogData(eventData) {
+		deepMergeState({
+			data: eventData
+		});
+	};
+
 	static setDropData(eventData) {
 		const data = getAppState().data;
 		data.dropAllowed = eventData.dropAllowed;
@@ -69,6 +85,30 @@ export default class CategoryTreeView {
 			data
 		});
 	};
+
+	static setMovedCategory(eventData) {
+		let data = getAppState().data;
+		data.movedCategory = eventData.movedCategory;
+		mergeState({
+			data
+		});
+	}
+
+	static resetMovedCategory(eventData) {
+		let data = getAppState().data;
+		data.movedCategory = undefined;
+		mergeState({
+			data
+		});
+	}
+
+	static collapseEmptyParent(eventData) {
+		let data = getAppState().data;
+		data.movedCategory = undefined;
+		mergeState({
+			data
+		});
+	}
 
 }
 

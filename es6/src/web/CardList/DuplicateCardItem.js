@@ -26,7 +26,7 @@ export default class DuplicateCardItem extends React.Component {
         if (this.props.categoryId === this.props.parentCategoryId) {
             return <td colSpan="2">{this.props.path}</td>
         }
-        return <td colSpan="2"><a href={`#categories/${this.props.categoryId}`}>{this.props.path}</a></td>
+        return <td colSpan="2"><a href={`#categories/${this.props.categoryId}`}>{this.props.categoryName}</a></td>
     }
 
     renderImage() {

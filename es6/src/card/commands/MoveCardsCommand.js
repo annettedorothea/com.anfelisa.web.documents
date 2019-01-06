@@ -7,11 +7,11 @@ export default class MoveCardsCommand extends AbstractMoveCardsCommand {
         const data = getAppState().data;
         this.commandData.cardIdList = data.movedCardIds;
         this.commandData.categoryId = data.dropTargetCategoryId;
-        this.commandData.selectedCategoryId = data.dropTargetCategoryId;
     	return true;
     }
 
     handleResponse(resolve, reject) {
+        this.commandData.selectedCategoryId = this.commandData.categoryId;
     	this.commandData.outcome = this.ok;
     	resolve();
     }

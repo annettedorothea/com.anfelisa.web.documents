@@ -626,7 +626,7 @@ a:hover.tile h2 {
 }
 
 .infoAndStatistics {
-    width: 500px;
+    max-width: 500px;
     left: 0;
     right: 0;
     top: 0;
@@ -709,6 +709,22 @@ a:hover.tile h2 {
 .categoryCardSplitView .invitedUsers li {
     list-style-type: none;
     margin-bottom: 4px;
+}
+
+.categoryCardSplitView .invitedUsers li div {
+    width: 300px;
+    height: 32px;
+    float: left
+}
+
+.categoryCardSplitView .invitedUsers input {
+    width: 300px;
+    float: left
+}
+
+.categoryCardSplitView .invitedUsers button {
+    margin-left: 12px;
+    height: 32px;
 }
 
 .categoryCardSplitView .invitedUsers button.smaller {

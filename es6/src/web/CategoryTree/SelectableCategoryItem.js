@@ -1,7 +1,7 @@
 import React from 'react';
 import SelectTreeItemAction from "../../category/actions/SelectTreeItemAction";
 import DeselectTreeItemAction from "../../category/actions/DeselectTreeItemAction";
-import {checkDropAllowed, itemDropped} from "../../../gen/category/ActionFunctions";
+import {checkDropAllowed, itemDropped, moveCategoryStarted} from "../../../gen/category/ActionFunctions";
 import {moveCardsStarted} from "../../../gen/card/ActionFunctions";
 
 export default class SelectableCategoryItem extends React.Component {
@@ -27,10 +27,9 @@ export default class SelectableCategoryItem extends React.Component {
     }
 
     render() {
-        console.log();
         return (
             <span draggable={this.props.depth > 1}
-                  onDragStart={() => console.log("drag")} onDragOver={this.allowDrop} onDrop={this.drop}>
+                  onDragStart={() => moveCategoryStarted(this.props.categoryId)} onDragOver={this.allowDrop} onDrop={this.drop}>
                 {!this.props.selected && <span className="item notSelected"
                                                onClick={() => new SelectTreeItemAction(this.props.categoryId).apply()}>{this.props.categoryName}</span>}
                 {this.props.selected && <span className="item selected"

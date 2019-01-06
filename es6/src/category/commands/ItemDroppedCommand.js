@@ -4,8 +4,8 @@ import {getAppState} from "../../app/App";
 export default class ItemDroppedCommand extends AbstractItemDroppedCommand {
     execute() {
         const data = getAppState().data;
-        if (data.dropTargetCategoryId === data.selectedCategory.categoryId) {
-            this.commandData.outcome = this.self;
+        if (data.movedCategory) {
+            this.commandData.outcome = this.category;
         } else {
             this.commandData.outcome = this.card;
         }

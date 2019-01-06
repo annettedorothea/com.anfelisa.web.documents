@@ -31,10 +31,10 @@ export const Texts = {
             de: "{0} Tage"
         },
         maxIntervalNull: {
-            de: "keine Begrenzung"
+            de: "keine"
         },
         maxInterval: {
-            de: "maximaler Abstand"
+            de: "Begrenzung"
         },
         myCards: {
             de: "Karten in der Lernkartei"
@@ -176,6 +176,17 @@ export const Texts = {
             },
             title: {
                 de: "Bearbeiten"
+            }
+        },
+        inviteUser: {
+            close: {
+                de: "Schließen"
+            },
+            username: {
+                de: "Benutzername"
+            },
+            title: {
+                de: "Bentzer mit Zugriff"
             }
         },
         languages: {

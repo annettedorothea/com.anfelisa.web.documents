@@ -14,7 +14,6 @@ export default class NewCategory extends React.Component {
 
     render() {
         const disabled =
-            this.props.categoryNameAlreadyExists === true ||
             !this.props.categoryName ||
             this.props.categoryName.length === 0 ||
             this.props.dictionaryLookup && (this.props.givenLanguage.length === 0 || this.props.wantedLanguage.length === 0);
@@ -32,8 +31,6 @@ export default class NewCategory extends React.Component {
                             value={this.props.categoryName}
                             placeholder={this.props.selectedCategory === undefined ? this.props.texts.categoryTree.newCategory.newRootCategory[this.props.language] : this.props.texts.categoryTree.newCategory.newChildCategory[this.props.language]}
                         />
-                        {this.props.categoryNameAlreadyExists === true && this.props.categoryName && this.props.categoryName.length > 0 &&
-                        <i className="fas fa-times error"/>}
                     </div>
                     <div className="noBreak line">
                         <input

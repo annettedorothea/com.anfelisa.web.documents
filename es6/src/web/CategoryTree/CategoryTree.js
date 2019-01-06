@@ -4,13 +4,14 @@ import CategoryItem from "./CategoryItem";
 import NewCategoryClickAction from "../../category/actions/NewCategoryClickAction";
 import NewCategory from "./NewCategory";
 import Confirm from "../Confirm";
+import InviteUser from "./InviteUser";
 import CancelDeleteCategoryAction from "../../category/actions/CancelDeleteCategoryAction";
 import DeleteCategoryClickAction from "../../category/actions/DeleteCategoryClickAction";
 import DeleteCategoryAction from "../../category/actions/DeleteCategoryAction";
 import EditCategory from "./EditCategory";
 import EditCategoryClickAction from "../../category/actions/EditCategoryClickAction";
 import CreateBoxAction from "../../box/actions/CreateBoxAction";
-import SelectableCategoryItem from "./CollapsedCategoryItem";
+import {inviteUserClick} from "../../../gen/category/ActionFunctions";
 
 export default class CategoryTree extends React.Component {
 
@@ -39,7 +40,6 @@ export default class CategoryTree extends React.Component {
                 <NewCategory
                     selectedCategory={this.props.data.selectedCategory}
                     categoryName={this.props.data.categoryName}
-                    categoryNameAlreadyExists={this.props.data.categoryNameAlreadyExists}
                     givenLanguage={this.props.data.givenLanguage}
                     wantedLanguage={this.props.data.wantedLanguage}
                     dictionaryLookup={this.props.data.dictionaryLookup}
@@ -50,7 +50,6 @@ export default class CategoryTree extends React.Component {
                 <EditCategory
                     selectedCategory={this.props.data.selectedCategory}
                     categoryName={this.props.data.categoryName}
-                    categoryNameAlreadyExists={this.props.data.categoryNameAlreadyExists}
                     givenLanguage={this.props.data.givenLanguage}
                     wantedLanguage={this.props.data.wantedLanguage}
                     dictionaryLookup={this.props.data.dictionaryLookup}
@@ -67,6 +66,14 @@ export default class CategoryTree extends React.Component {
                         ok: () => new DeleteCategoryAction().apply(),
                         cancel: () => new CancelDeleteCategoryAction().apply()
                     }}/>
+                }
+                {this.props.data.displayInviteUser === true &&
+                <InviteUser
+                    texts={this.props.texts}
+                    language={this.props.language}
+                    invitedUsername={this.props.data.invitedUsername}
+                    userList={this.props.data.userList}
+                />
                 }
 
                 <button className="backButton"
@@ -97,6 +104,13 @@ export default class CategoryTree extends React.Component {
                         new CreateBoxAction().apply();
                     }}>
                     <i className="fas fa-sign-in-alt"/>
+                </button>
+                <button
+                    disabled={!this.props.data.selectedCategory || this.props.data.selectedCategory.parentCategoryId !== undefined}
+                    onClick={() => {
+                        inviteUserClick();
+                    }}>
+                    <i className="fas fa-users"/>
                 </button>
                 <div className="categoryTreeItems">
                     {categoryItems}

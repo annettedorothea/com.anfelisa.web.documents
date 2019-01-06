@@ -14,7 +14,7 @@ export function findExpandedCategories(categoryList, expandedCategories) {
 export function initExpandedState(categoryList, expandedCategories) {
     for (let i = 0; i < categoryList.length; i++) {
         const category = categoryList[i];
-        category.expanded = expandedCategories.indexOf(category.categoryId) >= 0;
+        category.expanded = expandedCategories.indexOf(category.categoryId) >= 0 && category.childCategories.length > 0;
         if (category.childCategories) {
             initExpandedState(category.childCategories, expandedCategories);
         }

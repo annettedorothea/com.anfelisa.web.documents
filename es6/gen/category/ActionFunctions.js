@@ -18,6 +18,13 @@ import CancelEditCategoryAction from "../../src/category/actions/CancelEditCateg
 import UpdateCategoryAction from "../../src/category/actions/UpdateCategoryAction";
 import CheckDropAllowedAction from "../../src/category/actions/CheckDropAllowedAction";
 import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
+import MoveCategoryStartedAction from "../../src/category/actions/MoveCategoryStartedAction";
+import MoveCategoryAction from "../../src/category/actions/MoveCategoryAction";
+import InviteUserClickAction from "../../src/category/actions/InviteUserClickAction";
+import CloseInviteUserAction from "../../src/category/actions/CloseInviteUserAction";
+import InvitedUsernameChangedAction from "../../src/category/actions/InvitedUsernameChangedAction";
+import InviteUserAction from "../../src/category/actions/InviteUserAction";
+import RevokeUserAccessAction from "../../src/category/actions/RevokeUserAccessAction";
 
 export function loadCategoryTree(pathToSelected, selectedCategoryId) {
     new LoadCategoryTreeAction(pathToSelected, selectedCategoryId).apply();
@@ -97,6 +104,34 @@ export function checkDropAllowed(categoryId) {
 
 export function itemDropped() {
     new ItemDroppedAction().apply();
+}
+
+export function moveCategoryStarted(movedCategoryId) {
+    new MoveCategoryStartedAction(movedCategoryId).apply();
+}
+
+export function moveCategory() {
+    new MoveCategoryAction().apply();
+}
+
+export function inviteUserClick() {
+    new InviteUserClickAction().apply();
+}
+
+export function closeInviteUser() {
+    new CloseInviteUserAction().apply();
+}
+
+export function invitedUsernameChanged(invitedUsername) {
+    new InvitedUsernameChangedAction(invitedUsername).apply();
+}
+
+export function inviteUser() {
+    new InviteUserAction().apply();
+}
+
+export function revokeUserAccess(revokedUserId) {
+    new RevokeUserAccessAction(revokedUserId).apply();
 }
 
 
