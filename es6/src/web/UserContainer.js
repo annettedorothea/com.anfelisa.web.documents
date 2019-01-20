@@ -4,38 +4,63 @@ import Logout from "./Logout";
 import Profile from "./Profile";
 import UserList from "./UserList";
 import QueryCards from "./Box/QueryCards";
-import RouteAction from "../common/actions/RouteAction";
 import CategoryCardSplitView from "./CategoryCardSplitView";
+import {route} from "../../gen/common/ActionFunctions";
 
 export default class UserContainer extends React.Component {
 
     render() {
         let content;
-        switch (this.props.route) {
+        switch (this.props.view) {
             case "user-list":
-                content = <UserList {...this.props} />;
+                content = <UserList
+                    {...this.props.data}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
                 break;
             case "category-tree":
-                content = <CategoryCardSplitView {...this.props} />;
+                content = <CategoryCardSplitView
+                    {...this.props.data}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
                 break;
             case "profile":
-                content = <Profile {...this.props} />;
+                content = <Profile
+                    {...this.props.data}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
                 break;
             case "card":
-                content = <QueryCards {...this.props} />;
+                content = <QueryCards
+                    {...this.props.data}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
                 break;
             case "reinforce-card":
-                content = <QueryCards {...this.props} />;
+                content = <QueryCards
+                    {...this.props.data}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
                 break;
             case "dashboard":
             default:
-                content = <Dashboard {...this.props} />;
+                content = <Dashboard
+                    {...this.props.data}
+                    role={this.props.loggedInUser.role}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
         }
 
         return (
             <div className="wrapper">
                 <div className="header">
-                    <a onClick={() => new RouteAction("#dashboard").apply()}
+                    <a onClick={() => route("#dashboard")}
                        className="title">Anfelisa</a>
                     <Logout {...this.props} />
                 </div>

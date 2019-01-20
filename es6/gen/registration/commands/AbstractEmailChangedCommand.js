@@ -1,22 +1,17 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import EmailChangedValidEvent from "../../../gen/registration/events/EmailChangedValidEvent";
-import EmailChangedInvalidEvent from "../../../gen/registration/events/EmailChangedInvalidEvent";
+import EmailChangedOkEvent from "../../../gen/registration/events/EmailChangedOkEvent";
 
 export default class AbstractEmailChangedCommand extends Command {
     constructor(commandData) {
         super(commandData, "registration.EmailChangedCommand");
-        this.valid = "valid";
-        this.invalid = "invalid";
+        this.ok = "ok";
     }
 
     publishEvents() {
 		switch (this.commandData.outcome) {
-		case this.valid:
-			new EmailChangedValidEvent(this.commandData).publish();
-			break;
-		case this.invalid:
-			new EmailChangedInvalidEvent(this.commandData).publish();
+		case this.ok:
+			new EmailChangedOkEvent(this.commandData).publish();
 			break;
 		default:
 			throw 'EmailChangedCommand unhandled outcome: ' + this.commandData.outcome;

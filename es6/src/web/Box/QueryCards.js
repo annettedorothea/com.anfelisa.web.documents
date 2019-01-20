@@ -15,21 +15,21 @@ export default class QueryCards extends React.Component {
 
     render() {
         let content;
-        if (this.props.data.cardId) {
+        if (this.props.cardId) {
             content = <Card {...this.props}/>
-        } else if (this.props.data.reinforceCardId) {
+        } else if (this.props.reinforceCardId) {
             content = <ReinforceCard {...this.props}/>
         } else {
             content = <div className="buttons">
                 <button
                     onClick={() => new ScheduleNextCardAction().apply()}
-                    disabled={this.props.data.myCards === this.props.data.totalCards}
+                    disabled={this.props.myCards === this.props.totalCards}
                 >
                     {this.props.texts.queryCards.scheduleNextCard[this.props.language]}
                 </button>
                 <button
-                    onClick={() => new RouteAction(`#box/reinforce/${this.props.data.boxId}`).apply()}
-                    disabled={this.props.data.reinforceCards === 0}
+                    onClick={() => new RouteAction(`#box/reinforce/${this.props.boxId}`).apply()}
+                    disabled={this.props.reinforceCards === 0}
                 >
                     {this.props.texts.queryCards.reinforceCard[this.props.language]}
                 </button>
@@ -42,11 +42,11 @@ export default class QueryCards extends React.Component {
                     onClick={() => new RouteAction("#dashboard").apply()}>{this.props.texts.queryCards.back[this.props.language]}
                 </button>
 
-                <h1>{this.props.data.categoryName}</h1>
+                <h1>{this.props.categoryName}</h1>
 
                 <DaysBehindSchedule
-                    boxId={this.props.data.boxId}
-                    daysBehindSchedule={this.props.data.daysBehindSchedule}
+                    boxId={this.props.boxId}
+                    daysBehindSchedule={this.props.daysBehindSchedule}
                     texts={this.props.texts}
                     language={this.props.language}
                 />
@@ -55,12 +55,12 @@ export default class QueryCards extends React.Component {
 
                 <div className="infoAndStatistics">
                     <BoxInfo
-                        {...this.props.data}
+                        {...this.props}
                         texts={this.props.texts}
                         language={this.props.language}
                     />
 
-                    <Statistics {...this.props.data}/>
+                    <Statistics {...this.props}/>
 
                 </div>
             </div>

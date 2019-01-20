@@ -3,119 +3,101 @@ box
 
 ACE 
 	LoadBoxes 
-		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.box.GetBoxes
-		postCall (common.Common.hideSpinner)  
-		on ok (BoxList.render)
+		loadingFlag common.state.State.displaySpinner 
+		on ok ( 
+			set common.state.State.data
+			set common.state.State.data.Dashboard.boxList
+			set common.state.State.view
+		)
 	
 	CreateBox 
-		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.box.CreateBox
-		postCall (common.Common.hideSpinner)  
+		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (common.Route)
 	
-	EditBox <maxInterval>
-		on ok (Box.editBox)
+	EditBox
+		on ok (merge common.state.State.data)
 	
 	CancelEditBox 
-		on ok (Box.cancelEditBox)
+		on ok (merge common.state.State.data)
 	
-	MaxIntervalChanged <maxInterval>
-		on ok (Box.maxIntervalChanged)
+	MaxIntervalChanged <editedMaxInterval>
+		on ok (set common.state.State.data.Card.editedMaxInterval)
 		on invalid
 	
 	UpdateBox 
-		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.box.UpdateBox
-		postCall (common.Common.hideSpinner) 
-		on ok triggers (LoadBoxStatistics)
+		loadingFlag common.state.State.displaySpinner 
+		on ok (merge common.state.State.data) triggers (LoadBoxStatistics)
 	
 	DeleteBoxClick <boxId>
-		on ok (BoxList.displayConfirmDelete)
+		on ok (set common.state.State.data.Dashboard.deleteBox)
 	
 	CancelDeleteBox 
-		on ok (BoxList.hideConfirmDelete)
+		on ok (reset common.state.State.data.Dashboard.deleteBox)
 	
 	DeleteBox<boxId> 
-		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.box.DeleteBox
-		postCall (common.Common.hideSpinner) 
+		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (LoadBoxes)
-		on error (BoxList.hideConfirmDelete) triggers (common.DisplayError)
+		on error (reset common.state.State.data.Dashboard.deleteBox.DeleteBox.confirmDelete) triggers (common.DisplayError)
 	
 	PostponeCardsOfBox <boxId> 
-		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.box.PostponeCards
-		postCall (common.Common.hideSpinner) 
+		loadingFlag common.state.State.displaySpinner 
 		on next triggers (LoadNextCard)
 	
 	LoadNextCard <boxId>
-	 	preCall (common.Common.displaySpinner) 
 	 	call com.anfelisa.box.LoadNextCard
-	 	postCall (common.Common.hideSpinner) 
-		on ok (Box.render) triggers (LoadBoxStatistics)
+		loadingFlag common.state.State.displaySpinner 
+		on ok (
+			set common.state.State.view
+			set common.state.State.data
+			merge common.state.State.data
+		) triggers (LoadBoxStatistics)
 		on scheduleNext triggers (ScheduleNextCard)
-		on doNotScheduleNext (Box.render) triggers (LoadBoxStatistics)
+		on doNotScheduleNext (
+			set common.state.State.view
+			set common.state.State.data
+			merge common.state.State.data
+		) triggers (LoadBoxStatistics)
 	
 	ScheduleNextCard 
-		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.box.ScheduleNextCard
-		postCall (common.Common.hideSpinner) 
+		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (LoadNextCard)
 	
 	ToggleScheduleNext 
-		on ok (Box.toggleScheduleNext)
+		on ok (merge common.state.State.data)
 	
-	DisplayWanted <wantedItemsLength, index, hasImage> 
-		on all (Box.displayNextItem Box.enableScoreButtons)
-		on notAll (Box.displayNextItem)
-		on image (Box.displayImage Box.enableScoreButtons)
+	DisplayWanted <wantedItemsLength> 
+		on ok (
+			merge common.state.State.data
+		)
 	
 	ScoreCard <scoredCardQuality>
-	 	preCall (common.Common.displaySpinner) 
 	 	call com.anfelisa.box.ScoreCard
-	 	postCall (common.Common.hideSpinner) 
+		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (LoadNextCard)
 	
 	LoadNextReinforceCard <boxId>
-	 	preCall (common.Common.displaySpinner) 
 	 	call com.anfelisa.box.LoadNextReinforceCard
-	 	postCall (common.Common.hideSpinner) 
-		on ok (BoxReinforce.render) triggers (LoadBoxStatistics)
+		loadingFlag common.state.State.displaySpinner 
+		on ok (
+			set common.state.State.data 
+			set common.state.State.view
+			merge common.state.State.data
+		) triggers (LoadBoxStatistics)
 		on noCard triggers (common.Route)
 	
 	ScoreReinforceCard <quality>
-		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.box.ScoreReinforceCard
-		postCall (common.Common.hideSpinner) 
+		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (LoadNextReinforceCard)
 	
 	LoadBoxStatistics <boxId>
-	 	preCall (common.Common.displaySpinner) 
 	 	call com.anfelisa.box.GetBox
-	 	postCall (common.Common.hideSpinner) 
-		on ok (Box.renderStatistics)
+		loadingFlag common.state.State.displaySpinner 
+		on ok (merge common.state.State.data)
 
-views 
-	BoxList {
-		render
-		displayConfirmDelete
-		hideConfirmDelete
-	}
-	Box {
-		render
-		displayNextItem
-		displayImage
-		enableScoreButtons
-		toggleScheduleNext
-		renderStatistics
-		maxIntervalChanged
-		editBox
-		cancelEditBox
-	}
-	BoxReinforce {
-		render
-		displayNextItem
-		displayImage
-		enableScoreButtons
-	}

@@ -10,7 +10,7 @@ export default class ActionFactoryRegistrationLogin {
 		ACEController.registerFactory('login.UsernameChangedAction', 
 			(actionData) => new UsernameChangedAction(actionData.username));
 		ACEController.registerFactory('login.ToggleSaveInLocalStorageAction', 
-			(actionData) => new ToggleSaveInLocalStorageAction(actionData.saveInLocalStorage));
+			(actionData) => new ToggleSaveInLocalStorageAction());
 		ACEController.registerFactory('login.LoginAction', 
 			(actionData) => new LoginAction(actionData.password));
 		ACEController.registerFactory('login.GetRoleAction', 

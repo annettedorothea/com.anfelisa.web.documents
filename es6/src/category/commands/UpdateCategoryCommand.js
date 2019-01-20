@@ -1,10 +1,10 @@
 import AbstractUpdateCategoryCommand from "../../../gen/category/commands/AbstractUpdateCategoryCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand {
 
     initCommandData() {
-        const data = getAppState().data;
+        const data = getState().data.categoryTree;
         this.commandData.categoryId = data.selectedCategory.categoryId;
         this.commandData.categoryName = data.categoryName;
         this.commandData.dictionaryLookup = data.dictionaryLookup;

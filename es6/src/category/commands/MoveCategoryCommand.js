@@ -1,11 +1,10 @@
 import AbstractMoveCategoryCommand from "../../../gen/category/commands/AbstractMoveCategoryCommand";
-import {getAppState} from "../../app/App";
-import {findCategory} from "../utils/CategoryTreeUtils";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class MoveCategoryCommand extends AbstractMoveCategoryCommand {
 
     initCommandData() {
-        const data = getAppState().data;
+        const data = getState().data.categoryTree;
         this.commandData.targetCategoryId = data.dropTargetCategoryId;
         this.commandData.movedCategoryId = data.movedCategory.categoryId;
         this.commandData.formerParentId = data.movedCategory.parentCategoryId;

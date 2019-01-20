@@ -2,7 +2,7 @@ import AbstractMaxIntervalChangedCommand from "../../../gen/box/commands/Abstrac
 
 export default class MaxIntervalChangedCommand extends AbstractMaxIntervalChangedCommand {
     execute() {
-        if (this.commandData.maxInterval > 0 || this.commandData.maxInterval === "") {
+        if (this.commandData.editedMaxInterval > 0 || this.commandData.editedMaxInterval === "") {
             this.commandData.outcome = this.ok;
         } else {
             this.commandData.outcome = this.invalid;

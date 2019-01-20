@@ -1,26 +1,27 @@
 import AbstractRouteChangedCommand from "../../../gen/common/commands/AbstractRouteChangedCommand";
-import {getAppState} from "../../app/App";
+import {get_state_State_hash, get_state_State_loggedInUser} from "../../../gen/ace/AppState"
 
 export default class RouteChangedCommand extends AbstractRouteChangedCommand {
     execute() {
-        const appState = getAppState();
-        if (appState.password && appState.username) {
-            if (this.commandData.hash === "#dashboard") {
+        const loggedInUser = get_state_State_loggedInUser();
+        const hash = get_state_State_hash();
+        if (loggedInUser && loggedInUser.password && loggedInUser.username) {
+            if (hash === "#dashboard") {
                 this.commandData.outcome = this.dashboard;
-            } else if (this.commandData.hash === "#profile") {
+            } else if (hash === "#profile") {
                 this.commandData.outcome = this.profile;
-            } else if (this.commandData.hash === "#users") {
+            } else if (hash === "#users") {
                 this.commandData.outcome = this.userList;
-            } else if (this.commandData.hash.startsWith("#categories")) {
-                const hashes = this.commandData.hash.split("/");
+            } else if (hash.startsWith("#categories")) {
+                const hashes = hash.split("/");
                 this.commandData.selectedCategoryId = hashes[1] ? hashes[1] : "";
                 this.commandData.outcome = this.categories;
-            } else if (this.commandData.hash.startsWith("#box/reinforce")) {
-                const hashes = this.commandData.hash.split("/");
+            } else if (hash.startsWith("#box/reinforce")) {
+                const hashes = hash.split("/");
                 this.commandData.boxId = hashes[2] ? hashes[2] : "";
                 this.commandData.outcome = this.reinforceCard;
-            } else if (this.commandData.hash.startsWith("#box")) {
-                const hashes = this.commandData.hash.split("/");
+            } else if (hash.startsWith("#box")) {
+                const hashes = hash.split("/");
                 this.commandData.boxId = hashes[1] ? hashes[1] : "";
                 this.commandData.outcome = this.nextCard;
             } else {
@@ -28,20 +29,42 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 this.commandData.hash = "#dashboard";
             }
         } else {
-            if (this.commandData.hash === "") {
+            if (hash === "") {
+                this.commandData.data = {
+                    username: "",
+                    password: "",
+                    saveInLocalStorage: false
+                };
+                this.commandData.view = "login";
                 this.commandData.outcome = this.login;
-            } else if (this.commandData.hash === "#registration") {
+            } else if (hash === "#registration") {
+                this.commandData.view = "registration";
+                this.commandData.data = {
+                    displayUsernameSpinner: false,
+                    usernameAvailable: undefined,
+                    username: "",
+                    email: "",
+                    emailInvalid: false,
+                    passwordMismatch: false
+                };
                 this.commandData.outcome = this.registration;
-            } else if (this.commandData.hash === "#forgotpassword") {
+            } else if (hash === "#forgotpassword") {
+                this.commandData.view = "forgot-password";
+                this.commandData.data = {
+                    username: ""
+                };
                 this.commandData.outcome = this.forgotPassword;
-            } else if (this.commandData.hash.startsWith("#confirmemail")) {
-                const hashes = this.commandData.hash.split("/");
+            } else if (hash.startsWith("#confirmemail")) {
+                const hashes = hash.split("/");
                 this.commandData.username = hashes[1] ? hashes[1] : "";
                 this.commandData.token = hashes[2] ? hashes[2] : "";
                 this.commandData.outcome = this.confirmEmail;
-            } else if (this.commandData.hash.startsWith("#resetpassword")) {
-                const hashes = this.commandData.hash.split("/");
-                this.commandData.token = hashes[1] ? hashes[1] : "";
+            } else if (hash.startsWith("#resetpassword")) {
+                this.commandData.view = "reset-password";
+                const hashes = hash.split("/");
+                this.commandData.data = {
+                    token: hashes[1] ? hashes[1] : ""
+                };
                 this.commandData.outcome = this.resetPassword;
             } else {
                 this.commandData.outcome = this.invalid;

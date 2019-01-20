@@ -1,13 +1,13 @@
 import AbstractExpandTreeItemCommand from "../../../gen/category/commands/AbstractExpandTreeItemCommand";
-import {getAppState} from "../../app/App";
-import {findCategory, isCategoryChildOfParent} from "../utils/CategoryTreeUtils"
+import {findCategory} from "../utils/CategoryTreeUtils"
+import {getState} from "../../../gen/ace/AppState";
 
 export default class ExpandTreeItemCommand extends AbstractExpandTreeItemCommand {
     execute() {
-        const data = getAppState().data;
-        let category = findCategory(data.categoryList, this.commandData.categoryId);
+        const categoryTree = getState().data.categoryTree;
+        let category = findCategory(categoryTree.categoryList, this.commandData.categoryId);
         category.expanded = true;
-        this.commandData.categoryList = data.categoryList;
+        this.commandData.categoryList = categoryTree.categoryList;
     	this.commandData.outcome = this.ok;
     }
 }

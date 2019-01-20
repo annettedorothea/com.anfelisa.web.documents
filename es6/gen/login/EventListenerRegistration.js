@@ -1,16 +1,18 @@
 import ACEController from "../ace/ACEController";
-import LoginView from "../../src/login/views/LoginView";
-import CommonView from "../../src/common/views/CommonView";
+import * as AppState from "../ace/AppState";
 
 export default class EventListenerRegistrationLogin {
 
 	static init() {
-		ACEController.registerListener('login.UsernameChangedOkEvent', LoginView.usernameChanged);
-		ACEController.registerListener('login.ToggleSaveInLocalStorageOkEvent', LoginView.toggleSaveInLocalStorage);
-		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', CommonView.initUser);
-		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', CommonView.saveInLocalStorage);
-		ACEController.registerListener('login.LoginDoNotSaveInLocalStorageEvent', CommonView.initUser);
-		ACEController.registerListener('login.GetRoleOkEvent', CommonView.initRole);
+		ACEController.registerListener('login.UsernameChangedOkEvent', AppState.set_state_State_data_Login_username);
+		ACEController.registerListener('login.ToggleSaveInLocalStorageOkEvent', AppState.set_state_State_data_Login_saveInLocalStorage);
+		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', AppState.set_state_State_loggedInUser);
+		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', AppState.set_state_State_username);
+		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', AppState.set_state_State_password);
+		ACEController.registerListener('login.LoginDoNotSaveInLocalStorageEvent', AppState.set_state_State_loggedInUser);
+		ACEController.registerListener('login.LoginDoNotSaveInLocalStorageEvent', AppState.reset_state_State_username);
+		ACEController.registerListener('login.LoginDoNotSaveInLocalStorageEvent', AppState.reset_state_State_password);
+		ACEController.registerListener('login.GetRoleOkEvent', AppState.merge_state_State_loggedInUser);
 	}
 
 }

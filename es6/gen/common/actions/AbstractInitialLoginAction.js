@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import InitialLoginCommand from "../../../src/common/commands/InitialLoginCommand";
-import CommonView from "../../../src/common/views/CommonView";
+import * as AppState from "../../ace/AppState";
 
 export default class AbstractInitialLoginAction extends Action {
 
@@ -14,11 +14,11 @@ export default class AbstractInitialLoginAction extends Action {
 	}
 
 	preCall() {
-		CommonView.displaySpinner(this.actionData);
+		AppState.set_state_State_displaySpinner({displaySpinner: true});
 	}
 	
 	postCall() {
-		CommonView.hideSpinner(this.actionData);
+		AppState.set_state_State_displaySpinner({displaySpinner: false});
 	}
 
 }

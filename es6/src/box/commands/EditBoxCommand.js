@@ -1,9 +1,11 @@
 import AbstractEditBoxCommand from "../../../gen/box/commands/AbstractEditBoxCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class EditBoxCommand extends AbstractEditBoxCommand {
     execute() {
-        this.commandData.editedMaxInterval = getAppState().data.maxInterval;
+        const maxInterval = getState().data.maxInterval
+        this.commandData.editedMaxInterval = maxInterval ? maxInterval : "";
+        this.commandData.editMaxInterval = true;
         this.commandData.outcome = this.ok;
     }
 }

@@ -1,9 +1,9 @@
 import AbstractToggleAllScheduleCardSelectionCommand from "../../../gen/card/commands/AbstractToggleAllScheduleCardSelectionCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class ToggleAllScheduleCardSelectionCommand extends AbstractToggleAllScheduleCardSelectionCommand {
     execute() {
-        let data = getAppState().data;
+        const data = getState().data.cardView;
         let selectedCardIds = [];
         if (data.selectedCardIds.length < data.cardList.length) {
             data.cardList.forEach(card => {

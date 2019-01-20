@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import TranslateCommand from "../../../src/card/commands/TranslateCommand";
-import CardListView from "../../../src/card/views/CardListView";
+import * as AppState from "../../ace/AppState";
 
 export default class AbstractTranslateAction extends Action {
 
@@ -14,11 +14,11 @@ export default class AbstractTranslateAction extends Action {
 	}
 
 	preCall() {
-		CardListView.displayTranslateSpinner(this.actionData);
+		AppState.set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_displayTranslateSpinner({displayTranslateSpinner: true});
 	}
 	
 	postCall() {
-		CardListView.hideTranslateSpinner(this.actionData);
+		AppState.set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_displayTranslateSpinner({displayTranslateSpinner: false});
 	}
 
 }

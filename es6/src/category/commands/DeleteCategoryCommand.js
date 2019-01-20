@@ -1,10 +1,10 @@
 import AbstractDeleteCategoryCommand from "../../../gen/category/commands/AbstractDeleteCategoryCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class DeleteCategoryCommand extends AbstractDeleteCategoryCommand {
 
     initCommandData() {
-        const data = getAppState().data;
+        const data = getState().data.categoryTree;
         this.commandData.categoryId = data.selectedCategory.categoryId;
         return true;
     }

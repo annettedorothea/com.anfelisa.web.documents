@@ -1,4 +1,5 @@
 import AbstractGetAllUsersCommand from "../../../gen/admin/commands/AbstractGetAllUsersCommand";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class GetAllUsersCommand extends AbstractGetAllUsersCommand {
 
@@ -7,7 +8,11 @@ export default class GetAllUsersCommand extends AbstractGetAllUsersCommand {
     }
 
     handleResponse(resolve, reject) {
-        this.commandData.showDeleteUserDialog = false;
+        this.commandData.data = {
+            showDeleteUserDialog: false,
+            userList: this.commandData.userList
+        };
+        this.commandData.view = "user-list";
     	this.commandData.outcome = this.ok;
     	resolve();
     }

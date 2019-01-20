@@ -2,6 +2,10 @@ import AbstractCancelDeleteCardCommand from "../../../gen/card/commands/Abstract
 
 export default class CancelDeleteCardCommand extends AbstractCancelDeleteCardCommand {
     execute() {
+        this.commandData.deleteCard = {
+            confirmDelete: false,
+            cardId: ""
+        };
     	this.commandData.outcome = this.ok;
     }
 }

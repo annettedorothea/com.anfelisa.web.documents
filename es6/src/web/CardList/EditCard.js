@@ -1,41 +1,24 @@
-import UpdateCardAction from "../../card/actions/UpdateCardAction";
 import React from "react";
-import CancelEditCardAction from "../../card/actions/CancelEditCardAction";
-import WantedOfEditedCardChangedAction from "../../card/actions/WantedOfEditedCardChangedAction";
-import GivenOfEditedCardChangedAction from "../../card/actions/GivenOfEditedCardChangedAction";
-import RemoveEditedCardImageAction from "../../card/actions/RemoveEditedCardImageAction";
-import DisplayErrorAction from "../../common/actions/DisplayErrorAction";
-import LoadWantedImageOfEditedCardAction from "../../card/actions/LoadWantedImageOfEditedCardAction";
-import ToggleScheduleCardSelectionAction from "../../card/actions/ToggleScheduleCardSelectionAction";
 import Preview from "./Preview";
 import FileInput from "./FileInput";
+import {
+    cancelEditCard,
+    givenOfEditedCardChanged,
+    loadWantedImageOfEditedCard,
+    removeEditedCardImage,
+    toggleScheduleCardSelection,
+    updateCard,
+    wantedOfEditedCardChanged
+} from "../../../gen/card/ActionFunctions";
+import {displayError} from "../../../gen/common/ActionFunctions";
 
 export default class EditCard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onGivenChange = this.onGivenChange.bind(this);
-        this.onWantedChange = this.onWantedChange.bind(this);
         this.onUpdate = this.onUpdate.bind(this);
-        this.onCancel = this.onCancel.bind(this);
         this.onAltKeyUp = this.onAltKeyUp.bind(this);
-        this.onRemoveImage = this.onRemoveImage.bind(this);
         this.onWantedFileChange = this.onWantedFileChange.bind(this);
-        this.toggleScheduleCardSelection = this.toggleScheduleCardSelection.bind(this);
-    }
-
-    toggleScheduleCardSelection(cardId) {
-        new ToggleScheduleCardSelectionAction(cardId).apply();
-    }
-
-    onGivenChange(event) {
-        const given = event.target.value;
-        new GivenOfEditedCardChangedAction(given).apply();
-    }
-
-    onWantedChange(event) {
-        const wanted = event.target.value;
-        new WantedOfEditedCardChangedAction(wanted).apply();
     }
 
     onWantedFileChange(event) {
@@ -45,23 +28,19 @@ export default class EditCard extends React.Component {
             const file = files[0];
             event.target.value = null;
             if (!file.type.match('image.*')) {
-                new DisplayErrorAction("noImageFile").apply();
+                displayError({errorKey: "noImageFile"});
                 return;
             }
             if (file.size > 2000000) {
-                new DisplayErrorAction("fileTooBig").apply();
+                displayError({errorKey: "fileTooBig"});
                 return;
             }
             const reader = new FileReader();
             reader.onload = function (e) {
-                new LoadWantedImageOfEditedCardAction(e.target.result).apply();
+                loadWantedImageOfEditedCard(e.target.result);
             };
             reader.readAsDataURL(file);
         }
-    }
-
-    onCancel() {
-        new CancelEditCardAction().apply();
     }
 
     onAltKeyUp(e) {
@@ -72,18 +51,14 @@ export default class EditCard extends React.Component {
     }
 
     onUpdate() {
-        new UpdateCardAction().apply();
-    }
-
-    onRemoveImage() {
-        new RemoveEditedCardImageAction().apply();
+        updateCard();
     }
 
     renderGiven() {
         return (
             <td>
                 <textarea
-                    onChange={this.onGivenChange}
+                    onChange={(event) => givenOfEditedCardChanged(event.target.value)}
                     autoComplete="off"
                     value={this.props.given}
                     placeholder={this.props.texts.cardList.given[this.props.language]}
@@ -97,7 +72,7 @@ export default class EditCard extends React.Component {
         return (
             <td>
                 <textarea
-                    onChange={this.onWantedChange}
+                    onChange={(event) => wantedOfEditedCardChanged(event.target.value)}
                     autoComplete="off"
                     value={this.props.wanted}
                     placeholder={this.props.texts.cardList.wanted[this.props.language]}
@@ -111,7 +86,7 @@ export default class EditCard extends React.Component {
         if (this.props.image.length > 0) {
             return <Preview
                 image={this.props.image}
-                onRemoveImage={this.onRemoveImage}
+                onRemoveImage={ () => removeEditedCardImage()}
             />
         }
         return (
@@ -130,11 +105,11 @@ export default class EditCard extends React.Component {
 
     render() {
         return (
-            <tr>
+            <tr className="notPrinted">
                 <td>
                     <input
                         type={"checkbox"}
-                        onChange={() => this.toggleScheduleCardSelection(this.props.cardId)}
+                        onChange={() => toggleScheduleCardSelection(this.props.cardId)}
                         checked={this.props.selectedCardIds.indexOf(this.props.cardId) >= 0}
                     />
                 </td>
@@ -151,7 +126,7 @@ export default class EditCard extends React.Component {
                         <i className="fas fa-check"/>
                     </button>
                     <button
-                        onClick={this.onCancel}>
+                        onClick={() => cancelEditCard()}>
                         <i className="fas fa-times"/>
                     </button>
                 </td>

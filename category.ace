@@ -4,129 +4,120 @@ category
 ACE
 
 LoadCategoryTree <pathToSelected, selectedCategoryId>
-	preCall (common.Common.displaySpinner)
 	call com.anfelisa.category.GetCategoryTree
-	postCall (common.Common.hideSpinner)
-	on ok ( CategoryTree.mergeDataAndRoute ) triggers (card.LoadCards)
+	loadingFlag common.state.State.displaySpinner 
+	on ok ( 
+		set common.state.State.data
+		set common.state.State.view
+	) triggers (card.LoadCards)
 
 ExpandTreeItem < categoryId >
-	on ok (CategoryTree.setCategoryList)
+	on ok (set common.state.State.data.AuthorView.categoryTree.CategoryTree.categoryList)
 
 CollapseTreeItem < categoryId >
-	on ok (CategoryTree.setCategoryList)
-	on deselectCategory (CategoryTree.setCategoryList CategoryTree.setSelectedCategory card.CardList.hide)
+	on ok (
+		set common.state.State.data.AuthorView.categoryTree.CategoryTree.categoryList
+	)
+	on deselectCategory (
+		set common.state.State.data.AuthorView.categoryTree.CategoryTree.categoryList 
+		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.selectedCategory 
+		reset common.state.State.data.AuthorView.cardView.CardView.cardList
+	)
 
 SelectTreeItem < categoryId >
-	on ok (CategoryTree.setSelectedCategory) triggers( card.LoadCards)
+	on ok ( set common.state.State.data.AuthorView.categoryTree.CategoryTree.selectedCategory) triggers( card.LoadCards)
 
 DeselectTreeItem
-	on ok (CategoryTree.setSelectedCategory card.CardList.hide) 
+	on ok (
+		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.selectedCategory
+		reset common.state.State.data.AuthorView.cardView.CardView.cardList
+	) 
 	
 NewCategoryClick
-	on ok (CategoryTree.setCategoryDialogData)
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
 CancelNewCategory
-	on ok (CategoryTree.setCategoryDialogData)
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
 CategoryNameChanged<categoryName>
-	on ok (CategoryTree.mergeCategoryDialogData)
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
 DictionaryLookupChanged
-	on ok (CategoryTree.mergeCategoryDialogData)
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
 GivenLanguageChanged<givenLanguage>
-	on ok (CategoryTree.mergeCategoryDialogData)
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
 WantedLanguageChanged<wantedLanguage>
-	on ok (CategoryTree.mergeCategoryDialogData)
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
 CreateCategory
-	preCall (common.Common.displaySpinner)
 	call com.anfelisa.category.CreateCategory
-	postCall (common.Common.hideSpinner)
-	on ok (CategoryTree.setCategoryDialogData) triggers (LoadCategoryTree card.LoadCards)
-	on error (CategoryTree.setCategoryDialogData)
+	loadingFlag common.state.State.displaySpinner 
+	on ok (merge common.state.State.data.AuthorView.categoryTree) triggers (LoadCategoryTree )
+	on error (merge common.state.State.data.AuthorView.categoryTree)
 
 DeleteCategoryClick
-	on ok (CategoryTree.setDisplayDeleteCategory)
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
 CancelDeleteCategory
-	on ok (CategoryTree.setDisplayDeleteCategory)
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 
 DeleteCategory
-	preCall (common.Common.displaySpinner)
 	call com.anfelisa.category.DeleteCategory
-	postCall (common.Common.hideSpinner)
-	on ok (CategoryTree.setDisplayDeleteCategory) triggers (LoadCategoryTree)
-	on error (CategoryTree.setDisplayDeleteCategory)
+	loadingFlag common.state.State.displaySpinner 
+	on ok (merge common.state.State.data.AuthorView.categoryTree) triggers (LoadCategoryTree)
+	on error (merge common.state.State.data.AuthorView.categoryTree)
 
 EditCategoryClick
-	on ok (CategoryTree.setCategoryDialogData) 
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
 CancelEditCategory
-	on ok (CategoryTree.setCategoryDialogData)
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
 UpdateCategory
-	preCall (common.Common.displaySpinner)
 	call com.anfelisa.category.UpdateCategory
-	postCall (common.Common.hideSpinner)
-	on ok triggers (LoadCategoryTree card.LoadCards)
-	on error (CategoryTree.setCategoryDialogData)
+	loadingFlag common.state.State.displaySpinner 
+	on ok (merge common.state.State.data.AuthorView.categoryTree) triggers (LoadCategoryTree)
+	on error (merge common.state.State.data.AuthorView.categoryTree)
+
+InviteUserClick
+ 	call com.anfelisa.category.GetUsersWithAccess
+	loadingFlag common.state.State.displaySpinner 
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
+	
+CloseInviteUser
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
+	
+InvitedUsernameChanged<invitedUsername>
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
+	
+InviteUser<invitedUsername>
+	call com.anfelisa.category.InviteUser
+	loadingFlag common.state.State.displaySpinner 
+	on ok triggers (InviteUserClick)
+
+RevokeUserAccess<revokedUserId>
+	call com.anfelisa.category.RevokeUserAccess
+	loadingFlag common.state.State.displaySpinner 
+	on ok triggers (InviteUserClick )
 
 CheckDropAllowed<categoryId>
-	on ok (CategoryTree.setDropData)
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 
 ItemDropped
 	on card triggers (card.MoveCards)
 	on category triggers (MoveCategory)
 
 MoveCategoryStarted<movedCategoryId>
-	on ok (CategoryTree.setMovedCategory)
+	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
 MoveCategory
- 	preCall (common.Common.displaySpinner) 
  	call com.anfelisa.category.MoveCategory
- 	postCall (common.Common.hideSpinner) 
-	on ok (CategoryTree.resetMovedCategory) triggers (category.LoadCategoryTree)
-
-InviteUserClick
- 	preCall (common.Common.displaySpinner) 
- 	call com.anfelisa.category.GetUsersWithAccess
- 	postCall (common.Common.hideSpinner) 
-	on ok (CategoryTree.setInviteUserDialogData)
-	
-CloseInviteUser
-	on ok (CategoryTree.setInviteUserDialogData ) triggers (LoadCategoryTree)
-	
-InvitedUsernameChanged<invitedUsername>
-	on ok (CategoryTree.mergeInviteUserDialogData)
-	
-InviteUser
-	preCall (common.Common.displaySpinner)
-	call com.anfelisa.category.InviteUser
-	postCall (common.Common.hideSpinner)
-	on ok triggers (InviteUserClick)
-
-RevokeUserAccess<revokedUserId>
-	preCall (common.Common.displaySpinner)
-	call com.anfelisa.category.RevokeUserAccess
-	postCall (common.Common.hideSpinner)
-	on ok triggers (InviteUserClick )
+	loadingFlag common.state.State.displaySpinner 
+	on ok ( 
+		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.movedCategory
+	) triggers (category.LoadCategoryTree)
 
 		
 
-views
-CategoryTree {
-	mergeDataAndRoute
-	setSelectedCategory
-	setCategoryList
-	setDisplayDeleteCategory
-	setCategoryDialogData
-	mergeCategoryDialogData
-	setInviteUserDialogData
-	mergeInviteUserDialogData
-	setDropData
-	resetDropData
-	resetMovedCategory
-	setMovedCategory
-}

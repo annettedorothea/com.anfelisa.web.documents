@@ -1,10 +1,10 @@
 import AbstractCheckDropAllowedCommand from "../../../gen/category/commands/AbstractCheckDropAllowedCommand";
-import {getAppState} from "../../app/App";
 import {findCategory, isCategoryChildOfParent} from "../utils/CategoryTreeUtils";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class CheckDropAllowedCommand extends AbstractCheckDropAllowedCommand {
     execute() {
-        const data = getAppState().data;
+        const data = getState().data.categoryTree;
         const dropTarget = findCategory(data.categoryList, this.commandData.categoryId);
         this.commandData.dropTargetCategoryId = dropTarget.categoryId;
         if (data.movedCategory) {

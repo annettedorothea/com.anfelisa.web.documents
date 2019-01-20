@@ -26,11 +26,11 @@ export default class ActionFactoryRegistrationBox {
 		ACEController.registerFactory('box.CreateBoxAction', 
 			(actionData) => new CreateBoxAction());
 		ACEController.registerFactory('box.EditBoxAction', 
-			(actionData) => new EditBoxAction(actionData.maxInterval));
+			(actionData) => new EditBoxAction());
 		ACEController.registerFactory('box.CancelEditBoxAction', 
 			(actionData) => new CancelEditBoxAction());
 		ACEController.registerFactory('box.MaxIntervalChangedAction', 
-			(actionData) => new MaxIntervalChangedAction(actionData.maxInterval));
+			(actionData) => new MaxIntervalChangedAction(actionData.editedMaxInterval));
 		ACEController.registerFactory('box.UpdateBoxAction', 
 			(actionData) => new UpdateBoxAction());
 		ACEController.registerFactory('box.DeleteBoxClickAction', 
@@ -48,7 +48,7 @@ export default class ActionFactoryRegistrationBox {
 		ACEController.registerFactory('box.ToggleScheduleNextAction', 
 			(actionData) => new ToggleScheduleNextAction());
 		ACEController.registerFactory('box.DisplayWantedAction', 
-			(actionData) => new DisplayWantedAction(actionData.wantedItemsLength, actionData.index, actionData.hasImage));
+			(actionData) => new DisplayWantedAction(actionData.wantedItemsLength));
 		ACEController.registerFactory('box.ScoreCardAction', 
 			(actionData) => new ScoreCardAction(actionData.scoredCardQuality));
 		ACEController.registerFactory('box.LoadNextReinforceCardAction', 

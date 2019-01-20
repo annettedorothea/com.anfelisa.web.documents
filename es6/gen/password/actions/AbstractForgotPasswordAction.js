@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import ForgotPasswordCommand from "../../../src/password/commands/ForgotPasswordCommand";
-import CommonView from "../../../src/common/views/CommonView";
+import * as AppState from "../../ace/AppState";
 
 export default class AbstractForgotPasswordAction extends Action {
 
@@ -14,11 +14,11 @@ export default class AbstractForgotPasswordAction extends Action {
 	}
 
 	preCall() {
-		CommonView.displaySpinner(this.actionData);
+		AppState.set_state_State_displaySpinner({displaySpinner: true});
 	}
 	
 	postCall() {
-		CommonView.hideSpinner(this.actionData);
+		AppState.set_state_State_displaySpinner({displaySpinner: false});
 	}
 
 }

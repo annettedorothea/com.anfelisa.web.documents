@@ -1,12 +1,15 @@
 import AbstractLoginCommand from "../../../gen/login/commands/AbstractLoginCommand";
-import {getAppState} from "../../app/App";
+import * as AppState from "../../../gen/ace/AppState";
 
 export default class LoginCommand extends AbstractLoginCommand {
     execute() {
-        const appState = getAppState();
-        this.commandData.username = appState.data.username;
-        this.commandData.saveInLocalStorage = appState.data.saveInLocalStorage;
-        if (this.commandData.saveInLocalStorage === true) {
+        this.commandData.username = AppState.get_state_State_data_Login_username();
+        this.commandData.loggedInUser = {
+            username: this.commandData.username,
+            password: this.commandData.password
+        };
+        const saveInLocalStorage = AppState.get_state_State_data_Login_saveInLocalStorage();
+        if (saveInLocalStorage === true) {
             this.commandData.outcome = this.saveInLocalStorage;
         } else {
             this.commandData.outcome = this.doNotSaveInLocalStorage;

@@ -1,17 +1,19 @@
 import React from 'react';
-import RouteAction from "../../common/actions/RouteAction";
 import CategoryItem from "./CategoryItem";
-import NewCategoryClickAction from "../../category/actions/NewCategoryClickAction";
 import NewCategory from "./NewCategory";
 import Confirm from "../Confirm";
 import InviteUser from "./InviteUser";
-import CancelDeleteCategoryAction from "../../category/actions/CancelDeleteCategoryAction";
-import DeleteCategoryClickAction from "../../category/actions/DeleteCategoryClickAction";
-import DeleteCategoryAction from "../../category/actions/DeleteCategoryAction";
 import EditCategory from "./EditCategory";
-import EditCategoryClickAction from "../../category/actions/EditCategoryClickAction";
-import CreateBoxAction from "../../box/actions/CreateBoxAction";
-import {inviteUserClick} from "../../../gen/category/ActionFunctions";
+import {
+    cancelDeleteCategory,
+    deleteCategory,
+    deleteCategoryClick,
+    editCategoryClick,
+    inviteUserClick,
+    newCategoryClick
+} from "../../../gen/category/ActionFunctions";
+import {createBox} from "../../../gen/box/ActionFunctions";
+import {route} from "../../../gen/common/ActionFunctions";
 
 export default class CategoryTree extends React.Component {
 
@@ -20,93 +22,87 @@ export default class CategoryTree extends React.Component {
     }
 
     render() {
-        const categoryItems = this.props.data.categoryList.map((category) => {
+        const categoryItems = this.props.categoryList.map((category) => {
             return <CategoryItem
                 {...category}
                 childCategories={category.childCategories}
                 depth={0}
-                selectedCategory={this.props.data.selectedCategory}
+                selectedCategory={this.props.selectedCategory}
                 texts={this.props.texts}
                 language={this.props.language}
                 key={category.categoryId}
-                dropAllowed={this.props.data.dropAllowed}
-                dropTargetCategoryId={this.props.data.dropTargetCategoryId}
+                dropAllowed={this.props.dropAllowed}
+                dropTargetCategoryId={this.props.dropTargetCategoryId}
             />
         });
 
         return (
             <div className="categoryTree">
-                {this.props.data.displayNewCategory &&
+                {this.props.displayNewCategory &&
                 <NewCategory
-                    selectedCategory={this.props.data.selectedCategory}
-                    categoryName={this.props.data.categoryName}
-                    givenLanguage={this.props.data.givenLanguage}
-                    wantedLanguage={this.props.data.wantedLanguage}
-                    dictionaryLookup={this.props.data.dictionaryLookup}
+                    selectedCategory={this.props.selectedCategory}
+                    categoryName={this.props.categoryName}
+                    givenLanguage={this.props.givenLanguage}
+                    wantedLanguage={this.props.wantedLanguage}
+                    dictionaryLookup={this.props.dictionaryLookup}
                     texts={this.props.texts}
                     language={this.props.language}
                 />}
-                {this.props.data.displayEditCategory &&
+                {this.props.displayEditCategory &&
                 <EditCategory
-                    selectedCategory={this.props.data.selectedCategory}
-                    categoryName={this.props.data.categoryName}
-                    givenLanguage={this.props.data.givenLanguage}
-                    wantedLanguage={this.props.data.wantedLanguage}
-                    dictionaryLookup={this.props.data.dictionaryLookup}
+                    selectedCategory={this.props.selectedCategory}
+                    categoryName={this.props.categoryName}
+                    givenLanguage={this.props.givenLanguage}
+                    wantedLanguage={this.props.wantedLanguage}
+                    dictionaryLookup={this.props.dictionaryLookup}
                     texts={this.props.texts}
                     language={this.props.language}
                 />}
-                {this.props.data.displayDeleteCategory === true &&
+                {this.props.displayDeleteCategory === true &&
                 <Confirm {...
                     {
                         title: this.props.texts.categoryTree.confirmDelete.title[this.props.language],
                         message: this.props.texts.categoryTree.confirmDelete.message[this.props.language],
                         okText: this.props.texts.categoryTree.confirmDelete.ok[this.props.language],
                         cancelText: this.props.texts.categoryTree.confirmDelete.cancel[this.props.language],
-                        ok: () => new DeleteCategoryAction().apply(),
-                        cancel: () => new CancelDeleteCategoryAction().apply()
+                        ok: () => deleteCategory(),
+                        cancel: () => cancelDeleteCategory()
                     }}/>
                 }
-                {this.props.data.displayInviteUser === true &&
+                {this.props.displayInviteUser === true &&
                 <InviteUser
                     texts={this.props.texts}
                     language={this.props.language}
-                    invitedUsername={this.props.data.invitedUsername}
-                    userList={this.props.data.userList}
+                    invitedUsername={this.props.invitedUsername}
+                    userList={this.props.userList}
                 />
                 }
 
                 <button className="backButton"
-                        onClick={() => new RouteAction("#dashboard").apply()}>
+                        onClick={() => route("#dashboard")}>
                     {this.props.texts.categoryTree.back[this.props.language]}
                 </button>
                 <button
-                    onClick={() => {
-                        new NewCategoryClickAction().apply()
-                    }}>
+                    onClick={() => newCategoryClick()}>
                     <i className="fas fa-plus"/>
                 </button>
                 <button
-                    disabled={!this.props.data.selectedCategory || !this.props.data.selectedCategory.editable}
-                    onClick={() => {
-                        new EditCategoryClickAction().apply()
-                    }}>
+                    disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable}
+                    onClick={() => editCategoryClick()}>
                     <i className="fas fa-pen"/>
                 </button>
                 <button
-                    disabled={!this.props.data.selectedCategory || !this.props.data.selectedCategory.editable || !this.props.data.selectedCategory.empty}
-                    onClick={() => new DeleteCategoryClickAction().apply()}>
+                    disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable || !this.props.selectedCategory.empty}
+                    onClick={() => deleteCategoryClick()}>
                     <i className="fas fa-times"/>
                 </button>
                 <button
-                    disabled={!this.props.data.selectedCategory || this.props.data.selectedCategory.parentCategoryId !== undefined || this.props.data.selectedCategory.hasBox === undefined || this.props.data.selectedCategory.hasBox === true}
-                    onClick={() => {
-                        new CreateBoxAction().apply();
-                    }}>
+                    disabled={!this.props.selectedCategory || this.props.selectedCategory.parentCategoryId !== undefined || this.props.selectedCategory.hasBox === undefined || this.props.selectedCategory.hasBox === true}
+                    onClick={() => createBox()}>
                     <i className="fas fa-sign-in-alt"/>
                 </button>
                 <button
-                    disabled={!this.props.data.selectedCategory || this.props.data.selectedCategory.parentCategoryId !== undefined}
+                    disabled={!this.props.selectedCategory || this.props.selectedCategory.parentCategoryId !== undefined}
                     onClick={() => {
                         inviteUserClick();
                     }}>

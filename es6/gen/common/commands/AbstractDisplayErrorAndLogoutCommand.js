@@ -1,7 +1,6 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import DisplayErrorAndLogoutOkEvent from "../../../gen/common/events/DisplayErrorAndLogoutOkEvent";
-import ClearToastAction from "../../../src/common/actions/ClearToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractDisplayErrorAndLogoutCommand extends Command {
@@ -14,7 +13,6 @@ export default class AbstractDisplayErrorAndLogoutCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			new DisplayErrorAndLogoutOkEvent(this.commandData).publish();
-			new TriggerAction(new ClearToastAction()).publish();
 			new TriggerAction(new LogoutAction()).publish();
 			break;
 		default:

@@ -1,10 +1,9 @@
 import AbstractNewCategoryClickCommand from "../../../gen/category/commands/AbstractNewCategoryClickCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class NewCategoryClickCommand extends AbstractNewCategoryClickCommand {
     execute() {
-        const appState = getAppState();
-        const selectedCategory = appState.data.selectedCategory;
+        const selectedCategory = getState().data.categoryTree.selectedCategory;
         this.commandData.dictionaryLookup = selectedCategory && selectedCategory.dictionaryLookup ? selectedCategory.dictionaryLookup : false;
         this.commandData.wantedLanguage = selectedCategory && selectedCategory.wantedLanguage ? selectedCategory.wantedLanguage : "";
         this.commandData.givenLanguage = selectedCategory && selectedCategory.givenLanguage ? selectedCategory.givenLanguage : "";

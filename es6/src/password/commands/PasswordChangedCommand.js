@@ -2,11 +2,8 @@ import AbstractPasswordChangedCommand from "../../../gen/password/commands/Abstr
 
 export default class PasswordChangedCommand extends AbstractPasswordChangedCommand {
     execute() {
-        if (this.commandData.password === this.commandData.passwordRepetition) {
-            this.commandData.outcome = this.match;
-        } else {
-            this.commandData.outcome = this.mismatch;
-        }
+        this.commandData.passwordMismatch = this.commandData.password !== this.commandData.passwordRepetition;
+        this.commandData.outcome = this.ok;
     }
 }
 

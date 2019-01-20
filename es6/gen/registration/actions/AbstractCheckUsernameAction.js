@@ -1,11 +1,11 @@
 import Action from "../../ace/AsynchronousAction";
 import CheckUsernameCommand from "../../../src/registration/commands/CheckUsernameCommand";
-import RegistrationView from "../../../src/registration/views/RegistrationView";
+import * as AppState from "../../ace/AppState";
 
 export default class AbstractCheckUsernameAction extends Action {
 
-    constructor( username) {
-        super({username}, 'registration.CheckUsernameAction');
+    constructor() {
+        super({}, 'registration.CheckUsernameAction');
 		this.postCall = this.postCall.bind(this);
     }
     
@@ -14,11 +14,11 @@ export default class AbstractCheckUsernameAction extends Action {
 	}
 
 	preCall() {
-		RegistrationView.displayUsernameSpinner(this.actionData);
+		AppState.set_state_State_data_Registration_displayUsernameSpinner({displayUsernameSpinner: true});
 	}
 	
 	postCall() {
-		RegistrationView.hideUsernameSpinner(this.actionData);
+		AppState.set_state_State_data_Registration_displayUsernameSpinner({displayUsernameSpinner: false});
 	}
 
 }

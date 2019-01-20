@@ -1,11 +1,11 @@
 import Action from "../../ace/AsynchronousAction";
 import RegisterUserCommand from "../../../src/registration/commands/RegisterUserCommand";
-import CommonView from "../../../src/common/views/CommonView";
+import * as AppState from "../../ace/AppState";
 
 export default class AbstractRegisterUserAction extends Action {
 
-    constructor( username, password) {
-        super({username, password}, 'registration.RegisterUserAction');
+    constructor( password) {
+        super({password}, 'registration.RegisterUserAction');
 		this.postCall = this.postCall.bind(this);
     }
     
@@ -14,11 +14,11 @@ export default class AbstractRegisterUserAction extends Action {
 	}
 
 	preCall() {
-		CommonView.displaySpinner(this.actionData);
+		AppState.set_state_State_displaySpinner({displaySpinner: true});
 	}
 	
 	postCall() {
-		CommonView.hideSpinner(this.actionData);
+		AppState.set_state_State_displaySpinner({displaySpinner: false});
 	}
 
 }

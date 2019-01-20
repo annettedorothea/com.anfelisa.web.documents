@@ -1,10 +1,10 @@
 import AbstractInviteUserCommand from "../../../gen/category/commands/AbstractInviteUserCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class InviteUserCommand extends AbstractInviteUserCommand {
 
     initCommandData() {
-        const data = getAppState().data;
+        const data = getState().data.categoryTree;
         this.commandData.categoryId = data.selectedCategory.categoryId;
         this.commandData.invitedUsername = data.invitedUsername;
     	return true;

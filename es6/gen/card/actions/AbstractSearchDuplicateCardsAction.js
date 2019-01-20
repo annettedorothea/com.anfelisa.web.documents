@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import SearchDuplicateCardsCommand from "../../../src/card/commands/SearchDuplicateCardsCommand";
-import CardListView from "../../../src/card/views/CardListView";
+import * as AppState from "../../ace/AppState";
 
 export default class AbstractSearchDuplicateCardsAction extends Action {
 
@@ -14,11 +14,11 @@ export default class AbstractSearchDuplicateCardsAction extends Action {
 	}
 
 	preCall() {
-		CardListView.displayNewCardSpinner(this.actionData);
+		AppState.set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_displaySpinner({displaySpinner: true});
 	}
 	
 	postCall() {
-		CardListView.hideNewCardSpinner(this.actionData);
+		AppState.set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_displaySpinner({displaySpinner: false});
 	}
 
 }

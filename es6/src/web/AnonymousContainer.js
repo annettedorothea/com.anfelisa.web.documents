@@ -7,15 +7,31 @@ import ResetPassword from "./ResetPassword";
 export default class AnonymousContainer extends React.Component {
 
     render() {
-        switch (this.props.route) {
+        switch (this.props.view) {
             case "registration":
-                return <Registration {...this.props} />;
+                return <Registration
+                    {...this.props.data}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
             case "forgot-password":
-                return <ForgotPassword {...this.props} />;
+                return <ForgotPassword
+                    {...this.props.data}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
             case "reset-password":
-                return <ResetPassword {...this.props} />;
+                return <ResetPassword
+                    {...this.props.data}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
             case "login":
-                return <Login {...this.props} />;
+                return <Login
+                    {...this.props.data}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
         }
 
         return (

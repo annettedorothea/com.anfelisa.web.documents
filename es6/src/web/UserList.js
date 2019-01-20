@@ -1,34 +1,22 @@
 import React from 'react';
-import RouteAction from "../common/actions/RouteAction";
-import DeleteUserAction from "../admin/actions/DeleteUserAction";
 import Confirm from "./Confirm";
 import SaveRoleAction from "../admin/actions/SaveRoleAction";
-import DeleteUserClickAction from "../admin/actions/DeleteUserClickAction";
-import DeleteUserCancelAction from "../admin/actions/DeleteUserCancelAction";
+import {route} from "../../gen/common/ActionFunctions";
+import {deleteUser, deleteUserCancel, deleteUserClick, saveRole} from "../../gen/admin/ActionFunctions";
 
 export default class UserList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onDelete = this.onDelete.bind(this);
         this.onDeleteClick = this.onDeleteClick.bind(this);
-        this.onDeleteCancel = this.onDeleteCancel.bind(this);
     }
 
     onDeleteClick(usernameToBeDeleted) {
-        new DeleteUserClickAction(usernameToBeDeleted).apply();
-    }
-
-    onDelete() {
-        new DeleteUserAction().apply();
-    }
-
-    onDeleteCancel() {
-        new DeleteUserCancelAction().apply();
+        deleteUserClick(usernameToBeDeleted);
     }
 
     render() {
-        const userItems = this.props.data.userList.map((user) => {
+        const userItems = this.props.userList.map((user) => {
             return <UserItem
                 {...user}
                 key={user.userId}
@@ -41,7 +29,7 @@ export default class UserList extends React.Component {
         });
         return (
             <div>
-                {this.props.data.showDeleteUserDialog === true &&
+                {this.props.showDeleteUserDialog === true &&
                 <div>
                     <Confirm {...
                         {
@@ -49,8 +37,8 @@ export default class UserList extends React.Component {
                             message: this.props.texts.userList.confirmDelete.message[this.props.language],
                             okText: this.props.texts.userList.confirmDelete.ok[this.props.language],
                             cancelText: this.props.texts.userList.confirmDelete.cancel[this.props.language],
-                            ok: this.onDelete,
-                            cancel: this.onDeleteCancel
+                            ok: () => deleteUser(),
+                            cancel: () => deleteUserCancel()
                         }}/>
                 </div>}
                 <h1>{this.props.texts.userList.title[this.props.language]}</h1>
@@ -63,7 +51,7 @@ export default class UserList extends React.Component {
                     </tbody>
                 </table>
                 <button
-                    onClick={() => new RouteAction("#dashboard").apply()}>{this.props.texts.userList.back[this.props.language]}
+                    onClick={() => route("#dashboard")}>{this.props.texts.userList.back[this.props.language]}
                 </button>
 
             </div>
@@ -98,17 +86,12 @@ class RoleSelect extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onChangeRole = this.onChangeRole.bind(this);
-    }
-
-    onChangeRole(event) {
-        new SaveRoleAction(this.props.userId, event.target.value).apply();
     }
 
     render() {
         return (
             <select
-                onChange={this.onChangeRole}
+                onChange={(event) => saveRole(this.props.userId, event.target.value)}
                 defaultValue={this.props.role}
                 disabled={this.props.username === this.props.myUsername}
             >

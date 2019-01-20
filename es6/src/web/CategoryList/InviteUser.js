@@ -1,5 +1,5 @@
 import React from "react";
-import InviteUserAction from "../../author/actions/InviteUserAction";
+import {inviteUser} from "../../../gen/category/ActionFunctions";
 
 export default class InviteUser extends React.Component {
 
@@ -18,14 +18,7 @@ export default class InviteUser extends React.Component {
     }
 
     onInvite() {
-        const data = {
-            username: this.props.username,
-            password: this.props.password,
-            categoryId: this.props.parentCategoryId,
-            parentCategoryId: this.props.parentCategoryId,
-            invitedUsername: this.state.username
-        };
-        new InviteUserAction(data).apply();
+        inviteUser(this.state.username);
         this.setState({username: ""});
     }
 

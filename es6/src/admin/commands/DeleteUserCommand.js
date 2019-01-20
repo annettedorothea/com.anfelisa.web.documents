@@ -1,10 +1,10 @@
 import AbstractDeleteUserCommand from "../../../gen/admin/commands/AbstractDeleteUserCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class DeleteUserCommand extends AbstractDeleteUserCommand {
 
     initCommandData() {
-        this.commandData.usernameToBeDeleted = getAppState().data.usernameToBeDeleted;
+        this.commandData.usernameToBeDeleted = getState().data.usernameToBeDeleted;
         return true;
     }
 

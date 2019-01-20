@@ -1,17 +1,16 @@
 import React from "react";
-import LogoutAction from "../common/actions/LogoutAction";
-import RouteAction from "../common/actions/RouteAction";
+import {logout, route} from "../../gen/common/ActionFunctions";
 
 export default class Logout extends React.Component {
 
     render() {
         return (
             <div className="right">
-                <a onClick={() => new RouteAction("#profile").apply()}>
-                    {this.props.username}
+                <a onClick={() => route("#profile")}>
+                    {this.props.loggedInUser.username}
                 </a>
                 <button
-                    onClick={() => new LogoutAction().apply()}>{this.props.texts.logout.signout[this.props.language]}</button>
+                    onClick={() => logout()}>{this.props.texts.logout.signout[this.props.language]}</button>
             </div>
         );
     }

@@ -1,127 +1,89 @@
 import React from 'react';
 import Confirm from "../Confirm";
-import DeleteCardAction from "../../card/actions/DeleteCardAction";
-import EditCardAction from "../../card/actions/EditCardAction";
-import DeleteCardClickAction from "../../card/actions/DeleteCardClickAction";
-import CancelDeleteCardAction from "../../card/actions/CancelDeleteCardAction";
-import FilterCardsAction from "../../card/actions/FilterCardsAction";
-import ToggleInputOrderAction from "../../card/actions/ToggleInputOrderAction";
-import ToggleUseDictionaryAction from "../../card/actions/ToggleUseDictionaryAction";
 import Dictionary from "./Dictionary";
 import DuplicateCardItem from "./DuplicateCardItem";
 import NewCard from "./NewCard";
 import EditCard from "./EditCard";
 import CardItem from "./CardItem";
-import ToggleAllScheduleCardSelectionAction from "../../card/actions/ToggleAllScheduleCardSelectionAction";
-import ScheduleSelectedCardsAction from "../../card/actions/ScheduleSelectedCardsAction";
+import {
+    cancelDeleteCard,
+    deleteCard,
+    filterCards,
+    scheduleSelectedCards,
+    toggleAllScheduleCardSelection,
+    toggleInputOrder,
+    toggleUseDictionary
+} from "../../../gen/card/ActionFunctions";
 
 export default class CardList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onFilterChange = this.onFilterChange.bind(this);
-        this.onToggleInputOrder = this.onToggleInputOrder.bind(this);
-        this.onUseDictionaryChange = this.onUseDictionaryChange.bind(this);
-        this.toggleAllScheduleCardSelection = this.toggleAllScheduleCardSelection.bind(this);
-        this.onSchedule = this.onSchedule.bind(this);
-        this.onDelete = this.onDelete.bind(this);
-        this.onDeleteCancel = this.onDeleteCancel.bind(this);
-    }
-
-    onSchedule() {
-        new ScheduleSelectedCardsAction().apply();
-    }
-
-    toggleAllScheduleCardSelection() {
-        new ToggleAllScheduleCardSelectionAction().apply();
-    }
-
-    onFilterChange(event) {
-        new FilterCardsAction(event.target.value).apply();
-    }
-
-    onToggleInputOrder() {
-        new ToggleInputOrderAction(this.props.data.naturalInputOrder).apply();
-    }
-
-    onUseDictionaryChange() {
-        new ToggleUseDictionaryAction().apply();
-    }
-
-    onDelete() {
-        new DeleteCardAction().apply();
-    }
-
-    onDeleteCancel() {
-        new CancelDeleteCardAction().apply();
     }
 
     render() {
-        const cardItems = this.props.data.cardList.filter((card) => card.given.indexOf(this.props.data.filter) >= 0 || card.wanted.indexOf(this.props.data.filter) >= 0).map((card) => {
-            if (card.cardId === this.props.data.editedCard.cardId) {
+        const cardItems = this.props.cardView.cardList.filter((card) => card.given.indexOf(this.props.cardView.filter) >= 0 || card.wanted.indexOf(this.props.cardView.filter) >= 0).map((card) => {
+            if (card.cardId === this.props.cardView.editedCard.cardId) {
                 return <EditCard
                     key={card.cardId}
-                    cardId={this.props.data.editedCard.cardId}
-                    given={this.props.data.editedCard.given}
-                    wanted={this.props.data.editedCard.wanted}
-                    index={this.props.data.editedCard.index}
+                    cardId={this.props.cardView.editedCard.cardId}
+                    given={this.props.cardView.editedCard.given}
+                    wanted={this.props.cardView.editedCard.wanted}
+                    index={this.props.cardView.editedCard.index}
                     username={this.props.username}
                     password={this.props.password}
-                    categoryId={this.props.data.parentCategoryId}
-                    naturalInputOrder={this.props.data.naturalInputOrder}
-                    image={this.props.data.editedCard.image}
+                    naturalInputOrder={this.props.cardView.naturalInputOrder}
+                    image={this.props.cardView.editedCard.image}
                     texts={this.props.texts}
                     language={this.props.language}
-                    selectedCardIds={this.props.data.selectedCardIds}
-                    hasBox={this.props.data.selectedCategory.hasBox}
+                    selectedCardIds={this.props.cardView.selectedCardIds}
+                    hasBox={this.props.categoryTree.selectedCategory.hasBox}
                 />
             } else {
                 return <CardItem
                     {...card}
                     key={card.cardId}
-                    selectedCardIds={this.props.data.selectedCardIds}
+                    selectedCardIds={this.props.cardView.selectedCardIds}
                     texts={this.props.texts}
                     language={this.props.language}
-                    onDeleteClick={this.onDeleteClick}
                     username={this.props.username}
                     password={this.props.password}
                     userRole={this.props.role}
-                    naturalInputOrder={this.props.data.naturalInputOrder}
-                    hasBox={this.props.data.selectedCategory.hasBox}
-                    editable={this.props.data.selectedCategory.editable}
+                    naturalInputOrder={this.props.cardView.naturalInputOrder}
+                    hasBox={this.props.categoryTree.selectedCategory.hasBox}
+                    editable={this.props.categoryTree.selectedCategory.editable}
                 />
             }
         });
-        if (this.props.data.selectedCategory.editable) {
+        if (this.props.categoryTree.selectedCategory.editable) {
             cardItems.push(
                 <NewCard
                     key="new"
-                    given={this.props.data.newCard.given}
-                    wanted={this.props.data.newCard.wanted}
-                    image={this.props.data.newCard.image}
-                    file={this.props.data.newCard.file}
-                    index={this.props.data.newCard.index}
-                    displaySpinner={this.props.data.newCard.displaySpinner}
-                    displayTranslateSpinner={this.props.data.newCard.displayTranslateSpinner}
-                    cardList={this.props.data.cardList}
+                    given={this.props.cardView.newCard.given}
+                    wanted={this.props.cardView.newCard.wanted}
+                    image={this.props.cardView.newCard.image}
+                    file={this.props.cardView.newCard.file}
+                    index={this.props.cardView.newCard.index}
+                    displaySpinner={this.props.cardView.newCard.displaySpinner}
+                    displayTranslateSpinner={this.props.cardView.newCard.displayTranslateSpinner}
+                    cardList={this.props.cardView.cardList}
                     username={this.props.username}
                     password={this.props.password}
-                    categoryId={this.props.data.parentCategoryId}
-                    dictionaryLookup={this.props.data.selectedCategory.dictionaryLookup}
-                    givenLanguage={this.props.data.selectedCategory.givenLanguage}
-                    wantedLanguage={this.props.data.selectedCategory.wantedLanguage}
+                    dictionaryLookup={this.props.categoryTree.selectedCategory.dictionaryLookup}
+                    givenLanguage={this.props.categoryTree.selectedCategory.givenLanguage}
+                    wantedLanguage={this.props.categoryTree.selectedCategory.wantedLanguage}
                     texts={this.props.texts}
                     language={this.props.language}
-                    naturalInputOrder={this.props.data.naturalInputOrder}
-                    useDictionary={this.props.data.useDictionary}
+                    naturalInputOrder={this.props.cardView.naturalInputOrder}
+                    useDictionary={this.props.cardView.useDictionary}
                     ref={component => {
                         this.newCard = component;
                     }}
-                    hasBox={this.props.data.selectedCategory.hasBox}
+                    hasBox={this.props.categoryTree.selectedCategory.hasBox}
                 />
             );
         }
-        let duplicateCards = this.props.data.cardDuplicates.map((card) => {
+        let duplicateCards = this.props.cardView.cardDuplicates.map((card) => {
             return <DuplicateCardItem
                 {...card}
                 key={card.cardId}
@@ -130,18 +92,17 @@ export default class CardList extends React.Component {
                 username={this.props.username}
                 password={this.props.password}
                 userRole={this.props.role}
-                naturalInputOrder={this.props.data.naturalInputOrder}
-                parentCategoryId={this.props.data.parentCategoryId}
-                hasBox={this.props.data.selectedCategory.hasBox}
+                naturalInputOrder={this.props.cardView.naturalInputOrder}
+                hasBox={this.props.categoryTree.selectedCategory.hasBox}
             />
 
         });
-        if (this.props.data.cardList.length === 0 && this.props.data.selectedCategory.editable === false) {
+        if (this.props.cardView.cardList.length === 0 && this.props.categoryTree.selectedCategory.editable === false) {
             return <h2>{this.props.texts.cardList.noCards[this.props.language]}</h2>
         }
         return (
             <div>
-                {this.props.data.deleteCard.confirmDelete === true &&
+                {this.props.cardView.deleteCard.confirmDelete === true &&
                 <div>
                     <Confirm {...
                         {
@@ -149,34 +110,35 @@ export default class CardList extends React.Component {
                             message: this.props.texts.cardList.confirmDelete.message[this.props.language],
                             okText: this.props.texts.cardList.confirmDelete.ok[this.props.language],
                             cancelText: this.props.texts.cardList.confirmDelete.cancel[this.props.language],
-                            ok: this.onDelete,
-                            cancel: this.onDeleteCancel
+                            ok: () => deleteCard(),
+                            cancel: () => cancelDeleteCard()
                         }}/>
                 </div>}
 
+                <h1>{this.props.categoryTree.selectedCategory.categoryName}</h1>
                 <table className="cardTable">
                     <thead>
-                    <tr>
+                    <tr className="notPrinted">
                         <th colSpan={4}>
-                            {this.props.data.selectedCategory.editable === true &&
-                            <button onClick={this.onToggleInputOrder}><i className="fas fa-arrows-alt-h"/></button>}
+                            {this.props.categoryTree.selectedCategory.editable === true &&
+                            <button onClick={() => toggleInputOrder(this.props.cardView.naturalInputOrder)}><i className="fas fa-arrows-alt-h"/></button>}
                             <input
                                 type={"text"}
-                                onChange={this.onFilterChange}
+                                onChange={(event) => filterCards(event.target.value)}
                                 autoComplete="off"
-                                value={this.props.data.filter}
+                                value={this.props.cardView.filter}
                                 placeholder={this.props.texts.cardList.filter[this.props.language]}
                             />
                         </th>
                     </tr>
 
-                    {this.props.data.selectedCategory.dictionaryLookup === true && this.props.data.selectedCategory.editable === true &&
-                    <tr>
+                    {this.props.categoryTree.selectedCategory.dictionaryLookup === true && this.props.categoryTree.selectedCategory.editable === true &&
+                    <tr className="notPrinted">
                         <th>
                             <input
                                 type={"checkbox"}
-                                onChange={this.onUseDictionaryChange}
-                                checked={this.props.data.useDictionary}
+                                onChange={() => toggleUseDictionary()}
+                                checked={this.props.cardView.useDictionary}
                                 id="useDictionaryCheckbox"
                             />
                         </th>
@@ -188,19 +150,20 @@ export default class CardList extends React.Component {
                     </tr>
                     }
 
-                    {this.props.data.cardList.length > 0 && this.props.data.selectedCategory.hasBox === true &&
-                    <tr>
+                    {this.props.cardView.cardList.length > 0 &&
+                    <tr className="notPrinted">
                         <th>
                             <input
                                 type={"checkbox"}
-                                onChange={this.toggleAllScheduleCardSelection}
-                                checked={this.props.data.selectedCardIds.length === this.props.data.cardList.length}
+                                onChange={() => toggleAllScheduleCardSelection()}
+                                checked={this.props.cardView.selectedCardIds.length === this.props.cardView.cardList.length}
                             />
                         </th>
                         <th colSpan={4}>
-                            <button onClick={this.onSchedule}
-                                    disabled={this.props.data.selectedCardIds.length === 0}>{this.props.texts.cardList.scheduleSelectedCards[this.props.language]}
-                            </button>
+                            {this.props.categoryTree.selectedCategory.hasBox === true &&
+                            <button onClick={() => scheduleSelectedCards()}
+                                    disabled={this.props.cardView.selectedCardIds.length === 0}>{this.props.texts.cardList.scheduleSelectedCards[this.props.language]}
+                            </button>}
                         </th>
                     </tr>
                     }
@@ -218,14 +181,14 @@ export default class CardList extends React.Component {
                     </tbody>
                 </table>
 
-                {!!this.props.data.useDictionary && !!this.props.data.selectedCategory.dictionaryLookup &&
+                {!!this.props.cardView.useDictionary && !!this.props.categoryTree.selectedCategory.dictionaryLookup &&
                 <Dictionary
-                    given={this.props.data.newCard.given}
-                    wanted={this.props.data.newCard.wanted}
-                    givenLanguage={this.props.data.selectedCategory.givenLanguage}
-                    wantedLanguage={this.props.data.selectedCategory.wantedLanguage}
-                    naturalInputOrder={this.props.data.naturalInputOrder}
-                    value={this.props.data.dictionaryValue}
+                    given={this.props.cardView.newCard.given}
+                    wanted={this.props.cardView.newCard.wanted}
+                    givenLanguage={this.props.categoryTree.selectedCategory.givenLanguage}
+                    wantedLanguage={this.props.categoryTree.selectedCategory.wantedLanguage}
+                    naturalInputOrder={this.props.cardView.naturalInputOrder}
+                    value={this.props.cardView.dictionaryValue}
                     setFocus={() => this.newCard.setFocus()}
                 />
                 }

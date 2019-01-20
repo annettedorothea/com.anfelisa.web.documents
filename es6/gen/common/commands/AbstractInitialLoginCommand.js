@@ -18,7 +18,7 @@ export default class AbstractInitialLoginCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new InitialLoginOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new RouteChangedAction(this.commandData.hash)).publish());
+			promises.push(new TriggerAction(new RouteChangedAction()).publish());
 			break;
 		case this.unauthorized:
 			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish());

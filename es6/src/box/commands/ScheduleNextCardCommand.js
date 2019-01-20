@@ -1,10 +1,10 @@
 import AbstractScheduleNextCardCommand from "../../../gen/box/commands/AbstractScheduleNextCardCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class ScheduleNextCardCommand extends AbstractScheduleNextCardCommand {
 
     initCommandData() {
-        const appState = getAppState();
+        const appState = getState();
         this.commandData.boxId = appState.data === undefined || appState.data.boxId === undefined ? undefined : appState.data.boxId;
         return true;
     }

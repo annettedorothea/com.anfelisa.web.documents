@@ -1,10 +1,10 @@
 import AbstractCreateBoxCommand from "../../../gen/box/commands/AbstractCreateBoxCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class CreateBoxCommand extends AbstractCreateBoxCommand {
 
     initCommandData() {
-        const data = getAppState().data;
+        const data = getState().data.categoryTree;
         this.commandData.categoryId = data.selectedCategory.categoryId;
         return true;
     }

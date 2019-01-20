@@ -1,11 +1,11 @@
 import Action from "../../ace/AsynchronousAction";
 import InviteUserCommand from "../../../src/category/commands/InviteUserCommand";
-import CommonView from "../../../src/common/views/CommonView";
+import * as AppState from "../../ace/AppState";
 
 export default class AbstractInviteUserAction extends Action {
 
-    constructor() {
-        super({}, 'category.InviteUserAction');
+    constructor( invitedUsername) {
+        super({invitedUsername}, 'category.InviteUserAction');
 		this.postCall = this.postCall.bind(this);
     }
     
@@ -14,11 +14,11 @@ export default class AbstractInviteUserAction extends Action {
 	}
 
 	preCall() {
-		CommonView.displaySpinner(this.actionData);
+		AppState.set_state_State_displaySpinner({displaySpinner: true});
 	}
 	
 	postCall() {
-		CommonView.hideSpinner(this.actionData);
+		AppState.set_state_State_displaySpinner({displaySpinner: false});
 	}
 
 }

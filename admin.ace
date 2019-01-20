@@ -4,34 +4,28 @@ admin
 ACE 
 
 	GetAllUsers 
-		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.user.GetAllUsers
-		postCall (common.Common.hideSpinner) 
-		on ok (UserList.render )
+		loadingFlag common.state.State.displaySpinner
+		on ok ( 
+			set common.state.State.data
+			set common.state.State.view
+		)
 	
 	SaveRole <editedUserId, newRole>
-		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.user.ChangeUserRole
-		postCall(common.Common.hideSpinner) 
+		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (GetAllUsers)
 	
 	DeleteUser
-		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.user.DeleteUser
-		postCall (common.Common.hideSpinner) 
+		loadingFlag common.state.State.displaySpinner 
 		on ok triggers ( GetAllUsers )
-		on error (UserList.hideDeleteUserDialog) triggers (common.DisplayError)
+		on error (reset common.state.State.data.UserList.usernameToBeDeleted reset common.state.State.data.UserList.showDeleteUserDialog) triggers (common.DisplayError)
 	
 	DeleteUserClick<usernameToBeDeleted>
-		on ok (UserList.displayDeleteUserDialog)
+		on ok (merge common.state.State.data)
 	
 	DeleteUserCancel 
-		on ok (UserList.hideDeleteUserDialog)
+		on ok (reset common.state.State.data.UserList.usernameToBeDeleted reset common.state.State.data.UserList.showDeleteUserDialog)
 	
 
-views 
-	UserList {
-		render
-		displayDeleteUserDialog
-		hideDeleteUserDialog
-	}

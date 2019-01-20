@@ -3,6 +3,7 @@ import AbstractDeleteUserClickCommand from "../../../gen/profile/commands/Abstra
 export default class DeleteUserClickCommand extends AbstractDeleteUserClickCommand {
     execute() {
         this.commandData.outcome = this.ok;
+        this.commandData.showDeleteUserDialog = true;
     }
 }
 

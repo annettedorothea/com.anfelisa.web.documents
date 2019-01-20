@@ -1,21 +1,20 @@
 import React from "react";
-import RevokeUserAccessClickAction from "../../author/actions/RevokeUserAccessClickAction";
+import {revokeUserAccess} from "../../../gen/category/ActionFunctions";
 
 export default class UserAccessItem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onDelete = this.onDelete.bind(this);
-    }
-
-    onDelete() {
-        new RevokeUserAccessClickAction({userId: this.props.userId}).apply();
     }
 
     render() {
         return (
             <li>
-                {this.props.canRevoke === true && <button className="smaller" onClick={this.onDelete}><i className="fas fa-times"/></button>}
+                {this.props.canRevoke === true &&
+                <button
+                    className="smaller"
+                    onClick={() => revokeUserAccess(this.props.userId)}>
+                    <i className="fas fa-times"/></button>}
                 {this.props.username}
             </li>
         );

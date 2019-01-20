@@ -1,7 +1,7 @@
 import React from 'react';
-import CollapseTreeItemAction from "../../category/actions/CollapseTreeItemAction";
 import CategoryItem from "./CategoryItem";
 import SelectableCategoryItem from "./SelectableCategoryItem";
+import {collapseTreeItem} from "../../../gen/category/ActionFunctions";
 
 export default class ExpandedCategoryItem extends React.Component {
 
@@ -29,7 +29,7 @@ export default class ExpandedCategoryItem extends React.Component {
         return (
             <div className="expandedCategoryItem">
                 <i className="fas fa-caret-down"
-                   onClick={() => new CollapseTreeItemAction(this.props.categoryId).apply()}/>
+                   onClick={() => collapseTreeItem(this.props.categoryId)}/>
                 <SelectableCategoryItem
                     selected={this.props.selected}
                     categoryName={this.props.categoryName}

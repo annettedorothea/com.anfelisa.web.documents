@@ -1,29 +1,28 @@
-import TranslateAction from "../../card/actions/TranslateAction";
-import CreateCardAction from "../../card/actions/CreateCardAction";
-import DisplayErrorAction from "../../common/actions/DisplayErrorAction";
-import GivenOfNewCardChangedAction from "../../card/actions/GivenOfNewCardChangedAction";
 import React from "react";
-import WantedOfNewCardChangedAction from "../../card/actions/WantedOfNewCardChangedAction";
-import CancelNewCardAction from "../../card/actions/CancelNewCardAction";
-import LoadWantedImageOfNewCardAction from "../../card/actions/LoadWantedImageOfNewCardAction";
-import RemoveNewCardImageAction from "../../card/actions/RemoveNewCardImageAction";
-import PassValueToDictionaryAction from "../../card/actions/PassValueToDictionaryAction";
 import Preview from "./Preview";
 import FileInput from "./FileInput";
+import {displayError} from "../../../gen/common/ActionFunctions";
+import {
+    cancelNewCard,
+    createCard,
+    givenOfNewCardChanged,
+    loadWantedImageOfNewCard,
+    passValueToDictionary,
+    removeNewCardImage,
+    translate,
+    wantedOfNewCardChanged
+} from "../../../gen/card/ActionFunctions";
 
 export default class NewCard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onGivenChange = this.onGivenChange.bind(this);
-        this.onWantedChange = this.onWantedChange.bind(this);
         this.onNewCard = this.onNewCard.bind(this);
         this.onCancel = this.onCancel.bind(this);
         this.onAltKeyUp = this.onAltKeyUp.bind(this);
         this.onBlurGiven = this.onBlurGiven.bind(this);
         this.onBlurWanted = this.onBlurWanted.bind(this);
         this.onWantedFileChange = this.onWantedFileChange.bind(this);
-        this.onRemoveImage = this.onRemoveImage.bind(this);
     }
 
     setFocus() {
@@ -69,55 +68,46 @@ export default class NewCard extends React.Component {
             const file = files[0];
             event.target.value = null;
             if (!file.type.match('image.*')) {
-                new DisplayErrorAction("noImageFile").apply();
+                displayError({errorKey: "noImageFile"});
                 return;
             }
             if (file.size > 2000000) {
-                new DisplayErrorAction("fileTooBig").apply();
+                displayError({errorKey: "fileTooBig"});
                 return;
             }
             const reader = new FileReader();
             reader.onload = function (e) {
-                new LoadWantedImageOfNewCardAction(e.target.result).apply();
+                loadWantedImageOfNewCard(e.target.result);
             };
             reader.readAsDataURL(file);
         }
     }
 
-    onGivenChange(event) {
-        new GivenOfNewCardChangedAction(event.target.value).apply();
-    }
-
-    onWantedChange(event) {
-        const wanted = event.target.value;
-        new WantedOfNewCardChangedAction(event.target.value).apply();
-    }
-
     onCancel() {
-        new CancelNewCardAction().apply();
+        cancelNewCard();
         this.setFocusByInputOrder();
     }
 
     onNewCard() {
-        new CreateCardAction().apply();
+        createCard();
         this.setFocusByInputOrder();
     }
 
     onBlurGiven() {
         if (this.props.naturalInputOrder === true && this.props.useDictionary === true && (!this.props.wanted || this.props.wanted.length === 0)) {
-            new PassValueToDictionaryAction().apply();
+            passValueToDictionary();
         }
         if (this.props.naturalInputOrder === true && this.props.dictionaryLookup === true) {
-            new TranslateAction().apply();
+            translate();
         }
     }
 
     onBlurWanted() {
         if (this.props.naturalInputOrder === false && this.props.useDictionary === true && (!this.props.given || this.props.given.length === 0)) {
-            new PassValueToDictionaryAction().apply();
+            passValueToDictionary();
         }
         if (this.props.naturalInputOrder === false && this.props.dictionaryLookup === true) {
-            new TranslateAction().apply();
+            translate();
         }
     }
 
@@ -132,10 +122,10 @@ export default class NewCard extends React.Component {
         return (
             <td className="textarea">
                 <textarea
-                    onChange={this.onGivenChange}
+                    onChange={(event) => givenOfNewCardChanged(event.target.value)}
                     autoComplete="off"
                     value={this.props.given}
-                    placeholder={`${this.props.texts.cardList.given[this.props.language]} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.givenLanguage][this.props.language] + ")" : "" }`}
+                    placeholder={`${this.props.texts.cardList.given[this.props.language]} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.givenLanguage][this.props.language] + ")" : ""}`}
                     ref={textarea => {
                         this.givenInput = textarea;
                     }}
@@ -156,10 +146,10 @@ export default class NewCard extends React.Component {
         return (
             <td className="textarea">
                 <textarea
-                    onChange={this.onWantedChange}
+                    onChange={(event) => wantedOfNewCardChanged(event.target.value)}
                     autoComplete="off"
                     value={this.props.wanted}
-                    placeholder={`${this.props.texts.cardList.wanted[this.props.language]} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.wantedLanguage][this.props.language] + ")" : "" }`}
+                    placeholder={`${this.props.texts.cardList.wanted[this.props.language]} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.wantedLanguage][this.props.language] + ")" : ""}`}
                     ref={textarea => {
                         this.wantedInput = textarea;
                     }}
@@ -180,7 +170,7 @@ export default class NewCard extends React.Component {
         if (this.props.image.length > 0) {
             return <Preview
                 image={this.props.image}
-                onRemoveImage={this.onRemoveImage}
+                onRemoveImage={() => removeNewCardImage()}
             />
         }
         return (
@@ -193,17 +183,13 @@ export default class NewCard extends React.Component {
         )
     }
 
-    onRemoveImage() {
-        new RemoveNewCardImageAction().apply();
-    }
-
     isValid() {
         return this.props.given.length > 0 && (this.props.wanted.length > 0 || this.props.image.length > 0);
     }
 
     render() {
         return (
-            <tr>
+            <tr className="notPrinted">
                 <td/>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted(this.props.dictionaryLookup)}

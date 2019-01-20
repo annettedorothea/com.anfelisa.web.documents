@@ -2,175 +2,127 @@ ES6 card
 
 ACE
 LoadCards
-	preCall (common.Common.displaySpinner)
 	call com.anfelisa.card.GetCards
-	postCall (common.Common.hideSpinner)
-	on ok ( CardList.render )
-	on noCategorySelected ( CardList.hide )
+	loadingFlag common.state.State.displaySpinner 
+	on ok ( merge common.state.State.data.AuthorView.cardView )
+	on noCategorySelected ( reset common.state.State.data.AuthorView.cardView.CardView.cardList )
 
  CreateCard 
- 	preCall (common.Common.displaySpinner) 
  	call com.anfelisa.card.CreateCard
- 	postCall (common.Common.hideSpinner) 
-	on ok (CardList.resetNewCardValues) triggers (LoadCards)
+	loadingFlag common.state.State.displaySpinner 
+	on ok ( merge common.state.State.data.AuthorView.cardView )
+	triggers (LoadCards)
 
  UpdateCard 
- 	preCall (common.Common.displaySpinner) 
  	call com.anfelisa.card.UpdateCard
- 	postCall (common.Common.hideSpinner) 
-	on ok (CardList.resetEditCardValues) triggers (LoadCards)
+	loadingFlag common.state.State.displaySpinner 
+	on ok ( merge common.state.State.data.AuthorView.cardView )
+	triggers (LoadCards)
 
 
  DeleteCard 
- 	preCall (common.Common.displaySpinner) 
  	call com.anfelisa.card.DeleteCard
- 	postCall (common.Common.hideSpinner) 
-	on ok (CardList.hideConfirmCardDelete) triggers (LoadCards)
-	on error (CardList.hideConfirmCardDelete) triggers (common.DisplayError)
+	loadingFlag common.state.State.displaySpinner 
+	on ok ( 
+		merge common.state.State.data.AuthorView.cardView
+	) triggers (LoadCards)
+	on error ( 
+		merge common.state.State.data.AuthorView.cardView
+	) triggers (common.DisplayError)
 
 
 GivenOfNewCardChanged <given>
-	on ok (CardList.givenOfNewCardChanged) triggers (SearchDuplicateCards)
+	on ok (merge common.state.State.data.AuthorView.cardView.CardView.newCard)
+		triggers (SearchDuplicateCards)
 
 SearchDuplicateCards 
-	preCall (CardList.displayNewCardSpinner) 
 	call com.anfelisa.card.GetDuplicates
-	postCall (CardList.hideNewCardSpinner) 
-	on ok (CardList.initDuplicates)
-	on tooShort (CardList.resetDuplicates)
+	loadingFlag common.state.State.data.AuthorView.cardView.CardView.newCard.NewCard.displaySpinner 
+	on ok ( set common.state.State.data.AuthorView.cardView.CardView.cardDuplicates )
 
 WantedOfNewCardChanged <wanted>
-	on ok (CardList.wantedOfNewCardChanged) triggers (SearchDuplicateCards)
+	on ok (merge common.state.State.data.AuthorView.cardView.CardView.newCard)
+		triggers (SearchDuplicateCards)
 
 CancelNewCard 
-	on ok (CardList.resetNewCardValues )
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.newCard)
 
 
 GivenOfEditedCardChanged <given>
-	on ok (CardList.givenOfEditedCardChanged)
+	on ok (merge common.state.State.data.AuthorView.cardView.CardView.editedCard)
 
 WantedOfEditedCardChanged <wanted>
-	on ok (CardList.wantedOfEditedCardChanged)
+	on ok (merge common.state.State.data.AuthorView.cardView.CardView.editedCard)
 
 CancelEditCard 
-	on ok (CardList.resetEditCardValues)
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.editedCard)
 
 EditCard <cardId>
-	on ok (CardList.editCard)
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.editedCard)
 
 DeleteCardClick <cardId>
-	on ok (CardList.displayConfirmCardDelete)
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.deleteCard)
 
 CancelDeleteCard 
-	on ok (CardList.hideConfirmCardDelete)
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.deleteCard)
 
 
 FilterCards <filter>
-	on ok (CardList.filterChanged)
-
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.filter)
 
 Translate 
-	preCall (CardList.displayTranslateSpinner) 
 	call com.anfelisa.card.GetTranslation
-	postCall (CardList.hideTranslateSpinner) 
-	on wantedFetched (CardList.wantedOfNewCardChanged ) triggers (SearchDuplicateCards)
-	on givenFetched (CardList.givenOfNewCardChanged ) triggers (SearchDuplicateCards)
+	loadingFlag common.state.State.data.AuthorView.cardView.CardView.newCard.NewCard.displayTranslateSpinner 
+	on wantedFetched (merge common.state.State.data.AuthorView.cardView.CardView.newCard ) triggers (SearchDuplicateCards)
+	on givenFetched (merge common.state.State.data.AuthorView.cardView.CardView.newCard ) triggers (SearchDuplicateCards)
 	on error
 	on empty
 	on targetNotEmtpy
 
 
 PassValueToDictionary 
-	on ok (CardList.setDictionaryValue)
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.dictionaryValue)
 
 
 ToggleInputOrder <naturalInputOrder>
-	on ok (CardList.toggleInputOrder)
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.naturalInputOrder)
 
 
 ToggleUseDictionary 
-	on ok (CardList.toggleUseDictionary)
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.useDictionary)
 
 
 LoadWantedImageOfNewCard <image>
-	on ok (CardList.displayImageOfNewCard)
+	on ok ( set common.state.State.data.AuthorView.cardView.CardView.newCard.NewCard.image )
 
 LoadWantedImageOfEditedCard <image>
-	on ok (CardList.displayImageOfEditedCard)
+	on ok ( set common.state.State.data.AuthorView.cardView.CardView.editedCard.EditedCard.image )
 
 RemoveNewCardImage 
-	on ok (CardList.removeNewCardImage)
+	on ok ( set common.state.State.data.AuthorView.cardView.CardView.newCard.NewCard.image )
 
 
 RemoveEditedCardImage 
-	on ok (CardList.removeEditedCardImage)
+	on ok ( set common.state.State.data.AuthorView.cardView.CardView.editedCard.EditedCard.image )
 
 ToggleScheduleCardSelection <cardId>
-	on ok (CardList.setScheduleCardSelection)
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.selectedCardIds)
 
 ToggleAllScheduleCardSelection 
-	on ok (CardList.setScheduleCardSelection)
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.selectedCardIds)
 
 ScheduleSelectedCards 
- 	preCall (common.Common.displaySpinner) 
  	call com.anfelisa.box.ScheduleCards
- 	postCall (common.Common.hideSpinner) 
+	loadingFlag common.state.State.displaySpinner 
 	on ok triggers (LoadCards)
 	
 MoveCardsStarted
-	on ok (CardList.setMovedCards)
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.movedCardIds)
 	
 MoveCards
- 	preCall (common.Common.displaySpinner) 
  	call com.anfelisa.card.MoveCards
- 	postCall (common.Common.hideSpinner) 
-	on ok (card.CardList.resetMovedCards) triggers (category.LoadCategoryTree)
+	loadingFlag common.state.State.displaySpinner 
+	on ok (
+		reset common.state.State.data.AuthorView.cardView.CardView.movedCardIds
+	) triggers (category.LoadCategoryTree)
 		
-views 
-CardList {
-	render
-	hide
-	givenOfNewCardChanged
-	wantedOfNewCardChanged
-	givenLanguageOfNewCategoryChanged
-	wantedLanguageOfNewCategoryChanged
-	resetNewCardValues
-	
-	givenOfEditedCardChanged
-	wantedOfEditedCardChanged
-	givenLanguageOfEditedCategoryChanged
-	wantedLanguageOfEditedCategoryChanged
-	resetEditCardValues
-	editCard
-	
-	displayConfirmCardDelete
-	hideConfirmCardDelete
-	
-	displayRevokeUserAccess
-	hideRevokeUserAccess
-	
-	displayNewCardSpinner
-	hideNewCardSpinner
-	
-	displayTranslateSpinner
-	hideTranslateSpinner
-	
-	initDuplicates
-	resetDuplicates
-	
-	filterChanged
-	
-	toggleInputOrder
-	toggleUseDictionary
-	setDictionaryValue
-	
-	displayImageOfNewCard
-	displayImageOfEditedCard
-	removeNewCardImage
-	removeEditedCardImage
-	
-	setScheduleCardSelection
-	
-	setMovedCards
-	resetMovedCards
-}

@@ -1,10 +1,11 @@
 import AbstractScheduleSelectedCardsCommand from "../../../gen/card/commands/AbstractScheduleSelectedCardsCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class ScheduleSelectedCardsCommand extends AbstractScheduleSelectedCardsCommand {
 
     initCommandData() {
-        this.commandData.cardIds = getAppState().data.selectedCardIds;
+        const data = getState().data.cardView;
+        this.commandData.cardIds = data.selectedCardIds;
         return true;
     }
 

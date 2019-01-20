@@ -16,9 +16,8 @@ export default class SynchronousAction extends Action {
         }
         ACEController.addItemToTimeLine({action: this});
         let command = this.getCommand();
-        if (command) {
-            command.executeCommand();
-        }
+        command.executeCommand();
+        AppUtils.renderNewState();
     }
 }
 

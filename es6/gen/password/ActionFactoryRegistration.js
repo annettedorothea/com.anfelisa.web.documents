@@ -14,7 +14,7 @@ export default class ActionFactoryRegistrationPassword {
 		ACEController.registerFactory('password.PasswordChangedAction', 
 			(actionData) => new PasswordChangedAction(actionData.password, actionData.passwordRepetition));
 		ACEController.registerFactory('password.ResetPasswordAction', 
-			(actionData) => new ResetPasswordAction(actionData.password, actionData.token));
+			(actionData) => new ResetPasswordAction(actionData.password));
 	}
 
 }

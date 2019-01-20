@@ -33,32 +33,18 @@ import RouteChangedAction from "../common/actions/RouteChangedAction";
 export * from "../../gen/ace/Scenario";
 export * from "../../gen/ace/Bug";
 
-
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-export let appState = {
-    route: "",
-    data: {}
-};
+AppUtils.createInitialAppState();
 
 export const container = ReactDOM.render(
     <Container/>,
     document.getElementById('root')
 );
 
-export function getAppState() {
-    return AppUtils.deepCopy(appState);
-}
-
-export function deepMergeState(newAppState) {
-    appState = AppUtils.deepMerge(newAppState, appState);
-    container.setState(appState);
-}
-
-export function mergeState(newAppState) {
-    appState = AppUtils.merge(newAppState, appState);
-    container.setState(appState);
+export function render(newAppState) {
+    container.setState(newAppState);
 }
 
 window.onhashchange = () => {

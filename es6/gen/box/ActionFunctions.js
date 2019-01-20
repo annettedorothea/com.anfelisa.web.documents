@@ -25,16 +25,16 @@ export function createBox() {
     new CreateBoxAction().apply();
 }
 
-export function editBox(maxInterval) {
-    new EditBoxAction(maxInterval).apply();
+export function editBox() {
+    new EditBoxAction().apply();
 }
 
 export function cancelEditBox() {
     new CancelEditBoxAction().apply();
 }
 
-export function maxIntervalChanged(maxInterval) {
-    new MaxIntervalChangedAction(maxInterval).apply();
+export function maxIntervalChanged(editedMaxInterval) {
+    new MaxIntervalChangedAction(editedMaxInterval).apply();
 }
 
 export function updateBox() {
@@ -69,8 +69,8 @@ export function toggleScheduleNext() {
     new ToggleScheduleNextAction().apply();
 }
 
-export function displayWanted(wantedItemsLength, index, hasImage) {
-    new DisplayWantedAction(wantedItemsLength, index, hasImage).apply();
+export function displayWanted(wantedItemsLength) {
+    new DisplayWantedAction(wantedItemsLength).apply();
 }
 
 export function scoreCard(scoredCardQuality) {

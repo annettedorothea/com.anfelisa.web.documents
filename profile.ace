@@ -3,29 +3,24 @@ profile
 
 ACE 
 	LoadUser 
-		preCall ( common.Common.displaySpinner ) 
 		call com.anfelisa.user.GetUserProfile
-		postCall (common.Common.hideSpinner) 
-		on ok (Profile.render)
+		loadingFlag common.state.State.displaySpinner 
+		on ok (
+			set common.state.State.data
+			set common.state.State.view
+		)
 	
 	DeleteUser <usernameToBeDeleted>
-		preCall (common.Common.displaySpinner) 
 		call com.anfelisa.user.DeleteUser
-		postCall (common.Common.hideSpinner) 
-		on ok ( Profile.hideDeleteUserDialog ) triggers ( common.Logout )
-		on error ( Profile.hideDeleteUserDialog ) triggers (LoadUser common.DisplayError)
+		loadingFlag common.state.State.displaySpinner 
+		on ok ( reset common.state.State.data.Profile.showDeleteUserDialog ) triggers ( common.Logout )
+		on error ( reset common.state.State.data.Profile.showDeleteUserDialog ) triggers (LoadUser common.DisplayError)
 	
 	DeleteUserClick 
-		on ok (Profile.displayDeleteUserDialog)
+		on ok (set common.state.State.data.Profile.showDeleteUserDialog)
 	
 	DeleteUserCancel 
-		on ok (Profile.hideDeleteUserDialog)
+		on ok (reset common.state.State.data.Profile.showDeleteUserDialog)
 	
 
 
-views 
-	Profile {
-		render	
-		displayDeleteUserDialog
-		hideDeleteUserDialog
-	}

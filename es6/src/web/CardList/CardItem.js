@@ -1,35 +1,20 @@
 import React from "react";
-import ToggleScheduleCardSelectionAction from "../../card/actions/ToggleScheduleCardSelectionAction";
-import EditCardAction from "../../card/actions/EditCardAction";
-import DeleteCardClickAction from "../../card/actions/DeleteCardClickAction";
-import DeleteCardAction from "../../card/actions/DeleteCardAction";
-import CancelDeleteCardAction from "../../card/actions/CancelDeleteCardAction";
-import {moveCardsStarted} from "../../../gen/card/ActionFunctions";
+import {
+    deleteCardClick,
+    editCard,
+    moveCardsStarted,
+    toggleScheduleCardSelection
+} from "../../../gen/card/ActionFunctions";
 
 export default class CardItem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.toggleScheduleCardSelection = this.toggleScheduleCardSelection.bind(this);
-        this.onEdit = this.onEdit.bind(this);
-        this.onDeleteClick = this.onDeleteClick.bind(this);
-    }
-
-    onEdit() {
-        new EditCardAction(this.props.cardId).apply();
-    }
-
-    toggleScheduleCardSelection() {
-        new ToggleScheduleCardSelectionAction(this.props.cardId).apply();
-    }
-
-    onDeleteClick() {
-        new DeleteCardClickAction(this.props.cardId).apply();
     }
 
     renderGiven() {
         return (
-            <td onDoubleClick={this.props.editable === true ? () => this.onEdit() : () => {
+            <td onDoubleClick={this.props.editable === true ? () => editCard(this.props.cardId) : () => {
             }}>
                 <pre>{this.props.given}</pre>
             </td>
@@ -38,7 +23,7 @@ export default class CardItem extends React.Component {
 
     renderWanted() {
         return (
-            <td onDoubleClick={this.props.editable === true ? () => this.onEdit() : () => {
+            <td onDoubleClick={this.props.editable === true ? () => editCard(this.props.cardId) : () => {
             }}>
                 <pre>{this.props.wanted}</pre>
             </td>
@@ -50,7 +35,7 @@ export default class CardItem extends React.Component {
             <td
                 className="preview"
                 onDoubleClick={
-                    this.props.editable === true ? () => this.onEdit() : () => {
+                    this.props.editable === true ? () => editCard(this.props.cardId) : () => {
                     }
                 }
             >
@@ -62,10 +47,10 @@ export default class CardItem extends React.Component {
     render() {
         return (
             <tr>
-                <td>
+                <td className="notPrinted">
                     <input
                         type={"checkbox"}
-                        onChange={() => this.toggleScheduleCardSelection()}
+                        onChange={() => toggleScheduleCardSelection(this.props.cardId)}
                         checked={this.props.selectedCardIds.indexOf(this.props.cardId) >= 0}
                     />
                 </td>
@@ -75,13 +60,13 @@ export default class CardItem extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 {this.props.naturalInputOrder === false && this.renderImage()}
-                <td className="noBreak">
+                <td className="noBreak notPrinted">
                     {this.props.editable === true &&
-                    <button onClick={() => this.onEdit()}>
+                    <button onClick={() => editCard(this.props.cardId)}>
                         <i className="fas fa-pen"/>
                     </button>}
                     {this.props.editable === true &&
-                    <button onClick={() => this.onDeleteClick()}>
+                    <button onClick={() => deleteCardClick(this.props.cardId)}>
                         <i className="fas fa-times"/>
                     </button>}
                     {this.props.editable === true && this.props.selectedCardIds.indexOf(this.props.cardId) >= 0 &&

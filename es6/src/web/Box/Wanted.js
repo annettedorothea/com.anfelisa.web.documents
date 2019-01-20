@@ -1,5 +1,6 @@
 import React from "react";
 import DisplayWantedAction from "../../box/actions/DisplayWantedAction";
+import {displayWanted} from "../../../gen/box/ActionFunctions";
 
 export default class Wanted extends React.Component {
 
@@ -10,14 +11,7 @@ export default class Wanted extends React.Component {
 
     onClick(lines) {
         const wantedItemsLength = lines.length;
-        const index = this.props.index;
-        const image = this.props.image;
-        const hasImage = !!image;
-        new DisplayWantedAction(
-            wantedItemsLength,
-            index,
-            hasImage
-        ).apply();
+        displayWanted(wantedItemsLength);
     }
 
     render() {

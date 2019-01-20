@@ -1,17 +1,14 @@
 import ACEController from "../ace/ACEController";
-import RegistrationView from "../../src/registration/views/RegistrationView";
+import * as AppState from "../ace/AppState";
 
 export default class EventListenerRegistrationRegistration {
 
 	static init() {
-		ACEController.registerListener('registration.CheckUsernameAvailableEvent', RegistrationView.usernameAvailable);
-		ACEController.registerListener('registration.CheckUsernameNotAvailableEvent', RegistrationView.usernameNotAvailable);
-		ACEController.registerListener('registration.EmailChangedValidEvent', RegistrationView.emailChanged);
-		ACEController.registerListener('registration.EmailChangedValidEvent', RegistrationView.emailValid);
-		ACEController.registerListener('registration.EmailChangedInvalidEvent', RegistrationView.emailChanged);
-		ACEController.registerListener('registration.EmailChangedInvalidEvent', RegistrationView.emailInvalid);
-		ACEController.registerListener('registration.PasswordChangedMismatchEvent', RegistrationView.passwordMismatch);
-		ACEController.registerListener('registration.PasswordChangedMatchEvent', RegistrationView.passwordMatch);
+		ACEController.registerListener('registration.CheckUsernameOkEvent', AppState.set_state_State_data_Registration_available);
+		ACEController.registerListener('registration.UsernameChangedOkEvent', AppState.set_state_State_data_Registration_username);
+		ACEController.registerListener('registration.EmailChangedOkEvent', AppState.set_state_State_data_Registration_emailInvalid);
+		ACEController.registerListener('registration.EmailChangedOkEvent', AppState.set_state_State_data_Registration_email);
+		ACEController.registerListener('registration.PasswordChangedOkEvent', AppState.set_state_State_data_Registration_passwordMismatch);
 	}
 
 }

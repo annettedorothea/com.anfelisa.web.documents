@@ -1,9 +1,7 @@
 import React from 'react';
 import CryptoJS from "crypto-js";
-import RouteAction from "../common/actions/RouteAction";
-import LoginAction from "../login/actions/LoginAction";
-import UsernameChangedAction from "../login/actions/UsernameChangedAction";
-import ToggleSaveInLocalStorageAction from "../login/actions/ToggleSaveInLocalStorageAction";
+import {route} from "../../gen/common/ActionFunctions";
+import {login, toggleSaveInLocalStorage, usernameChanged} from "../../gen/login/ActionFunctions";
 
 export default class Login extends React.Component {
 
@@ -12,28 +10,12 @@ export default class Login extends React.Component {
         this.state = {
             password: ""
         };
-        this.onUsernameChange = this.onUsernameChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
-        this.onLogin = this.onLogin.bind(this);
-        this.onToggleSaveInLocalStorage = this.onToggleSaveInLocalStorage.bind(this);
-    }
-
-    onUsernameChange(event) {
-        const username = event.target.value;
-        new UsernameChangedAction(username).apply();
     }
 
     onPasswordChange(event) {
         const password = CryptoJS.MD5(event.target.value).toString();
         this.setState({password});
-    }
-
-    onToggleSaveInLocalStorage() {
-        new ToggleSaveInLocalStorageAction(this.props.data.saveInLocalStorage).apply();
-    }
-
-    onLogin() {
-        new LoginAction(this.state.password).apply();
     }
 
     render() {
@@ -45,10 +27,10 @@ export default class Login extends React.Component {
                         <label>{this.props.texts.login.username[this.props.language]}</label>
                         <input
                             type={"text"}
-                            onChange={this.onUsernameChange}
-                            value={this.props.data.username}
+                            onChange={(event) => usernameChanged(event.target.value)}
+                            value={this.props.username}
                         />
-                        <a onClick={() => new RouteAction("#registration").apply()}>{this.props.texts.login.registration[this.props.language]}</a>
+                        <a onClick={() => route("#registration")}>{this.props.texts.login.registration[this.props.language]}</a>
                     </div>
                     <div className="line">
                         <label>{this.props.texts.login.password[this.props.language]}</label>
@@ -56,14 +38,14 @@ export default class Login extends React.Component {
                             type={"password"}
                             onChange={this.onPasswordChange}
                         />
-                        <a onClick={() => new RouteAction("#forgotpassword").apply()}>{this.props.texts.login.forgotPassword[this.props.language]}</a>
+                        <a onClick={() => route("#forgotpassword")}>{this.props.texts.login.forgotPassword[this.props.language]}</a>
                     </div>
                     <div className="line">
                         <input
                             id="saveInLocalStorage"
                             type={"checkbox"}
-                            onChange={this.onToggleSaveInLocalStorage}
-                            checked={this.props.data.saveInLocalStorage}
+                            onChange={() => toggleSaveInLocalStorage()}
+                            checked={this.props.saveInLocalStorage}
                         />
                         <label htmlFor="saveInLocalStorage">
                             {this.props.texts.login.saveInLocalStorage[this.props.language]}
@@ -73,7 +55,7 @@ export default class Login extends React.Component {
                     </div>
                     <div className="moreMarginLine hCenter">
                         <button className="primary"
-                                onClick={this.onLogin}>{this.props.texts.login.signin[this.props.language]}</button>
+                                onClick={() => login(this.state.password)}>{this.props.texts.login.signin[this.props.language]}</button>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,7 @@
 import React from 'react';
-import RouteAction from "../common/actions/RouteAction";
 import CryptoJS from "crypto-js";
-import ResetPasswordAction from "../password/actions/ResetPasswordAction";
-import PasswordChangedAction from "../password/actions/PasswordChangedAction";
+import {route} from "../../gen/common/ActionFunctions";
+import {passwordChanged, resetPassword} from "../../gen/password/ActionFunctions";
 
 export default class ResetPassword extends React.Component {
 
@@ -22,7 +21,7 @@ export default class ResetPassword extends React.Component {
         this.setState({
             password
         });
-        new PasswordChangedAction(password, this.state.passwordRepetition).apply();
+        passwordChanged(password, this.state.passwordRepetition);
     }
 
     onPasswordRepetitionChange(event) {
@@ -30,11 +29,11 @@ export default class ResetPassword extends React.Component {
         this.setState({
             passwordRepetition
         });
-        new PasswordChangedAction(this.state.password, passwordRepetition).apply();
+        passwordChanged(this.state.password, passwordRepetition);
     }
 
     onSubmit() {
-        new ResetPasswordAction(this.state.password, this.props.data.token).apply();
+        resetPassword(this.state.password);
     }
 
     render() {
@@ -60,19 +59,19 @@ export default class ResetPassword extends React.Component {
                                 onChange={this.onPasswordRepetitionChange}
                                 autoComplete="off"
                             />
-                            {this.props.data.passwordMismatch === true &&
+                            {this.props.passwordMismatch === true &&
                             <i className="fas fa-times outside error"/>}
                         </div>
                     </div>
                     <div className="moreMarginLine hCenter">
                         <button onClick={this.onSubmit}
                                 disabled={this.state.password.length === 0 ||
-                                this.props.data.passwordMismatch === true
+                                this.props.passwordMismatch === true
                                 }>
                             {this.props.texts.resetPassword.submit[this.props.language]}
                         </button>
                         <button
-                            onClick={() => new RouteAction("#").apply()}>{this.props.texts.resetPassword.cancel[this.props.language]}</button>
+                            onClick={() => route("#")}>{this.props.texts.resetPassword.cancel[this.props.language]}</button>
                     </div>
                 </div>
             </div>

@@ -1,27 +1,29 @@
 import ACEController from "../ace/ACEController";
-import CommonView from "../../src/common/views/CommonView";
-import LoginView from "../../src/login/views/LoginView";
-import RegistrationView from "../../src/registration/views/RegistrationView";
-import ForgotPasswordView from "../../src/password/views/ForgotPasswordView";
-import ResetPasswordView from "../../src/password/views/ResetPasswordView";
+import * as AppState from "../ace/AppState";
 
 export default class EventListenerRegistrationCommon {
 
 	static init() {
-		ACEController.registerListener('common.InitUserEvent', CommonView.initTexts);
-		ACEController.registerListener('common.InitUserEvent', CommonView.initUser);
-		ACEController.registerListener('common.InitNoUserEvent', CommonView.initTexts);
-		ACEController.registerListener('common.RouteChangedLoginEvent', LoginView.render);
-		ACEController.registerListener('common.RouteChangedRegistrationEvent', RegistrationView.render);
-		ACEController.registerListener('common.RouteChangedForgotPasswordEvent', ForgotPasswordView.render);
-		ACEController.registerListener('common.RouteChangedResetPasswordEvent', ResetPasswordView.render);
-		ACEController.registerListener('common.RouteOkEvent', CommonView.updateHash);
-		ACEController.registerListener('common.InitialLoginOkEvent', CommonView.initRole);
-		ACEController.registerListener('common.LogoutOkEvent', CommonView.resetUser);
-		ACEController.registerListener('common.DisplayErrorOkEvent', CommonView.displayError);
-		ACEController.registerListener('common.DisplayErrorAndLogoutOkEvent', CommonView.displayError);
-		ACEController.registerListener('common.DisplayMessageOkEvent', CommonView.displayMessage);
-		ACEController.registerListener('common.ClearToastOkEvent', CommonView.clearToast);
+		ACEController.registerListener('common.InitUserEvent', AppState.set_state_State_loggedInUser);
+		ACEController.registerListener('common.InitUserEvent', AppState.set_state_State_language);
+		ACEController.registerListener('common.InitNoUserEvent', AppState.set_state_State_language);
+		ACEController.registerListener('common.RouteChangedLoginEvent', AppState.set_state_State_data);
+		ACEController.registerListener('common.RouteChangedLoginEvent', AppState.set_state_State_view);
+		ACEController.registerListener('common.RouteChangedRegistrationEvent', AppState.set_state_State_data);
+		ACEController.registerListener('common.RouteChangedRegistrationEvent', AppState.set_state_State_view);
+		ACEController.registerListener('common.RouteChangedForgotPasswordEvent', AppState.set_state_State_data);
+		ACEController.registerListener('common.RouteChangedForgotPasswordEvent', AppState.set_state_State_view);
+		ACEController.registerListener('common.RouteChangedResetPasswordEvent', AppState.set_state_State_data);
+		ACEController.registerListener('common.RouteChangedResetPasswordEvent', AppState.set_state_State_view);
+		ACEController.registerListener('common.RouteOkEvent', AppState.set_state_State_hash);
+		ACEController.registerListener('common.InitialLoginOkEvent', AppState.set_state_State_loggedInUser_LoggedInUser_role);
+		ACEController.registerListener('common.LogoutOkEvent', AppState.reset_state_State_loggedInUser);
+		ACEController.registerListener('common.LogoutOkEvent', AppState.reset_state_State_username);
+		ACEController.registerListener('common.LogoutOkEvent', AppState.reset_state_State_password);
+		ACEController.registerListener('common.DisplayErrorOkEvent', AppState.set_state_State_message);
+		ACEController.registerListener('common.DisplayErrorAndLogoutOkEvent', AppState.set_state_State_message);
+		ACEController.registerListener('common.DisplayMessageOkEvent', AppState.set_state_State_message);
+		ACEController.registerListener('common.ClearToastOkEvent', AppState.reset_state_State_message);
 	}
 
 }

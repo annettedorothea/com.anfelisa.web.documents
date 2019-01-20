@@ -1,10 +1,10 @@
 import AbstractUpdateCardCommand from "../../../gen/card/commands/AbstractUpdateCardCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class UpdateCardCommand extends AbstractUpdateCardCommand {
 
     initCommandData() {
-        const data = getAppState().data;
+        const data = getState().data.cardView;
         this.commandData.cardId = data.editedCard.cardId;
         this.commandData.given = data.editedCard.given;
         this.commandData.wanted = data.editedCard.wanted;
@@ -14,6 +14,12 @@ export default class UpdateCardCommand extends AbstractUpdateCardCommand {
 
     handleResponse(resolve, reject) {
     	this.commandData.outcome = this.ok;
+        this.commandData.editedCard = {
+            cardId: "",
+            given: "",
+            wanted: "",
+            image: ""
+        };
     	resolve();
     }
     handleError(resolve, reject) {

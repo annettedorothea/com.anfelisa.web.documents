@@ -1,12 +1,16 @@
 import AbstractRegisterUserCommand from "../../../gen/registration/commands/AbstractRegisterUserCommand";
-import {getAppState} from "../../app/App";
+import {
+    get_state_State_data_Registration_email,
+    get_state_State_data_Registration_username,
+    get_state_State_language
+} from "../../../gen/ace/AppState";
 
 export default class RegisterUserCommand extends AbstractRegisterUserCommand {
 
     initCommandData() {
-        const appState = getAppState();
-        this.commandData.email = appState.data.email;
-        this.commandData.language = appState.language;
+        this.commandData.email = get_state_State_data_Registration_email();
+        this.commandData.language = get_state_State_language();
+        this.commandData.username = get_state_State_data_Registration_username();
         return true;
     }
 

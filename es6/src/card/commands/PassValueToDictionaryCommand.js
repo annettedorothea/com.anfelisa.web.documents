@@ -1,9 +1,9 @@
 import AbstractPassValueToDictionaryCommand from "../../../gen/card/commands/AbstractPassValueToDictionaryCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class PassValueToDictionaryCommand extends AbstractPassValueToDictionaryCommand {
     execute() {
-        const data = getAppState().data;
+        const data = getState().data.cardView;
         if (!!data.naturalInputOrder) {
             this.commandData.dictionaryValue = data.newCard.given;
         } else {

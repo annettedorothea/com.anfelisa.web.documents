@@ -1,36 +1,19 @@
 import React from 'react';
 import CryptoJS from "crypto-js";
-import RouteAction from "../common/actions/RouteAction";
-import RegisterUserAction from "../registration/actions/RegisterUserAction";
-import PasswordChangedAction from "../registration/actions/PasswordChangedAction";
-import EmailChangedAction from "../registration/actions/EmailChangedAction";
-import CheckUsernameAction from "../registration/actions/CheckUsernameAction";
+import {emailChanged, passwordChanged, registerUser, usernameChanged} from "../../gen/registration/ActionFunctions";
+import {route} from "../../gen/common/ActionFunctions";
 
 export default class Registration extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
             password: "",
             passwordRepetition: ""
         };
-        this.onUsernameChange = this.onUsernameChange.bind(this);
-        this.onEmailChange = this.onEmailChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onPasswordRepetitionChange = this.onPasswordRepetitionChange.bind(this);
         this.onRegister = this.onRegister.bind(this);
-    }
-
-    onUsernameChange(event) {
-        const username = event.target.value;
-        this.setState({username});
-        new CheckUsernameAction(username).apply();
-    }
-
-    onEmailChange(event) {
-        const email = event.target.value;
-        new EmailChangedAction(email).apply();
     }
 
     onPasswordChange(event) {
@@ -40,17 +23,17 @@ export default class Registration extends React.Component {
                 password
             }
         );
-        new PasswordChangedAction(password, this.state.passwordRepetition).apply();
+        passwordChanged(password, this.state.passwordRepetition);
     }
 
     onPasswordRepetitionChange(event) {
         const passwordRepetition = CryptoJS.MD5(event.target.value).toString();
         this.setState({passwordRepetition});
-        new PasswordChangedAction(passwordRepetition, this.state.password).apply();
+        passwordChanged(this.state.password, passwordRepetition);
     }
 
     onRegister() {
-        new RegisterUserAction(this.state.username, this.state.password).apply();
+        registerUser(this.state.password);
     }
 
     render() {
@@ -63,15 +46,15 @@ export default class Registration extends React.Component {
                         <div className="inputContainer">
                             <input
                                 type={"text"}
-                                onChange={this.onUsernameChange}
+                                onChange={(e) => usernameChanged(e.target.value)}
                                 autoComplete="off"
-                                value={this.state.username}
+                                value={this.props.username}
                             />
-                            {this.props.data.displayUsernameSpinner === true &&
+                            {this.props.displayUsernameSpinner === true &&
                             <i className="fas fa-cog fa-spin inside"/>}
-                            {this.props.data.usernameAvailable === true && this.state.username.length > 0 &&
+                            {this.props.available === true && this.props.username.length > 0 &&
                             <i className="fas fa-check outside success"/>}
-                            {this.props.data.usernameAvailable === false && this.state.username.length > 0 &&
+                            {this.props.available === false && this.props.username.length > 0 &&
                             <i className="fas fa-times outside error"/>}
                         </div>
                     </div>
@@ -93,7 +76,7 @@ export default class Registration extends React.Component {
                                 onChange={this.onPasswordRepetitionChange}
                                 autoComplete="off"
                             />
-                            {this.props.data.passwordMismatch === true &&
+                            {this.props.passwordMismatch === true &&
                             <i className="fas fa-times outside error"/>}
                         </div>
                     </div>
@@ -102,26 +85,26 @@ export default class Registration extends React.Component {
                         <div className="inputContainer">
                             <input
                                 type={"text"}
-                                onChange={this.onEmailChange}
+                                onChange={(e) => emailChanged(e.target.value)}
                                 autoComplete="off"
-                                value={this.props.data.email}
+                                value={this.props.email}
                             />
-                            {this.props.data.emailInvalid === true && this.props.data.email.length > 0 &&
+                            {this.props.emailInvalid === true && this.props.email.length > 0 &&
                             <i className="fas fa-times outside error"/>}
                         </div>
                     </div>
                     <div className="moreMarginLine hCenter">
                         <button onClick={this.onRegister}
-                                disabled={this.props.data.usernameAvailable === false ||
-                                this.state.username.length === 0 ||
-                                this.props.data.email.length === 0 ||
+                                disabled={this.props.usernameAvailable === false ||
+                                this.props.username.length === 0 ||
+                                this.props.email.length === 0 ||
                                 this.state.password.length === 0 ||
-                                this.props.data.passwordMismatch === true
+                                this.props.passwordMismatch === true
                                 }>
                             {this.props.texts.registration.register[this.props.language]}
                         </button>
                         <button
-                            onClick={() => new RouteAction("#").apply()}>{this.props.texts.registration.cancel[this.props.language]}</button>
+                            onClick={() => route("#")}>{this.props.texts.registration.cancel[this.props.language]}</button>
                     </div>
                     <div className="line">
                         <div

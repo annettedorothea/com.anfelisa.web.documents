@@ -1,8 +1,8 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import UpdateCategoryOkEvent from "../../../gen/category/events/UpdateCategoryOkEvent";
 import UpdateCategoryErrorEvent from "../../../gen/category/events/UpdateCategoryErrorEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
-import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractUpdateCategoryCommand extends Command {
     constructor(commandData) {
@@ -16,8 +16,8 @@ export default class AbstractUpdateCategoryCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
+			promises.push(new UpdateCategoryOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.pathToSelected, this.commandData.selectedCategoryId)).publish());
-			promises.push(new TriggerAction(new LoadCardsAction()).publish());
 			break;
 		case this.error:
 			promises.push(new UpdateCategoryErrorEvent(this.commandData).publish());

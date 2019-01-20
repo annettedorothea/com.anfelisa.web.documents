@@ -23,35 +23,35 @@ export default class ReinforceCard extends React.Component {
             quality={quality}
             scoreButtonClick={this.scoreButtonClick}
             texts={this.props.texts}
-            disabled={!this.props.data.enableScoreButtons}
+            disabled={!this.props.enableScoreButtons}
             language={this.props.language}
         />;
     }
 
     render() {
-        const lines = this.props.data.wanted.split("\n");
+        const lines = this.props.wanted.split("\n");
         return (
             <div>
                 <h2>{this.props.texts.queryCards.reinforceCard[this.props.language]}</h2>
                 <Given
-                    given={this.props.data.given}
-                    lastQuality={this.props.data.lastQuality}
-                    scheduledDate={this.props.data.scheduledDate}
-                    scoredDate={this.props.data.scoredDate}
-                    count={this.props.data.count}
+                    given={this.props.given}
+                    lastQuality={this.props.lastQuality}
+                    scheduledDate={this.props.scheduledDate}
+                    scoredDate={this.props.scoredDate}
+                    count={this.props.count}
                     language={this.props.language}
                     texts={this.props.texts}
                 />
                 <Wanted
-                    wanted={this.props.data.wanted}
-                    lastQuality={this.props.data.lastQuality}
-                    index={this.props.data.index}
-                    image={this.props.data.image}
-                    displayImage={this.props.data.displayImage}
+                    wanted={this.props.wanted}
+                    lastQuality={this.props.lastQuality}
+                    index={this.props.index}
+                    image={this.props.image}
+                    displayImage={this.props.displayImage}
                 />
                 <div className="categoryLink">
                     <a
-                        onClick={() => new RouteAction(`#categories/${this.props.data.categoryId}`).apply()}
+                        onClick={() => new RouteAction(`#categories/${this.props.categoryId}`).apply()}
                     >{this.props.texts.queryCards.category[this.props.language]}</a>
                 </div>
                 <div className="scoreButtons">

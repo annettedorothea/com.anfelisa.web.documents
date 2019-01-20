@@ -9,6 +9,8 @@ export default class LoadNextReinforceCardCommand extends AbstractLoadNextReinfo
     handleResponse(resolve) {
         if (this.commandData.reinforceCardId) {
             this.commandData.outcome = this.ok;
+            this.commandData.data = {};
+            this.commandData.view = "card";
             this.commandData.index = 0;
             this.commandData.enableScoreButtons = false;
             this.commandData.displayImage = false;

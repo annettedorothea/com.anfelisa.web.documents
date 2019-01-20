@@ -19,12 +19,12 @@ export default class ForgotPassword extends React.Component {
                             type={"text"}
                             onChange={(event) => usernameForgotPasswordChanged(event.target.value)}
                             autoComplete="off"
-                            value={this.props.data.username}
+                            value={this.props.username}
                         />
                     </div>
                     <div className="moreMarginLine hCenter">
                         <button onClick={() => forgotPassword()}
-                                disabled={this.props.data.username.length === 0}>
+                                disabled={this.props.username.length === 0}>
                             {this.props.texts.forgotPassword.submit[this.props.language]}
                         </button>
                         <button

@@ -3,8 +3,8 @@ import DisplayWantedCommand from "../../../src/box/commands/DisplayWantedCommand
 
 export default class AbstractDisplayWantedAction extends Action {
 
-    constructor( wantedItemsLength, index, hasImage) {
-        super({wantedItemsLength, index, hasImage}, 'box.DisplayWantedAction');
+    constructor( wantedItemsLength) {
+        super({wantedItemsLength}, 'box.DisplayWantedAction');
     }
     
 	getCommand() {

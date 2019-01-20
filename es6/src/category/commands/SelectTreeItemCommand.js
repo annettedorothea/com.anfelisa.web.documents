@@ -1,11 +1,11 @@
 import AbstractSelectTreeItemCommand from "../../../gen/category/commands/AbstractSelectTreeItemCommand";
-import {getAppState} from "../../app/App";
 import {findCategory} from "../utils/CategoryTreeUtils"
+import {getState} from "../../../gen/ace/AppState";
 
 export default class SelectTreeItemCommand extends AbstractSelectTreeItemCommand {
     execute() {
-        const data = getAppState().data;
-        this.commandData.selectedCategory = findCategory(data.categoryList, this.commandData.categoryId);
+        const categoryTree = getState().data.categoryTree;
+        this.commandData.selectedCategory = findCategory(categoryTree.categoryList, this.commandData.categoryId);
     	this.commandData.outcome = this.ok;
     }
 }

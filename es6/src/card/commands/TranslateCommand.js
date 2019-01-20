@@ -1,40 +1,40 @@
 import AbstractTranslateCommand from "../../../gen/card/commands/AbstractTranslateCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class TranslateCommand extends AbstractTranslateCommand {
 
     initCommandData() {
-        const data = getAppState().data;
-        if (!!data.naturalInputOrder) {
-            if (!data.newCard.given) {
+        const data = getState().data;
+        if (!!data.cardView.naturalInputOrder) {
+            if (!data.cardView.newCard.given) {
                 this.commandData.outcome = this.empty;
                 return false;
             }
-            if (!!data.newCard.wanted) {
+            if (!!data.cardView.newCard.wanted) {
                 this.commandData.outcome = this.targetNotEmtpy;
                 return false;
             }
-            this.commandData.sourceValue = data.newCard.given;
-            this.commandData.sourceLanguage = data.selectedCategory.givenLanguage;
-            this.commandData.targetLanguage = data.selectedCategory.wantedLanguage;
+            this.commandData.sourceValue = data.cardView.newCard.given;
+            this.commandData.sourceLanguage = data.categoryTree.selectedCategory.givenLanguage;
+            this.commandData.targetLanguage = data.categoryTree.selectedCategory.wantedLanguage;
         } else {
-            if (!data.newCard.wanted) {
+            if (!data.cardView.newCard.wanted) {
                 this.commandData.outcome = this.empty;
                 return false;
             }
-            if (!!data.newCard.given) {
+            if (!!data.cardView.newCard.given) {
                 this.commandData.outcome = this.targetNotEmtpy;
                 return false;
             }
-            this.commandData.sourceValue = data.newCard.wanted;
-            this.commandData.sourceLanguage = data.selectedCategory.wantedLanguage;
-            this.commandData.targetLanguage = data.selectedCategory.givenLanguage;
+            this.commandData.sourceValue = data.cardView.newCard.wanted;
+            this.commandData.sourceLanguage = data.categoryTree.selectedCategory.wantedLanguage;
+            this.commandData.targetLanguage = data.categoryTree.selectedCategory.givenLanguage;
         }
         return true;
     }
 
     handleResponse(resolve, reject) {
-        const data = getAppState().data;
+        const data = getState().data.cardView;
         if (!!data.naturalInputOrder) {
             this.commandData.wanted = this.commandData.targetValue;
             this.commandData.outcome = this.wantedFetched;

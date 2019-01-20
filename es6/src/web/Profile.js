@@ -1,35 +1,18 @@
 import React from 'react';
-import RouteAction from "../common/actions/RouteAction";
-import DeleteUserAction from "../profile/actions/DeleteUserAction";
 import Confirm from "./Confirm";
-import DeleteUserClickAction from "../profile/actions/DeleteUserClickAction";
-import DeleteUserCancelAction from "../profile/actions/DeleteUserCancelAction";
+import {deleteUser, deleteUserCancel, deleteUserClick} from "../../gen/profile/ActionFunctions";
+import {route} from "../../gen/common/ActionFunctions";
 
 export default class Profile extends React.Component {
 
     constructor(props) {
         super(props);
-        this.onDelete = this.onDelete.bind(this);
-        this.onDeleteClick = this.onDeleteClick.bind(this);
-        this.onDeleteCancel = this.onDeleteCancel.bind(this);
-    }
-
-    onDeleteClick() {
-        new DeleteUserClickAction().apply();
-    }
-
-    onDelete() {
-        new DeleteUserAction(this.props.username).apply();
-    }
-
-    onDeleteCancel() {
-        new DeleteUserCancelAction().apply();
     }
 
     render() {
         return (
             <div>
-                {this.props.data.showDeleteUserDialog === true &&
+                {this.props.showDeleteUserDialog === true &&
                 <div>
                     <Confirm {...
                         {
@@ -37,8 +20,8 @@ export default class Profile extends React.Component {
                             message: this.props.texts.profile.confirmDelete.message[this.props.language],
                             okText: this.props.texts.profile.confirmDelete.ok[this.props.language],
                             cancelText: this.props.texts.profile.confirmDelete.cancel[this.props.language],
-                            ok: this.onDelete,
-                            cancel: this.onDeleteCancel
+                            ok: () => deleteUser(this.props.username),
+                            cancel: () => deleteUserCancel()
                         }}/>
                 </div>}
                 <div className="form">
@@ -48,7 +31,7 @@ export default class Profile extends React.Component {
                         <input
                             type={"text"}
                             placeholder={this.props.texts.profile.username[this.props.language]}
-                            value={this.props.data.username}
+                            value={this.props.username}
                             readOnly={true}
                         />
                     </div>
@@ -57,7 +40,7 @@ export default class Profile extends React.Component {
                         <input
                             type={"text"}
                             placeholder={this.props.texts.profile.email[this.props.language]}
-                            value={this.props.data.email}
+                            value={this.props.email}
                             readOnly={true}
                         />
                     </div>
@@ -72,9 +55,9 @@ export default class Profile extends React.Component {
                     </div>
                 </div>
                 <button className="danger"
-                        onClick={this.onDeleteClick}>{this.props.texts.profile.delete[this.props.language]}</button>
+                        onClick={() => deleteUserClick()}>{this.props.texts.profile.delete[this.props.language]}</button>
                 <button
-                    onClick={() => new RouteAction("#dashboard").apply()}>{this.props.texts.profile.back[this.props.language]}</button>
+                    onClick={() => route("#dashboard")}>{this.props.texts.profile.back[this.props.language]}</button>
             </div>
         );
     }

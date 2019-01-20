@@ -15,8 +15,8 @@ export function passwordChanged(password, passwordRepetition) {
     new PasswordChangedAction(password, passwordRepetition).apply();
 }
 
-export function resetPassword(password, token) {
-    new ResetPasswordAction(password, token).apply();
+export function resetPassword(password) {
+    new ResetPasswordAction(password).apply();
 }
 
 

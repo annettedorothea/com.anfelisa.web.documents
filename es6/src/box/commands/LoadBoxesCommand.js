@@ -1,17 +1,25 @@
 import AbstractLoadBoxesCommand from "../../../gen/box/commands/AbstractLoadBoxesCommand";
-import {getAppState} from "../../app/App";
 
 export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
 
     initCommandData() {
         return true;
     }
+
     handleResponse(resolve) {
-    	this.commandData.outcome = this.ok;
-    	resolve();
+        this.commandData.data = {
+            deleteBox: {
+                confirmDelete: false,
+                boxId: null
+            }
+        };
+        this.commandData.view = "dashboard";
+        this.commandData.outcome = this.ok;
+        resolve();
     }
+
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+        reject(this.commandData.error);
     }
 }
 

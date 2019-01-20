@@ -3,14 +3,14 @@ import Spinner from "./Spinner";
 import AnonymousContainer from "./AnonymousContainer";
 import UserContainer from "./UserContainer";
 import ToastContainer from "./ToastContainer";
-import * as App from "../app/App";
 import AppUtils from "../app/AppUtils";
+import * as AppState from "../../gen/ace/AppState";
 
 export default class Container extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = App.appState;
+        this.state = AppState.getState();
     }
 
     render() {
@@ -18,17 +18,17 @@ export default class Container extends React.Component {
             return "";
         }
         let content;
-        if (this.state.username === undefined) {
-            content = <AnonymousContainer {...this.state} />;
-        } else {
+        if (this.state.loggedInUser &&  this.state.loggedInUser.role) {
             content = <UserContainer {...this.state} />;
+        } else {
+            content = <AnonymousContainer {...this.state} />;
         }
         return (
             <div>
-                <ToastContainer toast={this.state.toast}/>
+                <ToastContainer message={this.state.message}/>
                 {this.state.displaySpinner && <Spinner/>}
                 {content}
-                <div className={`footer ${this.state.username === undefined ? "fixed" : ""}`}>
+                <div className={`footer ${this.state.loggedInUser === undefined ? "fixed" : ""}`}>
                     <div className="footerContent">
                         <h1>{this.state.texts.container.about[this.state.language]}</h1>
                         <p>

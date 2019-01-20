@@ -12,9 +12,17 @@ export default class CategoryCardSplitView extends React.Component {
         return (
             <div className="categoryCardSplitView">
 
-                <CategoryTree {...this.props} />
+                <CategoryTree
+                    {...this.props.categoryTree}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />
 
-                {this.props.data.cardList && <CardList {...this.props} />}
+                {this.props.cardView && this.props.cardView.cardList && <CardList
+                    {...this.props}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />}
 
             </div>
         );

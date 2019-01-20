@@ -669,6 +669,10 @@ a:hover.tile h2 {
 
 /* categories */
 
+.categoryCardSplitView h1 {
+    margin-top: 24px;
+}
+
 .categoryCardSplitView .panel {
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -898,5 +902,16 @@ iframe {
 
 .categoryTree i.disabled {
     color: #ccc;
+}
+
+@media print {
+    .header,
+    .categoryTree,
+    tr.notPrinted,
+    td.notPrinted,
+    .footer
+    {
+        display: none;
+    }
 }
 

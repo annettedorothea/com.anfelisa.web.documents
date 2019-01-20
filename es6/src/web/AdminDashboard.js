@@ -1,11 +1,11 @@
 import React from 'react';
-import RouteAction from "../common/actions/RouteAction";
+import {route} from "../../gen/common/ActionFunctions";
 
 export default class AdminDashboard extends React.Component {
 
     render() {
         return (
-            <button className="bottomMargin" onClick={() => new RouteAction("#users").apply()}>
+            <button className="bottomMargin" onClick={() => route("#users")}>
                 {this.props.texts.adminDashboard.users[this.props.language]}
             </button>
         );

@@ -1,9 +1,10 @@
 import AbstractToggleScheduleCardSelectionCommand from "../../../gen/card/commands/AbstractToggleScheduleCardSelectionCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class ToggleScheduleCardSelectionCommand extends AbstractToggleScheduleCardSelectionCommand {
     execute() {
-        let selectedCardIds = getAppState().data.selectedCardIds;
+        const data = getState().data.cardView;
+        let selectedCardIds = data.selectedCardIds;
         const index = selectedCardIds.indexOf(this.commandData.cardId);
         if (index !== -1) {
             selectedCardIds.splice(index, 1);

@@ -1,13 +1,11 @@
 import ACEController from "../ace/ACEController";
-import ForgotPasswordView from "../../src/password/views/ForgotPasswordView";
-import ResetPasswordView from "../../src/password/views/ResetPasswordView";
+import * as AppState from "../ace/AppState";
 
 export default class EventListenerRegistrationPassword {
 
 	static init() {
-		ACEController.registerListener('password.UsernameForgotPasswordChangedOkEvent', ForgotPasswordView.usernameChanged);
-		ACEController.registerListener('password.PasswordChangedMismatchEvent', ResetPasswordView.passwordMismatch);
-		ACEController.registerListener('password.PasswordChangedMatchEvent', ResetPasswordView.passwordMatch);
+		ACEController.registerListener('password.UsernameForgotPasswordChangedOkEvent', AppState.set_state_State_data_ForgotPassword_username);
+		ACEController.registerListener('password.PasswordChangedOkEvent', AppState.set_state_State_data_ResetPassword_passwordMismatch);
 	}
 
 }

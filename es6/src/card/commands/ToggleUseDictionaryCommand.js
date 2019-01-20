@@ -1,9 +1,9 @@
 import AbstractToggleUseDictionaryCommand from "../../../gen/card/commands/AbstractToggleUseDictionaryCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class ToggleUseDictionaryCommand extends AbstractToggleUseDictionaryCommand {
     execute() {
-        const data = getAppState().data;
+        const data = getState().data.cardView;
     	this.commandData.useDictionary = !data.useDictionary;
     	this.commandData.outcome = this.ok;
     }

@@ -1,17 +1,17 @@
 import ACEController from "../../gen/ace/ACEController";
-import InitAction from "../../src/common/actions/InitAction";
 import uuid from "uuid";
 import CryptoJS from "crypto-js";
-import {getAppState} from "./App";
-import DisplayErrorAction from "../common/actions/DisplayErrorAction";
-import DisplayErrorAndLogoutAction from "../common/actions/DisplayErrorAndLogoutAction";
+import * as AppState from "../../gen/ace/AppState";
+import * as App from "./App";
+import {Texts} from "./Texts"
+import {displayError, displayErrorAndLogout, init} from "../../gen/common/ActionFunctions"
 
 export default class AppUtils {
 
     static start() {
         AppUtils.loadSettings().then((settings) => {
             AppUtils.settings = settings;
-            new InitAction(localStorage.getItem("username"), localStorage.getItem("password"), "de", window.location.hash).apply();
+            init();
         });
     }
 
@@ -41,19 +41,31 @@ export default class AppUtils {
     }
 
     static getClientVersion() {
-        return AppUtils.settings.clientVersion;
+        return AppUtils.settings ? AppUtils.settings.clientVersion : "";
     }
 
     static isDevelopment() {
-        return AppUtils.settings.development;
+        return AppUtils.settings ? AppUtils.settings.development : false;
     }
 
     static getAceScenariosApiKey() {
-        return AppUtils.settings.aceScenariosApiKey;
+        return AppUtils.settings ? AppUtils.settings.aceScenariosApiKey : "";
     }
 
     static getAceScenariosBaseUrl() {
-        return AppUtils.settings.aceScenariosBaseUrl;
+        return AppUtils.settings ? AppUtils.settings.aceScenariosBaseUrl : "";
+    }
+
+    static createInitialAppState() {
+        const initialAppState = {
+            texts: Texts,
+            message: null
+        };
+        AppState.setInitialState(initialAppState);
+    }
+
+    static renderNewState() {
+        App.render(AppState.getState());
     }
 
     static httpGet(url, authorize, queryParams, adjustUrl = true) {
@@ -203,9 +215,10 @@ export default class AppUtils {
     }
 
     static basicAuth() {
-        const appState = getAppState();
-        if (appState.username !== undefined && appState.password !== undefined) {
-            const wordArray = CryptoJS.enc.Utf8.parse(appState.username + ':' + appState.password);
+        const username = AppState.get_state_State_loggedInUser_LoggedInUser_username();
+        const password = AppState.get_state_State_loggedInUser_LoggedInUser_password();
+        if (username !== undefined && password !== undefined) {
+            const wordArray = CryptoJS.enc.Utf8.parse(username + ':' + password);
             const hash = CryptoJS.enc.Base64.stringify(wordArray);
             return "anfelisaBasic " + hash;
         }
@@ -223,18 +236,18 @@ export default class AppUtils {
                 error = {
                     errorKey: error
                 };
-                new DisplayErrorAction(error).apply();
+                displayError(error)
             } else {
                 if (error.code === 401) {
                     error.errorKey = "unauthorized";
-                    new DisplayErrorAndLogoutAction({error}).apply();
+                    displayErrorAndLogout({error});
                 } else if (error.code === 400) {
-                    new DisplayErrorAction(error).apply();
+                    displayError(error)
                 } else {
                     error = {
                         errorKey: error.text
                     };
-                    new DisplayErrorAction(error).apply();
+                    displayError(error)
                 }
             }
         } catch (e) {
@@ -243,39 +256,11 @@ export default class AppUtils {
     }
 
     static deepCopy(object) {
-        return JSON.parse(JSON.stringify(object));
+        return object ? JSON.parse(JSON.stringify(object)) : undefined;
     }
 
     static getMaxTimelineSize() {
         return 2000;
-    }
-
-    static deepMerge(newState, appState) {
-        for (let property in newState) {
-            if (newState.hasOwnProperty(property)) {
-                if (appState[property] === undefined || appState[property] === null) {
-                    appState[property] = newState[property];
-                } else if (newState[property] === null) {
-                    appState[property] = null;
-                } else if (Array.isArray(newState[property])) {
-                    appState[property] = newState[property];
-                } else if (typeof newState[property] === 'object') {
-                    AppUtils.deepMerge(newState[property], appState[property]);
-                } else {
-                    appState[property] = newState[property];
-                }
-            }
-        }
-        return appState;
-    }
-
-    static merge(newState, appState) {
-        for (let property in newState) {
-            if (newState.hasOwnProperty(property)) {
-                appState[property] = newState[property];
-            }
-        }
-        return appState;
     }
 
 }

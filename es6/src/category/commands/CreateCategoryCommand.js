@@ -1,10 +1,10 @@
 import AbstractCreateCategoryCommand from "../../../gen/category/commands/AbstractCreateCategoryCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class CreateCategoryCommand extends AbstractCreateCategoryCommand {
 
     initCommandData() {
-        const data = getAppState().data;
+        const data = getState().data.categoryTree;
         this.commandData.categoryName = data.categoryName;
         this.commandData.parentCategoryId = data.selectedCategory ? data.selectedCategory.categoryId : null;
         this.commandData.dictionaryLookup = data.dictionaryLookup;
@@ -14,14 +14,15 @@ export default class CreateCategoryCommand extends AbstractCreateCategoryCommand
     }
 
     handleResponse(resolve, reject) {
-    	this.commandData.outcome = this.ok;
+        this.commandData.outcome = this.ok;
         this.commandData.dictionaryLookup = false;
         this.commandData.wantedLanguage = "";
         this.commandData.givenLanguage = "";
         this.commandData.displayNewCategory = false;
         this.commandData.selectedCategoryId = this.commandData.uuid;
-    	resolve();
+        resolve();
     }
+
     handleError(resolve, reject) {
         this.commandData.outcome = this.error;
         this.commandData.dictionaryLookup = false;

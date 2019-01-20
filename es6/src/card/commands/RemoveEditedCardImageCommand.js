@@ -2,6 +2,7 @@ import AbstractRemoveEditedCardImageCommand from "../../../gen/card/commands/Abs
 
 export default class RemoveEditedCardImageCommand extends AbstractRemoveEditedCardImageCommand {
     execute() {
+        this.commandData.image = "";
     	this.commandData.outcome = this.ok;
     }
 }

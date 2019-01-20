@@ -7,8 +7,8 @@ export function usernameChanged(username) {
     new UsernameChangedAction(username).apply();
 }
 
-export function toggleSaveInLocalStorage(saveInLocalStorage) {
-    new ToggleSaveInLocalStorageAction(saveInLocalStorage).apply();
+export function toggleSaveInLocalStorage() {
+    new ToggleSaveInLocalStorageAction().apply();
 }
 
 export function login(password) {

@@ -1,62 +1,217 @@
 ES6 common
 
 ACE 
-Init <username, password, language, hash> 
-	on user ( Common.initTexts Common.initUser ) triggers ( InitialLogin )
-	on noUser ( Common.initTexts ) triggers ( RouteChanged )
+Init
+	on user ( 
+		set state.State.loggedInUser 
+		set state.State.language
+	) triggers ( InitialLogin )
+	on noUser ( set state.State.language) triggers ( RouteChanged )
 	
-RouteChanged <hash> 
-	on login (  login.Login.render )
-	on registration ( registration.Registration.render )
-	on dashboard triggers (box.LoadBoxes)
-	on profile triggers ( profile.LoadUser )
-	on forgotPassword ( password.ForgotPassword.render )
+RouteChanged 
+	on login ( 
+		set state.State.data 
+		set state.State.view
+	)
+	on registration ( 
+		set state.State.data 
+		set state.State.view
+	)
 	on confirmEmail triggers (registration.ConfirmEmail)
-	on resetPassword (password.ResetPassword.render)
-	on userList triggers (admin.GetAllUsers) 
+	on forgotPassword ( 
+		set state.State.data 
+		set state.State.view
+	)
+	on resetPassword ( 
+		set state.State.data 
+		set state.State.view
+	)
+	on dashboard triggers (box.LoadBoxes)
 	on categories triggers (category.LoadCategoryTree )
+	on profile triggers ( profile.LoadUser )
+	on userList triggers (admin.GetAllUsers) 
 	on nextCard triggers (box.LoadNextCard)
 	on reinforceCard triggers (box.LoadNextReinforceCard)
 	on invalid triggers (Route)
 	
 Route <hash> 
-	on ok ( Common.updateHash )
+	on ok ( set state.State.hash )
 	
 InitialLogin <hash>
-	preCall (Common.displaySpinner)
 	call com.anfelisa.user.GetRole
-	postCall (Common.hideSpinner) 
-	on ok ( Common.initRole ) triggers ( RouteChanged )
+	loadingFlag state.State.displaySpinner 
+	on ok (set state.State.loggedInUser.LoggedInUser.role) triggers ( RouteChanged )
 	on unauthorized triggers ( DisplayError Logout )
 	
 Logout 
-	on ok ( Common.resetUser ) triggers ( Route )
+	on ok ( 
+		reset state.State.loggedInUser
+		reset state.State.username
+		reset state.State.password
+	) triggers ( Route )
 
 DisplayError <error> 
-	on ok (Common.displayError) triggers (ClearToast)
+	on ok ( set state.State.message) 
 
 DisplayErrorAndLogout <error> 
-	on ok (Common.displayError) triggers (ClearToast Logout)
+	on ok (set state.State.message) triggers ( Logout)
 
 DisplayMessage <messageKey> 
-	on ok (Common.displayMessage) triggers (ClearToast )
+	on ok (set state.State.message) 
 
 ClearToast 
-	on ok (Common.clearToast)
-	
-views 
-Common {
-	displayError
-	displayMessage
-	clearToast
+	on ok (reset state.State.message)
+
+appState state : State {
+	loggedInUser : LoggedInUser {
+		username
+		userId
+		role
+		password
+	}
+	hash location.hash
+	username storage
+	password storage
 	displaySpinner
-	hideSpinner
-	initTexts
-	initUser
-	initRole
-	saveInLocalStorage
-	resetUser
-	updateHash
+	view
+	language
+	texts
+	message : Message {
+		type
+		text
+	}
 	
-	deepMerge
+	data 
+	: Login {
+		username
+		saveInLocalStorage
+	} |
+	: Registration {
+		displayUsernameSpinner
+        available
+        username
+        email
+        emailInvalid
+        passwordMismatch
+	} |
+	: ForgotPassword {
+		username
+	} |
+	: ResetPassword {
+		token
+		passwordMismatch
+	} |
+	: Dashboard {
+    	boxList list
+        deleteBox : DeleteBox {
+            confirmDelete
+            boxId
+        }
+	} |
+	: Profile {
+		username
+		email
+		role
+		showDeleteUserDialog
+	} |
+	: UserList {
+		userList list
+		showDeleteUserDialog
+		usernameToBeDeleted
+	} |
+	: Card {
+		index
+		enableScoreButtons
+		displayImage
+		scheduleNext
+		cardId
+		categoryId
+		count
+		given
+		image
+		lastQuality
+		rootCategoryId
+		scheduledCardId
+		scheduledDate
+		scoredDate
+		wanted
+		boxId
+		categoryName
+		daysBehindSchedule
+		maxInterval
+		myCards
+		quality0Count
+		quality1Count
+		quality2Count
+		quality3Count
+		quality4Count
+		quality5Count
+		reinforceCards
+		todaysCards
+		totalCards
+		editMaxInterval
+		editedMaxInterval
+		reinforceCardId
+		changeDate
+	} |
+	: AuthorView {
+		categoryTree : CategoryTree {
+			selectedCategory
+			categoryList
+			
+			displayDeleteCategory
+			
+			dictionaryLookup
+			wantedLanguage
+			givenLanguage
+			categoryName
+			displayEditCategory
+			displayNewCategory
+			
+			displayInviteUser
+			invitedUsername
+			userList
+			
+			dropAllowed
+			dropTargetCategoryId
+			movedCategory
+		}
+    	boxList list
+        deleteBox : DeleteBox {
+            confirmDelete
+            boxId
+        }
+        cardView : CardView {
+	        cardList list
+	        naturalInputOrder
+	        useDictionary
+	        filter
+	        editedCard : EditedCard {
+	        	cardId
+	        	given
+	        	wanted
+	        	index
+	        	image
+	        	selectedCardIds
+	        }
+	        newCard : NewCard {
+	        	given
+	        	wanted
+	        	index
+	        	image
+	        	selectedCardIds
+	        	file
+	        	displaySpinner
+	        	displayTranslateSpinner
+	        }
+	        cardDuplicates list
+	        deleteCard : DeleteCard {
+	        	confirmDelete
+	        	cardId
+	        }
+	        dictionaryValue
+	        selectedCardIds list
+	        movedCardIds
+        }
+	}
 }

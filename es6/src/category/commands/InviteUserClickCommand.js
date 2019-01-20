@@ -1,10 +1,10 @@
 import AbstractInviteUserClickCommand from "../../../gen/category/commands/AbstractInviteUserClickCommand";
-import {getAppState} from "../../app/App";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class InviteUserClickCommand extends AbstractInviteUserClickCommand {
 
     initCommandData() {
-        const data = getAppState().data;
+        const data = getState().data.categoryTree;
         this.commandData.categoryId = data.selectedCategory.categoryId;
     	return true;
     }

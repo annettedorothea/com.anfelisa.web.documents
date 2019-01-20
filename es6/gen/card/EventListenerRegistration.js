@@ -1,40 +1,39 @@
 import ACEController from "../ace/ACEController";
-import CardListView from "../../src/card/views/CardListView";
+import * as AppState from "../ace/AppState";
 
 export default class EventListenerRegistrationCard {
 
 	static init() {
-		ACEController.registerListener('card.LoadCardsOkEvent', CardListView.render);
-		ACEController.registerListener('card.LoadCardsNoCategorySelectedEvent', CardListView.hide);
-		ACEController.registerListener('card.CreateCardOkEvent', CardListView.resetNewCardValues);
-		ACEController.registerListener('card.UpdateCardOkEvent', CardListView.resetEditCardValues);
-		ACEController.registerListener('card.DeleteCardOkEvent', CardListView.hideConfirmCardDelete);
-		ACEController.registerListener('card.DeleteCardErrorEvent', CardListView.hideConfirmCardDelete);
-		ACEController.registerListener('card.GivenOfNewCardChangedOkEvent', CardListView.givenOfNewCardChanged);
-		ACEController.registerListener('card.SearchDuplicateCardsOkEvent', CardListView.initDuplicates);
-		ACEController.registerListener('card.SearchDuplicateCardsTooShortEvent', CardListView.resetDuplicates);
-		ACEController.registerListener('card.WantedOfNewCardChangedOkEvent', CardListView.wantedOfNewCardChanged);
-		ACEController.registerListener('card.CancelNewCardOkEvent', CardListView.resetNewCardValues);
-		ACEController.registerListener('card.GivenOfEditedCardChangedOkEvent', CardListView.givenOfEditedCardChanged);
-		ACEController.registerListener('card.WantedOfEditedCardChangedOkEvent', CardListView.wantedOfEditedCardChanged);
-		ACEController.registerListener('card.CancelEditCardOkEvent', CardListView.resetEditCardValues);
-		ACEController.registerListener('card.EditCardOkEvent', CardListView.editCard);
-		ACEController.registerListener('card.DeleteCardClickOkEvent', CardListView.displayConfirmCardDelete);
-		ACEController.registerListener('card.CancelDeleteCardOkEvent', CardListView.hideConfirmCardDelete);
-		ACEController.registerListener('card.FilterCardsOkEvent', CardListView.filterChanged);
-		ACEController.registerListener('card.TranslateWantedFetchedEvent', CardListView.wantedOfNewCardChanged);
-		ACEController.registerListener('card.TranslateGivenFetchedEvent', CardListView.givenOfNewCardChanged);
-		ACEController.registerListener('card.PassValueToDictionaryOkEvent', CardListView.setDictionaryValue);
-		ACEController.registerListener('card.ToggleInputOrderOkEvent', CardListView.toggleInputOrder);
-		ACEController.registerListener('card.ToggleUseDictionaryOkEvent', CardListView.toggleUseDictionary);
-		ACEController.registerListener('card.LoadWantedImageOfNewCardOkEvent', CardListView.displayImageOfNewCard);
-		ACEController.registerListener('card.LoadWantedImageOfEditedCardOkEvent', CardListView.displayImageOfEditedCard);
-		ACEController.registerListener('card.RemoveNewCardImageOkEvent', CardListView.removeNewCardImage);
-		ACEController.registerListener('card.RemoveEditedCardImageOkEvent', CardListView.removeEditedCardImage);
-		ACEController.registerListener('card.ToggleScheduleCardSelectionOkEvent', CardListView.setScheduleCardSelection);
-		ACEController.registerListener('card.ToggleAllScheduleCardSelectionOkEvent', CardListView.setScheduleCardSelection);
-		ACEController.registerListener('card.MoveCardsStartedOkEvent', CardListView.setMovedCards);
-		ACEController.registerListener('card.MoveCardsOkEvent', CardListView.resetMovedCards);
+		ACEController.registerListener('card.LoadCardsOkEvent', AppState.merge_state_State_data_AuthorView_cardView);
+		ACEController.registerListener('card.LoadCardsNoCategorySelectedEvent', AppState.reset_state_State_data_AuthorView_cardView_CardView_cardList);
+		ACEController.registerListener('card.CreateCardOkEvent', AppState.merge_state_State_data_AuthorView_cardView);
+		ACEController.registerListener('card.UpdateCardOkEvent', AppState.merge_state_State_data_AuthorView_cardView);
+		ACEController.registerListener('card.DeleteCardOkEvent', AppState.merge_state_State_data_AuthorView_cardView);
+		ACEController.registerListener('card.DeleteCardErrorEvent', AppState.merge_state_State_data_AuthorView_cardView);
+		ACEController.registerListener('card.GivenOfNewCardChangedOkEvent', AppState.merge_state_State_data_AuthorView_cardView_CardView_newCard);
+		ACEController.registerListener('card.SearchDuplicateCardsOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_cardDuplicates);
+		ACEController.registerListener('card.WantedOfNewCardChangedOkEvent', AppState.merge_state_State_data_AuthorView_cardView_CardView_newCard);
+		ACEController.registerListener('card.CancelNewCardOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_newCard);
+		ACEController.registerListener('card.GivenOfEditedCardChangedOkEvent', AppState.merge_state_State_data_AuthorView_cardView_CardView_editedCard);
+		ACEController.registerListener('card.WantedOfEditedCardChangedOkEvent', AppState.merge_state_State_data_AuthorView_cardView_CardView_editedCard);
+		ACEController.registerListener('card.CancelEditCardOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_editedCard);
+		ACEController.registerListener('card.EditCardOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_editedCard);
+		ACEController.registerListener('card.DeleteCardClickOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_deleteCard);
+		ACEController.registerListener('card.CancelDeleteCardOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_deleteCard);
+		ACEController.registerListener('card.FilterCardsOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_filter);
+		ACEController.registerListener('card.TranslateWantedFetchedEvent', AppState.merge_state_State_data_AuthorView_cardView_CardView_newCard);
+		ACEController.registerListener('card.TranslateGivenFetchedEvent', AppState.merge_state_State_data_AuthorView_cardView_CardView_newCard);
+		ACEController.registerListener('card.PassValueToDictionaryOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_dictionaryValue);
+		ACEController.registerListener('card.ToggleInputOrderOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_naturalInputOrder);
+		ACEController.registerListener('card.ToggleUseDictionaryOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_useDictionary);
+		ACEController.registerListener('card.LoadWantedImageOfNewCardOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_image);
+		ACEController.registerListener('card.LoadWantedImageOfEditedCardOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_image);
+		ACEController.registerListener('card.RemoveNewCardImageOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_image);
+		ACEController.registerListener('card.RemoveEditedCardImageOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_image);
+		ACEController.registerListener('card.ToggleScheduleCardSelectionOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_selectedCardIds);
+		ACEController.registerListener('card.ToggleAllScheduleCardSelectionOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_selectedCardIds);
+		ACEController.registerListener('card.MoveCardsStartedOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_movedCardIds);
+		ACEController.registerListener('card.MoveCardsOkEvent', AppState.reset_state_State_data_AuthorView_cardView_CardView_movedCardIds);
 	}
 
 }

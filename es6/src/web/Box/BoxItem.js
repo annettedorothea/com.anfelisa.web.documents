@@ -1,8 +1,7 @@
 import React from 'react';
-import DeleteBoxClickAction from "../../box/actions/DeleteBoxClickAction";
 import RouteAction from "../../common/actions/RouteAction";
-import BoxInfo from "./BoxInfo";
 import Statistics from "./Statistics";
+import {deleteBoxClick} from "../../../gen/box/ActionFunctions";
 
 export default class BoxItem extends React.Component {
 
@@ -13,7 +12,7 @@ export default class BoxItem extends React.Component {
 
     onDeleteClick(e) {
         e.stopPropagation();
-        new DeleteBoxClickAction(this.props.boxId).apply();
+        deleteBoxClick(this.props.boxId);
     }
 
     render() {

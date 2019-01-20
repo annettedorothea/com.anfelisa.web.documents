@@ -8,12 +8,12 @@ import DisplayErrorAndLogoutAction from "../../src/common/actions/DisplayErrorAn
 import DisplayMessageAction from "../../src/common/actions/DisplayMessageAction";
 import ClearToastAction from "../../src/common/actions/ClearToastAction";
 
-export function init(username, password, language, hash) {
-    new InitAction(username, password, language, hash).apply();
+export function init() {
+    new InitAction().apply();
 }
 
-export function routeChanged(hash) {
-    new RouteChangedAction(hash).apply();
+export function routeChanged() {
+    new RouteChangedAction().apply();
 }
 
 export function route(hash) {

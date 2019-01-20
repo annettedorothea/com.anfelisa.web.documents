@@ -17,15 +17,15 @@ import DeleteCategoryAction from "../../src/category/actions/DeleteCategoryActio
 import EditCategoryClickAction from "../../src/category/actions/EditCategoryClickAction";
 import CancelEditCategoryAction from "../../src/category/actions/CancelEditCategoryAction";
 import UpdateCategoryAction from "../../src/category/actions/UpdateCategoryAction";
-import CheckDropAllowedAction from "../../src/category/actions/CheckDropAllowedAction";
-import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
-import MoveCategoryStartedAction from "../../src/category/actions/MoveCategoryStartedAction";
-import MoveCategoryAction from "../../src/category/actions/MoveCategoryAction";
 import InviteUserClickAction from "../../src/category/actions/InviteUserClickAction";
 import CloseInviteUserAction from "../../src/category/actions/CloseInviteUserAction";
 import InvitedUsernameChangedAction from "../../src/category/actions/InvitedUsernameChangedAction";
 import InviteUserAction from "../../src/category/actions/InviteUserAction";
 import RevokeUserAccessAction from "../../src/category/actions/RevokeUserAccessAction";
+import CheckDropAllowedAction from "../../src/category/actions/CheckDropAllowedAction";
+import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
+import MoveCategoryStartedAction from "../../src/category/actions/MoveCategoryStartedAction";
+import MoveCategoryAction from "../../src/category/actions/MoveCategoryAction";
 
 export default class ActionFactoryRegistrationCategory {
 
@@ -66,6 +66,16 @@ export default class ActionFactoryRegistrationCategory {
 			(actionData) => new CancelEditCategoryAction());
 		ACEController.registerFactory('category.UpdateCategoryAction', 
 			(actionData) => new UpdateCategoryAction());
+		ACEController.registerFactory('category.InviteUserClickAction', 
+			(actionData) => new InviteUserClickAction());
+		ACEController.registerFactory('category.CloseInviteUserAction', 
+			(actionData) => new CloseInviteUserAction());
+		ACEController.registerFactory('category.InvitedUsernameChangedAction', 
+			(actionData) => new InvitedUsernameChangedAction(actionData.invitedUsername));
+		ACEController.registerFactory('category.InviteUserAction', 
+			(actionData) => new InviteUserAction(actionData.invitedUsername));
+		ACEController.registerFactory('category.RevokeUserAccessAction', 
+			(actionData) => new RevokeUserAccessAction(actionData.revokedUserId));
 		ACEController.registerFactory('category.CheckDropAllowedAction', 
 			(actionData) => new CheckDropAllowedAction(actionData.categoryId));
 		ACEController.registerFactory('category.ItemDroppedAction', 
@@ -74,16 +84,6 @@ export default class ActionFactoryRegistrationCategory {
 			(actionData) => new MoveCategoryStartedAction(actionData.movedCategoryId));
 		ACEController.registerFactory('category.MoveCategoryAction', 
 			(actionData) => new MoveCategoryAction());
-		ACEController.registerFactory('category.InviteUserClickAction', 
-			(actionData) => new InviteUserClickAction());
-		ACEController.registerFactory('category.CloseInviteUserAction', 
-			(actionData) => new CloseInviteUserAction());
-		ACEController.registerFactory('category.InvitedUsernameChangedAction', 
-			(actionData) => new InvitedUsernameChangedAction(actionData.invitedUsername));
-		ACEController.registerFactory('category.InviteUserAction', 
-			(actionData) => new InviteUserAction());
-		ACEController.registerFactory('category.RevokeUserAccessAction', 
-			(actionData) => new RevokeUserAccessAction(actionData.revokedUserId));
 	}
 
 }

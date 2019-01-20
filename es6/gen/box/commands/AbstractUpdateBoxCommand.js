@@ -1,5 +1,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import UpdateBoxOkEvent from "../../../gen/box/events/UpdateBoxOkEvent";
 import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
 
 export default class AbstractUpdateBoxCommand extends Command {
@@ -13,6 +14,7 @@ export default class AbstractUpdateBoxCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
+			promises.push(new UpdateBoxOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadBoxStatisticsAction(this.commandData.boxId)).publish());
 			break;
 		default:

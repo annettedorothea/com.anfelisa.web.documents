@@ -45,7 +45,7 @@ export default class DuplicateCardItem extends React.Component {
 
     render() {
         return (
-            <tr>
+            <tr className="notPrinted">
                 <td/>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted()}

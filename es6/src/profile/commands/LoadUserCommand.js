@@ -1,4 +1,6 @@
 import AbstractLoadUserCommand from "../../../gen/profile/commands/AbstractLoadUserCommand";
+import {initSelected} from "../../category/utils/CategoryTreeUtils";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class LoadUserCommand extends AbstractLoadUserCommand {
 
@@ -7,8 +9,14 @@ export default class LoadUserCommand extends AbstractLoadUserCommand {
     }
 
     handleResponse(resolve, reject) {
-        this.commandData.showDeleteUserDialog = false;
     	this.commandData.outcome = this.ok;
+    	this.commandData.view = "profile";
+        this.commandData.data = {
+            username: this.commandData.username,
+            email: this.commandData.email,
+            role: getState().loggedInUser.role,
+            showDeleteUserDialog: false
+        };
     	resolve();
     }
     handleError(resolve, reject) {

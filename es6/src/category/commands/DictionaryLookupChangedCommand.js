@@ -1,10 +1,10 @@
-import AbstractDictionaryLookupChangedCommand from "../../../gen/category/commands/AbstractDictionaryLookupChangedCommand";
-import {getAppState} from "../../app/App";
+import AbstractDictionaryLookupChangedCommand
+    from "../../../gen/category/commands/AbstractDictionaryLookupChangedCommand";
+import {getState} from "../../../gen/ace/AppState";
 
 export default class DictionaryLookupChangedCommand extends AbstractDictionaryLookupChangedCommand {
     execute() {
-        const appState = getAppState();
-        this.commandData.dictionaryLookup = !appState.data.dictionaryLookup;
+        this.commandData.dictionaryLookup = !getState().data.categoryTree.dictionaryLookup;
     	this.commandData.outcome = this.ok;
     }
 }

@@ -1,40 +1,41 @@
 import ACEController from "../ace/ACEController";
-import CategoryTreeView from "../../src/category/views/CategoryTreeView";
-import CardListView from "../../src/card/views/CardListView";
+import * as AppState from "../ace/AppState";
 
 export default class EventListenerRegistrationCategory {
 
 	static init() {
-		ACEController.registerListener('category.LoadCategoryTreeOkEvent', CategoryTreeView.mergeDataAndRoute);
-		ACEController.registerListener('category.ExpandTreeItemOkEvent', CategoryTreeView.setCategoryList);
-		ACEController.registerListener('category.CollapseTreeItemOkEvent', CategoryTreeView.setCategoryList);
-		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', CategoryTreeView.setCategoryList);
-		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', CategoryTreeView.setSelectedCategory);
-		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', CardListView.hide);
-		ACEController.registerListener('category.SelectTreeItemOkEvent', CategoryTreeView.setSelectedCategory);
-		ACEController.registerListener('category.DeselectTreeItemOkEvent', CategoryTreeView.setSelectedCategory);
-		ACEController.registerListener('category.DeselectTreeItemOkEvent', CardListView.hide);
-		ACEController.registerListener('category.NewCategoryClickOkEvent', CategoryTreeView.setCategoryDialogData);
-		ACEController.registerListener('category.CancelNewCategoryOkEvent', CategoryTreeView.setCategoryDialogData);
-		ACEController.registerListener('category.CategoryNameChangedOkEvent', CategoryTreeView.mergeCategoryDialogData);
-		ACEController.registerListener('category.DictionaryLookupChangedOkEvent', CategoryTreeView.mergeCategoryDialogData);
-		ACEController.registerListener('category.GivenLanguageChangedOkEvent', CategoryTreeView.mergeCategoryDialogData);
-		ACEController.registerListener('category.WantedLanguageChangedOkEvent', CategoryTreeView.mergeCategoryDialogData);
-		ACEController.registerListener('category.CreateCategoryOkEvent', CategoryTreeView.setCategoryDialogData);
-		ACEController.registerListener('category.CreateCategoryErrorEvent', CategoryTreeView.setCategoryDialogData);
-		ACEController.registerListener('category.DeleteCategoryClickOkEvent', CategoryTreeView.setDisplayDeleteCategory);
-		ACEController.registerListener('category.CancelDeleteCategoryOkEvent', CategoryTreeView.setDisplayDeleteCategory);
-		ACEController.registerListener('category.DeleteCategoryOkEvent', CategoryTreeView.setDisplayDeleteCategory);
-		ACEController.registerListener('category.DeleteCategoryErrorEvent', CategoryTreeView.setDisplayDeleteCategory);
-		ACEController.registerListener('category.EditCategoryClickOkEvent', CategoryTreeView.setCategoryDialogData);
-		ACEController.registerListener('category.CancelEditCategoryOkEvent', CategoryTreeView.setCategoryDialogData);
-		ACEController.registerListener('category.UpdateCategoryErrorEvent', CategoryTreeView.setCategoryDialogData);
-		ACEController.registerListener('category.CheckDropAllowedOkEvent', CategoryTreeView.setDropData);
-		ACEController.registerListener('category.MoveCategoryStartedOkEvent', CategoryTreeView.setMovedCategory);
-		ACEController.registerListener('category.MoveCategoryOkEvent', CategoryTreeView.resetMovedCategory);
-		ACEController.registerListener('category.InviteUserClickOkEvent', CategoryTreeView.setInviteUserDialogData);
-		ACEController.registerListener('category.CloseInviteUserOkEvent', CategoryTreeView.setInviteUserDialogData);
-		ACEController.registerListener('category.InvitedUsernameChangedOkEvent', CategoryTreeView.mergeInviteUserDialogData);
+		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_state_State_data);
+		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_state_State_view);
+		ACEController.registerListener('category.ExpandTreeItemOkEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList);
+		ACEController.registerListener('category.CollapseTreeItemOkEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList);
+		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList);
+		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', AppState.reset_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory);
+		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', AppState.reset_state_State_data_AuthorView_cardView_CardView_cardList);
+		ACEController.registerListener('category.SelectTreeItemOkEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory);
+		ACEController.registerListener('category.DeselectTreeItemOkEvent', AppState.reset_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory);
+		ACEController.registerListener('category.DeselectTreeItemOkEvent', AppState.reset_state_State_data_AuthorView_cardView_CardView_cardList);
+		ACEController.registerListener('category.NewCategoryClickOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.CancelNewCategoryOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.CategoryNameChangedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.DictionaryLookupChangedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.GivenLanguageChangedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.WantedLanguageChangedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.CreateCategoryOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.CreateCategoryErrorEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.DeleteCategoryClickOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.CancelDeleteCategoryOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.DeleteCategoryOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.DeleteCategoryErrorEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.EditCategoryClickOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.CancelEditCategoryOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.UpdateCategoryOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.UpdateCategoryErrorEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.InviteUserClickOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.CloseInviteUserOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.InvitedUsernameChangedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.CheckDropAllowedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.MoveCategoryStartedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
+		ACEController.registerListener('category.MoveCategoryOkEvent', AppState.reset_state_State_data_AuthorView_categoryTree_CategoryTree_movedCategory);
 	}
 
 }

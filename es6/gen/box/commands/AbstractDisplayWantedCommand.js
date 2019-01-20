@@ -1,27 +1,17 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import DisplayWantedAllEvent from "../../../gen/box/events/DisplayWantedAllEvent";
-import DisplayWantedNotAllEvent from "../../../gen/box/events/DisplayWantedNotAllEvent";
-import DisplayWantedImageEvent from "../../../gen/box/events/DisplayWantedImageEvent";
+import DisplayWantedOkEvent from "../../../gen/box/events/DisplayWantedOkEvent";
 
 export default class AbstractDisplayWantedCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.DisplayWantedCommand");
-        this.all = "all";
-        this.notAll = "notAll";
-        this.image = "image";
+        this.ok = "ok";
     }
 
     publishEvents() {
 		switch (this.commandData.outcome) {
-		case this.all:
-			new DisplayWantedAllEvent(this.commandData).publish();
-			break;
-		case this.notAll:
-			new DisplayWantedNotAllEvent(this.commandData).publish();
-			break;
-		case this.image:
-			new DisplayWantedImageEvent(this.commandData).publish();
+		case this.ok:
+			new DisplayWantedOkEvent(this.commandData).publish();
 			break;
 		default:
 			throw 'DisplayWantedCommand unhandled outcome: ' + this.commandData.outcome;

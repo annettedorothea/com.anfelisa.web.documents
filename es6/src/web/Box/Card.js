@@ -29,39 +29,39 @@ export default class Card extends React.Component {
             quality={quality}
             scoreButtonClick={this.scoreButtonClick}
             texts={this.props.texts}
-            disabled={!this.props.data.enableScoreButtons}
+            disabled={!this.props.enableScoreButtons}
             language={this.props.language}
         />;
     }
 
     render() {
-        const lines = this.props.data.wanted.split("\n");
+        const lines = this.props.wanted.split("\n");
         return (
             <div>
                 <Given
-                    given={this.props.data.given}
-                    lastQuality={this.props.data.lastQuality}
-                    scheduledDate={this.props.data.scheduledDate}
-                    scoredDate={this.props.data.scoredDate}
-                    count={this.props.data.count}
+                    given={this.props.given}
+                    lastQuality={this.props.lastQuality}
+                    scheduledDate={this.props.scheduledDate}
+                    scoredDate={this.props.scoredDate}
+                    count={this.props.count}
                     texts={this.props.texts}
                     language={this.props.language}
                 />
                 <Wanted
-                    wanted={this.props.data.wanted}
-                    lastQuality={this.props.data.lastQuality}
-                    index={this.props.data.index}
-                    image={this.props.data.image}
-                    displayImage={this.props.data.displayImage}
+                    wanted={this.props.wanted}
+                    lastQuality={this.props.lastQuality}
+                    index={this.props.index}
+                    image={this.props.image}
+                    displayImage={this.props.displayImage}
                 />
                 <div className="scheduleNextCheckbox">
                     <input
                         id="scheduleNextCheckbox"
                         type={"checkbox"}
-                        checked={this.props.data.scheduleNext}
-                        value={this.props.data.scheduleNext}
+                        checked={this.props.scheduleNext}
+                        value={this.props.scheduleNext}
                         onChange={this.onScheduleNextCheckedChange}
-                        disabled={this.props.data.myCards === this.props.data.totalCards}
+                        disabled={this.props.myCards === this.props.totalCards}
                     />
                     <label
                         htmlFor="scheduleNextCheckbox">{this.props.texts.queryCards.scheduleNext[this.props.language]}
@@ -69,7 +69,7 @@ export default class Card extends React.Component {
                 </div>
                 <div className="categoryLink">
                     <a
-                        onClick={() => new RouteAction(`#categories/${this.props.data.categoryId}`).apply()}
+                        onClick={() => new RouteAction(`#categories/${this.props.categoryId}`).apply()}
                     >{this.props.texts.queryCards.category[this.props.language]}</a>
                 </div>
                 <div className="scoreButtons">
@@ -87,8 +87,8 @@ export default class Card extends React.Component {
                     </div>
                     <div>
                         <button className="reinforce"
-                                onClick={() => new RouteAction(`#box/reinforce/${this.props.data.boxId}`).apply()}
-                                disabled={this.props.data.reinforceCards === 0}
+                                onClick={() => new RouteAction(`#box/reinforce/${this.props.boxId}`).apply()}
+                                disabled={this.props.reinforceCards === 0}
                         >
                             {this.props.texts.queryCards.reinforceCard[this.props.language]}
                         </button>

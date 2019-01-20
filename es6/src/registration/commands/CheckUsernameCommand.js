@@ -1,20 +1,24 @@
 import AbstractCheckUsernameCommand from "../../../gen/registration/commands/AbstractCheckUsernameCommand";
+import * as AppState  from "../../../gen/ace/AppState"
 
 export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
 
     initCommandData() {
+        this.commandData.username = AppState.get_state_State_data_Registration_username();
+        if (this.commandData.username.length === 0) {
+            this.commandData.outcome = this.empty;
+            return false;
+        }
         return true;
     }
+
     handleResponse(resolve) {
-        if (this.commandData.available === true) {
-            this.commandData.outcome = this.available;
-        } else {
-            this.commandData.outcome = this.notAvailable;
-        }
+        this.commandData.outcome = this.ok;
         resolve();
     }
+
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+        reject(this.commandData.error);
     }
 }
 

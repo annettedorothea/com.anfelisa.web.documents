@@ -2,27 +2,28 @@ ES6 login
 
 ACE 
 	UsernameChanged <username> 
-		on ok (Login.usernameChanged)
+		on ok (set common.state.State.data.Login.username)
 	
-	ToggleSaveInLocalStorage <saveInLocalStorage>
-		on ok (Login.toggleSaveInLocalStorage)
+	ToggleSaveInLocalStorage 
+		on ok (set common.state.State.data.Login.saveInLocalStorage)
 	
 	Login <password> 
-		on saveInLocalStorage ( common.Common.initUser common.Common.saveInLocalStorage ) triggers ( GetRole )
-		on doNotSaveInLocalStorage ( common.Common.initUser ) triggers ( GetRole )
+		on saveInLocalStorage ( 
+			set common.state.State.loggedInUser 
+			set common.state.State.username 
+			set common.state.State.password
+		) triggers ( GetRole )
+		on doNotSaveInLocalStorage ( 
+			set common.state.State.loggedInUser
+			reset common.state.State.username 
+			reset common.state.State.password
+		) triggers ( GetRole )
 	
-	 GetRole 
-	 	preCall (common.Common.displaySpinner) 
+	GetRole 
 	 	call com.anfelisa.user.GetRole
-	 	postCall (common.Common.hideSpinner) 
-		on ok (common.Common.initRole) triggers ( common.Route )
+		loadingFlag common.state.State.displaySpinner 
+		on ok (merge common.state.State.loggedInUser) triggers ( common.Route )
 		on unauthorized triggers ( common.Logout common.DisplayError)
 	
 
 
-views 
-	Login {
-		render
-		usernameChanged
-		toggleSaveInLocalStorage
-	}
