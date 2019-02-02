@@ -54,19 +54,6 @@ export default class Card extends React.Component {
                     image={this.props.image}
                     displayImage={this.props.displayImage}
                 />
-                <div className="scheduleNextCheckbox">
-                    <input
-                        id="scheduleNextCheckbox"
-                        type={"checkbox"}
-                        checked={this.props.scheduleNext}
-                        value={this.props.scheduleNext}
-                        onChange={this.onScheduleNextCheckedChange}
-                        disabled={this.props.myCards === this.props.totalCards}
-                    />
-                    <label
-                        htmlFor="scheduleNextCheckbox">{this.props.texts.queryCards.scheduleNext[this.props.language]}
-                    </label>
-                </div>
                 <div className="categoryLink">
                     <a
                         onClick={() => new RouteAction(`#categories/${this.props.categoryId}`).apply()}

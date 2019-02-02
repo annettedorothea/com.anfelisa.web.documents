@@ -81,45 +81,37 @@ appState state : State {
 		text
 	}
 	
-	data 
-	: Login {
+	data : Login {
 		username
 		saveInLocalStorage
-	} |
-	: Registration {
+	} |	: Registration {
 		displayUsernameSpinner
         available
         username
         email
         emailInvalid
         passwordMismatch
-	} |
-	: ForgotPassword {
+	} |	: ForgotPassword {
 		username
-	} |
-	: ResetPassword {
+	} |	: ResetPassword {
 		token
 		passwordMismatch
-	} |
-	: Dashboard {
+	} |	: Dashboard {
     	boxList list
         deleteBox : DeleteBox {
             confirmDelete
             boxId
         }
-	} |
-	: Profile {
+	} |	: Profile {
 		username
 		email
 		role
 		showDeleteUserDialog
-	} |
-	: UserList {
+	} |	: UserList {
 		userList list
 		showDeleteUserDialog
 		usernameToBeDeleted
-	} |
-	: Card {
+	} |	: Card {
 		index
 		enableScoreButtons
 		displayImage
@@ -139,6 +131,7 @@ appState state : State {
 		categoryName
 		daysBehindSchedule
 		maxInterval
+		maxCardsPerDay
 		myCards
 		quality0Count
 		quality1Count
@@ -151,10 +144,11 @@ appState state : State {
 		totalCards
 		editMaxInterval
 		editedMaxInterval
+		editMaxCardsPerDay
+		editedMaxCardsPerDay
 		reinforceCardId
 		changeDate
-	} |
-	: AuthorView {
+	} |	: AuthorView {
 		categoryTree : CategoryTree {
 			selectedCategory
 			categoryList

@@ -3,6 +3,9 @@ import CreateBoxAction from "../../src/box/actions/CreateBoxAction";
 import EditBoxAction from "../../src/box/actions/EditBoxAction";
 import CancelEditBoxAction from "../../src/box/actions/CancelEditBoxAction";
 import MaxIntervalChangedAction from "../../src/box/actions/MaxIntervalChangedAction";
+import EditMaxCardsPerDayAction from "../../src/box/actions/EditMaxCardsPerDayAction";
+import CancelEditMaxCardsPerDayAction from "../../src/box/actions/CancelEditMaxCardsPerDayAction";
+import MaxCardsPerDayChangedAction from "../../src/box/actions/MaxCardsPerDayChangedAction";
 import UpdateBoxAction from "../../src/box/actions/UpdateBoxAction";
 import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
 import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
@@ -35,6 +38,18 @@ export function cancelEditBox() {
 
 export function maxIntervalChanged(editedMaxInterval) {
     new MaxIntervalChangedAction(editedMaxInterval).apply();
+}
+
+export function editMaxCardsPerDay() {
+    new EditMaxCardsPerDayAction().apply();
+}
+
+export function cancelEditMaxCardsPerDay() {
+    new CancelEditMaxCardsPerDayAction().apply();
+}
+
+export function maxCardsPerDayChanged(editedMaxCardsPerDay) {
+    new MaxCardsPerDayChangedAction(editedMaxCardsPerDay).apply();
 }
 
 export function updateBox() {

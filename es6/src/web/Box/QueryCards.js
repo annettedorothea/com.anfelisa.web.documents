@@ -20,20 +20,7 @@ export default class QueryCards extends React.Component {
         } else if (this.props.reinforceCardId) {
             content = <ReinforceCard {...this.props}/>
         } else {
-            content = <div className="buttons">
-                <button
-                    onClick={() => new ScheduleNextCardAction().apply()}
-                    disabled={this.props.myCards === this.props.totalCards}
-                >
-                    {this.props.texts.queryCards.scheduleNextCard[this.props.language]}
-                </button>
-                <button
-                    onClick={() => new RouteAction(`#box/reinforce/${this.props.boxId}`).apply()}
-                    disabled={this.props.reinforceCards === 0}
-                >
-                    {this.props.texts.queryCards.reinforceCard[this.props.language]}
-                </button>
-            </div>;
+            content = <div className="buttons">{this.props.texts.queryCards.empty[this.props.language]}</div>;
         }
         return (
             <div className="box">

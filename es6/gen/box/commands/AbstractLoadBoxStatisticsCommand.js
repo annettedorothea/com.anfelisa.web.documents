@@ -32,6 +32,7 @@ export default class AbstractLoadBoxStatisticsCommand extends Command {
 				this.commandData.categoryName = data.categoryName;
 				this.commandData.daysBehindSchedule = data.daysBehindSchedule;
 				this.commandData.maxInterval = data.maxInterval;
+				this.commandData.maxCardsPerDay = data.maxCardsPerDay;
 				this.commandData.myCards = data.myCards;
 				this.commandData.quality0Count = data.quality0Count;
 				this.commandData.quality1Count = data.quality1Count;

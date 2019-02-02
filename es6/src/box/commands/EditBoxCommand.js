@@ -6,6 +6,7 @@ export default class EditBoxCommand extends AbstractEditBoxCommand {
         const maxInterval = getState().data.maxInterval
         this.commandData.editedMaxInterval = maxInterval ? maxInterval : "";
         this.commandData.editMaxInterval = true;
+        this.commandData.editMaxCardsPerDay = false;
         this.commandData.outcome = this.ok;
     }
 }

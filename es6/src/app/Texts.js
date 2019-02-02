@@ -24,6 +24,15 @@ export const Texts = {
                 de: "Löschen"
             }
         },
+        maxCardsPerDayOne: {
+            de: "eine Karte"
+        },
+        maxCardsPerDayMore: {
+            de: "{0} Karten"
+        },
+        maxCardsPerDayNull: {
+            de: "keine"
+        },
         maxIntervalOne: {
             de: "ein Tag"
         },
@@ -33,8 +42,11 @@ export const Texts = {
         maxIntervalNull: {
             de: "keine"
         },
+        maxCardsPerDay: {
+            de: "Begrenzung (Karten)"
+        },
         maxInterval: {
-            de: "Begrenzung"
+            de: "Begrenzung (Tage)"
         },
         myCards: {
             de: "Karten in der Lernkartei"
@@ -448,6 +460,9 @@ export const Texts = {
         },
         count: {
             de: "{0}x abgefragt"
+        },
+        empty: {
+            de: "Du hast noch keine Karten hinzugefügt. Gehe in die Lernkartei und wähle die Karten aus, die Du heute lernen willst!"
         },
         never: {
             de: "noch nie abgefragt"

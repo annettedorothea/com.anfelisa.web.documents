@@ -10,6 +10,9 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.EditBoxOkEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.CancelEditBoxOkEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.MaxIntervalChangedOkEvent', AppState.set_state_State_data_Card_editedMaxInterval);
+		ACEController.registerListener('box.EditMaxCardsPerDayOkEvent', AppState.merge_state_State_data);
+		ACEController.registerListener('box.CancelEditMaxCardsPerDayOkEvent', AppState.merge_state_State_data);
+		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_state_State_data_Card_editedMaxCardsPerDay);
 		ACEController.registerListener('box.UpdateBoxOkEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.DeleteBoxClickOkEvent', AppState.set_state_State_data_Dashboard_deleteBox);
 		ACEController.registerListener('box.CancelDeleteBoxOkEvent', AppState.reset_state_State_data_Dashboard_deleteBox);

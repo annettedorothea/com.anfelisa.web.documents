@@ -329,6 +329,9 @@ export function merge_state_State_data(eventData) {
 	if (eventData.maxInterval !== undefined) {
 		state.data.maxInterval = eventData.maxInterval;
 	}
+	if (eventData.maxCardsPerDay !== undefined) {
+		state.data.maxCardsPerDay = eventData.maxCardsPerDay;
+	}
 	if (eventData.myCards !== undefined) {
 		state.data.myCards = eventData.myCards;
 	}
@@ -364,6 +367,12 @@ export function merge_state_State_data(eventData) {
 	}
 	if (eventData.editedMaxInterval !== undefined) {
 		state.data.editedMaxInterval = eventData.editedMaxInterval;
+	}
+	if (eventData.editMaxCardsPerDay !== undefined) {
+		state.data.editMaxCardsPerDay = eventData.editMaxCardsPerDay;
+	}
+	if (eventData.editedMaxCardsPerDay !== undefined) {
+		state.data.editedMaxCardsPerDay = eventData.editedMaxCardsPerDay;
 	}
 	if (eventData.reinforceCardId !== undefined) {
 		state.data.reinforceCardId = eventData.reinforceCardId;
@@ -851,6 +860,17 @@ export function get_state_State_data_Card_maxInterval() {
 export function reset_state_State_data_Card_maxInterval() {
 	state.data.maxInterval = null;
 }
+export function set_state_State_data_Card_maxCardsPerDay(eventData) {
+	state.data.maxCardsPerDay = eventData.maxCardsPerDay;
+}
+
+export function get_state_State_data_Card_maxCardsPerDay() {
+	return state.data.maxCardsPerDay;
+}
+
+export function reset_state_State_data_Card_maxCardsPerDay() {
+	state.data.maxCardsPerDay = null;
+}
 export function set_state_State_data_Card_myCards(eventData) {
 	state.data.myCards = eventData.myCards;
 }
@@ -982,6 +1002,28 @@ export function get_state_State_data_Card_editedMaxInterval() {
 
 export function reset_state_State_data_Card_editedMaxInterval() {
 	state.data.editedMaxInterval = null;
+}
+export function set_state_State_data_Card_editMaxCardsPerDay(eventData) {
+	state.data.editMaxCardsPerDay = eventData.editMaxCardsPerDay;
+}
+
+export function get_state_State_data_Card_editMaxCardsPerDay() {
+	return state.data.editMaxCardsPerDay;
+}
+
+export function reset_state_State_data_Card_editMaxCardsPerDay() {
+	state.data.editMaxCardsPerDay = null;
+}
+export function set_state_State_data_Card_editedMaxCardsPerDay(eventData) {
+	state.data.editedMaxCardsPerDay = eventData.editedMaxCardsPerDay;
+}
+
+export function get_state_State_data_Card_editedMaxCardsPerDay() {
+	return state.data.editedMaxCardsPerDay;
+}
+
+export function reset_state_State_data_Card_editedMaxCardsPerDay() {
+	state.data.editedMaxCardsPerDay = null;
 }
 export function set_state_State_data_Card_reinforceCardId(eventData) {
 	state.data.reinforceCardId = eventData.reinforceCardId;

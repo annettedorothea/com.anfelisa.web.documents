@@ -4,6 +4,9 @@ import CreateBoxAction from "../../src/box/actions/CreateBoxAction";
 import EditBoxAction from "../../src/box/actions/EditBoxAction";
 import CancelEditBoxAction from "../../src/box/actions/CancelEditBoxAction";
 import MaxIntervalChangedAction from "../../src/box/actions/MaxIntervalChangedAction";
+import EditMaxCardsPerDayAction from "../../src/box/actions/EditMaxCardsPerDayAction";
+import CancelEditMaxCardsPerDayAction from "../../src/box/actions/CancelEditMaxCardsPerDayAction";
+import MaxCardsPerDayChangedAction from "../../src/box/actions/MaxCardsPerDayChangedAction";
 import UpdateBoxAction from "../../src/box/actions/UpdateBoxAction";
 import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
 import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
@@ -31,6 +34,12 @@ export default class ActionFactoryRegistrationBox {
 			(actionData) => new CancelEditBoxAction());
 		ACEController.registerFactory('box.MaxIntervalChangedAction', 
 			(actionData) => new MaxIntervalChangedAction(actionData.editedMaxInterval));
+		ACEController.registerFactory('box.EditMaxCardsPerDayAction', 
+			(actionData) => new EditMaxCardsPerDayAction());
+		ACEController.registerFactory('box.CancelEditMaxCardsPerDayAction', 
+			(actionData) => new CancelEditMaxCardsPerDayAction());
+		ACEController.registerFactory('box.MaxCardsPerDayChangedAction', 
+			(actionData) => new MaxCardsPerDayChangedAction(actionData.editedMaxCardsPerDay));
 		ACEController.registerFactory('box.UpdateBoxAction', 
 			(actionData) => new UpdateBoxAction());
 		ACEController.registerFactory('box.DeleteBoxClickAction', 

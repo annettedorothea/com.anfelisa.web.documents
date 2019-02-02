@@ -15,6 +15,7 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
         this.commandData.enableScoreButtons = false;
         this.commandData.displayImage = false;
         this.commandData.editMaxInterval = false;
+        this.commandData.editMaxCardsPerDay = false;
         this.commandData.scheduleNext = appState.data === undefined || appState.data.scheduleNext === undefined ? false : appState.data.scheduleNext;
         if (this.commandData.scheduledCardId) {
             this.commandData.outcome = this.ok;

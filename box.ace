@@ -26,6 +26,16 @@ ACE
 		on ok (set common.state.State.data.Card.editedMaxInterval)
 		on invalid
 	
+	EditMaxCardsPerDay
+		on ok (merge common.state.State.data)
+	
+	CancelEditMaxCardsPerDay 
+		on ok (merge common.state.State.data)
+	
+	MaxCardsPerDayChanged <editedMaxCardsPerDay>
+		on ok (set common.state.State.data.Card.editedMaxCardsPerDay)
+		on invalid
+	
 	UpdateBox 
 		call com.anfelisa.box.UpdateBox
 		loadingFlag common.state.State.displaySpinner 
@@ -67,7 +77,7 @@ ACE
 		call com.anfelisa.box.ScheduleNextCard
 		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (LoadNextCard)
-	
+
 	ToggleScheduleNext 
 		on ok (merge common.state.State.data)
 	

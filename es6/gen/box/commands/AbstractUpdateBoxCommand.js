@@ -28,6 +28,7 @@ export default class AbstractUpdateBoxCommand extends Command {
 			let queryParams = [];
 	        let payload = {	
 	        	maxInterval : this.commandData.maxInterval,
+	        	maxCardsPerDay : this.commandData.maxCardsPerDay,
 	        	boxId : this.commandData.boxId,
 	        	};
 
