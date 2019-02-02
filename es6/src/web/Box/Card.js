@@ -35,7 +35,6 @@ export default class Card extends React.Component {
     }
 
     render() {
-        const lines = this.props.wanted.split("\n");
         return (
             <div>
                 <Given

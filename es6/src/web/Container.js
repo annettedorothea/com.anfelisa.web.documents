@@ -35,7 +35,7 @@ export default class Container extends React.Component {
                             Annette Pohl &middot; St.-Josef-Str. 20 &middot; 56068 Koblenz
                         </p>
                         <p>
-                            0261 1393793 &middot; <a href="mailto:info@anfelisa.com">info@anfelisa.com</a>
+                            0261 1393793 &middot; <a href="mailto:info@anfelisa.de">info@anfelisa.de</a>
                         </p>
                         <p>
                             {this.state.texts.container.version[this.state.language]} {AppUtils.getClientVersion()}

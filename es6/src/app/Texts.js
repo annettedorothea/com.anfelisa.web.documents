@@ -452,6 +452,9 @@ export const Texts = {
         }
     },
     queryCards: {
+        ahead: {
+            de: "Du bist für heute fertig!"
+        },
         back: {
             de: "Zurück"
         },
@@ -466,6 +469,9 @@ export const Texts = {
         },
         never: {
             de: "noch nie abgefragt"
+        },
+        reinforce: {
+            de: "Du könntest die Karten von heute noch festigen..."
         },
         reinforceCard: {
             de: "Festigen"

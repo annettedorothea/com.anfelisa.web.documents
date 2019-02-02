@@ -38,6 +38,12 @@ export default class QueryCards extends React.Component {
                     language={this.props.language}
                 />
 
+                {this.props.todaysCards === 0 &&
+                <h2>
+                    {this.props.texts.queryCards.ahead[this.props.language]}
+                    {this.props.reinforceCards > 0 && <span> {this.props.texts.queryCards.reinforce[this.props.language]}</span>
+                    }
+                </h2>}
                 {content}
 
                 <div className="infoAndStatistics">
