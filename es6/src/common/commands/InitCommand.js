@@ -1,16 +1,13 @@
 import AbstractInitCommand from "../../../gen/common/commands/AbstractInitCommand";
-import * as AppState from "../../../gen/ace/AppState";
+
 
 export default class InitCommand extends AbstractInitCommand {
     execute() {
-        const username = AppState.get_state_State_username();
-        const password = AppState.get_state_State_password();
-        this.commandData.hash = AppState.get_state_State_hash();
         this.commandData.language = "de";
-        if (username && password) {
+        if (this.commandData.username && this.commandData.password) {
             this.commandData.loggedInUser = {
-                username,
-                password
+                username: this.commandData.username,
+                password: this.commandData.password
             };
             this.commandData.outcome = this.user;
         } else {

@@ -1,12 +1,17 @@
 ES6 common
 
 ACE 
-Init
+Init<hash, username, password>
 	on user ( 
 		set state.State.loggedInUser 
 		set state.State.language
+		set state.State.hash
 	) triggers ( InitialLogin )
-	on noUser ( set state.State.language) triggers ( RouteChanged )
+	on noUser ( 
+		reset state.State.loggedInUser 
+		set state.State.language
+		set state.State.hash
+	) triggers ( RouteChanged )
 	
 RouteChanged 
 	on login ( 
@@ -37,7 +42,7 @@ RouteChanged
 Route <hash> 
 	on ok ( set state.State.hash )
 	
-InitialLogin <hash>
+InitialLogin
 	call com.anfelisa.user.GetRole
 	loadingFlag state.State.displaySpinner 
 	on ok (set state.State.loggedInUser.LoggedInUser.role) triggers ( RouteChanged )

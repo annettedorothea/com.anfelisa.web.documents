@@ -1,5 +1,5 @@
 import ACEController from "../../gen/ace/ACEController";
-import uuid from "uuid";
+//import uuid from "uuid/v1";
 import CryptoJS from "crypto-js";
 import * as AppState from "../../gen/ace/AppState";
 import * as App from "./App";
@@ -11,7 +11,7 @@ export default class AppUtils {
     static start() {
         AppUtils.loadSettings().then((settings) => {
             AppUtils.settings = settings;
-            init();
+            init(location.hash, localStorage.getItem("username"), localStorage.getItem("password"));
         });
     }
 
@@ -226,7 +226,7 @@ export default class AppUtils {
     }
 
     static createUUID() {
-        return uuid.v4();
+        return new Date();
     }
 
     static displayUnexpectedError(error) {

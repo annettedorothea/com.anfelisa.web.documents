@@ -16,7 +16,7 @@ export default class AbstractInitCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.user:
 			new InitUserEvent(this.commandData).publish();
-			new TriggerAction(new InitialLoginAction(this.commandData.hash)).publish();
+			new TriggerAction(new InitialLoginAction()).publish();
 			break;
 		case this.noUser:
 			new InitNoUserEvent(this.commandData).publish();

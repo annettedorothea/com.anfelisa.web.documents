@@ -4,8 +4,8 @@ import * as AppState from "../../ace/AppState";
 
 export default class AbstractInitialLoginAction extends Action {
 
-    constructor( hash) {
-        super({hash}, 'common.InitialLoginAction');
+    constructor() {
+        super({}, 'common.InitialLoginAction');
 		this.postCall = this.postCall.bind(this);
     }
     

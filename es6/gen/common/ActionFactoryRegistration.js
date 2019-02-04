@@ -13,13 +13,13 @@ export default class ActionFactoryRegistrationCommon {
 
 	static init() {
 		ACEController.registerFactory('common.InitAction', 
-			(actionData) => new InitAction());
+			(actionData) => new InitAction(actionData.hash, actionData.username, actionData.password));
 		ACEController.registerFactory('common.RouteChangedAction', 
 			(actionData) => new RouteChangedAction());
 		ACEController.registerFactory('common.RouteAction', 
 			(actionData) => new RouteAction(actionData.hash));
 		ACEController.registerFactory('common.InitialLoginAction', 
-			(actionData) => new InitialLoginAction(actionData.hash));
+			(actionData) => new InitialLoginAction());
 		ACEController.registerFactory('common.LogoutAction', 
 			(actionData) => new LogoutAction());
 		ACEController.registerFactory('common.DisplayErrorAction', 

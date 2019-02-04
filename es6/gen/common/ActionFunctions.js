@@ -8,8 +8,8 @@ import DisplayErrorAndLogoutAction from "../../src/common/actions/DisplayErrorAn
 import DisplayMessageAction from "../../src/common/actions/DisplayMessageAction";
 import ClearToastAction from "../../src/common/actions/ClearToastAction";
 
-export function init() {
-    new InitAction().apply();
+export function init(hash, username, password) {
+    new InitAction(hash, username, password).apply();
 }
 
 export function routeChanged() {
@@ -20,8 +20,8 @@ export function route(hash) {
     new RouteAction(hash).apply();
 }
 
-export function initialLogin(hash) {
-    new InitialLoginAction(hash).apply();
+export function initialLogin() {
+    new InitialLoginAction().apply();
 }
 
 export function logout() {

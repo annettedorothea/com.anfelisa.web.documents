@@ -6,7 +6,10 @@ export default class EventListenerRegistrationCommon {
 	static init() {
 		ACEController.registerListener('common.InitUserEvent', AppState.set_state_State_loggedInUser);
 		ACEController.registerListener('common.InitUserEvent', AppState.set_state_State_language);
+		ACEController.registerListener('common.InitUserEvent', AppState.set_state_State_hash);
+		ACEController.registerListener('common.InitNoUserEvent', AppState.reset_state_State_loggedInUser);
 		ACEController.registerListener('common.InitNoUserEvent', AppState.set_state_State_language);
+		ACEController.registerListener('common.InitNoUserEvent', AppState.set_state_State_hash);
 		ACEController.registerListener('common.RouteChangedLoginEvent', AppState.set_state_State_data);
 		ACEController.registerListener('common.RouteChangedLoginEvent', AppState.set_state_State_view);
 		ACEController.registerListener('common.RouteChangedRegistrationEvent', AppState.set_state_State_data);
