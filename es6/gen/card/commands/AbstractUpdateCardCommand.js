@@ -33,7 +33,7 @@ export default class AbstractUpdateCardCommand extends Command {
 	        	wanted : this.commandData.wanted,
 	        	};
 
-			this.httpPut(`/api/card/update`, true, queryParams, payload).then((data) => {
+			this.httpPut(this.adjustedUrl(`/api/card/update`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

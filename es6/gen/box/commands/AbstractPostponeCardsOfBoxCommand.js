@@ -29,7 +29,7 @@ export default class AbstractPostponeCardsOfBoxCommand extends Command {
 	        	today : this.commandData.today,
 	        	};
 
-			this.httpPut(`/api/cards/postpone`, true, queryParams, payload).then((data) => {
+			this.httpPut(this.adjustedUrl(`/api/cards/postpone`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

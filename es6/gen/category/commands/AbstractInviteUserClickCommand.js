@@ -26,7 +26,7 @@ export default class AbstractInviteUserClickCommand extends Command {
 			let queryParams = [];
 		    queryParams.push({key: "categoryId",value: this.commandData.categoryId});
 	        
-			this.httpGet(`/api/category/users`, true, queryParams).then((data) => {
+			this.httpGet(this.adjustedUrl(`/api/category/users`), true, queryParams).then((data) => {
 				this.commandData.userList = data.userList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

@@ -29,7 +29,7 @@ export default class AbstractCheckUsernameCommand extends Command {
 			let queryParams = [];
 		    queryParams.push({key: "username",value: this.commandData.username});
 	        
-			this.httpGet(`/api/users/username`, false, queryParams).then((data) => {
+			this.httpGet(this.adjustedUrl(`/api/users/username`), false, queryParams).then((data) => {
 				this.commandData.available = data.available;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

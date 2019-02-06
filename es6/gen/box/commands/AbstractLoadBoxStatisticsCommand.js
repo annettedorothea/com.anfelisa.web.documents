@@ -27,7 +27,7 @@ export default class AbstractLoadBoxStatisticsCommand extends Command {
 		    queryParams.push({key: "boxId",value: this.commandData.boxId});
 		    queryParams.push({key: "today",value: this.commandData.today});
 	        
-			this.httpGet(`/api/box/get`, true, queryParams).then((data) => {
+			this.httpGet(this.adjustedUrl(`/api/box/get`), true, queryParams).then((data) => {
 				this.commandData.boxId = data.boxId;
 				this.commandData.categoryName = data.categoryName;
 				this.commandData.daysBehindSchedule = data.daysBehindSchedule;

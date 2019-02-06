@@ -28,7 +28,7 @@ export default class AbstractCreateBoxCommand extends Command {
 	        	categoryId : this.commandData.categoryId,
 	        	};
 
-			this.httpPost(`/api/box/create`, true, queryParams, payload).then((data) => {
+			this.httpPost(this.adjustedUrl(`/api/box/create`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

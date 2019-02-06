@@ -33,7 +33,7 @@ export default class AbstractCreateCardCommand extends Command {
 	        	categoryId : this.commandData.categoryId,
 	        	};
 
-			this.httpPost(`/api/card/create`, true, queryParams, payload).then((data) => {
+			this.httpPost(this.adjustedUrl(`/api/card/create`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

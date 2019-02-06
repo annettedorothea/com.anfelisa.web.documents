@@ -31,7 +31,7 @@ export default class AbstractConfirmEmailCommand extends Command {
 	        	username : this.commandData.username,
 	        	};
 
-			this.httpPut(`/api/users/confirm`, false, queryParams, payload).then((data) => {
+			this.httpPut(this.adjustedUrl(`/api/users/confirm`), false, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

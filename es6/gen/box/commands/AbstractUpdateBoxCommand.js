@@ -32,7 +32,7 @@ export default class AbstractUpdateBoxCommand extends Command {
 	        	boxId : this.commandData.boxId,
 	        	};
 
-			this.httpPut(`/api/box/update`, true, queryParams, payload).then((data) => {
+			this.httpPut(this.adjustedUrl(`/api/box/update`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

@@ -28,7 +28,7 @@ export default class AbstractScheduleNextCardCommand extends Command {
 	        	boxId : this.commandData.boxId,
 	        	};
 
-			this.httpPost(`/api/card/schedule-next`, true, queryParams, payload).then((data) => {
+			this.httpPost(this.adjustedUrl(`/api/card/schedule-next`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

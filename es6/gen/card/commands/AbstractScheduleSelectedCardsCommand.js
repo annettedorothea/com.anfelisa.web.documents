@@ -28,7 +28,7 @@ export default class AbstractScheduleSelectedCardsCommand extends Command {
 	        	cardIds : this.commandData.cardIds,
 	        	};
 
-			this.httpPost(`/api/cards/schedule`, true, queryParams, payload).then((data) => {
+			this.httpPost(this.adjustedUrl(`/api/cards/schedule`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

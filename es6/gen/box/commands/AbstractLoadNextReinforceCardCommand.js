@@ -33,7 +33,7 @@ export default class AbstractLoadNextReinforceCardCommand extends Command {
 			let queryParams = [];
 		    queryParams.push({key: "boxId",value: this.commandData.boxId});
 	        
-			this.httpGet(`/api/box/next-reinforce-card`, true, queryParams).then((data) => {
+			this.httpGet(this.adjustedUrl(`/api/box/next-reinforce-card`), true, queryParams).then((data) => {
 				this.commandData.categoryId = data.categoryId;
 				this.commandData.boxId = data.boxId;
 				this.commandData.changeDate = data.changeDate;

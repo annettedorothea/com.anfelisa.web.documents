@@ -29,7 +29,7 @@ export default class AbstractSaveRoleCommand extends Command {
 	        	editedUserId : this.commandData.editedUserId,
 	        	};
 
-			this.httpPut(`/api/user/role`, true, queryParams, payload).then((data) => {
+			this.httpPut(this.adjustedUrl(`/api/user/role`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

@@ -35,7 +35,7 @@ export default class AbstractDeleteCardCommand extends Command {
 			let queryParams = [];
 		    queryParams.push({key: "cardId",value: this.commandData.cardId});
 	        
-			this.httpDelete(`/api/card/delete`, true, queryParams).then((data) => {
+			this.httpDelete(this.adjustedUrl(`/api/card/delete`), true, queryParams).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

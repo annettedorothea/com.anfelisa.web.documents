@@ -25,7 +25,7 @@ export default class AbstractGetAllUsersCommand extends Command {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
 	        
-			this.httpGet(`/api/users/all`, true, queryParams).then((data) => {
+			this.httpGet(this.adjustedUrl(`/api/users/all`), true, queryParams).then((data) => {
 				this.commandData.userList = data.userList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

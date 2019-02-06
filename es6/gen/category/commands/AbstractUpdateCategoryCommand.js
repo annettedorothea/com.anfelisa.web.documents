@@ -39,7 +39,7 @@ export default class AbstractUpdateCategoryCommand extends Command {
 	        	wantedLanguage : this.commandData.wantedLanguage,
 	        	};
 
-			this.httpPut(`/api/category/update`, true, queryParams, payload).then((data) => {
+			this.httpPut(this.adjustedUrl(`/api/category/update`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

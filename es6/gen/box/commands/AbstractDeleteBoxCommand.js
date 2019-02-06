@@ -33,7 +33,7 @@ export default class AbstractDeleteBoxCommand extends Command {
 			let queryParams = [];
 		    queryParams.push({key: "boxId",value: this.commandData.boxId});
 	        
-			this.httpDelete(`/api/box/delete`, true, queryParams).then((data) => {
+			this.httpDelete(this.adjustedUrl(`/api/box/delete`), true, queryParams).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

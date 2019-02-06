@@ -27,7 +27,7 @@ export default class AbstractLoadCategoryTreeCommand extends Command {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
 	        
-			this.httpGet(`/api/category/tree`, true, queryParams).then((data) => {
+			this.httpGet(this.adjustedUrl(`/api/category/tree`), true, queryParams).then((data) => {
 				this.commandData.categoryList = data.categoryList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

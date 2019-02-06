@@ -39,7 +39,7 @@ export default class AbstractCreateCategoryCommand extends Command {
 	        	wantedLanguage : this.commandData.wantedLanguage,
 	        	};
 
-			this.httpPost(`/api/category/create`, true, queryParams, payload).then((data) => {
+			this.httpPost(this.adjustedUrl(`/api/category/create`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

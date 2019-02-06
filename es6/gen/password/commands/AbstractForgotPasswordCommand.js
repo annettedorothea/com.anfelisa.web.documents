@@ -31,7 +31,7 @@ export default class AbstractForgotPasswordCommand extends Command {
 	        	language : this.commandData.language,
 	        	};
 
-			this.httpPost(`/api/users/forgot-password`, false, queryParams, payload).then((data) => {
+			this.httpPost(this.adjustedUrl(`/api/users/forgot-password`), false, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

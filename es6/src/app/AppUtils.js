@@ -67,7 +67,7 @@ export default class AppUtils {
         App.render(AppState.getState());
     }
 
-    static httpGet(url, authorize, queryParams, adjustUrl = true) {
+    static httpGet(url, authorize, queryParams) {
         return new Promise((resolve, reject) => {
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
@@ -86,11 +86,7 @@ export default class AppUtils {
                 cache: 'no-cache'
             };
 
-            let adjustedUrl = url;
-            if (adjustUrl === true) {
-                adjustedUrl = AppUtils.url(url);
-            }
-            const completeUrl = adjustedUrl + AppUtils.queryParamString(adjustedUrl, queryParams);
+            const completeUrl = url + AppUtils.queryParamString(url, queryParams);
             const request = new Request(completeUrl, options);
 
             let status;
@@ -124,11 +120,11 @@ export default class AppUtils {
         });
     }
 
-    static httpChange(methodType, url, authorize, queryParams, data, adjustUrl = true) {
+    static httpChange(methodType, url, authorize, queryParams, data) {
         return new Promise((resolve, reject) => {
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
-            headers.append("Accept", "text/plain");
+            headers.append("Accept", "application/json");
             if (authorize === true) {
                 let authorization = AppUtils.basicAuth();
                 if (authorization !== undefined) {
@@ -144,11 +140,7 @@ export default class AppUtils {
                 body: JSON.stringify(data)
             };
 
-            let adjustedUrl = url;
-            if (adjustUrl === true) {
-                adjustedUrl = AppUtils.url(url);
-            }
-            const completeUrl = adjustedUrl + AppUtils.queryParamString(adjustedUrl, queryParams);
+            const completeUrl = url + AppUtils.queryParamString(url, queryParams);
             const request = new Request(completeUrl, options);
 
             let status;
@@ -203,14 +195,6 @@ export default class AppUtils {
             }
         }
         return queryString;
-    }
-
-    static url(url) {
-        if (ACEController.execution !== ACEController.E2E) {
-            return url;
-        } else {
-            return url.replace('api', 'replay');
-        }
     }
 
     static basicAuth() {

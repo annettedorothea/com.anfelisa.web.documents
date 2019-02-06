@@ -31,7 +31,7 @@ export default class AbstractMoveCategoryCommand extends Command {
 	        	targetCategoryId : this.commandData.targetCategoryId,
 	        	};
 
-			this.httpPut(`/api/category/move`, true, queryParams, payload).then((data) => {
+			this.httpPut(this.adjustedUrl(`/api/category/move`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

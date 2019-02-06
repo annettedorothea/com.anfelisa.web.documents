@@ -27,7 +27,7 @@ export default class AbstractRevokeUserAccessCommand extends Command {
 		    queryParams.push({key: "revokedUserId",value: this.commandData.revokedUserId});
 		    queryParams.push({key: "categoryId",value: this.commandData.categoryId});
 	        
-			this.httpDelete(`/api/category/revoke`, true, queryParams).then((data) => {
+			this.httpDelete(this.adjustedUrl(`/api/category/revoke`), true, queryParams).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

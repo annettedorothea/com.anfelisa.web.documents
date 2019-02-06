@@ -29,7 +29,7 @@ export default class AbstractInviteUserCommand extends Command {
 	        	invitedUsername : this.commandData.invitedUsername,
 	        	};
 
-			this.httpPost(`/api/category/invite`, true, queryParams, payload).then((data) => {
+			this.httpPost(this.adjustedUrl(`/api/category/invite`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;
