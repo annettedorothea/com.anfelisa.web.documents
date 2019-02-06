@@ -1,5 +1,5 @@
 import AbstractToggleUseDictionaryCommand from "../../../gen/card/commands/AbstractToggleUseDictionaryCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ToggleUseDictionaryCommand extends AbstractToggleUseDictionaryCommand {
     execute() {

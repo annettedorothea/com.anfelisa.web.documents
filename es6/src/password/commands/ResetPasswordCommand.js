@@ -1,5 +1,5 @@
 import AbstractResetPasswordCommand from "../../../gen/password/commands/AbstractResetPasswordCommand";
-import * as AppState from "../../../gen/ace/AppState";
+import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
 

@@ -1,5 +1,5 @@
 import AbstractCheckUsernameCommand from "../../../gen/registration/commands/AbstractCheckUsernameCommand";
-import * as AppState  from "../../../gen/ace/AppState"
+import * as AppState  from "../../../gen/ace/ReadAppState"
 
 export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
 

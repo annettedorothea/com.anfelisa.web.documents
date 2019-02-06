@@ -1,5 +1,5 @@
 import AbstractCreateCardCommand from "../../../gen/card/commands/AbstractCreateCardCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class CreateCardCommand extends AbstractCreateCardCommand {
 

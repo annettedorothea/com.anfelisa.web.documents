@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import DeleteCardCommand from "../../../src/card/commands/DeleteCardCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractDeleteCardAction extends Action {
 

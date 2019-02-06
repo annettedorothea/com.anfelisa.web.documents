@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import TranslateCommand from "../../../src/card/commands/TranslateCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractTranslateAction extends Action {
 

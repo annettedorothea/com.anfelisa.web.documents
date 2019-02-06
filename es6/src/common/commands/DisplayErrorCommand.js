@@ -1,5 +1,5 @@
 import AbstractDisplayErrorCommand from "../../../gen/common/commands/AbstractDisplayErrorCommand";
-import * as AppState from "../../../gen/ace/AppState";
+import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class DisplayErrorCommand extends AbstractDisplayErrorCommand {
     execute() {

@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import InviteUserClickCommand from "../../../src/category/commands/InviteUserClickCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractInviteUserClickAction extends Action {
 

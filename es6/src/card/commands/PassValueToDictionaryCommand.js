@@ -1,5 +1,5 @@
 import AbstractPassValueToDictionaryCommand from "../../../gen/card/commands/AbstractPassValueToDictionaryCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class PassValueToDictionaryCommand extends AbstractPassValueToDictionaryCommand {
     execute() {

@@ -1,5 +1,5 @@
 import AbstractEditMaxCardsPerDayCommand from "../../../gen/box/commands/AbstractEditMaxCardsPerDayCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class EditMaxCardsPerDayCommand extends AbstractEditMaxCardsPerDayCommand {
     execute() {

@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import ScoreReinforceCardCommand from "../../../src/box/commands/ScoreReinforceCardCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractScoreReinforceCardAction extends Action {
 

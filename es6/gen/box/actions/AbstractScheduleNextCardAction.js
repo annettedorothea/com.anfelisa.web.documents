@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import ScheduleNextCardCommand from "../../../src/box/commands/ScheduleNextCardCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractScheduleNextCardAction extends Action {
 

@@ -1,5 +1,5 @@
 import AbstractDeleteCardCommand from "../../../gen/card/commands/AbstractDeleteCardCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class DeleteCardCommand extends AbstractDeleteCardCommand {
 

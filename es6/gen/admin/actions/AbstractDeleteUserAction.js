@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import DeleteUserCommand from "../../../src/admin/commands/DeleteUserCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractDeleteUserAction extends Action {
 

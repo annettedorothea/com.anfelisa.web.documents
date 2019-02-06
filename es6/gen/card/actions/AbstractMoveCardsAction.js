@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import MoveCardsCommand from "../../../src/card/commands/MoveCardsCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractMoveCardsAction extends Action {
 

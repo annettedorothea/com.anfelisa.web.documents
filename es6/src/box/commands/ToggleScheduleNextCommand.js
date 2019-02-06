@@ -1,5 +1,5 @@
 import AbstractToggleScheduleNextCommand from "../../../gen/box/commands/AbstractToggleScheduleNextCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ToggleScheduleNextCommand extends AbstractToggleScheduleNextCommand {
     execute() {

@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import DeleteCategoryCommand from "../../../src/category/commands/DeleteCategoryCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractDeleteCategoryAction extends Action {
 

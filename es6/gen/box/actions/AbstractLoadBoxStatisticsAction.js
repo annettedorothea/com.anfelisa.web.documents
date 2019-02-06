@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import LoadBoxStatisticsCommand from "../../../src/box/commands/LoadBoxStatisticsCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractLoadBoxStatisticsAction extends Action {
 

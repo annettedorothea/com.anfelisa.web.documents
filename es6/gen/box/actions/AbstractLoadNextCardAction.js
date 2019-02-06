@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import LoadNextCardCommand from "../../../src/box/commands/LoadNextCardCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractLoadNextCardAction extends Action {
 

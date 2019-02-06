@@ -1,5 +1,5 @@
 import AbstractDisplayWantedCommand from "../../../gen/box/commands/AbstractDisplayWantedCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class DisplayWantedCommand extends AbstractDisplayWantedCommand {
     execute() {

@@ -1,5 +1,5 @@
 import AbstractDisplayErrorAndLogoutCommand from "../../../gen/common/commands/AbstractDisplayErrorAndLogoutCommand";
-import * as AppState from "../../../gen/ace/AppState";
+import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class DisplayErrorAndLogoutCommand extends AbstractDisplayErrorAndLogoutCommand {
     execute() {

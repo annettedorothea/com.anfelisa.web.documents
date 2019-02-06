@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import PostponeCardsOfBoxCommand from "../../../src/box/commands/PostponeCardsOfBoxCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractPostponeCardsOfBoxAction extends Action {
 

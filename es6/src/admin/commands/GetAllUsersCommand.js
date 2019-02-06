@@ -1,5 +1,4 @@
 import AbstractGetAllUsersCommand from "../../../gen/admin/commands/AbstractGetAllUsersCommand";
-import {getState} from "../../../gen/ace/AppState";
 
 export default class GetAllUsersCommand extends AbstractGetAllUsersCommand {
 

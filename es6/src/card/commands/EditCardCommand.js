@@ -1,5 +1,5 @@
 import AbstractEditCardCommand from "../../../gen/card/commands/AbstractEditCardCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class EditCardCommand extends AbstractEditCardCommand {
     execute() {

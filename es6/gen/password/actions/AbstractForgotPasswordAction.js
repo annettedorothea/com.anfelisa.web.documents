@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import ForgotPasswordCommand from "../../../src/password/commands/ForgotPasswordCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractForgotPasswordAction extends Action {
 

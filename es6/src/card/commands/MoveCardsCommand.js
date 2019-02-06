@@ -1,5 +1,5 @@
 import AbstractMoveCardsCommand from "../../../gen/card/commands/AbstractMoveCardsCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class MoveCardsCommand extends AbstractMoveCardsCommand {
 

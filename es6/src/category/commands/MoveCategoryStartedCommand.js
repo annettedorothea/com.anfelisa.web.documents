@@ -1,6 +1,6 @@
 import AbstractMoveCategoryStartedCommand from "../../../gen/category/commands/AbstractMoveCategoryStartedCommand";
 import {findCategory} from "../utils/CategoryTreeUtils";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class MoveCategoryStartedCommand extends AbstractMoveCategoryStartedCommand {
     execute() {

@@ -1,5 +1,5 @@
 import AbstractDisplayMessageCommand from "../../../gen/common/commands/AbstractDisplayMessageCommand";
-import * as AppState from "../../../gen/ace/AppState";
+import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class DisplayMessageCommand extends AbstractDisplayMessageCommand {
     execute() {

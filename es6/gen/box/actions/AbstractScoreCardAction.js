@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import ScoreCardCommand from "../../../src/box/commands/ScoreCardCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractScoreCardAction extends Action {
 

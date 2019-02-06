@@ -4,7 +4,7 @@ import AnonymousContainer from "./AnonymousContainer";
 import UserContainer from "./UserContainer";
 import ToastContainer from "./ToastContainer";
 import AppUtils from "../app/AppUtils";
-import * as AppState from "../../gen/ace/AppState";
+import * as AppState from "../../gen/ace/ReadAppState";
 
 export default class Container extends React.Component {
 

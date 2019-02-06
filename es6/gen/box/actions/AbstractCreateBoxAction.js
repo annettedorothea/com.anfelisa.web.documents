@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import CreateBoxCommand from "../../../src/box/commands/CreateBoxCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractCreateBoxAction extends Action {
 

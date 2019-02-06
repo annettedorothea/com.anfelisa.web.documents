@@ -1,5 +1,5 @@
 import AbstractRouteChangedCommand from "../../../gen/common/commands/AbstractRouteChangedCommand";
-import {get_state_State_hash, get_state_State_loggedInUser} from "../../../gen/ace/AppState"
+import {get_state_State_hash, get_state_State_loggedInUser} from "../../../gen/ace/ReadAppState"
 
 export default class RouteChangedCommand extends AbstractRouteChangedCommand {
     execute() {

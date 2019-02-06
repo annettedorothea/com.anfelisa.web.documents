@@ -1,6 +1,6 @@
 import AbstractCollapseTreeItemCommand from "../../../gen/category/commands/AbstractCollapseTreeItemCommand";
 import {findCategory, isCategoryChildOfParent} from "../utils/CategoryTreeUtils"
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class CollapseTreeItemCommand extends AbstractCollapseTreeItemCommand {
     execute() {

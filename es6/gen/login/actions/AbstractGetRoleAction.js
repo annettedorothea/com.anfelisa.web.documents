@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import GetRoleCommand from "../../../src/login/commands/GetRoleCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractGetRoleAction extends Action {
 

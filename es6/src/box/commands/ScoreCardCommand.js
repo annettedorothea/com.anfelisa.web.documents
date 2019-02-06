@@ -1,5 +1,5 @@
 import AbstractScoreCardCommand from "../../../gen/box/commands/AbstractScoreCardCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ScoreCardCommand extends AbstractScoreCardCommand {
 

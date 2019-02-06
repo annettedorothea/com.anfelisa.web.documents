@@ -1,6 +1,6 @@
 import AbstractExpandTreeItemCommand from "../../../gen/category/commands/AbstractExpandTreeItemCommand";
 import {findCategory} from "../utils/CategoryTreeUtils"
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ExpandTreeItemCommand extends AbstractExpandTreeItemCommand {
     execute() {

@@ -1,5 +1,5 @@
 import AbstractRevokeUserAccessCommand from "../../../gen/category/commands/AbstractRevokeUserAccessCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class RevokeUserAccessCommand extends AbstractRevokeUserAccessCommand {
 

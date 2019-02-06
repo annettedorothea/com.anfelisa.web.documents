@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import UpdateCardCommand from "../../../src/card/commands/UpdateCardCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractUpdateCardAction extends Action {
 

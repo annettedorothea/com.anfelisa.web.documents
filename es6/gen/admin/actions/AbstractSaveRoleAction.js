@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import SaveRoleCommand from "../../../src/admin/commands/SaveRoleCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractSaveRoleAction extends Action {
 

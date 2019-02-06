@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import DeleteBoxCommand from "../../../src/box/commands/DeleteBoxCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractDeleteBoxAction extends Action {
 

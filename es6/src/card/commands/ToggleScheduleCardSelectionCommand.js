@@ -1,5 +1,5 @@
 import AbstractToggleScheduleCardSelectionCommand from "../../../gen/card/commands/AbstractToggleScheduleCardSelectionCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ToggleScheduleCardSelectionCommand extends AbstractToggleScheduleCardSelectionCommand {
     execute() {

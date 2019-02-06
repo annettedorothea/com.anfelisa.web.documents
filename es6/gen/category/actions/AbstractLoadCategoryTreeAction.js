@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import LoadCategoryTreeCommand from "../../../src/category/commands/LoadCategoryTreeCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractLoadCategoryTreeAction extends Action {
 

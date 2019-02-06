@@ -1,5 +1,5 @@
 import AbstractLoginCommand from "../../../gen/login/commands/AbstractLoginCommand";
-import * as AppState from "../../../gen/ace/AppState";
+import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class LoginCommand extends AbstractLoginCommand {
     execute() {

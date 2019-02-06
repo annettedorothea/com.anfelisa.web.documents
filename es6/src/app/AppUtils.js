@@ -1,6 +1,6 @@
-import ACEController from "../../gen/ace/ACEController";
 import CryptoJS from "crypto-js";
-import * as AppState from "../../gen/ace/AppState";
+import * as ReadAppState from "../../gen/ace/ReadAppState";
+import * as WriteAppState from "../../gen/ace/WriteAppState";
 import * as App from "./App";
 import {Texts} from "./Texts"
 import {displayError, displayErrorAndLogout, init} from "../../gen/common/ActionFunctions"
@@ -60,11 +60,11 @@ export default class AppUtils {
             texts: Texts,
             message: null
         };
-        AppState.setInitialState(initialAppState);
+        WriteAppState.setInitialState(initialAppState);
     }
 
     static renderNewState() {
-        App.render(AppState.getState());
+        App.render(ReadAppState.getState());
     }
 
     static httpGet(url, authorize, queryParams) {
@@ -198,8 +198,8 @@ export default class AppUtils {
     }
 
     static basicAuth() {
-        const username = AppState.get_state_State_loggedInUser_LoggedInUser_username();
-        const password = AppState.get_state_State_loggedInUser_LoggedInUser_password();
+        const username = ReadAppState.get_state_State_loggedInUser_LoggedInUser_username();
+        const password = ReadAppState.get_state_State_loggedInUser_LoggedInUser_password();
         if (username !== undefined && password !== undefined) {
             const wordArray = CryptoJS.enc.Utf8.parse(username + ':' + password);
             const hash = CryptoJS.enc.Base64.stringify(wordArray);

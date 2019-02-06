@@ -1,6 +1,5 @@
 import AbstractInitCommand from "../../../gen/common/commands/AbstractInitCommand";
 
-
 export default class InitCommand extends AbstractInitCommand {
     execute() {
         this.commandData.language = "de";

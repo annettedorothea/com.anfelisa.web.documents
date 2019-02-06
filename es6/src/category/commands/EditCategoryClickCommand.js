@@ -1,5 +1,5 @@
 import AbstractEditCategoryClickCommand from "../../../gen/category/commands/AbstractEditCategoryClickCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class EditCategoryClickCommand extends AbstractEditCategoryClickCommand {
     execute() {

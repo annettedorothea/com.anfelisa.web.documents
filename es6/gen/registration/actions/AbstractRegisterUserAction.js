@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import RegisterUserCommand from "../../../src/registration/commands/RegisterUserCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractRegisterUserAction extends Action {
 

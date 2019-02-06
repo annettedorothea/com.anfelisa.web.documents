@@ -1,6 +1,6 @@
 import AbstractSelectTreeItemCommand from "../../../gen/category/commands/AbstractSelectTreeItemCommand";
 import {findCategory} from "../utils/CategoryTreeUtils"
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class SelectTreeItemCommand extends AbstractSelectTreeItemCommand {
     execute() {

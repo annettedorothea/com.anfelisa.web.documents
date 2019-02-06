@@ -1,5 +1,5 @@
 import AbstractScoreReinforceCardCommand from "../../../gen/box/commands/AbstractScoreReinforceCardCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ScoreReinforceCardCommand extends AbstractScoreReinforceCardCommand {
 

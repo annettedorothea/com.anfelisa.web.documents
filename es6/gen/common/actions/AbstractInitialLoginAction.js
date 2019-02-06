@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import InitialLoginCommand from "../../../src/common/commands/InitialLoginCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractInitialLoginAction extends Action {
 

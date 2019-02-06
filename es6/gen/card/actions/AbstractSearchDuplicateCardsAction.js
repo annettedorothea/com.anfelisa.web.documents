@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import SearchDuplicateCardsCommand from "../../../src/card/commands/SearchDuplicateCardsCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractSearchDuplicateCardsAction extends Action {
 

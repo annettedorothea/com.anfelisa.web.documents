@@ -1,5 +1,5 @@
 import AbstractItemDroppedCommand from "../../../gen/category/commands/AbstractItemDroppedCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ItemDroppedCommand extends AbstractItemDroppedCommand {
     execute() {

@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import MoveCategoryCommand from "../../../src/category/commands/MoveCategoryCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractMoveCategoryAction extends Action {
 

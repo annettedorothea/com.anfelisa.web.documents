@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import CreateCardCommand from "../../../src/card/commands/CreateCardCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractCreateCardAction extends Action {
 

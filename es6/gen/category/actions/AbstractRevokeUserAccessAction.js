@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import RevokeUserAccessCommand from "../../../src/category/commands/RevokeUserAccessCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractRevokeUserAccessAction extends Action {
 

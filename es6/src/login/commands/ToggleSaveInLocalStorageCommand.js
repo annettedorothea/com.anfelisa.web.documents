@@ -1,5 +1,5 @@
 import AbstractToggleSaveInLocalStorageCommand from "../../../gen/login/commands/AbstractToggleSaveInLocalStorageCommand";
-import * as AppState from "../../../gen/ace/AppState";
+import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class ToggleSaveInLocalStorageCommand extends AbstractToggleSaveInLocalStorageCommand {
     execute() {

@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import CheckUsernameCommand from "../../../src/registration/commands/CheckUsernameCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractCheckUsernameAction extends Action {
 

@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import CreateCategoryCommand from "../../../src/category/commands/CreateCategoryCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractCreateCategoryAction extends Action {
 

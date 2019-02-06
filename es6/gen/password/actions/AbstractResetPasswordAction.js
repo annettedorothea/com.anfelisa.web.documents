@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import ResetPasswordCommand from "../../../src/password/commands/ResetPasswordCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractResetPasswordAction extends Action {
 

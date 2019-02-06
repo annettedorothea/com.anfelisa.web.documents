@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import GetAllUsersCommand from "../../../src/admin/commands/GetAllUsersCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractGetAllUsersAction extends Action {
 

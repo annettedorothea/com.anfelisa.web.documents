@@ -1,5 +1,5 @@
 import AbstractCreateBoxCommand from "../../../gen/box/commands/AbstractCreateBoxCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class CreateBoxCommand extends AbstractCreateBoxCommand {
 

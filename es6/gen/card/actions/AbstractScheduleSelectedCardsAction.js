@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import ScheduleSelectedCardsCommand from "../../../src/card/commands/ScheduleSelectedCardsCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractScheduleSelectedCardsAction extends Action {
 

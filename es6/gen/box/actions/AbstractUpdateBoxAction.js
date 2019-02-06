@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import UpdateBoxCommand from "../../../src/box/commands/UpdateBoxCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractUpdateBoxAction extends Action {
 

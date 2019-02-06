@@ -1,5 +1,5 @@
 import AbstractTranslateCommand from "../../../gen/card/commands/AbstractTranslateCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class TranslateCommand extends AbstractTranslateCommand {
 

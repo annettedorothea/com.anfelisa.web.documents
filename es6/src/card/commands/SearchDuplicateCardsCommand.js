@@ -1,5 +1,5 @@
 import AbstractSearchDuplicateCardsCommand from "../../../gen/card/commands/AbstractSearchDuplicateCardsCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class SearchDuplicateCardsCommand extends AbstractSearchDuplicateCardsCommand {
 

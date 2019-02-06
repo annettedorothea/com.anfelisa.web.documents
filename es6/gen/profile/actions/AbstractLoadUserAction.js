@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import LoadUserCommand from "../../../src/profile/commands/LoadUserCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractLoadUserAction extends Action {
 

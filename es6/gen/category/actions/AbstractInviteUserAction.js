@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import InviteUserCommand from "../../../src/category/commands/InviteUserCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractInviteUserAction extends Action {
 

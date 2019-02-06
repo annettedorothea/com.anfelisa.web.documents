@@ -3,7 +3,7 @@ import {
     get_state_State_data_Registration_email,
     get_state_State_data_Registration_username,
     get_state_State_language
-} from "../../../gen/ace/AppState";
+} from "../../../gen/ace/ReadAppState";
 
 export default class RegisterUserCommand extends AbstractRegisterUserCommand {
 

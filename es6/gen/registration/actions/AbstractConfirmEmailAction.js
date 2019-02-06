@@ -1,6 +1,6 @@
 import Action from "../../ace/AsynchronousAction";
 import ConfirmEmailCommand from "../../../src/registration/commands/ConfirmEmailCommand";
-import * as AppState from "../../ace/AppState";
+import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractConfirmEmailAction extends Action {
 

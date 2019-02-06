@@ -1,6 +1,6 @@
 import AbstractLoadCategoryTreeCommand from "../../../gen/category/commands/AbstractLoadCategoryTreeCommand";
 import {findExpandedCategories, initExpandedState, initSelected} from "../utils/CategoryTreeUtils"
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCommand {
 

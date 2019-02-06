@@ -1,6 +1,6 @@
 import AbstractLoadUserCommand from "../../../gen/profile/commands/AbstractLoadUserCommand";
 import {initSelected} from "../../category/utils/CategoryTreeUtils";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class LoadUserCommand extends AbstractLoadUserCommand {
 

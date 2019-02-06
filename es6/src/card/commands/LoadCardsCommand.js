@@ -1,5 +1,5 @@
 import AbstractLoadCardsCommand from "../../../gen/card/commands/AbstractLoadCardsCommand";
-import {getState} from "../../../gen/ace/AppState";
+import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class LoadCardsCommand extends AbstractLoadCardsCommand {
 
