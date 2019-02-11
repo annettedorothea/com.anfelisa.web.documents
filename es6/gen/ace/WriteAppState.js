@@ -1,3 +1,22 @@
+/* 
+ * Copyright (c) 2019, Annette Pohl, Koblenz, Germany
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+
+
+
+
 import AppUtils from "../../src/app/AppUtils";
 
 export let state;
@@ -29,11 +48,19 @@ export function reset_state_State_loggedInUser() {
 	state.loggedInUser = null;
 }
 
+export function init_state_State_loggedInUser() {
+	state.loggedInUser = {};
+}
+
 export function set_state_State_loggedInUser_LoggedInUser_username(eventData) {
 	state.loggedInUser.username = eventData.username;
 }
 
 export function reset_state_State_loggedInUser_LoggedInUser_username() {
+	state.loggedInUser.username = null;
+}
+
+export function init_state_State_loggedInUser_LoggedInUser_username() {
 	state.loggedInUser.username = null;
 }
 export function set_state_State_loggedInUser_LoggedInUser_userId(eventData) {
@@ -43,11 +70,19 @@ export function set_state_State_loggedInUser_LoggedInUser_userId(eventData) {
 export function reset_state_State_loggedInUser_LoggedInUser_userId() {
 	state.loggedInUser.userId = null;
 }
+
+export function init_state_State_loggedInUser_LoggedInUser_userId() {
+	state.loggedInUser.userId = null;
+}
 export function set_state_State_loggedInUser_LoggedInUser_role(eventData) {
 	state.loggedInUser.role = eventData.role;
 }
 
 export function reset_state_State_loggedInUser_LoggedInUser_role() {
+	state.loggedInUser.role = null;
+}
+
+export function init_state_State_loggedInUser_LoggedInUser_role() {
 	state.loggedInUser.role = null;
 }
 export function set_state_State_loggedInUser_LoggedInUser_password(eventData) {
@@ -58,11 +93,19 @@ export function reset_state_State_loggedInUser_LoggedInUser_password() {
 	state.loggedInUser.password = null;
 }
 
+export function init_state_State_loggedInUser_LoggedInUser_password() {
+	state.loggedInUser.password = null;
+}
+
 export function set_state_State_hash(eventData) {
 	location.hash = eventData.hash;
 }
 
 export function reset_state_State_hash() {
+	location.hash = "";
+}
+
+export function init_state_State_hash() {
 	location.hash = "";
 }
 export function set_state_State_username(eventData) {
@@ -72,11 +115,19 @@ export function set_state_State_username(eventData) {
 export function reset_state_State_username() {
 	localStorage.removeItem("username");
 }
+
+export function init_state_State_username() {
+	localStorage.removeItem("username");
+}
 export function set_state_State_password(eventData) {
 	localStorage.setItem("password", eventData.password);
 }
 
 export function reset_state_State_password() {
+	localStorage.removeItem("password");
+}
+
+export function init_state_State_password() {
 	localStorage.removeItem("password");
 }
 export function set_state_State_displaySpinner(eventData) {
@@ -86,11 +137,19 @@ export function set_state_State_displaySpinner(eventData) {
 export function reset_state_State_displaySpinner() {
 	state.displaySpinner = null;
 }
+
+export function init_state_State_displaySpinner() {
+	state.displaySpinner = null;
+}
 export function set_state_State_view(eventData) {
 	state.view = eventData.view;
 }
 
 export function reset_state_State_view() {
+	state.view = null;
+}
+
+export function init_state_State_view() {
 	state.view = null;
 }
 export function set_state_State_language(eventData) {
@@ -100,11 +159,19 @@ export function set_state_State_language(eventData) {
 export function reset_state_State_language() {
 	state.language = null;
 }
+
+export function init_state_State_language() {
+	state.language = null;
+}
 export function set_state_State_texts(eventData) {
 	state.texts = eventData.texts;
 }
 
 export function reset_state_State_texts() {
+	state.texts = null;
+}
+
+export function init_state_State_texts() {
 	state.texts = null;
 }
 export function set_state_State_message(eventData) {
@@ -124,6 +191,10 @@ export function reset_state_State_message() {
 	state.message = null;
 }
 
+export function init_state_State_message() {
+	state.message = {};
+}
+
 export function set_state_State_message_Message_type(eventData) {
 	state.message.type = eventData.type;
 }
@@ -131,11 +202,19 @@ export function set_state_State_message_Message_type(eventData) {
 export function reset_state_State_message_Message_type() {
 	state.message.type = null;
 }
+
+export function init_state_State_message_Message_type() {
+	state.message.type = null;
+}
 export function set_state_State_message_Message_text(eventData) {
 	state.message.text = eventData.text;
 }
 
 export function reset_state_State_message_Message_text() {
+	state.message.text = null;
+}
+
+export function init_state_State_message_Message_text() {
 	state.message.text = null;
 }
 
@@ -330,11 +409,19 @@ export function reset_state_State_data() {
 	state.data = null;
 }
 
+export function init_state_State_data() {
+	state.data = {};
+}
+
 export function set_state_State_data_Login_username(eventData) {
 	state.data.username = eventData.username;
 }
 
 export function reset_state_State_data_Login_username() {
+	state.data.username = null;
+}
+
+export function init_state_State_data_Login_username() {
 	state.data.username = null;
 }
 export function set_state_State_data_Login_saveInLocalStorage(eventData) {
@@ -344,11 +431,19 @@ export function set_state_State_data_Login_saveInLocalStorage(eventData) {
 export function reset_state_State_data_Login_saveInLocalStorage() {
 	state.data.saveInLocalStorage = null;
 }
+
+export function init_state_State_data_Login_saveInLocalStorage() {
+	state.data.saveInLocalStorage = null;
+}
 export function set_state_State_data_Registration_displayUsernameSpinner(eventData) {
 	state.data.displayUsernameSpinner = eventData.displayUsernameSpinner;
 }
 
 export function reset_state_State_data_Registration_displayUsernameSpinner() {
+	state.data.displayUsernameSpinner = null;
+}
+
+export function init_state_State_data_Registration_displayUsernameSpinner() {
 	state.data.displayUsernameSpinner = null;
 }
 export function set_state_State_data_Registration_available(eventData) {
@@ -358,11 +453,19 @@ export function set_state_State_data_Registration_available(eventData) {
 export function reset_state_State_data_Registration_available() {
 	state.data.available = null;
 }
+
+export function init_state_State_data_Registration_available() {
+	state.data.available = null;
+}
 export function set_state_State_data_Registration_username(eventData) {
 	state.data.username = eventData.username;
 }
 
 export function reset_state_State_data_Registration_username() {
+	state.data.username = null;
+}
+
+export function init_state_State_data_Registration_username() {
 	state.data.username = null;
 }
 export function set_state_State_data_Registration_email(eventData) {
@@ -372,11 +475,19 @@ export function set_state_State_data_Registration_email(eventData) {
 export function reset_state_State_data_Registration_email() {
 	state.data.email = null;
 }
+
+export function init_state_State_data_Registration_email() {
+	state.data.email = null;
+}
 export function set_state_State_data_Registration_emailInvalid(eventData) {
 	state.data.emailInvalid = eventData.emailInvalid;
 }
 
 export function reset_state_State_data_Registration_emailInvalid() {
+	state.data.emailInvalid = null;
+}
+
+export function init_state_State_data_Registration_emailInvalid() {
 	state.data.emailInvalid = null;
 }
 export function set_state_State_data_Registration_passwordMismatch(eventData) {
@@ -386,11 +497,19 @@ export function set_state_State_data_Registration_passwordMismatch(eventData) {
 export function reset_state_State_data_Registration_passwordMismatch() {
 	state.data.passwordMismatch = null;
 }
+
+export function init_state_State_data_Registration_passwordMismatch() {
+	state.data.passwordMismatch = null;
+}
 export function set_state_State_data_ForgotPassword_username(eventData) {
 	state.data.username = eventData.username;
 }
 
 export function reset_state_State_data_ForgotPassword_username() {
+	state.data.username = null;
+}
+
+export function init_state_State_data_ForgotPassword_username() {
 	state.data.username = null;
 }
 export function set_state_State_data_ResetPassword_token(eventData) {
@@ -400,6 +519,10 @@ export function set_state_State_data_ResetPassword_token(eventData) {
 export function reset_state_State_data_ResetPassword_token() {
 	state.data.token = null;
 }
+
+export function init_state_State_data_ResetPassword_token() {
+	state.data.token = null;
+}
 export function set_state_State_data_ResetPassword_passwordMismatch(eventData) {
 	state.data.passwordMismatch = eventData.passwordMismatch;
 }
@@ -407,11 +530,19 @@ export function set_state_State_data_ResetPassword_passwordMismatch(eventData) {
 export function reset_state_State_data_ResetPassword_passwordMismatch() {
 	state.data.passwordMismatch = null;
 }
+
+export function init_state_State_data_ResetPassword_passwordMismatch() {
+	state.data.passwordMismatch = null;
+}
 export function set_state_State_data_Dashboard_boxList(eventData) {
 	state.data.boxList = eventData.boxList;
 }
 
 export function reset_state_State_data_Dashboard_boxList() {
+	state.data.boxList = null;
+}
+
+export function init_state_State_data_Dashboard_boxList() {
 	state.data.boxList = null;
 }
 export function set_state_State_data_Dashboard_deleteBox(eventData) {
@@ -431,11 +562,19 @@ export function reset_state_State_data_Dashboard_deleteBox() {
 	state.data.deleteBox = null;
 }
 
+export function init_state_State_data_Dashboard_deleteBox() {
+	state.data.deleteBox = {};
+}
+
 export function set_state_State_data_Dashboard_deleteBox_DeleteBox_confirmDelete(eventData) {
 	state.data.deleteBox.confirmDelete = eventData.confirmDelete;
 }
 
 export function reset_state_State_data_Dashboard_deleteBox_DeleteBox_confirmDelete() {
+	state.data.deleteBox.confirmDelete = null;
+}
+
+export function init_state_State_data_Dashboard_deleteBox_DeleteBox_confirmDelete() {
 	state.data.deleteBox.confirmDelete = null;
 }
 export function set_state_State_data_Dashboard_deleteBox_DeleteBox_boxId(eventData) {
@@ -446,11 +585,19 @@ export function reset_state_State_data_Dashboard_deleteBox_DeleteBox_boxId() {
 	state.data.deleteBox.boxId = null;
 }
 
+export function init_state_State_data_Dashboard_deleteBox_DeleteBox_boxId() {
+	state.data.deleteBox.boxId = null;
+}
+
 export function set_state_State_data_Profile_username(eventData) {
 	state.data.username = eventData.username;
 }
 
 export function reset_state_State_data_Profile_username() {
+	state.data.username = null;
+}
+
+export function init_state_State_data_Profile_username() {
 	state.data.username = null;
 }
 export function set_state_State_data_Profile_email(eventData) {
@@ -460,11 +607,19 @@ export function set_state_State_data_Profile_email(eventData) {
 export function reset_state_State_data_Profile_email() {
 	state.data.email = null;
 }
+
+export function init_state_State_data_Profile_email() {
+	state.data.email = null;
+}
 export function set_state_State_data_Profile_role(eventData) {
 	state.data.role = eventData.role;
 }
 
 export function reset_state_State_data_Profile_role() {
+	state.data.role = null;
+}
+
+export function init_state_State_data_Profile_role() {
 	state.data.role = null;
 }
 export function set_state_State_data_Profile_showDeleteUserDialog(eventData) {
@@ -474,11 +629,19 @@ export function set_state_State_data_Profile_showDeleteUserDialog(eventData) {
 export function reset_state_State_data_Profile_showDeleteUserDialog() {
 	state.data.showDeleteUserDialog = null;
 }
+
+export function init_state_State_data_Profile_showDeleteUserDialog() {
+	state.data.showDeleteUserDialog = null;
+}
 export function set_state_State_data_UserList_userList(eventData) {
 	state.data.userList = eventData.userList;
 }
 
 export function reset_state_State_data_UserList_userList() {
+	state.data.userList = null;
+}
+
+export function init_state_State_data_UserList_userList() {
 	state.data.userList = null;
 }
 export function set_state_State_data_UserList_showDeleteUserDialog(eventData) {
@@ -488,11 +651,19 @@ export function set_state_State_data_UserList_showDeleteUserDialog(eventData) {
 export function reset_state_State_data_UserList_showDeleteUserDialog() {
 	state.data.showDeleteUserDialog = null;
 }
+
+export function init_state_State_data_UserList_showDeleteUserDialog() {
+	state.data.showDeleteUserDialog = null;
+}
 export function set_state_State_data_UserList_usernameToBeDeleted(eventData) {
 	state.data.usernameToBeDeleted = eventData.usernameToBeDeleted;
 }
 
 export function reset_state_State_data_UserList_usernameToBeDeleted() {
+	state.data.usernameToBeDeleted = null;
+}
+
+export function init_state_State_data_UserList_usernameToBeDeleted() {
 	state.data.usernameToBeDeleted = null;
 }
 export function set_state_State_data_Card_index(eventData) {
@@ -502,11 +673,19 @@ export function set_state_State_data_Card_index(eventData) {
 export function reset_state_State_data_Card_index() {
 	state.data.index = null;
 }
+
+export function init_state_State_data_Card_index() {
+	state.data.index = null;
+}
 export function set_state_State_data_Card_enableScoreButtons(eventData) {
 	state.data.enableScoreButtons = eventData.enableScoreButtons;
 }
 
 export function reset_state_State_data_Card_enableScoreButtons() {
+	state.data.enableScoreButtons = null;
+}
+
+export function init_state_State_data_Card_enableScoreButtons() {
 	state.data.enableScoreButtons = null;
 }
 export function set_state_State_data_Card_displayImage(eventData) {
@@ -516,11 +695,19 @@ export function set_state_State_data_Card_displayImage(eventData) {
 export function reset_state_State_data_Card_displayImage() {
 	state.data.displayImage = null;
 }
+
+export function init_state_State_data_Card_displayImage() {
+	state.data.displayImage = null;
+}
 export function set_state_State_data_Card_scheduleNext(eventData) {
 	state.data.scheduleNext = eventData.scheduleNext;
 }
 
 export function reset_state_State_data_Card_scheduleNext() {
+	state.data.scheduleNext = null;
+}
+
+export function init_state_State_data_Card_scheduleNext() {
 	state.data.scheduleNext = null;
 }
 export function set_state_State_data_Card_cardId(eventData) {
@@ -530,11 +717,19 @@ export function set_state_State_data_Card_cardId(eventData) {
 export function reset_state_State_data_Card_cardId() {
 	state.data.cardId = null;
 }
+
+export function init_state_State_data_Card_cardId() {
+	state.data.cardId = null;
+}
 export function set_state_State_data_Card_categoryId(eventData) {
 	state.data.categoryId = eventData.categoryId;
 }
 
 export function reset_state_State_data_Card_categoryId() {
+	state.data.categoryId = null;
+}
+
+export function init_state_State_data_Card_categoryId() {
 	state.data.categoryId = null;
 }
 export function set_state_State_data_Card_count(eventData) {
@@ -544,11 +739,19 @@ export function set_state_State_data_Card_count(eventData) {
 export function reset_state_State_data_Card_count() {
 	state.data.count = null;
 }
+
+export function init_state_State_data_Card_count() {
+	state.data.count = null;
+}
 export function set_state_State_data_Card_given(eventData) {
 	state.data.given = eventData.given;
 }
 
 export function reset_state_State_data_Card_given() {
+	state.data.given = null;
+}
+
+export function init_state_State_data_Card_given() {
 	state.data.given = null;
 }
 export function set_state_State_data_Card_image(eventData) {
@@ -558,11 +761,19 @@ export function set_state_State_data_Card_image(eventData) {
 export function reset_state_State_data_Card_image() {
 	state.data.image = null;
 }
+
+export function init_state_State_data_Card_image() {
+	state.data.image = null;
+}
 export function set_state_State_data_Card_lastQuality(eventData) {
 	state.data.lastQuality = eventData.lastQuality;
 }
 
 export function reset_state_State_data_Card_lastQuality() {
+	state.data.lastQuality = null;
+}
+
+export function init_state_State_data_Card_lastQuality() {
 	state.data.lastQuality = null;
 }
 export function set_state_State_data_Card_rootCategoryId(eventData) {
@@ -572,11 +783,19 @@ export function set_state_State_data_Card_rootCategoryId(eventData) {
 export function reset_state_State_data_Card_rootCategoryId() {
 	state.data.rootCategoryId = null;
 }
+
+export function init_state_State_data_Card_rootCategoryId() {
+	state.data.rootCategoryId = null;
+}
 export function set_state_State_data_Card_scheduledCardId(eventData) {
 	state.data.scheduledCardId = eventData.scheduledCardId;
 }
 
 export function reset_state_State_data_Card_scheduledCardId() {
+	state.data.scheduledCardId = null;
+}
+
+export function init_state_State_data_Card_scheduledCardId() {
 	state.data.scheduledCardId = null;
 }
 export function set_state_State_data_Card_scheduledDate(eventData) {
@@ -586,11 +805,19 @@ export function set_state_State_data_Card_scheduledDate(eventData) {
 export function reset_state_State_data_Card_scheduledDate() {
 	state.data.scheduledDate = null;
 }
+
+export function init_state_State_data_Card_scheduledDate() {
+	state.data.scheduledDate = null;
+}
 export function set_state_State_data_Card_scoredDate(eventData) {
 	state.data.scoredDate = eventData.scoredDate;
 }
 
 export function reset_state_State_data_Card_scoredDate() {
+	state.data.scoredDate = null;
+}
+
+export function init_state_State_data_Card_scoredDate() {
 	state.data.scoredDate = null;
 }
 export function set_state_State_data_Card_wanted(eventData) {
@@ -600,11 +827,19 @@ export function set_state_State_data_Card_wanted(eventData) {
 export function reset_state_State_data_Card_wanted() {
 	state.data.wanted = null;
 }
+
+export function init_state_State_data_Card_wanted() {
+	state.data.wanted = null;
+}
 export function set_state_State_data_Card_boxId(eventData) {
 	state.data.boxId = eventData.boxId;
 }
 
 export function reset_state_State_data_Card_boxId() {
+	state.data.boxId = null;
+}
+
+export function init_state_State_data_Card_boxId() {
 	state.data.boxId = null;
 }
 export function set_state_State_data_Card_categoryName(eventData) {
@@ -614,11 +849,19 @@ export function set_state_State_data_Card_categoryName(eventData) {
 export function reset_state_State_data_Card_categoryName() {
 	state.data.categoryName = null;
 }
+
+export function init_state_State_data_Card_categoryName() {
+	state.data.categoryName = null;
+}
 export function set_state_State_data_Card_daysBehindSchedule(eventData) {
 	state.data.daysBehindSchedule = eventData.daysBehindSchedule;
 }
 
 export function reset_state_State_data_Card_daysBehindSchedule() {
+	state.data.daysBehindSchedule = null;
+}
+
+export function init_state_State_data_Card_daysBehindSchedule() {
 	state.data.daysBehindSchedule = null;
 }
 export function set_state_State_data_Card_maxInterval(eventData) {
@@ -628,11 +871,19 @@ export function set_state_State_data_Card_maxInterval(eventData) {
 export function reset_state_State_data_Card_maxInterval() {
 	state.data.maxInterval = null;
 }
+
+export function init_state_State_data_Card_maxInterval() {
+	state.data.maxInterval = null;
+}
 export function set_state_State_data_Card_maxCardsPerDay(eventData) {
 	state.data.maxCardsPerDay = eventData.maxCardsPerDay;
 }
 
 export function reset_state_State_data_Card_maxCardsPerDay() {
+	state.data.maxCardsPerDay = null;
+}
+
+export function init_state_State_data_Card_maxCardsPerDay() {
 	state.data.maxCardsPerDay = null;
 }
 export function set_state_State_data_Card_myCards(eventData) {
@@ -642,11 +893,19 @@ export function set_state_State_data_Card_myCards(eventData) {
 export function reset_state_State_data_Card_myCards() {
 	state.data.myCards = null;
 }
+
+export function init_state_State_data_Card_myCards() {
+	state.data.myCards = null;
+}
 export function set_state_State_data_Card_quality0Count(eventData) {
 	state.data.quality0Count = eventData.quality0Count;
 }
 
 export function reset_state_State_data_Card_quality0Count() {
+	state.data.quality0Count = null;
+}
+
+export function init_state_State_data_Card_quality0Count() {
 	state.data.quality0Count = null;
 }
 export function set_state_State_data_Card_quality1Count(eventData) {
@@ -656,11 +915,19 @@ export function set_state_State_data_Card_quality1Count(eventData) {
 export function reset_state_State_data_Card_quality1Count() {
 	state.data.quality1Count = null;
 }
+
+export function init_state_State_data_Card_quality1Count() {
+	state.data.quality1Count = null;
+}
 export function set_state_State_data_Card_quality2Count(eventData) {
 	state.data.quality2Count = eventData.quality2Count;
 }
 
 export function reset_state_State_data_Card_quality2Count() {
+	state.data.quality2Count = null;
+}
+
+export function init_state_State_data_Card_quality2Count() {
 	state.data.quality2Count = null;
 }
 export function set_state_State_data_Card_quality3Count(eventData) {
@@ -670,11 +937,19 @@ export function set_state_State_data_Card_quality3Count(eventData) {
 export function reset_state_State_data_Card_quality3Count() {
 	state.data.quality3Count = null;
 }
+
+export function init_state_State_data_Card_quality3Count() {
+	state.data.quality3Count = null;
+}
 export function set_state_State_data_Card_quality4Count(eventData) {
 	state.data.quality4Count = eventData.quality4Count;
 }
 
 export function reset_state_State_data_Card_quality4Count() {
+	state.data.quality4Count = null;
+}
+
+export function init_state_State_data_Card_quality4Count() {
 	state.data.quality4Count = null;
 }
 export function set_state_State_data_Card_quality5Count(eventData) {
@@ -684,11 +959,19 @@ export function set_state_State_data_Card_quality5Count(eventData) {
 export function reset_state_State_data_Card_quality5Count() {
 	state.data.quality5Count = null;
 }
+
+export function init_state_State_data_Card_quality5Count() {
+	state.data.quality5Count = null;
+}
 export function set_state_State_data_Card_reinforceCards(eventData) {
 	state.data.reinforceCards = eventData.reinforceCards;
 }
 
 export function reset_state_State_data_Card_reinforceCards() {
+	state.data.reinforceCards = null;
+}
+
+export function init_state_State_data_Card_reinforceCards() {
 	state.data.reinforceCards = null;
 }
 export function set_state_State_data_Card_todaysCards(eventData) {
@@ -698,11 +981,19 @@ export function set_state_State_data_Card_todaysCards(eventData) {
 export function reset_state_State_data_Card_todaysCards() {
 	state.data.todaysCards = null;
 }
+
+export function init_state_State_data_Card_todaysCards() {
+	state.data.todaysCards = null;
+}
 export function set_state_State_data_Card_totalCards(eventData) {
 	state.data.totalCards = eventData.totalCards;
 }
 
 export function reset_state_State_data_Card_totalCards() {
+	state.data.totalCards = null;
+}
+
+export function init_state_State_data_Card_totalCards() {
 	state.data.totalCards = null;
 }
 export function set_state_State_data_Card_editMaxInterval(eventData) {
@@ -712,11 +1003,19 @@ export function set_state_State_data_Card_editMaxInterval(eventData) {
 export function reset_state_State_data_Card_editMaxInterval() {
 	state.data.editMaxInterval = null;
 }
+
+export function init_state_State_data_Card_editMaxInterval() {
+	state.data.editMaxInterval = null;
+}
 export function set_state_State_data_Card_editedMaxInterval(eventData) {
 	state.data.editedMaxInterval = eventData.editedMaxInterval;
 }
 
 export function reset_state_State_data_Card_editedMaxInterval() {
+	state.data.editedMaxInterval = null;
+}
+
+export function init_state_State_data_Card_editedMaxInterval() {
 	state.data.editedMaxInterval = null;
 }
 export function set_state_State_data_Card_editMaxCardsPerDay(eventData) {
@@ -726,11 +1025,19 @@ export function set_state_State_data_Card_editMaxCardsPerDay(eventData) {
 export function reset_state_State_data_Card_editMaxCardsPerDay() {
 	state.data.editMaxCardsPerDay = null;
 }
+
+export function init_state_State_data_Card_editMaxCardsPerDay() {
+	state.data.editMaxCardsPerDay = null;
+}
 export function set_state_State_data_Card_editedMaxCardsPerDay(eventData) {
 	state.data.editedMaxCardsPerDay = eventData.editedMaxCardsPerDay;
 }
 
 export function reset_state_State_data_Card_editedMaxCardsPerDay() {
+	state.data.editedMaxCardsPerDay = null;
+}
+
+export function init_state_State_data_Card_editedMaxCardsPerDay() {
 	state.data.editedMaxCardsPerDay = null;
 }
 export function set_state_State_data_Card_reinforceCardId(eventData) {
@@ -740,11 +1047,19 @@ export function set_state_State_data_Card_reinforceCardId(eventData) {
 export function reset_state_State_data_Card_reinforceCardId() {
 	state.data.reinforceCardId = null;
 }
+
+export function init_state_State_data_Card_reinforceCardId() {
+	state.data.reinforceCardId = null;
+}
 export function set_state_State_data_Card_changeDate(eventData) {
 	state.data.changeDate = eventData.changeDate;
 }
 
 export function reset_state_State_data_Card_changeDate() {
+	state.data.changeDate = null;
+}
+
+export function init_state_State_data_Card_changeDate() {
 	state.data.changeDate = null;
 }
 export function set_state_State_data_AuthorView_categoryTree(eventData) {
@@ -803,11 +1118,19 @@ export function reset_state_State_data_AuthorView_categoryTree() {
 	state.data.categoryTree = null;
 }
 
+export function init_state_State_data_AuthorView_categoryTree() {
+	state.data.categoryTree = {};
+}
+
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory(eventData) {
 	state.data.categoryTree.selectedCategory = eventData.selectedCategory;
 }
 
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory() {
+	state.data.categoryTree.selectedCategory = null;
+}
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory() {
 	state.data.categoryTree.selectedCategory = null;
 }
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList(eventData) {
@@ -817,11 +1140,19 @@ export function set_state_State_data_AuthorView_categoryTree_CategoryTree_catego
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList() {
 	state.data.categoryTree.categoryList = null;
 }
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList() {
+	state.data.categoryTree.categoryList = null;
+}
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_displayDeleteCategory(eventData) {
 	state.data.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
 }
 
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_displayDeleteCategory() {
+	state.data.categoryTree.displayDeleteCategory = null;
+}
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_displayDeleteCategory() {
 	state.data.categoryTree.displayDeleteCategory = null;
 }
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_dictionaryLookup(eventData) {
@@ -831,11 +1162,19 @@ export function set_state_State_data_AuthorView_categoryTree_CategoryTree_dictio
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_dictionaryLookup() {
 	state.data.categoryTree.dictionaryLookup = null;
 }
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_dictionaryLookup() {
+	state.data.categoryTree.dictionaryLookup = null;
+}
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_wantedLanguage(eventData) {
 	state.data.categoryTree.wantedLanguage = eventData.wantedLanguage;
 }
 
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_wantedLanguage() {
+	state.data.categoryTree.wantedLanguage = null;
+}
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_wantedLanguage() {
 	state.data.categoryTree.wantedLanguage = null;
 }
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_givenLanguage(eventData) {
@@ -845,11 +1184,19 @@ export function set_state_State_data_AuthorView_categoryTree_CategoryTree_givenL
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_givenLanguage() {
 	state.data.categoryTree.givenLanguage = null;
 }
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_givenLanguage() {
+	state.data.categoryTree.givenLanguage = null;
+}
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_categoryName(eventData) {
 	state.data.categoryTree.categoryName = eventData.categoryName;
 }
 
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_categoryName() {
+	state.data.categoryTree.categoryName = null;
+}
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_categoryName() {
 	state.data.categoryTree.categoryName = null;
 }
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_displayEditCategory(eventData) {
@@ -859,11 +1206,19 @@ export function set_state_State_data_AuthorView_categoryTree_CategoryTree_displa
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_displayEditCategory() {
 	state.data.categoryTree.displayEditCategory = null;
 }
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_displayEditCategory() {
+	state.data.categoryTree.displayEditCategory = null;
+}
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_displayNewCategory(eventData) {
 	state.data.categoryTree.displayNewCategory = eventData.displayNewCategory;
 }
 
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_displayNewCategory() {
+	state.data.categoryTree.displayNewCategory = null;
+}
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_displayNewCategory() {
 	state.data.categoryTree.displayNewCategory = null;
 }
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_displayInviteUser(eventData) {
@@ -873,11 +1228,19 @@ export function set_state_State_data_AuthorView_categoryTree_CategoryTree_displa
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_displayInviteUser() {
 	state.data.categoryTree.displayInviteUser = null;
 }
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_displayInviteUser() {
+	state.data.categoryTree.displayInviteUser = null;
+}
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_invitedUsername(eventData) {
 	state.data.categoryTree.invitedUsername = eventData.invitedUsername;
 }
 
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_invitedUsername() {
+	state.data.categoryTree.invitedUsername = null;
+}
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_invitedUsername() {
 	state.data.categoryTree.invitedUsername = null;
 }
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_userList(eventData) {
@@ -887,6 +1250,10 @@ export function set_state_State_data_AuthorView_categoryTree_CategoryTree_userLi
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_userList() {
 	state.data.categoryTree.userList = null;
 }
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_userList() {
+	state.data.categoryTree.userList = null;
+}
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_dropAllowed(eventData) {
 	state.data.categoryTree.dropAllowed = eventData.dropAllowed;
 }
@@ -894,11 +1261,19 @@ export function set_state_State_data_AuthorView_categoryTree_CategoryTree_dropAl
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_dropAllowed() {
 	state.data.categoryTree.dropAllowed = null;
 }
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_dropAllowed() {
+	state.data.categoryTree.dropAllowed = null;
+}
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_dropTargetCategoryId(eventData) {
 	state.data.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
 }
 
 export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_dropTargetCategoryId() {
+	state.data.categoryTree.dropTargetCategoryId = null;
+}
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_dropTargetCategoryId() {
 	state.data.categoryTree.dropTargetCategoryId = null;
 }
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_movedCategory(eventData) {
@@ -909,11 +1284,19 @@ export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_move
 	state.data.categoryTree.movedCategory = null;
 }
 
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_movedCategory() {
+	state.data.categoryTree.movedCategory = null;
+}
+
 export function set_state_State_data_AuthorView_boxList(eventData) {
 	state.data.boxList = eventData.boxList;
 }
 
 export function reset_state_State_data_AuthorView_boxList() {
+	state.data.boxList = null;
+}
+
+export function init_state_State_data_AuthorView_boxList() {
 	state.data.boxList = null;
 }
 export function set_state_State_data_AuthorView_deleteBox(eventData) {
@@ -933,6 +1316,10 @@ export function reset_state_State_data_AuthorView_deleteBox() {
 	state.data.deleteBox = null;
 }
 
+export function init_state_State_data_AuthorView_deleteBox() {
+	state.data.deleteBox = {};
+}
+
 export function set_state_State_data_AuthorView_deleteBox_DeleteBox_confirmDelete(eventData) {
 	state.data.deleteBox.confirmDelete = eventData.confirmDelete;
 }
@@ -940,11 +1327,19 @@ export function set_state_State_data_AuthorView_deleteBox_DeleteBox_confirmDelet
 export function reset_state_State_data_AuthorView_deleteBox_DeleteBox_confirmDelete() {
 	state.data.deleteBox.confirmDelete = null;
 }
+
+export function init_state_State_data_AuthorView_deleteBox_DeleteBox_confirmDelete() {
+	state.data.deleteBox.confirmDelete = null;
+}
 export function set_state_State_data_AuthorView_deleteBox_DeleteBox_boxId(eventData) {
 	state.data.deleteBox.boxId = eventData.boxId;
 }
 
 export function reset_state_State_data_AuthorView_deleteBox_DeleteBox_boxId() {
+	state.data.deleteBox.boxId = null;
+}
+
+export function init_state_State_data_AuthorView_deleteBox_DeleteBox_boxId() {
 	state.data.deleteBox.boxId = null;
 }
 
@@ -992,11 +1387,19 @@ export function reset_state_State_data_AuthorView_cardView() {
 	state.data.cardView = null;
 }
 
+export function init_state_State_data_AuthorView_cardView() {
+	state.data.cardView = {};
+}
+
 export function set_state_State_data_AuthorView_cardView_CardView_cardList(eventData) {
 	state.data.cardView.cardList = eventData.cardList;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_cardList() {
+	state.data.cardView.cardList = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_cardList() {
 	state.data.cardView.cardList = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_naturalInputOrder(eventData) {
@@ -1006,6 +1409,10 @@ export function set_state_State_data_AuthorView_cardView_CardView_naturalInputOr
 export function reset_state_State_data_AuthorView_cardView_CardView_naturalInputOrder() {
 	state.data.cardView.naturalInputOrder = null;
 }
+
+export function init_state_State_data_AuthorView_cardView_CardView_naturalInputOrder() {
+	state.data.cardView.naturalInputOrder = null;
+}
 export function set_state_State_data_AuthorView_cardView_CardView_useDictionary(eventData) {
 	state.data.cardView.useDictionary = eventData.useDictionary;
 }
@@ -1013,11 +1420,19 @@ export function set_state_State_data_AuthorView_cardView_CardView_useDictionary(
 export function reset_state_State_data_AuthorView_cardView_CardView_useDictionary() {
 	state.data.cardView.useDictionary = null;
 }
+
+export function init_state_State_data_AuthorView_cardView_CardView_useDictionary() {
+	state.data.cardView.useDictionary = null;
+}
 export function set_state_State_data_AuthorView_cardView_CardView_filter(eventData) {
 	state.data.cardView.filter = eventData.filter;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_filter() {
+	state.data.cardView.filter = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_filter() {
 	state.data.cardView.filter = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_editedCard(eventData) {
@@ -1049,11 +1464,19 @@ export function reset_state_State_data_AuthorView_cardView_CardView_editedCard()
 	state.data.cardView.editedCard = null;
 }
 
+export function init_state_State_data_AuthorView_cardView_CardView_editedCard() {
+	state.data.cardView.editedCard = {};
+}
+
 export function set_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_cardId(eventData) {
 	state.data.cardView.editedCard.cardId = eventData.cardId;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_cardId() {
+	state.data.cardView.editedCard.cardId = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_cardId() {
 	state.data.cardView.editedCard.cardId = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_given(eventData) {
@@ -1063,11 +1486,19 @@ export function set_state_State_data_AuthorView_cardView_CardView_editedCard_Edi
 export function reset_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_given() {
 	state.data.cardView.editedCard.given = null;
 }
+
+export function init_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_given() {
+	state.data.cardView.editedCard.given = null;
+}
 export function set_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_wanted(eventData) {
 	state.data.cardView.editedCard.wanted = eventData.wanted;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_wanted() {
+	state.data.cardView.editedCard.wanted = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_wanted() {
 	state.data.cardView.editedCard.wanted = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_index(eventData) {
@@ -1077,6 +1508,10 @@ export function set_state_State_data_AuthorView_cardView_CardView_editedCard_Edi
 export function reset_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_index() {
 	state.data.cardView.editedCard.index = null;
 }
+
+export function init_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_index() {
+	state.data.cardView.editedCard.index = null;
+}
 export function set_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_image(eventData) {
 	state.data.cardView.editedCard.image = eventData.image;
 }
@@ -1084,11 +1519,19 @@ export function set_state_State_data_AuthorView_cardView_CardView_editedCard_Edi
 export function reset_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_image() {
 	state.data.cardView.editedCard.image = null;
 }
+
+export function init_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_image() {
+	state.data.cardView.editedCard.image = null;
+}
 export function set_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_selectedCardIds(eventData) {
 	state.data.cardView.editedCard.selectedCardIds = eventData.selectedCardIds;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_selectedCardIds() {
+	state.data.cardView.editedCard.selectedCardIds = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_editedCard_EditedCard_selectedCardIds() {
 	state.data.cardView.editedCard.selectedCardIds = null;
 }
 
@@ -1127,11 +1570,19 @@ export function reset_state_State_data_AuthorView_cardView_CardView_newCard() {
 	state.data.cardView.newCard = null;
 }
 
+export function init_state_State_data_AuthorView_cardView_CardView_newCard() {
+	state.data.cardView.newCard = {};
+}
+
 export function set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_given(eventData) {
 	state.data.cardView.newCard.given = eventData.given;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_given() {
+	state.data.cardView.newCard.given = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_given() {
 	state.data.cardView.newCard.given = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_wanted(eventData) {
@@ -1141,11 +1592,19 @@ export function set_state_State_data_AuthorView_cardView_CardView_newCard_NewCar
 export function reset_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_wanted() {
 	state.data.cardView.newCard.wanted = null;
 }
+
+export function init_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_wanted() {
+	state.data.cardView.newCard.wanted = null;
+}
 export function set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_index(eventData) {
 	state.data.cardView.newCard.index = eventData.index;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_index() {
+	state.data.cardView.newCard.index = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_index() {
 	state.data.cardView.newCard.index = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_image(eventData) {
@@ -1155,11 +1614,19 @@ export function set_state_State_data_AuthorView_cardView_CardView_newCard_NewCar
 export function reset_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_image() {
 	state.data.cardView.newCard.image = null;
 }
+
+export function init_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_image() {
+	state.data.cardView.newCard.image = null;
+}
 export function set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_selectedCardIds(eventData) {
 	state.data.cardView.newCard.selectedCardIds = eventData.selectedCardIds;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_selectedCardIds() {
+	state.data.cardView.newCard.selectedCardIds = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_selectedCardIds() {
 	state.data.cardView.newCard.selectedCardIds = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_file(eventData) {
@@ -1169,11 +1636,19 @@ export function set_state_State_data_AuthorView_cardView_CardView_newCard_NewCar
 export function reset_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_file() {
 	state.data.cardView.newCard.file = null;
 }
+
+export function init_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_file() {
+	state.data.cardView.newCard.file = null;
+}
 export function set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_displaySpinner(eventData) {
 	state.data.cardView.newCard.displaySpinner = eventData.displaySpinner;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_displaySpinner() {
+	state.data.cardView.newCard.displaySpinner = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_displaySpinner() {
 	state.data.cardView.newCard.displaySpinner = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_displayTranslateSpinner(eventData) {
@@ -1184,11 +1659,19 @@ export function reset_state_State_data_AuthorView_cardView_CardView_newCard_NewC
 	state.data.cardView.newCard.displayTranslateSpinner = null;
 }
 
+export function init_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_displayTranslateSpinner() {
+	state.data.cardView.newCard.displayTranslateSpinner = null;
+}
+
 export function set_state_State_data_AuthorView_cardView_CardView_cardDuplicates(eventData) {
 	state.data.cardView.cardDuplicates = eventData.cardDuplicates;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_cardDuplicates() {
+	state.data.cardView.cardDuplicates = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_cardDuplicates() {
 	state.data.cardView.cardDuplicates = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_deleteCard(eventData) {
@@ -1208,11 +1691,19 @@ export function reset_state_State_data_AuthorView_cardView_CardView_deleteCard()
 	state.data.cardView.deleteCard = null;
 }
 
+export function init_state_State_data_AuthorView_cardView_CardView_deleteCard() {
+	state.data.cardView.deleteCard = {};
+}
+
 export function set_state_State_data_AuthorView_cardView_CardView_deleteCard_DeleteCard_confirmDelete(eventData) {
 	state.data.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_deleteCard_DeleteCard_confirmDelete() {
+	state.data.cardView.deleteCard.confirmDelete = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_deleteCard_DeleteCard_confirmDelete() {
 	state.data.cardView.deleteCard.confirmDelete = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_deleteCard_DeleteCard_cardId(eventData) {
@@ -1223,11 +1714,19 @@ export function reset_state_State_data_AuthorView_cardView_CardView_deleteCard_D
 	state.data.cardView.deleteCard.cardId = null;
 }
 
+export function init_state_State_data_AuthorView_cardView_CardView_deleteCard_DeleteCard_cardId() {
+	state.data.cardView.deleteCard.cardId = null;
+}
+
 export function set_state_State_data_AuthorView_cardView_CardView_dictionaryValue(eventData) {
 	state.data.cardView.dictionaryValue = eventData.dictionaryValue;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_dictionaryValue() {
+	state.data.cardView.dictionaryValue = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_dictionaryValue() {
 	state.data.cardView.dictionaryValue = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_selectedCardIds(eventData) {
@@ -1237,11 +1736,19 @@ export function set_state_State_data_AuthorView_cardView_CardView_selectedCardId
 export function reset_state_State_data_AuthorView_cardView_CardView_selectedCardIds() {
 	state.data.cardView.selectedCardIds = null;
 }
+
+export function init_state_State_data_AuthorView_cardView_CardView_selectedCardIds() {
+	state.data.cardView.selectedCardIds = null;
+}
 export function set_state_State_data_AuthorView_cardView_CardView_movedCardIds(eventData) {
 	state.data.cardView.movedCardIds = eventData.movedCardIds;
 }
 
 export function reset_state_State_data_AuthorView_cardView_CardView_movedCardIds() {
+	state.data.cardView.movedCardIds = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_movedCardIds() {
 	state.data.cardView.movedCardIds = null;
 }
 
