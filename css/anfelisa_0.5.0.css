@@ -810,8 +810,8 @@ a:hover.tile h2 {
 }
 
 .categoryCardSplitView table.cardTable td:last-child {
-    max-width: 100px;
-    width: 100px;
+    max-width: 110px;
+    width: 110px;
     padding: 4px 4px 4px 0;
 }
 
@@ -872,6 +872,11 @@ iframe {
 .categoryTree .categoryItem .notSelected {
 }
 
+.categoryTree .categoryItem .dropAllowed {
+    background-color: #ffa84c;
+    color: #fff;
+}
+
 .categoryTree .categoryTreeItems {
     margin-bottom: 20px;
 }
@@ -913,5 +918,9 @@ iframe {
     {
         display: none;
     }
+}
+
+[draggable=true] {
+    -khtml-user-drag: element;
 }
 

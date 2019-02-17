@@ -38,7 +38,7 @@ export default class QueryCards extends React.Component {
                     language={this.props.language}
                 />
 
-                {this.props.todaysCards === 0 &&
+                {this.props.todaysCards === 0 && !this.props.reinforceCardId &&
                 <h2>
                     {this.props.texts.queryCards.ahead[this.props.language]}
                     {this.props.reinforceCards > 0 && <span> {this.props.texts.queryCards.reinforce[this.props.language]}</span>

@@ -1,11 +1,11 @@
 {
   "name": "anfelisa",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "",
   "scripts": {
-    "uglify": "uglifyjs lib/anfelisa_0.4.3.js --compress --mangle --output lib/anfelisa_0.4.3.min.js",
-    "build": "browserify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa_0.4.3.js -dv",
-    "server": "watchify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa_0.4.3.js -dv & live-server --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8082/replay/' --browser='Google Chrome'"
+    "uglify": "uglifyjs lib/anfelisa_0.5.0.js --compress --mangle --output lib/anfelisa_0.5.0.min.js",
+    "build": "browserify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa_0.5.0.js -dv",
+    "server": "watchify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa_0.5.0.js -dv & live-server --watch=lib/anfelisa_0.5.0.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8082/replay/' --browser='Google Chrome'"
   },
   "author": "Annette Pohl",
   "license": "GPL",
@@ -25,8 +25,8 @@
   "dependencies": {
     "crypto-js": "^3.1.9-1",
     "json-stable-stringify": "^1.0.1",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -35,12 +35,8 @@
     "babel-preset-react": "^6.24.1",
     "babelify": "^8.0.0",
     "browserify": "^14.5.0",
-    "http-proxy-middleware": "^0.17.4",
     "live-server": "^1.2.1",
-    "node-sass": "^4.11.0",
-    "serve": "^6.5.8",
     "uglify-js": "^3.4.9",
-    "watch": "^1.0.2",
     "watchify": "^3.11.0"
   }
 }

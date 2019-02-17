@@ -10,6 +10,12 @@ export default class CardItem extends React.Component {
 
     constructor(props) {
         super(props);
+        this.onDragStart = this.onDragStart.bind(this);
+    }
+
+    onDragStart(event) {
+        event.dataTransfer.setData('Text', this.props.given);
+        moveCardsStarted();
     }
 
     renderGiven() {
@@ -71,7 +77,7 @@ export default class CardItem extends React.Component {
                     </button>}
                     {this.props.editable === true && this.props.selectedCardIds.indexOf(this.props.cardId) >= 0 &&
                     <i id={this.props.cardId} className="fas fa-align-justify" draggable="true"
-                       onDragStart={() => moveCardsStarted()}/>
+                       onDragStart={(event) => this.onDragStart(event)}/>
                     }
                 </td>
             </tr>
