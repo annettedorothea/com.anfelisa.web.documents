@@ -120,7 +120,7 @@ export default class NewCard extends React.Component {
 
     renderGiven(renderGoogleLogo) {
         return (
-            <td className="textarea">
+            <td className="textarea input">
                 <textarea
                     onChange={(event) => givenOfNewCardChanged(event.target.value)}
                     autoComplete="off"
@@ -144,7 +144,7 @@ export default class NewCard extends React.Component {
 
     renderWanted(renderGoogleLogo) {
         return (
-            <td className="textarea">
+            <td className="textarea input">
                 <textarea
                     onChange={(event) => wantedOfNewCardChanged(event.target.value)}
                     autoComplete="off"
@@ -189,7 +189,7 @@ export default class NewCard extends React.Component {
 
     render() {
         return (
-            <tr className="notPrinted">
+            <tr className="notPrinted inputRow">
                 <td/>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
                 {this.props.naturalInputOrder === true && this.renderWanted(this.props.dictionaryLookup)}
@@ -197,7 +197,7 @@ export default class NewCard extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderGiven(this.props.dictionaryLookup)}
                 {this.props.naturalInputOrder === false && this.renderImage()}
-                <td className="noBreak">
+                <td className="noBreak input">
                     <button
                         disabled={!this.isValid()}
                         onClick={this.onNewCard}>
@@ -208,6 +208,7 @@ export default class NewCard extends React.Component {
                         <i className="fas fa-times"/>
                     </button>
                 </td>
+                {this.props.hasBox === true && <td/>}
             </tr>
         );
     }

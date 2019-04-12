@@ -127,4 +127,4 @@ MoveCards
 	on ok (
 		reset common.state.State.data.AuthorView.cardView.CardView.movedCardIds
 	) triggers (category.LoadCategoryTree)
-		
+	

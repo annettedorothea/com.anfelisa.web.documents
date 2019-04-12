@@ -19,23 +19,21 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import CloseInviteUserOkEvent from "../../../gen/category/events/CloseInviteUserOkEvent";
-import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
+import SwapPreviewCsvOkEvent from "../../../gen/category/events/SwapPreviewCsvOkEvent";
 
-export default class AbstractCloseInviteUserCommand extends Command {
+export default class AbstractSwapPreviewCsvCommand extends Command {
     constructor(commandData) {
-        super(commandData, "category.CloseInviteUserCommand");
+        super(commandData, "category.SwapPreviewCsvCommand");
         this.ok = "ok";
     }
 
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new CloseInviteUserOkEvent(this.commandData).publish();
-			new TriggerAction(new LoadCategoryTreeAction(this.commandData.selectedCategoryId)).publish();
+			new SwapPreviewCsvOkEvent(this.commandData).publish();
 			break;
 		default:
-			throw 'CloseInviteUserCommand unhandled outcome: ' + this.commandData.outcome;
+			throw 'SwapPreviewCsvCommand unhandled outcome: ' + this.commandData.outcome;
 		}
     }
 }

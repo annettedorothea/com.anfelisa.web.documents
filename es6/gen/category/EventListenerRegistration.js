@@ -55,6 +55,10 @@ export default class EventListenerRegistrationCategory {
 		ACEController.registerListener('category.CheckDropAllowedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.MoveCategoryStartedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.MoveCategoryOkEvent', AppState.reset_state_State_data_AuthorView_categoryTree_CategoryTree_movedCategory);
+		ACEController.registerListener('category.PreviewCsvOkEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_previewCsv);
+		ACEController.registerListener('category.CancelPreviewCsvOkEvent', AppState.reset_state_State_data_AuthorView_categoryTree_CategoryTree_previewCsv);
+		ACEController.registerListener('category.SwapPreviewCsvOkEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_previewCsv);
+		ACEController.registerListener('category.ImportCsvOkEvent', AppState.reset_state_State_data_AuthorView_categoryTree_CategoryTree_previewCsv);
 	}
 
 }

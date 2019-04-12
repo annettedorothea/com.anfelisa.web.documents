@@ -45,12 +45,16 @@ import CheckDropAllowedAction from "../../src/category/actions/CheckDropAllowedA
 import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
 import MoveCategoryStartedAction from "../../src/category/actions/MoveCategoryStartedAction";
 import MoveCategoryAction from "../../src/category/actions/MoveCategoryAction";
+import PreviewCsvAction from "../../src/category/actions/PreviewCsvAction";
+import CancelPreviewCsvAction from "../../src/category/actions/CancelPreviewCsvAction";
+import SwapPreviewCsvAction from "../../src/category/actions/SwapPreviewCsvAction";
+import ImportCsvAction from "../../src/category/actions/ImportCsvAction";
 
 export default class ActionFactoryRegistrationCategory {
 
 	static init() {
 		ACEController.registerFactory('category.LoadCategoryTreeAction', 
-			(actionData) => new LoadCategoryTreeAction(actionData.pathToSelected, actionData.selectedCategoryId));
+			(actionData) => new LoadCategoryTreeAction(actionData.selectedCategoryId));
 		ACEController.registerFactory('category.ExpandTreeItemAction', 
 			(actionData) => new ExpandTreeItemAction(actionData.categoryId));
 		ACEController.registerFactory('category.CollapseTreeItemAction', 
@@ -103,6 +107,14 @@ export default class ActionFactoryRegistrationCategory {
 			(actionData) => new MoveCategoryStartedAction(actionData.movedCategoryId));
 		ACEController.registerFactory('category.MoveCategoryAction', 
 			(actionData) => new MoveCategoryAction());
+		ACEController.registerFactory('category.PreviewCsvAction', 
+			(actionData) => new PreviewCsvAction(actionData.csv));
+		ACEController.registerFactory('category.CancelPreviewCsvAction', 
+			(actionData) => new CancelPreviewCsvAction());
+		ACEController.registerFactory('category.SwapPreviewCsvAction', 
+			(actionData) => new SwapPreviewCsvAction());
+		ACEController.registerFactory('category.ImportCsvAction', 
+			(actionData) => new ImportCsvAction());
 	}
 
 }

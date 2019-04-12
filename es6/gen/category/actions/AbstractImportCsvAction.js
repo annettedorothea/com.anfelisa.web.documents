@@ -18,18 +18,18 @@
 
 
 import Action from "../../ace/AsynchronousAction";
-import LoadCategoryTreeCommand from "../../../src/category/commands/LoadCategoryTreeCommand";
+import ImportCsvCommand from "../../../src/category/commands/ImportCsvCommand";
 import * as AppState from "../../ace/WriteAppState";
 
-export default class AbstractLoadCategoryTreeAction extends Action {
+export default class AbstractImportCsvAction extends Action {
 
-    constructor( selectedCategoryId) {
-        super({selectedCategoryId}, 'category.LoadCategoryTreeAction');
+    constructor() {
+        super({}, 'category.ImportCsvAction');
 		this.postCall = this.postCall.bind(this);
 		}
 		
 	getCommand() {
-		return new LoadCategoryTreeCommand(this.actionData);
+		return new ImportCsvCommand(this.actionData);
 	}
 
 	preCall() {

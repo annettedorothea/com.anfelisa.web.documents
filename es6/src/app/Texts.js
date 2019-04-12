@@ -156,7 +156,7 @@ export const Texts = {
         }
     },
     categoryTree: {
-        back : {
+        back: {
             de: "Zurück"
         },
         confirmDelete: {
@@ -172,6 +172,43 @@ export const Texts = {
             title: {
                 de: "Löschen"
             }
+        },
+        csvPreview : {
+            cancel: {
+                de: "Abbrechen"
+            },
+            given: {
+                de: "Gegeben"
+            },
+            languages: {
+                de: {
+                    de: "Deutsch"
+                },
+                en: {
+                    de: "Englisch"
+                },
+                fr: {
+                    de: "Französisch"
+                },
+            },
+            ok: {
+                de: "OK"
+            },
+            swap: {
+                de: "Spalten tauschen"
+            },
+            title: {
+                de: "Vorschau"
+            },
+            wanted: {
+                de: "Gesucht"
+            }
+        },
+        csvUpload: {
+            de: "csv-Datei hochladen"
+        },
+        delete : {
+            de: "Löschen"
         },
         editCategory: {
             cancel: {
@@ -198,7 +235,7 @@ export const Texts = {
                 de: "Benutzername"
             },
             title: {
-                de: "Bentzer mit Zugriff"
+                de: "Benutzer mit Zugriff"
             }
         },
         languages: {
@@ -234,6 +271,9 @@ export const Texts = {
             title: {
                 de: "Neu"
             }
+        },
+        signIn: {
+            de: "Box anlegen"
         }
     },
     cardList: {
@@ -273,7 +313,10 @@ export const Texts = {
             de: "Gesucht"
         },
         scheduleSelectedCards: {
-            de: "Selektierte Karten heute noch abfragen"
+            de: "Selektierte heute abfragen"
+        },
+        toggleInputOrder: {
+            de: "Spalten tauschen"
         },
         useDictionary: {
             de: "Linugee Wörterbuch anzeigen"
@@ -289,7 +332,7 @@ export const Texts = {
     },
     errors: {
         atLeastOneUserMustHaveAccessToCategory: {
-            de: "Wenigstens ein Benutzer muss Zugriff zu der Lernkartei haben."
+            de: "Wenigstens ein Benutzer muss Schreib-Zugriff zu der Lernkartei haben."
         },
         boxDoesNotExist: {
             de: "Lernkartei wurde nicht gefunden."
@@ -429,9 +472,6 @@ export const Texts = {
         delete: {
             de: "Benutzer löschen"
         },
-        back: {
-            de: "Zurück"
-        },
         email: {
             de: "Email"
         },
@@ -455,9 +495,6 @@ export const Texts = {
         ahead: {
             de: "Du bist für heute fertig!"
         },
-        back: {
-            de: "Zurück"
-        },
         category: {
             de: "Zur Lernkartei"
         },
@@ -469,9 +506,6 @@ export const Texts = {
         },
         never: {
             de: "noch nie abgefragt"
-        },
-        reinforce: {
-            de: "Du könntest die Karten von heute noch festigen..."
         },
         reinforceCard: {
             de: "Festigen"
@@ -556,9 +590,6 @@ export const Texts = {
         }
     },
     userList: {
-        back: {
-            de: "Zurück"
-        },
         confirmDelete: {
             cancel: {
                 de: "Nein"

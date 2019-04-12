@@ -15,7 +15,11 @@ export default class InviteUser extends React.Component {
     render() {
         const userItems = this.props.userList.map((user) => {
             return <li key={user.userId}>
-                <div>{user.username}</div>
+                <div>
+                    {user.editable === false && <i className="fa fa-eye"/>}
+                    {user.editable === true && <i className="fas fa-pen"/>}
+                    {user.username}
+                </div>
                 <button className="smaller" onClick={() => revokeUserAccess(user.userId)}><i className="fas fa-minus"/></button>
             </li>
         });

@@ -15,7 +15,7 @@ ACE
 	CreateBox 
 		call com.anfelisa.box.CreateBox
 		loadingFlag common.state.State.displaySpinner 
-		on ok triggers (common.Route)
+		on ok triggers (category.LoadCategoryTree)
 	
 	EditBox
 		on ok (merge common.state.State.data)

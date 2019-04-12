@@ -24,12 +24,14 @@ export default class QueryCards extends React.Component {
         }
         return (
             <div className="box">
-                <button
-                    className="backButton"
-                    onClick={() => new RouteAction("#dashboard").apply()}>{this.props.texts.queryCards.back[this.props.language]}
-                </button>
 
-                <h1>{this.props.categoryName}</h1>
+                <h1>
+                    <button
+                        className="backButton"
+                        onClick={() => new RouteAction("#dashboard").apply()}><i className="fa fa-arrow-left"/>
+                    </button>
+                    {this.props.categoryName}
+                </h1>
 
                 <DaysBehindSchedule
                     boxId={this.props.boxId}
@@ -40,10 +42,17 @@ export default class QueryCards extends React.Component {
 
                 {this.props.todaysCards === 0 && !this.props.reinforceCardId &&
                 <h2>
+                    <i className="fa fa-check-circle"/>
                     {this.props.texts.queryCards.ahead[this.props.language]}
-                    {this.props.reinforceCards > 0 && <span> {this.props.texts.queryCards.reinforce[this.props.language]}</span>
-                    }
                 </h2>}
+
+                {this.props.todaysCards === 0 && !this.props.reinforceCardId && this.props.reinforceCards > 0 &&
+                <button className="reinforceHeader"
+                        onClick={() => new RouteAction(`#box/reinforce/${this.props.boxId}`).apply()}>
+                    {this.props.texts.queryCards.reinforceCard[this.props.language]}
+                </button>
+                }
+
                 {content}
 
                 <div className="infoAndStatistics">

@@ -17,28 +17,19 @@
 
 
 
-import Action from "../../ace/AsynchronousAction";
-import LoadCategoryTreeCommand from "../../../src/category/commands/LoadCategoryTreeCommand";
-import * as AppState from "../../ace/WriteAppState";
+import Action from "../../ace/SynchronousAction";
+import SwapPreviewCsvCommand from "../../../src/category/commands/SwapPreviewCsvCommand";
 
-export default class AbstractLoadCategoryTreeAction extends Action {
+export default class AbstractSwapPreviewCsvAction extends Action {
 
-    constructor( selectedCategoryId) {
-        super({selectedCategoryId}, 'category.LoadCategoryTreeAction');
-		this.postCall = this.postCall.bind(this);
+    constructor() {
+        super({}, 'category.SwapPreviewCsvAction');
 		}
 		
 	getCommand() {
-		return new LoadCategoryTreeCommand(this.actionData);
+		return new SwapPreviewCsvCommand(this.actionData);
 	}
 
-	preCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: true});
-	}
-	
-	postCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: false});
-	}
 
 }
 

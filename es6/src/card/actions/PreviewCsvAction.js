@@ -17,27 +17,14 @@
 
 
 
-import Command from "../../../gen/ace/SynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import CloseInviteUserOkEvent from "../../../gen/category/events/CloseInviteUserOkEvent";
-import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
+import AbstractPreviewCsvAction from "../../../gen/card/actions/AbstractPreviewCsvAction";
 
-export default class AbstractCloseInviteUserCommand extends Command {
-    constructor(commandData) {
-        super(commandData, "category.CloseInviteUserCommand");
-        this.ok = "ok";
+export default class PreviewCsvAction extends AbstractPreviewCsvAction {
+
+    initActionData() {
+    	//add not replayable data to action data in order to freeze for replay (e.g. time or date)
     }
 
-    publishEvents() {
-		switch (this.commandData.outcome) {
-		case this.ok:
-			new CloseInviteUserOkEvent(this.commandData).publish();
-			new TriggerAction(new LoadCategoryTreeAction(this.commandData.selectedCategoryId)).publish();
-			break;
-		default:
-			throw 'CloseInviteUserCommand unhandled outcome: ' + this.commandData.outcome;
-		}
-    }
 }
 
 

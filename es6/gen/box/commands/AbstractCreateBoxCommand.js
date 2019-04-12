@@ -19,7 +19,7 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import RouteAction from "../../../src/common/actions/RouteAction";
+import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 
 export default class AbstractCreateBoxCommand extends Command {
     constructor(commandData) {
@@ -32,14 +32,14 @@ export default class AbstractCreateBoxCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
+			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.selectedCategoryId)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('CreateBoxCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }
-    
+
 	execute() {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];

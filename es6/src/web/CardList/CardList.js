@@ -95,7 +95,6 @@ export default class CardList extends React.Component {
                 naturalInputOrder={this.props.cardView.naturalInputOrder}
                 hasBox={this.props.categoryTree.selectedCategory.hasBox}
             />
-
         });
         if (this.props.cardView.cardList.length === 0 && this.props.categoryTree.selectedCategory.editable === false) {
             return <h2>{this.props.texts.cardList.noCards[this.props.language]}</h2>
@@ -119,9 +118,9 @@ export default class CardList extends React.Component {
                 <table className="cardTable">
                     <thead>
                     <tr className="notPrinted">
-                        <th colSpan={4}>
+                        <th colSpan={this.props.categoryTree.selectedCategory.hasBox === true ? 5 : 4}>
                             {this.props.categoryTree.selectedCategory.editable === true &&
-                            <button onClick={() => toggleInputOrder(this.props.cardView.naturalInputOrder)}><i className="fas fa-arrows-alt-h"/></button>}
+                            <button title={this.props.texts.cardList.toggleInputOrder[this.props.language]} onClick={() => toggleInputOrder(this.props.cardView.naturalInputOrder)}><i className="fas fa-arrows-alt-h"/></button>}
                             <input
                                 type={"text"}
                                 onChange={(event) => filterCards(event.target.value)}
@@ -142,7 +141,7 @@ export default class CardList extends React.Component {
                                 id="useDictionaryCheckbox"
                             />
                         </th>
-                        <th colSpan={4}>
+                        <th colSpan={this.props.categoryTree.selectedCategory.hasBox === true ? 5 : 4}>
                             <label
                                 htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary[this.props.language]}
                             </label>
@@ -150,7 +149,7 @@ export default class CardList extends React.Component {
                     </tr>
                     }
 
-                    {this.props.cardView.cardList.length > 0 &&
+                    {this.props.cardView.cardList.length > 0 && (this.props.categoryTree.selectedCategory.hasBox === true || this.props.categoryTree.selectedCategory.editable === true) &&
                     <tr className="notPrinted">
                         <th>
                             <input

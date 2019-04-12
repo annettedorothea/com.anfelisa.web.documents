@@ -1112,6 +1112,9 @@ export function merge_state_State_data_AuthorView_categoryTree(eventData) {
 	if (eventData.movedCategory !== undefined) {
 		state.data.categoryTree.movedCategory = eventData.movedCategory;
 	}
+	if (eventData.previewCsv !== undefined) {
+		state.data.categoryTree.previewCsv = eventData.previewCsv;
+	}
 }
 
 export function reset_state_State_data_AuthorView_categoryTree() {
@@ -1286,6 +1289,17 @@ export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_move
 
 export function init_state_State_data_AuthorView_categoryTree_CategoryTree_movedCategory() {
 	state.data.categoryTree.movedCategory = null;
+}
+export function set_state_State_data_AuthorView_categoryTree_CategoryTree_previewCsv(eventData) {
+	state.data.categoryTree.previewCsv = eventData.previewCsv;
+}
+
+export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_previewCsv() {
+	state.data.categoryTree.previewCsv = null;
+}
+
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_previewCsv() {
+	state.data.categoryTree.previewCsv = null;
 }
 
 export function set_state_State_data_AuthorView_boxList(eventData) {

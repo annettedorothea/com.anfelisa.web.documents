@@ -17,28 +17,19 @@
 
 
 
-import Action from "../../ace/AsynchronousAction";
-import LoadCategoryTreeCommand from "../../../src/category/commands/LoadCategoryTreeCommand";
-import * as AppState from "../../ace/WriteAppState";
+import Action from "../../ace/SynchronousAction";
+import CancelPreviewCsvCommand from "../../../src/category/commands/CancelPreviewCsvCommand";
 
-export default class AbstractLoadCategoryTreeAction extends Action {
+export default class AbstractCancelPreviewCsvAction extends Action {
 
-    constructor( selectedCategoryId) {
-        super({selectedCategoryId}, 'category.LoadCategoryTreeAction');
-		this.postCall = this.postCall.bind(this);
+    constructor() {
+        super({}, 'category.CancelPreviewCsvAction');
 		}
 		
 	getCommand() {
-		return new LoadCategoryTreeCommand(this.actionData);
+		return new CancelPreviewCsvCommand(this.actionData);
 	}
 
-	preCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: true});
-	}
-	
-	postCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: false});
-	}
 
 }
 

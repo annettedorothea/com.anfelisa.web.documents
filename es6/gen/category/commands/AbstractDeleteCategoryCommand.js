@@ -36,7 +36,7 @@ export default class AbstractDeleteCategoryCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new DeleteCategoryOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.pathToSelected, this.commandData.selectedCategoryId)).publish());
+			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.selectedCategoryId)).publish());
 			break;
 		case this.error:
 			promises.push(new DeleteCategoryErrorEvent(this.commandData).publish());

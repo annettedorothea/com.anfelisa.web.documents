@@ -176,6 +176,8 @@ appState state : State {
 			dropAllowed
 			dropTargetCategoryId
 			movedCategory
+			
+			previewCsv
 		}
     	boxList list
         deleteBox : DeleteBox {

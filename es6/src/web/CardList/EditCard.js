@@ -56,7 +56,7 @@ export default class EditCard extends React.Component {
 
     renderGiven() {
         return (
-            <td>
+            <td className="input">
                 <textarea
                     onChange={(event) => givenOfEditedCardChanged(event.target.value)}
                     autoComplete="off"
@@ -68,9 +68,9 @@ export default class EditCard extends React.Component {
         );
     }
 
-    renderWanted(renderGoogleLogo) {
+    renderWanted() {
         return (
-            <td>
+            <td className="input">
                 <textarea
                     onChange={(event) => wantedOfEditedCardChanged(event.target.value)}
                     autoComplete="off"
@@ -105,7 +105,7 @@ export default class EditCard extends React.Component {
 
     render() {
         return (
-            <tr className="notPrinted">
+            <tr className="notPrinted inputRow">
                 <td>
                     <input
                         type={"checkbox"}
@@ -119,7 +119,7 @@ export default class EditCard extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 {this.props.naturalInputOrder === false && this.renderImage()}
-                <td className="noBreak">
+                <td className="noBreak input">
                     <button
                         disabled={!this.isValid()}
                         onClick={this.onUpdate}>
@@ -130,6 +130,7 @@ export default class EditCard extends React.Component {
                         <i className="fas fa-times"/>
                     </button>
                 </td>
+                {this.props.hasBox === true && <td/>}
             </tr>
         );
     }

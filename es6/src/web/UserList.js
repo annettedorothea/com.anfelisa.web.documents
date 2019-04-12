@@ -41,7 +41,12 @@ export default class UserList extends React.Component {
                             cancel: () => deleteUserCancel()
                         }}/>
                 </div>}
-                <h1>{this.props.texts.userList.title[this.props.language]}</h1>
+                <h1>
+                    <button
+                        onClick={() => route("#dashboard")}><i className="fa fa-arrow-left"/>
+                    </button>
+                    {this.props.texts.userList.title[this.props.language]}
+                </h1>
                 <table className="adminUserList">
                     <thead>
 
@@ -50,9 +55,6 @@ export default class UserList extends React.Component {
                     {userItems}
                     </tbody>
                 </table>
-                <button
-                    onClick={() => route("#dashboard")}>{this.props.texts.userList.back[this.props.language]}
-                </button>
 
             </div>
         );

@@ -25,7 +25,12 @@ export default class Profile extends React.Component {
                         }}/>
                 </div>}
                 <div className="form">
-                    <h1>{this.props.texts.profile.title[this.props.language]}</h1>
+                    <h1>
+                        <button
+                            onClick={() => route("#dashboard")}><i className="fa fa-arrow-left"/>
+                        </button>
+                        {this.props.texts.profile.title[this.props.language]}
+                    </h1>
                     <div className="line">
                         <label>{this.props.texts.profile.username[this.props.language]}</label>
                         <input
@@ -56,8 +61,6 @@ export default class Profile extends React.Component {
                 </div>
                 <button className="danger"
                         onClick={() => deleteUserClick()}>{this.props.texts.profile.delete[this.props.language]}</button>
-                <button
-                    onClick={() => route("#dashboard")}>{this.props.texts.profile.back[this.props.language]}</button>
             </div>
         );
     }

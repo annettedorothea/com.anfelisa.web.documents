@@ -14,23 +14,23 @@ export default class CardItem extends React.Component {
     }
 
     onDragStart(event) {
-        event.dataTransfer.setData('Text', this.props.given);
+        event.dataTransfer.setData("Text", this.props.given);
         moveCardsStarted();
     }
 
-    renderGiven() {
+    renderGiven(first) {
         return (
             <td onDoubleClick={this.props.editable === true ? () => editCard(this.props.cardId) : () => {
-            }}>
+            }} className={first ? "visibleMobile" : "notVisibleMobile"}>
                 <pre>{this.props.given}</pre>
             </td>
         );
     }
 
-    renderWanted() {
+    renderWanted(first) {
         return (
             <td onDoubleClick={this.props.editable === true ? () => editCard(this.props.cardId) : () => {
-            }}>
+            }} className={first ? "visibleMobile" : "notVisibleMobile"}>
                 <pre>{this.props.wanted}</pre>
             </td>
         );
@@ -39,7 +39,7 @@ export default class CardItem extends React.Component {
     renderImage() {
         return (
             <td
-                className="preview"
+                className="preview notVisibleMobile"
                 onDoubleClick={
                     this.props.editable === true ? () => editCard(this.props.cardId) : () => {
                     }
@@ -60,11 +60,11 @@ export default class CardItem extends React.Component {
                         checked={this.props.selectedCardIds.indexOf(this.props.cardId) >= 0}
                     />
                 </td>
-                {this.props.naturalInputOrder === true && this.renderGiven()}
-                {this.props.naturalInputOrder === true && this.renderWanted()}
+                {this.props.naturalInputOrder === true && this.renderGiven(true)}
+                {this.props.naturalInputOrder === true && this.renderWanted(false)}
                 {this.props.naturalInputOrder === true && this.renderImage()}
-                {this.props.naturalInputOrder === false && this.renderWanted()}
-                {this.props.naturalInputOrder === false && this.renderGiven()}
+                {this.props.naturalInputOrder === false && this.renderWanted(true)}
+                {this.props.naturalInputOrder === false && this.renderGiven(false)}
                 {this.props.naturalInputOrder === false && this.renderImage()}
                 <td className="noBreak notPrinted">
                     {this.props.editable === true &&
@@ -80,6 +80,11 @@ export default class CardItem extends React.Component {
                        onDragStart={(event) => this.onDragStart(event)}/>
                     }
                 </td>
+                {this.props.hasBox &&
+                <td className="notPrinted">
+                    {this.props.next ? new Date(this.props.next).toLocaleDateString() : ""}
+                </td>
+                }
             </tr>
         );
     }

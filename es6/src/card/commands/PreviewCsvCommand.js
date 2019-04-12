@@ -17,26 +17,23 @@
 
 
 
-import Command from "../../../gen/ace/SynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import CloseInviteUserOkEvent from "../../../gen/category/events/CloseInviteUserOkEvent";
-import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
+import AbstractPreviewCsvCommand from "../../../gen/card/commands/AbstractPreviewCsvCommand";
+import * as AppState from "../../../gen/ace/ReadAppState";
+//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
-export default class AbstractCloseInviteUserCommand extends Command {
-    constructor(commandData) {
-        super(commandData, "category.CloseInviteUserCommand");
-        this.ok = "ok";
+export default class PreviewCsvCommand extends AbstractPreviewCsvCommand {
+
+    initCommandData() {
+    	//add from appState to commandData
+    	return true;
     }
 
-    publishEvents() {
-		switch (this.commandData.outcome) {
-		case this.ok:
-			new CloseInviteUserOkEvent(this.commandData).publish();
-			new TriggerAction(new LoadCategoryTreeAction(this.commandData.selectedCategoryId)).publish();
-			break;
-		default:
-			throw 'CloseInviteUserCommand unhandled outcome: ' + this.commandData.outcome;
-		}
+    handleResponse(resolve, reject) {
+    	this.commandData.outcome = this.ok;
+    	resolve();
+    }
+    handleError(resolve, reject) {
+    	reject(this.commandData.error);
     }
 }
 

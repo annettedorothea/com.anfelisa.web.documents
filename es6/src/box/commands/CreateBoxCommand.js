@@ -1,17 +1,15 @@
 import AbstractCreateBoxCommand from "../../../gen/box/commands/AbstractCreateBoxCommand";
-import {getState} from "../../../gen/ace/ReadAppState";
+import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class CreateBoxCommand extends AbstractCreateBoxCommand {
 
     initCommandData() {
-        const data = getState().data.categoryTree;
-        this.commandData.categoryId = data.selectedCategory.categoryId;
+        this.commandData.categoryId = AppState.get_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory().categoryId;
         return true;
     }
 
     handleResponse(resolve, reject) {
-        this.commandData.hash = "#dashboard";
-        this.commandData.categoryId = undefined;
+        this.commandData.selectedCategoryId = AppState.get_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory().categoryId;
     	this.commandData.outcome = this.ok;
     	resolve();
     }

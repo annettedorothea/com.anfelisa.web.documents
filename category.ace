@@ -4,7 +4,7 @@ category
 
 ACE
 
-LoadCategoryTree <pathToSelected, selectedCategoryId>
+LoadCategoryTree <selectedCategoryId>
 	call com.anfelisa.category.GetCategoryTree
 	loadingFlag common.state.State.displaySpinner 
 	on ok ( 
@@ -88,7 +88,7 @@ InviteUserClick
 	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
 CloseInviteUser
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
+	on ok (merge common.state.State.data.AuthorView.categoryTree) triggers (LoadCategoryTree)
 	
 InvitedUsernameChanged<invitedUsername>
 	on ok (merge common.state.State.data.AuthorView.categoryTree)
@@ -120,5 +120,23 @@ MoveCategory
 		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.movedCategory
 	) triggers (category.LoadCategoryTree)
 
+PreviewCsv<csv>
+	on ok (
+		set common.state.State.data.AuthorView.categoryTree.CategoryTree.previewCsv
+	) 
+	
+CancelPreviewCsv
+	on ok (reset common.state.State.data.AuthorView.categoryTree.CategoryTree.previewCsv)
+		
+SwapPreviewCsv
+	on ok (set common.state.State.data.AuthorView.categoryTree.CategoryTree.previewCsv)
+	
+ImportCsv
+	call com.anfelisa.card.ImportCsv
+	loadingFlag common.state.State.displaySpinner 
+	on ok ( 
+		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.previewCsv
+	) triggers (card.LoadCards)
+	
 		
 

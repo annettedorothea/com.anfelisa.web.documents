@@ -14,12 +14,30 @@ import {
 } from "../../../gen/category/ActionFunctions";
 import {createBox} from "../../../gen/box/ActionFunctions";
 import {route} from "../../../gen/common/ActionFunctions";
+import {previewCsv} from "../../../gen/category/ActionFunctions";
+import CsvFileInput from "./CsvFileInput";
+import CsvPreview from "./CsvPreview";
 
 export default class CategoryTree extends React.Component {
 
     constructor(props) {
         super(props);
     }
+
+    onCsvFileChange(event) {
+        let files = event.target.files;
+
+        if (files.length > 0) {
+            const file = files[0];
+            event.target.value = null;
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                previewCsv(reader.result);
+            };
+            reader.readAsText(file);
+        }
+    }
+
 
     render() {
         const categoryItems = this.props.categoryList.map((category) => {
@@ -38,6 +56,14 @@ export default class CategoryTree extends React.Component {
 
         return (
             <div className="categoryTree">
+                {this.props.previewCsv && this.props.previewCsv.length > 0 &&
+                <CsvPreview
+                    previewCsv={this.props.previewCsv}
+                    givenLanguage={this.props.selectedCategory.givenLanguage}
+                    wantedLanguage={this.props.selectedCategory.wantedLanguage}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />}
                 {this.props.displayNewCategory &&
                 <NewCategory
                     selectedCategory={this.props.selectedCategory}
@@ -79,35 +105,50 @@ export default class CategoryTree extends React.Component {
                 }
 
                 <button className="backButton"
-                        onClick={() => route("#dashboard")}>
-                    {this.props.texts.categoryTree.back[this.props.language]}
+                        onClick={() => route("#dashboard")}
+                        title={this.props.texts.categoryTree.back[this.props.language]}>
+                    <i className="fa fa-arrow-left"/>
                 </button>
                 <button
-                    onClick={() => newCategoryClick()}>
+                    disabled={this.props.selectedCategory && !this.props.selectedCategory.editable}
+                    onClick={() => newCategoryClick()}
+                    title={this.props.selectedCategory === undefined ? this.props.texts.categoryTree.newCategory.newRootCategory[this.props.language] : this.props.texts.categoryTree.newCategory.newChildCategory[this.props.language]}>
                     <i className="fas fa-plus"/>
                 </button>
                 <button
                     disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable}
-                    onClick={() => editCategoryClick()}>
+                    onClick={() => editCategoryClick()}
+                    title={this.props.texts.categoryTree.editCategory.title[this.props.language]}>
                     <i className="fas fa-pen"/>
                 </button>
                 <button
                     disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable || !this.props.selectedCategory.empty}
-                    onClick={() => deleteCategoryClick()}>
+                    onClick={() => deleteCategoryClick()}
+                    title={this.props.texts.categoryTree.delete[this.props.language]}>
                     <i className="fas fa-times"/>
                 </button>
                 <button
                     disabled={!this.props.selectedCategory || this.props.selectedCategory.parentCategoryId !== undefined || this.props.selectedCategory.hasBox === undefined || this.props.selectedCategory.hasBox === true}
-                    onClick={() => createBox()}>
+                    onClick={() => createBox()}
+                    title={this.props.texts.categoryTree.signIn[this.props.language]}>
                     <i className="fas fa-sign-in-alt"/>
                 </button>
                 <button
-                    disabled={!this.props.selectedCategory || this.props.selectedCategory.parentCategoryId !== undefined}
+                    disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable || this.props.selectedCategory.parentCategoryId !== undefined}
                     onClick={() => {
                         inviteUserClick();
-                    }}>
+                    }}
+                    title={this.props.texts.categoryTree.inviteUser.title[this.props.language]}>
                     <i className="fas fa-users"/>
                 </button>
+                <CsvFileInput
+                    onCsvFileChange={this.onCsvFileChange}
+                    file={this.props.file}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                    disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable}
+                />
+
                 <div className="categoryTreeItems">
                     {categoryItems}
                 </div>

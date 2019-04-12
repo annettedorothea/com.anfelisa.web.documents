@@ -44,9 +44,13 @@ import CheckDropAllowedAction from "../../src/category/actions/CheckDropAllowedA
 import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
 import MoveCategoryStartedAction from "../../src/category/actions/MoveCategoryStartedAction";
 import MoveCategoryAction from "../../src/category/actions/MoveCategoryAction";
+import PreviewCsvAction from "../../src/category/actions/PreviewCsvAction";
+import CancelPreviewCsvAction from "../../src/category/actions/CancelPreviewCsvAction";
+import SwapPreviewCsvAction from "../../src/category/actions/SwapPreviewCsvAction";
+import ImportCsvAction from "../../src/category/actions/ImportCsvAction";
 
-export function loadCategoryTree(pathToSelected, selectedCategoryId) {
-    new LoadCategoryTreeAction(pathToSelected, selectedCategoryId).apply();
+export function loadCategoryTree(selectedCategoryId) {
+    new LoadCategoryTreeAction(selectedCategoryId).apply();
 }
 
 export function expandTreeItem(categoryId) {
@@ -151,6 +155,22 @@ export function moveCategoryStarted(movedCategoryId) {
 
 export function moveCategory() {
     new MoveCategoryAction().apply();
+}
+
+export function previewCsv(csv) {
+    new PreviewCsvAction(csv).apply();
+}
+
+export function cancelPreviewCsv() {
+    new CancelPreviewCsvAction().apply();
+}
+
+export function swapPreviewCsv() {
+    new SwapPreviewCsvAction().apply();
+}
+
+export function importCsv() {
+    new ImportCsvAction().apply();
 }
 
 
