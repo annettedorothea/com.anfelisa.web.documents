@@ -370,6 +370,9 @@ export function merge_state_State_data(eventData) {
 	if (eventData.todaysCards !== undefined) {
 		state.data.todaysCards = eventData.todaysCards;
 	}
+	if (eventData.tomorrowsCards !== undefined) {
+		state.data.tomorrowsCards = eventData.tomorrowsCards;
+	}
 	if (eventData.totalCards !== undefined) {
 		state.data.totalCards = eventData.totalCards;
 	}
@@ -985,6 +988,17 @@ export function reset_state_State_data_Card_todaysCards() {
 export function init_state_State_data_Card_todaysCards() {
 	state.data.todaysCards = null;
 }
+export function set_state_State_data_Card_tomorrowsCards(eventData) {
+	state.data.tomorrowsCards = eventData.tomorrowsCards;
+}
+
+export function reset_state_State_data_Card_tomorrowsCards() {
+	state.data.tomorrowsCards = null;
+}
+
+export function init_state_State_data_Card_tomorrowsCards() {
+	state.data.tomorrowsCards = null;
+}
 export function set_state_State_data_Card_totalCards(eventData) {
 	state.data.totalCards = eventData.totalCards;
 }
@@ -1368,9 +1382,6 @@ export function merge_state_State_data_AuthorView_cardView(eventData) {
 	if (eventData.naturalInputOrder !== undefined) {
 		state.data.cardView.naturalInputOrder = eventData.naturalInputOrder;
 	}
-	if (eventData.useDictionary !== undefined) {
-		state.data.cardView.useDictionary = eventData.useDictionary;
-	}
 	if (eventData.filter !== undefined) {
 		state.data.cardView.filter = eventData.filter;
 	}
@@ -1379,9 +1390,6 @@ export function merge_state_State_data_AuthorView_cardView(eventData) {
 	}
 	if (eventData.newCard !== undefined) {
 		state.data.cardView.newCard = eventData.newCard;
-	}
-	if (eventData.cardDuplicates !== undefined) {
-		state.data.cardView.cardDuplicates = eventData.cardDuplicates;
 	}
 	if (eventData.deleteCard !== undefined) {
 		state.data.cardView.deleteCard = eventData.deleteCard;
@@ -1426,17 +1434,6 @@ export function reset_state_State_data_AuthorView_cardView_CardView_naturalInput
 
 export function init_state_State_data_AuthorView_cardView_CardView_naturalInputOrder() {
 	state.data.cardView.naturalInputOrder = null;
-}
-export function set_state_State_data_AuthorView_cardView_CardView_useDictionary(eventData) {
-	state.data.cardView.useDictionary = eventData.useDictionary;
-}
-
-export function reset_state_State_data_AuthorView_cardView_CardView_useDictionary() {
-	state.data.cardView.useDictionary = null;
-}
-
-export function init_state_State_data_AuthorView_cardView_CardView_useDictionary() {
-	state.data.cardView.useDictionary = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_filter(eventData) {
 	state.data.cardView.filter = eventData.filter;
@@ -1677,17 +1674,6 @@ export function init_state_State_data_AuthorView_cardView_CardView_newCard_NewCa
 	state.data.cardView.newCard.displayTranslateSpinner = null;
 }
 
-export function set_state_State_data_AuthorView_cardView_CardView_cardDuplicates(eventData) {
-	state.data.cardView.cardDuplicates = eventData.cardDuplicates;
-}
-
-export function reset_state_State_data_AuthorView_cardView_CardView_cardDuplicates() {
-	state.data.cardView.cardDuplicates = null;
-}
-
-export function init_state_State_data_AuthorView_cardView_CardView_cardDuplicates() {
-	state.data.cardView.cardDuplicates = null;
-}
 export function set_state_State_data_AuthorView_cardView_CardView_deleteCard(eventData) {
 	state.data.cardView.deleteCard = eventData.deleteCard;
 }

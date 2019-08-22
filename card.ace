@@ -35,16 +35,9 @@ LoadCards
 
 GivenOfNewCardChanged <given>
 	on ok (merge common.state.State.data.AuthorView.cardView.CardView.newCard)
-		triggers (SearchDuplicateCards)
-
-SearchDuplicateCards 
-	call com.anfelisa.card.GetDuplicates
-	loadingFlag common.state.State.data.AuthorView.cardView.CardView.newCard.NewCard.displaySpinner 
-	on ok ( set common.state.State.data.AuthorView.cardView.CardView.cardDuplicates )
 
 WantedOfNewCardChanged <wanted>
 	on ok (merge common.state.State.data.AuthorView.cardView.CardView.newCard)
-		triggers (SearchDuplicateCards)
 
 CancelNewCard 
 	on ok (set common.state.State.data.AuthorView.cardView.CardView.newCard)
@@ -72,26 +65,12 @@ CancelDeleteCard
 FilterCards <filter>
 	on ok (set common.state.State.data.AuthorView.cardView.CardView.filter)
 
-Translate 
-	call com.anfelisa.card.GetTranslation
-	loadingFlag common.state.State.data.AuthorView.cardView.CardView.newCard.NewCard.displayTranslateSpinner 
-	on wantedFetched (merge common.state.State.data.AuthorView.cardView.CardView.newCard ) triggers (SearchDuplicateCards)
-	on givenFetched (merge common.state.State.data.AuthorView.cardView.CardView.newCard ) triggers (SearchDuplicateCards)
-	on error
-	on empty
-	on targetNotEmtpy
-
-
 PassValueToDictionary 
 	on ok (set common.state.State.data.AuthorView.cardView.CardView.dictionaryValue)
 
 
 ToggleInputOrder <naturalInputOrder>
 	on ok (set common.state.State.data.AuthorView.cardView.CardView.naturalInputOrder)
-
-
-ToggleUseDictionary 
-	on ok (set common.state.State.data.AuthorView.cardView.CardView.useDictionary)
 
 
 LoadWantedImageOfNewCard <image>

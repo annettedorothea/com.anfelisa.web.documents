@@ -1,7 +1,6 @@
 import React from 'react';
 import Confirm from "../Confirm";
 import Dictionary from "./Dictionary";
-import DuplicateCardItem from "./DuplicateCardItem";
 import NewCard from "./NewCard";
 import EditCard from "./EditCard";
 import CardItem from "./CardItem";
@@ -11,8 +10,7 @@ import {
     filterCards,
     scheduleSelectedCards,
     toggleAllScheduleCardSelection,
-    toggleInputOrder,
-    toggleUseDictionary
+    toggleInputOrder
 } from "../../../gen/card/ActionFunctions";
 
 export default class CardList extends React.Component {
@@ -75,7 +73,6 @@ export default class CardList extends React.Component {
                     texts={this.props.texts}
                     language={this.props.language}
                     naturalInputOrder={this.props.cardView.naturalInputOrder}
-                    useDictionary={this.props.cardView.useDictionary}
                     ref={component => {
                         this.newCard = component;
                     }}
@@ -83,19 +80,6 @@ export default class CardList extends React.Component {
                 />
             );
         }
-        let duplicateCards = this.props.cardView.cardDuplicates.map((card) => {
-            return <DuplicateCardItem
-                {...card}
-                key={card.cardId}
-                texts={this.props.texts}
-                language={this.props.language}
-                username={this.props.username}
-                password={this.props.password}
-                userRole={this.props.role}
-                naturalInputOrder={this.props.cardView.naturalInputOrder}
-                hasBox={this.props.categoryTree.selectedCategory.hasBox}
-            />
-        });
         if (this.props.cardView.cardList.length === 0 && this.props.categoryTree.selectedCategory.editable === false) {
             return <h2>{this.props.texts.cardList.noCards[this.props.language]}</h2>
         }
@@ -131,24 +115,6 @@ export default class CardList extends React.Component {
                         </th>
                     </tr>
 
-                    {this.props.categoryTree.selectedCategory.dictionaryLookup === true && this.props.categoryTree.selectedCategory.editable === true &&
-                    <tr className="notPrinted">
-                        <th>
-                            <input
-                                type={"checkbox"}
-                                onChange={() => toggleUseDictionary()}
-                                checked={this.props.cardView.useDictionary}
-                                id="useDictionaryCheckbox"
-                            />
-                        </th>
-                        <th colSpan={this.props.categoryTree.selectedCategory.hasBox === true ? 5 : 4}>
-                            <label
-                                htmlFor="useDictionaryCheckbox">{this.props.texts.cardList.useDictionary[this.props.language]}
-                            </label>
-                        </th>
-                    </tr>
-                    }
-
                     {this.props.cardView.cardList.length > 0 && (this.props.categoryTree.selectedCategory.hasBox === true || this.props.categoryTree.selectedCategory.editable === true) &&
                     <tr className="notPrinted">
                         <th>
@@ -171,16 +137,11 @@ export default class CardList extends React.Component {
 
                     <tbody>
                     {cardItems}
-                    {duplicateCards.length > 0 && <tr>
-                        <td/>
-                        <td colSpan={5}>{this.props.texts.cardList.duplicateCards[this.props.language]}</td>
-                    </tr>}
-                    {duplicateCards}
 
                     </tbody>
                 </table>
 
-                {!!this.props.cardView.useDictionary && !!this.props.categoryTree.selectedCategory.dictionaryLookup &&
+                {!!this.props.categoryTree.selectedCategory.dictionaryLookup &&
                 <Dictionary
                     given={this.props.cardView.newCard.given}
                     wanted={this.props.cardView.newCard.wanted}

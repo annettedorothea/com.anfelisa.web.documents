@@ -28,8 +28,7 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
             },
             cardView: {
                 cardList: null,
-                naturalInputOrder: true,
-                useDictionary: false
+                naturalInputOrder: true
             }
         };
         this.commandData.view = "category-tree";

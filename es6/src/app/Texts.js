@@ -69,6 +69,9 @@ export const Texts = {
         todaysCards: {
             de: "Karten für heute"
         },
+        tomorrowsCards: {
+            de: "Karten für morgen"
+        },
         totalCards: {
             de: "Karten insgesamt"
         }
@@ -317,9 +320,6 @@ export const Texts = {
         },
         toggleInputOrder: {
             de: "Spalten tauschen"
-        },
-        useDictionary: {
-            de: "Linugee Wörterbuch anzeigen"
         }
     },
     container: {

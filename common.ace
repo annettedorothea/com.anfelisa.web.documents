@@ -148,6 +148,7 @@ appState state : State {
 		quality5Count
 		reinforceCards
 		todaysCards
+		tomorrowsCards
 		totalCards
 		editMaxInterval
 		editedMaxInterval
@@ -187,7 +188,6 @@ appState state : State {
         cardView : CardView {
 	        cardList list
 	        naturalInputOrder
-	        useDictionary
 	        filter
 	        editedCard : EditedCard {
 	        	cardId
@@ -207,7 +207,6 @@ appState state : State {
 	        	displaySpinner
 	        	displayTranslateSpinner
 	        }
-	        cardDuplicates list
 	        deleteCard : DeleteCard {
 	        	confirmDelete
 	        	cardId

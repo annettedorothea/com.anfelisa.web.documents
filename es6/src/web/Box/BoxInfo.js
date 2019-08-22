@@ -81,6 +81,7 @@ export default class BoxInfo extends React.Component {
     }
 
     render() {
+        console.log("this.props", this.props);
         return (
             <div>
                 <table>
@@ -88,6 +89,10 @@ export default class BoxInfo extends React.Component {
                     <tr>
                         <td>{this.props.texts.box.todaysCards[this.props.language]}</td>
                         <td>{this.props.todaysCards}</td>
+                    </tr>
+                    <tr>
+                        <td>{this.props.texts.box.tomorrowsCards[this.props.language]}</td>
+                        <td>{this.props.tomorrowsCards}</td>
                     </tr>
                     <tr>
                         <td>{this.props.texts.box.reinforceCards[this.props.language]}</td>

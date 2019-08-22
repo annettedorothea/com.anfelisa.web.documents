@@ -22,7 +22,6 @@ import CreateCardAction from "../../src/card/actions/CreateCardAction";
 import UpdateCardAction from "../../src/card/actions/UpdateCardAction";
 import DeleteCardAction from "../../src/card/actions/DeleteCardAction";
 import GivenOfNewCardChangedAction from "../../src/card/actions/GivenOfNewCardChangedAction";
-import SearchDuplicateCardsAction from "../../src/card/actions/SearchDuplicateCardsAction";
 import WantedOfNewCardChangedAction from "../../src/card/actions/WantedOfNewCardChangedAction";
 import CancelNewCardAction from "../../src/card/actions/CancelNewCardAction";
 import GivenOfEditedCardChangedAction from "../../src/card/actions/GivenOfEditedCardChangedAction";
@@ -32,10 +31,8 @@ import EditCardAction from "../../src/card/actions/EditCardAction";
 import DeleteCardClickAction from "../../src/card/actions/DeleteCardClickAction";
 import CancelDeleteCardAction from "../../src/card/actions/CancelDeleteCardAction";
 import FilterCardsAction from "../../src/card/actions/FilterCardsAction";
-import TranslateAction from "../../src/card/actions/TranslateAction";
 import PassValueToDictionaryAction from "../../src/card/actions/PassValueToDictionaryAction";
 import ToggleInputOrderAction from "../../src/card/actions/ToggleInputOrderAction";
-import ToggleUseDictionaryAction from "../../src/card/actions/ToggleUseDictionaryAction";
 import LoadWantedImageOfNewCardAction from "../../src/card/actions/LoadWantedImageOfNewCardAction";
 import LoadWantedImageOfEditedCardAction from "../../src/card/actions/LoadWantedImageOfEditedCardAction";
 import RemoveNewCardImageAction from "../../src/card/actions/RemoveNewCardImageAction";
@@ -64,10 +61,6 @@ export function deleteCard() {
 
 export function givenOfNewCardChanged(given) {
     new GivenOfNewCardChangedAction(given).apply();
-}
-
-export function searchDuplicateCards() {
-    new SearchDuplicateCardsAction().apply();
 }
 
 export function wantedOfNewCardChanged(wanted) {
@@ -106,20 +99,12 @@ export function filterCards(filter) {
     new FilterCardsAction(filter).apply();
 }
 
-export function translate() {
-    new TranslateAction().apply();
-}
-
 export function passValueToDictionary() {
     new PassValueToDictionaryAction().apply();
 }
 
 export function toggleInputOrder(naturalInputOrder) {
     new ToggleInputOrderAction(naturalInputOrder).apply();
-}
-
-export function toggleUseDictionary() {
-    new ToggleUseDictionaryAction().apply();
 }
 
 export function loadWantedImageOfNewCard(image) {

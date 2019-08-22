@@ -61,6 +61,7 @@ export default class AbstractLoadBoxStatisticsCommand extends Command {
 				this.commandData.quality5Count = data.quality5Count;
 				this.commandData.reinforceCards = data.reinforceCards;
 				this.commandData.todaysCards = data.todaysCards;
+				this.commandData.tomorrowsCards = data.tomorrowsCards;
 				this.commandData.totalCards = data.totalCards;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

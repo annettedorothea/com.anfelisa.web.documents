@@ -9,7 +9,6 @@ import {
     loadWantedImageOfNewCard,
     passValueToDictionary,
     removeNewCardImage,
-    translate,
     wantedOfNewCardChanged
 } from "../../../gen/card/ActionFunctions";
 
@@ -94,20 +93,14 @@ export default class NewCard extends React.Component {
     }
 
     onBlurGiven() {
-        if (this.props.naturalInputOrder === true && this.props.useDictionary === true && (!this.props.wanted || this.props.wanted.length === 0)) {
+        if (this.props.naturalInputOrder === true && !!this.props.dictionaryLookup && (!this.props.wanted || this.props.wanted.length === 0)) {
             passValueToDictionary();
-        }
-        if (this.props.naturalInputOrder === true && this.props.dictionaryLookup === true) {
-            translate();
         }
     }
 
     onBlurWanted() {
-        if (this.props.naturalInputOrder === false && this.props.useDictionary === true && (!this.props.given || this.props.given.length === 0)) {
+        if (this.props.naturalInputOrder === false && !!this.props.dictionaryLookup && (!this.props.given || this.props.given.length === 0)) {
             passValueToDictionary();
-        }
-        if (this.props.naturalInputOrder === false && this.props.dictionaryLookup === true) {
-            translate();
         }
     }
 

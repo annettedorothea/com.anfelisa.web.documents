@@ -17,7 +17,6 @@ export default class LoadCardsCommand extends AbstractLoadCardsCommand {
         this.commandData.outcome = this.ok;
         const cardView = getState().data.cardView;
         this.commandData.naturalInputOrder = cardView.naturalInputOrder === undefined ? true : cardView.naturalInputOrder;
-        this.commandData.useDictionary = cardView.useDictionary === undefined ? false : cardView.useDictionary;
         this.commandData.newCard = {
             given: "",
             wanted: "",
