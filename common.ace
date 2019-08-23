@@ -207,6 +207,7 @@ appState state : State {
 	        	displaySpinner
 	        	displayTranslateSpinner
 	        }
+	        cardDuplicates list
 	        deleteCard : DeleteCard {
 	        	confirmDelete
 	        	cardId

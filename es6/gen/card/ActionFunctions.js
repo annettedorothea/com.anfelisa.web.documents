@@ -42,6 +42,7 @@ import ToggleAllScheduleCardSelectionAction from "../../src/card/actions/ToggleA
 import ScheduleSelectedCardsAction from "../../src/card/actions/ScheduleSelectedCardsAction";
 import MoveCardsStartedAction from "../../src/card/actions/MoveCardsStartedAction";
 import MoveCardsAction from "../../src/card/actions/MoveCardsAction";
+import SearchDuplicateCardsAction from "../../src/card/actions/SearchDuplicateCardsAction";
 
 export function loadCards() {
     new LoadCardsAction().apply();
@@ -141,6 +142,10 @@ export function moveCardsStarted() {
 
 export function moveCards() {
     new MoveCardsAction().apply();
+}
+
+export function searchDuplicateCards() {
+    new SearchDuplicateCardsAction().apply();
 }
 
 

@@ -4,6 +4,7 @@ import Dictionary from "./Dictionary";
 import NewCard from "./NewCard";
 import EditCard from "./EditCard";
 import CardItem from "./CardItem";
+import DuplicateCardItem from "./DuplicateCardItem";
 import {
     cancelDeleteCard,
     deleteCard,
@@ -80,6 +81,19 @@ export default class CardList extends React.Component {
                 />
             );
         }
+        let duplicateCards = this.props.cardView.cardDuplicates.map((card) => {
+            return <DuplicateCardItem
+                {...card}
+                key={card.cardId}
+                texts={this.props.texts}
+                language={this.props.language}
+                username={this.props.username}
+                password={this.props.password}
+                userRole={this.props.role}
+                naturalInputOrder={this.props.cardView.naturalInputOrder}
+                hasBox={this.props.categoryTree.selectedCategory.hasBox}
+            />
+        });
         if (this.props.cardView.cardList.length === 0 && this.props.categoryTree.selectedCategory.editable === false) {
             return <h2>{this.props.texts.cardList.noCards[this.props.language]}</h2>
         }
@@ -137,6 +151,11 @@ export default class CardList extends React.Component {
 
                     <tbody>
                     {cardItems}
+                    {duplicateCards.length > 0 && <tr>
+                        <td/>
+                        <td colSpan={5}>{this.props.texts.cardList.duplicateCards[this.props.language]}</td>
+                    </tr>}
+                    {duplicateCards}
 
                     </tbody>
                 </table>

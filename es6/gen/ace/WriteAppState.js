@@ -1391,6 +1391,9 @@ export function merge_state_State_data_AuthorView_cardView(eventData) {
 	if (eventData.newCard !== undefined) {
 		state.data.cardView.newCard = eventData.newCard;
 	}
+	if (eventData.cardDuplicates !== undefined) {
+		state.data.cardView.cardDuplicates = eventData.cardDuplicates;
+	}
 	if (eventData.deleteCard !== undefined) {
 		state.data.cardView.deleteCard = eventData.deleteCard;
 	}
@@ -1674,6 +1677,17 @@ export function init_state_State_data_AuthorView_cardView_CardView_newCard_NewCa
 	state.data.cardView.newCard.displayTranslateSpinner = null;
 }
 
+export function set_state_State_data_AuthorView_cardView_CardView_cardDuplicates(eventData) {
+	state.data.cardView.cardDuplicates = eventData.cardDuplicates;
+}
+
+export function reset_state_State_data_AuthorView_cardView_CardView_cardDuplicates() {
+	state.data.cardView.cardDuplicates = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_cardDuplicates() {
+	state.data.cardView.cardDuplicates = null;
+}
 export function set_state_State_data_AuthorView_cardView_CardView_deleteCard(eventData) {
 	state.data.cardView.deleteCard = eventData.deleteCard;
 }

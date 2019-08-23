@@ -9,7 +9,8 @@ import {
     loadWantedImageOfNewCard,
     passValueToDictionary,
     removeNewCardImage,
-    wantedOfNewCardChanged
+    wantedOfNewCardChanged,
+    searchDuplicateCards
 } from "../../../gen/card/ActionFunctions";
 
 export default class NewCard extends React.Component {
@@ -22,6 +23,32 @@ export default class NewCard extends React.Component {
         this.onBlurGiven = this.onBlurGiven.bind(this);
         this.onBlurWanted = this.onBlurWanted.bind(this);
         this.onWantedFileChange = this.onWantedFileChange.bind(this);
+        this.onGivenChanged = this.onGivenChanged.bind(this);
+        this.onWantedChanged = this.onWantedChanged.bind(this);
+        this.startTimeout = this.startTimeout.bind(this);
+        this.triggerSearchDuplicateCards = this.triggerSearchDuplicateCards.bind(this);
+    }
+
+    onGivenChanged(value) {
+        givenOfNewCardChanged(value);
+        this.startTimeout();
+    }
+
+    onWantedChanged(value) {
+        wantedOfNewCardChanged(value);
+        this.startTimeout();
+    }
+
+    startTimeout() {
+        if (this.timeoutID) {
+            window.clearTimeout(this.timeoutID);
+        }
+        this.timeoutID = window.setTimeout(this.triggerSearchDuplicateCards, 1000);
+    }
+
+    triggerSearchDuplicateCards() {
+        this.timeoutID = undefined;
+        searchDuplicateCards();
     }
 
     setFocus() {
@@ -115,7 +142,7 @@ export default class NewCard extends React.Component {
         return (
             <td className="textarea input">
                 <textarea
-                    onChange={(event) => givenOfNewCardChanged(event.target.value)}
+                    onChange={(event) => this.onGivenChanged(event.target.value)}
                     autoComplete="off"
                     value={this.props.given}
                     placeholder={`${this.props.texts.cardList.given[this.props.language]} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.givenLanguage][this.props.language] + ")" : ""}`}
@@ -139,7 +166,7 @@ export default class NewCard extends React.Component {
         return (
             <td className="textarea input">
                 <textarea
-                    onChange={(event) => wantedOfNewCardChanged(event.target.value)}
+                    onChange={(event) => this.onWantedChanged(event.target.value)}
                     autoComplete="off"
                     value={this.props.wanted}
                     placeholder={`${this.props.texts.cardList.wanted[this.props.language]} ${this.props.dictionaryLookup ? "(" + this.props.texts.categoryList.languages[this.props.wantedLanguage][this.props.language] + ")" : ""}`}

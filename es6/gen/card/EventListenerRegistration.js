@@ -49,6 +49,7 @@ export default class EventListenerRegistrationCard {
 		ACEController.registerListener('card.ToggleAllScheduleCardSelectionOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_selectedCardIds);
 		ACEController.registerListener('card.MoveCardsStartedOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_movedCardIds);
 		ACEController.registerListener('card.MoveCardsOkEvent', AppState.reset_state_State_data_AuthorView_cardView_CardView_movedCardIds);
+		ACEController.registerListener('card.SearchDuplicateCardsOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_cardDuplicates);
 	}
 
 }
