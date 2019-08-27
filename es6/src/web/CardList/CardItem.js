@@ -3,19 +3,35 @@ import {
     deleteCardClick,
     editCard,
     moveCardsStarted,
-    toggleScheduleCardSelection
+    toggleScheduleCardSelection,
+    changeCardOrder
 } from "../../../gen/card/ActionFunctions";
 
 export default class CardItem extends React.Component {
 
     constructor(props) {
         super(props);
+        this.drop = this.drop.bind(this);
+        this.onDragOver = this.onDragOver.bind(this);
         this.onDragStart = this.onDragStart.bind(this);
+        this.onDragEnter = this.onDragEnter.bind(this);
     }
 
     onDragStart(event) {
         event.dataTransfer.setData("Text", this.props.given);
         moveCardsStarted();
+    }
+
+    drop(event) {
+        event.preventDefault();
+        changeCardOrder(this.props.cardId);
+    }
+
+    onDragOver(event) {
+        event.preventDefault();
+    }
+
+    onDragEnter() {
     }
 
     renderGiven(first) {
@@ -52,7 +68,10 @@ export default class CardItem extends React.Component {
 
     render() {
         return (
-            <tr>
+            <tr onDragEnter={(event) => this.onDragEnter(event)}
+                onDragOver={this.onDragOver}
+                onDrop={this.drop}
+            >
                 <td className="notPrinted">
                     <input
                         type={"checkbox"}

@@ -43,6 +43,7 @@ import ToggleAllScheduleCardSelectionAction from "../../src/card/actions/ToggleA
 import ScheduleSelectedCardsAction from "../../src/card/actions/ScheduleSelectedCardsAction";
 import MoveCardsStartedAction from "../../src/card/actions/MoveCardsStartedAction";
 import MoveCardsAction from "../../src/card/actions/MoveCardsAction";
+import ChangeCardOrderAction from "../../src/card/actions/ChangeCardOrderAction";
 import SearchDuplicateCardsAction from "../../src/card/actions/SearchDuplicateCardsAction";
 
 export default class ActionFactoryRegistrationCard {
@@ -98,6 +99,8 @@ export default class ActionFactoryRegistrationCard {
 			(actionData) => new MoveCardsStartedAction());
 		ACEController.registerFactory('card.MoveCardsAction', 
 			(actionData) => new MoveCardsAction());
+		ACEController.registerFactory('card.ChangeCardOrderAction', 
+			(actionData) => new ChangeCardOrderAction(actionData.cardId));
 		ACEController.registerFactory('card.SearchDuplicateCardsAction', 
 			(actionData) => new SearchDuplicateCardsAction());
 	}

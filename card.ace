@@ -107,6 +107,13 @@ MoveCards
 		reset common.state.State.data.AuthorView.cardView.CardView.movedCardIds
 	) triggers (category.LoadCategoryTree)
 	
+ChangeCardOrder<cardId>
+ 	call com.anfelisa.card.ChangeOrder
+	loadingFlag common.state.State.displaySpinner 
+	on ok (
+		reset common.state.State.data.AuthorView.cardView.CardView.movedCardIds
+	) triggers (LoadCards)
+	
 SearchDuplicateCards 
 	call com.anfelisa.card.GetDuplicates
 	loadingFlag common.state.State.data.AuthorView.cardView.CardView.newCard.NewCard.displaySpinner 
