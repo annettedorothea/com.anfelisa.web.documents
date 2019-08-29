@@ -19,12 +19,12 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import ChangeCardOrderOkEvent from "../../../gen/card/events/ChangeCardOrderOkEvent";
-import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
+import ChangeOrderCategoryOkEvent from "../../../gen/category/events/ChangeOrderCategoryOkEvent";
+import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 
-export default class AbstractChangeCardOrderCommand extends Command {
+export default class AbstractChangeOrderCategoryCommand extends Command {
     constructor(commandData) {
-        super(commandData, "card.ChangeCardOrderCommand");
+        super(commandData, "category.ChangeOrderCategoryCommand");
         this.ok = "ok";
     }
 
@@ -33,11 +33,11 @@ export default class AbstractChangeCardOrderCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new ChangeCardOrderOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCardsAction()).publish());
+			promises.push(new ChangeOrderCategoryOkEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.selectedCategoryId)).publish());
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('ChangeCardOrderCommand unhandled outcome: ' + this.commandData.outcome)});
+			return new Promise((resolve, reject) => {reject('ChangeOrderCategoryCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }
@@ -46,11 +46,11 @@ export default class AbstractChangeCardOrderCommand extends Command {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
 	        let payload = {	
-	        	cardIdList : this.commandData.cardIdList,
-	        	cardId : this.commandData.cardId,
+	        	movedCategoryId : this.commandData.movedCategoryId,
+	        	targetCategoryId : this.commandData.targetCategoryId,
 	        	};
 
-			this.httpPut(this.adjustedUrl(`/api/cards/changeorder`), true, queryParams, payload).then((data) => {
+			this.httpPut(this.adjustedUrl(`/api/category/changeorder`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

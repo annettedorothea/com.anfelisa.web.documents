@@ -103,7 +103,7 @@ RevokeUserAccess<revokedUserId>
 	loadingFlag common.state.State.displaySpinner 
 	on ok triggers (InviteUserClick )
 
-CheckDropAllowed<categoryId>
+CheckDropAllowed<categoryId, altKey, depth>
 	on ok (merge common.state.State.data.AuthorView.categoryTree)
 
 ItemDropped
@@ -115,6 +115,13 @@ MoveCategoryStarted<movedCategoryId>
 	
 MoveCategory
  	call com.anfelisa.category.MoveCategory
+	loadingFlag common.state.State.displaySpinner 
+	on ok ( 
+		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.movedCategory
+	) triggers (category.LoadCategoryTree)
+
+ChangeOrderCategory
+ 	call com.anfelisa.category.ChangeOrderCategory
 	loadingFlag common.state.State.displaySpinner 
 	on ok ( 
 		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.movedCategory

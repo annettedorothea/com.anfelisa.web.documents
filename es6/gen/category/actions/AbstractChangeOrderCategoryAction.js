@@ -17,19 +17,28 @@
 
 
 
-import Action from "../../ace/SynchronousAction";
-import CheckDropAllowedCommand from "../../../src/category/commands/CheckDropAllowedCommand";
+import Action from "../../ace/AsynchronousAction";
+import ChangeOrderCategoryCommand from "../../../src/category/commands/ChangeOrderCategoryCommand";
+import * as AppState from "../../ace/WriteAppState";
 
-export default class AbstractCheckDropAllowedAction extends Action {
+export default class AbstractChangeOrderCategoryAction extends Action {
 
-    constructor( categoryId, altKey, depth) {
-        super({categoryId, altKey, depth}, 'category.CheckDropAllowedAction');
+    constructor() {
+        super({}, 'category.ChangeOrderCategoryAction');
+		this.postCall = this.postCall.bind(this);
 		}
 		
 	getCommand() {
-		return new CheckDropAllowedCommand(this.actionData);
+		return new ChangeOrderCategoryCommand(this.actionData);
 	}
 
+	preCall() {
+		AppState.set_state_State_displaySpinner({displaySpinner: true});
+	}
+	
+	postCall() {
+		AppState.set_state_State_displaySpinner({displaySpinner: false});
+	}
 
 }
 

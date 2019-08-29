@@ -44,6 +44,7 @@ import CheckDropAllowedAction from "../../src/category/actions/CheckDropAllowedA
 import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
 import MoveCategoryStartedAction from "../../src/category/actions/MoveCategoryStartedAction";
 import MoveCategoryAction from "../../src/category/actions/MoveCategoryAction";
+import ChangeOrderCategoryAction from "../../src/category/actions/ChangeOrderCategoryAction";
 import PreviewCsvAction from "../../src/category/actions/PreviewCsvAction";
 import CancelPreviewCsvAction from "../../src/category/actions/CancelPreviewCsvAction";
 import SwapPreviewCsvAction from "../../src/category/actions/SwapPreviewCsvAction";
@@ -141,8 +142,8 @@ export function revokeUserAccess(revokedUserId) {
     new RevokeUserAccessAction(revokedUserId).apply();
 }
 
-export function checkDropAllowed(categoryId) {
-    new CheckDropAllowedAction(categoryId).apply();
+export function checkDropAllowed(categoryId, altKey, depth) {
+    new CheckDropAllowedAction(categoryId, altKey, depth).apply();
 }
 
 export function itemDropped() {
@@ -155,6 +156,10 @@ export function moveCategoryStarted(movedCategoryId) {
 
 export function moveCategory() {
     new MoveCategoryAction().apply();
+}
+
+export function changeOrderCategory() {
+    new ChangeOrderCategoryAction().apply();
 }
 
 export function previewCsv(csv) {

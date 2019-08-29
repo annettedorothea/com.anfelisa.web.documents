@@ -18,16 +18,16 @@
 
 
 import Action from "../../ace/SynchronousAction";
-import CheckDropAllowedCommand from "../../../src/category/commands/CheckDropAllowedCommand";
+import OnDragExitCommand from "../../../src/card/commands/OnDragExitCommand";
 
-export default class AbstractCheckDropAllowedAction extends Action {
+export default class AbstractOnDragExitAction extends Action {
 
-    constructor( categoryId, altKey, depth) {
-        super({categoryId, altKey, depth}, 'category.CheckDropAllowedAction');
+    constructor( dragTargetCardId) {
+        super({dragTargetCardId}, 'card.OnDragExitAction');
 		}
 		
 	getCommand() {
-		return new CheckDropAllowedCommand(this.actionData);
+		return new OnDragExitCommand(this.actionData);
 	}
 
 

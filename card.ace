@@ -113,6 +113,12 @@ ChangeCardOrder<cardId>
 	on ok (
 		reset common.state.State.data.AuthorView.cardView.CardView.movedCardIds
 	) triggers (LoadCards)
+
+OnDragEnter<dragTargetCardId>
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.dragTargetCardId)
+	
+OnDragExit<dragTargetCardId>
+	on ok (reset common.state.State.data.AuthorView.cardView.CardView.dragTargetCardId)
 	
 SearchDuplicateCards 
 	call com.anfelisa.card.GetDuplicates

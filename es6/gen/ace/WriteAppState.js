@@ -1406,6 +1406,9 @@ export function merge_state_State_data_AuthorView_cardView(eventData) {
 	if (eventData.movedCardIds !== undefined) {
 		state.data.cardView.movedCardIds = eventData.movedCardIds;
 	}
+	if (eventData.dragTargetCardId !== undefined) {
+		state.data.cardView.dragTargetCardId = eventData.dragTargetCardId;
+	}
 }
 
 export function reset_state_State_data_AuthorView_cardView() {
@@ -1764,6 +1767,17 @@ export function reset_state_State_data_AuthorView_cardView_CardView_movedCardIds
 
 export function init_state_State_data_AuthorView_cardView_CardView_movedCardIds() {
 	state.data.cardView.movedCardIds = null;
+}
+export function set_state_State_data_AuthorView_cardView_CardView_dragTargetCardId(eventData) {
+	state.data.cardView.dragTargetCardId = eventData.dragTargetCardId;
+}
+
+export function reset_state_State_data_AuthorView_cardView_CardView_dragTargetCardId() {
+	state.data.cardView.dragTargetCardId = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_dragTargetCardId() {
+	state.data.cardView.dragTargetCardId = null;
 }
 
 

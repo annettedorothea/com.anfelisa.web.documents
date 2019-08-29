@@ -72,6 +72,21 @@ export function isCategoryChildOfParent(parentCategory, categoryId) {
     return false;
 }
 
+export function depthOf(categoryList, categoryId) {
+    let category = findCategory(categoryList, categoryId);
+    let depth = 1;
+    if (category.rootCategoryId === category.categoryId) {
+        return depth;
+    }
+    depth++;
+    let parent = findCategory(categoryList, category.parentCategoryId);
+    while (parent && parent.rootCategoryId !== parent.categoryId) {
+        depth++;
+        parent = findCategory(categoryList, parent.parentCategoryId);
+    }
+    return depth;
+}
+
 
 
 

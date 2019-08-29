@@ -215,6 +215,7 @@ appState state : State {
 	        dictionaryValue
 	        selectedCardIds list
 	        movedCardIds
+	        dragTargetCardId
         }
 	}
 }

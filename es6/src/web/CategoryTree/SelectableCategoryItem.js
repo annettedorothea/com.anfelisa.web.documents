@@ -4,7 +4,8 @@ import {
     deselectTreeItem,
     itemDropped,
     moveCategoryStarted,
-    selectTreeItem
+    selectTreeItem,
+    changeOrderCategory
 } from "../../../gen/category/ActionFunctions";
 
 export default class SelectableCategoryItem extends React.Component {
@@ -24,7 +25,12 @@ export default class SelectableCategoryItem extends React.Component {
 
     drop(event) {
         event.preventDefault();
-        itemDropped();
+        if (event.altKey === false) {
+            itemDropped();
+        } else {
+            changeOrderCategory();
+            console.log("change order");
+        }
     }
 
     onDragOver(event) {
@@ -33,13 +39,13 @@ export default class SelectableCategoryItem extends React.Component {
         }
     }
 
-    onDragEnter() {
-        checkDropAllowed(this.props.categoryId);
+    onDragEnter(event) {
+        checkDropAllowed(this.props.categoryId, event.altKey, this.props.depth);
     }
 
     render() {
         return (
-            <span draggable={this.props.depth > 1}
+            <span draggable={true}
                   onDragStart={(event) => this.onDragStart(event)}
                   onDragEnter={(event) => this.onDragEnter(event)}
                   onDragOver={this.onDragOver}

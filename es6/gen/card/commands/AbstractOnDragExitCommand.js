@@ -17,20 +17,25 @@
 
 
 
-import Action from "../../ace/SynchronousAction";
-import CheckDropAllowedCommand from "../../../src/category/commands/CheckDropAllowedCommand";
+import Command from "../../../gen/ace/SynchronousCommand";
+import TriggerAction from "../../../gen/ace/TriggerAction";
+import OnDragExitOkEvent from "../../../gen/card/events/OnDragExitOkEvent";
 
-export default class AbstractCheckDropAllowedAction extends Action {
+export default class AbstractOnDragExitCommand extends Command {
+    constructor(commandData) {
+        super(commandData, "card.OnDragExitCommand");
+        this.ok = "ok";
+    }
 
-    constructor( categoryId, altKey, depth) {
-        super({categoryId, altKey, depth}, 'category.CheckDropAllowedAction');
+    publishEvents() {
+		switch (this.commandData.outcome) {
+		case this.ok:
+			new OnDragExitOkEvent(this.commandData).publish();
+			break;
+		default:
+			throw 'OnDragExitCommand unhandled outcome: ' + this.commandData.outcome;
 		}
-		
-	getCommand() {
-		return new CheckDropAllowedCommand(this.actionData);
-	}
-
-
+    }
 }
 
 

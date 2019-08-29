@@ -17,20 +17,14 @@
 
 
 
-import Action from "../../ace/SynchronousAction";
-import CheckDropAllowedCommand from "../../../src/category/commands/CheckDropAllowedCommand";
+import AbstractOnDragExitCommand from "../../../gen/card/commands/AbstractOnDragExitCommand";
+import * as AppState from "../../../gen/ace/ReadAppState";
+//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
-export default class AbstractCheckDropAllowedAction extends Action {
-
-    constructor( categoryId, altKey, depth) {
-        super({categoryId, altKey, depth}, 'category.CheckDropAllowedAction');
-		}
-		
-	getCommand() {
-		return new CheckDropAllowedCommand(this.actionData);
-	}
-
-
+export default class OnDragExitCommand extends AbstractOnDragExitCommand {
+    execute() {
+    	this.commandData.outcome = this.ok;
+    }
 }
 
 

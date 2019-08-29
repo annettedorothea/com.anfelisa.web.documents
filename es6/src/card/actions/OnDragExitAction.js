@@ -17,19 +17,13 @@
 
 
 
-import Action from "../../ace/SynchronousAction";
-import CheckDropAllowedCommand from "../../../src/category/commands/CheckDropAllowedCommand";
+import AbstractOnDragExitAction from "../../../gen/card/actions/AbstractOnDragExitAction";
 
-export default class AbstractCheckDropAllowedAction extends Action {
+export default class OnDragExitAction extends AbstractOnDragExitAction {
 
-    constructor( categoryId, altKey, depth) {
-        super({categoryId, altKey, depth}, 'category.CheckDropAllowedAction');
-		}
-		
-	getCommand() {
-		return new CheckDropAllowedCommand(this.actionData);
-	}
-
+    initActionData() {
+    	//add not replayable data to action data in order to freeze for replay (e.g. time or date)
+    }
 
 }
 

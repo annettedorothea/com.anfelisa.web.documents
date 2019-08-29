@@ -749,6 +749,10 @@ a:hover.tile h2 {
     padding: 4px 4px 4px 0;
 }
 
+.categoryCardSplitView tr.dragTarget td {
+    background-color: #ffa84c;
+}
+
 .categoryCardSplitView .invitedUsers {
     margin-bottom: 32px;
 }
@@ -865,6 +869,7 @@ a:hover.tile h2 {
 
 .categoryCardSplitView .cardTable input[type=checkbox] {
     margin-right: 8px;
+    margin-left: 8px;
 }
 
 .categoryCardSplitView div.google i {

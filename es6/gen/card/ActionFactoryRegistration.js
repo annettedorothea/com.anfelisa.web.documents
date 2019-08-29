@@ -44,6 +44,8 @@ import ScheduleSelectedCardsAction from "../../src/card/actions/ScheduleSelected
 import MoveCardsStartedAction from "../../src/card/actions/MoveCardsStartedAction";
 import MoveCardsAction from "../../src/card/actions/MoveCardsAction";
 import ChangeCardOrderAction from "../../src/card/actions/ChangeCardOrderAction";
+import OnDragEnterAction from "../../src/card/actions/OnDragEnterAction";
+import OnDragExitAction from "../../src/card/actions/OnDragExitAction";
 import SearchDuplicateCardsAction from "../../src/card/actions/SearchDuplicateCardsAction";
 
 export default class ActionFactoryRegistrationCard {
@@ -101,6 +103,10 @@ export default class ActionFactoryRegistrationCard {
 			(actionData) => new MoveCardsAction());
 		ACEController.registerFactory('card.ChangeCardOrderAction', 
 			(actionData) => new ChangeCardOrderAction(actionData.cardId));
+		ACEController.registerFactory('card.OnDragEnterAction', 
+			(actionData) => new OnDragEnterAction(actionData.dragTargetCardId));
+		ACEController.registerFactory('card.OnDragExitAction', 
+			(actionData) => new OnDragExitAction(actionData.dragTargetCardId));
 		ACEController.registerFactory('card.SearchDuplicateCardsAction', 
 			(actionData) => new SearchDuplicateCardsAction());
 	}

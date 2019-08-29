@@ -43,6 +43,7 @@ export default class CardList extends React.Component {
                     {...card}
                     key={card.cardId}
                     selectedCardIds={this.props.cardView.selectedCardIds}
+                    dragTargetCardId={this.props.cardView.dragTargetCardId}
                     texts={this.props.texts}
                     language={this.props.language}
                     username={this.props.username}

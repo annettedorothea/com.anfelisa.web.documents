@@ -43,6 +43,8 @@ import ScheduleSelectedCardsAction from "../../src/card/actions/ScheduleSelected
 import MoveCardsStartedAction from "../../src/card/actions/MoveCardsStartedAction";
 import MoveCardsAction from "../../src/card/actions/MoveCardsAction";
 import ChangeCardOrderAction from "../../src/card/actions/ChangeCardOrderAction";
+import OnDragEnterAction from "../../src/card/actions/OnDragEnterAction";
+import OnDragExitAction from "../../src/card/actions/OnDragExitAction";
 import SearchDuplicateCardsAction from "../../src/card/actions/SearchDuplicateCardsAction";
 
 export function loadCards() {
@@ -147,6 +149,14 @@ export function moveCards() {
 
 export function changeCardOrder(cardId) {
     new ChangeCardOrderAction(cardId).apply();
+}
+
+export function onDragEnter(dragTargetCardId) {
+    new OnDragEnterAction(dragTargetCardId).apply();
+}
+
+export function onDragExit(dragTargetCardId) {
+    new OnDragExitAction(dragTargetCardId).apply();
 }
 
 export function searchDuplicateCards() {

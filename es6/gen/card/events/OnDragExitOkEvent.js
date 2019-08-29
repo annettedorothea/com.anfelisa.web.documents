@@ -17,20 +17,12 @@
 
 
 
-import Action from "../../ace/SynchronousAction";
-import CheckDropAllowedCommand from "../../../src/category/commands/CheckDropAllowedCommand";
+import Event from "../../../gen/ace/Event";
 
-export default class AbstractCheckDropAllowedAction extends Action {
-
-    constructor( categoryId, altKey, depth) {
-        super({categoryId, altKey, depth}, 'category.CheckDropAllowedAction');
-		}
-		
-	getCommand() {
-		return new CheckDropAllowedCommand(this.actionData);
-	}
-
-
+export default class OnDragExitOkEvent extends Event {
+    constructor(eventData) {
+        super(eventData, 'card.OnDragExitOkEvent');
+    }
 }
 
 
