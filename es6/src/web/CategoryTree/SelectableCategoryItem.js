@@ -29,7 +29,6 @@ export default class SelectableCategoryItem extends React.Component {
             itemDropped();
         } else {
             changeOrderCategory();
-            console.log("change order");
         }
     }
 
