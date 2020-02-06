@@ -53,6 +53,8 @@ export default class EventListenerRegistrationCard {
 		ACEController.registerListener('card.OnDragEnterOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_dragTargetCardId);
 		ACEController.registerListener('card.OnDragExitOkEvent', AppState.reset_state_State_data_AuthorView_cardView_CardView_dragTargetCardId);
 		ACEController.registerListener('card.SearchDuplicateCardsOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_cardDuplicates);
+		ACEController.registerListener('card.TranslateWantedFetchedEvent', AppState.merge_state_State_data_AuthorView_cardView_CardView_newCard);
+		ACEController.registerListener('card.TranslateGivenFetchedEvent', AppState.merge_state_State_data_AuthorView_cardView_CardView_newCard);
 	}
 
 }

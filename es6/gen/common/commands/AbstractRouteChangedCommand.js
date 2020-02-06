@@ -24,7 +24,7 @@ import RouteChangedRegistrationEvent from "../../../gen/common/events/RouteChang
 import RouteChangedForgotPasswordEvent from "../../../gen/common/events/RouteChangedForgotPasswordEvent";
 import RouteChangedResetPasswordEvent from "../../../gen/common/events/RouteChangedResetPasswordEvent";
 import ConfirmEmailAction from "../../../src/registration/actions/ConfirmEmailAction";
-import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
+import InitBoxesForDayAction from "../../../src/box/actions/InitBoxesForDayAction";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
@@ -67,7 +67,7 @@ export default class AbstractRouteChangedCommand extends Command {
 			new RouteChangedResetPasswordEvent(this.commandData).publish();
 			break;
 		case this.dashboard:
-			new TriggerAction(new LoadBoxesAction()).publish();
+			new TriggerAction(new InitBoxesForDayAction()).publish();
 			break;
 		case this.categories:
 			new TriggerAction(new LoadCategoryTreeAction(this.commandData.selectedCategoryId)).publish();

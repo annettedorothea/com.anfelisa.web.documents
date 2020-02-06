@@ -19,9 +19,9 @@
 
 import Event from "../../../gen/ace/Event";
 
-export default class UpdateBoxOkEvent extends Event {
+export default class TranslateGivenFetchedEvent extends Event {
     constructor(eventData) {
-        super(eventData, 'box.UpdateBoxOkEvent');
+        super(eventData, 'card.TranslateGivenFetchedEvent');
     }
 }
 

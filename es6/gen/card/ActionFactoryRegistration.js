@@ -47,6 +47,7 @@ import ChangeCardOrderAction from "../../src/card/actions/ChangeCardOrderAction"
 import OnDragEnterAction from "../../src/card/actions/OnDragEnterAction";
 import OnDragExitAction from "../../src/card/actions/OnDragExitAction";
 import SearchDuplicateCardsAction from "../../src/card/actions/SearchDuplicateCardsAction";
+import TranslateAction from "../../src/card/actions/TranslateAction";
 
 export default class ActionFactoryRegistrationCard {
 
@@ -109,6 +110,8 @@ export default class ActionFactoryRegistrationCard {
 			(actionData) => new OnDragExitAction(actionData.dragTargetCardId));
 		ACEController.registerFactory('card.SearchDuplicateCardsAction', 
 			(actionData) => new SearchDuplicateCardsAction());
+		ACEController.registerFactory('card.TranslateAction', 
+			(actionData) => new TranslateAction());
 	}
 
 }

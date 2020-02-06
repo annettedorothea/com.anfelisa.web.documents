@@ -10,7 +10,8 @@ import {
     passValueToDictionary,
     removeNewCardImage,
     wantedOfNewCardChanged,
-    searchDuplicateCards
+    searchDuplicateCards,
+    translate
 } from "../../../gen/card/ActionFunctions";
 
 export default class NewCard extends React.Component {
@@ -123,13 +124,19 @@ export default class NewCard extends React.Component {
         if (this.props.naturalInputOrder === true && !!this.props.dictionaryLookup && (!this.props.wanted || this.props.wanted.length === 0)) {
             passValueToDictionary();
         }
+        if (this.props.naturalInputOrder === true && this.props.dictionaryLookup === true) {
+            translate();
+        }
     }
 
     onBlurWanted() {
         if (this.props.naturalInputOrder === false && !!this.props.dictionaryLookup && (!this.props.given || this.props.given.length === 0)) {
             passValueToDictionary();
         }
-    }
+        if (this.props.naturalInputOrder === false && this.props.dictionaryLookup === true) {
+            translate();
+        }
+   }
 
     onAltKeyUp(e) {
         e.preventDefault();
@@ -138,7 +145,7 @@ export default class NewCard extends React.Component {
         }
     }
 
-    renderGiven(renderGoogleLogo) {
+    renderGiven() {
         return (
             <td className="textarea input">
                 <textarea
@@ -153,16 +160,11 @@ export default class NewCard extends React.Component {
                     onBlur={this.onBlurGiven}
                     id="given"
                 />
-                {renderGoogleLogo === true &&
-                <div className="google">
-                    {(this.props.displayTranslateSpinner === true || this.props.displaySpinner === true) &&
-                    <i className="fas fa-cog fa-spin"/>}
-                </div>}
             </td>
         )
     }
 
-    renderWanted(renderGoogleLogo) {
+    renderWanted() {
         return (
             <td className="textarea input">
                 <textarea
@@ -177,11 +179,6 @@ export default class NewCard extends React.Component {
                     onBlur={this.onBlurWanted}
                     id="wanted"
                 />
-                {renderGoogleLogo === true &&
-                <div className="google">
-                    {(this.props.displayTranslateSpinner === true || this.props.displaySpinner === true) &&
-                    <i className="fas fa-cog fa-spin"/>}
-                </div>}
             </td>
         )
     }
@@ -212,10 +209,10 @@ export default class NewCard extends React.Component {
             <tr className="notPrinted inputRow">
                 <td/>
                 {this.props.naturalInputOrder === true && this.renderGiven()}
-                {this.props.naturalInputOrder === true && this.renderWanted(this.props.dictionaryLookup)}
+                {this.props.naturalInputOrder === true && this.renderWanted()}
                 {this.props.naturalInputOrder === true && this.renderImage()}
                 {this.props.naturalInputOrder === false && this.renderWanted()}
-                {this.props.naturalInputOrder === false && this.renderGiven(this.props.dictionaryLookup)}
+                {this.props.naturalInputOrder === false && this.renderGiven()}
                 {this.props.naturalInputOrder === false && this.renderImage()}
                 <td className="noBreak input">
                     <button

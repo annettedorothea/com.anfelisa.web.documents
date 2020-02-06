@@ -32,22 +32,17 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.EditMaxCardsPerDayOkEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.CancelEditMaxCardsPerDayOkEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_state_State_data_Card_editedMaxCardsPerDay);
-		ACEController.registerListener('box.UpdateBoxOkEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.DeleteBoxClickOkEvent', AppState.set_state_State_data_Dashboard_deleteBox);
 		ACEController.registerListener('box.CancelDeleteBoxOkEvent', AppState.reset_state_State_data_Dashboard_deleteBox);
 		ACEController.registerListener('box.DeleteBoxErrorEvent', AppState.reset_state_State_data_Dashboard_deleteBox_DeleteBox_confirmDelete);
 		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.set_state_State_view);
 		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.set_state_State_data);
 		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.merge_state_State_data);
-		ACEController.registerListener('box.LoadNextCardDoNotScheduleNextEvent', AppState.set_state_State_view);
-		ACEController.registerListener('box.LoadNextCardDoNotScheduleNextEvent', AppState.set_state_State_data);
-		ACEController.registerListener('box.LoadNextCardDoNotScheduleNextEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.ToggleScheduleNextOkEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.DisplayWantedOkEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.LoadNextReinforceCardOkEvent', AppState.set_state_State_data);
 		ACEController.registerListener('box.LoadNextReinforceCardOkEvent', AppState.set_state_State_view);
 		ACEController.registerListener('box.LoadNextReinforceCardOkEvent', AppState.merge_state_State_data);
-		ACEController.registerListener('box.LoadBoxStatisticsOkEvent', AppState.merge_state_State_data);
 	}
 
 }

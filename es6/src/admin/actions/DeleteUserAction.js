@@ -2,9 +2,9 @@ import AbstractDeleteUserAction from "../../../gen/admin/actions/AbstractDeleteU
 
 export default class DeleteUserAction extends AbstractDeleteUserAction {
 
-    initActionData() {
-    	//add not replayable data to action data in order to freeze for replay (e.g. time or date)
-    }
+	initActionData() {
+		//add not replayable data to action data in order to freeze for replay (e.g. time or date)
+	}
 
 }
 

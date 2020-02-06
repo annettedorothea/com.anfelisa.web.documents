@@ -16,7 +16,7 @@ export default class BoxItem extends React.Component {
     }
 
     render() {
-        const count = this.props.todaysCards + this.props.reinforceCards;
+        console.log(this.props);
         return (
             <a
                 className="tile"
@@ -47,7 +47,7 @@ export default class BoxItem extends React.Component {
                 <div className="buttons">
                     <i className="fas fa-times fa-lg danger" onClick={(e) => this.onDeleteClick(e)}/>
                 </div>
-                {count > 0 && <span className="badge">{count}</span>}
+                {this.props.allTodaysCards > 0 && <span className="badge">{this.props.allTodaysCards}</span>}
             </a>
         );
     }

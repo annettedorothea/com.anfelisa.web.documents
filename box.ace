@@ -3,6 +3,11 @@ HttpClient
 box
 
 ACE 
+	InitBoxesForDay
+		call com.anfelisa.box.InitMyBoxesForDay
+		loadingFlag common.state.State.displaySpinner 
+		on ok triggers (LoadBoxes) 
+				
 	LoadBoxes 
 		call com.anfelisa.box.GetBoxes
 		loadingFlag common.state.State.displaySpinner 
@@ -37,11 +42,6 @@ ACE
 		on ok (set common.state.State.data.Card.editedMaxCardsPerDay)
 		on invalid
 	
-	UpdateBox 
-		call com.anfelisa.box.UpdateBox
-		loadingFlag common.state.State.displaySpinner 
-		on ok (merge common.state.State.data) triggers (LoadBoxStatistics)
-	
 	DeleteBoxClick <boxId>
 		on ok (set common.state.State.data.Dashboard.deleteBox)
 	
@@ -54,11 +54,6 @@ ACE
 		on ok triggers (LoadBoxes)
 		on error (reset common.state.State.data.Dashboard.deleteBox.DeleteBox.confirmDelete) triggers (common.DisplayError)
 	
-	PostponeCardsOfBox <boxId> 
-		call com.anfelisa.box.PostponeCards
-		loadingFlag common.state.State.displaySpinner 
-		on next triggers (LoadNextCard)
-	
 	LoadNextCard <boxId>
 	 	call com.anfelisa.box.LoadNextCard
 		loadingFlag common.state.State.displaySpinner 
@@ -66,19 +61,8 @@ ACE
 			set common.state.State.view
 			set common.state.State.data
 			merge common.state.State.data
-		) triggers (LoadBoxStatistics)
-		on scheduleNext triggers (ScheduleNextCard)
-		on doNotScheduleNext (
-			set common.state.State.view
-			set common.state.State.data
-			merge common.state.State.data
-		) triggers (LoadBoxStatistics)
+		)
 	
-	ScheduleNextCard 
-		call com.anfelisa.box.ScheduleNextCard
-		loadingFlag common.state.State.displaySpinner 
-		on ok triggers (LoadNextCard)
-
 	ToggleScheduleNext 
 		on ok (merge common.state.State.data)
 	
@@ -99,7 +83,7 @@ ACE
 			set common.state.State.data 
 			set common.state.State.view
 			merge common.state.State.data
-		) triggers (LoadBoxStatistics)
+		) 
 		on noCard triggers (common.Route)
 	
 	ScoreReinforceCard <quality>
@@ -107,8 +91,3 @@ ACE
 		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (LoadNextReinforceCard)
 	
-	LoadBoxStatistics <boxId>
-	 	call com.anfelisa.box.GetBox
-		loadingFlag common.state.State.displaySpinner 
-		on ok (merge common.state.State.data)
-

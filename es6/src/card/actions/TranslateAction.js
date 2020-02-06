@@ -17,28 +17,13 @@
 
 
 
-import Action from "../../ace/AsynchronousAction";
-import ScheduleNextCardCommand from "../../../src/box/commands/ScheduleNextCardCommand";
-import * as AppState from "../../ace/WriteAppState";
+import AbstractTranslateAction from "../../../gen/card/actions/AbstractTranslateAction";
 
-export default class AbstractScheduleNextCardAction extends Action {
+export default class TranslateAction extends AbstractTranslateAction {
 
-    constructor() {
-        super({}, 'box.ScheduleNextCardAction');
-		this.postCall = this.postCall.bind(this);
-		}
-		
-	getCommand() {
-		return new ScheduleNextCardCommand(this.actionData);
-	}
-
-	preCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: true});
-	}
-	
-	postCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: false});
-	}
+    initActionData() {
+    	//add not replayable data to action data in order to freeze for replay (e.g. time or date)
+    }
 
 }
 

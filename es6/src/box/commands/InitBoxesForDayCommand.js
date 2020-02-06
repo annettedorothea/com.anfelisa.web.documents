@@ -17,29 +17,24 @@
 
 
 
-import Action from "../../ace/AsynchronousAction";
-import UpdateBoxCommand from "../../../src/box/commands/UpdateBoxCommand";
-import * as AppState from "../../ace/WriteAppState";
+import AbstractInitBoxesForDayCommand from "../../../gen/box/commands/AbstractInitBoxesForDayCommand";
+import * as AppState from "../../../gen/ace/ReadAppState";
+//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
-export default class AbstractUpdateBoxAction extends Action {
+export default class InitBoxesForDayCommand extends AbstractInitBoxesForDayCommand {
 
-    constructor() {
-        super({}, 'box.UpdateBoxAction');
-		this.postCall = this.postCall.bind(this);
-		}
-		
-	getCommand() {
-		return new UpdateBoxCommand(this.actionData);
-	}
+    initCommandData() {
+    	//add from appState to commandData
+    	return true;
+    }
 
-	preCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: true});
-	}
-	
-	postCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: false});
-	}
-
+    handleResponse(resolve, reject) {
+    	this.commandData.outcome = this.ok;
+    	resolve();
+    }
+    handleError(resolve, reject) {
+    	reject(this.commandData.error);
+    }
 }
 
 

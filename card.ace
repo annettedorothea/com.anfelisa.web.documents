@@ -125,3 +125,13 @@ SearchDuplicateCards
 	loadingFlag common.state.State.data.AuthorView.cardView.CardView.newCard.NewCard.displaySpinner 
 	on ok ( set common.state.State.data.AuthorView.cardView.CardView.cardDuplicates )
 	
+Translate 
+	call com.anfelisa.card.GetTranslation
+	loadingFlag common.state.State.data.AuthorView.cardView.CardView.newCard.NewCard.displayTranslateSpinner 
+	on wantedFetched (merge common.state.State.data.AuthorView.cardView.CardView.newCard ) triggers (SearchDuplicateCards)
+	on givenFetched (merge common.state.State.data.AuthorView.cardView.CardView.newCard ) triggers (SearchDuplicateCards)
+	on error
+	on empty
+	on targetNotEmtpy
+
+	

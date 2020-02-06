@@ -33,7 +33,7 @@ RouteChanged
 		set state.State.data 
 		set state.State.view
 	)
-	on dashboard triggers (box.LoadBoxes)
+	on dashboard triggers (box.InitBoxesForDay)
 	on categories triggers (category.LoadCategoryTree )
 	on profile triggers ( profile.LoadUser )
 	on userList triggers (admin.GetAllUsers) 

@@ -18,6 +18,7 @@
 
 
 import ACEController from "../ace/ACEController";
+import InitBoxesForDayAction from "../../src/box/actions/InitBoxesForDayAction";
 import LoadBoxesAction from "../../src/box/actions/LoadBoxesAction";
 import CreateBoxAction from "../../src/box/actions/CreateBoxAction";
 import EditBoxAction from "../../src/box/actions/EditBoxAction";
@@ -26,23 +27,21 @@ import MaxIntervalChangedAction from "../../src/box/actions/MaxIntervalChangedAc
 import EditMaxCardsPerDayAction from "../../src/box/actions/EditMaxCardsPerDayAction";
 import CancelEditMaxCardsPerDayAction from "../../src/box/actions/CancelEditMaxCardsPerDayAction";
 import MaxCardsPerDayChangedAction from "../../src/box/actions/MaxCardsPerDayChangedAction";
-import UpdateBoxAction from "../../src/box/actions/UpdateBoxAction";
 import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
 import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
 import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
-import PostponeCardsOfBoxAction from "../../src/box/actions/PostponeCardsOfBoxAction";
 import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
-import ScheduleNextCardAction from "../../src/box/actions/ScheduleNextCardAction";
 import ToggleScheduleNextAction from "../../src/box/actions/ToggleScheduleNextAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
 import LoadNextReinforceCardAction from "../../src/box/actions/LoadNextReinforceCardAction";
 import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
-import LoadBoxStatisticsAction from "../../src/box/actions/LoadBoxStatisticsAction";
 
 export default class ActionFactoryRegistrationBox {
 
 	static init() {
+		ACEController.registerFactory('box.InitBoxesForDayAction', 
+			(actionData) => new InitBoxesForDayAction());
 		ACEController.registerFactory('box.LoadBoxesAction', 
 			(actionData) => new LoadBoxesAction());
 		ACEController.registerFactory('box.CreateBoxAction', 
@@ -59,20 +58,14 @@ export default class ActionFactoryRegistrationBox {
 			(actionData) => new CancelEditMaxCardsPerDayAction());
 		ACEController.registerFactory('box.MaxCardsPerDayChangedAction', 
 			(actionData) => new MaxCardsPerDayChangedAction(actionData.editedMaxCardsPerDay));
-		ACEController.registerFactory('box.UpdateBoxAction', 
-			(actionData) => new UpdateBoxAction());
 		ACEController.registerFactory('box.DeleteBoxClickAction', 
 			(actionData) => new DeleteBoxClickAction(actionData.boxId));
 		ACEController.registerFactory('box.CancelDeleteBoxAction', 
 			(actionData) => new CancelDeleteBoxAction());
 		ACEController.registerFactory('box.DeleteBoxAction', 
 			(actionData) => new DeleteBoxAction(actionData.boxId));
-		ACEController.registerFactory('box.PostponeCardsOfBoxAction', 
-			(actionData) => new PostponeCardsOfBoxAction(actionData.boxId));
 		ACEController.registerFactory('box.LoadNextCardAction', 
 			(actionData) => new LoadNextCardAction(actionData.boxId));
-		ACEController.registerFactory('box.ScheduleNextCardAction', 
-			(actionData) => new ScheduleNextCardAction());
 		ACEController.registerFactory('box.ToggleScheduleNextAction', 
 			(actionData) => new ToggleScheduleNextAction());
 		ACEController.registerFactory('box.DisplayWantedAction', 
@@ -83,8 +76,6 @@ export default class ActionFactoryRegistrationBox {
 			(actionData) => new LoadNextReinforceCardAction(actionData.boxId));
 		ACEController.registerFactory('box.ScoreReinforceCardAction', 
 			(actionData) => new ScoreReinforceCardAction(actionData.quality));
-		ACEController.registerFactory('box.LoadBoxStatisticsAction', 
-			(actionData) => new LoadBoxStatisticsAction(actionData.boxId));
 	}
 
 }

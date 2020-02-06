@@ -110,10 +110,6 @@ export default class Registration extends React.Component {
                         <div
                             className="small-font">{this.props.texts.registration.terms[this.props.language]}</div>
                     </div>
-                    <div className="line">
-                        <div
-                            className="small-font">{this.props.texts.registration.disclaimer[this.props.language]}</div>
-                    </div>
                 </div>
             </div>
         );

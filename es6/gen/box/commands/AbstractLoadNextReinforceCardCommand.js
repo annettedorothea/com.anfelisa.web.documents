@@ -20,7 +20,6 @@
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import LoadNextReinforceCardOkEvent from "../../../gen/box/events/LoadNextReinforceCardOkEvent";
-import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractLoadNextReinforceCardCommand extends Command {
@@ -36,7 +35,6 @@ export default class AbstractLoadNextReinforceCardCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new LoadNextReinforceCardOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadBoxStatisticsAction(this.commandData.boxId)).publish());
 			break;
 		case this.noCard:
 			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());

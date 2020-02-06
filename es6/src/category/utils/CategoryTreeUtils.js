@@ -4,7 +4,7 @@ export function findExpandedCategories(categoryList, expandedCategories) {
         if (category.expanded === true) {
             expandedCategories.push(category.categoryId);
             if (category.childCategories) {
-                findExpandedCategories(category.childCategories, expandedCategories,);
+                findExpandedCategories(category.childCategories, expandedCategories);
             }
         }
     }

@@ -17,12 +17,16 @@
 
 
 
-import Event from "../../../gen/ace/Event";
+import AbstractInitBoxesForDayAction from "../../../gen/box/actions/AbstractInitBoxesForDayAction";
 
-export default class LoadNextCardDoNotScheduleNextEvent extends Event {
-    constructor(eventData) {
-        super(eventData, 'box.LoadNextCardDoNotScheduleNextEvent');
+export default class InitBoxesForDayAction extends AbstractInitBoxesForDayAction {
+
+    initActionData() {
+        let date = new Date();
+        date.setHours(24,0,0,0);
+        this.actionData.today = date.toISOString();
     }
+
 }
 
 

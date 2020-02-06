@@ -18,18 +18,18 @@
 
 
 import Action from "../../ace/AsynchronousAction";
-import LoadBoxStatisticsCommand from "../../../src/box/commands/LoadBoxStatisticsCommand";
+import InitBoxesForDayCommand from "../../../src/box/commands/InitBoxesForDayCommand";
 import * as AppState from "../../ace/WriteAppState";
 
-export default class AbstractLoadBoxStatisticsAction extends Action {
+export default class AbstractInitBoxesForDayAction extends Action {
 
-    constructor( boxId) {
-        super({boxId}, 'box.LoadBoxStatisticsAction');
+    constructor() {
+        super({}, 'box.InitBoxesForDayAction');
 		this.postCall = this.postCall.bind(this);
 		}
 		
 	getCommand() {
-		return new LoadBoxStatisticsCommand(this.actionData);
+		return new InitBoxesForDayCommand(this.actionData);
 	}
 
 	preCall() {

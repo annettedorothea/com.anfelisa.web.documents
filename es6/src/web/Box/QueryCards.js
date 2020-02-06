@@ -1,5 +1,4 @@
 import React from 'react';
-import ScheduleNextCardAction from "../../box/actions/ScheduleNextCardAction";
 import Card from "./Card";
 import RouteAction from "../../common/actions/RouteAction";
 import ReinforceCard from "./ReinforceCard";
@@ -19,7 +18,7 @@ export default class QueryCards extends React.Component {
             content = <Card {...this.props}/>
         } else if (this.props.reinforceCardId) {
             content = <ReinforceCard {...this.props}/>
-        } else {
+        } else if (this.props.myCards === 0) {
             content = <div className="buttons">{this.props.texts.queryCards.empty[this.props.language]}</div>;
         }
         return (

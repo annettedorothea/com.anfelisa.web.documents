@@ -19,12 +19,11 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import UpdateBoxOkEvent from "../../../gen/box/events/UpdateBoxOkEvent";
-import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
+import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 
-export default class AbstractUpdateBoxCommand extends Command {
+export default class AbstractInitBoxesForDayCommand extends Command {
     constructor(commandData) {
-        super(commandData, "box.UpdateBoxCommand");
+        super(commandData, "box.InitBoxesForDayCommand");
         this.ok = "ok";
     }
 
@@ -33,11 +32,10 @@ export default class AbstractUpdateBoxCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new UpdateBoxOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadBoxStatisticsAction(this.commandData.boxId)).publish());
+			promises.push(new TriggerAction(new LoadBoxesAction()).publish());
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('UpdateBoxCommand unhandled outcome: ' + this.commandData.outcome)});
+			return new Promise((resolve, reject) => {reject('InitBoxesForDayCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }
@@ -46,12 +44,10 @@ export default class AbstractUpdateBoxCommand extends Command {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
 	        let payload = {	
-	        	maxInterval : this.commandData.maxInterval,
-	        	maxCardsPerDay : this.commandData.maxCardsPerDay,
-	        	boxId : this.commandData.boxId,
+	        	today : this.commandData.today,
 	        	};
 
-			this.httpPut(this.adjustedUrl(`/api/box/update`), true, queryParams, payload).then((data) => {
+			this.httpPut(this.adjustedUrl(`/api/box/init`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;
