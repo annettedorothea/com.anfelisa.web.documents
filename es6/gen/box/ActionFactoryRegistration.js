@@ -34,8 +34,6 @@ import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import ToggleScheduleNextAction from "../../src/box/actions/ToggleScheduleNextAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
-import LoadNextReinforceCardAction from "../../src/box/actions/LoadNextReinforceCardAction";
-import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
 
 export default class ActionFactoryRegistrationBox {
 
@@ -72,10 +70,6 @@ export default class ActionFactoryRegistrationBox {
 			(actionData) => new DisplayWantedAction(actionData.wantedItemsLength));
 		ACEController.registerFactory('box.ScoreCardAction', 
 			(actionData) => new ScoreCardAction(actionData.scoredCardQuality));
-		ACEController.registerFactory('box.LoadNextReinforceCardAction', 
-			(actionData) => new LoadNextReinforceCardAction(actionData.boxId));
-		ACEController.registerFactory('box.ScoreReinforceCardAction', 
-			(actionData) => new ScoreReinforceCardAction(actionData.quality));
 	}
 
 }

@@ -3,7 +3,6 @@ import Given from "./Given";
 import Wanted from "./Wanted";
 import ScoreButton from "./ScoreButton";
 import RouteAction from "../../common/actions/RouteAction";
-import ScoreReinforceCardAction from "../../box/actions/ScoreReinforceCardAction";
 
 export default class ReinforceCard extends React.Component {
 
@@ -14,7 +13,6 @@ export default class ReinforceCard extends React.Component {
     }
 
     scoreButtonClick(quality) {
-        new ScoreReinforceCardAction(quality).apply();
     }
 
     scoreButton(quality) {

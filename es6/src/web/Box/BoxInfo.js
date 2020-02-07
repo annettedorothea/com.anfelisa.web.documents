@@ -2,7 +2,6 @@ import React from 'react';
 import EditBoxAction from "../../box/actions/EditBoxAction";
 import MaxIntervalChangedAction from "../../box/actions/MaxIntervalChangedAction";
 import CancelEditBoxAction from "../../box/actions/CancelEditBoxAction";
-import UpdateBoxAction from "../../box/actions/UpdateBoxAction";
 import MaxCardsPerDayChangedAction from "../../box/actions/MaxCardsPerDayChangedAction";
 import EditMaxCardsPerDayAction from "../../box/actions/EditMaxCardsPerDayAction";
 import CancelEditMaxCardsPerDayAction from "../../box/actions/CancelEditMaxCardsPerDayAction";
@@ -15,7 +14,6 @@ export default class BoxInfo extends React.Component {
         this.onEditMaxCardsPerDayClick = this.onEditMaxCardsPerDayClick.bind(this);
         this.onMaxIntervalChange = this.onMaxIntervalChange.bind(this);
         this.onMaxMaxCardsPerDayChange = this.onMaxMaxCardsPerDayChange.bind(this);
-        this.onUpdate = this.onUpdate.bind(this);
         this.onCancel = this.onCancel.bind(this);
         this.onCancelMaxCardsPerDay = this.onCancelMaxCardsPerDay.bind(this);
         this.maxIntervalText = this.maxIntervalText.bind(this);
@@ -38,10 +36,6 @@ export default class BoxInfo extends React.Component {
     onMaxMaxCardsPerDayChange(e) {
         const maxCardsPerDay = e.target.value;
         new MaxCardsPerDayChangedAction(maxCardsPerDay).apply();
-    }
-
-    onUpdate() {
-        new UpdateBoxAction().apply();
     }
 
     onCancel() {
@@ -122,7 +116,6 @@ export default class BoxInfo extends React.Component {
                                 value={this.props.editedMaxInterval}
                                 onChange={this.onMaxIntervalChange}
                             />
-                            <button onClick={this.onUpdate}><i className="fas fa-check"/></button>
                             <button onClick={this.onCancel}><i className="fas fa-times"/></button>
                         </td>
                     </tr>}
@@ -142,7 +135,6 @@ export default class BoxInfo extends React.Component {
                                 value={this.props.editedMaxCardsPerDay}
                                 onChange={this.onMaxMaxCardsPerDayChange}
                             />
-                            <button onClick={this.onUpdate}><i className="fas fa-check"/></button>
                             <button onClick={this.onCancelMaxCardsPerDay}><i className="fas fa-times"/></button>
                         </td>
                     </tr>}

@@ -40,9 +40,6 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.ToggleScheduleNextOkEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.DisplayWantedOkEvent', AppState.merge_state_State_data);
-		ACEController.registerListener('box.LoadNextReinforceCardOkEvent', AppState.set_state_State_data);
-		ACEController.registerListener('box.LoadNextReinforceCardOkEvent', AppState.set_state_State_view);
-		ACEController.registerListener('box.LoadNextReinforceCardOkEvent', AppState.merge_state_State_data);
 	}
 
 }

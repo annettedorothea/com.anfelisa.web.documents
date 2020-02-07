@@ -76,18 +76,3 @@ ACE
 		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (LoadNextCard)
 	
-	LoadNextReinforceCard <boxId>
-	 	call com.anfelisa.box.LoadNextReinforceCard
-		loadingFlag common.state.State.displaySpinner 
-		on ok (
-			set common.state.State.data 
-			set common.state.State.view
-			merge common.state.State.data
-		) 
-		on noCard triggers (common.Route)
-	
-	ScoreReinforceCard <quality>
-		call com.anfelisa.box.ScoreReinforceCard
-		loadingFlag common.state.State.displaySpinner 
-		on ok triggers (LoadNextReinforceCard)
-	

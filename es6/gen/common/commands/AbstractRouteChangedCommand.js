@@ -29,7 +29,6 @@ import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTr
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
-import LoadNextReinforceCardAction from "../../../src/box/actions/LoadNextReinforceCardAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractRouteChangedCommand extends Command {
@@ -45,7 +44,6 @@ export default class AbstractRouteChangedCommand extends Command {
         this.profile = "profile";
         this.userList = "userList";
         this.nextCard = "nextCard";
-        this.reinforceCard = "reinforceCard";
         this.invalid = "invalid";
     }
 
@@ -80,9 +78,6 @@ export default class AbstractRouteChangedCommand extends Command {
 			break;
 		case this.nextCard:
 			new TriggerAction(new LoadNextCardAction(this.commandData.boxId)).publish();
-			break;
-		case this.reinforceCard:
-			new TriggerAction(new LoadNextReinforceCardAction(this.commandData.boxId)).publish();
 			break;
 		case this.invalid:
 			new TriggerAction(new RouteAction(this.commandData.hash)).publish();

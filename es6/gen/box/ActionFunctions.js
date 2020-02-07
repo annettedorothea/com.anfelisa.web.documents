@@ -33,8 +33,6 @@ import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import ToggleScheduleNextAction from "../../src/box/actions/ToggleScheduleNextAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
-import LoadNextReinforceCardAction from "../../src/box/actions/LoadNextReinforceCardAction";
-import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
 
 export function initBoxesForDay() {
     new InitBoxesForDayAction().apply();
@@ -98,14 +96,6 @@ export function displayWanted(wantedItemsLength) {
 
 export function scoreCard(scoredCardQuality) {
     new ScoreCardAction(scoredCardQuality).apply();
-}
-
-export function loadNextReinforceCard(boxId) {
-    new LoadNextReinforceCardAction(boxId).apply();
-}
-
-export function scoreReinforceCard(quality) {
-    new ScoreReinforceCardAction(quality).apply();
 }
 
 

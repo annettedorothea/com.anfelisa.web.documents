@@ -55,6 +55,7 @@ export default class AbstractLoadNextCardCommand extends Command {
 				this.commandData.lastQuality = data.lastQuality;
 				this.commandData.rootCategoryId = data.rootCategoryId;
 				this.commandData.scheduledCardId = data.scheduledCardId;
+				this.commandData.reinforceCardId = data.reinforceCardId;
 				this.commandData.scheduledDate = data.scheduledDate;
 				this.commandData.scoredDate = data.scoredDate;
 				this.commandData.wanted = data.wanted;
