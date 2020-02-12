@@ -13,7 +13,7 @@ export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.outcome = this.ok;
         this.commandData.dictionaryLookup = false;
         this.commandData.wantedLanguage = "";
@@ -22,7 +22,7 @@ export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand
         this.commandData.selectedCategoryId = this.commandData.categoryId;
         resolve();
     }
-    handleError(resolve, reject) {
+    handleError(resolve) {
         this.commandData.outcome = this.error;
         this.commandData.dictionaryLookup = false;
         this.commandData.wantedLanguage = "";

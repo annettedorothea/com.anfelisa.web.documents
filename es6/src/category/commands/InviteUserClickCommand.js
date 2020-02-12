@@ -9,7 +9,7 @@ export default class InviteUserClickCommand extends AbstractInviteUserClickComma
     	return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.displayInviteUser = true;
         this.commandData.invitedUsername = "";
     	this.commandData.outcome = this.ok;

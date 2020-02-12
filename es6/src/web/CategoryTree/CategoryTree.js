@@ -31,7 +31,7 @@ export default class CategoryTree extends React.Component {
             const file = files[0];
             event.target.value = null;
             let reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = function () {
                 previewCsv(reader.result);
             };
             reader.readAsText(file);

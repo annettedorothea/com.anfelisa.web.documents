@@ -8,11 +8,11 @@ export default class DeleteUserCommand extends AbstractDeleteUserCommand {
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.outcome = this.ok;
     	resolve();
     }
-    handleError(resolve, reject) {
+    handleError(resolve) {
         this.commandData.outcome = this.error;
         resolve();
     }

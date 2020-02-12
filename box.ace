@@ -22,26 +22,6 @@ ACE
 		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (category.LoadCategoryTree)
 	
-	EditBox
-		on ok (merge common.state.State.data)
-	
-	CancelEditBox 
-		on ok (merge common.state.State.data)
-	
-	MaxIntervalChanged <editedMaxInterval>
-		on ok (set common.state.State.data.Card.editedMaxInterval)
-		on invalid
-	
-	EditMaxCardsPerDay
-		on ok (merge common.state.State.data)
-	
-	CancelEditMaxCardsPerDay 
-		on ok (merge common.state.State.data)
-	
-	MaxCardsPerDayChanged <editedMaxCardsPerDay>
-		on ok (set common.state.State.data.Card.editedMaxCardsPerDay)
-		on invalid
-	
 	DeleteBoxClick <boxId>
 		on ok (set common.state.State.data.Dashboard.deleteBox)
 	
@@ -62,9 +42,6 @@ ACE
 			set common.state.State.data
 			merge common.state.State.data
 		)
-	
-	ToggleScheduleNext 
-		on ok (merge common.state.State.data)
 	
 	DisplayWanted <wantedItemsLength> 
 		on ok (

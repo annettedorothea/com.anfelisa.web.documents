@@ -4,23 +4,17 @@ import Wanted from "./Wanted";
 import ScoreButton from "./ScoreButton";
 import ScoreCardAction from "../../box/actions/ScoreCardAction";
 import RouteAction from "../../common/actions/RouteAction";
-import ToggleScheduleNextAction from "../../box/actions/ToggleScheduleNextAction";
 
 export default class Card extends React.Component {
 
     constructor(props) {
         super(props);
         this.scoreButtonClick = this.scoreButtonClick.bind(this);
-        this.onScheduleNextCheckedChange = this.onScheduleNextCheckedChange.bind(this);
         this.scoreButton = this.scoreButton.bind(this);
     }
 
     scoreButtonClick(quality) {
         new ScoreCardAction(quality).apply();
-    }
-
-    onScheduleNextCheckedChange() {
-        new ToggleScheduleNextAction().apply();
     }
 
     scoreButton(quality) {
@@ -70,14 +64,6 @@ export default class Card extends React.Component {
                     <div>
                         {this.scoreButton(3)}
                         {this.scoreButton(0)}
-                    </div>
-                    <div>
-                        <button className="reinforce"
-                                onClick={() => new RouteAction(`#box/reinforce/${this.props.boxId}`).apply()}
-                                disabled={this.props.reinforceCards === 0}
-                        >
-                            {this.props.texts.queryCards.reinforceCard[this.props.language]}
-                        </button>
                     </div>
                 </div>
             </div>

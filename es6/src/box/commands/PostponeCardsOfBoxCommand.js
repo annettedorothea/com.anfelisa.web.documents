@@ -6,7 +6,7 @@ export default class PostponeCardsOfBoxCommand extends AbstractPostponeCardsOfBo
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
     	this.commandData.outcome = this.next;
     	resolve();
     }

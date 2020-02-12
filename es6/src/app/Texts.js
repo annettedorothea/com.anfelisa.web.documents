@@ -507,9 +507,6 @@ export const Texts = {
         never: {
             de: "noch nie abgefragt"
         },
-        reinforceCard: {
-            de: "Festigen"
-        },
         scoreButtons: {
             0: {
                 de: "Keine Ahnung"

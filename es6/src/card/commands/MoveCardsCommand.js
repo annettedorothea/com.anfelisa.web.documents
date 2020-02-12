@@ -10,7 +10,7 @@ export default class MoveCardsCommand extends AbstractMoveCardsCommand {
     	return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.selectedCategoryId = this.commandData.categoryId;
     	this.commandData.outcome = this.ok;
     	resolve();

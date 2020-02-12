@@ -283,18 +283,6 @@ export function merge_state_State_data(eventData) {
 	if (eventData.usernameToBeDeleted !== undefined) {
 		state.data.usernameToBeDeleted = eventData.usernameToBeDeleted;
 	}
-	if (eventData.index !== undefined) {
-		state.data.index = eventData.index;
-	}
-	if (eventData.enableScoreButtons !== undefined) {
-		state.data.enableScoreButtons = eventData.enableScoreButtons;
-	}
-	if (eventData.displayImage !== undefined) {
-		state.data.displayImage = eventData.displayImage;
-	}
-	if (eventData.scheduleNext !== undefined) {
-		state.data.scheduleNext = eventData.scheduleNext;
-	}
 	if (eventData.cardId !== undefined) {
 		state.data.cardId = eventData.cardId;
 	}
@@ -319,6 +307,9 @@ export function merge_state_State_data(eventData) {
 	if (eventData.scheduledCardId !== undefined) {
 		state.data.scheduledCardId = eventData.scheduledCardId;
 	}
+	if (eventData.reinforceCardId !== undefined) {
+		state.data.reinforceCardId = eventData.reinforceCardId;
+	}
 	if (eventData.scheduledDate !== undefined) {
 		state.data.scheduledDate = eventData.scheduledDate;
 	}
@@ -328,71 +319,23 @@ export function merge_state_State_data(eventData) {
 	if (eventData.wanted !== undefined) {
 		state.data.wanted = eventData.wanted;
 	}
+	if (eventData.openTodaysCards !== undefined) {
+		state.data.openTodaysCards = eventData.openTodaysCards;
+	}
+	if (eventData.allTodaysCards !== undefined) {
+		state.data.allTodaysCards = eventData.allTodaysCards;
+	}
+	if (eventData.index !== undefined) {
+		state.data.index = eventData.index;
+	}
+	if (eventData.enableScoreButtons !== undefined) {
+		state.data.enableScoreButtons = eventData.enableScoreButtons;
+	}
+	if (eventData.displayImage !== undefined) {
+		state.data.displayImage = eventData.displayImage;
+	}
 	if (eventData.boxId !== undefined) {
 		state.data.boxId = eventData.boxId;
-	}
-	if (eventData.categoryName !== undefined) {
-		state.data.categoryName = eventData.categoryName;
-	}
-	if (eventData.daysBehindSchedule !== undefined) {
-		state.data.daysBehindSchedule = eventData.daysBehindSchedule;
-	}
-	if (eventData.maxInterval !== undefined) {
-		state.data.maxInterval = eventData.maxInterval;
-	}
-	if (eventData.maxCardsPerDay !== undefined) {
-		state.data.maxCardsPerDay = eventData.maxCardsPerDay;
-	}
-	if (eventData.myCards !== undefined) {
-		state.data.myCards = eventData.myCards;
-	}
-	if (eventData.quality0Count !== undefined) {
-		state.data.quality0Count = eventData.quality0Count;
-	}
-	if (eventData.quality1Count !== undefined) {
-		state.data.quality1Count = eventData.quality1Count;
-	}
-	if (eventData.quality2Count !== undefined) {
-		state.data.quality2Count = eventData.quality2Count;
-	}
-	if (eventData.quality3Count !== undefined) {
-		state.data.quality3Count = eventData.quality3Count;
-	}
-	if (eventData.quality4Count !== undefined) {
-		state.data.quality4Count = eventData.quality4Count;
-	}
-	if (eventData.quality5Count !== undefined) {
-		state.data.quality5Count = eventData.quality5Count;
-	}
-	if (eventData.reinforceCards !== undefined) {
-		state.data.reinforceCards = eventData.reinforceCards;
-	}
-	if (eventData.todaysCards !== undefined) {
-		state.data.todaysCards = eventData.todaysCards;
-	}
-	if (eventData.tomorrowsCards !== undefined) {
-		state.data.tomorrowsCards = eventData.tomorrowsCards;
-	}
-	if (eventData.totalCards !== undefined) {
-		state.data.totalCards = eventData.totalCards;
-	}
-	if (eventData.editMaxInterval !== undefined) {
-		state.data.editMaxInterval = eventData.editMaxInterval;
-	}
-	if (eventData.editedMaxInterval !== undefined) {
-		state.data.editedMaxInterval = eventData.editedMaxInterval;
-	}
-	if (eventData.editMaxCardsPerDay !== undefined) {
-		state.data.editMaxCardsPerDay = eventData.editMaxCardsPerDay;
-	}
-	if (eventData.editedMaxCardsPerDay !== undefined) {
-		state.data.editedMaxCardsPerDay = eventData.editedMaxCardsPerDay;
-	}
-	if (eventData.reinforceCardId !== undefined) {
-		state.data.reinforceCardId = eventData.reinforceCardId;
-	}
-	if (eventData.changeDate !== undefined) {
-		state.data.changeDate = eventData.changeDate;
 	}
 	if (eventData.categoryTree !== undefined) {
 		state.data.categoryTree = eventData.categoryTree;
@@ -669,50 +612,6 @@ export function reset_state_State_data_UserList_usernameToBeDeleted() {
 export function init_state_State_data_UserList_usernameToBeDeleted() {
 	state.data.usernameToBeDeleted = null;
 }
-export function set_state_State_data_Card_index(eventData) {
-	state.data.index = eventData.index;
-}
-
-export function reset_state_State_data_Card_index() {
-	state.data.index = null;
-}
-
-export function init_state_State_data_Card_index() {
-	state.data.index = null;
-}
-export function set_state_State_data_Card_enableScoreButtons(eventData) {
-	state.data.enableScoreButtons = eventData.enableScoreButtons;
-}
-
-export function reset_state_State_data_Card_enableScoreButtons() {
-	state.data.enableScoreButtons = null;
-}
-
-export function init_state_State_data_Card_enableScoreButtons() {
-	state.data.enableScoreButtons = null;
-}
-export function set_state_State_data_Card_displayImage(eventData) {
-	state.data.displayImage = eventData.displayImage;
-}
-
-export function reset_state_State_data_Card_displayImage() {
-	state.data.displayImage = null;
-}
-
-export function init_state_State_data_Card_displayImage() {
-	state.data.displayImage = null;
-}
-export function set_state_State_data_Card_scheduleNext(eventData) {
-	state.data.scheduleNext = eventData.scheduleNext;
-}
-
-export function reset_state_State_data_Card_scheduleNext() {
-	state.data.scheduleNext = null;
-}
-
-export function init_state_State_data_Card_scheduleNext() {
-	state.data.scheduleNext = null;
-}
 export function set_state_State_data_Card_cardId(eventData) {
 	state.data.cardId = eventData.cardId;
 }
@@ -801,6 +700,17 @@ export function reset_state_State_data_Card_scheduledCardId() {
 export function init_state_State_data_Card_scheduledCardId() {
 	state.data.scheduledCardId = null;
 }
+export function set_state_State_data_Card_reinforceCardId(eventData) {
+	state.data.reinforceCardId = eventData.reinforceCardId;
+}
+
+export function reset_state_State_data_Card_reinforceCardId() {
+	state.data.reinforceCardId = null;
+}
+
+export function init_state_State_data_Card_reinforceCardId() {
+	state.data.reinforceCardId = null;
+}
 export function set_state_State_data_Card_scheduledDate(eventData) {
 	state.data.scheduledDate = eventData.scheduledDate;
 }
@@ -834,6 +744,61 @@ export function reset_state_State_data_Card_wanted() {
 export function init_state_State_data_Card_wanted() {
 	state.data.wanted = null;
 }
+export function set_state_State_data_Card_openTodaysCards(eventData) {
+	state.data.openTodaysCards = eventData.openTodaysCards;
+}
+
+export function reset_state_State_data_Card_openTodaysCards() {
+	state.data.openTodaysCards = null;
+}
+
+export function init_state_State_data_Card_openTodaysCards() {
+	state.data.openTodaysCards = null;
+}
+export function set_state_State_data_Card_allTodaysCards(eventData) {
+	state.data.allTodaysCards = eventData.allTodaysCards;
+}
+
+export function reset_state_State_data_Card_allTodaysCards() {
+	state.data.allTodaysCards = null;
+}
+
+export function init_state_State_data_Card_allTodaysCards() {
+	state.data.allTodaysCards = null;
+}
+export function set_state_State_data_Card_index(eventData) {
+	state.data.index = eventData.index;
+}
+
+export function reset_state_State_data_Card_index() {
+	state.data.index = null;
+}
+
+export function init_state_State_data_Card_index() {
+	state.data.index = null;
+}
+export function set_state_State_data_Card_enableScoreButtons(eventData) {
+	state.data.enableScoreButtons = eventData.enableScoreButtons;
+}
+
+export function reset_state_State_data_Card_enableScoreButtons() {
+	state.data.enableScoreButtons = null;
+}
+
+export function init_state_State_data_Card_enableScoreButtons() {
+	state.data.enableScoreButtons = null;
+}
+export function set_state_State_data_Card_displayImage(eventData) {
+	state.data.displayImage = eventData.displayImage;
+}
+
+export function reset_state_State_data_Card_displayImage() {
+	state.data.displayImage = null;
+}
+
+export function init_state_State_data_Card_displayImage() {
+	state.data.displayImage = null;
+}
 export function set_state_State_data_Card_boxId(eventData) {
 	state.data.boxId = eventData.boxId;
 }
@@ -844,237 +809,6 @@ export function reset_state_State_data_Card_boxId() {
 
 export function init_state_State_data_Card_boxId() {
 	state.data.boxId = null;
-}
-export function set_state_State_data_Card_categoryName(eventData) {
-	state.data.categoryName = eventData.categoryName;
-}
-
-export function reset_state_State_data_Card_categoryName() {
-	state.data.categoryName = null;
-}
-
-export function init_state_State_data_Card_categoryName() {
-	state.data.categoryName = null;
-}
-export function set_state_State_data_Card_daysBehindSchedule(eventData) {
-	state.data.daysBehindSchedule = eventData.daysBehindSchedule;
-}
-
-export function reset_state_State_data_Card_daysBehindSchedule() {
-	state.data.daysBehindSchedule = null;
-}
-
-export function init_state_State_data_Card_daysBehindSchedule() {
-	state.data.daysBehindSchedule = null;
-}
-export function set_state_State_data_Card_maxInterval(eventData) {
-	state.data.maxInterval = eventData.maxInterval;
-}
-
-export function reset_state_State_data_Card_maxInterval() {
-	state.data.maxInterval = null;
-}
-
-export function init_state_State_data_Card_maxInterval() {
-	state.data.maxInterval = null;
-}
-export function set_state_State_data_Card_maxCardsPerDay(eventData) {
-	state.data.maxCardsPerDay = eventData.maxCardsPerDay;
-}
-
-export function reset_state_State_data_Card_maxCardsPerDay() {
-	state.data.maxCardsPerDay = null;
-}
-
-export function init_state_State_data_Card_maxCardsPerDay() {
-	state.data.maxCardsPerDay = null;
-}
-export function set_state_State_data_Card_myCards(eventData) {
-	state.data.myCards = eventData.myCards;
-}
-
-export function reset_state_State_data_Card_myCards() {
-	state.data.myCards = null;
-}
-
-export function init_state_State_data_Card_myCards() {
-	state.data.myCards = null;
-}
-export function set_state_State_data_Card_quality0Count(eventData) {
-	state.data.quality0Count = eventData.quality0Count;
-}
-
-export function reset_state_State_data_Card_quality0Count() {
-	state.data.quality0Count = null;
-}
-
-export function init_state_State_data_Card_quality0Count() {
-	state.data.quality0Count = null;
-}
-export function set_state_State_data_Card_quality1Count(eventData) {
-	state.data.quality1Count = eventData.quality1Count;
-}
-
-export function reset_state_State_data_Card_quality1Count() {
-	state.data.quality1Count = null;
-}
-
-export function init_state_State_data_Card_quality1Count() {
-	state.data.quality1Count = null;
-}
-export function set_state_State_data_Card_quality2Count(eventData) {
-	state.data.quality2Count = eventData.quality2Count;
-}
-
-export function reset_state_State_data_Card_quality2Count() {
-	state.data.quality2Count = null;
-}
-
-export function init_state_State_data_Card_quality2Count() {
-	state.data.quality2Count = null;
-}
-export function set_state_State_data_Card_quality3Count(eventData) {
-	state.data.quality3Count = eventData.quality3Count;
-}
-
-export function reset_state_State_data_Card_quality3Count() {
-	state.data.quality3Count = null;
-}
-
-export function init_state_State_data_Card_quality3Count() {
-	state.data.quality3Count = null;
-}
-export function set_state_State_data_Card_quality4Count(eventData) {
-	state.data.quality4Count = eventData.quality4Count;
-}
-
-export function reset_state_State_data_Card_quality4Count() {
-	state.data.quality4Count = null;
-}
-
-export function init_state_State_data_Card_quality4Count() {
-	state.data.quality4Count = null;
-}
-export function set_state_State_data_Card_quality5Count(eventData) {
-	state.data.quality5Count = eventData.quality5Count;
-}
-
-export function reset_state_State_data_Card_quality5Count() {
-	state.data.quality5Count = null;
-}
-
-export function init_state_State_data_Card_quality5Count() {
-	state.data.quality5Count = null;
-}
-export function set_state_State_data_Card_reinforceCards(eventData) {
-	state.data.reinforceCards = eventData.reinforceCards;
-}
-
-export function reset_state_State_data_Card_reinforceCards() {
-	state.data.reinforceCards = null;
-}
-
-export function init_state_State_data_Card_reinforceCards() {
-	state.data.reinforceCards = null;
-}
-export function set_state_State_data_Card_todaysCards(eventData) {
-	state.data.todaysCards = eventData.todaysCards;
-}
-
-export function reset_state_State_data_Card_todaysCards() {
-	state.data.todaysCards = null;
-}
-
-export function init_state_State_data_Card_todaysCards() {
-	state.data.todaysCards = null;
-}
-export function set_state_State_data_Card_tomorrowsCards(eventData) {
-	state.data.tomorrowsCards = eventData.tomorrowsCards;
-}
-
-export function reset_state_State_data_Card_tomorrowsCards() {
-	state.data.tomorrowsCards = null;
-}
-
-export function init_state_State_data_Card_tomorrowsCards() {
-	state.data.tomorrowsCards = null;
-}
-export function set_state_State_data_Card_totalCards(eventData) {
-	state.data.totalCards = eventData.totalCards;
-}
-
-export function reset_state_State_data_Card_totalCards() {
-	state.data.totalCards = null;
-}
-
-export function init_state_State_data_Card_totalCards() {
-	state.data.totalCards = null;
-}
-export function set_state_State_data_Card_editMaxInterval(eventData) {
-	state.data.editMaxInterval = eventData.editMaxInterval;
-}
-
-export function reset_state_State_data_Card_editMaxInterval() {
-	state.data.editMaxInterval = null;
-}
-
-export function init_state_State_data_Card_editMaxInterval() {
-	state.data.editMaxInterval = null;
-}
-export function set_state_State_data_Card_editedMaxInterval(eventData) {
-	state.data.editedMaxInterval = eventData.editedMaxInterval;
-}
-
-export function reset_state_State_data_Card_editedMaxInterval() {
-	state.data.editedMaxInterval = null;
-}
-
-export function init_state_State_data_Card_editedMaxInterval() {
-	state.data.editedMaxInterval = null;
-}
-export function set_state_State_data_Card_editMaxCardsPerDay(eventData) {
-	state.data.editMaxCardsPerDay = eventData.editMaxCardsPerDay;
-}
-
-export function reset_state_State_data_Card_editMaxCardsPerDay() {
-	state.data.editMaxCardsPerDay = null;
-}
-
-export function init_state_State_data_Card_editMaxCardsPerDay() {
-	state.data.editMaxCardsPerDay = null;
-}
-export function set_state_State_data_Card_editedMaxCardsPerDay(eventData) {
-	state.data.editedMaxCardsPerDay = eventData.editedMaxCardsPerDay;
-}
-
-export function reset_state_State_data_Card_editedMaxCardsPerDay() {
-	state.data.editedMaxCardsPerDay = null;
-}
-
-export function init_state_State_data_Card_editedMaxCardsPerDay() {
-	state.data.editedMaxCardsPerDay = null;
-}
-export function set_state_State_data_Card_reinforceCardId(eventData) {
-	state.data.reinforceCardId = eventData.reinforceCardId;
-}
-
-export function reset_state_State_data_Card_reinforceCardId() {
-	state.data.reinforceCardId = null;
-}
-
-export function init_state_State_data_Card_reinforceCardId() {
-	state.data.reinforceCardId = null;
-}
-export function set_state_State_data_Card_changeDate(eventData) {
-	state.data.changeDate = eventData.changeDate;
-}
-
-export function reset_state_State_data_Card_changeDate() {
-	state.data.changeDate = null;
-}
-
-export function init_state_State_data_Card_changeDate() {
-	state.data.changeDate = null;
 }
 export function set_state_State_data_AuthorView_categoryTree(eventData) {
 	state.data.categoryTree = eventData.categoryTree;

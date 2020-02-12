@@ -1,5 +1,4 @@
 import React from "react";
-import DisplayWantedAction from "../../box/actions/DisplayWantedAction";
 import {displayWanted} from "../../../gen/box/ActionFunctions";
 
 export default class Wanted extends React.Component {

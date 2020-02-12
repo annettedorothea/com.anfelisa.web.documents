@@ -158,11 +158,13 @@ h2 {
     min-height: calc(100vh - 130px);
     max-width: 1200px;
     margin: auto;
+    padding: 0 10px;
 }
 
 @media screen and (max-width: 600px) {
     .wrapper {
         margin: 0 8px ;
+        padding: 0;
     }
 }
 
@@ -653,28 +655,6 @@ a:hover.tile h2 {
     margin-bottom: 20px;
 }
 
-.infoAndStatistics {
-    max-width: 500px;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-}
-
-.infoAndStatistics button {
-    margin-left: 4px;
-}
-
-.infoAndStatistics input {
-    width: 80px;
-    margin-right: 8px;
-}
-
-.box .statistics {
-    margin-bottom: 120px;
-}
-
 .box table {
     margin-bottom: 20px;
 }
@@ -702,6 +682,25 @@ a:hover.tile h2 {
 
 .box .daysBehindSchedule div {
     margin-bottom: 12px;
+}
+
+.box .progress {
+    margin-bottom: 10px;
+}
+
+.box .progress div {
+    display: inline-block;
+    height: 8px;
+}
+
+.box .progress .done {
+    border-radius: 4px 0 0 4px;
+    background-color: #669E00;
+}
+
+.box .progress .open {
+    border-radius: 0 4px 4px 0;
+    background-color: #ccc;
 }
 
 /* categories */

@@ -13,7 +13,7 @@ export default class LoadCardsCommand extends AbstractLoadCardsCommand {
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.outcome = this.ok;
         const cardView = getState().data.cardView;
         this.commandData.naturalInputOrder = cardView.naturalInputOrder === undefined ? true : cardView.naturalInputOrder;

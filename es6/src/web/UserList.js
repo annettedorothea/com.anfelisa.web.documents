@@ -1,6 +1,5 @@
 import React from 'react';
 import Confirm from "./Confirm";
-import SaveRoleAction from "../admin/actions/SaveRoleAction";
 import {route} from "../../gen/common/ActionFunctions";
 import {deleteUser, deleteUserCancel, deleteUserClick, saveRole} from "../../gen/admin/ActionFunctions";
 

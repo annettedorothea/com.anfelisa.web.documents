@@ -48,7 +48,7 @@ export function render(newAppState) {
 }
 
 window.onhashchange = () => {
-    new RouteChangedAction(window.location.hash).apply();
+    new RouteChangedAction().apply();
     window.scrollTo(0, 0);
 };
 

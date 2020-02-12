@@ -9,7 +9,7 @@ export default class DeleteCardCommand extends AbstractDeleteCardCommand {
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.outcome = this.ok;
         this.commandData.deleteCard = {
             confirmDelete: false,
@@ -17,7 +17,7 @@ export default class DeleteCardCommand extends AbstractDeleteCardCommand {
         };
     	resolve();
     }
-    handleError(resolve, reject) {
+    handleError(resolve) {
         this.commandData.outcome = this.error;
         this.commandData.deleteCard = {
             confirmDelete: false,

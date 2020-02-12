@@ -10,7 +10,7 @@ export default class InviteUserCommand extends AbstractInviteUserCommand {
     	return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.outcome = this.ok;
     	resolve();
     }

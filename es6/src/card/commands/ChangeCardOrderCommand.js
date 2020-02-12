@@ -15,12 +15,8 @@
  */
 
 
-
-
 import AbstractChangeCardOrderCommand from "../../../gen/card/commands/AbstractChangeCardOrderCommand";
-import * as AppState from "../../../gen/ace/ReadAppState";
 import {getState} from "../../../gen/ace/ReadAppState";
-//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class ChangeCardOrderCommand extends AbstractChangeCardOrderCommand {
 
@@ -30,7 +26,7 @@ export default class ChangeCardOrderCommand extends AbstractChangeCardOrderComma
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
     	this.commandData.outcome = this.ok;
     	resolve();
     }

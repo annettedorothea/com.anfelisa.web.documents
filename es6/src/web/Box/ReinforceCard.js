@@ -12,7 +12,7 @@ export default class ReinforceCard extends React.Component {
         this.scoreButton = this.scoreButton.bind(this);
     }
 
-    scoreButtonClick(quality) {
+    scoreButtonClick() {
     }
 
     scoreButton(quality) {
@@ -27,7 +27,7 @@ export default class ReinforceCard extends React.Component {
     }
 
     render() {
-        const lines = this.props.wanted.split("\n");
+        //const lines = this.props.wanted.split("\n");
         return (
             <div>
                 <h2>{this.props.texts.queryCards.reinforceCard[this.props.language]}</h2>

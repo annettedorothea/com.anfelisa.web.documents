@@ -8,11 +8,11 @@ export default class CreateCardCommand extends AbstractCreateCardCommand {
         this.commandData.wanted = data.cardView.newCard.wanted;
         this.commandData.given = data.cardView.newCard.given;
         this.commandData.image = data.cardView.newCard.image;
-        this.commandData.categoryId = data.categoryTree.selectedCategory.categoryId;;
+        this.commandData.categoryId = data.categoryTree.selectedCategory.categoryId;
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
     	this.commandData.outcome = this.ok;
         this.commandData.newCard = {
             given: "",

@@ -13,7 +13,7 @@ export default class CreateCategoryCommand extends AbstractCreateCategoryCommand
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.outcome = this.ok;
         this.commandData.dictionaryLookup = false;
         this.commandData.wantedLanguage = "";
@@ -23,7 +23,7 @@ export default class CreateCategoryCommand extends AbstractCreateCategoryCommand
         resolve();
     }
 
-    handleError(resolve, reject) {
+    handleError(resolve) {
         this.commandData.outcome = this.error;
         this.commandData.dictionaryLookup = false;
         this.commandData.wantedLanguage = "";

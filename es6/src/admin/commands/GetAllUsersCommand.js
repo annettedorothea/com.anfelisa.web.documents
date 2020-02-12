@@ -6,7 +6,7 @@ export default class GetAllUsersCommand extends AbstractGetAllUsersCommand {
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.data = {
             showDeleteUserDialog: false,
             userList: this.commandData.userList

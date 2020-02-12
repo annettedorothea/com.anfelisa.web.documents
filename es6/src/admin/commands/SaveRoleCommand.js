@@ -6,7 +6,7 @@ export default class SaveRoleCommand extends AbstractSaveRoleCommand {
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
     	this.commandData.outcome = this.ok;
     	resolve();
     }

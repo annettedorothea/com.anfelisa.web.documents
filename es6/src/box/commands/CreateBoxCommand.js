@@ -8,7 +8,7 @@ export default class CreateBoxCommand extends AbstractCreateBoxCommand {
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.selectedCategoryId = AppState.get_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory().categoryId;
     	this.commandData.outcome = this.ok;
     	resolve();

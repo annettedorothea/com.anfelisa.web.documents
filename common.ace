@@ -118,10 +118,6 @@ appState state : State {
 		showDeleteUserDialog
 		usernameToBeDeleted
 	} |	: Card {
-		index
-		enableScoreButtons
-		displayImage
-		scheduleNext
 		cardId
 		categoryId
 		count
@@ -130,31 +126,16 @@ appState state : State {
 		lastQuality
 		rootCategoryId
 		scheduledCardId
+		reinforceCardId
 		scheduledDate
 		scoredDate
 		wanted
+		openTodaysCards
+		allTodaysCards
+		index
+		enableScoreButtons
+		displayImage
 		boxId
-		categoryName
-		daysBehindSchedule
-		maxInterval
-		maxCardsPerDay
-		myCards
-		quality0Count
-		quality1Count
-		quality2Count
-		quality3Count
-		quality4Count
-		quality5Count
-		reinforceCards
-		todaysCards
-		tomorrowsCards
-		totalCards
-		editMaxInterval
-		editedMaxInterval
-		editMaxCardsPerDay
-		editedMaxCardsPerDay
-		reinforceCardId
-		changeDate
 	} |	: AuthorView {
 		categoryTree : CategoryTree {
 			selectedCategory

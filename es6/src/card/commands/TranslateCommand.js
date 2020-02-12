@@ -52,7 +52,7 @@ export default class TranslateCommand extends AbstractTranslateCommand {
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         const data = getState().data.cardView;
         if (!!data.naturalInputOrder) {
             this.commandData.wanted = this.commandData.targetValue;
@@ -63,7 +63,7 @@ export default class TranslateCommand extends AbstractTranslateCommand {
         }
     	resolve();
     }
-    handleError(resolve, reject) {
+    handleError(resolve) {
         this.commandData.outcome = this.error;
         resolve();
     }

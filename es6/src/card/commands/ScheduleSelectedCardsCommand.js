@@ -9,7 +9,7 @@ export default class ScheduleSelectedCardsCommand extends AbstractScheduleSelect
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
     	this.commandData.outcome = this.ok;
     	resolve();
     }

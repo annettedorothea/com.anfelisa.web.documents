@@ -10,7 +10,7 @@ export default class ScoreCardCommand extends AbstractScoreCardCommand {
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
     	this.commandData.outcome = this.ok;
     	resolve();
     }

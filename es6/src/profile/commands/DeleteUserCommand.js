@@ -6,7 +6,7 @@ export default class DeleteUserCommand extends AbstractDeleteUserCommand {
         return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         this.commandData.outcome = this.ok;
     	resolve();
     }
