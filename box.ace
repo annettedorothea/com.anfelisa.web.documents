@@ -53,3 +53,8 @@ ACE
 		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (LoadNextCard)
 	
+	ScoreReinforceCard <scoredCardQuality>
+	 	call com.anfelisa.box.ScoreReinforceCard
+		loadingFlag common.state.State.displaySpinner 
+		on ok triggers (LoadNextCard)
+	

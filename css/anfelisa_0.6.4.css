@@ -905,8 +905,6 @@ iframe {
     background-color: #337ab7;
     color: #fff;
 }
-.categoryTree .categoryItem .notSelected {
-}
 
 .categoryTree .categoryItem .dropAllowed {
     background-color: #ffa84c;

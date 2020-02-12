@@ -27,6 +27,7 @@ import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
 import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
+import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
 
 export default class ActionFactoryRegistrationBox {
 
@@ -49,6 +50,8 @@ export default class ActionFactoryRegistrationBox {
 			(actionData) => new DisplayWantedAction(actionData.wantedItemsLength));
 		ACEController.registerFactory('box.ScoreCardAction', 
 			(actionData) => new ScoreCardAction(actionData.scoredCardQuality));
+		ACEController.registerFactory('box.ScoreReinforceCardAction', 
+			(actionData) => new ScoreReinforceCardAction(actionData.scoredCardQuality));
 	}
 
 }

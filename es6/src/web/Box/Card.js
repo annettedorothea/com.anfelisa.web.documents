@@ -2,8 +2,8 @@ import React from "react";
 import Given from "./Given";
 import Wanted from "./Wanted";
 import ScoreButton from "./ScoreButton";
-import ScoreCardAction from "../../box/actions/ScoreCardAction";
-import RouteAction from "../../common/actions/RouteAction";
+import {routeChanged} from "../../../gen/common/ActionFunctions";
+import {scoreCard, scoreReinforceCard} from "../../../gen/box/ActionFunctions";
 
 export default class Card extends React.Component {
 
@@ -14,7 +14,11 @@ export default class Card extends React.Component {
     }
 
     scoreButtonClick(quality) {
-        new ScoreCardAction(quality).apply();
+        if (this.props.scheduledCardId) {
+            scoreCard(quality);
+        } else {
+            scoreReinforceCard(quality);
+        }
     }
 
     scoreButton(quality) {
@@ -49,7 +53,7 @@ export default class Card extends React.Component {
                 />
                 <div className="categoryLink">
                     <a
-                        onClick={() => new RouteAction(`#categories/${this.props.categoryId}`).apply()}
+                        onClick={() => routeChanged(`#categories/${this.props.categoryId}`)}
                     >{this.props.texts.queryCards.category[this.props.language]}</a>
                 </div>
                 <div className="scoreButtons">

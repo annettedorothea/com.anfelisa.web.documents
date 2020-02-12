@@ -47,7 +47,7 @@ export default class BoxItem extends React.Component {
                 <div className="buttons">
                     <i className="fas fa-times fa-lg danger" onClick={(e) => this.onDeleteClick(e)}/>
                 </div>
-                {this.props.allTodaysCards > 0 && <span className="badge">{this.props.allTodaysCards}</span>}
+                {this.props.openTodaysCards > 0 && <span className="badge">{this.props.openTodaysCards}</span>}
             </a>
         );
     }
