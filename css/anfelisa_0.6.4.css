@@ -698,6 +698,11 @@ a:hover.tile h2 {
     background-color: #669E00;
 }
 
+.box .progress .all-done {
+    border-radius: 4px;
+    background-color: #669E00;
+}
+
 .box .progress .open {
     border-radius: 0 4px 4px 0;
     background-color: #ccc;

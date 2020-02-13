@@ -16,7 +16,6 @@ export default class BoxItem extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <a
                 className="tile"

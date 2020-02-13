@@ -45,7 +45,7 @@ export default class AbstractScoreReinforceCardCommand extends Command {
 			let queryParams = [];
 	        let payload = {	
 	        	reinforceCardId : this.commandData.reinforceCardId,
-	        	quality : this.commandData.quality,
+	        	scoredCardQuality : this.commandData.scoredCardQuality,
 	        	};
 
 			this.httpPost(this.adjustedUrl(`/api/card/score-reinforce`), true, queryParams, payload).then((data) => {

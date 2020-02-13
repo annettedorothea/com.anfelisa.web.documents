@@ -492,9 +492,6 @@ export const Texts = {
         }
     },
     queryCards: {
-        ahead: {
-            de: "Du bist für heute fertig!"
-        },
         category: {
             de: "Zur Lernkartei"
         },
@@ -503,6 +500,9 @@ export const Texts = {
         },
         empty: {
             de: "Du hast noch keine Karten hinzugefügt. Gehe in die Lernkartei und wähle die Karten aus, die Du heute lernen willst!"
+        },
+        finished: {
+            de: "Du bist für heute fertig!"
         },
         never: {
             de: "noch nie abgefragt"
