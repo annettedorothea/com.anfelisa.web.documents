@@ -703,6 +703,11 @@ a:hover.tile h2 {
     background-color: #ccc;
 }
 
+.box .progress .all-open {
+    border-radius: 4px;
+    background-color: #ccc;
+}
+
 /* categories */
 
 .categoryCardSplitView h1 {

@@ -9,7 +9,7 @@ export default class QueryCards extends React.Component {
     }
 
     render() {
-        const open = this.props.openTodaysCards / this.props.allTodaysCards * 100;
+        const open = Math.round(this.props.openTodaysCards / this.props.allTodaysCards * 100);
         const done = 100 - open;
         return (
             <div className="box">
@@ -23,7 +23,7 @@ export default class QueryCards extends React.Component {
 
                 <div className="progress">
                     <div className="done" style={{width: `${done}%`}}/>
-                    <div className="open" style={{width: `${open}%`}}/>
+                    <div className={`${open === 100 ? 'all-open' : 'open'}`} style={{width: `${open}%`}}/>
                 </div>
                 
 
