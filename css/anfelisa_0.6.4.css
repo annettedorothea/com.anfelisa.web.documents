@@ -601,6 +601,7 @@ a:hover.tile .buttons {
     border-radius: 7px;
     padding: 10px;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .box .given-word,
@@ -721,31 +722,30 @@ a:hover.tile .buttons {
     margin-bottom: 12px;
 }
 
-.box .progress {
-    margin-bottom: 10px;
-}
 
-.box .progress div {
+/* progress */
+
+.progress div {
     display: inline-block;
     height: 8px;
 }
 
-.box .progress .done {
+.progress .done {
     border-radius: 4px 0 0 4px;
-    background-color: #669E00;
+    background-color: #777;
 }
 
-.box .progress .all-done {
+.progress .all-done {
     border-radius: 4px;
-    background-color: #669E00;
+    background-color: #777;
 }
 
-.box .progress .open {
+.progress .open {
     border-radius: 0 4px 4px 0;
     background-color: #ccc;
 }
 
-.box .progress .all-open {
+.progress .all-open {
     border-radius: 4px;
     background-color: #ccc;
 }

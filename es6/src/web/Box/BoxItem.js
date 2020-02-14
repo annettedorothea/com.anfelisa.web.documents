@@ -1,8 +1,8 @@
 import React from 'react';
-import RouteAction from "../../common/actions/RouteAction";
 import Statistics from "./Statistics";
 import {deleteBoxClick} from "../../../gen/box/ActionFunctions";
 import {route} from "../../../gen/common/ActionFunctions"
+import Progress from "./Progress";
 
 export default class BoxItem extends React.Component {
 
@@ -32,6 +32,8 @@ export default class BoxItem extends React.Component {
                 <h2>
                     {this.props.categoryName}
                 </h2>
+
+                <Progress openTodaysCards={this.props.openTodaysCards} allTodaysCards={this.props.allTodaysCards}/>
 
                 <Statistics {...this.props}/>
 
