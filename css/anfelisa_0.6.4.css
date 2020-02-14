@@ -593,6 +593,7 @@ a:hover.tile .buttons {
 
 .box .categoryLink {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .box .given, .box .wanted {

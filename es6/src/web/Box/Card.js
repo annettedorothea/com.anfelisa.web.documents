@@ -51,11 +51,6 @@ export default class Card extends React.Component {
                     image={this.props.image}
                     displayImage={this.props.displayImage}
                 />
-                <div className="categoryLink">
-                    <a
-                        onClick={() => route(`#categories/${this.props.categoryId}`)}
-                    >{this.props.texts.queryCards.category[this.props.language]}</a>
-                </div>
                 <div className="scoreButtons">
                     <div>
                         {this.scoreButton(5)}
@@ -69,6 +64,11 @@ export default class Card extends React.Component {
                         {this.scoreButton(3)}
                         {this.scoreButton(0)}
                     </div>
+                </div>
+                <div className="categoryLink">
+                    <a
+                        onClick={() => route(`#categories/${this.props.categoryId}`)}
+                    >{this.props.texts.queryCards.category[this.props.language]}</a>
                 </div>
             </div>
         );
