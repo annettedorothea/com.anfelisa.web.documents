@@ -2,7 +2,7 @@ import React from "react";
 import Given from "./Given";
 import Wanted from "./Wanted";
 import ScoreButton from "./ScoreButton";
-import {routeChanged} from "../../../gen/common/ActionFunctions";
+import {route} from "../../../gen/common/ActionFunctions";
 import {scoreCard, scoreReinforceCard} from "../../../gen/box/ActionFunctions";
 
 export default class Card extends React.Component {
@@ -53,7 +53,7 @@ export default class Card extends React.Component {
                 />
                 <div className="categoryLink">
                     <a
-                        onClick={() => routeChanged(`#categories/${this.props.categoryId}`)}
+                        onClick={() => route(`#categories/${this.props.categoryId}`)}
                     >{this.props.texts.queryCards.category[this.props.language]}</a>
                 </div>
                 <div className="scoreButtons">

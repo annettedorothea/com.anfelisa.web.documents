@@ -40,13 +40,6 @@ export default class UserContainer extends React.Component {
                     language={this.props.language}
                 />;
                 break;
-            case "reinforce-card":
-                content = <QueryCards
-                    {...this.props.data}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
-                break;
             case "dashboard":
             default:
                 content = <Dashboard

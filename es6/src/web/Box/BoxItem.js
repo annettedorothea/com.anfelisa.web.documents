@@ -2,12 +2,14 @@ import React from 'react';
 import RouteAction from "../../common/actions/RouteAction";
 import Statistics from "./Statistics";
 import {deleteBoxClick} from "../../../gen/box/ActionFunctions";
+import {route} from "../../../gen/common/ActionFunctions"
 
 export default class BoxItem extends React.Component {
 
     constructor(props) {
         super(props);
         this.onDeleteClick = this.onDeleteClick.bind(this);
+        this.onEditClick = this.onEditClick.bind(this);
     }
 
     onDeleteClick(e) {
@@ -15,35 +17,31 @@ export default class BoxItem extends React.Component {
         deleteBoxClick(this.props.boxId);
     }
 
+    onEditClick(e) {
+        e.stopPropagation();
+        route(`#categories/${this.props.categoryId}`);
+    }
+
     render() {
+        console.log(this.props);
         return (
             <a
                 className="tile"
-                onClick={() => new RouteAction(`#box/${this.props.boxId}`).apply()}>
+                onClick={() => route(`#box/${this.props.boxId}`)}>
 
-                <h2>{this.props.categoryName}</h2>
-
-                <table>
-                    <tbody>
-                    <tr>
-                        <td>{this.props.texts.box.todaysCards[this.props.language]}</td>
-                        <td>{this.props.todaysCards}</td>
-                    </tr>
-                    <tr>
-                        <td>{this.props.texts.box.reinforceCards[this.props.language]}</td>
-                        <td>{this.props.reinforceCards}</td>
-                    </tr>
-                    {this.props.daysBehindSchedule !== undefined && this.props.daysBehindSchedule > 0 && <tr>
-                        <td colSpan={2}>{this.props.daysBehindSchedule === 1 ?
-                            this.props.texts.box.daysBehindScheduleMessageOne[this.props.language] :
-                            this.props.texts.box.daysBehindScheduleMessage[this.props.language].replace("{0}", this.props.daysBehindSchedule)}</td>
-                    </tr>}
-                    </tbody>
-                </table>
+                <h2>
+                    {this.props.categoryName}
+                </h2>
 
                 <Statistics {...this.props}/>
 
-                <div className="buttons">
+                <div className="buttons button1">
+                    <i className="fas fa-edit" onClick={(e) => this.onEditClick(e)}/>
+                </div>
+                <div className="buttons button2">
+                    <i className="fas fa-cog" onClick={(e) => this.onEditClick(e)}/>
+                </div>
+                <div className="buttons button3">
                     <i className="fas fa-times fa-lg danger" onClick={(e) => this.onDeleteClick(e)}/>
                 </div>
                 {this.props.openTodaysCards > 0 && <span className="badge">{this.props.openTodaysCards}</span>}
