@@ -108,7 +108,7 @@ export default class CardItem extends React.Component {
                     }
                 </td>
                 {this.props.hasBox &&
-                <td className="notPrinted">
+                <td className="notPrinted alignRight">
                     {this.props.next ? new Date(this.props.next).toLocaleDateString() : ""}
                 </td>
                 }

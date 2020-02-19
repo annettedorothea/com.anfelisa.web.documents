@@ -910,6 +910,10 @@ a:hover.tile .buttons {
     margin-left: 8px;
 }
 
+.categoryCardSplitView .cardTable td.alignRight {
+    text-align: right;
+}
+
 .dictionaryWrapper {
     width: 100%;
     height: 500px;
