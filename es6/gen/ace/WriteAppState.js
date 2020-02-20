@@ -898,15 +898,6 @@ export function merge_state_State_data_AuthorView_categoryTree(eventData) {
 	if (eventData.displayNewCategory !== undefined) {
 		state.data.categoryTree.displayNewCategory = eventData.displayNewCategory;
 	}
-	if (eventData.displayInviteUser !== undefined) {
-		state.data.categoryTree.displayInviteUser = eventData.displayInviteUser;
-	}
-	if (eventData.invitedUsername !== undefined) {
-		state.data.categoryTree.invitedUsername = eventData.invitedUsername;
-	}
-	if (eventData.userList !== undefined) {
-		state.data.categoryTree.userList = eventData.userList;
-	}
 	if (eventData.dropAllowed !== undefined) {
 		state.data.categoryTree.dropAllowed = eventData.dropAllowed;
 	}
@@ -1027,39 +1018,6 @@ export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_disp
 
 export function init_state_State_data_AuthorView_categoryTree_CategoryTree_displayNewCategory() {
 	state.data.categoryTree.displayNewCategory = null;
-}
-export function set_state_State_data_AuthorView_categoryTree_CategoryTree_displayInviteUser(eventData) {
-	state.data.categoryTree.displayInviteUser = eventData.displayInviteUser;
-}
-
-export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_displayInviteUser() {
-	state.data.categoryTree.displayInviteUser = null;
-}
-
-export function init_state_State_data_AuthorView_categoryTree_CategoryTree_displayInviteUser() {
-	state.data.categoryTree.displayInviteUser = null;
-}
-export function set_state_State_data_AuthorView_categoryTree_CategoryTree_invitedUsername(eventData) {
-	state.data.categoryTree.invitedUsername = eventData.invitedUsername;
-}
-
-export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_invitedUsername() {
-	state.data.categoryTree.invitedUsername = null;
-}
-
-export function init_state_State_data_AuthorView_categoryTree_CategoryTree_invitedUsername() {
-	state.data.categoryTree.invitedUsername = null;
-}
-export function set_state_State_data_AuthorView_categoryTree_CategoryTree_userList(eventData) {
-	state.data.categoryTree.userList = eventData.userList;
-}
-
-export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_userList() {
-	state.data.categoryTree.userList = null;
-}
-
-export function init_state_State_data_AuthorView_categoryTree_CategoryTree_userList() {
-	state.data.categoryTree.userList = null;
 }
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_dropAllowed(eventData) {
 	state.data.categoryTree.dropAllowed = eventData.dropAllowed;

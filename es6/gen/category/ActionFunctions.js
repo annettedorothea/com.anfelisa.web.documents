@@ -35,11 +35,6 @@ import DeleteCategoryAction from "../../src/category/actions/DeleteCategoryActio
 import EditCategoryClickAction from "../../src/category/actions/EditCategoryClickAction";
 import CancelEditCategoryAction from "../../src/category/actions/CancelEditCategoryAction";
 import UpdateCategoryAction from "../../src/category/actions/UpdateCategoryAction";
-import InviteUserClickAction from "../../src/category/actions/InviteUserClickAction";
-import CloseInviteUserAction from "../../src/category/actions/CloseInviteUserAction";
-import InvitedUsernameChangedAction from "../../src/category/actions/InvitedUsernameChangedAction";
-import InviteUserAction from "../../src/category/actions/InviteUserAction";
-import RevokeUserAccessAction from "../../src/category/actions/RevokeUserAccessAction";
 import CheckDropAllowedAction from "../../src/category/actions/CheckDropAllowedAction";
 import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
 import MoveCategoryStartedAction from "../../src/category/actions/MoveCategoryStartedAction";
@@ -120,26 +115,6 @@ export function cancelEditCategory() {
 
 export function updateCategory() {
     new UpdateCategoryAction().apply();
-}
-
-export function inviteUserClick() {
-    new InviteUserClickAction().apply();
-}
-
-export function closeInviteUser() {
-    new CloseInviteUserAction().apply();
-}
-
-export function invitedUsernameChanged(invitedUsername) {
-    new InvitedUsernameChangedAction(invitedUsername).apply();
-}
-
-export function inviteUser(invitedUsername) {
-    new InviteUserAction(invitedUsername).apply();
-}
-
-export function revokeUserAccess(revokedUserId) {
-    new RevokeUserAccessAction(revokedUserId).apply();
 }
 
 export function checkDropAllowed(categoryId, altKey, depth) {

@@ -15,16 +15,12 @@
  */
 
 
-
-
 import AbstractSaveBoxSettingsCommand from "../../../gen/box/commands/AbstractSaveBoxSettingsCommand";
-import * as AppState from "../../../gen/ace/ReadAppState";
-import {get_state_State_data_Registration_email} from "../../../gen/ace/ReadAppState";
-import {get_state_State_language} from "../../../gen/ace/ReadAppState";
-import {get_state_State_data_Registration_username} from "../../../gen/ace/ReadAppState";
-import {get_state_State_data_BoxSettings_maxCardsPerDay} from "../../../gen/ace/ReadAppState";
-import {get_state_State_data_BoxSettings_maxInterval} from "../../../gen/ace/ReadAppState";
-import {get_state_State_data_BoxSettings_boxId} from "../../../gen/ace/ReadAppState";
+import {
+    get_state_State_data_BoxSettings_boxId,
+    get_state_State_data_BoxSettings_maxCardsPerDay,
+    get_state_State_data_BoxSettings_maxInterval
+} from "../../../gen/ace/ReadAppState";
 //please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class SaveBoxSettingsCommand extends AbstractSaveBoxSettingsCommand {

@@ -156,10 +156,6 @@ appState state : State {
 			displayEditCategory
 			displayNewCategory
 			
-			displayInviteUser
-			invitedUsername
-			userList
-			
 			dropAllowed
 			dropTargetCategoryId
 			movedCategory

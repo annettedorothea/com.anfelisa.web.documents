@@ -2,18 +2,16 @@ import React from 'react';
 import CategoryItem from "./CategoryItem";
 import NewCategory from "./NewCategory";
 import Confirm from "../Confirm";
-import InviteUser from "./InviteUser";
 import EditCategory from "./EditCategory";
 import {
     cancelDeleteCategory,
     deleteCategory,
     deleteCategoryClick,
     editCategoryClick,
-    inviteUserClick,
-    newCategoryClick
+    newCategoryClick,
+    previewCsv
 } from "../../../gen/category/ActionFunctions";
 import {route} from "../../../gen/common/ActionFunctions";
-import {previewCsv} from "../../../gen/category/ActionFunctions";
 import CsvFileInput from "./CsvFileInput";
 import CsvPreview from "./CsvPreview";
 
@@ -125,14 +123,6 @@ export default class CategoryTree extends React.Component {
                     onClick={() => deleteCategoryClick()}
                     title={this.props.texts.categoryTree.delete[this.props.language]}>
                     <i className="fas fa-times"/>
-                </button>
-                <button
-                    disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable || this.props.selectedCategory.parentCategoryId !== undefined}
-                    onClick={() => {
-                        inviteUserClick();
-                    }}
-                    title={this.props.texts.categoryTree.inviteUser.title[this.props.language]}>
-                    <i className="fas fa-users"/>
                 </button>
                 <CsvFileInput
                     onCsvFileChange={this.onCsvFileChange}

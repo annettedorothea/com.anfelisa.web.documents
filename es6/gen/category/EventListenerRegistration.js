@@ -49,9 +49,6 @@ export default class EventListenerRegistrationCategory {
 		ACEController.registerListener('category.CancelEditCategoryOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.UpdateCategoryOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.UpdateCategoryErrorEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
-		ACEController.registerListener('category.InviteUserClickOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
-		ACEController.registerListener('category.CloseInviteUserOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
-		ACEController.registerListener('category.InvitedUsernameChangedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.CheckDropAllowedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.MoveCategoryStartedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.MoveCategoryOkEvent', AppState.reset_state_State_data_AuthorView_categoryTree_CategoryTree_movedCategory);

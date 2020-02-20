@@ -165,17 +165,6 @@ export const Texts = {
                 de: "Bearbeiten"
             }
         },
-        inviteUser: {
-            close: {
-                de: "Schließen"
-            },
-            username: {
-                de: "Benutzername"
-            },
-            title: {
-                de: "Benutzer mit Zugriff"
-            }
-        },
         languages: {
             de: {
                 de: "Deutsch"

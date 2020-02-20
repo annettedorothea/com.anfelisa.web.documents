@@ -82,27 +82,6 @@ UpdateCategory
 	on ok (merge common.state.State.data.AuthorView.categoryTree) triggers (LoadCategoryTree)
 	on error (merge common.state.State.data.AuthorView.categoryTree)
 
-InviteUserClick
- 	call com.anfelisa.category.GetUsersWithAccess
-	loadingFlag common.state.State.displaySpinner 
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
-	
-CloseInviteUser
-	on ok (merge common.state.State.data.AuthorView.categoryTree) triggers (LoadCategoryTree)
-	
-InvitedUsernameChanged<invitedUsername>
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
-	
-InviteUser<invitedUsername>
-	call com.anfelisa.category.InviteUser
-	loadingFlag common.state.State.displaySpinner 
-	on ok triggers (InviteUserClick)
-
-RevokeUserAccess<revokedUserId>
-	call com.anfelisa.category.RevokeUserAccess
-	loadingFlag common.state.State.displaySpinner 
-	on ok triggers (InviteUserClick )
-
 CheckDropAllowed<categoryId, altKey, depth>
 	on ok (merge common.state.State.data.AuthorView.categoryTree)
 

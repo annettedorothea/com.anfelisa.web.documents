@@ -15,10 +15,7 @@
  */
 
 
-
-
 import AbstractMaxIntervalChangedCommand from "../../../gen/box/commands/AbstractMaxIntervalChangedCommand";
-import * as AppState from "../../../gen/ace/ReadAppState";
 //please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class MaxIntervalChangedCommand extends AbstractMaxIntervalChangedCommand {
