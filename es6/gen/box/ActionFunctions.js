@@ -19,7 +19,6 @@
 
 import InitBoxesForDayAction from "../../src/box/actions/InitBoxesForDayAction";
 import LoadBoxesAction from "../../src/box/actions/LoadBoxesAction";
-import CreateBoxAction from "../../src/box/actions/CreateBoxAction";
 import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
 import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
 import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
@@ -38,10 +37,6 @@ export function initBoxesForDay() {
 
 export function loadBoxes() {
     new LoadBoxesAction().apply();
-}
-
-export function createBox() {
-    new CreateBoxAction().apply();
 }
 
 export function deleteBoxClick(boxId) {

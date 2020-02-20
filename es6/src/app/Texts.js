@@ -4,11 +4,6 @@ export const Texts = {
             de: "Zur Benutzerverwaltung"
         }
     },
-    authorDashboard: {
-        categories: {
-            de: "Zur Lernkarteiverwaltung"
-        }
-    },
     box: {
         confirmDelete: {
             cancel: {
@@ -23,57 +18,6 @@ export const Texts = {
             title: {
                 de: "Löschen"
             }
-        },
-        maxCardsPerDayOne: {
-            de: "eine Karte"
-        },
-        maxCardsPerDayMore: {
-            de: "{0} Karten"
-        },
-        maxCardsPerDayNull: {
-            de: "keine"
-        },
-        maxIntervalOne: {
-            de: "ein Tag"
-        },
-        maxIntervalMore: {
-            de: "{0} Tage"
-        },
-        maxIntervalNull: {
-            de: "keine"
-        },
-        maxCardsPerDay: {
-            de: "Begrenzung (Karten)"
-        },
-        maxInterval: {
-            de: "Begrenzung (Tage)"
-        },
-        myCards: {
-            de: "Karten in der Lernkartei"
-        },
-        nextCard: {
-            de: "Karten abfragen"
-        },
-        postpone: {
-            de: "Zeitplan neu berechnen"
-        },
-        daysBehindScheduleMessageOne: {
-            de: "Du bist einen Tag hinterher."
-        },
-        daysBehindScheduleMessage: {
-            de: "Du bist {0} Tage hinterher."
-        },
-        reinforceCards: {
-            de: "Karten zum Festigen"
-        },
-        todaysCards: {
-            de: "Karten für heute"
-        },
-        tomorrowsCards: {
-            de: "Karten für morgen"
-        },
-        totalCards: {
-            de: "Karten insgesamt"
         }
     },
     boxSettings : {
@@ -111,26 +55,6 @@ export const Texts = {
                 de: "Löschen"
             }
         },
-        confirmRevokeUserAccess: {
-            cancel: {
-                de: "Nein"
-            },
-            ok: {
-                de: "Ja"
-            },
-            message: {
-                de: "Soll dieser Benutzer wirklich keinen Zugriff mehr auf die gesamte Lernkartei haben?"
-            },
-            title: {
-                de: "Zugriff entziehen"
-            }
-        },
-        folders: {
-            de: "Ordner"
-        },
-        index: {
-            de: "Index"
-        },
         invitedUsers: {
             invite: {
                 de: "einladen"
@@ -164,12 +88,6 @@ export const Texts = {
         },
         newRootCategory: {
             de: "Neue Lernkartei"
-        },
-        noCategories: {
-            de: "Hier gibt es noch keine Ordner."
-        },
-        subCategories: {
-            de: "Ordner"
         },
         title: {
             de: "Alle Lernkarteien"
@@ -291,9 +209,6 @@ export const Texts = {
             title: {
                 de: "Neu"
             }
-        },
-        signIn: {
-            de: "Box anlegen"
         }
     },
     cardList: {
@@ -319,9 +234,6 @@ export const Texts = {
         },
         filter: {
             de: "Suchen und filtern"
-        },
-        index: {
-            de: "Index"
         },
         noCards: {
             de: "Hier gibt es noch keine Karten."

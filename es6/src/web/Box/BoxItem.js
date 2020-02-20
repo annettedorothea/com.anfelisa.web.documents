@@ -19,6 +19,7 @@ export default class BoxItem extends React.Component {
     }
 
     onEditClick(e) {
+        console.log("onEditClick");
         e.stopPropagation();
         route(`#categories/${this.props.categoryId}`);
     }
@@ -32,7 +33,11 @@ export default class BoxItem extends React.Component {
         return (
             <a
                 className="tile"
-                onClick={() => route(`#box/${this.props.boxId}`)}>
+                onClick={() =>
+                    this.props.allTodaysCards > 0 ?
+                        route(`#box/${this.props.boxId}`) :
+                        route(`#categories/${this.props.categoryId}`)
+                }>
 
                 <h2>
                     {this.props.categoryName}

@@ -12,7 +12,6 @@ import {
     inviteUserClick,
     newCategoryClick
 } from "../../../gen/category/ActionFunctions";
-import {createBox} from "../../../gen/box/ActionFunctions";
 import {route} from "../../../gen/common/ActionFunctions";
 import {previewCsv} from "../../../gen/category/ActionFunctions";
 import CsvFileInput from "./CsvFileInput";
@@ -126,12 +125,6 @@ export default class CategoryTree extends React.Component {
                     onClick={() => deleteCategoryClick()}
                     title={this.props.texts.categoryTree.delete[this.props.language]}>
                     <i className="fas fa-times"/>
-                </button>
-                <button
-                    disabled={!this.props.selectedCategory || this.props.selectedCategory.parentCategoryId !== undefined || this.props.selectedCategory.hasBox === undefined || this.props.selectedCategory.hasBox === true}
-                    onClick={() => createBox()}
-                    title={this.props.texts.categoryTree.signIn[this.props.language]}>
-                    <i className="fas fa-sign-in-alt"/>
                 </button>
                 <button
                     disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable || this.props.selectedCategory.parentCategoryId !== undefined}

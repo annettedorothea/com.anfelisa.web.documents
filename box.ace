@@ -17,11 +17,6 @@ ACE
 			set common.state.State.view
 		)
 	
-	CreateBox 
-		call com.anfelisa.box.CreateBox
-		loadingFlag common.state.State.displaySpinner 
-		on ok triggers (category.LoadCategoryTree)
-	
 	DeleteBoxClick <boxId>
 		on ok (set common.state.State.data.Dashboard.deleteBox)
 	
