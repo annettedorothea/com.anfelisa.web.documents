@@ -57,6 +57,31 @@ ACE
 	 	call com.anfelisa.box.ScoreReinforceCard
 		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (LoadNextCard)
+
+	LoadSettings <boxId>
+	 	call com.anfelisa.box.GetBoxSettings
+		loadingFlag common.state.State.displaySpinner 
+		on ok (
+			set common.state.State.view
+			set common.state.State.data
+		)
+		
+	SaveBoxSettings
+	 	call com.anfelisa.box.UpdateBox
+		loadingFlag common.state.State.displaySpinner 
+		on ok triggers (common.Route)
+	
+
+	MaxCardsPerDayChanged <maxCardsPerDay>
+		on ok (
+			set common.state.State.data.BoxSettings.maxCardsPerDay
+			set common.state.State.data.BoxSettings.maxCardsPerDayInvalid
+		)
+		
+	MaxIntervalChanged <maxInterval>
+		on ok (set common.state.State.data.BoxSettings.maxInterval)
+		
+	
 		
 		
 

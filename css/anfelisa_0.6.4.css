@@ -196,6 +196,25 @@ h2 {
     }
 }
 
+.center-wide {
+    width: 600px;
+    min-height: calc(100vh - 250px);
+
+    margin: 120px auto 0 auto;
+
+    background-color: #fff;
+    padding: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .center-wide {
+        height: auto;
+        width: auto;
+
+        margin: auto;
+    }
+}
+
 .footer {
     color: #777;
     margin: auto;
@@ -386,10 +405,6 @@ table td i {
 }
 
 /* form */
-
-.form {
-    max-width: 400px;
-}
 
 .form .line {
     margin-bottom: 8px;

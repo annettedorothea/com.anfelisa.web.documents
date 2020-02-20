@@ -5,7 +5,9 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
     execute() {
         const loggedInUser = get_state_State_loggedInUser();
         const hash = get_state_State_hash();
+        console.log("hash " +  hash);
         if (loggedInUser && loggedInUser.password && loggedInUser.username) {
+            console.log("logged in as " + loggedInUser.username);
             if (hash === "#dashboard") {
                 this.commandData.outcome = this.dashboard;
             } else if (hash === "#profile") {
@@ -16,10 +18,10 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 const hashes = hash.split("/");
                 this.commandData.selectedCategoryId = hashes[1] ? hashes[1] : "";
                 this.commandData.outcome = this.categories;
-            } else if (hash.startsWith("#box/reinforce")) {
+            } else if (hash.startsWith("#box/settings")) {
                 const hashes = hash.split("/");
                 this.commandData.boxId = hashes[2] ? hashes[2] : "";
-                this.commandData.outcome = this.reinforceCard;
+                this.commandData.outcome = this.boxSettings;
             } else if (hash.startsWith("#box")) {
                 const hashes = hash.split("/");
                 this.commandData.boxId = hashes[1] ? hashes[1] : "";

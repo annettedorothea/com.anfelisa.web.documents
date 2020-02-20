@@ -39,6 +39,7 @@ RouteChanged
 	on userList triggers (admin.GetAllUsers) 
 	on nextCard triggers (box.LoadNextCard)
 	on invalid triggers (Route)
+	on boxSettings triggers (box.LoadSettings)
 	
 Route <hash> 
 	on ok ( set state.State.hash )
@@ -108,6 +109,11 @@ appState state : State {
             confirmDelete
             boxId
         }
+	} |	: BoxSettings {
+    	boxId
+    	maxInterval
+    	maxCardsPerDay
+    	maxCardsPerDayInvalid
 	} |	: Profile {
 		username
 		email

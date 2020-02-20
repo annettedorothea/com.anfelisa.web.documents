@@ -6,6 +6,7 @@ import UserList from "./UserList";
 import QueryCards from "./Box/QueryCards";
 import CategoryCardSplitView from "./CategoryCardSplitView";
 import {route} from "../../gen/common/ActionFunctions";
+import BoxSettings from "./Box/BoxSettings";
 
 export default class UserContainer extends React.Component {
 
@@ -35,6 +36,13 @@ export default class UserContainer extends React.Component {
                 break;
             case "card":
                 content = <QueryCards
+                    {...this.props.data}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+                break;
+            case "box-settings":
+                content = <BoxSettings
                     {...this.props.data}
                     texts={this.props.texts}
                     language={this.props.language}

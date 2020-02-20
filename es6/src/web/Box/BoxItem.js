@@ -10,6 +10,7 @@ export default class BoxItem extends React.Component {
         super(props);
         this.onDeleteClick = this.onDeleteClick.bind(this);
         this.onEditClick = this.onEditClick.bind(this);
+        this.onSettingsClick = this.onSettingsClick.bind(this);
     }
 
     onDeleteClick(e) {
@@ -22,8 +23,12 @@ export default class BoxItem extends React.Component {
         route(`#categories/${this.props.categoryId}`);
     }
 
+    onSettingsClick(e) {
+        e.stopPropagation();
+        route(`#box/settings/${this.props.boxId}`);
+    }
+
     render() {
-        console.log(this.props);
         return (
             <a
                 className="tile"
@@ -41,7 +46,7 @@ export default class BoxItem extends React.Component {
                     <i className="fas fa-edit" onClick={(e) => this.onEditClick(e)}/>
                 </div>
                 <div className="buttons button2">
-                    <i className="fas fa-cog" onClick={(e) => this.onEditClick(e)}/>
+                    <i className="fas fa-cog" onClick={(e) => this.onSettingsClick(e)}/>
                 </div>
                 <div className="buttons button3">
                     <i className="fas fa-times fa-lg danger" onClick={(e) => this.onDeleteClick(e)}/>

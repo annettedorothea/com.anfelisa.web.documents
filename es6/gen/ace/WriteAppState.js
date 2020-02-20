@@ -262,6 +262,18 @@ export function merge_state_State_data(eventData) {
 	if (eventData.deleteBox !== undefined) {
 		state.data.deleteBox = eventData.deleteBox;
 	}
+	if (eventData.boxId !== undefined) {
+		state.data.boxId = eventData.boxId;
+	}
+	if (eventData.maxInterval !== undefined) {
+		state.data.maxInterval = eventData.maxInterval;
+	}
+	if (eventData.maxCardsPerDay !== undefined) {
+		state.data.maxCardsPerDay = eventData.maxCardsPerDay;
+	}
+	if (eventData.maxCardsPerDayInvalid !== undefined) {
+		state.data.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
+	}
 	if (eventData.username !== undefined) {
 		state.data.username = eventData.username;
 	}
@@ -535,6 +547,50 @@ export function init_state_State_data_Dashboard_deleteBox_DeleteBox_boxId() {
 	state.data.deleteBox.boxId = null;
 }
 
+export function set_state_State_data_BoxSettings_boxId(eventData) {
+	state.data.boxId = eventData.boxId;
+}
+
+export function reset_state_State_data_BoxSettings_boxId() {
+	state.data.boxId = null;
+}
+
+export function init_state_State_data_BoxSettings_boxId() {
+	state.data.boxId = null;
+}
+export function set_state_State_data_BoxSettings_maxInterval(eventData) {
+	state.data.maxInterval = eventData.maxInterval;
+}
+
+export function reset_state_State_data_BoxSettings_maxInterval() {
+	state.data.maxInterval = null;
+}
+
+export function init_state_State_data_BoxSettings_maxInterval() {
+	state.data.maxInterval = null;
+}
+export function set_state_State_data_BoxSettings_maxCardsPerDay(eventData) {
+	state.data.maxCardsPerDay = eventData.maxCardsPerDay;
+}
+
+export function reset_state_State_data_BoxSettings_maxCardsPerDay() {
+	state.data.maxCardsPerDay = null;
+}
+
+export function init_state_State_data_BoxSettings_maxCardsPerDay() {
+	state.data.maxCardsPerDay = null;
+}
+export function set_state_State_data_BoxSettings_maxCardsPerDayInvalid(eventData) {
+	state.data.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
+}
+
+export function reset_state_State_data_BoxSettings_maxCardsPerDayInvalid() {
+	state.data.maxCardsPerDayInvalid = null;
+}
+
+export function init_state_State_data_BoxSettings_maxCardsPerDayInvalid() {
+	state.data.maxCardsPerDayInvalid = null;
+}
 export function set_state_State_data_Profile_username(eventData) {
 	state.data.username = eventData.username;
 }

@@ -76,6 +76,23 @@ export const Texts = {
             de: "Karten insgesamt"
         }
     },
+    boxSettings : {
+        cancel: {
+            de: "Abbrechen"
+        },
+        maxCardsPerDay: {
+            de: "Maximale Anzahl von Karten, die pro Tag abgefragt werden"
+        },
+        maxInterval: {
+            de: "Maximaler Abstand in Tagen, wann eine Karte erneut abgefragt werden sollte"
+        },
+        save: {
+            de: "Speichern"
+        },
+        title: {
+            de: "Einstellungen"
+        }
+    },
     categoryList: {
         back: {
             de: "Zurück"

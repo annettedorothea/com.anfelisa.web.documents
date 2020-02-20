@@ -33,6 +33,11 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.set_state_State_data);
 		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.merge_state_State_data);
 		ACEController.registerListener('box.DisplayWantedOkEvent', AppState.merge_state_State_data);
+		ACEController.registerListener('box.LoadSettingsOkEvent', AppState.set_state_State_view);
+		ACEController.registerListener('box.LoadSettingsOkEvent', AppState.set_state_State_data);
+		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_state_State_data_BoxSettings_maxCardsPerDay);
+		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_state_State_data_BoxSettings_maxCardsPerDayInvalid);
+		ACEController.registerListener('box.MaxIntervalChangedOkEvent', AppState.set_state_State_data_BoxSettings_maxInterval);
 	}
 
 }

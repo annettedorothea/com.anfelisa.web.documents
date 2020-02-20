@@ -27,6 +27,10 @@ import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
 import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
+import LoadSettingsAction from "../../src/box/actions/LoadSettingsAction";
+import SaveBoxSettingsAction from "../../src/box/actions/SaveBoxSettingsAction";
+import MaxCardsPerDayChangedAction from "../../src/box/actions/MaxCardsPerDayChangedAction";
+import MaxIntervalChangedAction from "../../src/box/actions/MaxIntervalChangedAction";
 
 export function initBoxesForDay() {
     new InitBoxesForDayAction().apply();
@@ -66,6 +70,22 @@ export function scoreCard(scoredCardQuality) {
 
 export function scoreReinforceCard(scoredCardQuality) {
     new ScoreReinforceCardAction(scoredCardQuality).apply();
+}
+
+export function loadSettings(boxId) {
+    new LoadSettingsAction(boxId).apply();
+}
+
+export function saveBoxSettings() {
+    new SaveBoxSettingsAction().apply();
+}
+
+export function maxCardsPerDayChanged(maxCardsPerDay) {
+    new MaxCardsPerDayChangedAction(maxCardsPerDay).apply();
+}
+
+export function maxIntervalChanged(maxInterval) {
+    new MaxIntervalChangedAction(maxInterval).apply();
 }
 
 

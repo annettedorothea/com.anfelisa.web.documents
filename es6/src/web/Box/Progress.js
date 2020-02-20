@@ -7,7 +7,6 @@ export default class Progress extends React.Component {
     }
 
     render() {
-        console.log("PROGRESS");
         const open = Math.round(this.props.openTodaysCards / this.props.allTodaysCards * 100);
         const done = 100 - open;
         return <div className="progress">
