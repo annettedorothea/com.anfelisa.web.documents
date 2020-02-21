@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-    cancelNewCategory,
-    categoryNameChanged,
-    createCategory,
-    dictionaryLookupChanged,
-    givenLanguageChanged,
-    wantedLanguageChanged
-} from "../../../gen/category/ActionFunctions";
+import {cancelNewCategory, categoryNameChanged, createCategory} from "../../../gen/category/ActionFunctions";
 
 export default class NewCategory extends React.Component {
 
@@ -31,38 +24,6 @@ export default class NewCategory extends React.Component {
                             value={this.props.categoryName}
                             placeholder={this.props.selectedCategory === undefined ? this.props.texts.categoryTree.newCategory.newRootCategory[this.props.language] : this.props.texts.categoryTree.newCategory.newChildCategory[this.props.language]}
                         />
-                    </div>
-                    <div className="noBreak line">
-                        <input
-                            type={"checkbox"}
-                            onChange={() => dictionaryLookupChanged()}
-                            checked={this.props.dictionaryLookup}
-                            value={this.props.dictionaryLookup}
-                            id="dictionaryLookupEditCheckbox"
-                        />
-                        <select value={this.props.givenLanguage} onChange={(e) => givenLanguageChanged(e.target.value)}
-                                disabled={!this.props.dictionaryLookup}>
-                            <option
-                                value="">{this.props.texts.categoryTree.languages.emtpyFrom[this.props.language]}</option>
-                            <option
-                                value="de">{this.props.texts.categoryTree.languages.de[this.props.language]}</option>
-                            <option
-                                value="en">{this.props.texts.categoryTree.languages.en[this.props.language]}</option>
-                            <option
-                                value="fr">{this.props.texts.categoryTree.languages.fr[this.props.language]}</option>
-                        </select>
-                        <select value={this.props.wantedLanguage}
-                                onChange={(e) => wantedLanguageChanged(e.target.value)}
-                                disabled={!this.props.dictionaryLookup}>
-                            <option
-                                value="">{this.props.texts.categoryTree.languages.emtpyTo[this.props.language]}</option>
-                            <option
-                                value="de">{this.props.texts.categoryTree.languages.de[this.props.language]}</option>
-                            <option
-                                value="en">{this.props.texts.categoryTree.languages.en[this.props.language]}</option>
-                            <option
-                                value="fr">{this.props.texts.categoryTree.languages.fr[this.props.language]}</option>
-                        </select>
                     </div>
                     <button
                         disabled={disabled}

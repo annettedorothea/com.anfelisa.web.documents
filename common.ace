@@ -40,6 +40,7 @@ RouteChanged
 	on nextCard triggers (box.LoadNextCard)
 	on invalid triggers (Route)
 	on boxSettings triggers (box.LoadSettings)
+	on boxCreate triggers (box.CreateNewBox)
 	
 Route <hash> 
 	on ok ( set state.State.hash )
@@ -114,6 +115,11 @@ appState state : State {
     	maxInterval
     	maxCardsPerDay
     	maxCardsPerDayInvalid
+		dictionaryLookup
+		wantedLanguage
+		givenLanguage
+		categoryName
+		categoryId
 	} |	: Profile {
 		username
 		email
@@ -149,9 +155,6 @@ appState state : State {
 			
 			displayDeleteCategory
 			
-			dictionaryLookup
-			wantedLanguage
-			givenLanguage
 			categoryName
 			displayEditCategory
 			displayNewCategory

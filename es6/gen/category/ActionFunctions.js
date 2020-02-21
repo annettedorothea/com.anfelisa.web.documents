@@ -25,9 +25,6 @@ import DeselectTreeItemAction from "../../src/category/actions/DeselectTreeItemA
 import NewCategoryClickAction from "../../src/category/actions/NewCategoryClickAction";
 import CancelNewCategoryAction from "../../src/category/actions/CancelNewCategoryAction";
 import CategoryNameChangedAction from "../../src/category/actions/CategoryNameChangedAction";
-import DictionaryLookupChangedAction from "../../src/category/actions/DictionaryLookupChangedAction";
-import GivenLanguageChangedAction from "../../src/category/actions/GivenLanguageChangedAction";
-import WantedLanguageChangedAction from "../../src/category/actions/WantedLanguageChangedAction";
 import CreateCategoryAction from "../../src/category/actions/CreateCategoryAction";
 import DeleteCategoryClickAction from "../../src/category/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../../src/category/actions/CancelDeleteCategoryAction";
@@ -75,18 +72,6 @@ export function cancelNewCategory() {
 
 export function categoryNameChanged(categoryName) {
     new CategoryNameChangedAction(categoryName).apply();
-}
-
-export function dictionaryLookupChanged() {
-    new DictionaryLookupChangedAction().apply();
-}
-
-export function givenLanguageChanged(givenLanguage) {
-    new GivenLanguageChangedAction(givenLanguage).apply();
-}
-
-export function wantedLanguageChanged(wantedLanguage) {
-    new WantedLanguageChangedAction(wantedLanguage).apply();
 }
 
 export function createCategory() {

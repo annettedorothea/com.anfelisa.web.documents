@@ -2,6 +2,9 @@ import React from 'react';
 import BoxItem from "./Box/BoxItem";
 import Confirm from "./Confirm";
 import {cancelDeleteBox, deleteBox} from "../../gen/box/ActionFunctions"
+import {route} from "../../gen/common/ActionFunctions"
+import Progress from "./Box/Progress";
+import Statistics from "./Box/Statistics";
 
 export default class StudentDashboard extends React.Component {
 
@@ -36,6 +39,13 @@ export default class StudentDashboard extends React.Component {
                         }}/>
                 </div>}
                 {boxes}
+                <a
+                    className="tile"
+                    onClick={() => route("#box/create")}>
+                    <div className="text-center">
+                        <i className="fas fa-plus-circle fa-2x"/>
+                    </div>
+                </a>
             </div>
         );
     }

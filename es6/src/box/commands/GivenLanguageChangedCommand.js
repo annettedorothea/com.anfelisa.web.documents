@@ -15,26 +15,12 @@
  */
 
 
+import AbstractGivenLanguageChangedCommand from "../../../gen/box/commands/AbstractGivenLanguageChangedCommand";
+//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
-
-import Command from "../../../gen/ace/SynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import DictionaryLookupChangedOkEvent from "../../../gen/category/events/DictionaryLookupChangedOkEvent";
-
-export default class AbstractDictionaryLookupChangedCommand extends Command {
-    constructor(commandData) {
-        super(commandData, "category.DictionaryLookupChangedCommand");
-        this.ok = "ok";
-    }
-
-    publishEvents() {
-		switch (this.commandData.outcome) {
-		case this.ok:
-			new DictionaryLookupChangedOkEvent(this.commandData).publish();
-			break;
-		default:
-			throw 'DictionaryLookupChangedCommand unhandled outcome: ' + this.commandData.outcome;
-		}
+export default class GivenLanguageChangedCommand extends AbstractGivenLanguageChangedCommand {
+    execute() {
+    	this.commandData.outcome = this.ok;
     }
 }
 

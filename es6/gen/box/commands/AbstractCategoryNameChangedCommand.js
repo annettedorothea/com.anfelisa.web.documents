@@ -19,21 +19,21 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import WantedLanguageChangedOkEvent from "../../../gen/category/events/WantedLanguageChangedOkEvent";
+import CategoryNameChangedOkEvent from "../../../gen/box/events/CategoryNameChangedOkEvent";
 
-export default class AbstractWantedLanguageChangedCommand extends Command {
+export default class AbstractCategoryNameChangedCommand extends Command {
     constructor(commandData) {
-        super(commandData, "category.WantedLanguageChangedCommand");
+        super(commandData, "box.CategoryNameChangedCommand");
         this.ok = "ok";
     }
 
     publishEvents() {
 		switch (this.commandData.outcome) {
 		case this.ok:
-			new WantedLanguageChangedOkEvent(this.commandData).publish();
+			new CategoryNameChangedOkEvent(this.commandData).publish();
 			break;
 		default:
-			throw 'WantedLanguageChangedCommand unhandled outcome: ' + this.commandData.outcome;
+			throw 'CategoryNameChangedCommand unhandled outcome: ' + this.commandData.outcome;
 		}
     }
 }

@@ -15,33 +15,22 @@
  */
 
 
-import AbstractLoadSettingsCommand from "../../../gen/box/commands/AbstractLoadSettingsCommand";
+import AbstractCreateNewBoxCommand from "../../../gen/box/commands/AbstractCreateNewBoxCommand";
 //please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
-export default class LoadSettingsCommand extends AbstractLoadSettingsCommand {
-
-    initCommandData() {
-    	//add from appState to commandData
-    	return true;
-    }
-
-    handleResponse(resolve) {
-        this.commandData.view = "box-settings";
+export default class CreateNewBoxCommand extends AbstractCreateNewBoxCommand {
+    execute() {
+        this.commandData.view = "create-box";
         this.commandData.data = {
-            maxCardsPerDay: this.commandData.maxCardsPerDay ? this.commandData.maxCardsPerDay : "",
-            maxInterval: this.commandData.maxInterval ? this.commandData.maxInterval : "",
-            boxId: this.commandData.boxId,
-            categoryId: this.commandData.categoryId,
-            categoryName: this.commandData.categoryName,
-            dictionaryLookup: this.commandData.dictionaryLookup,
-            givenLanguage: this.commandData.givenLanguage,
-            wantedLanguage: this.commandData.wantedLanguage
+            maxCardsPerDay: 8,
+            maxInterval: "",
+            boxId: "",
+            categoryName: "",
+            dictionaryLookup: false,
+            wantedLanguage: "",
+            givenLanguage: ""
         };
     	this.commandData.outcome = this.ok;
-    	resolve();
-    }
-    handleError(resolve, reject) {
-    	reject(this.commandData.error);
     }
 }
 

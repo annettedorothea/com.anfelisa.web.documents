@@ -17,12 +17,20 @@
 
 
 
-import Event from "../../../gen/ace/Event";
+import Action from "../../ace/SynchronousAction";
+import CreateNewBoxCommand from "../../../src/box/commands/CreateNewBoxCommand";
 
-export default class GivenLanguageChangedOkEvent extends Event {
-    constructor(eventData) {
-        super(eventData, 'category.GivenLanguageChangedOkEvent');
-    }
+export default class AbstractCreateNewBoxAction extends Action {
+
+    constructor() {
+        super({}, 'box.CreateNewBoxAction');
+		}
+		
+	getCommand() {
+		return new CreateNewBoxCommand(this.actionData);
+	}
+
+
 }
 
 

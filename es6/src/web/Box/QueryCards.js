@@ -11,7 +11,6 @@ export default class QueryCards extends React.Component {
 
     render() {
         const open = Math.round(this.props.openTodaysCards / this.props.allTodaysCards * 100);
-        const done = 100 - open;
         return <div className="box">
 
             <h1>

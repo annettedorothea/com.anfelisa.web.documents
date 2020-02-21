@@ -31,6 +31,7 @@ import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 import LoadSettingsAction from "../../../src/box/actions/LoadSettingsAction";
+import CreateNewBoxAction from "../../../src/box/actions/CreateNewBoxAction";
 
 export default class AbstractRouteChangedCommand extends Command {
     constructor(commandData) {
@@ -47,6 +48,7 @@ export default class AbstractRouteChangedCommand extends Command {
         this.nextCard = "nextCard";
         this.invalid = "invalid";
         this.boxSettings = "boxSettings";
+        this.boxCreate = "boxCreate";
     }
 
     publishEvents() {
@@ -86,6 +88,9 @@ export default class AbstractRouteChangedCommand extends Command {
 			break;
 		case this.boxSettings:
 			new TriggerAction(new LoadSettingsAction(this.commandData.boxId)).publish();
+			break;
+		case this.boxCreate:
+			new TriggerAction(new CreateNewBoxAction()).publish();
 			break;
 		default:
 			throw 'RouteChangedCommand unhandled outcome: ' + this.commandData.outcome;

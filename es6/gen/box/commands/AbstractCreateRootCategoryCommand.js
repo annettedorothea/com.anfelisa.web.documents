@@ -19,11 +19,11 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import LoadSettingsOkEvent from "../../../gen/box/events/LoadSettingsOkEvent";
+import RouteAction from "../../../src/common/actions/RouteAction";
 
-export default class AbstractLoadSettingsCommand extends Command {
+export default class AbstractCreateRootCategoryCommand extends Command {
     constructor(commandData) {
-        super(commandData, "box.LoadSettingsCommand");
+        super(commandData, "box.CreateRootCategoryCommand");
         this.ok = "ok";
     }
 
@@ -32,10 +32,10 @@ export default class AbstractLoadSettingsCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new LoadSettingsOkEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('LoadSettingsCommand unhandled outcome: ' + this.commandData.outcome)});
+			return new Promise((resolve, reject) => {reject('CreateRootCategoryCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }
@@ -43,15 +43,16 @@ export default class AbstractLoadSettingsCommand extends Command {
 	execute() {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
-	        
-			this.httpGet(this.adjustedUrl(`/api/box/settings/${this.commandData.boxId}/`), true, queryParams).then((data) => {
-				this.commandData.maxCardsPerDay = data.maxCardsPerDay;
-				this.commandData.maxInterval = data.maxInterval;
-				this.commandData.categoryName = data.categoryName;
-				this.commandData.dictionaryLookup = data.dictionaryLookup;
-				this.commandData.givenLanguage = data.givenLanguage;
-				this.commandData.wantedLanguage = data.wantedLanguage;
-				this.commandData.categoryId = data.categoryId;
+	        let payload = {	
+	        	categoryName : this.commandData.categoryName,
+	        	dictionaryLookup : this.commandData.dictionaryLookup,
+	        	givenLanguage : this.commandData.givenLanguage,
+	        	wantedLanguage : this.commandData.wantedLanguage,
+	        	maxCardsPerDay : this.commandData.maxCardsPerDay,
+	        	maxInterval : this.commandData.maxInterval,
+	        	};
+
+			this.httpPost(this.adjustedUrl(`/api/box/create`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

@@ -17,24 +17,11 @@
 
 
 
-import Command from "../../../gen/ace/SynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import GivenLanguageChangedOkEvent from "../../../gen/category/events/GivenLanguageChangedOkEvent";
+import Event from "../../../gen/ace/Event";
 
-export default class AbstractGivenLanguageChangedCommand extends Command {
-    constructor(commandData) {
-        super(commandData, "category.GivenLanguageChangedCommand");
-        this.ok = "ok";
-    }
-
-    publishEvents() {
-		switch (this.commandData.outcome) {
-		case this.ok:
-			new GivenLanguageChangedOkEvent(this.commandData).publish();
-			break;
-		default:
-			throw 'GivenLanguageChangedCommand unhandled outcome: ' + this.commandData.outcome;
-		}
+export default class RootCategoryNameChangedOkEvent extends Event {
+    constructor(eventData) {
+        super(eventData, 'box.RootCategoryNameChangedOkEvent');
     }
 }
 

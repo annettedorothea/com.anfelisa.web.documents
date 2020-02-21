@@ -75,8 +75,33 @@ ACE
 		
 	MaxIntervalChanged <maxInterval>
 		on ok (set common.state.State.data.BoxSettings.maxInterval)
+
+	CreateNewBox
+		on ok (
+			set common.state.State.view
+			set common.state.State.data
+		)
 		
+	CreateRootCategory
+		call com.anfelisa.box.CreateBox
+		loadingFlag common.state.State.displaySpinner 
+		on ok triggers (common.Route)
 	
+	CategoryNameChanged<categoryName>
+		on ok (set common.state.State.data.BoxSettings.categoryName)
+		
+	DictionaryLookupChanged
+		on ok (set common.state.State.data.BoxSettings.dictionaryLookup)
+		
+	GivenLanguageChanged<givenLanguage>
+		on ok (set common.state.State.data.BoxSettings.givenLanguage)
+		
+	WantedLanguageChanged<wantedLanguage>
+		on ok (set common.state.State.data.BoxSettings.wantedLanguage)
+		
+	RootCategoryNameChanged<categoryName>
+		on ok (set common.state.State.data.BoxSettings.categoryName)
+		
 		
 		
 

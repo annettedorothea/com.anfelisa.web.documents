@@ -26,9 +26,6 @@ import DeselectTreeItemAction from "../../src/category/actions/DeselectTreeItemA
 import NewCategoryClickAction from "../../src/category/actions/NewCategoryClickAction";
 import CancelNewCategoryAction from "../../src/category/actions/CancelNewCategoryAction";
 import CategoryNameChangedAction from "../../src/category/actions/CategoryNameChangedAction";
-import DictionaryLookupChangedAction from "../../src/category/actions/DictionaryLookupChangedAction";
-import GivenLanguageChangedAction from "../../src/category/actions/GivenLanguageChangedAction";
-import WantedLanguageChangedAction from "../../src/category/actions/WantedLanguageChangedAction";
 import CreateCategoryAction from "../../src/category/actions/CreateCategoryAction";
 import DeleteCategoryClickAction from "../../src/category/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../../src/category/actions/CancelDeleteCategoryAction";
@@ -65,12 +62,6 @@ export default class ActionFactoryRegistrationCategory {
 			(actionData) => new CancelNewCategoryAction());
 		ACEController.registerFactory('category.CategoryNameChangedAction', 
 			(actionData) => new CategoryNameChangedAction(actionData.categoryName));
-		ACEController.registerFactory('category.DictionaryLookupChangedAction', 
-			(actionData) => new DictionaryLookupChangedAction());
-		ACEController.registerFactory('category.GivenLanguageChangedAction', 
-			(actionData) => new GivenLanguageChangedAction(actionData.givenLanguage));
-		ACEController.registerFactory('category.WantedLanguageChangedAction', 
-			(actionData) => new WantedLanguageChangedAction(actionData.wantedLanguage));
 		ACEController.registerFactory('category.CreateCategoryAction', 
 			(actionData) => new CreateCategoryAction());
 		ACEController.registerFactory('category.DeleteCategoryClickAction', 

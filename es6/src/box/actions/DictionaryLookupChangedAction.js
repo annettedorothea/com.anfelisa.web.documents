@@ -17,19 +17,13 @@
 
 
 
-import Action from "../../ace/SynchronousAction";
-import WantedLanguageChangedCommand from "../../../src/category/commands/WantedLanguageChangedCommand";
+import AbstractDictionaryLookupChangedAction from "../../../gen/box/actions/AbstractDictionaryLookupChangedAction";
 
-export default class AbstractWantedLanguageChangedAction extends Action {
+export default class DictionaryLookupChangedAction extends AbstractDictionaryLookupChangedAction {
 
-    constructor( wantedLanguage) {
-        super({wantedLanguage}, 'category.WantedLanguageChangedAction');
-		}
-		
-	getCommand() {
-		return new WantedLanguageChangedCommand(this.actionData);
-	}
-
+    initActionData() {
+    	//add not replayable data to action data in order to freeze for replay (e.g. time or date)
+    }
 
 }
 

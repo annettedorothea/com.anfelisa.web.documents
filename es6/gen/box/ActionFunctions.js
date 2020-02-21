@@ -30,6 +30,13 @@ import LoadSettingsAction from "../../src/box/actions/LoadSettingsAction";
 import SaveBoxSettingsAction from "../../src/box/actions/SaveBoxSettingsAction";
 import MaxCardsPerDayChangedAction from "../../src/box/actions/MaxCardsPerDayChangedAction";
 import MaxIntervalChangedAction from "../../src/box/actions/MaxIntervalChangedAction";
+import CreateNewBoxAction from "../../src/box/actions/CreateNewBoxAction";
+import CreateRootCategoryAction from "../../src/box/actions/CreateRootCategoryAction";
+import CategoryNameChangedAction from "../../src/box/actions/CategoryNameChangedAction";
+import DictionaryLookupChangedAction from "../../src/box/actions/DictionaryLookupChangedAction";
+import GivenLanguageChangedAction from "../../src/box/actions/GivenLanguageChangedAction";
+import WantedLanguageChangedAction from "../../src/box/actions/WantedLanguageChangedAction";
+import RootCategoryNameChangedAction from "../../src/box/actions/RootCategoryNameChangedAction";
 
 export function initBoxesForDay() {
     new InitBoxesForDayAction().apply();
@@ -81,6 +88,34 @@ export function maxCardsPerDayChanged(maxCardsPerDay) {
 
 export function maxIntervalChanged(maxInterval) {
     new MaxIntervalChangedAction(maxInterval).apply();
+}
+
+export function createNewBox() {
+    new CreateNewBoxAction().apply();
+}
+
+export function createRootCategory() {
+    new CreateRootCategoryAction().apply();
+}
+
+export function categoryNameChanged(categoryName) {
+    new CategoryNameChangedAction(categoryName).apply();
+}
+
+export function dictionaryLookupChanged() {
+    new DictionaryLookupChangedAction().apply();
+}
+
+export function givenLanguageChanged(givenLanguage) {
+    new GivenLanguageChangedAction(givenLanguage).apply();
+}
+
+export function wantedLanguageChanged(wantedLanguage) {
+    new WantedLanguageChangedAction(wantedLanguage).apply();
+}
+
+export function rootCategoryNameChanged(categoryName) {
+    new RootCategoryNameChangedAction(categoryName).apply();
 }
 
 

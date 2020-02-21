@@ -15,22 +15,13 @@
  */
 
 
+import AbstractWantedLanguageChangedCommand from "../../../gen/box/commands/AbstractWantedLanguageChangedCommand";
+//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
-
-import Action from "../../ace/SynchronousAction";
-import GivenLanguageChangedCommand from "../../../src/category/commands/GivenLanguageChangedCommand";
-
-export default class AbstractGivenLanguageChangedAction extends Action {
-
-    constructor( givenLanguage) {
-        super({givenLanguage}, 'category.GivenLanguageChangedAction');
-		}
-		
-	getCommand() {
-		return new GivenLanguageChangedCommand(this.actionData);
-	}
-
-
+export default class WantedLanguageChangedCommand extends AbstractWantedLanguageChangedCommand {
+    execute() {
+    	this.commandData.outcome = this.ok;
+    }
 }
 
 

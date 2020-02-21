@@ -19,9 +19,9 @@
 
 import Event from "../../../gen/ace/Event";
 
-export default class DictionaryLookupChangedOkEvent extends Event {
+export default class GivenLanguageChangedOkEvent extends Event {
     constructor(eventData) {
-        super(eventData, 'category.DictionaryLookupChangedOkEvent');
+        super(eventData, 'box.GivenLanguageChangedOkEvent');
     }
 }
 

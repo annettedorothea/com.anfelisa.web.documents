@@ -31,6 +31,13 @@ import LoadSettingsAction from "../../src/box/actions/LoadSettingsAction";
 import SaveBoxSettingsAction from "../../src/box/actions/SaveBoxSettingsAction";
 import MaxCardsPerDayChangedAction from "../../src/box/actions/MaxCardsPerDayChangedAction";
 import MaxIntervalChangedAction from "../../src/box/actions/MaxIntervalChangedAction";
+import CreateNewBoxAction from "../../src/box/actions/CreateNewBoxAction";
+import CreateRootCategoryAction from "../../src/box/actions/CreateRootCategoryAction";
+import CategoryNameChangedAction from "../../src/box/actions/CategoryNameChangedAction";
+import DictionaryLookupChangedAction from "../../src/box/actions/DictionaryLookupChangedAction";
+import GivenLanguageChangedAction from "../../src/box/actions/GivenLanguageChangedAction";
+import WantedLanguageChangedAction from "../../src/box/actions/WantedLanguageChangedAction";
+import RootCategoryNameChangedAction from "../../src/box/actions/RootCategoryNameChangedAction";
 
 export default class ActionFactoryRegistrationBox {
 
@@ -61,6 +68,20 @@ export default class ActionFactoryRegistrationBox {
 			(actionData) => new MaxCardsPerDayChangedAction(actionData.maxCardsPerDay));
 		ACEController.registerFactory('box.MaxIntervalChangedAction', 
 			(actionData) => new MaxIntervalChangedAction(actionData.maxInterval));
+		ACEController.registerFactory('box.CreateNewBoxAction', 
+			(actionData) => new CreateNewBoxAction());
+		ACEController.registerFactory('box.CreateRootCategoryAction', 
+			(actionData) => new CreateRootCategoryAction());
+		ACEController.registerFactory('box.CategoryNameChangedAction', 
+			(actionData) => new CategoryNameChangedAction(actionData.categoryName));
+		ACEController.registerFactory('box.DictionaryLookupChangedAction', 
+			(actionData) => new DictionaryLookupChangedAction());
+		ACEController.registerFactory('box.GivenLanguageChangedAction', 
+			(actionData) => new GivenLanguageChangedAction(actionData.givenLanguage));
+		ACEController.registerFactory('box.WantedLanguageChangedAction', 
+			(actionData) => new WantedLanguageChangedAction(actionData.wantedLanguage));
+		ACEController.registerFactory('box.RootCategoryNameChangedAction', 
+			(actionData) => new RootCategoryNameChangedAction(actionData.categoryName));
 	}
 
 }

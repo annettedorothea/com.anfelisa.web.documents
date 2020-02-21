@@ -43,15 +43,6 @@ CancelNewCategory
 CategoryNameChanged<categoryName>
 	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	
-DictionaryLookupChanged
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
-	
-GivenLanguageChanged<givenLanguage>
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
-	
-WantedLanguageChanged<wantedLanguage>
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
-	
 CreateCategory
 	call com.anfelisa.category.CreateCategory
 	loadingFlag common.state.State.displaySpinner 

@@ -24,6 +24,9 @@ export const Texts = {
         cancel: {
             de: "Abbrechen"
         },
+        categoryName: {
+            de: "Name"
+        },
         maxCardsPerDay: {
             de: "Maximale Anzahl von Karten, die pro Tag abgefragt werden"
         },
@@ -35,6 +38,23 @@ export const Texts = {
         },
         title: {
             de: "Einstellungen"
+        },
+        languages: {
+            de: {
+                de: "Deutsch"
+            },
+            emtpyFrom: {
+                de: "von"
+            },
+            emtpyTo: {
+                de: "nach"
+            },
+            en: {
+                de: "Englisch"
+            },
+            fr: {
+                de: "Französisch"
+            },
         }
     },
     categoryList: {
@@ -164,23 +184,6 @@ export const Texts = {
             title: {
                 de: "Bearbeiten"
             }
-        },
-        languages: {
-            de: {
-                de: "Deutsch"
-            },
-            emtpyFrom: {
-                de: "von"
-            },
-            emtpyTo: {
-                de: "nach"
-            },
-            en: {
-                de: "Englisch"
-            },
-            fr: {
-                de: "Französisch"
-            },
         },
         newCategory: {
             cancel: {

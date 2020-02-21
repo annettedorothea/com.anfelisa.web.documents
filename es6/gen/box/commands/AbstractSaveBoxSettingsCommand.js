@@ -47,6 +47,11 @@ export default class AbstractSaveBoxSettingsCommand extends Command {
 	        	maxInterval : this.commandData.maxInterval,
 	        	maxCardsPerDay : this.commandData.maxCardsPerDay,
 	        	boxId : this.commandData.boxId,
+	        	categoryId : this.commandData.categoryId,
+	        	categoryName : this.commandData.categoryName,
+	        	dictionaryLookup : this.commandData.dictionaryLookup,
+	        	givenLanguage : this.commandData.givenLanguage,
+	        	wantedLanguage : this.commandData.wantedLanguage,
 	        	};
 
 			this.httpPut(this.adjustedUrl(`/api/box/update`), true, queryParams, payload).then((data) => {

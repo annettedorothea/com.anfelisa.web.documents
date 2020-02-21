@@ -17,20 +17,12 @@
 
 
 
-import Action from "../../ace/SynchronousAction";
-import DictionaryLookupChangedCommand from "../../../src/category/commands/DictionaryLookupChangedCommand";
+import Event from "../../../gen/ace/Event";
 
-export default class AbstractDictionaryLookupChangedAction extends Action {
-
-    constructor() {
-        super({}, 'category.DictionaryLookupChangedAction');
-		}
-		
-	getCommand() {
-		return new DictionaryLookupChangedCommand(this.actionData);
-	}
-
-
+export default class CreateNewBoxOkEvent extends Event {
+    constructor(eventData) {
+        super(eventData, 'box.CreateNewBoxOkEvent');
+    }
 }
 
 

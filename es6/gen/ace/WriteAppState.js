@@ -274,6 +274,21 @@ export function merge_state_State_data(eventData) {
 	if (eventData.maxCardsPerDayInvalid !== undefined) {
 		state.data.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
 	}
+	if (eventData.dictionaryLookup !== undefined) {
+		state.data.dictionaryLookup = eventData.dictionaryLookup;
+	}
+	if (eventData.wantedLanguage !== undefined) {
+		state.data.wantedLanguage = eventData.wantedLanguage;
+	}
+	if (eventData.givenLanguage !== undefined) {
+		state.data.givenLanguage = eventData.givenLanguage;
+	}
+	if (eventData.categoryName !== undefined) {
+		state.data.categoryName = eventData.categoryName;
+	}
+	if (eventData.categoryId !== undefined) {
+		state.data.categoryId = eventData.categoryId;
+	}
 	if (eventData.username !== undefined) {
 		state.data.username = eventData.username;
 	}
@@ -591,6 +606,61 @@ export function reset_state_State_data_BoxSettings_maxCardsPerDayInvalid() {
 export function init_state_State_data_BoxSettings_maxCardsPerDayInvalid() {
 	state.data.maxCardsPerDayInvalid = null;
 }
+export function set_state_State_data_BoxSettings_dictionaryLookup(eventData) {
+	state.data.dictionaryLookup = eventData.dictionaryLookup;
+}
+
+export function reset_state_State_data_BoxSettings_dictionaryLookup() {
+	state.data.dictionaryLookup = null;
+}
+
+export function init_state_State_data_BoxSettings_dictionaryLookup() {
+	state.data.dictionaryLookup = null;
+}
+export function set_state_State_data_BoxSettings_wantedLanguage(eventData) {
+	state.data.wantedLanguage = eventData.wantedLanguage;
+}
+
+export function reset_state_State_data_BoxSettings_wantedLanguage() {
+	state.data.wantedLanguage = null;
+}
+
+export function init_state_State_data_BoxSettings_wantedLanguage() {
+	state.data.wantedLanguage = null;
+}
+export function set_state_State_data_BoxSettings_givenLanguage(eventData) {
+	state.data.givenLanguage = eventData.givenLanguage;
+}
+
+export function reset_state_State_data_BoxSettings_givenLanguage() {
+	state.data.givenLanguage = null;
+}
+
+export function init_state_State_data_BoxSettings_givenLanguage() {
+	state.data.givenLanguage = null;
+}
+export function set_state_State_data_BoxSettings_categoryName(eventData) {
+	state.data.categoryName = eventData.categoryName;
+}
+
+export function reset_state_State_data_BoxSettings_categoryName() {
+	state.data.categoryName = null;
+}
+
+export function init_state_State_data_BoxSettings_categoryName() {
+	state.data.categoryName = null;
+}
+export function set_state_State_data_BoxSettings_categoryId(eventData) {
+	state.data.categoryId = eventData.categoryId;
+}
+
+export function reset_state_State_data_BoxSettings_categoryId() {
+	state.data.categoryId = null;
+}
+
+export function init_state_State_data_BoxSettings_categoryId() {
+	state.data.categoryId = null;
+}
 export function set_state_State_data_Profile_username(eventData) {
 	state.data.username = eventData.username;
 }
@@ -880,15 +950,6 @@ export function merge_state_State_data_AuthorView_categoryTree(eventData) {
 	if (eventData.displayDeleteCategory !== undefined) {
 		state.data.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
 	}
-	if (eventData.dictionaryLookup !== undefined) {
-		state.data.categoryTree.dictionaryLookup = eventData.dictionaryLookup;
-	}
-	if (eventData.wantedLanguage !== undefined) {
-		state.data.categoryTree.wantedLanguage = eventData.wantedLanguage;
-	}
-	if (eventData.givenLanguage !== undefined) {
-		state.data.categoryTree.givenLanguage = eventData.givenLanguage;
-	}
 	if (eventData.categoryName !== undefined) {
 		state.data.categoryTree.categoryName = eventData.categoryName;
 	}
@@ -952,39 +1013,6 @@ export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_disp
 
 export function init_state_State_data_AuthorView_categoryTree_CategoryTree_displayDeleteCategory() {
 	state.data.categoryTree.displayDeleteCategory = null;
-}
-export function set_state_State_data_AuthorView_categoryTree_CategoryTree_dictionaryLookup(eventData) {
-	state.data.categoryTree.dictionaryLookup = eventData.dictionaryLookup;
-}
-
-export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_dictionaryLookup() {
-	state.data.categoryTree.dictionaryLookup = null;
-}
-
-export function init_state_State_data_AuthorView_categoryTree_CategoryTree_dictionaryLookup() {
-	state.data.categoryTree.dictionaryLookup = null;
-}
-export function set_state_State_data_AuthorView_categoryTree_CategoryTree_wantedLanguage(eventData) {
-	state.data.categoryTree.wantedLanguage = eventData.wantedLanguage;
-}
-
-export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_wantedLanguage() {
-	state.data.categoryTree.wantedLanguage = null;
-}
-
-export function init_state_State_data_AuthorView_categoryTree_CategoryTree_wantedLanguage() {
-	state.data.categoryTree.wantedLanguage = null;
-}
-export function set_state_State_data_AuthorView_categoryTree_CategoryTree_givenLanguage(eventData) {
-	state.data.categoryTree.givenLanguage = eventData.givenLanguage;
-}
-
-export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_givenLanguage() {
-	state.data.categoryTree.givenLanguage = null;
-}
-
-export function init_state_State_data_AuthorView_categoryTree_CategoryTree_givenLanguage() {
-	state.data.categoryTree.givenLanguage = null;
 }
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_categoryName(eventData) {
 	state.data.categoryTree.categoryName = eventData.categoryName;

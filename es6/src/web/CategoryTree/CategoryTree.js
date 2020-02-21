@@ -92,15 +92,6 @@ export default class CategoryTree extends React.Component {
                         cancel: () => cancelDeleteCategory()
                     }}/>
                 }
-                {this.props.displayInviteUser === true &&
-                <InviteUser
-                    texts={this.props.texts}
-                    language={this.props.language}
-                    invitedUsername={this.props.invitedUsername}
-                    userList={this.props.userList}
-                />
-                }
-
                 <button className="backButton"
                         onClick={() => route("#dashboard")}
                         title={this.props.texts.categoryTree.back[this.props.language]}>

@@ -7,6 +7,7 @@ import QueryCards from "./Box/QueryCards";
 import CategoryCardSplitView from "./CategoryCardSplitView";
 import {route} from "../../gen/common/ActionFunctions";
 import BoxSettings from "./Box/BoxSettings";
+import {createRootCategory, saveBoxSettings} from "../../gen/box/ActionFunctions"
 
 export default class UserContainer extends React.Component {
 
@@ -44,6 +45,16 @@ export default class UserContainer extends React.Component {
             case "box-settings":
                 content = <BoxSettings
                     {...this.props.data}
+                    onSaveClick={saveBoxSettings}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+                break;
+            case "create-box":
+                console.log("create-box");
+                content = <BoxSettings
+                    {...this.props.data}
+                    onSaveClick={createRootCategory}
                     texts={this.props.texts}
                     language={this.props.language}
                 />;

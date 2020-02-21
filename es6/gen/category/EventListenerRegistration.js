@@ -36,9 +36,6 @@ export default class EventListenerRegistrationCategory {
 		ACEController.registerListener('category.NewCategoryClickOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.CancelNewCategoryOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.CategoryNameChangedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
-		ACEController.registerListener('category.DictionaryLookupChangedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
-		ACEController.registerListener('category.GivenLanguageChangedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
-		ACEController.registerListener('category.WantedLanguageChangedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.CreateCategoryOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.CreateCategoryErrorEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.DeleteCategoryClickOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);

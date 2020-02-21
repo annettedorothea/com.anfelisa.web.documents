@@ -7,7 +7,6 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
         const hash = get_state_State_hash();
         console.log("hash " +  hash);
         if (loggedInUser && loggedInUser.password && loggedInUser.username) {
-            console.log("logged in as " + loggedInUser.username);
             if (hash === "#dashboard") {
                 this.commandData.outcome = this.dashboard;
             } else if (hash === "#profile") {
@@ -22,6 +21,8 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 const hashes = hash.split("/");
                 this.commandData.boxId = hashes[2] ? hashes[2] : "";
                 this.commandData.outcome = this.boxSettings;
+            } else if (hash.startsWith("#box/create")) {
+                this.commandData.outcome = this.boxCreate;
             } else if (hash.startsWith("#box")) {
                 const hashes = hash.split("/");
                 this.commandData.boxId = hashes[1] ? hashes[1] : "";
