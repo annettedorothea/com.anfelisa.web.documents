@@ -19,7 +19,6 @@ export default class BoxItem extends React.Component {
     }
 
     onEditClick(e) {
-        console.log("onEditClick");
         e.stopPropagation();
         route(`#categories/${this.props.categoryId}`);
     }

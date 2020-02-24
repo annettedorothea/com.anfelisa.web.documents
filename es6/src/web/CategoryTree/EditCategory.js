@@ -32,38 +32,6 @@ export default class EditCategory extends React.Component {
                             placeholder={this.props.selectedCategory.parentCategoryId === undefined ? this.props.texts.categoryTree.editCategory.rootCategory[this.props.language] : this.props.texts.categoryTree.editCategory.childCategory[this.props.language]}
                         />
                     </div>
-                    <div className="noBreak line">
-                        <input
-                            type={"checkbox"}
-                            onChange={() => dictionaryLookupChanged()}
-                            checked={this.props.dictionaryLookup}
-                            value={this.props.dictionaryLookup}
-                            id="dictionaryLookupEditCheckbox"
-                        />
-                        <select value={this.props.givenLanguage} onChange={(e) => givenLanguageChanged(e.target.value)}
-                                disabled={!this.props.dictionaryLookup}>
-                            <option
-                                value="">{this.props.texts.categoryTree.languages.emtpyFrom[this.props.language]}</option>
-                            <option
-                                value="de">{this.props.texts.categoryTree.languages.de[this.props.language]}</option>
-                            <option
-                                value="en">{this.props.texts.categoryTree.languages.en[this.props.language]}</option>
-                            <option
-                                value="fr">{this.props.texts.categoryTree.languages.fr[this.props.language]}</option>
-                        </select>
-                        <select value={this.props.wantedLanguage}
-                                onChange={(e) => wantedLanguageChanged(e.target.value)}
-                                disabled={!this.props.dictionaryLookup}>
-                            <option
-                                value="">{this.props.texts.categoryTree.languages.emtpyTo[this.props.language]}</option>
-                            <option
-                                value="de">{this.props.texts.categoryTree.languages.de[this.props.language]}</option>
-                            <option
-                                value="en">{this.props.texts.categoryTree.languages.en[this.props.language]}</option>
-                            <option
-                                value="fr">{this.props.texts.categoryTree.languages.fr[this.props.language]}</option>
-                        </select>
-                    </div>
                     <button
                         disabled={disabled}
                         onClick={() => updateCategory()}

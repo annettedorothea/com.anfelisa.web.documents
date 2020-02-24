@@ -5,9 +5,9 @@ import {getState} from "../../../gen/ace/ReadAppState";
 export default class CollapseTreeItemCommand extends AbstractCollapseTreeItemCommand {
     execute() {
         const categoryTree = getState().data.categoryTree;
-        let category = findCategory(categoryTree.categoryList, this.commandData.categoryId);
+        let category = findCategory(categoryTree.rootCategory.childCategories, this.commandData.categoryId);
         category.expanded = false;
-        this.commandData.categoryList = categoryTree.categoryList;
+        this.commandData.rootCategory = categoryTree.rootCategory;
         if (categoryTree.selectedCategory && isCategoryChildOfParent(category, categoryTree.selectedCategory.categoryId)) {
             this.commandData.selectedCategory = undefined;
             this.commandData.outcome = this.deselectCategory;

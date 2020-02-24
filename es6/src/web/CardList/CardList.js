@@ -21,7 +21,7 @@ export default class CardList extends React.Component {
     }
 
     render() {
-        const cardItems = this.props.cardView.cardList.filter((card) => card.given.indexOf(this.props.cardView.filter) >= 0 || card.wanted.indexOf(this.props.cardView.filter) >= 0).map((card) => {
+        const cardItems = this.props.cardView.cardList.filter((card) => !this.props.next && (card.given.indexOf(this.props.cardView.filter) >= 0 || card.wanted.indexOf(this.props.cardView.filter) >= 0)).map((card) => {
             if (card.cardId === this.props.cardView.editedCard.cardId) {
                 return <EditCard
                     key={card.cardId}
@@ -119,7 +119,9 @@ export default class CardList extends React.Component {
                     <tr className="notPrinted">
                         <th colSpan={this.props.categoryTree.selectedCategory.hasBox === true ? 5 : 4}>
                             {this.props.categoryTree.selectedCategory.editable === true &&
-                            <button title={this.props.texts.cardList.toggleInputOrder[this.props.language]} onClick={() => toggleInputOrder(this.props.cardView.naturalInputOrder)}><i className="fas fa-arrows-alt-h"/></button>}
+                            <button title={this.props.texts.cardList.toggleInputOrder[this.props.language]}
+                                    onClick={() => toggleInputOrder(this.props.cardView.naturalInputOrder)}><i
+                                className="fas fa-arrows-alt-h"/></button>}
                             <input
                                 type={"text"}
                                 onChange={(event) => filterCards(event.target.value)}

@@ -21,7 +21,6 @@ import LoadCategoryTreeAction from "../../src/category/actions/LoadCategoryTreeA
 import ExpandTreeItemAction from "../../src/category/actions/ExpandTreeItemAction";
 import CollapseTreeItemAction from "../../src/category/actions/CollapseTreeItemAction";
 import SelectTreeItemAction from "../../src/category/actions/SelectTreeItemAction";
-import DeselectTreeItemAction from "../../src/category/actions/DeselectTreeItemAction";
 import NewCategoryClickAction from "../../src/category/actions/NewCategoryClickAction";
 import CancelNewCategoryAction from "../../src/category/actions/CancelNewCategoryAction";
 import CategoryNameChangedAction from "../../src/category/actions/CategoryNameChangedAction";
@@ -42,8 +41,8 @@ import CancelPreviewCsvAction from "../../src/category/actions/CancelPreviewCsvA
 import SwapPreviewCsvAction from "../../src/category/actions/SwapPreviewCsvAction";
 import ImportCsvAction from "../../src/category/actions/ImportCsvAction";
 
-export function loadCategoryTree(selectedCategoryId) {
-    new LoadCategoryTreeAction(selectedCategoryId).apply();
+export function loadCategoryTree(rootCategoryId, selectedCategoryId) {
+    new LoadCategoryTreeAction(rootCategoryId, selectedCategoryId).apply();
 }
 
 export function expandTreeItem(categoryId) {
@@ -56,10 +55,6 @@ export function collapseTreeItem(categoryId) {
 
 export function selectTreeItem(categoryId) {
     new SelectTreeItemAction(categoryId).apply();
-}
-
-export function deselectTreeItem() {
-    new DeselectTreeItemAction().apply();
 }
 
 export function newCategoryClick() {

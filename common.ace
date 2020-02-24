@@ -14,7 +14,7 @@ Init<hash, username, password>
 		set state.State.language
 		set state.State.hash
 	) triggers ( RouteChanged )
-	
+
 RouteChanged 
 	on login ( 
 		set state.State.data 
@@ -151,7 +151,7 @@ appState state : State {
 	} |	: AuthorView {
 		categoryTree : CategoryTree {
 			selectedCategory
-			categoryList
+			rootCategory
 			
 			displayDeleteCategory
 			

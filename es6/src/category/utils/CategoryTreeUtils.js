@@ -1,31 +1,49 @@
-export function findExpandedCategories(categoryList, expandedCategories) {
+export function findExpandedCategories(rootCategory, expandedCategories) {
+    if (rootCategory && rootCategory.childCategories) {
+        expandedCategories.push(rootCategory.categoryId);
+        return findExpandedCategoriesRec(rootCategory.childCategories, expandedCategories);
+    }
+}
+
+function findExpandedCategoriesRec(categoryList, expandedCategories) {
     for (let i = 0; i < categoryList.length; i++) {
         const category = categoryList[i];
         if (category.expanded === true) {
             expandedCategories.push(category.categoryId);
             if (category.childCategories) {
-                findExpandedCategories(category.childCategories, expandedCategories);
+                findExpandedCategoriesRec(category.childCategories, expandedCategories);
             }
         }
     }
     return expandedCategories;
 }
 
-export function initExpandedState(categoryList, expandedCategories) {
+export function initExpandedState(rootCategory, expandedCategories) {
+    if (rootCategory && rootCategory.childCategories) {
+        initExpandedStateRec(rootCategory.childCategories, expandedCategories);
+    }
+}
+
+export function initExpandedStateRec(categoryList, expandedCategories) {
     for (let i = 0; i < categoryList.length; i++) {
         const category = categoryList[i];
         category.expanded = expandedCategories.indexOf(category.categoryId) >= 0 && category.childCategories.length > 0;
         if (category.childCategories) {
-            initExpandedState(category.childCategories, expandedCategories);
+            initExpandedStateRec(category.childCategories, expandedCategories);
         }
     }
 }
 
-export function initSelected(categoryList, selectedCategoryId) {
-    const selectedCategory = findCategory(categoryList, selectedCategoryId);
-    if (selectedCategory) {
-        expandParents(selectedCategory, categoryList);
-        return selectedCategory;
+export function initSelected(rootCategory, selectedCategoryId) {
+    if (rootCategory.categoryId === selectedCategoryId) {
+        return rootCategory;
+    }
+    if (rootCategory && rootCategory.childCategories) {
+        const selectedCategory = findCategory(rootCategory.childCategories, selectedCategoryId);
+        if (selectedCategory) {
+            expandParents(selectedCategory, rootCategory.childCategories);
+            return selectedCategory;
+        }
     }
 }
 
@@ -41,6 +59,9 @@ export function expandParents(category, rootCategories) {
 }
 
 export function findCategory(categoryList, categoryId) {
+    if (!categoryList) {
+        return null;
+    }
     for (let i = 0; i < categoryList.length; i++) {
         const category = categoryList[i];
         if (category.categoryId === categoryId) {

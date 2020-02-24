@@ -1,10 +1,13 @@
 import AbstractLoadCategoryTreeCommand from "../../../gen/category/commands/AbstractLoadCategoryTreeCommand";
 import {findExpandedCategories, initExpandedState, initSelected} from "../utils/CategoryTreeUtils"
-import {getState} from "../../../gen/ace/ReadAppState";
+import {getState, get_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory} from "../../../gen/ace/ReadAppState";
 
 export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCommand {
 
     initCommandData() {
+        if (!this.commandData.rootCategoryId) {
+            this.commandData.rootCategoryId = get_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory().categoryId;
+        }
         return true;
     }
 
@@ -12,15 +15,15 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
         this.commandData.outcome = this.ok;
         const appState = getState();
         const expandedCategories = [];
-        if (appState.data && appState.data.categoryTree && appState.data.categoryTree.categoryList) {
-            findExpandedCategories(appState.data.categoryTree.categoryList, expandedCategories);
+        if (appState.data && appState.data.categoryTree && appState.data.categoryTree.rootCategory) {
+            findExpandedCategories(appState.data.categoryTree.rootCategory, expandedCategories);
         }
-        initExpandedState(this.commandData.categoryList, expandedCategories);
+        initExpandedState(this.commandData.rootCategory, expandedCategories);
 
         this.commandData.data = {
             categoryTree: {
-                selectedCategory: initSelected(this.commandData.categoryList, this.commandData.selectedCategoryId),
-                categoryList: this.commandData.categoryList,
+                selectedCategory: initSelected(this.commandData.rootCategory, this.commandData.selectedCategoryId),
+                rootCategory: this.commandData.rootCategory,
                 displayDeleteCategory: false,
                 displayEditCategory: false,
                 displayNewCategory: false,

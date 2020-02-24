@@ -4,25 +4,30 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class CheckDropAllowedCommand extends AbstractCheckDropAllowedCommand {
     execute() {
-        const data = getState().data.categoryTree;
-        const dropTarget = findCategory(data.categoryList, this.commandData.categoryId);
+        const categoryTree = getState().data.categoryTree;
+        let dropTarget;
+        if (this.commandData.categoryId === categoryTree.rootCategory.categoryId) {
+            dropTarget = categoryTree.rootCategory;
+        } else {
+            dropTarget = findCategory(categoryTree.rootCategory.childCategories, this.commandData.categoryId);
+        }
         this.commandData.dropTargetCategoryId = dropTarget.categoryId;
-        if (data.movedCategory) {
+        if (categoryTree.movedCategory) {
             if (this.commandData.altKey === true) {
-                if (this.commandData.depth === 1 && data.movedCategory.rootCategoryId === data.movedCategory.categoryId) {
-                    this.commandData.dropAllowed = dropTarget.categoryId !== data.movedCategory.categoryId;
+                if (this.commandData.depth === 1 && categoryTree.movedCategory.rootCategoryId === categoryTree.movedCategory.categoryId) {
+                    this.commandData.dropAllowed = dropTarget.categoryId !== categoryTree.movedCategory.categoryId;
                 } else {
-                    if (data.movedCategory.rootCategoryId === dropTarget.rootCategoryId) {
-                        const depth = depthOf(data.categoryList, data.movedCategory.categoryId);
-                        this.commandData.dropAllowed = depth === this.commandData.depth && dropTarget.categoryId !== data.movedCategory.categoryId;
+                    if (categoryTree.movedCategory.rootCategoryId === dropTarget.rootCategoryId) {
+                        const depth = depthOf(categoryTree.categoryList, categoryTree.movedCategory.categoryId);
+                        this.commandData.dropAllowed = depth === this.commandData.depth && dropTarget.categoryId !== categoryTree.movedCategory.categoryId;
                     } else {
                         this.commandData.dropAllowed = false;
                     }
                 }
             } else {
-                if (data.movedCategory.rootCategoryId === dropTarget.rootCategoryId) {
-                    if (dropTarget.categoryId !== data.movedCategory.categoryId && data.movedCategory.parentCategoryId !== dropTarget.categoryId) {
-                        this.commandData.dropAllowed = !isCategoryChildOfParent(data.movedCategory, dropTarget.categoryId)
+                if (categoryTree.movedCategory.rootCategoryId === dropTarget.rootCategoryId) {
+                    if (dropTarget.categoryId !== categoryTree.movedCategory.categoryId && categoryTree.movedCategory.parentCategoryId !== dropTarget.categoryId) {
+                        this.commandData.dropAllowed = !isCategoryChildOfParent(categoryTree.movedCategory, dropTarget.categoryId)
                     } else {
                         this.commandData.dropAllowed = false;
                     }
@@ -31,8 +36,8 @@ export default class CheckDropAllowedCommand extends AbstractCheckDropAllowedCom
                 }
             }
         } else {
-            if (data.selectedCategory.rootCategoryId === dropTarget.rootCategoryId) {
-                this.commandData.dropAllowed = dropTarget.categoryId !== data.selectedCategory.categoryId;
+            if (categoryTree.selectedCategory.rootCategoryId === dropTarget.rootCategoryId) {
+                this.commandData.dropAllowed = dropTarget.categoryId !== categoryTree.selectedCategory.categoryId;
             } else {
                 this.commandData.dropAllowed = false;
             }

@@ -23,8 +23,8 @@ import * as AppState from "../../ace/WriteAppState";
 
 export default class AbstractLoadCategoryTreeAction extends Action {
 
-    constructor( selectedCategoryId) {
-        super({selectedCategoryId}, 'category.LoadCategoryTreeAction');
+    constructor( rootCategoryId, selectedCategoryId) {
+        super({rootCategoryId, selectedCategoryId}, 'category.LoadCategoryTreeAction');
 		this.postCall = this.postCall.bind(this);
 		}
 		

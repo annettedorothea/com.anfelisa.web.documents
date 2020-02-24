@@ -36,7 +36,7 @@ export default class AbstractCreateCategoryCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new CreateCategoryOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.selectedCategoryId)).publish());
+			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.rootCategoryId, this.commandData.selectedCategoryId)).publish());
 			break;
 		case this.error:
 			promises.push(new CreateCategoryErrorEvent(this.commandData).publish());

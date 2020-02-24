@@ -34,7 +34,7 @@ export default class AbstractMoveCardsCommand extends Command {
 		switch (this.commandData.outcome) {
 		case this.ok:
 			promises.push(new MoveCardsOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.selectedCategoryId)).publish());
+			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.rootCategoryId, this.commandData.selectedCategoryId)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('MoveCardsCommand unhandled outcome: ' + this.commandData.outcome)});

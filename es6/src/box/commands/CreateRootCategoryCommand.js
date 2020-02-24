@@ -35,7 +35,6 @@ export default class CreateRootCategoryCommand extends AbstractCreateRootCategor
         this.commandData.dictionaryLookup = get_state_State_data_BoxSettings_dictionaryLookup();
         this.commandData.givenLanguage = get_state_State_data_BoxSettings_givenLanguage();
         this.commandData.wantedLanguage = get_state_State_data_BoxSettings_wantedLanguage();
-        console.log("CreateRootCategoryCommand", this.commandData);
     	return true;
     }
 

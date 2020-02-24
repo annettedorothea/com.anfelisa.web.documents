@@ -25,14 +25,12 @@ export default class EventListenerRegistrationCategory {
 	static init() {
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_state_State_data);
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_state_State_view);
-		ACEController.registerListener('category.ExpandTreeItemOkEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList);
-		ACEController.registerListener('category.CollapseTreeItemOkEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList);
-		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList);
+		ACEController.registerListener('category.ExpandTreeItemOkEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory);
+		ACEController.registerListener('category.CollapseTreeItemOkEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory);
+		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory);
 		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', AppState.reset_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory);
 		ACEController.registerListener('category.CollapseTreeItemDeselectCategoryEvent', AppState.reset_state_State_data_AuthorView_cardView_CardView_cardList);
 		ACEController.registerListener('category.SelectTreeItemOkEvent', AppState.set_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory);
-		ACEController.registerListener('category.DeselectTreeItemOkEvent', AppState.reset_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory);
-		ACEController.registerListener('category.DeselectTreeItemOkEvent', AppState.reset_state_State_data_AuthorView_cardView_CardView_cardList);
 		ACEController.registerListener('category.NewCategoryClickOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.CancelNewCategoryOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);
 		ACEController.registerListener('category.CategoryNameChangedOkEvent', AppState.merge_state_State_data_AuthorView_categoryTree);

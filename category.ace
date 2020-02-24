@@ -4,7 +4,7 @@ category
 
 ACE
 
-LoadCategoryTree <selectedCategoryId>
+LoadCategoryTree <rootCategoryId, selectedCategoryId>
 	call com.anfelisa.category.GetCategoryTree
 	loadingFlag common.state.State.displaySpinner 
 	on ok ( 
@@ -13,27 +13,21 @@ LoadCategoryTree <selectedCategoryId>
 	) triggers (card.LoadCards)
 
 ExpandTreeItem < categoryId >
-	on ok (set common.state.State.data.AuthorView.categoryTree.CategoryTree.categoryList)
+	on ok (set common.state.State.data.AuthorView.categoryTree.CategoryTree.rootCategory)
 
 CollapseTreeItem < categoryId >
 	on ok (
-		set common.state.State.data.AuthorView.categoryTree.CategoryTree.categoryList
+		set common.state.State.data.AuthorView.categoryTree.CategoryTree.rootCategory
 	)
 	on deselectCategory (
-		set common.state.State.data.AuthorView.categoryTree.CategoryTree.categoryList 
+		set common.state.State.data.AuthorView.categoryTree.CategoryTree.rootCategory 
 		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.selectedCategory 
 		reset common.state.State.data.AuthorView.cardView.CardView.cardList
 	)
 
 SelectTreeItem < categoryId >
-	on ok ( set common.state.State.data.AuthorView.categoryTree.CategoryTree.selectedCategory) triggers( card.LoadCards)
+	on ok ( set common.state.State.data.AuthorView.categoryTree.CategoryTree.selectedCategory) triggers( card.LoadCards common.Route)
 
-DeselectTreeItem
-	on ok (
-		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.selectedCategory
-		reset common.state.State.data.AuthorView.cardView.CardView.cardList
-	) 
-	
 NewCategoryClick
 	on ok (merge common.state.State.data.AuthorView.categoryTree)
 	

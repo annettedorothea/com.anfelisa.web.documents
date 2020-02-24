@@ -51,7 +51,6 @@ export default class UserContainer extends React.Component {
                 />;
                 break;
             case "create-box":
-                console.log("create-box");
                 content = <BoxSettings
                     {...this.props.data}
                     onSaveClick={createRootCategory}

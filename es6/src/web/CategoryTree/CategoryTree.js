@@ -1,5 +1,4 @@
 import React from 'react';
-import CategoryItem from "./CategoryItem";
 import NewCategory from "./NewCategory";
 import Confirm from "../Confirm";
 import EditCategory from "./EditCategory";
@@ -14,6 +13,7 @@ import {
 import {route} from "../../../gen/common/ActionFunctions";
 import CsvFileInput from "./CsvFileInput";
 import CsvPreview from "./CsvPreview";
+import RootCategoryItem from "./RootCategoryItem";
 
 export default class CategoryTree extends React.Component {
 
@@ -37,20 +37,6 @@ export default class CategoryTree extends React.Component {
 
 
     render() {
-        const categoryItems = this.props.categoryList.map((category) => {
-            return <CategoryItem
-                {...category}
-                childCategories={category.childCategories}
-                depth={0}
-                selectedCategory={this.props.selectedCategory}
-                texts={this.props.texts}
-                language={this.props.language}
-                key={category.categoryId}
-                dropAllowed={this.props.dropAllowed}
-                dropTargetCategoryId={this.props.dropTargetCategoryId}
-            />
-        });
-
         return (
             <div className="categoryTree">
                 {this.props.previewCsv && this.props.previewCsv.length > 0 &&
@@ -98,7 +84,7 @@ export default class CategoryTree extends React.Component {
                     <i className="fa fa-arrow-left"/>
                 </button>
                 <button
-                    disabled={this.props.selectedCategory && !this.props.selectedCategory.editable}
+                    disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable}
                     onClick={() => newCategoryClick()}
                     title={this.props.selectedCategory === undefined ? this.props.texts.categoryTree.newCategory.newRootCategory[this.props.language] : this.props.texts.categoryTree.newCategory.newChildCategory[this.props.language]}>
                     <i className="fas fa-plus"/>
@@ -124,7 +110,16 @@ export default class CategoryTree extends React.Component {
                 />
 
                 <div className="categoryTreeItems">
-                    {categoryItems}
+                    <RootCategoryItem
+                        {...this.props.rootCategory}
+                        childCategories={this.props.rootCategory.childCategories}
+                        selectedCategory={this.props.selectedCategory}
+                        texts={this.props.texts}
+                        language={this.props.language}
+                        key={this.props.rootCategory.categoryId}
+                        dropAllowed={this.props.dropAllowed}
+                        dropTargetCategoryId={this.props.dropTargetCategoryId}
+                    />
                 </div>
 
             </div>

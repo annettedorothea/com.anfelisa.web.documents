@@ -66,8 +66,7 @@ export default class Card extends React.Component {
                     </div>
                 </div>
                 <div className="categoryLink">
-                    <a
-                        onClick={() => route(`#categories/${this.props.categoryId}`)}
+                    <a onClick={() => route(`#categories/${this.props.rootCategoryId}${this.props.categoryId !== this.props.rootCategoryId ? "/" + this.props.categoryId : ""}`)}
                     >{this.props.texts.queryCards.category[this.props.language]}</a>
                 </div>
             </div>

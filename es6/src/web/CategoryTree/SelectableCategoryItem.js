@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     checkDropAllowed,
-    deselectTreeItem,
     itemDropped,
     moveCategoryStarted,
     selectTreeItem,
@@ -50,10 +49,9 @@ export default class SelectableCategoryItem extends React.Component {
                   onDragOver={this.onDragOver}
                   onDrop={this.drop}
             >
-                {!this.props.selected && <span className={`item notSelected ${this.props.dropAllowed && this.props.dropTargetCategoryId === this.props.categoryId ? "dropAllowed" : ""}`}
-                                               onClick={() => selectTreeItem(this.props.categoryId)}>{this.props.categoryName}</span>}
-                {this.props.selected && <span className={`item selected ${this.props.dropAllowed && this.props.dropTargetCategoryId === this.props.categoryId ? "dropAllowed" : ""}`}
-                                              onClick={() => deselectTreeItem()}>{this.props.categoryName}</span>}
+                <span
+                    className={`item ${this.props.selected ? "selected" : "notSelected"} ${this.props.dropAllowed && this.props.dropTargetCategoryId === this.props.categoryId ? "dropAllowed" : ""}`}
+                    onClick={() => this.props.selected ? "" : selectTreeItem(this.props.categoryId)}>{this.props.categoryName}</span>
             </span>
         );
     }

@@ -5,26 +5,24 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
     execute() {
         const loggedInUser = get_state_State_loggedInUser();
         const hash = get_state_State_hash();
-        console.log("hash " +  hash);
         if (loggedInUser && loggedInUser.password && loggedInUser.username) {
+            const hashes = hash.split("/");
             if (hash === "#dashboard") {
                 this.commandData.outcome = this.dashboard;
             } else if (hash === "#profile") {
                 this.commandData.outcome = this.profile;
             } else if (hash === "#users") {
                 this.commandData.outcome = this.userList;
-            } else if (hash.startsWith("#categories")) {
-                const hashes = hash.split("/");
-                this.commandData.selectedCategoryId = hashes[1] ? hashes[1] : "";
+            } else if (hash.startsWith("#categories") && hashes.length >= 2) {
+                this.commandData.rootCategoryId = hashes[1];
+                this.commandData.selectedCategoryId = hashes.length === 2 ? hashes[1] : hashes[2];
                 this.commandData.outcome = this.categories;
             } else if (hash.startsWith("#box/settings")) {
-                const hashes = hash.split("/");
                 this.commandData.boxId = hashes[2] ? hashes[2] : "";
                 this.commandData.outcome = this.boxSettings;
             } else if (hash.startsWith("#box/create")) {
                 this.commandData.outcome = this.boxCreate;
             } else if (hash.startsWith("#box")) {
-                const hashes = hash.split("/");
                 this.commandData.boxId = hashes[1] ? hashes[1] : "";
                 this.commandData.outcome = this.nextCard;
             } else {

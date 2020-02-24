@@ -5,9 +5,9 @@ import {getState} from "../../../gen/ace/ReadAppState";
 export default class ExpandTreeItemCommand extends AbstractExpandTreeItemCommand {
     execute() {
         const categoryTree = getState().data.categoryTree;
-        let category = findCategory(categoryTree.categoryList, this.commandData.categoryId);
+        let category = findCategory(categoryTree.rootCategory.childCategories, this.commandData.categoryId);
         category.expanded = true;
-        this.commandData.categoryList = categoryTree.categoryList;
+        this.commandData.rootCategory = categoryTree.rootCategory;
     	this.commandData.outcome = this.ok;
     }
 }

@@ -22,7 +22,6 @@ import LoadCategoryTreeAction from "../../src/category/actions/LoadCategoryTreeA
 import ExpandTreeItemAction from "../../src/category/actions/ExpandTreeItemAction";
 import CollapseTreeItemAction from "../../src/category/actions/CollapseTreeItemAction";
 import SelectTreeItemAction from "../../src/category/actions/SelectTreeItemAction";
-import DeselectTreeItemAction from "../../src/category/actions/DeselectTreeItemAction";
 import NewCategoryClickAction from "../../src/category/actions/NewCategoryClickAction";
 import CancelNewCategoryAction from "../../src/category/actions/CancelNewCategoryAction";
 import CategoryNameChangedAction from "../../src/category/actions/CategoryNameChangedAction";
@@ -47,15 +46,13 @@ export default class ActionFactoryRegistrationCategory {
 
 	static init() {
 		ACEController.registerFactory('category.LoadCategoryTreeAction', 
-			(actionData) => new LoadCategoryTreeAction(actionData.selectedCategoryId));
+			(actionData) => new LoadCategoryTreeAction(actionData.rootCategoryId, actionData.selectedCategoryId));
 		ACEController.registerFactory('category.ExpandTreeItemAction', 
 			(actionData) => new ExpandTreeItemAction(actionData.categoryId));
 		ACEController.registerFactory('category.CollapseTreeItemAction', 
 			(actionData) => new CollapseTreeItemAction(actionData.categoryId));
 		ACEController.registerFactory('category.SelectTreeItemAction', 
 			(actionData) => new SelectTreeItemAction(actionData.categoryId));
-		ACEController.registerFactory('category.DeselectTreeItemAction', 
-			(actionData) => new DeselectTreeItemAction());
 		ACEController.registerFactory('category.NewCategoryClickAction', 
 			(actionData) => new NewCategoryClickAction());
 		ACEController.registerFactory('category.CancelNewCategoryAction', 

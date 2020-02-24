@@ -2107,8 +2107,8 @@ export function get_state_State_data_AuthorView_categoryTree_CategoryTree_select
 
 
 
-export function get_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList() {
-	return state.data.categoryTree.categoryList;
+export function get_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory() {
+	return state.data.categoryTree.rootCategory;
 }
 
 

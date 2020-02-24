@@ -944,8 +944,8 @@ export function merge_state_State_data_AuthorView_categoryTree(eventData) {
 	if (eventData.selectedCategory !== undefined) {
 		state.data.categoryTree.selectedCategory = eventData.selectedCategory;
 	}
-	if (eventData.categoryList !== undefined) {
-		state.data.categoryTree.categoryList = eventData.categoryList;
+	if (eventData.rootCategory !== undefined) {
+		state.data.categoryTree.rootCategory = eventData.rootCategory;
 	}
 	if (eventData.displayDeleteCategory !== undefined) {
 		state.data.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
@@ -992,16 +992,16 @@ export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_sele
 export function init_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory() {
 	state.data.categoryTree.selectedCategory = null;
 }
-export function set_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList(eventData) {
-	state.data.categoryTree.categoryList = eventData.categoryList;
+export function set_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory(eventData) {
+	state.data.categoryTree.rootCategory = eventData.rootCategory;
 }
 
-export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList() {
-	state.data.categoryTree.categoryList = null;
+export function reset_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory() {
+	state.data.categoryTree.rootCategory = null;
 }
 
-export function init_state_State_data_AuthorView_categoryTree_CategoryTree_categoryList() {
-	state.data.categoryTree.categoryList = null;
+export function init_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory() {
+	state.data.categoryTree.rootCategory = null;
 }
 export function set_state_State_data_AuthorView_categoryTree_CategoryTree_displayDeleteCategory(eventData) {
 	state.data.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
