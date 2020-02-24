@@ -1,10 +1,8 @@
 import React from 'react';
 import BoxItem from "./Box/BoxItem";
-import Confirm from "./Confirm";
 import {cancelDeleteBox, deleteBox} from "../../gen/box/ActionFunctions"
 import {route} from "../../gen/common/ActionFunctions"
-import Progress from "./Box/Progress";
-import Statistics from "./Box/Statistics";
+import ConfirmDanger from "./ConfirmDanger";
 
 export default class StudentDashboard extends React.Component {
 
@@ -28,7 +26,7 @@ export default class StudentDashboard extends React.Component {
             <div className="bottomMargin">
                 {this.props.deleteBox && this.props.deleteBox.confirmDelete === true &&
                 <div>
-                    <Confirm {...
+                    <ConfirmDanger {...
                         {
                             title: this.props.texts.box.confirmDelete.title[this.props.language],
                             message: this.props.texts.box.confirmDelete.message[this.props.language],

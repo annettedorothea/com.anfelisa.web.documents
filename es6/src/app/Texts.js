@@ -13,7 +13,7 @@ export const Texts = {
                 de: "Ja"
             },
             message: {
-                de: "Soll die Lernkartei wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht."
+                de: "Soll die Lernkartei wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Ordner und Karten werden dann auch gelöscht."
             },
             title: {
                 de: "Löschen"
@@ -69,7 +69,7 @@ export const Texts = {
                 de: "Ja"
             },
             message: {
-                de: "Soll der Ordner wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Karten werden dann auch gelöscht."
+                de: "Soll der Ordner wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und Karten werden dann auch gelöscht."
             },
             title: {
                 de: "Löschen"

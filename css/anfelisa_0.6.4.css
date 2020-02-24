@@ -307,12 +307,19 @@ table td i {
     width: 50%;
 }
 
+.modal .danger button.yes {
+    background-color: #E53C16;
+}
+
+.modal .danger h2 {
+    color: #E53C16;
+}
+
 @media screen and (max-width: 600px) {
     .modal .modalContent {
         width: 90%;
     }
 }
-
 
 .modal .modalContent .message {
     margin: 24px 0;
