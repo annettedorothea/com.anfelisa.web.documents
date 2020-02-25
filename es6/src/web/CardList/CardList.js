@@ -8,7 +8,7 @@ import DuplicateCardItem from "./DuplicateCardItem";
 import {
     cancelDeleteCard,
     deleteCard,
-    filterCards,
+    filterCards, filterNonScheduledCards,
     scheduleSelectedCards,
     toggleAllScheduleCardSelection,
     toggleInputOrder
@@ -21,7 +21,7 @@ export default class CardList extends React.Component {
     }
 
     render() {
-        const cardItems = this.props.cardView.cardList.filter((card) => !this.props.next && (card.given.indexOf(this.props.cardView.filter) >= 0 || card.wanted.indexOf(this.props.cardView.filter) >= 0)).map((card) => {
+        const cardItems = this.props.cardView.cardList.filter((card) => (this.props.cardView.filterNonScheduled === true && !!!card.next || this.props.cardView.filterNonScheduled === false) && (card.given.indexOf(this.props.cardView.filter) >= 0 || card.wanted.indexOf(this.props.cardView.filter) >= 0)).map((card) => {
             if (card.cardId === this.props.cardView.editedCard.cardId) {
                 return <EditCard
                     key={card.cardId}
@@ -36,7 +36,6 @@ export default class CardList extends React.Component {
                     texts={this.props.texts}
                     language={this.props.language}
                     selectedCardIds={this.props.cardView.selectedCardIds}
-                    hasBox={this.props.categoryTree.selectedCategory.hasBox}
                 />
             } else {
                 return <CardItem
@@ -50,7 +49,6 @@ export default class CardList extends React.Component {
                     password={this.props.password}
                     userRole={this.props.role}
                     naturalInputOrder={this.props.cardView.naturalInputOrder}
-                    hasBox={this.props.categoryTree.selectedCategory.hasBox}
                     editable={this.props.categoryTree.selectedCategory.editable}
                 />
             }
@@ -78,7 +76,6 @@ export default class CardList extends React.Component {
                     ref={component => {
                         this.newCard = component;
                     }}
-                    hasBox={this.props.categoryTree.selectedCategory.hasBox}
                 />
             );
         }
@@ -92,7 +89,7 @@ export default class CardList extends React.Component {
                 password={this.props.password}
                 userRole={this.props.role}
                 naturalInputOrder={this.props.cardView.naturalInputOrder}
-                hasBox={this.props.categoryTree.selectedCategory.hasBox}
+                rootCategoryId={this.props.rootCategoryId}
             />
         });
         if (this.props.cardView.cardList.length === 0 && this.props.categoryTree.selectedCategory.editable === false) {
@@ -117,7 +114,7 @@ export default class CardList extends React.Component {
                 <table className="cardTable">
                     <thead>
                     <tr className="notPrinted">
-                        <th colSpan={this.props.categoryTree.selectedCategory.hasBox === true ? 5 : 4}>
+                        <th colSpan={4}>
                             {this.props.categoryTree.selectedCategory.editable === true &&
                             <button title={this.props.texts.cardList.toggleInputOrder[this.props.language]}
                                     onClick={() => toggleInputOrder(this.props.cardView.naturalInputOrder)}><i
@@ -129,10 +126,15 @@ export default class CardList extends React.Component {
                                 value={this.props.cardView.filter}
                                 placeholder={this.props.texts.cardList.filter[this.props.language]}
                             />
+                            <input
+                                type={"checkbox"}
+                                onChange={() => filterNonScheduledCards()}
+                                checked={this.props.cardView.filterNonScheduled}
+                            /> {this.props.texts.cardList.filterNonScheduled[this.props.language]}
                         </th>
                     </tr>
 
-                    {this.props.cardView.cardList.length > 0 && (this.props.categoryTree.selectedCategory.hasBox === true || this.props.categoryTree.selectedCategory.editable === true) &&
+                    {this.props.cardView.cardList.length > 0 && this.props.categoryTree.selectedCategory.editable === true &&
                     <tr className="notPrinted">
                         <th>
                             <input
@@ -142,10 +144,9 @@ export default class CardList extends React.Component {
                             />
                         </th>
                         <th colSpan={4}>
-                            {this.props.categoryTree.selectedCategory.hasBox === true &&
                             <button onClick={() => scheduleSelectedCards()}
                                     disabled={this.props.cardView.selectedCardIds.length === 0}>{this.props.texts.cardList.scheduleSelectedCards[this.props.language]}
-                            </button>}
+                            </button>
                         </th>
                     </tr>
                     }

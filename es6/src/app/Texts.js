@@ -227,6 +227,9 @@ export const Texts = {
         filter: {
             de: "Suchen und filtern"
         },
+        filterNonScheduled: {
+            de: "Nie abgefragte anzeigen"
+        },
         noCards: {
             de: "Hier gibt es noch keine Karten."
         },

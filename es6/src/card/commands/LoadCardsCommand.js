@@ -31,6 +31,7 @@ export default class LoadCardsCommand extends AbstractLoadCardsCommand {
             image: ""
         };
         this.commandData.filter = "";
+        this.commandData.filterNonScheduled = false;
         this.commandData.dictionaryValue = "";
         this.commandData.cardDuplicates = [];
         this.commandData.selectedCardIds = [];

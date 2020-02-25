@@ -130,7 +130,7 @@ export default class EditCard extends React.Component {
                         <i className="fas fa-times"/>
                     </button>
                 </td>
-                {this.props.hasBox === true && <td/>}
+                <td/>
             </tr>
         );
     }

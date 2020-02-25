@@ -65,6 +65,9 @@ CancelDeleteCard
 FilterCards <filter>
 	on ok (set common.state.State.data.AuthorView.cardView.CardView.filter)
 
+FilterNonScheduledCards <filter>
+	on ok (set common.state.State.data.AuthorView.cardView.CardView.filterNonScheduled)
+
 PassValueToDictionary 
 	on ok (set common.state.State.data.AuthorView.cardView.CardView.dictionaryValue)
 

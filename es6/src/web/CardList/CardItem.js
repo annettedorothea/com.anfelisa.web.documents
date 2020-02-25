@@ -107,11 +107,9 @@ export default class CardItem extends React.Component {
                        onDragStart={(event) => this.onDragStart(event)}/>
                     }
                 </td>
-                {this.props.hasBox &&
                 <td className="notPrinted alignRight">
                     {this.props.next ? new Date(this.props.next).toLocaleDateString() : ""}
                 </td>
-                }
             </tr>
         );
     }

@@ -22,6 +22,7 @@ export default class CategoryCardSplitView extends React.Component {
                     {...this.props}
                     texts={this.props.texts}
                     language={this.props.language}
+                    rootCategoryId={this.props.categoryTree.rootCategory.categoryId}
                 />}
 
             </div>

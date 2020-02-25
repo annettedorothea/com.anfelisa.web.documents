@@ -1161,6 +1161,9 @@ export function merge_state_State_data_AuthorView_cardView(eventData) {
 	if (eventData.filter !== undefined) {
 		state.data.cardView.filter = eventData.filter;
 	}
+	if (eventData.filterNonScheduled !== undefined) {
+		state.data.cardView.filterNonScheduled = eventData.filterNonScheduled;
+	}
 	if (eventData.editedCard !== undefined) {
 		state.data.cardView.editedCard = eventData.editedCard;
 	}
@@ -1227,6 +1230,17 @@ export function reset_state_State_data_AuthorView_cardView_CardView_filter() {
 
 export function init_state_State_data_AuthorView_cardView_CardView_filter() {
 	state.data.cardView.filter = null;
+}
+export function set_state_State_data_AuthorView_cardView_CardView_filterNonScheduled(eventData) {
+	state.data.cardView.filterNonScheduled = eventData.filterNonScheduled;
+}
+
+export function reset_state_State_data_AuthorView_cardView_CardView_filterNonScheduled() {
+	state.data.cardView.filterNonScheduled = null;
+}
+
+export function init_state_State_data_AuthorView_cardView_CardView_filterNonScheduled() {
+	state.data.cardView.filterNonScheduled = null;
 }
 export function set_state_State_data_AuthorView_cardView_CardView_editedCard(eventData) {
 	state.data.cardView.editedCard = eventData.editedCard;

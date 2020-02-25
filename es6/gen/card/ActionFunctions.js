@@ -31,6 +31,7 @@ import EditCardAction from "../../src/card/actions/EditCardAction";
 import DeleteCardClickAction from "../../src/card/actions/DeleteCardClickAction";
 import CancelDeleteCardAction from "../../src/card/actions/CancelDeleteCardAction";
 import FilterCardsAction from "../../src/card/actions/FilterCardsAction";
+import FilterNonScheduledCardsAction from "../../src/card/actions/FilterNonScheduledCardsAction";
 import PassValueToDictionaryAction from "../../src/card/actions/PassValueToDictionaryAction";
 import ToggleInputOrderAction from "../../src/card/actions/ToggleInputOrderAction";
 import LoadWantedImageOfNewCardAction from "../../src/card/actions/LoadWantedImageOfNewCardAction";
@@ -102,6 +103,10 @@ export function cancelDeleteCard() {
 
 export function filterCards(filter) {
     new FilterCardsAction(filter).apply();
+}
+
+export function filterNonScheduledCards(filter) {
+    new FilterNonScheduledCardsAction(filter).apply();
 }
 
 export function passValueToDictionary() {

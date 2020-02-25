@@ -39,6 +39,7 @@ export default class EventListenerRegistrationCard {
 		ACEController.registerListener('card.DeleteCardClickOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_deleteCard);
 		ACEController.registerListener('card.CancelDeleteCardOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_deleteCard);
 		ACEController.registerListener('card.FilterCardsOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_filter);
+		ACEController.registerListener('card.FilterNonScheduledCardsOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_filterNonScheduled);
 		ACEController.registerListener('card.PassValueToDictionaryOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_dictionaryValue);
 		ACEController.registerListener('card.ToggleInputOrderOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_naturalInputOrder);
 		ACEController.registerListener('card.LoadWantedImageOfNewCardOkEvent', AppState.set_state_State_data_AuthorView_cardView_CardView_newCard_NewCard_image);
