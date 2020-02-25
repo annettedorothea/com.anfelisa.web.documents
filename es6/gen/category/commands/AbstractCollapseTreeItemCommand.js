@@ -20,13 +20,14 @@
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import CollapseTreeItemOkEvent from "../../../gen/category/events/CollapseTreeItemOkEvent";
-import CollapseTreeItemDeselectCategoryEvent from "../../../gen/category/events/CollapseTreeItemDeselectCategoryEvent";
+import CollapseTreeItemSelectParentCategoryEvent from "../../../gen/category/events/CollapseTreeItemSelectParentCategoryEvent";
+import SelectTreeItemAction from "../../../src/category/actions/SelectTreeItemAction";
 
 export default class AbstractCollapseTreeItemCommand extends Command {
     constructor(commandData) {
         super(commandData, "category.CollapseTreeItemCommand");
         this.ok = "ok";
-        this.deselectCategory = "deselectCategory";
+        this.selectParentCategory = "selectParentCategory";
     }
 
     publishEvents() {
@@ -34,8 +35,9 @@ export default class AbstractCollapseTreeItemCommand extends Command {
 		case this.ok:
 			new CollapseTreeItemOkEvent(this.commandData).publish();
 			break;
-		case this.deselectCategory:
-			new CollapseTreeItemDeselectCategoryEvent(this.commandData).publish();
+		case this.selectParentCategory:
+			new CollapseTreeItemSelectParentCategoryEvent(this.commandData).publish();
+			new TriggerAction(new SelectTreeItemAction(this.commandData.categoryId)).publish();
 			break;
 		default:
 			throw 'CollapseTreeItemCommand unhandled outcome: ' + this.commandData.outcome;

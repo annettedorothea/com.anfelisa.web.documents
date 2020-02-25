@@ -9,8 +9,7 @@ export default class CollapseTreeItemCommand extends AbstractCollapseTreeItemCom
         category.expanded = false;
         this.commandData.rootCategory = categoryTree.rootCategory;
         if (categoryTree.selectedCategory && isCategoryChildOfParent(category, categoryTree.selectedCategory.categoryId)) {
-            this.commandData.selectedCategory = undefined;
-            this.commandData.outcome = this.deselectCategory;
+            this.commandData.outcome = this.selectParentCategory;
         } else {
             this.commandData.outcome = this.ok;
         }

@@ -28,8 +28,9 @@ export default class ExpandedCategoryItem extends React.Component {
         }
         return (
             <div className="expandedCategoryItem">
+                {this.props.depth > 1 &&
                 <i className="fas fa-caret-down"
-                   onClick={() => collapseTreeItem(this.props.categoryId)}/>
+                   onClick={() => collapseTreeItem(this.props.categoryId)}/>}
                 <SelectableCategoryItem
                     selected={this.props.selected}
                     categoryName={this.props.categoryName}

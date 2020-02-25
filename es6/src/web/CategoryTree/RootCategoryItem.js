@@ -1,6 +1,5 @@
 import React from 'react';
 import ExpandedCategoryItem from "./ExpandedCategoryItem";
-import CollapsedCategoryItem from "./CollapsedCategoryItem";
 
 export default class RootCategoryItem extends React.Component {
 
@@ -16,7 +15,7 @@ export default class RootCategoryItem extends React.Component {
                     {...this.props}
                     selected={selected}
                     selectedCategory={this.props.selectedCategory}
-                    depth={2}
+                    depth={1}
                     dropAllowed={this.props.dropAllowed}
                     dropTargetCategoryId={this.props.dropTargetCategoryId}
                 />

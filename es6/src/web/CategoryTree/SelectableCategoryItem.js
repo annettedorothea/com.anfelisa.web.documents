@@ -38,7 +38,7 @@ export default class SelectableCategoryItem extends React.Component {
     }
 
     onDragEnter(event) {
-        checkDropAllowed(this.props.categoryId, event.altKey, this.props.depth);
+        checkDropAllowed(this.props.categoryId, event.altKey);
     }
 
     render() {

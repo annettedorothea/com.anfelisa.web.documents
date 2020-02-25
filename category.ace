@@ -19,11 +19,9 @@ CollapseTreeItem < categoryId >
 	on ok (
 		set common.state.State.data.AuthorView.categoryTree.CategoryTree.rootCategory
 	)
-	on deselectCategory (
+	on selectParentCategory (
 		set common.state.State.data.AuthorView.categoryTree.CategoryTree.rootCategory 
-		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.selectedCategory 
-		reset common.state.State.data.AuthorView.cardView.CardView.cardList
-	)
+	) triggers( SelectTreeItem )
 
 SelectTreeItem < categoryId >
 	on ok ( set common.state.State.data.AuthorView.categoryTree.CategoryTree.selectedCategory) triggers( card.LoadCards common.Route)

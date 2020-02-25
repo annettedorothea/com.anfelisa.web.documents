@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-    cancelEditCategory,
-    categoryNameChanged,
-    dictionaryLookupChanged,
-    givenLanguageChanged,
-    updateCategory,
-    wantedLanguageChanged
-} from "../../../gen/category/ActionFunctions";
+import {cancelEditCategory, categoryNameChanged, updateCategory} from "../../../gen/category/ActionFunctions";
 
 export default class EditCategory extends React.Component {
 

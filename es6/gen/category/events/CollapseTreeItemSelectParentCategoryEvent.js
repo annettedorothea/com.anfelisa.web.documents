@@ -19,9 +19,9 @@
 
 import Event from "../../../gen/ace/Event";
 
-export default class CollapseTreeItemDeselectCategoryEvent extends Event {
+export default class CollapseTreeItemSelectParentCategoryEvent extends Event {
     constructor(eventData) {
-        super(eventData, 'category.CollapseTreeItemDeselectCategoryEvent');
+        super(eventData, 'category.CollapseTreeItemSelectParentCategoryEvent');
     }
 }
 
