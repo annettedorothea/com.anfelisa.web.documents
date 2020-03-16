@@ -53,9 +53,6 @@ export default class AbstractCreateCategoryCommand extends Command {
 	        let payload = {	
 	        	categoryName : this.commandData.categoryName,
 	        	parentCategoryId : this.commandData.parentCategoryId,
-	        	dictionaryLookup : this.commandData.dictionaryLookup,
-	        	givenLanguage : this.commandData.givenLanguage,
-	        	wantedLanguage : this.commandData.wantedLanguage,
 	        	};
 
 			this.httpPost(this.adjustedUrl(`/api/category/create`), true, queryParams, payload).then((data) => {
