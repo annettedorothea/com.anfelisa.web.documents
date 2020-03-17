@@ -53,9 +53,6 @@ export default class AbstractUpdateCategoryCommand extends Command {
 	        let payload = {	
 	        	categoryId : this.commandData.categoryId,
 	        	categoryName : this.commandData.categoryName,
-	        	dictionaryLookup : this.commandData.dictionaryLookup,
-	        	givenLanguage : this.commandData.givenLanguage,
-	        	wantedLanguage : this.commandData.wantedLanguage,
 	        	};
 
 			this.httpPut(this.adjustedUrl(`/api/category/update`), true, queryParams, payload).then((data) => {
