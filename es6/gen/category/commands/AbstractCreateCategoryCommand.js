@@ -54,7 +54,7 @@ export default class AbstractCreateCategoryCommand extends Command {
 	        	categoryName : this.commandData.categoryName,
 	        	parentCategoryId : this.commandData.parentCategoryId,
 	        	};
-
+	
 			this.httpPost(this.adjustedUrl(`/api/category/create`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

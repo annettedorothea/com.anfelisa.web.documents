@@ -47,7 +47,7 @@ export default class AbstractScoreReinforceCardCommand extends Command {
 	        	reinforceCardId : this.commandData.reinforceCardId,
 	        	scoredCardQuality : this.commandData.scoredCardQuality,
 	        	};
-
+	
 			this.httpPost(this.adjustedUrl(`/api/card/score-reinforce`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

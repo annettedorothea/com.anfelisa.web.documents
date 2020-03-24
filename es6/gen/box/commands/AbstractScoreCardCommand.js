@@ -48,7 +48,7 @@ export default class AbstractScoreCardCommand extends Command {
 	        	boxId : this.commandData.boxId,
 	        	scoredCardQuality : this.commandData.scoredCardQuality,
 	        	};
-
+	
 			this.httpPost(this.adjustedUrl(`/api/card/score`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

@@ -55,7 +55,7 @@ export default class AbstractResetPasswordCommand extends Command {
 	        	password : this.commandData.password,
 	        	token : this.commandData.token,
 	        	};
-
+	
 			this.httpPut(this.adjustedUrl(`/api/users/resetpassword`), false, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

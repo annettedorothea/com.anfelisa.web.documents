@@ -52,7 +52,7 @@ export default class AbstractInitialLoginCommand extends Command {
 	execute() {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
-	        
+	        	
 			this.httpGet(this.adjustedUrl(`/api/user/role`), true, queryParams).then((data) => {
 				this.commandData.role = data.role;
 				this.handleResponse(resolve, reject);

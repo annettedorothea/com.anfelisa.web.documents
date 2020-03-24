@@ -55,7 +55,7 @@ export default class AbstractDeleteUserCommand extends Command {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
 		    queryParams.push({key: "usernameToBeDeleted",value: this.commandData.usernameToBeDeleted});
-	        
+	        	
 			this.httpDelete(this.adjustedUrl(`/api/user/delete`), true, queryParams).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

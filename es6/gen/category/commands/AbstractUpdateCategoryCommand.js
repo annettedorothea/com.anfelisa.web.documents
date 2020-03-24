@@ -54,7 +54,7 @@ export default class AbstractUpdateCategoryCommand extends Command {
 	        	categoryId : this.commandData.categoryId,
 	        	categoryName : this.commandData.categoryName,
 	        	};
-
+	
 			this.httpPut(this.adjustedUrl(`/api/category/update`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

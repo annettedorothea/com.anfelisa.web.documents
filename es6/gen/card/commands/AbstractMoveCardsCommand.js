@@ -49,7 +49,7 @@ export default class AbstractMoveCardsCommand extends Command {
 	        	cardIdList : this.commandData.cardIdList,
 	        	categoryId : this.commandData.categoryId,
 	        	};
-
+	
 			this.httpPut(this.adjustedUrl(`/api/cards/move`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

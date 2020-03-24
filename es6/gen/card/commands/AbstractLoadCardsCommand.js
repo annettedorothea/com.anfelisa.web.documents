@@ -49,7 +49,7 @@ export default class AbstractLoadCardsCommand extends Command {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
 		    queryParams.push({key: "categoryId",value: this.commandData.categoryId});
-	        
+	        	
 			this.httpGet(this.adjustedUrl(`/api/cards`), true, queryParams).then((data) => {
 				this.commandData.cardList = data.cardList;
 				this.handleResponse(resolve, reject);

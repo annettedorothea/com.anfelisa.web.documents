@@ -49,7 +49,7 @@ export default class AbstractChangeCardOrderCommand extends Command {
 	        	cardIdList : this.commandData.cardIdList,
 	        	cardId : this.commandData.cardId,
 	        	};
-
+	
 			this.httpPut(this.adjustedUrl(`/api/cards/changeorder`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

@@ -49,7 +49,7 @@ export default class AbstractChangeOrderCategoryCommand extends Command {
 	        	movedCategoryId : this.commandData.movedCategoryId,
 	        	targetCategoryId : this.commandData.targetCategoryId,
 	        	};
-
+	
 			this.httpPut(this.adjustedUrl(`/api/category/changeorder`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

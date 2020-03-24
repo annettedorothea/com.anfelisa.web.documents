@@ -46,7 +46,7 @@ export default class AbstractInitBoxesForDayCommand extends Command {
 	        let payload = {	
 	        	today : this.commandData.today,
 	        	};
-
+	
 			this.httpPut(this.adjustedUrl(`/api/box/init`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

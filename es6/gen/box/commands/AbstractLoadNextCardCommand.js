@@ -45,7 +45,7 @@ export default class AbstractLoadNextCardCommand extends Command {
 			let queryParams = [];
 		    queryParams.push({key: "boxId",value: this.commandData.boxId});
 		    queryParams.push({key: "today",value: this.commandData.today});
-	        
+	        	
 			this.httpGet(this.adjustedUrl(`/api/box/next-card`), true, queryParams).then((data) => {
 				this.commandData.cardId = data.cardId;
 				this.commandData.categoryId = data.categoryId;

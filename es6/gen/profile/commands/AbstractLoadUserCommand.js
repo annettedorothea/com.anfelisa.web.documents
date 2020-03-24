@@ -43,7 +43,7 @@ export default class AbstractLoadUserCommand extends Command {
 	execute() {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
-	        
+	        	
 			this.httpGet(this.adjustedUrl(`/api/user/get`), true, queryParams).then((data) => {
 				this.commandData.email = data.email;
 				this.commandData.username = data.username;

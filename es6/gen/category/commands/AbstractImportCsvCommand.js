@@ -49,7 +49,7 @@ export default class AbstractImportCsvCommand extends Command {
 	        	previewCsv : this.commandData.previewCsv,
 	        	categoryId : this.commandData.categoryId,
 	        	};
-
+	
 			this.httpPut(this.adjustedUrl(`/api/category/import-csv`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

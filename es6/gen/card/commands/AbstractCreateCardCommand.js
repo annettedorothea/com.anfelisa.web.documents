@@ -51,7 +51,7 @@ export default class AbstractCreateCardCommand extends Command {
 	        	image : this.commandData.image,
 	        	categoryId : this.commandData.categoryId,
 	        	};
-
+	
 			this.httpPost(this.adjustedUrl(`/api/card/create`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

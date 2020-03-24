@@ -53,7 +53,7 @@ export default class AbstractSaveBoxSettingsCommand extends Command {
 	        	givenLanguage : this.commandData.givenLanguage,
 	        	wantedLanguage : this.commandData.wantedLanguage,
 	        	};
-
+	
 			this.httpPut(this.adjustedUrl(`/api/box/update`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

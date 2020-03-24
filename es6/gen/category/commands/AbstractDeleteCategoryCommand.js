@@ -51,7 +51,7 @@ export default class AbstractDeleteCategoryCommand extends Command {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
 		    queryParams.push({key: "categoryId",value: this.commandData.categoryId});
-	        
+	        	
 			this.httpDelete(this.adjustedUrl(`/api/category/delete`), true, queryParams).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

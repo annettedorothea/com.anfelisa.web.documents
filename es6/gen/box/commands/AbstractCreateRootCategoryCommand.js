@@ -51,7 +51,7 @@ export default class AbstractCreateRootCategoryCommand extends Command {
 	        	maxCardsPerDay : this.commandData.maxCardsPerDay,
 	        	maxInterval : this.commandData.maxInterval,
 	        	};
-
+	
 			this.httpPost(this.adjustedUrl(`/api/box/create`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {

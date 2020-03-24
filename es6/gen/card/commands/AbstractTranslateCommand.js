@@ -63,7 +63,7 @@ export default class AbstractTranslateCommand extends Command {
 		    queryParams.push({key: "sourceValue",value: this.commandData.sourceValue});
 		    queryParams.push({key: "sourceLanguage",value: this.commandData.sourceLanguage});
 		    queryParams.push({key: "targetLanguage",value: this.commandData.targetLanguage});
-	        
+	        	
 			this.httpGet(this.adjustedUrl(`/api/card/translation`), true, queryParams).then((data) => {
 				this.commandData.targetValue = data.targetValue;
 				this.handleResponse(resolve, reject);

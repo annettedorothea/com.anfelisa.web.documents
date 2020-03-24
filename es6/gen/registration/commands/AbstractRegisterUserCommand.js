@@ -56,7 +56,7 @@ export default class AbstractRegisterUserCommand extends Command {
 	        	email : this.commandData.email,
 	        	language : this.commandData.language,
 	        	};
-
+	
 			this.httpPost(this.adjustedUrl(`/api/users/register`), false, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
