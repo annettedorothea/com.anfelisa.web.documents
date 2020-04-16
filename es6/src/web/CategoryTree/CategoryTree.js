@@ -84,19 +84,19 @@ export default class CategoryTree extends React.Component {
                     <i className="fa fa-arrow-left"/>
                 </button>
                 <button
-                    disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable}
+                    disabled={!this.props.selectedCategory}
                     onClick={() => newCategoryClick()}
                     title={this.props.selectedCategory === undefined ? this.props.texts.categoryTree.newCategory.newRootCategory[this.props.language] : this.props.texts.categoryTree.newCategory.newChildCategory[this.props.language]}>
                     <i className="fas fa-plus"/>
                 </button>
                 <button
-                    disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable}
+                    disabled={!this.props.selectedCategory}
                     onClick={() => editCategoryClick()}
                     title={this.props.texts.categoryTree.editCategory.title[this.props.language]}>
                     <i className="fas fa-pen"/>
                 </button>
                 <button
-                    disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable || !this.props.selectedCategory.empty}
+                    disabled={!this.props.selectedCategory || !this.props.selectedCategory.empty}
                     onClick={() => deleteCategoryClick()}
                     title={this.props.texts.categoryTree.delete[this.props.language]}>
                     <i className="fas fa-times"/>
@@ -106,7 +106,7 @@ export default class CategoryTree extends React.Component {
                     file={this.props.file}
                     texts={this.props.texts}
                     language={this.props.language}
-                    disabled={!this.props.selectedCategory || !this.props.selectedCategory.editable}
+                    disabled={!this.props.selectedCategory}
                 />
 
                 <div className="categoryTreeItems">

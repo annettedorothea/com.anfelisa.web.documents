@@ -43,8 +43,9 @@ export default class CardItem extends React.Component {
 
     renderGiven(first) {
         return (
-            <td onDoubleClick={this.props.editable === true ? () => editCard(this.props.cardId) : () => {
-            }} className={first ? "visibleMobile" : "notVisibleMobile"}>
+            <td
+                onDoubleClick={() => editCard(this.props.cardId)}
+                className={first ? "visibleMobile" : "notVisibleMobile"}>
                 <pre>{this.props.given}</pre>
             </td>
         );
@@ -52,8 +53,9 @@ export default class CardItem extends React.Component {
 
     renderWanted(first) {
         return (
-            <td onDoubleClick={this.props.editable === true ? () => editCard(this.props.cardId) : () => {
-            }} className={first ? "visibleMobile" : "notVisibleMobile"}>
+            <td
+                onDoubleClick={() => editCard(this.props.cardId)}
+                className={first ? "visibleMobile" : "notVisibleMobile"}>
                 <pre>{this.props.wanted}</pre>
             </td>
         );
@@ -63,12 +65,9 @@ export default class CardItem extends React.Component {
         return (
             <td
                 className="preview notVisibleMobile"
-                onDoubleClick={
-                    this.props.editable === true ? () => editCard(this.props.cardId) : () => {
-                    }
-                }
+                onDoubleClick={() => editCard(this.props.cardId)}
             >
-                <img src={this.props.image}/>
+                <img src={this.props.image} alt=""/>
             </td>
         );
     }
@@ -94,15 +93,13 @@ export default class CardItem extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderGiven(false)}
                 {this.props.naturalInputOrder === false && this.renderImage()}
                 <td className="noBreak notPrinted">
-                    {this.props.editable === true &&
                     <button onClick={() => editCard(this.props.cardId)}>
                         <i className="fas fa-pen"/>
-                    </button>}
-                    {this.props.editable === true &&
+                    </button>
                     <button onClick={() => deleteCardClick(this.props.cardId)}>
                         <i className="fas fa-times"/>
-                    </button>}
-                    {this.props.editable === true && this.props.selectedCardIds.indexOf(this.props.cardId) >= 0 &&
+                    </button>
+                    {this.props.selectedCardIds.indexOf(this.props.cardId) >= 0 &&
                     <i id={this.props.cardId} className="fas fa-align-justify" draggable="true"
                        onDragStart={(event) => this.onDragStart(event)}/>
                     }

@@ -33,7 +33,7 @@ export default class DuplicateCardItem extends React.Component {
         if (this.props.image.length > 0) {
             return (
                 <td className="preview">
-                    <img src={this.props.image}/>
+                    <img src={this.props.image} alt=""/>
                 </td>
             )
         }

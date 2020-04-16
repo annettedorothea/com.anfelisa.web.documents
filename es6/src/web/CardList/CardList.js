@@ -49,36 +49,33 @@ export default class CardList extends React.Component {
                     password={this.props.password}
                     userRole={this.props.role}
                     naturalInputOrder={this.props.cardView.naturalInputOrder}
-                    editable={this.props.categoryTree.selectedCategory.editable}
                 />
             }
         });
-        if (this.props.categoryTree.selectedCategory.editable) {
-            cardItems.push(
-                <NewCard
-                    key="new"
-                    given={this.props.cardView.newCard.given}
-                    wanted={this.props.cardView.newCard.wanted}
-                    image={this.props.cardView.newCard.image}
-                    file={this.props.cardView.newCard.file}
-                    index={this.props.cardView.newCard.index}
-                    displaySpinner={this.props.cardView.newCard.displaySpinner}
-                    displayTranslateSpinner={this.props.cardView.newCard.displayTranslateSpinner}
-                    cardList={this.props.cardView.cardList}
-                    username={this.props.username}
-                    password={this.props.password}
-                    dictionaryLookup={this.props.categoryTree.selectedCategory.dictionaryLookup}
-                    givenLanguage={this.props.categoryTree.selectedCategory.givenLanguage}
-                    wantedLanguage={this.props.categoryTree.selectedCategory.wantedLanguage}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                    naturalInputOrder={this.props.cardView.naturalInputOrder}
-                    ref={component => {
-                        this.newCard = component;
-                    }}
-                />
-            );
-        }
+        cardItems.push(
+            <NewCard
+                key="new"
+                given={this.props.cardView.newCard.given}
+                wanted={this.props.cardView.newCard.wanted}
+                image={this.props.cardView.newCard.image}
+                file={this.props.cardView.newCard.file}
+                index={this.props.cardView.newCard.index}
+                displaySpinner={this.props.cardView.newCard.displaySpinner}
+                displayTranslateSpinner={this.props.cardView.newCard.displayTranslateSpinner}
+                cardList={this.props.cardView.cardList}
+                username={this.props.username}
+                password={this.props.password}
+                dictionaryLookup={this.props.categoryTree.selectedCategory.dictionaryLookup}
+                givenLanguage={this.props.categoryTree.selectedCategory.givenLanguage}
+                wantedLanguage={this.props.categoryTree.selectedCategory.wantedLanguage}
+                texts={this.props.texts}
+                language={this.props.language}
+                naturalInputOrder={this.props.cardView.naturalInputOrder}
+                ref={component => {
+                    this.newCard = component;
+                }}
+            />
+        );
         let duplicateCards = this.props.cardView.cardDuplicates.map((card) => {
             return <DuplicateCardItem
                 {...card}
@@ -92,9 +89,6 @@ export default class CardList extends React.Component {
                 rootCategoryId={this.props.rootCategoryId}
             />
         });
-        if (this.props.cardView.cardList.length === 0 && this.props.categoryTree.selectedCategory.editable === false) {
-            return <h2>{this.props.texts.cardList.noCards[this.props.language]}</h2>
-        }
         return (
             <div>
                 {this.props.cardView.deleteCard.confirmDelete === true &&
@@ -115,10 +109,9 @@ export default class CardList extends React.Component {
                     <thead>
                     <tr className="notPrinted">
                         <th colSpan={4}>
-                            {this.props.categoryTree.selectedCategory.editable === true &&
                             <button title={this.props.texts.cardList.toggleInputOrder[this.props.language]}
                                     onClick={() => toggleInputOrder(this.props.cardView.naturalInputOrder)}><i
-                                className="fas fa-arrows-alt-h"/></button>}
+                                className="fas fa-arrows-alt-h"/></button>
                             <input
                                 type={"text"}
                                 onChange={(event) => filterCards(event.target.value)}
@@ -134,7 +127,6 @@ export default class CardList extends React.Component {
                         </th>
                     </tr>
 
-                    {this.props.cardView.cardList.length > 0 && this.props.categoryTree.selectedCategory.editable === true &&
                     <tr className="notPrinted">
                         <th>
                             <input
@@ -149,7 +141,6 @@ export default class CardList extends React.Component {
                             </button>
                         </th>
                     </tr>
-                    }
 
                     </thead>
 
