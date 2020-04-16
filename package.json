@@ -1,42 +1,29 @@
 {
   "name": "anfelisa",
   "version": "0.6.4",
-  "description": "",
+  "description": "anfelisa client",
+  "repository": "https://github.com/annettedorothea/com.anfelisa.client",
   "scripts": {
     "uglify": "uglifyjs lib/anfelisa_0.6.4.js --compress --mangle --output lib/anfelisa_0.6.4.min.js",
-    "build": "browserify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa_0.6.4.js -d",
-    "server": "watchify es6/src/app/App.js --standalone Anfelisa -o lib/anfelisa_0.6.4.js -d & live-server --watch=lib/anfelisa_0.6.4.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8082/replay/' --browser='Google Chrome'"
+    "build": "browserify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_0.6.4.js --debug --standalone Anfelisa",
+    "start": "watchify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_0.6.4.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_0.6.4.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8082/replay/' --browser='Google Chrome'"
   },
   "author": "Annette Pohl",
-  "license": "GPL",
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "presets": [
-            "es2015",
-            "react"
-          ]
-        }
-      ]
-    ]
-  },
+  "license": "GPL-3.0",
   "dependencies": {
-    "crypto-js": "^3.1.9-1",
+    "crypto-js": "^4.0.0",
     "json-stable-stringify": "^1.0.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.24.1",
-    "babelify": "^8.0.0",
-    "browserify": "^14.5.0",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.1",
     "live-server": "^1.2.1",
-    "uglify-js": "^3.6.0",
+    "uglify-js": "^3.9.0",
     "watchify": "^3.11.1"
   }
 }
