@@ -29,10 +29,10 @@ export default class ACEController {
         ACEController.registerListener('TriggerAction', ACEController.triggerAction);
         ACEController.actionIsProcessing = false;
         ACEController.actionQueue = [];
-        ACEController.LIVE = 1;
+        ACEController.UI = 1;
         ACEController.REPLAY = 2;
         ACEController.E2E = 3;
-        ACEController.execution = ACEController.LIVE;
+        ACEController.execution = ACEController.UI;
         ACEController.actualTimeline = [];
         ACEController.expectedTimeline = [];
     }
@@ -65,14 +65,15 @@ export default class ACEController {
     static addItemToTimeLine(item) {
         let timestamp = new Date();
         item.timestamp = timestamp.getTime();
-		if (ACEController.execution === ACEController.LIVE && AppUtils.isDevelopment() 
-		        || !ACEController.execution === ACEController.LIVE) {
+		if (ACEController.execution === ACEController.UI && AppUtils.isDevelopment()) {
 		    ACEController.timeline.push(AppUtils.deepCopy(item));
+		} else if (ACEController.execution !== ACEController.UI) {
+		    ACEController.actualTimeline.push(AppUtils.deepCopy(item));
 		}
     }
 
     static addActionToQueue(action) {
-        if (ACEController.execution === ACEController.LIVE) {
+        if (ACEController.execution === ACEController.UI) {
             ACEController.actionQueue.push(action);
             if (ACEController.actionIsProcessing === false) {
                 ACEController.actionIsProcessing = true;
@@ -102,11 +103,11 @@ export default class ACEController {
 			}
         } else if (action === undefined) {
             ACEController.actionIsProcessing = false;
-            if (ACEController.execution !== ACEController.LIVE) {
+            if (ACEController.execution !== ACEController.UI) {
                 ACEController.timeline = [];
                 ACEController.actionIsProcessing = false;
                 ACEController.actionQueue = [];
-                ACEController.execution = ACEController.LIVE;
+                ACEController.execution = ACEController.UI;
                 Utils.finishReplay();
                 AppUtils.start();
             }
@@ -114,7 +115,7 @@ export default class ACEController {
     }
     
     static callApplyNextActions() {
-    	if (ACEController.execution === ACEController.LIVE) {
+    	if (ACEController.execution === ACEController.UI) {
     		ACEController.applyNextActions();
     	} else {
 			setTimeout(ACEController.applyNextActions, ACEController.pauseInMillis);
@@ -134,12 +135,6 @@ export default class ACEController {
 
     static readTimelineAndCreateReplayActions() {
         let actions = [];
-        if (ACEController.expectedTimeline.length === 0) {
-            for (let i = 0; i < ACEController.timeline.length; i++) {
-                let item = ACEController.timeline[i];
-                ACEController.expectedTimeline.push(item);
-            }
-        }
 
         for (let i = 0; i < ACEController.expectedTimeline.length; i++) {
             let item = ACEController.expectedTimeline[i];

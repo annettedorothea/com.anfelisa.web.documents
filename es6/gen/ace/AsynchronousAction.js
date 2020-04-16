@@ -34,7 +34,7 @@ export default class AsynchronousAction extends Action {
 	           	this.preCall();
 	           }
 	           AppUtils.renderNewState();
-	           if (ACEController.execution === ACEController.LIVE) {
+	           if (ACEController.execution === ACEController.UI) {
 	               this.actionData.uuid = AppUtils.createUUID();
 	               this.initActionData();
 	           }
