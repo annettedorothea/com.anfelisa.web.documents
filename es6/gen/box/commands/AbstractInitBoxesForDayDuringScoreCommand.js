@@ -19,11 +19,11 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxesForDayDuringScoreAction";
+import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 
-export default class AbstractScoreReinforceCardCommand extends Command {
+export default class AbstractInitBoxesForDayDuringScoreCommand extends Command {
     constructor(commandData) {
-        super(commandData, "box.ScoreReinforceCardCommand");
+        super(commandData, "box.InitBoxesForDayDuringScoreCommand");
         this.ok = "ok";
     }
 
@@ -32,10 +32,10 @@ export default class AbstractScoreReinforceCardCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new TriggerAction(new InitBoxesForDayDuringScoreAction()).publish());
+			promises.push(new TriggerAction(new LoadNextCardAction(this.commandData.boxId)).publish());
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('ScoreReinforceCardCommand unhandled outcome: ' + this.commandData.outcome)});
+			return new Promise((resolve, reject) => {reject('InitBoxesForDayDuringScoreCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }
@@ -44,11 +44,10 @@ export default class AbstractScoreReinforceCardCommand extends Command {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
 	        let payload = {	
-	        	reinforceCardId : this.commandData.reinforceCardId,
-	        	scoredCardQuality : this.commandData.scoredCardQuality,
+	        	today : this.commandData.today,
 	        	};
 	
-			this.httpPost(this.adjustedUrl(`/api/card/score-reinforce`), true, queryParams, payload).then((data) => {
+			this.httpPut(this.adjustedUrl(`/api/box/init`), true, queryParams, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

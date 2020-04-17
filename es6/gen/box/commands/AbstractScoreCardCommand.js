@@ -19,7 +19,7 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
+import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxesForDayDuringScoreAction";
 
 export default class AbstractScoreCardCommand extends Command {
     constructor(commandData) {
@@ -32,7 +32,7 @@ export default class AbstractScoreCardCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new TriggerAction(new LoadNextCardAction(this.commandData.boxId)).publish());
+			promises.push(new TriggerAction(new InitBoxesForDayDuringScoreAction()).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('ScoreCardCommand unhandled outcome: ' + this.commandData.outcome)});

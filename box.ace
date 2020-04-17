@@ -46,13 +46,18 @@ ACE
 	ScoreCard <scoredCardQuality>
 	 	call com.anfelisa.box.ScoreCard
 		loadingFlag common.state.State.displaySpinner 
-		on ok triggers (LoadNextCard)
+		on ok triggers (InitBoxesForDayDuringScore)
 	
 	ScoreReinforceCard <scoredCardQuality>
 	 	call com.anfelisa.box.ScoreReinforceCard
 		loadingFlag common.state.State.displaySpinner 
-		on ok triggers (LoadNextCard)
+		on ok triggers (InitBoxesForDayDuringScore)
 
+	InitBoxesForDayDuringScore
+		call com.anfelisa.box.InitMyBoxesForDay
+		loadingFlag common.state.State.displaySpinner 
+		on ok triggers (LoadNextCard) 
+				
 	LoadSettings <boxId>
 	 	call com.anfelisa.box.GetBoxSettings
 		loadingFlag common.state.State.displaySpinner 

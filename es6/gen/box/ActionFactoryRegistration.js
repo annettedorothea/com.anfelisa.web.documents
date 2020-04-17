@@ -27,6 +27,7 @@ import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
 import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
+import InitBoxesForDayDuringScoreAction from "../../src/box/actions/InitBoxesForDayDuringScoreAction";
 import LoadSettingsAction from "../../src/box/actions/LoadSettingsAction";
 import SaveBoxSettingsAction from "../../src/box/actions/SaveBoxSettingsAction";
 import MaxCardsPerDayChangedAction from "../../src/box/actions/MaxCardsPerDayChangedAction";
@@ -60,6 +61,8 @@ export default class ActionFactoryRegistrationBox {
 			(actionData) => new ScoreCardAction(actionData.scoredCardQuality));
 		ACEController.registerFactory('box.ScoreReinforceCardAction', 
 			(actionData) => new ScoreReinforceCardAction(actionData.scoredCardQuality));
+		ACEController.registerFactory('box.InitBoxesForDayDuringScoreAction', 
+			(actionData) => new InitBoxesForDayDuringScoreAction());
 		ACEController.registerFactory('box.LoadSettingsAction', 
 			(actionData) => new LoadSettingsAction(actionData.boxId));
 		ACEController.registerFactory('box.SaveBoxSettingsAction', 
