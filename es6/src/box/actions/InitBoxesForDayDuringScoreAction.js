@@ -24,7 +24,7 @@ export default class InitBoxesForDayDuringScoreAction extends AbstractInitBoxesF
     initActionData() {
         let date = new Date();
         date.setHours(0,0,0,0);
-        this.actionData.today = date.toISOString();
+        this.actionData.todayAtMidnightInUTC = date.toISOString();
     }
 
 }

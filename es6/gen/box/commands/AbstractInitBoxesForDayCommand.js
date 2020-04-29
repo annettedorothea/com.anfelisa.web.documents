@@ -44,7 +44,7 @@ export default class AbstractInitBoxesForDayCommand extends Command {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
 	        let payload = {	
-	        	today : this.commandData.today,
+	        	todayAtMidnightInUTC : this.commandData.todayAtMidnightInUTC,
 	        	};
 	
 			this.httpPut(this.adjustedUrl(`/api/box/init`), true, queryParams, payload).then((data) => {

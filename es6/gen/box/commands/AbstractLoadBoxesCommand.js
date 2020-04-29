@@ -43,7 +43,7 @@ export default class AbstractLoadBoxesCommand extends Command {
 	execute() {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
-		    queryParams.push({key: "today",value: this.commandData.today});
+		    queryParams.push({key: "todayAtMidnightInUTC",value: this.commandData.todayAtMidnightInUTC});
 	        	
 			this.httpGet(this.adjustedUrl(`/api/boxes/my/`), true, queryParams).then((data) => {
 				this.commandData.boxList = data.boxList;
