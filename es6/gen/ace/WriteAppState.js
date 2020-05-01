@@ -268,6 +268,9 @@ export function merge_state_State_data(eventData) {
 	if (eventData.maxInterval !== undefined) {
 		state.data.maxInterval = eventData.maxInterval;
 	}
+	if (eventData.maxIntervalInvalid !== undefined) {
+		state.data.maxIntervalInvalid = eventData.maxIntervalInvalid;
+	}
 	if (eventData.maxCardsPerDay !== undefined) {
 		state.data.maxCardsPerDay = eventData.maxCardsPerDay;
 	}
@@ -276,6 +279,9 @@ export function merge_state_State_data(eventData) {
 	}
 	if (eventData.dictionaryLookup !== undefined) {
 		state.data.dictionaryLookup = eventData.dictionaryLookup;
+	}
+	if (eventData.dictionaryLookupInvalid !== undefined) {
+		state.data.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
 	}
 	if (eventData.wantedLanguage !== undefined) {
 		state.data.wantedLanguage = eventData.wantedLanguage;
@@ -584,6 +590,17 @@ export function reset_state_State_data_BoxSettings_maxInterval() {
 export function init_state_State_data_BoxSettings_maxInterval() {
 	state.data.maxInterval = null;
 }
+export function set_state_State_data_BoxSettings_maxIntervalInvalid(eventData) {
+	state.data.maxIntervalInvalid = eventData.maxIntervalInvalid;
+}
+
+export function reset_state_State_data_BoxSettings_maxIntervalInvalid() {
+	state.data.maxIntervalInvalid = null;
+}
+
+export function init_state_State_data_BoxSettings_maxIntervalInvalid() {
+	state.data.maxIntervalInvalid = null;
+}
 export function set_state_State_data_BoxSettings_maxCardsPerDay(eventData) {
 	state.data.maxCardsPerDay = eventData.maxCardsPerDay;
 }
@@ -616,6 +633,17 @@ export function reset_state_State_data_BoxSettings_dictionaryLookup() {
 
 export function init_state_State_data_BoxSettings_dictionaryLookup() {
 	state.data.dictionaryLookup = null;
+}
+export function set_state_State_data_BoxSettings_dictionaryLookupInvalid(eventData) {
+	state.data.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
+}
+
+export function reset_state_State_data_BoxSettings_dictionaryLookupInvalid() {
+	state.data.dictionaryLookupInvalid = null;
+}
+
+export function init_state_State_data_BoxSettings_dictionaryLookupInvalid() {
+	state.data.dictionaryLookupInvalid = null;
 }
 export function set_state_State_data_BoxSettings_wantedLanguage(eventData) {
 	state.data.wantedLanguage = eventData.wantedLanguage;

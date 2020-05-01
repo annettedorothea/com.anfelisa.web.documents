@@ -20,6 +20,13 @@ import AbstractMaxIntervalChangedCommand from "../../../gen/box/commands/Abstrac
 
 export default class MaxIntervalChangedCommand extends AbstractMaxIntervalChangedCommand {
     execute() {
+        if (this.commandData.maxInterval) {
+            this.commandData.maxIntervalInvalid = isNaN(this.commandData.maxInterval)
+                || this.commandData.maxInterval%1 !== 0
+                || this.commandData.maxInterval <= 0;
+        } else {
+            this.commandData.maxIntervalInvalid = false;
+        }
     	this.commandData.outcome = this.ok;
     }
 }

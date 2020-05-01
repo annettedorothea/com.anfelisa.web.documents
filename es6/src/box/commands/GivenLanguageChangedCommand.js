@@ -16,10 +16,19 @@
 
 
 import AbstractGivenLanguageChangedCommand from "../../../gen/box/commands/AbstractGivenLanguageChangedCommand";
+import {
+    get_state_State_data_BoxSettings_dictionaryLookup,
+    get_state_State_data_BoxSettings_wantedLanguage
+} from "../../../gen/ace/ReadAppState";
 //please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class GivenLanguageChangedCommand extends AbstractGivenLanguageChangedCommand {
     execute() {
+        if (get_state_State_data_BoxSettings_dictionaryLookup() === true) {
+            this.commandData.dictionaryLookupInvalid = !this.commandData.givenLanguage || !get_state_State_data_BoxSettings_wantedLanguage();
+        } else {
+            this.commandData.dictionaryLookupInvalid = false;
+        }
     	this.commandData.outcome = this.ok;
     }
 }

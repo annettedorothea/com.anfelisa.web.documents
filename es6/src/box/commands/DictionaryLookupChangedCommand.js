@@ -16,12 +16,20 @@
 
 
 import AbstractDictionaryLookupChangedCommand from "../../../gen/box/commands/AbstractDictionaryLookupChangedCommand";
-import {get_state_State_data_BoxSettings_dictionaryLookup} from "../../../gen/ace/ReadAppState";
+import {
+    get_state_State_data_BoxSettings_dictionaryLookup,
+    get_state_State_data_BoxSettings_givenLanguage, get_state_State_data_BoxSettings_wantedLanguage
+} from "../../../gen/ace/ReadAppState";
 //please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class DictionaryLookupChangedCommand extends AbstractDictionaryLookupChangedCommand {
     execute() {
         this.commandData.dictionaryLookup = !get_state_State_data_BoxSettings_dictionaryLookup();
+        if (this.commandData.dictionaryLookup === true) {
+            this.commandData.dictionaryLookupInvalid = !get_state_State_data_BoxSettings_givenLanguage() || !get_state_State_data_BoxSettings_wantedLanguage();
+        } else {
+            this.commandData.dictionaryLookupInvalid = false;
+        }
         this.commandData.outcome = this.ok;
     }
 }

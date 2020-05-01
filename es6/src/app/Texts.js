@@ -366,7 +366,7 @@ export const Texts = {
             de: "Die Email-Adresse wurde bestätigt."
         },
         passwordRequestSubmitted: {
-            de: "Eine Email mit einem Link zur Eingabe eines neues Passwortes wurde an deine Email-Adresse verschickt."
+            de: "Eine Email mit einem Link zur Eingabe eines neuen Passwortes wurde an deine Email-Adresse verschickt."
         },
         passwordReset: {
             de: "Das Passwort wurde geändert."

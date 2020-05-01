@@ -113,9 +113,11 @@ appState state : State {
 	} |	: BoxSettings {
     	boxId
     	maxInterval
+    	maxIntervalInvalid
     	maxCardsPerDay
     	maxCardsPerDayInvalid
 		dictionaryLookup
+		dictionaryLookupInvalid
 		wantedLanguage
 		givenLanguage
 		categoryName

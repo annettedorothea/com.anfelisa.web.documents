@@ -79,7 +79,10 @@ ACE
 		)
 		
 	MaxIntervalChanged <maxInterval>
-		on ok (set common.state.State.data.BoxSettings.maxInterval)
+		on ok (
+			set common.state.State.data.BoxSettings.maxInterval
+			set common.state.State.data.BoxSettings.maxIntervalInvalid
+		)
 
 	CreateNewBox
 		on ok (
@@ -96,13 +99,22 @@ ACE
 		on ok (set common.state.State.data.BoxSettings.categoryName)
 		
 	DictionaryLookupChanged
-		on ok (set common.state.State.data.BoxSettings.dictionaryLookup)
+		on ok (
+			set common.state.State.data.BoxSettings.dictionaryLookup
+			set common.state.State.data.BoxSettings.dictionaryLookupInvalid
+		)
 		
 	GivenLanguageChanged<givenLanguage>
-		on ok (set common.state.State.data.BoxSettings.givenLanguage)
+		on ok (
+			set common.state.State.data.BoxSettings.givenLanguage
+			set common.state.State.data.BoxSettings.dictionaryLookupInvalid
+		)
 		
 	WantedLanguageChanged<wantedLanguage>
-		on ok (set common.state.State.data.BoxSettings.wantedLanguage)
+		on ok (
+			set common.state.State.data.BoxSettings.wantedLanguage
+			set common.state.State.data.BoxSettings.dictionaryLookupInvalid
+		)
 		
 	RootCategoryNameChanged<categoryName>
 		on ok (set common.state.State.data.BoxSettings.categoryName)

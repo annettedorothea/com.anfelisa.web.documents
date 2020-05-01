@@ -88,7 +88,12 @@ export default class BoxSettings extends React.Component {
                     </div>
                     <div className="moreMarginLine hCenter">
                         <button
-                            disabled={this.props.maxCardsPerDayInvalid || !this.props.categoryName.trim()}
+                            disabled={
+                                this.props.maxCardsPerDayInvalid ||
+                                this.props.maxIntervalInvalid ||
+                                this.props.dictionaryLookupInvalid ||
+                                !this.props.categoryName.trim()
+                            }
                             onClick={this.props.onSaveClick}>
                             {this.props.texts.boxSettings.save[this.props.language]}
                         </button>
