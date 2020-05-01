@@ -7,7 +7,11 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
         const hash = get_state_State_hash();
         if (loggedInUser && loggedInUser.password && loggedInUser.username) {
             const hashes = hash.split("/");
-            if (hash === "#dashboard") {
+            if (hash.startsWith("#confirmemail")) {
+                this.commandData.username = hashes[1] ? hashes[1] : "";
+                this.commandData.token = hashes[2] ? hashes[2] : "";
+                this.commandData.outcome = this.confirmEmail;
+            } else if (hash === "#dashboard") {
                 this.commandData.outcome = this.dashboard;
             } else if (hash === "#profile") {
                 this.commandData.outcome = this.profile;
