@@ -1,5 +1,5 @@
 import React from 'react';
-import Confirm from "../Confirm";
+import ConfirmDanger from "../ConfirmDanger";
 import Dictionary from "./Dictionary";
 import NewCard from "./NewCard";
 import EditCard from "./EditCard";
@@ -93,7 +93,7 @@ export default class CardList extends React.Component {
             <div>
                 {this.props.cardView.deleteCard.confirmDelete === true &&
                 <div>
-                    <Confirm {...
+                    <ConfirmDanger {...
                         {
                             title: this.props.texts.cardList.confirmDelete.title[this.props.language],
                             message: this.props.texts.cardList.confirmDelete.message[this.props.language],

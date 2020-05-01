@@ -516,7 +516,7 @@ export const Texts = {
                 de: "Ja"
             },
             message: {
-                de: "Soll der Benutzer wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle mit dem Benutzer verbundenen Daten werden dann auch gelöscht."
+                de: "Soll der Benutzer {0} wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle mit dem Benutzer verbundenen Daten werden dann auch gelöscht."
             },
             title: {
                 de: "Löschen"

@@ -1,6 +1,6 @@
 import React from 'react';
 import NewCategory from "./NewCategory";
-import Confirm from "../Confirm";
+import ConfirmDanger from "../ConfirmDanger";
 import EditCategory from "./EditCategory";
 import {
     cancelDeleteCategory,
@@ -68,7 +68,7 @@ export default class CategoryTree extends React.Component {
                     language={this.props.language}
                 />}
                 {this.props.displayDeleteCategory === true &&
-                <Confirm {...
+                <ConfirmDanger {...
                     {
                         title: this.props.texts.categoryTree.confirmDelete.title[this.props.language],
                         message: this.props.texts.categoryTree.confirmDelete.message[this.props.language],

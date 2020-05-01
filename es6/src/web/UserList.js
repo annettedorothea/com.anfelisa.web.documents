@@ -1,7 +1,7 @@
 import React from 'react';
-import Confirm from "./Confirm";
 import {route} from "../../gen/common/ActionFunctions";
 import {deleteUser, deleteUserCancel, deleteUserClick, saveRole} from "../../gen/admin/ActionFunctions";
+import ConfirmDanger from "./ConfirmDanger";
 
 export default class UserList extends React.Component {
 
@@ -15,6 +15,7 @@ export default class UserList extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         const userItems = this.props.userList.map((user) => {
             return <UserItem
                 {...user}
@@ -30,10 +31,10 @@ export default class UserList extends React.Component {
             <div>
                 {this.props.showDeleteUserDialog === true &&
                 <div>
-                    <Confirm {...
+                    <ConfirmDanger {...
                         {
                             title: this.props.texts.userList.confirmDelete.title[this.props.language],
-                            message: this.props.texts.userList.confirmDelete.message[this.props.language],
+                            message: this.props.texts.userList.confirmDelete.message[this.props.language].replace("{0}", this.props.usernameToBeDeleted),
                             okText: this.props.texts.userList.confirmDelete.ok[this.props.language],
                             cancelText: this.props.texts.userList.confirmDelete.cancel[this.props.language],
                             ok: () => deleteUser(),

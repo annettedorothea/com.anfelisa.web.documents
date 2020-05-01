@@ -1,5 +1,5 @@
 import React from 'react';
-import Confirm from "./Confirm";
+import ConfirmDanger from "./ConfirmDanger";
 import {deleteUser, deleteUserCancel, deleteUserClick} from "../../gen/profile/ActionFunctions";
 import {route} from "../../gen/common/ActionFunctions";
 
@@ -14,7 +14,7 @@ export default class Profile extends React.Component {
             <div>
                 {this.props.showDeleteUserDialog === true &&
                 <div>
-                    <Confirm {...
+                    <ConfirmDanger {...
                         {
                             title: this.props.texts.profile.confirmDelete.title[this.props.language],
                             message: this.props.texts.profile.confirmDelete.message[this.props.language],
