@@ -41,6 +41,7 @@ import RemoveEditedCardImageAction from "../../src/card/actions/RemoveEditedCard
 import ToggleScheduleCardSelectionAction from "../../src/card/actions/ToggleScheduleCardSelectionAction";
 import ToggleAllScheduleCardSelectionAction from "../../src/card/actions/ToggleAllScheduleCardSelectionAction";
 import ScheduleSelectedCardsAction from "../../src/card/actions/ScheduleSelectedCardsAction";
+import SortSelectedCardsOutAction from "../../src/card/actions/SortSelectedCardsOutAction";
 import MoveCardsStartedAction from "../../src/card/actions/MoveCardsStartedAction";
 import MoveCardsAction from "../../src/card/actions/MoveCardsAction";
 import ChangeCardOrderAction from "../../src/card/actions/ChangeCardOrderAction";
@@ -143,6 +144,10 @@ export function toggleAllScheduleCardSelection() {
 
 export function scheduleSelectedCards() {
     new ScheduleSelectedCardsAction().apply();
+}
+
+export function sortSelectedCardsOut() {
+    new SortSelectedCardsOutAction().apply();
 }
 
 export function moveCardsStarted() {

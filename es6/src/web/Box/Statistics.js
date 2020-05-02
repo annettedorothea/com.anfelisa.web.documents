@@ -23,12 +23,50 @@ export default class Statistics extends React.Component {
             this.props.quality4Count +
             this.props.quality5Count;
         if (all > 0) {
-            const width0 = Math.round(this.props.quality0Count / all * 100);
-            const width1 = Math.round(this.props.quality1Count / all * 100);
-            const width2 = Math.round(this.props.quality2Count / all * 100);
-            const width3 = Math.round(this.props.quality3Count / all * 100);
-            const width4 = Math.round(this.props.quality4Count / all * 100);
-            const width5 = 100 - width0 - width1 - width2 - width3 - width4;
+            let qualityMap = [];
+            qualityMap[0] = {
+                key: 0,
+                value: this.props.quality0Count
+            };
+            qualityMap[1] = {
+                key: 1,
+                value: this.props.quality1Count
+            };
+            qualityMap[2] = {
+                key: 2,
+                value: this.props.quality2Count
+            };
+            qualityMap[3] = {
+                key: 3,
+                value: this.props.quality3Count
+            };
+            qualityMap[4] = {
+                key: 4,
+                value: this.props.quality4Count
+            };
+            qualityMap[5] = {
+                key: 5,
+                value: this.props.quality5Count
+            };
+            qualityMap.sort((a, b) => {
+                return a.value - b.value;
+            });
+            let sum = 0;
+            let i = 0;
+            qualityMap.forEach(e => {
+                e.percentage = Math.round(e.value * 100 / all);
+                if (sum + e.percentage > 100 || sum + e.percentage < 100 && i === 6) {
+                    e.percentage = 100 - sum;
+                }
+                sum += e.percentage;
+                i++;
+            });
+            const width0 = qualityMap.find(e => e.key === 0).percentage;
+            const width1 = qualityMap.find(e => e.key === 1).percentage;
+            const width2 = qualityMap.find(e => e.key === 2).percentage;
+            const width3 = qualityMap.find(e => e.key === 3).percentage;
+            const width4 = qualityMap.find(e => e.key === 4).percentage;
+            const width5 = qualityMap.find(e => e.key === 5).percentage;
             return (
                 <div className="statistics">
                     <div className={`${this.rounded(width5, 0, width4 + width3 + width2 + width1 + width0)} quality5`}

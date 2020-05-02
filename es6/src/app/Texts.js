@@ -242,6 +242,9 @@ export const Texts = {
         scheduleSelectedCards: {
             de: "Selektierte heute abfragen"
         },
+        sortSelectedCardsOut: {
+            de: "Selektierte aussortieren"
+        },
         toggleInputOrder: {
             de: "Spalten tauschen"
         }

@@ -9,7 +9,7 @@ import {
     cancelDeleteCard,
     deleteCard,
     filterCards, filterNonScheduledCards,
-    scheduleSelectedCards,
+    scheduleSelectedCards, sortSelectedCardsOut,
     toggleAllScheduleCardSelection,
     toggleInputOrder
 } from "../../../gen/card/ActionFunctions";
@@ -138,6 +138,9 @@ export default class CardList extends React.Component {
                         <th colSpan={4}>
                             <button onClick={() => scheduleSelectedCards()}
                                     disabled={this.props.cardView.selectedCardIds.length === 0}>{this.props.texts.cardList.scheduleSelectedCards[this.props.language]}
+                            </button>
+                            <button onClick={() => sortSelectedCardsOut()}
+                                    disabled={this.props.cardView.selectedCardIds.length === 0}>{this.props.texts.cardList.sortSelectedCardsOut[this.props.language]}
                             </button>
                         </th>
                     </tr>

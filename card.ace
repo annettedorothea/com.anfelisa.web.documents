@@ -100,6 +100,11 @@ ScheduleSelectedCards
 	loadingFlag common.state.State.displaySpinner 
 	on ok triggers (LoadCards)
 	
+SortSelectedCardsOut 
+ 	call com.anfelisa.box.SortCardsOut
+	loadingFlag common.state.State.displaySpinner 
+	on ok triggers (LoadCards)
+	
 MoveCardsStarted
 	on ok (set common.state.State.data.AuthorView.cardView.CardView.movedCardIds)
 	
