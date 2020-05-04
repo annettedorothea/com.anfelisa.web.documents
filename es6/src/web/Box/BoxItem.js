@@ -33,7 +33,7 @@ export default class BoxItem extends React.Component {
             <a
                 className="tile"
                 onClick={() =>
-                    this.props.allTodaysCards > 0 ?
+                    this.props.openTodaysCards > 0 ?
                         route(`#box/${this.props.boxId}`) :
                         route(`#categories/${this.props.categoryId}`)
                 }>
@@ -41,10 +41,6 @@ export default class BoxItem extends React.Component {
                 <h2>
                     {this.props.categoryName}
                 </h2>
-
-                <Progress openTodaysCards={this.props.openTodaysCards} allTodaysCards={this.props.allTodaysCards}/>
-
-                <Statistics {...this.props}/>
 
                 <div className="buttons button1">
                     <i className="fas fa-edit" onClick={(e) => this.onEditClick(e)}/>
