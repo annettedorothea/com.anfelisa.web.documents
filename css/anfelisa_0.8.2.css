@@ -474,6 +474,11 @@ table td i {
     background-color: #eee;
     margin: 12px auto;
     position: relative;
+    min-height: 128px;
+}
+
+.box-create {
+    min-height: auto;
 }
 
 @media screen and (max-width: 600px) {

@@ -38,7 +38,7 @@ export default class StudentDashboard extends React.Component {
                 </div>}
                 {boxes}
                 <a
-                    className="tile"
+                    className="tile box-create"
                     onClick={() => route("#box/create")}>
                     <div className="text-center">
                         <i className="fas fa-plus-circle fa-2x"/>
