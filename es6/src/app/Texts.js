@@ -18,6 +18,15 @@ export const Texts = {
             title: {
                 de: "Löschen"
             }
+        },
+        cards: {
+            de: "{0} Karten"
+        },
+        noCards: {
+            de: "Keine Karten"
+        },
+        oneCard: {
+            de: "Eine Karte"
         }
     },
     boxSettings : {

@@ -15,6 +15,13 @@ ACE
 			set common.state.State.data
 			set common.state.State.data.Dashboard.boxList
 			set common.state.State.view
+		) triggers (LoadBoxStatistics)
+	
+	LoadBoxStatistics 
+		call com.anfelisa.box.GetBoxStatistics
+		loadingFlag common.state.State.displaySpinner 
+		on ok ( 
+			set common.state.State.data.Dashboard.boxList
 		)
 	
 	DeleteBoxClick <boxId>

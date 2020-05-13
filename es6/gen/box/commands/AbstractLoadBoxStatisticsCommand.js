@@ -19,12 +19,11 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import LoadBoxesOkEvent from "../../../gen/box/events/LoadBoxesOkEvent";
-import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
+import LoadBoxStatisticsOkEvent from "../../../gen/box/events/LoadBoxStatisticsOkEvent";
 
-export default class AbstractLoadBoxesCommand extends Command {
+export default class AbstractLoadBoxStatisticsCommand extends Command {
     constructor(commandData) {
-        super(commandData, "box.LoadBoxesCommand");
+        super(commandData, "box.LoadBoxStatisticsCommand");
         this.ok = "ok";
     }
 
@@ -33,11 +32,10 @@ export default class AbstractLoadBoxesCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new LoadBoxesOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadBoxStatisticsAction()).publish());
+			promises.push(new LoadBoxStatisticsOkEvent(this.commandData).publish());
 			break;
 		default:
-			return new Promise((resolve, reject) => {reject('LoadBoxesCommand unhandled outcome: ' + this.commandData.outcome)});
+			return new Promise((resolve, reject) => {reject('LoadBoxStatisticsCommand unhandled outcome: ' + this.commandData.outcome)});
 		}
 		return Promise.all(promises);
     }
@@ -47,7 +45,7 @@ export default class AbstractLoadBoxesCommand extends Command {
 			let queryParams = [];
 		    queryParams.push({key: "todayAtMidnightInUTC",value: this.commandData.todayAtMidnightInUTC});
 	        	
-			this.httpGet(this.adjustedUrl(`/api/boxes/my/`), true, queryParams).then((data) => {
+			this.httpGet(this.adjustedUrl(`/api/boxes/statistics/`), true, queryParams).then((data) => {
 				this.commandData.boxList = data.boxList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

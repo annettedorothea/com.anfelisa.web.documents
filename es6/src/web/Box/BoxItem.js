@@ -1,8 +1,8 @@
 import React from 'react';
 import Statistics from "./Statistics";
+import CardsNextDays from "./CardsNextDays";
 import {deleteBoxClick} from "../../../gen/box/ActionFunctions";
 import {route} from "../../../gen/common/ActionFunctions"
-import Progress from "./Progress";
 
 export default class BoxItem extends React.Component {
 
@@ -41,6 +41,12 @@ export default class BoxItem extends React.Component {
                 <h2>
                     {this.props.categoryName}
                 </h2>
+
+                <Statistics {...this.props}/>
+
+                <br/>
+
+                <CardsNextDays {...this.props}/>
 
                 <div className="buttons button1">
                     <i className="fas fa-edit" onClick={(e) => this.onEditClick(e)}/>

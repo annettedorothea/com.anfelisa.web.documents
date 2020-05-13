@@ -20,6 +20,7 @@
 import ACEController from "../ace/ACEController";
 import InitBoxesForDayAction from "../../src/box/actions/InitBoxesForDayAction";
 import LoadBoxesAction from "../../src/box/actions/LoadBoxesAction";
+import LoadBoxStatisticsAction from "../../src/box/actions/LoadBoxStatisticsAction";
 import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
 import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
 import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
@@ -47,6 +48,8 @@ export default class ActionFactoryRegistrationBox {
 			(actionData) => new InitBoxesForDayAction());
 		ACEController.registerFactory('box.LoadBoxesAction', 
 			(actionData) => new LoadBoxesAction());
+		ACEController.registerFactory('box.LoadBoxStatisticsAction', 
+			(actionData) => new LoadBoxStatisticsAction());
 		ACEController.registerFactory('box.DeleteBoxClickAction', 
 			(actionData) => new DeleteBoxClickAction(actionData.boxId));
 		ACEController.registerFactory('box.CancelDeleteBoxAction', 

@@ -26,6 +26,7 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.LoadBoxesOkEvent', AppState.set_state_State_data);
 		ACEController.registerListener('box.LoadBoxesOkEvent', AppState.set_state_State_data_Dashboard_boxList);
 		ACEController.registerListener('box.LoadBoxesOkEvent', AppState.set_state_State_view);
+		ACEController.registerListener('box.LoadBoxStatisticsOkEvent', AppState.set_state_State_data_Dashboard_boxList);
 		ACEController.registerListener('box.DeleteBoxClickOkEvent', AppState.set_state_State_data_Dashboard_deleteBox);
 		ACEController.registerListener('box.CancelDeleteBoxOkEvent', AppState.reset_state_State_data_Dashboard_deleteBox);
 		ACEController.registerListener('box.DeleteBoxErrorEvent', AppState.reset_state_State_data_Dashboard_deleteBox_DeleteBox_confirmDelete);

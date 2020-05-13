@@ -175,7 +175,7 @@ h2 {
 
 @media screen and (max-width: 600px) {
     .wrapper {
-        margin: 0 8px ;
+        margin: 0 8px;
         padding: 0;
     }
 }
@@ -247,14 +247,17 @@ h2 {
         height: 80px;
         position: relative;
     }
+
     .footer .footerContent {
         width: auto;
         padding: 4px;
     }
+
     .footer .footerContent h1 {
         font-size: 16px;
         margin-bottom: 8px;
     }
+
     .footer .footerContent p {
         font-size: 10px;
         margin-bottom: 4px;
@@ -609,6 +612,32 @@ a:hover.tile .buttons {
 
 .statistics .quality5 {
     background-color: #669E00;
+}
+
+/* cards-next-days */
+
+.cards-next-days {
+    height: 24px;
+}
+
+.cards-next-days .rounded-left {
+    border-radius: 4px 0 0 4px;
+}
+
+.cards-next-days .rounded-right {
+    border-radius: 0 4px 4px 0;
+}
+
+.cards-next-days .cards-next-days-item {
+    height: 24px;
+    display: inline-block;
+    line-height: 24px;
+    text-align: center;
+    border: 2px solid #ccc;
+    width: 14.2%;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* cards */
@@ -966,18 +995,21 @@ iframe {
     margin: 4px;
 
 }
+
 .categoryTree .categoryItem i {
     margin: 4px;
     width: 20px;
     height: 20px;
 
 }
+
 .categoryTree .categoryItem .item {
     border-radius: 4px;
     padding: 4px 12px;
     line-height: 20px;
     cursor: pointer;
 }
+
 .categoryTree .categoryItem .selected {
     background-color: #337ab7;
     color: #fff;
@@ -991,27 +1023,35 @@ iframe {
 .categoryTree .categoryTreeItems {
     margin-bottom: 20px;
 }
+
 .categoryTree .categoryItem.depth_0 {
     margin-left: 0px;
 }
+
 .categoryTree .categoryItem.depth_1 {
     margin-left: 10px;
 }
+
 .categoryTree .categoryItem.depth_2 {
     margin-left: 20px;
 }
+
 .categoryTree .categoryItem.depth_3 {
     margin-left: 30px;
 }
+
 .categoryTree .categoryItem.depth_4 {
     margin-left: 40px;
 }
+
 .categoryTree .categoryItem.depth_5 {
     margin-left: 50px;
 }
+
 .categoryTree .categoryItem.depth_6 {
     margin-left: 60px;
 }
+
 .categoryTree .categoryItem.depth_7 {
     margin-left: 70px;
 }
@@ -1025,8 +1065,7 @@ iframe {
     .categoryTree,
     tr.notPrinted,
     td.notPrinted,
-    .footer
-    {
+    .footer {
         display: none;
     }
 }
