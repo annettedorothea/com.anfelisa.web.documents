@@ -44,7 +44,7 @@ export default class AbstractLoadSettingsCommand extends Command {
 	    return new Promise((resolve, reject) => {
 			let queryParams = [];
 	        	
-			this.httpGet(this.adjustedUrl(`/api/box/settings/${this.commandData.boxId}/`), true, queryParams).then((data) => {
+			this.httpGet(this.adjustedUrl(`/api/box/settings/${this.commandData.boxId}`), true, queryParams).then((data) => {
 				this.commandData.maxCardsPerDay = data.maxCardsPerDay;
 				this.commandData.maxInterval = data.maxInterval;
 				this.commandData.categoryName = data.categoryName;
