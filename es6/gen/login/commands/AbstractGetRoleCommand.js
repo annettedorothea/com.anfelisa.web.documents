@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import GetRoleOkEvent from "../../../gen/login/events/GetRoleOkEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
@@ -51,9 +53,8 @@ export default class AbstractGetRoleCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        	
-			this.httpGet(this.adjustedUrl(`/api/user/role`), true, queryParams).then((data) => {
+	
+			this.httpGet(`/${Utils.getRootPath()}/user/role?uuid=${this.commandData.uuid}`, true).then((data) => {
 				this.commandData.role = data.role;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

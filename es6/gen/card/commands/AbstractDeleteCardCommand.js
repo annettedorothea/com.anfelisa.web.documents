@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import DeleteCardOkEvent from "../../../gen/card/events/DeleteCardOkEvent";
 import DeleteCardErrorEvent from "../../../gen/card/events/DeleteCardErrorEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
@@ -51,10 +53,11 @@ export default class AbstractDeleteCardCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-		    queryParams.push({key: "cardId",value: this.commandData.cardId});
-	        	
-			this.httpDelete(this.adjustedUrl(`/api/card/delete`), true, queryParams).then((data) => {
+	    	let payload = {
+	    		uuid : this.commandData.uuid
+	    	};
+	
+			this.httpDelete(`/${Utils.getRootPath()}/card/delete?uuid=${this.commandData.uuid}&cardId=${this.commandData.cardId}`, true).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

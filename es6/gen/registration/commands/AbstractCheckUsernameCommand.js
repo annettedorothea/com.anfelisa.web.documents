@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import CheckUsernameOkEvent from "../../../gen/registration/events/CheckUsernameOkEvent";
 
 export default class AbstractCheckUsernameCommand extends Command {
@@ -45,10 +47,8 @@ export default class AbstractCheckUsernameCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-		    queryParams.push({key: "username",value: this.commandData.username});
-	        	
-			this.httpGet(this.adjustedUrl(`/api/users/username`), false, queryParams).then((data) => {
+	
+			this.httpGet(`/${Utils.getRootPath()}/users/username?uuid=${this.commandData.uuid}&username=${this.commandData.username}`, false).then((data) => {
 				this.commandData.available = data.available;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractCreateRootCategoryCommand extends Command {
@@ -42,17 +44,17 @@ export default class AbstractCreateRootCategoryCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	categoryName : this.commandData.categoryName,
-	        	dictionaryLookup : this.commandData.dictionaryLookup,
-	        	givenLanguage : this.commandData.givenLanguage,
-	        	wantedLanguage : this.commandData.wantedLanguage,
-	        	maxCardsPerDay : this.commandData.maxCardsPerDay,
-	        	maxInterval : this.commandData.maxInterval,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		categoryName : this.commandData.categoryName,
+	    		dictionaryLookup : this.commandData.dictionaryLookup,
+	    		givenLanguage : this.commandData.givenLanguage,
+	    		wantedLanguage : this.commandData.wantedLanguage,
+	    		maxCardsPerDay : this.commandData.maxCardsPerDay,
+	    		maxInterval : this.commandData.maxInterval
+	    	};
 	
-			this.httpPost(this.adjustedUrl(`/api/box/create`), true, queryParams, payload).then((data) => {
+			this.httpPost(`/${Utils.getRootPath()}/box/create?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

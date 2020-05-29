@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
@@ -49,15 +51,15 @@ export default class AbstractRegisterUserCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	password : this.commandData.password,
-	        	username : this.commandData.username,
-	        	email : this.commandData.email,
-	        	language : this.commandData.language,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		password : this.commandData.password,
+	    		username : this.commandData.username,
+	    		email : this.commandData.email,
+	    		language : this.commandData.language
+	    	};
 	
-			this.httpPost(this.adjustedUrl(`/api/users/register`), false, queryParams, payload).then((data) => {
+			this.httpPost(`/${Utils.getRootPath()}/users/register?uuid=${this.commandData.uuid}`, false, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

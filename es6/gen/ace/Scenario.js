@@ -23,7 +23,7 @@ import ACEController from "./ACEController";
 import Utils from "./Utils";
 
 export function runScenario(scenarioId, executor = "unknown", pauseInMillis = 0) {
-    if (AppUtils.isDevelopment() === false) {
+    if (Utils.isDevelopment() === false) {
         console.error("runScenario is only available during development");
     } else {
         Utils.loadScenario(scenarioId).then((scenario) => {
@@ -39,7 +39,7 @@ export function runScenario(scenarioId, executor = "unknown", pauseInMillis = 0)
 }
 
 export function runAllScenarios(executor = "unknown", pauseInMillis = 0) {
-    if (AppUtils.isDevelopment() === false) {
+    if (Utils.isDevelopment() === false) {
         console.error("runAllScenarios is only available during development");
     } else {
         Utils.loadNextScenario(null).then((scenario) => {
@@ -59,7 +59,7 @@ export function runAllScenarios(executor = "unknown", pauseInMillis = 0) {
 }
 
 export function saveScenario(description, creator) {
-    if (AppUtils.isDevelopment() === false) {
+    if (Utils.isDevelopment() === false) {
         console.error("saveScenario is only available during development");
     } else {
         Utils.saveScenario(description, creator).then((id) => {

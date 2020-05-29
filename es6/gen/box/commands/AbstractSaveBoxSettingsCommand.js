@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractSaveBoxSettingsCommand extends Command {
@@ -42,19 +44,19 @@ export default class AbstractSaveBoxSettingsCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	maxInterval : this.commandData.maxInterval,
-	        	maxCardsPerDay : this.commandData.maxCardsPerDay,
-	        	boxId : this.commandData.boxId,
-	        	categoryId : this.commandData.categoryId,
-	        	categoryName : this.commandData.categoryName,
-	        	dictionaryLookup : this.commandData.dictionaryLookup,
-	        	givenLanguage : this.commandData.givenLanguage,
-	        	wantedLanguage : this.commandData.wantedLanguage,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		maxInterval : this.commandData.maxInterval,
+	    		maxCardsPerDay : this.commandData.maxCardsPerDay,
+	    		boxId : this.commandData.boxId,
+	    		categoryId : this.commandData.categoryId,
+	    		categoryName : this.commandData.categoryName,
+	    		dictionaryLookup : this.commandData.dictionaryLookup,
+	    		givenLanguage : this.commandData.givenLanguage,
+	    		wantedLanguage : this.commandData.wantedLanguage
+	    	};
 	
-			this.httpPut(this.adjustedUrl(`/api/box/update`), true, queryParams, payload).then((data) => {
+			this.httpPut(`/${Utils.getRootPath()}/box/update?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

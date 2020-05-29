@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
@@ -44,13 +46,13 @@ export default class AbstractConfirmEmailCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	token : this.commandData.token,
-	        	username : this.commandData.username,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		token : this.commandData.token,
+	    		username : this.commandData.username
+	    	};
 	
-			this.httpPut(this.adjustedUrl(`/api/users/confirm`), false, queryParams, payload).then((data) => {
+			this.httpPut(`/${Utils.getRootPath()}/users/confirm?uuid=${this.commandData.uuid}`, false, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

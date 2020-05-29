@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractScheduleSelectedCardsCommand extends Command {
@@ -42,12 +44,12 @@ export default class AbstractScheduleSelectedCardsCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	cardIds : this.commandData.cardIds,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		cardIds : this.commandData.cardIds
+	    	};
 	
-			this.httpPost(this.adjustedUrl(`/api/cards/schedule`), true, queryParams, payload).then((data) => {
+			this.httpPost(`/${Utils.getRootPath()}/cards/schedule?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

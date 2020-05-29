@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import ChangeCardOrderOkEvent from "../../../gen/card/events/ChangeCardOrderOkEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
@@ -44,13 +46,13 @@ export default class AbstractChangeCardOrderCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	cardIdList : this.commandData.cardIdList,
-	        	cardId : this.commandData.cardId,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		cardIdList : this.commandData.cardIdList,
+	    		cardId : this.commandData.cardId
+	    	};
 	
-			this.httpPut(this.adjustedUrl(`/api/cards/changeorder`), true, queryParams, payload).then((data) => {
+			this.httpPut(`/${Utils.getRootPath()}/cards/changeorder?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import UpdateCardOkEvent from "../../../gen/card/events/UpdateCardOkEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
@@ -44,15 +46,15 @@ export default class AbstractUpdateCardCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	cardId : this.commandData.cardId,
-	        	given : this.commandData.given,
-	        	image : this.commandData.image,
-	        	wanted : this.commandData.wanted,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		cardId : this.commandData.cardId,
+	    		given : this.commandData.given,
+	    		image : this.commandData.image,
+	    		wanted : this.commandData.wanted
+	    	};
 	
-			this.httpPut(this.adjustedUrl(`/api/card/update`), true, queryParams, payload).then((data) => {
+			this.httpPut(`/${Utils.getRootPath()}/card/update?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxesForDayDuringScoreAction";
 
 export default class AbstractScoreCardCommand extends Command {
@@ -42,14 +44,14 @@ export default class AbstractScoreCardCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	scoredCardScheduledCardId : this.commandData.scoredCardScheduledCardId,
-	        	boxId : this.commandData.boxId,
-	        	scoredCardQuality : this.commandData.scoredCardQuality,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		scoredCardScheduledCardId : this.commandData.scoredCardScheduledCardId,
+	    		boxId : this.commandData.boxId,
+	    		scoredCardQuality : this.commandData.scoredCardQuality
+	    	};
 	
-			this.httpPost(this.adjustedUrl(`/api/card/score`), true, queryParams, payload).then((data) => {
+			this.httpPost(`/${Utils.getRootPath()}/card/score?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

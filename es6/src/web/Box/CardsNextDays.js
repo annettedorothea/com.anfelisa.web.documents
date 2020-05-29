@@ -5,9 +5,8 @@ export default class CardsNextDays extends React.Component {
 
     render() {
         if (this.props.countsPerDayNextWeek && this.props.countsPerDayNextWeek.length === 7 && this.props.maxCardsPerDay && this.props.maxCardsPerDay > 0) {
-            let items = "";
             let index = 0;
-            items = this.props.countsPerDayNextWeek.map((count) => {
+            let items = this.props.countsPerDayNextWeek.map((count) => {
                 index++;
                 let date = new Date();
                 date.setDate(date.getDate() + index);

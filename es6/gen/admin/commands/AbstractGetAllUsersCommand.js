@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import GetAllUsersOkEvent from "../../../gen/admin/events/GetAllUsersOkEvent";
 
 export default class AbstractGetAllUsersCommand extends Command {
@@ -42,9 +44,8 @@ export default class AbstractGetAllUsersCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        	
-			this.httpGet(this.adjustedUrl(`/api/users/all`), true, queryParams).then((data) => {
+	
+			this.httpGet(`/${Utils.getRootPath()}/users/all?uuid=${this.commandData.uuid}`, true).then((data) => {
 				this.commandData.userList = data.userList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

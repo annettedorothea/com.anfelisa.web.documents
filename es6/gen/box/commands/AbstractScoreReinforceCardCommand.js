@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxesForDayDuringScoreAction";
 
 export default class AbstractScoreReinforceCardCommand extends Command {
@@ -42,13 +44,13 @@ export default class AbstractScoreReinforceCardCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	reinforceCardId : this.commandData.reinforceCardId,
-	        	scoredCardQuality : this.commandData.scoredCardQuality,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		reinforceCardId : this.commandData.reinforceCardId,
+	    		scoredCardQuality : this.commandData.scoredCardQuality
+	    	};
 	
-			this.httpPost(this.adjustedUrl(`/api/card/score-reinforce`), true, queryParams, payload).then((data) => {
+			this.httpPost(`/${Utils.getRootPath()}/card/score-reinforce?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

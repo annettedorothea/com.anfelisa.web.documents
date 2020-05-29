@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import LoadSettingsOkEvent from "../../../gen/box/events/LoadSettingsOkEvent";
 
 export default class AbstractLoadSettingsCommand extends Command {
@@ -42,9 +44,8 @@ export default class AbstractLoadSettingsCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        	
-			this.httpGet(this.adjustedUrl(`/api/box/settings/${this.commandData.boxId}`), true, queryParams).then((data) => {
+	
+			this.httpGet(`/${Utils.getRootPath()}/box/settings/${this.commandData.boxId}?uuid=${this.commandData.uuid}`, true).then((data) => {
 				this.commandData.maxCardsPerDay = data.maxCardsPerDay;
 				this.commandData.maxInterval = data.maxInterval;
 				this.commandData.categoryName = data.categoryName;

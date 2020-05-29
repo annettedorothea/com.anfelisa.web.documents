@@ -2,57 +2,17 @@ import CryptoJS from "crypto-js";
 import * as ReadAppState from "../../gen/ace/ReadAppState";
 import * as WriteAppState from "../../gen/ace/WriteAppState";
 import * as App from "./App";
-import {Texts} from "./Texts"
+import Utils from "../../gen/ace/Utils";
 import {displayError, displayErrorAndLogout, init} from "../../gen/common/ActionFunctions"
+import {Texts} from "./Texts"
 
 export default class AppUtils {
 
     static start() {
-        AppUtils.loadSettings().then((settings) => {
-            AppUtils.settings = settings;
+        Utils.loadSettings().then((settings) => {
+            Utils.settings = settings;
             init(location.hash, localStorage.getItem("username"), localStorage.getItem("password"));
         });
-    }
-
-    static loadSettings() {
-        return new Promise((resolve, reject) => {
-            const headers = new Headers();
-            headers.append("Content-Type", "application/json");
-            headers.append("Accept", "application/json");
-
-            const options = {
-                method: 'GET',
-                headers: headers,
-                mode: 'cors',
-                cache: 'no-cache'
-            };
-
-            const request = new Request("settings.json", options);
-
-            fetch(request).then(function (response) {
-                return response.json();
-            }).then(function (data) {
-                resolve(data);
-            }).catch(function (error) {
-                reject(error);
-            });
-        });
-    }
-
-    static getClientVersion() {
-        return AppUtils.settings ? AppUtils.settings.clientVersion : "";
-    }
-
-    static isDevelopment() {
-        return AppUtils.settings ? AppUtils.settings.development : false;
-    }
-
-    static getAceScenariosApiKey() {
-        return AppUtils.settings ? AppUtils.settings.aceScenariosApiKey : "";
-    }
-
-    static getAceScenariosBaseUrl() {
-        return AppUtils.settings ? AppUtils.settings.aceScenariosBaseUrl : "";
     }
 
     static createInitialAppState() {
@@ -67,7 +27,7 @@ export default class AppUtils {
         App.render(ReadAppState.getState());
     }
 
-    static httpGet(url, authorize, queryParams) {
+    static httpGet(url, authorize) {
         return new Promise((resolve, reject) => {
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
@@ -86,8 +46,7 @@ export default class AppUtils {
                 cache: 'no-cache'
             };
 
-            const completeUrl = url + AppUtils.queryParamString(url, queryParams);
-            const request = new Request(completeUrl, options);
+            const request = new Request(url, options);
 
             let status;
             let statusText;
@@ -120,7 +79,7 @@ export default class AppUtils {
         });
     }
 
-    static httpChange(methodType, url, authorize, queryParams, data) {
+    static httpChange(methodType, url, authorize, data) {
         return new Promise((resolve, reject) => {
             const headers = new Headers();
             headers.append("Content-Type", "application/json");
@@ -140,8 +99,7 @@ export default class AppUtils {
                 body: JSON.stringify(data)
             };
 
-            const completeUrl = url + AppUtils.queryParamString(url, queryParams);
-            const request = new Request(completeUrl, options);
+            const request = new Request(url, options);
 
             let status;
             let statusText;
@@ -170,31 +128,16 @@ export default class AppUtils {
         });
     }
 
-    static httpPost(url, authorize, queryParams, data) {
-        return AppUtils.httpChange("POST", url, authorize, queryParams, data);
+    static httpPost(url, authorize, data) {
+        return AppUtils.httpChange("POST", url, authorize, data);
     }
 
-    static httpPut(url, authorize, queryParams, data) {
-        return AppUtils.httpChange("PUT", url, authorize, queryParams, data);
+    static httpPut(url, authorize, data) {
+        return AppUtils.httpChange("PUT", url, authorize, data);
     }
 
-    static httpDelete(url, authorize, queryParams, data) {
-        return AppUtils.httpChange("DELETE", url, authorize, queryParams, data);
-    }
-
-    static queryParamString(url, queryParams) {
-        let queryString = "";
-        if (queryParams && queryParams.length > 0) {
-            for (let i = 0; i < queryParams.length; i++) {
-                if (url.indexOf('?') < 0 && i === 0) {
-                    queryString += '?'
-                } else {
-                    queryString += '&'
-                }
-                queryString += queryParams[i].key + "=" + queryParams[i].value;
-            }
-        }
-        return queryString;
+    static httpDelete(url, authorize, data) {
+        return AppUtils.httpChange("DELETE", url, authorize, data);
     }
 
     static basicAuth() {
@@ -245,10 +188,6 @@ export default class AppUtils {
 
     static deepCopy(object) {
         return object ? JSON.parse(JSON.stringify(object)) : undefined;
-    }
-
-    static getMaxTimelineSize() {
-        return 2000;
     }
 
 }

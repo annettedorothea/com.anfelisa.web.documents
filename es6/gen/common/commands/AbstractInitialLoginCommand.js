@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import InitialLoginOkEvent from "../../../gen/common/events/InitialLoginOkEvent";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
@@ -51,9 +53,8 @@ export default class AbstractInitialLoginCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        	
-			this.httpGet(this.adjustedUrl(`/api/user/role`), true, queryParams).then((data) => {
+	
+			this.httpGet(`/${Utils.getRootPath()}/user/role?uuid=${this.commandData.uuid}`, true).then((data) => {
 				this.commandData.role = data.role;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

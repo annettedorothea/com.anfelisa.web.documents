@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 
 export default class AbstractSaveRoleCommand extends Command {
@@ -42,13 +44,13 @@ export default class AbstractSaveRoleCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	newRole : this.commandData.newRole,
-	        	editedUserId : this.commandData.editedUserId,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		newRole : this.commandData.newRole,
+	    		editedUserId : this.commandData.editedUserId
+	    	};
 	
-			this.httpPut(this.adjustedUrl(`/api/user/role`), true, queryParams, payload).then((data) => {
+			this.httpPut(`/${Utils.getRootPath()}/user/role?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

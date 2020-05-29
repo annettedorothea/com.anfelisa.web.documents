@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import ImportCsvOkEvent from "../../../gen/category/events/ImportCsvOkEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
@@ -44,13 +46,13 @@ export default class AbstractImportCsvCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	previewCsv : this.commandData.previewCsv,
-	        	categoryId : this.commandData.categoryId,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		previewCsv : this.commandData.previewCsv,
+	    		categoryId : this.commandData.categoryId
+	    	};
 	
-			this.httpPut(this.adjustedUrl(`/api/category/import-csv`), true, queryParams, payload).then((data) => {
+			this.httpPut(`/${Utils.getRootPath()}/category/import-csv?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

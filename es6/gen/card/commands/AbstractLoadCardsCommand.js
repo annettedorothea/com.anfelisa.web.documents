@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import LoadCardsOkEvent from "../../../gen/card/events/LoadCardsOkEvent";
 import LoadCardsNoCategorySelectedEvent from "../../../gen/card/events/LoadCardsNoCategorySelectedEvent";
 
@@ -47,10 +49,8 @@ export default class AbstractLoadCardsCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-		    queryParams.push({key: "categoryId",value: this.commandData.categoryId});
-	        	
-			this.httpGet(this.adjustedUrl(`/api/cards`), true, queryParams).then((data) => {
+	
+			this.httpGet(`/${Utils.getRootPath()}/cards?uuid=${this.commandData.uuid}&categoryId=${this.commandData.categoryId}`, true).then((data) => {
 				this.commandData.cardList = data.cardList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

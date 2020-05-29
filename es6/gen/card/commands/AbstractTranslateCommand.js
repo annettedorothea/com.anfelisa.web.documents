@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import TranslateWantedFetchedEvent from "../../../gen/card/events/TranslateWantedFetchedEvent";
 import TranslateGivenFetchedEvent from "../../../gen/card/events/TranslateGivenFetchedEvent";
 import SearchDuplicateCardsAction from "../../../src/card/actions/SearchDuplicateCardsAction";
@@ -59,12 +61,8 @@ export default class AbstractTranslateCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-		    queryParams.push({key: "sourceValue",value: this.commandData.sourceValue});
-		    queryParams.push({key: "sourceLanguage",value: this.commandData.sourceLanguage});
-		    queryParams.push({key: "targetLanguage",value: this.commandData.targetLanguage});
-	        	
-			this.httpGet(this.adjustedUrl(`/api/card/translation`), true, queryParams).then((data) => {
+	
+			this.httpGet(`/${Utils.getRootPath()}/card/translation?uuid=${this.commandData.uuid}&sourceValue=${this.commandData.sourceValue}&sourceLanguage=${this.commandData.sourceLanguage}&targetLanguage=${this.commandData.targetLanguage}`, true).then((data) => {
 				this.commandData.targetValue = data.targetValue;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

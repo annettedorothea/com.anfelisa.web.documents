@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import DeleteUserOkEvent from "../../../gen/profile/events/DeleteUserOkEvent";
 import DeleteUserErrorEvent from "../../../gen/profile/events/DeleteUserErrorEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
@@ -53,10 +55,11 @@ export default class AbstractDeleteUserCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-		    queryParams.push({key: "usernameToBeDeleted",value: this.commandData.usernameToBeDeleted});
-	        	
-			this.httpDelete(this.adjustedUrl(`/api/user/delete`), true, queryParams).then((data) => {
+	    	let payload = {
+	    		uuid : this.commandData.uuid
+	    	};
+	
+			this.httpDelete(`/${Utils.getRootPath()}/user/delete?uuid=${this.commandData.uuid}&usernameToBeDeleted=${this.commandData.usernameToBeDeleted}`, true).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

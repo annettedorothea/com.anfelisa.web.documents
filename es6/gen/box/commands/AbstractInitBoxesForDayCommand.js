@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 
 export default class AbstractInitBoxesForDayCommand extends Command {
@@ -42,12 +44,13 @@ export default class AbstractInitBoxesForDayCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	todayAtMidnightInUTC : this.commandData.todayAtMidnightInUTC,
-	        	};
-	
-			this.httpPut(this.adjustedUrl(`/api/box/init`), true, queryParams, payload).then((data) => {
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		todayAtMidnightInUTC : this.commandData.todayAtMidnightInUTC
+	    	};
+
+	    	console.log(payload);
+			this.httpPut(`/${Utils.getRootPath()}/box/init?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

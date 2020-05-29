@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import ChangeOrderCategoryOkEvent from "../../../gen/category/events/ChangeOrderCategoryOkEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 
@@ -44,13 +46,13 @@ export default class AbstractChangeOrderCategoryCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	movedCategoryId : this.commandData.movedCategoryId,
-	        	targetCategoryId : this.commandData.targetCategoryId,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		movedCategoryId : this.commandData.movedCategoryId,
+	    		targetCategoryId : this.commandData.targetCategoryId
+	    	};
 	
-			this.httpPut(this.adjustedUrl(`/api/category/changeorder`), true, queryParams, payload).then((data) => {
+			this.httpPut(`/${Utils.getRootPath()}/category/changeorder?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

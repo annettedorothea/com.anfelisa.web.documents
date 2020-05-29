@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import UpdateCategoryOkEvent from "../../../gen/category/events/UpdateCategoryOkEvent";
 import UpdateCategoryErrorEvent from "../../../gen/category/events/UpdateCategoryErrorEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
@@ -49,13 +51,13 @@ export default class AbstractUpdateCategoryCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	categoryId : this.commandData.categoryId,
-	        	categoryName : this.commandData.categoryName,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		categoryId : this.commandData.categoryId,
+	    		categoryName : this.commandData.categoryName
+	    	};
 	
-			this.httpPut(this.adjustedUrl(`/api/category/update`), true, queryParams, payload).then((data) => {
+			this.httpPut(`/${Utils.getRootPath()}/category/update?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

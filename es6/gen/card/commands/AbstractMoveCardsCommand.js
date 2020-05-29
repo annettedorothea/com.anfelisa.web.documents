@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import MoveCardsOkEvent from "../../../gen/card/events/MoveCardsOkEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 
@@ -44,13 +46,13 @@ export default class AbstractMoveCardsCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	cardIdList : this.commandData.cardIdList,
-	        	categoryId : this.commandData.categoryId,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		cardIdList : this.commandData.cardIdList,
+	    		categoryId : this.commandData.categoryId
+	    	};
 	
-			this.httpPut(this.adjustedUrl(`/api/cards/move`), true, queryParams, payload).then((data) => {
+			this.httpPut(`/${Utils.getRootPath()}/cards/move?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

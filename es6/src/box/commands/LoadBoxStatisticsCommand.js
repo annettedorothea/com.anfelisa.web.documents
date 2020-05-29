@@ -28,7 +28,7 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
     	return true;
     }
 
-    handleResponse(resolve, reject) {
+    handleResponse(resolve) {
         let boxList = AppState.get_state_State_data_Dashboard_boxList();
         const boxListWithStats = this.commandData.boxList;
         boxList.forEach((box) => {

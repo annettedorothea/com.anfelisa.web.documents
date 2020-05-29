@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
@@ -50,13 +52,13 @@ export default class AbstractResetPasswordCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	password : this.commandData.password,
-	        	token : this.commandData.token,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		password : this.commandData.password,
+	    		token : this.commandData.token
+	    	};
 	
-			this.httpPut(this.adjustedUrl(`/api/users/resetpassword`), false, queryParams, payload).then((data) => {
+			this.httpPut(`/${Utils.getRootPath()}/users/resetpassword?uuid=${this.commandData.uuid}`, false, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import DeleteCategoryOkEvent from "../../../gen/category/events/DeleteCategoryOkEvent";
 import DeleteCategoryErrorEvent from "../../../gen/category/events/DeleteCategoryErrorEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
@@ -49,10 +51,11 @@ export default class AbstractDeleteCategoryCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-		    queryParams.push({key: "categoryId",value: this.commandData.categoryId});
-	        	
-			this.httpDelete(this.adjustedUrl(`/api/category/delete`), true, queryParams).then((data) => {
+	    	let payload = {
+	    		uuid : this.commandData.uuid
+	    	};
+	
+			this.httpDelete(`/${Utils.getRootPath()}/category/delete?uuid=${this.commandData.uuid}&categoryId=${this.commandData.categoryId}`, true).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

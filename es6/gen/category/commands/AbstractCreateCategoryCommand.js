@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import CreateCategoryOkEvent from "../../../gen/category/events/CreateCategoryOkEvent";
 import CreateCategoryErrorEvent from "../../../gen/category/events/CreateCategoryErrorEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
@@ -49,13 +51,13 @@ export default class AbstractCreateCategoryCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	categoryName : this.commandData.categoryName,
-	        	parentCategoryId : this.commandData.parentCategoryId,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		categoryName : this.commandData.categoryName,
+	    		parentCategoryId : this.commandData.parentCategoryId
+	    	};
 	
-			this.httpPost(this.adjustedUrl(`/api/category/create`), true, queryParams, payload).then((data) => {
+			this.httpPost(`/${Utils.getRootPath()}/category/create?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

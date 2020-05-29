@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import LoadUserOkEvent from "../../../gen/profile/events/LoadUserOkEvent";
 
 export default class AbstractLoadUserCommand extends Command {
@@ -42,9 +44,8 @@ export default class AbstractLoadUserCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        	
-			this.httpGet(this.adjustedUrl(`/api/user/get`), true, queryParams).then((data) => {
+	
+			this.httpGet(`/${Utils.getRootPath()}/user/get?uuid=${this.commandData.uuid}`, true).then((data) => {
 				this.commandData.email = data.email;
 				this.commandData.username = data.username;
 				this.commandData.userId = data.userId;

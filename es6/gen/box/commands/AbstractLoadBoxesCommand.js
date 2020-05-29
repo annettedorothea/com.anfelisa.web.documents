@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import LoadBoxesOkEvent from "../../../gen/box/events/LoadBoxesOkEvent";
 import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
 
@@ -44,10 +46,8 @@ export default class AbstractLoadBoxesCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-		    queryParams.push({key: "todayAtMidnightInUTC",value: this.commandData.todayAtMidnightInUTC});
-	        	
-			this.httpGet(this.adjustedUrl(`/api/boxes/my/`), true, queryParams).then((data) => {
+	
+			this.httpGet(`/${Utils.getRootPath()}/boxes/my/?uuid=${this.commandData.uuid}&todayAtMidnightInUTC=${this.commandData.todayAtMidnightInUTC}`, true).then((data) => {
 				this.commandData.boxList = data.boxList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

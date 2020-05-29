@@ -65,8 +65,11 @@ export default class ACEController {
     static addItemToTimeLine(item) {
         let timestamp = new Date();
         item.timestamp = timestamp.getTime();
-		if (ACEController.execution === ACEController.UI && AppUtils.isDevelopment()) {
+		if (ACEController.execution === ACEController.UI && Utils.isDevelopment() && Utils.getTimelineSize() > 0) {
 		    ACEController.timeline.push(AppUtils.deepCopy(item));
+		    if (ACEController.timeline.length > Utils.getTimelineSize()) {
+		        ACEController.timeline.pop();
+		    }
 		} else if (ACEController.execution !== ACEController.UI) {
 		    ACEController.actualTimeline.push(AppUtils.deepCopy(item));
 		}

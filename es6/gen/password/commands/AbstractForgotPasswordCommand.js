@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
@@ -44,13 +46,13 @@ export default class AbstractForgotPasswordCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	username : this.commandData.username,
-	        	language : this.commandData.language,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		username : this.commandData.username,
+	    		language : this.commandData.language
+	    	};
 	
-			this.httpPost(this.adjustedUrl(`/api/users/forgot-password`), false, queryParams, payload).then((data) => {
+			this.httpPost(`/${Utils.getRootPath()}/users/forgot-password?uuid=${this.commandData.uuid}`, false, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

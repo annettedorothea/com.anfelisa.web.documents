@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import DeleteBoxErrorEvent from "../../../gen/box/events/DeleteBoxErrorEvent";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
@@ -49,10 +51,11 @@ export default class AbstractDeleteBoxCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-		    queryParams.push({key: "boxId",value: this.commandData.boxId});
-	        	
-			this.httpDelete(this.adjustedUrl(`/api/box/delete`), true, queryParams).then((data) => {
+	    	let payload = {
+	    		uuid : this.commandData.uuid
+	    	};
+	
+			this.httpDelete(`/${Utils.getRootPath()}/box/delete?uuid=${this.commandData.uuid}&boxId=${this.commandData.boxId}`, true).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

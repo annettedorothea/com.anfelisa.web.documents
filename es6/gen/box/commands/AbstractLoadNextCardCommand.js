@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import LoadNextCardOkEvent from "../../../gen/box/events/LoadNextCardOkEvent";
 
 export default class AbstractLoadNextCardCommand extends Command {
@@ -42,11 +44,8 @@ export default class AbstractLoadNextCardCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-		    queryParams.push({key: "boxId",value: this.commandData.boxId});
-		    queryParams.push({key: "todayAtMidnightInUTC",value: this.commandData.todayAtMidnightInUTC});
-	        	
-			this.httpGet(this.adjustedUrl(`/api/box/next-card`), true, queryParams).then((data) => {
+	
+			this.httpGet(`/${Utils.getRootPath()}/box/next-card?uuid=${this.commandData.uuid}&boxId=${this.commandData.boxId}&todayAtMidnightInUTC=${this.commandData.todayAtMidnightInUTC}`, true).then((data) => {
 				this.commandData.cardId = data.cardId;
 				this.commandData.categoryId = data.categoryId;
 				this.commandData.count = data.count;

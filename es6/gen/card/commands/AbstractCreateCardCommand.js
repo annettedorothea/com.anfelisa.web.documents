@@ -19,6 +19,8 @@
 
 import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import Utils from "../../ace/Utils";
+import ACEController from "../../ace/ACEController";
 import CreateCardOkEvent from "../../../gen/card/events/CreateCardOkEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
@@ -44,15 +46,15 @@ export default class AbstractCreateCardCommand extends Command {
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-			let queryParams = [];
-	        let payload = {	
-	        	wanted : this.commandData.wanted,
-	        	given : this.commandData.given,
-	        	image : this.commandData.image,
-	        	categoryId : this.commandData.categoryId,
-	        	};
+	    	let payload = {
+	    		uuid : this.commandData.uuid,
+	    		wanted : this.commandData.wanted,
+	    		given : this.commandData.given,
+	    		image : this.commandData.image,
+	    		categoryId : this.commandData.categoryId
+	    	};
 	
-			this.httpPost(this.adjustedUrl(`/api/card/create`), true, queryParams, payload).then((data) => {
+			this.httpPost(`/${Utils.getRootPath()}/card/create?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

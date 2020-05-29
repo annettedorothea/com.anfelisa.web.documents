@@ -3,7 +3,7 @@ import Spinner from "./Spinner";
 import AnonymousContainer from "./AnonymousContainer";
 import UserContainer from "./UserContainer";
 import ToastContainer from "./ToastContainer";
-import AppUtils from "../app/AppUtils";
+import Utils from "../../gen/ace/Utils";
 import * as AppState from "../../gen/ace/ReadAppState";
 
 export default class Container extends React.Component {
@@ -38,9 +38,9 @@ export default class Container extends React.Component {
                             0261 1393793 &middot; <a href="mailto:info@anfelisa.de">info@anfelisa.de</a>
                         </p>
                         <p>
-                            {this.state.texts.container.version[this.state.language]} {AppUtils.getClientVersion()}
+                            {this.state.texts.container.version[this.state.language]} {Utils.getClientVersion()}
                         </p>
-                        {AppUtils.isDevelopment() === true && <a href={`${AppUtils.getAceScenariosBaseUrl()}#/${AppUtils.getAceScenariosApiKey()}/scenarios`} target="ace">ace-scenarios</a>}
+                        {Utils.isDevelopment() === true && <a href={`${Utils.getAceScenariosBaseUrl()}#/${Utils.getAceScenariosApiKey()}/scenarios`} target="ace">ace-scenarios</a>}
                     </div>
                 </div>
             </div>
