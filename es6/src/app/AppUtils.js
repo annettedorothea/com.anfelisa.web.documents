@@ -3,7 +3,7 @@ import * as ReadAppState from "../../gen/ace/ReadAppState";
 import * as WriteAppState from "../../gen/ace/WriteAppState";
 import * as App from "./App";
 import Utils from "../../gen/ace/Utils";
-import {displayError, displayErrorAndLogout, init} from "../../gen/common/ActionFunctions"
+import {displayError, displayErrorAndLogout, displaySaveBugDialog, init} from "../../gen/common/ActionFunctions"
 import {Texts} from "./Texts"
 
 export default class AppUtils {
@@ -171,7 +171,7 @@ export default class AppUtils {
             } else {
                 if (error.code === 401) {
                     error.errorKey = "unauthorized";
-                    displayErrorAndLogout({error});
+                    displayErrorAndLogout(error);
                 } else if (error.code === 400) {
                     displayError(error)
                 } else {
@@ -184,6 +184,7 @@ export default class AppUtils {
         } catch (e) {
             console.error(e);
         }
+        displaySaveBugDialog();
     }
 
     static deepCopy(object) {

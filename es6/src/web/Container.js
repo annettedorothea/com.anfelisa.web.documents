@@ -5,6 +5,8 @@ import UserContainer from "./UserContainer";
 import ToastContainer from "./ToastContainer";
 import Utils from "../../gen/ace/Utils";
 import * as AppState from "../../gen/ace/ReadAppState";
+import Confirm from "./Confirm";
+import {callSaveBug, cancelSaveBugDialog} from "../../gen/common/ActionFunctions";
 
 export default class Container extends React.Component {
 
@@ -27,6 +29,18 @@ export default class Container extends React.Component {
             <div>
                 <ToastContainer message={this.state.message}/>
                 {this.state.displaySpinner && <Spinner/>}
+                {this.state.displaySaveBugDialog === true &&
+                <div>
+                    <Confirm {...
+                        {
+                            title: this.state.texts.container.unexpectedBug[this.state.language],
+                            message: this.state.texts.container.unexpectedBugMessage[this.state.language],
+                            okText: this.state.texts.container.yes[this.state.language],
+                            cancelText: this.state.texts.container.no[this.state.language],
+                            ok: () => callSaveBug(),
+                            cancel: () => cancelSaveBugDialog()
+                        }}/>
+                </div>}
                 {content}
                 <div className={`footer ${this.state.loggedInUser === undefined ? "fixed" : ""}`}>
                     <div className="footerContent">

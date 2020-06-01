@@ -26,6 +26,10 @@ import DisplayErrorAction from "../../src/common/actions/DisplayErrorAction";
 import DisplayErrorAndLogoutAction from "../../src/common/actions/DisplayErrorAndLogoutAction";
 import DisplayMessageAction from "../../src/common/actions/DisplayMessageAction";
 import ClearToastAction from "../../src/common/actions/ClearToastAction";
+import DisplaySaveBugDialogAction from "../../src/common/actions/DisplaySaveBugDialogAction";
+import CallSaveBugAction from "../../src/common/actions/CallSaveBugAction";
+import CancelSaveBugDialogAction from "../../src/common/actions/CancelSaveBugDialogAction";
+import HideSaveBugDialogAction from "../../src/common/actions/HideSaveBugDialogAction";
 
 export function init(hash, username, password) {
     new InitAction(hash, username, password).apply();
@@ -61,6 +65,22 @@ export function displayMessage(messageKey) {
 
 export function clearToast() {
     new ClearToastAction().apply();
+}
+
+export function displaySaveBugDialog() {
+    new DisplaySaveBugDialogAction().apply();
+}
+
+export function callSaveBug() {
+    new CallSaveBugAction().apply();
+}
+
+export function cancelSaveBugDialog() {
+    new CancelSaveBugDialogAction().apply();
+}
+
+export function hideSaveBugDialog() {
+    new HideSaveBugDialogAction().apply();
 }
 
 

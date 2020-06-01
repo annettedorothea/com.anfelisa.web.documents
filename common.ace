@@ -69,6 +69,18 @@ DisplayMessage <messageKey>
 
 ClearToast 
 	on ok (reset state.State.message)
+	
+DisplaySaveBugDialog
+	on ok (set state.State.displaySaveBugDialog)
+
+async CallSaveBug
+	on ok triggers (HideSaveBugDialog)
+
+CancelSaveBugDialog
+	on ok (set state.State.displaySaveBugDialog)
+
+HideSaveBugDialog
+	on ok (set state.State.displaySaveBugDialog) triggers (DisplayMessage)
 
 appState state : State {
 	loggedInUser : LoggedInUser {
@@ -84,6 +96,7 @@ appState state : State {
 	view
 	language
 	texts
+	displaySaveBugDialog
 	message : Message {
 		type
 		text

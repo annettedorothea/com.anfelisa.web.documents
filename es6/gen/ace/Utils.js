@@ -90,7 +90,7 @@ export default class Utils {
                 apiKey: Utils.getAceScenariosApiKey(),
                 serverVersion: serverInfo.serverVersion
             };
-            return AppUtils.httpPost(Utils.getAceScenariosBaseUrl() + 'api/bugs/create', false, [], data);
+            return AppUtils.httpPost(Utils.getAceScenariosBaseUrl() + 'api/bugs/create', false, data);
         });
     }
 
@@ -114,7 +114,7 @@ export default class Utils {
                     apiKey: Utils.getAceScenariosApiKey(),
                     serverVersion: serverInfo.serverVersion
                 };
-                return AppUtils.httpPost(Utils.getAceScenariosBaseUrl() + 'api/scenarios/create', false, [], data);
+                return AppUtils.httpPost(Utils.getAceScenariosBaseUrl() + 'api/scenarios/create', false, data);
             });
         });
     }
@@ -136,7 +136,7 @@ export default class Utils {
                     serverVersion: serverInfo.serverVersion,
                     serverTimeline: JSON.stringify(serverTimeline)
                 };
-                return AppUtils.httpPost(Utils.getAceScenariosBaseUrl() + 'api/results/create', false, [], data);
+                return AppUtils.httpPost(Utils.getAceScenariosBaseUrl() + 'api/results/create', false, data);
             });
         });
     }
@@ -184,11 +184,13 @@ export default class Utils {
 
     static replayServerless(pauseInMillis) {
         ReplayUtils.prepareReplay();
+        AppUtils.createInitialAppState();
         ACEController.startReplay(ACEController.REPLAY, pauseInMillis)
     }
 
     static replayE2E(pauseInMillis, serverTimeline) {
         ReplayUtils.prepareReplay();
+        AppUtils.createInitialAppState();
         AppUtils.httpPut('replay/e2e/start', false, [], JSON.parse(serverTimeline)).then(() => {
             ACEController.startReplay(ACEController.E2E, pauseInMillis)
         });
@@ -232,6 +234,7 @@ export default class Utils {
 
     static finishReplay() {
     	ReplayUtils.tearDownReplay();
+    	AppUtils.createInitialAppState();
         if (ReplayUtils.scenarioConfig.saveScenarioResult === true) {
             const normalized = Utils.normalizeTimelines(ACEController.expectedTimeline, ACEController.actualTimeline);
             const result = ReplayUtils.compareItems(normalized.expected, normalized.actual);

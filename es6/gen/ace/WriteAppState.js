@@ -174,6 +174,17 @@ export function reset_state_State_texts() {
 export function init_state_State_texts() {
 	state.texts = null;
 }
+export function set_state_State_displaySaveBugDialog(eventData) {
+	state.displaySaveBugDialog = eventData.displaySaveBugDialog;
+}
+
+export function reset_state_State_displaySaveBugDialog() {
+	state.displaySaveBugDialog = null;
+}
+
+export function init_state_State_displaySaveBugDialog() {
+	state.displaySaveBugDialog = null;
+}
 export function set_state_State_message(eventData) {
 	state.message = eventData.message;
 }

@@ -262,22 +262,46 @@ export const Texts = {
         about: {
             de: "Impressum"
         },
+        no: {
+            de: "Nein"
+        },
+        unexpectedBug: {
+            de: "Sorry, aber das hätte nicht passieren dürfen..."
+        },
+        unexpectedBugMessage: {
+            de: "Dürfen wir deine aktuellen Daten und deine letzten Aktionen speichern, um diesen Fehler zu analysieren?"
+        },
         version: {
             de: "Version"
+        },
+        yes: {
+            de: "Ja"
         }
     },
     errors: {
-        atLeastOneUserMustHaveAccessToCategory: {
-            de: "Wenigstens ein Benutzer muss Schreib-Zugriff zu der Lernkartei haben."
+        adminRoleMustNotBeChanged: {
+            de: "Admin bleibt Admin."
         },
         boxDoesNotExist: {
             de: "Lernkartei wurde nicht gefunden."
         },
+        cannotMoveCategoryToItself: {
+            de: "Drag&Drop-Fehler: Ordner kann nicht auf sich selbst verschoben werden."
+        },
+        cannotMoveCategoryToOneOfItsChildren: {
+            de: "Drag&Drop-Fehler: Ordner kann nicht in einen Unterordner verschoben werden."
+        },
         cardDoesNotExist: {
             de: "Karte wurde nicht gefunden."
         },
+        categoriesMustBeInSameRootCategory: {
+            de: "Drag&Drop-Fehler: Die Ordner müssen zu derselben Box gehören."
+        },
         categoryDoesNotExist: {
             de: "Lernkartei bzw. Ordner wurde nicht gefunden."
+        },
+        givenLanguageIsInvalid : {
+            de: "Sprache ist ungültig."
         },
         lastAdminMustNotBeDeleted: {
             de: "Der Benutzer konnte nicht gelöscht werden, weil er der letzte Administrator ist."
@@ -285,32 +309,32 @@ export const Texts = {
         loginFailed: {
             de: "Anmeldung fehlgeschlagen."
         },
-        failedToConfirmEmail: {
-            de: "Email-Adresse konnte nicht bestätigt werden."
-        },
         failedToResetPassword: {
             de: "Das Passwort konnte nicht geändert werden."
         },
         fileTooBig: {
             de: "Die Datei ist zu groß."
         },
-        failedToSendEmail: {
-            de: "Die Email konnte nicht versendet werden."
-        },
-        invalidLanguage: {
-            de: "Ungültige Sprache."
-        },
         invalidRole: {
             de: "Ungültige Rolle."
         },
-        noCardsLeft: {
-            de: "Es gibt keine neuen Karten mehr."
+        maxCardsPerDayMustNotBeZero: {
+            de: "Die maximale Anzahl von Karten pro Tag darf nicht 0 sein."
+        },
+        movedCategoriesMustNotBeNull: {
+            de: "Drag&Drop-Fehler: keine Ordner gewählt."
         },
         noImageFile: {
             de: "Es dürfen nur Bilder hochgeladen werden."
         },
+        rootCategoryMustNotBeDeleted: {
+            de: "Ordner darf nicht gelöscht werden."
+        },
         tokenDoesNotExist: {
             de: "Token wurde nicht gefunden."
+        },
+        tokenDoesNotMatch: {
+            de: "Token fehlerhaft."
         },
         usernameAlreadyTaken: {
             de: "Die Registrierung ist fehlgeschlagen, weil der Benutzername nicht mehr frei ist. Bitte versuche es mit einem anderen Benutzernamen."
@@ -323,6 +347,9 @@ export const Texts = {
         },
         userDoesNotExist: {
             de: "Benutzer wurde nicht gefunden."
+        },
+        wantedLanguageIsInvalid: {
+            de: "Sprache ist ungültig."
         }
     },
     forgotPassword: {
@@ -382,6 +409,9 @@ export const Texts = {
         },
         passwordReset: {
             de: "Das Passwort wurde geändert."
+        },
+        thankYou: {
+            de: "Danke für deine Hilfe!"
         },
         userAdded: {
             de: "Der Benutzer wurde hizugefügt."

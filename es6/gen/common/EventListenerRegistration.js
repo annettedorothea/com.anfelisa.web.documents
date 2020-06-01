@@ -46,6 +46,9 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.DisplayErrorAndLogoutOkEvent', AppState.set_state_State_message);
 		ACEController.registerListener('common.DisplayMessageOkEvent', AppState.set_state_State_message);
 		ACEController.registerListener('common.ClearToastOkEvent', AppState.reset_state_State_message);
+		ACEController.registerListener('common.DisplaySaveBugDialogOkEvent', AppState.set_state_State_displaySaveBugDialog);
+		ACEController.registerListener('common.CancelSaveBugDialogOkEvent', AppState.set_state_State_displaySaveBugDialog);
+		ACEController.registerListener('common.HideSaveBugDialogOkEvent', AppState.set_state_State_displaySaveBugDialog);
 	}
 
 }

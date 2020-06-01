@@ -19,6 +19,8 @@
 
 import AppUtils from "../../src/app/AppUtils";
 import Utils from "./Utils";
+import * as ReadAppState from "./ReadAppState";
+import * as WriteAppState from "./WriteAppState";
 
 export default class ACEController {
 
@@ -68,7 +70,7 @@ export default class ACEController {
 		if (ACEController.execution === ACEController.UI && Utils.isDevelopment() && Utils.getTimelineSize() > 0) {
 		    ACEController.timeline.push(AppUtils.deepCopy(item));
 		    if (ACEController.timeline.length > Utils.getTimelineSize()) {
-		        ACEController.timeline.pop();
+		        ACEController.timeline.shift();
 		    }
 		} else if (ACEController.execution !== ACEController.UI) {
 		    ACEController.actualTimeline.push(AppUtils.deepCopy(item));
@@ -86,6 +88,7 @@ export default class ACEController {
     }
 
     static applyNextActions() {
+    	ACEController.addItemToTimeLine({appState: ReadAppState.getState()});
         let action = ACEController.actionQueue.shift();
         if (action) {
 			if (action.asynchronous) {
@@ -138,7 +141,8 @@ export default class ACEController {
 
     static readTimelineAndCreateReplayActions() {
         let actions = [];
-
+		
+		let appStateWasSet = false;
         for (let i = 0; i < ACEController.expectedTimeline.length; i++) {
             let item = ACEController.expectedTimeline[i];
             if (item.action) {
@@ -147,6 +151,11 @@ export default class ACEController {
                 action.actionData = actionData;
                 actions.push(action);
             }
+			if (item.appState && !appStateWasSet) {
+			    WriteAppState.setInitialState(item.appState);
+			    appStateWasSet = true;
+			}
+            
         }
 
         ACEController.actionQueue = actions;

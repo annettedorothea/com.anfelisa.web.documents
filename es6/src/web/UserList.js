@@ -15,7 +15,6 @@ export default class UserList extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         const userItems = this.props.userList.map((user) => {
             return <UserItem
                 {...user}
