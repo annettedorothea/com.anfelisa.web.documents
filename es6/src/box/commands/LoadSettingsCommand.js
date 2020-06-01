@@ -34,8 +34,8 @@ export default class LoadSettingsCommand extends AbstractLoadSettingsCommand {
             categoryId: this.commandData.categoryId,
             categoryName: this.commandData.categoryName,
             dictionaryLookup: this.commandData.dictionaryLookup,
-            givenLanguage: this.commandData.givenLanguage,
-            wantedLanguage: this.commandData.wantedLanguage
+            givenLanguage: this.commandData.givenLanguage !== null ? this.commandData.givenLanguage : "",
+            wantedLanguage: this.commandData.wantedLanguage !== null ? this.commandData.wantedLanguage : ""
         };
     	this.commandData.outcome = this.ok;
     	resolve();

@@ -48,8 +48,7 @@ export default class AbstractInitBoxesForDayCommand extends Command {
 	    		uuid : this.commandData.uuid,
 	    		todayAtMidnightInUTC : this.commandData.todayAtMidnightInUTC
 	    	};
-
-	    	console.log(payload);
+	
 			this.httpPut(`/${Utils.getRootPath()}/box/init?uuid=${this.commandData.uuid}`, true, payload).then((data) => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
