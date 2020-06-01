@@ -28,7 +28,7 @@ import EventListenerRegistrationPassword from "../../gen/password/EventListenerR
 import ActionFactoryRegistrationPassword from "../../gen/password/ActionFactoryRegistration";
 
 import Container from "../web/Container";
-import RouteChangedAction from "../common/actions/RouteChangedAction";
+import {routeChanged} from "../../gen/common/ActionFunctions";
 
 export * from "../../gen/ace/Scenario";
 export * from "../../gen/ace/Bug";
@@ -48,7 +48,7 @@ export function render(newAppState) {
 }
 
 window.onhashchange = () => {
-    new RouteChangedAction().apply();
+    routeChanged();
     window.scrollTo(0, 0);
 };
 
