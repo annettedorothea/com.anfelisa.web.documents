@@ -70,7 +70,10 @@ export default class ACEController {
 		if (ACEController.execution === ACEController.UI && Utils.isDevelopment() && Utils.getTimelineSize() > 0) {
 		    ACEController.timeline.push(AppUtils.deepCopy(item));
 		    if (ACEController.timeline.length > Utils.getTimelineSize()) {
-		        ACEController.timeline.shift();
+                ACEController.timeline.shift();
+		        while (ACEController.timeline.length > 0 && ACEController.timeline.length > 0 && !ACEController.timeline[0].appState) {
+                    ACEController.timeline.shift();
+                }
 		    }
 		} else if (ACEController.execution !== ACEController.UI) {
 		    ACEController.actualTimeline.push(AppUtils.deepCopy(item));

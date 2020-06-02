@@ -75,14 +75,20 @@ export default class Utils {
     static getTimelineSize() {
         return Utils.settings ? Utils.settings.timelineSize : 0;
     }
-	
+
     static saveBug(description, creator) {
         return Utils.getServerInfo().then((serverInfo) => {
             const browser = Utils.getBrowserInfo();
             const uuid = AppUtils.createUUID();
+            const filteredTimeline = ACEController.timeline.filter((item, index) => {
+                if (index === 0) {
+                    return true;
+                }
+                return (!item.appState);
+            });
             const data = {
                 description,
-                timeline: JSON.stringify(ACEController.timeline),
+                timeline: JSON.stringify(filteredTimeline),
                 creator,
                 clientVersion: Utils.getClientVersion(),
                 device: browser.name + " " + browser.version,

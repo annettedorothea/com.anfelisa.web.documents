@@ -30,7 +30,7 @@ export function runBug(bugId, pauseInMillis = 0) {
 }
 
 export function saveBug(description, creator) {
-    Utils.saveBug(description, creator).then((id) => {
+    return Utils.saveBug(description, creator).then((id) => {
         console.log(`saved bug with id ${id}`);
     });
 }
