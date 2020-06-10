@@ -60,6 +60,11 @@ ACE
 		loadingFlag common.state.State.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 
+	SortCardOut
+	 	call com.anfelisa.box.SortCardsOut
+		loadingFlag common.state.State.displaySpinner 
+		on ok triggers (InitBoxesForDayDuringScore)
+
 	InitBoxesForDayDuringScore
 		call com.anfelisa.box.InitMyBoxesForDay
 		loadingFlag common.state.State.displaySpinner 

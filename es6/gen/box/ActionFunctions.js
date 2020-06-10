@@ -27,6 +27,7 @@ import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
 import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
+import SortCardOutAction from "../../src/box/actions/SortCardOutAction";
 import InitBoxesForDayDuringScoreAction from "../../src/box/actions/InitBoxesForDayDuringScoreAction";
 import LoadSettingsAction from "../../src/box/actions/LoadSettingsAction";
 import SaveBoxSettingsAction from "../../src/box/actions/SaveBoxSettingsAction";
@@ -78,6 +79,10 @@ export function scoreCard(scoredCardQuality) {
 
 export function scoreReinforceCard(scoredCardQuality) {
     new ScoreReinforceCardAction(scoredCardQuality).apply();
+}
+
+export function sortCardOut() {
+    new SortCardOutAction().apply();
 }
 
 export function initBoxesForDayDuringScore() {

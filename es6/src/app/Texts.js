@@ -504,6 +504,9 @@ export const Texts = {
         },
         scoredDate: {
             de: "zuletzt abgefragt am: "
+        },
+        sortOut: {
+            de: "Aussortieren"
         }
     },
     registration: {

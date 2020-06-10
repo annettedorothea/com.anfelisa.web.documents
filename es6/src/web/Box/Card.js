@@ -3,7 +3,7 @@ import Given from "./Given";
 import Wanted from "./Wanted";
 import ScoreButton from "./ScoreButton";
 import {route} from "../../../gen/common/ActionFunctions";
-import {scoreCard, scoreReinforceCard} from "../../../gen/box/ActionFunctions";
+import {scoreCard, scoreReinforceCard, sortCardOut} from "../../../gen/box/ActionFunctions";
 
 export default class Card extends React.Component {
 
@@ -63,6 +63,9 @@ export default class Card extends React.Component {
                     <div>
                         {this.scoreButton(3)}
                         {this.scoreButton(0)}
+                    </div>
+                    <div>
+                        <button onClick={() => sortCardOut()}>{this.props.texts.queryCards.sortOut[this.props.language]}</button>
                     </div>
                 </div>
                 <div className="categoryLink">
