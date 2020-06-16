@@ -1180,16 +1180,13 @@ export function set_state_State_data_AuthorView_cardView_CardView_cardList(event
 	state.data.cardView.cardList = eventData.cardList;
 }
 
-
 export function reset_state_State_data_AuthorView_cardView_CardView_cardList() {
 	state.data.cardView.cardList = null;
 }
 
 export function init_state_State_data_AuthorView_cardView_CardView_cardList() {
-	state.data.cardView.cardList = {};
+	state.data.cardView.cardList = null;
 }
-
-
 export function set_state_State_data_AuthorView_cardView_CardView_naturalInputOrder(eventData) {
 	state.data.cardView.naturalInputOrder = eventData.naturalInputOrder;
 }

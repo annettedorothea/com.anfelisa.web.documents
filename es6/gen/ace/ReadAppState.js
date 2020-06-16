@@ -2512,9 +2512,8 @@ export function get_state_State_data_AuthorView_cardView() {
 
 
 export function get_state_State_data_AuthorView_cardView_CardView_cardList() {
-	return AppUtils.deepCopy(state.data.cardView.cardList);
+	return state.data.cardView.cardList;
 }
-
 
 
 
