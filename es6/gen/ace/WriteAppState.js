@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2019, Annette Pohl, Koblenz, Germany
+ * Copyright (c) 2020, Annette Pohl, Koblenz, Germany
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -383,12 +383,6 @@ export function merge_state_State_data(eventData) {
 	}
 	if (eventData.categoryTree !== undefined) {
 		state.data.categoryTree = eventData.categoryTree;
-	}
-	if (eventData.boxList !== undefined) {
-		state.data.boxList = eventData.boxList;
-	}
-	if (eventData.deleteBox !== undefined) {
-		state.data.deleteBox = eventData.deleteBox;
 	}
 	if (eventData.cardView !== undefined) {
 		state.data.cardView = eventData.cardView;
@@ -1131,61 +1125,6 @@ export function init_state_State_data_AuthorView_categoryTree_CategoryTree_previ
 	state.data.categoryTree.previewCsv = null;
 }
 
-export function set_state_State_data_AuthorView_boxList(eventData) {
-	state.data.boxList = eventData.boxList;
-}
-
-export function reset_state_State_data_AuthorView_boxList() {
-	state.data.boxList = null;
-}
-
-export function init_state_State_data_AuthorView_boxList() {
-	state.data.boxList = null;
-}
-export function set_state_State_data_AuthorView_deleteBox(eventData) {
-	state.data.deleteBox = eventData.deleteBox;
-}
-
-export function merge_state_State_data_AuthorView_deleteBox(eventData) {
-	if (eventData.confirmDelete !== undefined) {
-		state.data.deleteBox.confirmDelete = eventData.confirmDelete;
-	}
-	if (eventData.boxId !== undefined) {
-		state.data.deleteBox.boxId = eventData.boxId;
-	}
-}
-
-export function reset_state_State_data_AuthorView_deleteBox() {
-	state.data.deleteBox = null;
-}
-
-export function init_state_State_data_AuthorView_deleteBox() {
-	state.data.deleteBox = {};
-}
-
-export function set_state_State_data_AuthorView_deleteBox_DeleteBox_confirmDelete(eventData) {
-	state.data.deleteBox.confirmDelete = eventData.confirmDelete;
-}
-
-export function reset_state_State_data_AuthorView_deleteBox_DeleteBox_confirmDelete() {
-	state.data.deleteBox.confirmDelete = null;
-}
-
-export function init_state_State_data_AuthorView_deleteBox_DeleteBox_confirmDelete() {
-	state.data.deleteBox.confirmDelete = null;
-}
-export function set_state_State_data_AuthorView_deleteBox_DeleteBox_boxId(eventData) {
-	state.data.deleteBox.boxId = eventData.boxId;
-}
-
-export function reset_state_State_data_AuthorView_deleteBox_DeleteBox_boxId() {
-	state.data.deleteBox.boxId = null;
-}
-
-export function init_state_State_data_AuthorView_deleteBox_DeleteBox_boxId() {
-	state.data.deleteBox.boxId = null;
-}
-
 export function set_state_State_data_AuthorView_cardView(eventData) {
 	state.data.cardView = eventData.cardView;
 }
@@ -1241,13 +1180,16 @@ export function set_state_State_data_AuthorView_cardView_CardView_cardList(event
 	state.data.cardView.cardList = eventData.cardList;
 }
 
+
 export function reset_state_State_data_AuthorView_cardView_CardView_cardList() {
 	state.data.cardView.cardList = null;
 }
 
 export function init_state_State_data_AuthorView_cardView_CardView_cardList() {
-	state.data.cardView.cardList = null;
+	state.data.cardView.cardList = {};
 }
+
+
 export function set_state_State_data_AuthorView_cardView_CardView_naturalInputOrder(eventData) {
 	state.data.cardView.naturalInputOrder = eventData.naturalInputOrder;
 }

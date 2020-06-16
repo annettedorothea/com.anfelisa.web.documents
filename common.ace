@@ -180,11 +180,6 @@ appState state : State {
 			
 			previewCsv
 		}
-    	boxList list
-        deleteBox : DeleteBox {
-            confirmDelete
-            boxId
-        }
         cardView : CardView {
 	        cardList list
 	        naturalInputOrder
