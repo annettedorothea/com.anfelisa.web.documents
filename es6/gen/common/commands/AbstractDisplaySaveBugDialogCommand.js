@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import DisplaySaveBugDialogOkEvent from "../../../gen/common/events/DisplaySaveBugDialogOkEvent";
 
 export default class AbstractDisplaySaveBugDialogCommand extends Command {

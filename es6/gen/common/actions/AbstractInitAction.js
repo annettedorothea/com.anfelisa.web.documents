@@ -22,8 +22,8 @@ import InitCommand from "../../../src/common/commands/InitCommand";
 
 export default class AbstractInitAction extends Action {
 
-    constructor( hash, username, password) {
-        super({hash, username, password}, 'common.InitAction');
+    constructor() {
+        super({}, 'common.InitAction');
 		}
 		
 	getCommand() {

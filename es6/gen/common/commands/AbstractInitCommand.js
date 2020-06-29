@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import InitUserEvent from "../../../gen/common/events/InitUserEvent";
 import InitNoUserEvent from "../../../gen/common/events/InitNoUserEvent";
 import InitialLoginAction from "../../../src/common/actions/InitialLoginAction";
@@ -29,6 +30,9 @@ export default class AbstractInitCommand extends Command {
         super(commandData, "common.InitCommand");
         this.user = "user";
         this.noUser = "noUser";
+        this.hash = AppState.get_hash;
+        this.username = AppState.get_username;
+        this.password = AppState.get_password;
     }
 
     publishEvents() {

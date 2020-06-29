@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ScheduleSelectedCardsCommand extends AbstractScheduleSelectedCardsCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data.cardView;
         this.commandData.cardIds = data.selectedCardIds;
         return true;

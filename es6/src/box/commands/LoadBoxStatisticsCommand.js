@@ -23,7 +23,7 @@ import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsCommand {
 
-    initCommandData() {
+    validateCommandData() {
     	//add from appState to commandData
     	return true;
     }

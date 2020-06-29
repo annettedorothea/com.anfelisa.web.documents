@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import ToggleInputOrderOkEvent from "../../../gen/card/events/ToggleInputOrderOkEvent";
 
 export default class AbstractToggleInputOrderCommand extends Command {

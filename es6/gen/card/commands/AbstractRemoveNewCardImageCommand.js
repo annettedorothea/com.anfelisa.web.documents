@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import RemoveNewCardImageOkEvent from "../../../gen/card/events/RemoveNewCardImageOkEvent";
 
 export default class AbstractRemoveNewCardImageCommand extends Command {

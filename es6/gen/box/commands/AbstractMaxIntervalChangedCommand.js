@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import MaxIntervalChangedOkEvent from "../../../gen/box/events/MaxIntervalChangedOkEvent";
 
 export default class AbstractMaxIntervalChangedCommand extends Command {

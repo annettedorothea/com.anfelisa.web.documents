@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import UsernameForgotPasswordChangedOkEvent from "../../../gen/password/events/UsernameForgotPasswordChangedOkEvent";
 
 export default class AbstractUsernameForgotPasswordChangedCommand extends Command {

@@ -6,27 +6,62 @@ ACE
 
 	GetAllUsers 
 		call com.anfelisa.user.GetAllUsers
-		loadingFlag common.state.State.displaySpinner
+		loadingFlag common.displaySpinner
 		on ok ( 
-			set common.state.State.data
-			set common.state.State.view
+			set common.userListView
 		)
 	
-	SaveRole <editedUserId, newRole>
+	SaveRole ( editedUserId, newRole )
 		call com.anfelisa.user.ChangeUserRole
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok triggers (GetAllUsers)
 	
 	DeleteUser
 		call com.anfelisa.user.DeleteUser
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok triggers ( GetAllUsers )
-		on error (reset common.state.State.data.UserList.usernameToBeDeleted reset common.state.State.data.UserList.showDeleteUserDialog) triggers (common.DisplayError)
+		on error (reset common.userListView.usernameToBeDeleted reset common.userListView.showDeleteUserDialog) triggers (common.DisplayError)
 	
-	DeleteUserClick<usernameToBeDeleted>
-		on ok (merge common.state.State.data)
+	DeleteUserClick ( usernameToBeDeleted )
+		on ok (merge common.userListView)
 	
 	DeleteUserCancel 
-		on ok (reset common.state.State.data.UserList.usernameToBeDeleted reset common.state.State.data.UserList.showDeleteUserDialog)
+		on ok (reset common.userListView.usernameToBeDeleted reset common.userListView.showDeleteUserDialog)
+	
+	
+scenarios
+	GetAllUsers 
+	GIVEN GetAllUsers
+		registration.RegisterUser
+	WHEN GetAllUsers
+	with response 200 {
+		userList : [
+			{
+				email: "email",
+				emailConfirmed: true,
+				password: "pw",
+				role: "ADMIN",
+				userId: "userId",
+				username: "name"
+			}
+		]
+	}
+	THEN 
+	expectedServerCall {
+		
+	}
+	expectedState userListWasSet common.userListView shouldBe {
+		userList: [
+			{
+				email: "email",
+				emailConfirmed: true,
+				password: "pw",
+				role: "ADMIN",
+				userId: "userId",
+				username: "name"
+			}
+		]	
+	} 
 	
 
+	

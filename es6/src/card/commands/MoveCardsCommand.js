@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class MoveCardsCommand extends AbstractMoveCardsCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data;
         this.commandData.cardIdList = data.cardView.movedCardIds;
         this.commandData.categoryId = data.categoryTree.dropTargetCategoryId;

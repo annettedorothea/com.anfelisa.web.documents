@@ -4,7 +4,7 @@ import {getState, get_state_State_data_AuthorView_categoryTree_CategoryTree_root
 
 export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCommand {
 
-    initCommandData() {
+    validateCommandData() {
         if (!this.commandData.rootCategoryId) {
             this.commandData.rootCategoryId = get_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory().categoryId;
         }

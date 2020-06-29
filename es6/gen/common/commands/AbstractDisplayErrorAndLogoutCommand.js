@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import DisplayErrorAndLogoutOkEvent from "../../../gen/common/events/DisplayErrorAndLogoutOkEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 

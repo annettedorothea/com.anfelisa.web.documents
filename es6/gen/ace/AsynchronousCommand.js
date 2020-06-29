@@ -26,7 +26,7 @@ export default class AsynchronousCommand extends Command {
     executeCommand() {
         return new Promise((resolve, reject) => {
 			if (ACEController.execution !== ACEController.REPLAY) {
-				if (this.initCommandData()) {
+				if (this.validateCommandData()) {
 				    this.execute().then(() => {
 				        ACEController.addItemToTimeLine({command: this});
 				        this.publishEvents();
@@ -58,7 +58,7 @@ export default class AsynchronousCommand extends Command {
         });
     }
 
-    initCommandData() {
+    validateCommandData() {
     	return true;
     }
 

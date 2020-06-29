@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class LoadUserCommand extends AbstractLoadUserCommand {
 
-    initCommandData() {
+    validateCommandData() {
         return true;
     }
 

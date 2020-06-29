@@ -19,7 +19,7 @@
 
 import Action from "../../ace/AsynchronousAction";
 import ResetPasswordCommand from "../../../src/password/commands/ResetPasswordCommand";
-import * as AppState from "../../ace/WriteAppState";
+import * as AppState from "../../ace/AppState";
 
 export default class AbstractResetPasswordAction extends Action {
 
@@ -33,11 +33,11 @@ export default class AbstractResetPasswordAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: true});
+		AppState.set_displaySpinner({displaySpinner: true});
 	}
 	
 	postCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: false});
+		AppState.set_displaySpinner({displaySpinner: false});
 	}
 
 }

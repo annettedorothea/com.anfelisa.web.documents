@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import DeleteCardClickOkEvent from "../../../gen/card/events/DeleteCardClickOkEvent";
 
 export default class AbstractDeleteCardClickCommand extends Command {

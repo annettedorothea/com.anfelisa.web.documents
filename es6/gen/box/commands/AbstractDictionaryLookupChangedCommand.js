@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import DictionaryLookupChangedOkEvent from "../../../gen/box/events/DictionaryLookupChangedOkEvent";
 
 export default class AbstractDictionaryLookupChangedCommand extends Command {

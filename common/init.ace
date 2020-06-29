@@ -1,0 +1,14 @@
+HttpClient
+
+commonInit
+
+
+scenarios
+InitNoUser 
+	WHEN common.Init 
+	THEN 
+	expectedState 
+		loggedInUserIsUndefined common.loggedInUser shouldBe undefined
+		languageIsSetToDe common.language shouldBe "de"
+	triggeredActions 
+		common.RouteChanged

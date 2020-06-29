@@ -22,7 +22,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class TranslateCommand extends AbstractTranslateCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data;
         if (!!data.cardView.naturalInputOrder) {
             if (!data.cardView.newCard.given) {

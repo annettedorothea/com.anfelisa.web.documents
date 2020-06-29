@@ -7,7 +7,7 @@ import {
 
 export default class RegisterUserCommand extends AbstractRegisterUserCommand {
 
-    initCommandData() {
+    validateCommandData() {
         this.commandData.email = get_state_State_data_Registration_email();
         this.commandData.language = get_state_State_language();
         this.commandData.username = get_state_State_data_Registration_username();

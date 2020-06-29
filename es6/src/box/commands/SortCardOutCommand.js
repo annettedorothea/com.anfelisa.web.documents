@@ -21,7 +21,7 @@ import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class SortCardOutCommand extends AbstractSortCardOutCommand {
 
-    initCommandData() {
+    validateCommandData() {
         this.commandData.cardIds = [];
         this.commandData.cardIds[0] = AppState.get_state_State_data_Card_cardId();
         return true;

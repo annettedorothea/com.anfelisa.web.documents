@@ -21,6 +21,7 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import ACEController from "../../ace/ACEController";
+import * as AppState from "../../ace/AppState";
 import InitialLoginOkEvent from "../../../gen/common/events/InitialLoginOkEvent";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";

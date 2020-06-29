@@ -20,7 +20,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ChangeCardOrderCommand extends AbstractChangeCardOrderCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data;
         this.commandData.cardIdList = data.cardView.movedCardIds;
         return true;

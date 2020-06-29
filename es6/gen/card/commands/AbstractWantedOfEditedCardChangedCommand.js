@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import WantedOfEditedCardChangedOkEvent from "../../../gen/card/events/WantedOfEditedCardChangedOkEvent";
 
 export default class AbstractWantedOfEditedCardChangedCommand extends Command {

@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class LoadCardsCommand extends AbstractLoadCardsCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const selectedCategory = getState().data.categoryTree.selectedCategory;
         if (!selectedCategory) {
             this.commandData.outcome = this.noCategorySelected;

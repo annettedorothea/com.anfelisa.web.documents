@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class DeleteCategoryCommand extends AbstractDeleteCategoryCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data.categoryTree;
         this.commandData.categoryId = data.selectedCategory.categoryId;
         return true;

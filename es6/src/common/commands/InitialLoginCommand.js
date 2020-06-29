@@ -2,7 +2,7 @@ import AbstractInitialLoginCommand from "../../../gen/common/commands/AbstractIn
 
 export default class InitialLoginCommand extends AbstractInitialLoginCommand {
 
-    initCommandData() {
+    validateCommandData() {
         return true;
     }
 

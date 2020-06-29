@@ -2,7 +2,7 @@ import AbstractConfirmEmailCommand from "../../../gen/registration/commands/Abst
 
 export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
 
-    initCommandData() {
+    validateCommandData() {
         return true;
     }
     handleResponse(resolve) {

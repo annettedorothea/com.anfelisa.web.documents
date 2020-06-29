@@ -2,7 +2,7 @@ import AbstractDeleteUserCommand from "../../../gen/profile/commands/AbstractDel
 
 export default class DeleteUserCommand extends AbstractDeleteUserCommand {
 
-    initCommandData() {
+    validateCommandData() {
         return true;
     }
 

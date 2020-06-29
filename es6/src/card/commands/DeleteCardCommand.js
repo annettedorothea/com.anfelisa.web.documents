@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class DeleteCardCommand extends AbstractDeleteCardCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data.cardView;
         this.commandData.cardId = data.deleteCard.cardId;
         return true;

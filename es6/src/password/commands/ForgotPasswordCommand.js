@@ -3,7 +3,7 @@ import * as AppState from "../../../gen/ace/ReadAppState"
 
 export default class ForgotPasswordCommand extends AbstractForgotPasswordCommand {
 
-    initCommandData() {
+    validateCommandData() {
         this.commandData.username = AppState.get_state_State_data_ForgotPassword_username();
         this.commandData.language = AppState.get_state_State_language();
         return true;

@@ -21,6 +21,7 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import ACEController from "../../ace/ACEController";
+import * as AppState from "../../ace/AppState";
 import TranslateWantedFetchedEvent from "../../../gen/card/events/TranslateWantedFetchedEvent";
 import TranslateGivenFetchedEvent from "../../../gen/card/events/TranslateGivenFetchedEvent";
 import SearchDuplicateCardsAction from "../../../src/card/actions/SearchDuplicateCardsAction";

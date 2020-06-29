@@ -19,7 +19,7 @@
 
 import Action from "../../ace/AsynchronousAction";
 import GetRoleCommand from "../../../src/login/commands/GetRoleCommand";
-import * as AppState from "../../ace/WriteAppState";
+import * as AppState from "../../ace/AppState";
 
 export default class AbstractGetRoleAction extends Action {
 
@@ -33,11 +33,11 @@ export default class AbstractGetRoleAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: true});
+		AppState.set_displaySpinner({displaySpinner: true});
 	}
 	
 	postCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: false});
+		AppState.set_displaySpinner({displaySpinner: false});
 	}
 
 }

@@ -5,23 +5,22 @@ profile
 ACE 
 	LoadUser 
 		call com.anfelisa.user.GetUserProfile
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok (
-			set common.state.State.data
-			set common.state.State.view
+			set common.profileView
 		)
 	
-	DeleteUser <usernameToBeDeleted>
+	DeleteUser ( usernameToBeDeleted )
 		call com.anfelisa.user.DeleteUser
-		loadingFlag common.state.State.displaySpinner 
-		on ok ( reset common.state.State.data.Profile.showDeleteUserDialog ) triggers ( common.Logout )
-		on error ( reset common.state.State.data.Profile.showDeleteUserDialog ) triggers (LoadUser common.DisplayError)
+		loadingFlag common.displaySpinner 
+		on ok ( reset common.profileView.showDeleteUserDialog ) triggers ( common.Logout )
+		on error ( reset common.profileView.showDeleteUserDialog ) triggers (LoadUser common.DisplayError)
 	
 	DeleteUserClick 
-		on ok (set common.state.State.data.Profile.showDeleteUserDialog)
+		on ok (set common.profileView.showDeleteUserDialog)
 	
 	DeleteUserCancel 
-		on ok (reset common.state.State.data.Profile.showDeleteUserDialog)
+		on ok (reset common.profileView.showDeleteUserDialog)
 	
 
 

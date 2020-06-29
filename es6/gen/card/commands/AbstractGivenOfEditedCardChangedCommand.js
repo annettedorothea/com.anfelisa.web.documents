@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import GivenOfEditedCardChangedOkEvent from "../../../gen/card/events/GivenOfEditedCardChangedOkEvent";
 
 export default class AbstractGivenOfEditedCardChangedCommand extends Command {

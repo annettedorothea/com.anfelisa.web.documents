@@ -19,8 +19,7 @@
 
 import AppUtils from "../../src/app/AppUtils";
 import Utils from "./Utils";
-import * as ReadAppState from "./ReadAppState";
-import * as WriteAppState from "./WriteAppState";
+import * as AppState from "./AppState";
 
 export default class ACEController {
 
@@ -91,7 +90,7 @@ export default class ACEController {
     }
 
     static applyNextActions() {
-    	ACEController.addItemToTimeLine({appState: ReadAppState.getState()});
+    	ACEController.addItemToTimeLine({appState: AppState.getAppState()});
         let action = ACEController.actionQueue.shift();
         if (action) {
 			if (action.asynchronous) {
@@ -155,7 +154,7 @@ export default class ACEController {
                 actions.push(action);
             }
 			if (item.appState && !appStateWasSet) {
-			    WriteAppState.setInitialState(item.appState);
+			    AppState.setInitialAppState(item.appState);
 			    appStateWasSet = true;
 			}
             

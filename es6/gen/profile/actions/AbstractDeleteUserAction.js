@@ -19,7 +19,7 @@
 
 import Action from "../../ace/AsynchronousAction";
 import DeleteUserCommand from "../../../src/profile/commands/DeleteUserCommand";
-import * as AppState from "../../ace/WriteAppState";
+import * as AppState from "../../ace/AppState";
 
 export default class AbstractDeleteUserAction extends Action {
 
@@ -33,11 +33,11 @@ export default class AbstractDeleteUserAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: true});
+		AppState.set_displaySpinner({displaySpinner: true});
 	}
 	
 	postCall() {
-		AppState.set_state_State_displaySpinner({displaySpinner: false});
+		AppState.set_displaySpinner({displaySpinner: false});
 	}
 
 }

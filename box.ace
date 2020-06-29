@@ -5,131 +5,124 @@ box
 ACE 
 	InitBoxesForDay
 		call com.anfelisa.box.InitMyBoxesForDay
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok triggers (LoadBoxes) 
 				
 	LoadBoxes 
 		call com.anfelisa.box.GetBoxes
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok ( 
-			set common.state.State.data
-			set common.state.State.data.Dashboard.boxList
-			set common.state.State.view
+			set common.dashboardView.boxList
 		) triggers (LoadBoxStatistics)
 	
 	LoadBoxStatistics 
 		call com.anfelisa.box.GetBoxStatistics
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok ( 
-			set common.state.State.data.Dashboard.boxList
+			set common.dashboardView.boxList
 		)
 	
-	DeleteBoxClick <boxId>
-		on ok (set common.state.State.data.Dashboard.deleteBox)
+	DeleteBoxClick ( boxId )
+		on ok (set common.dashboardView.deleteBox)
 	
 	CancelDeleteBox 
-		on ok (reset common.state.State.data.Dashboard.deleteBox)
+		on ok (reset common.dashboardView.deleteBox)
 	
-	DeleteBox<boxId> 
+	DeleteBox ( boxId )
 		call com.anfelisa.box.DeleteBox
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok triggers (LoadBoxes)
-		on error (reset common.state.State.data.Dashboard.deleteBox.DeleteBox.confirmDelete) triggers (common.DisplayError)
+		on error (reset common.dashboardView.deleteBox.confirmDelete) triggers (common.DisplayError)
 	
-	LoadNextCard <boxId>
+	LoadNextCard ( boxId )
 	 	call com.anfelisa.box.LoadNextCard
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok (
-			set common.state.State.view
-			set common.state.State.data
-			merge common.state.State.data
+			merge common.cardView
 		)
 	
-	DisplayWanted <wantedItemsLength> 
+	DisplayWanted ( wantedItemsLength )
 		on ok (
-			merge common.state.State.data
+			merge common.cardView
 		)
 	
-	ScoreCard <scoredCardQuality>
+	ScoreCard ( scoredCardQuality )
 	 	call com.anfelisa.box.ScoreCard
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 	
-	ScoreReinforceCard <scoredCardQuality>
+	ScoreReinforceCard ( scoredCardQuality )
 	 	call com.anfelisa.box.ScoreReinforceCard
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	SortCardOut
 	 	call com.anfelisa.box.SortCardsOut
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	InitBoxesForDayDuringScore
 		call com.anfelisa.box.InitMyBoxesForDay
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok triggers (LoadNextCard) 
 				
-	LoadSettings <boxId>
+	LoadSettings ( boxId )
 	 	call com.anfelisa.box.GetBoxSettings
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok (
-			set common.state.State.view
-			set common.state.State.data
+			set common.boxSettingsView
 		)
 		
 	SaveBoxSettings
 	 	call com.anfelisa.box.UpdateBox
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok triggers (common.Route)
 	
 
-	MaxCardsPerDayChanged <maxCardsPerDay>
+	MaxCardsPerDayChanged ( maxCardsPerDay )
 		on ok (
-			set common.state.State.data.BoxSettings.maxCardsPerDay
-			set common.state.State.data.BoxSettings.maxCardsPerDayInvalid
+			merge common.boxSettingsView
 		)
 		
-	MaxIntervalChanged <maxInterval>
+	MaxIntervalChanged ( maxInterval )
 		on ok (
-			set common.state.State.data.BoxSettings.maxInterval
-			set common.state.State.data.BoxSettings.maxIntervalInvalid
+			merge common.boxSettingsView
 		)
 
 	CreateNewBox
 		on ok (
-			set common.state.State.view
-			set common.state.State.data
+			set common.boxSettingsView
 		)
 		
 	CreateRootCategory
 		call com.anfelisa.box.CreateBox
-		loadingFlag common.state.State.displaySpinner 
+		loadingFlag common.displaySpinner 
 		on ok triggers (common.Route)
 	
-	CategoryNameChanged<categoryName>
-		on ok (set common.state.State.data.BoxSettings.categoryName)
+	CategoryNameChanged ( categoryName )
+		on ok (
+			merge common.boxSettingsView
+		)
 		
 	DictionaryLookupChanged
 		on ok (
-			set common.state.State.data.BoxSettings.dictionaryLookup
-			set common.state.State.data.BoxSettings.dictionaryLookupInvalid
+			merge common.boxSettingsView
 		)
 		
-	GivenLanguageChanged<givenLanguage>
+	GivenLanguageChanged ( givenLanguage )
 		on ok (
-			set common.state.State.data.BoxSettings.givenLanguage
-			set common.state.State.data.BoxSettings.dictionaryLookupInvalid
+			merge common.boxSettingsView
 		)
 		
-	WantedLanguageChanged<wantedLanguage>
+	WantedLanguageChanged ( wantedLanguage )
 		on ok (
-			set common.state.State.data.BoxSettings.wantedLanguage
-			set common.state.State.data.BoxSettings.dictionaryLookupInvalid
+			merge common.boxSettingsView
 		)
 		
-	RootCategoryNameChanged<categoryName>
-		on ok (set common.state.State.data.BoxSettings.categoryName)
+	RootCategoryNameChanged ( categoryName )
+		on ok (
+			merge common.boxSettingsView
+		)
 		
 		
 		

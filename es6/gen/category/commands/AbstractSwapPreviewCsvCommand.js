@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import SwapPreviewCsvOkEvent from "../../../gen/category/events/SwapPreviewCsvOkEvent";
 
 export default class AbstractSwapPreviewCsvCommand extends Command {

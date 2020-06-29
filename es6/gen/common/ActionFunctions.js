@@ -31,8 +31,8 @@ import CallSaveBugAction from "../../src/common/actions/CallSaveBugAction";
 import CancelSaveBugDialogAction from "../../src/common/actions/CancelSaveBugDialogAction";
 import HideSaveBugDialogAction from "../../src/common/actions/HideSaveBugDialogAction";
 
-export function init(hash, username, password) {
-    new InitAction(hash, username, password).apply();
+export function init() {
+    new InitAction().apply();
 }
 
 export function routeChanged() {

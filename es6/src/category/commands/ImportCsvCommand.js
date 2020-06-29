@@ -22,7 +22,7 @@ import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class ImportCsvCommand extends AbstractImportCsvCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const previewCsv = AppState.get_state_State_data_AuthorView_categoryTree_CategoryTree_previewCsv();
         this.commandData.previewCsv = [];
         previewCsv.forEach(row => {

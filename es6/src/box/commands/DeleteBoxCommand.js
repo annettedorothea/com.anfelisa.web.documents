@@ -2,7 +2,7 @@ import AbstractDeleteBoxCommand from "../../../gen/box/commands/AbstractDeleteBo
 
 export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
 
-    initCommandData() {
+    validateCommandData() {
         return true;
     }
 

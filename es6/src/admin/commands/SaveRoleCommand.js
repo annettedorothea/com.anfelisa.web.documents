@@ -2,7 +2,7 @@ import AbstractSaveRoleCommand from "../../../gen/admin/commands/AbstractSaveRol
 
 export default class SaveRoleCommand extends AbstractSaveRoleCommand {
 
-    initCommandData() {
+    validateCommandData() {
         return true;
     }
 

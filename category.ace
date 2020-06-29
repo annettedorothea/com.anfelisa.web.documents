@@ -4,107 +4,106 @@ category
 
 ACE
 
-LoadCategoryTree <rootCategoryId, selectedCategoryId>
+LoadCategoryTree ( rootCategoryId, selectedCategoryId )
 	call com.anfelisa.category.GetCategoryTree
-	loadingFlag common.state.State.displaySpinner 
+	loadingFlag common.displaySpinner 
 	on ok ( 
-		set common.state.State.data
-		set common.state.State.view
+		set common.authorView
 	) triggers (card.LoadCards)
 
-ExpandTreeItem < categoryId >
-	on ok (set common.state.State.data.AuthorView.categoryTree.CategoryTree.rootCategory)
+ExpandTreeItem ( categoryId  )
+	on ok (set common.authorView.categoryTree.rootCategory)
 
-CollapseTreeItem < categoryId >
+CollapseTreeItem ( categoryId  )
 	on ok (
-		set common.state.State.data.AuthorView.categoryTree.CategoryTree.rootCategory
+		set common.authorView.categoryTree.rootCategory
 	)
 	on selectParentCategory (
-		set common.state.State.data.AuthorView.categoryTree.CategoryTree.rootCategory 
+		set common.authorView.categoryTree.rootCategory 
 	) triggers( SelectTreeItem )
 
-SelectTreeItem < categoryId >
-	on ok ( set common.state.State.data.AuthorView.categoryTree.CategoryTree.selectedCategory) triggers( card.LoadCards common.Route)
+SelectTreeItem ( categoryId  )
+	on ok ( set common.authorView.categoryTree.selectedCategory) triggers( card.LoadCards common.Route)
 
 NewCategoryClick
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
+	on ok (merge common.authorView.categoryTree)
 	
 CancelNewCategory
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
+	on ok (merge common.authorView.categoryTree)
 	
-CategoryNameChanged<categoryName>
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
+CategoryNameChanged ( categoryName )
+	on ok (merge common.authorView.categoryTree)
 	
 CreateCategory
 	call com.anfelisa.category.CreateCategory
-	loadingFlag common.state.State.displaySpinner 
-	on ok (merge common.state.State.data.AuthorView.categoryTree) triggers (LoadCategoryTree )
-	on error (merge common.state.State.data.AuthorView.categoryTree)
+	loadingFlag common.displaySpinner 
+	on ok (merge common.authorView.categoryTree) triggers (LoadCategoryTree )
+	on error (merge common.authorView.categoryTree)
 
 DeleteCategoryClick
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
+	on ok (merge common.authorView.categoryTree)
 	
 CancelDeleteCategory
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
+	on ok (merge common.authorView.categoryTree)
 
 DeleteCategory
 	call com.anfelisa.category.DeleteCategory
-	loadingFlag common.state.State.displaySpinner 
-	on ok (merge common.state.State.data.AuthorView.categoryTree) triggers (LoadCategoryTree)
-	on error (merge common.state.State.data.AuthorView.categoryTree)
+	loadingFlag common.displaySpinner 
+	on ok (merge common.authorView.categoryTree) triggers (LoadCategoryTree)
+	on error (merge common.authorView.categoryTree)
 
 EditCategoryClick
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
+	on ok (merge common.authorView.categoryTree)
 	
 CancelEditCategory
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
+	on ok (merge common.authorView.categoryTree)
 	
 UpdateCategory
 	call com.anfelisa.category.UpdateCategory
-	loadingFlag common.state.State.displaySpinner 
-	on ok (merge common.state.State.data.AuthorView.categoryTree) triggers (LoadCategoryTree)
-	on error (merge common.state.State.data.AuthorView.categoryTree)
+	loadingFlag common.displaySpinner 
+	on ok (merge common.authorView.categoryTree) triggers (LoadCategoryTree)
+	on error (merge common.authorView.categoryTree)
 
-CheckDropAllowed<categoryId, altKey, depth>
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
+CheckDropAllowed ( categoryId, altKey, depth )
+	on ok (merge common.authorView.categoryTree)
 
 ItemDropped
 	on card triggers (card.MoveCards)
 	on category triggers (MoveCategory)
 
-MoveCategoryStarted<movedCategoryId>
-	on ok (merge common.state.State.data.AuthorView.categoryTree)
+MoveCategoryStarted ( movedCategoryId )
+	on ok (merge common.authorView.categoryTree)
 	
 MoveCategory
  	call com.anfelisa.category.MoveCategory
-	loadingFlag common.state.State.displaySpinner 
+	loadingFlag common.displaySpinner 
 	on ok ( 
-		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.movedCategory
+		reset common.authorView.categoryTree.movedCategory
 	) triggers (category.LoadCategoryTree)
 
 ChangeOrderCategory
  	call com.anfelisa.category.ChangeOrderCategory
-	loadingFlag common.state.State.displaySpinner 
+	loadingFlag common.displaySpinner 
 	on ok ( 
-		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.movedCategory
+		reset common.authorView.categoryTree.movedCategory
 	) triggers (category.LoadCategoryTree)
 
-PreviewCsv<csv>
+PreviewCsv ( csv )
 	on ok (
-		set common.state.State.data.AuthorView.categoryTree.CategoryTree.previewCsv
+		set common.authorView.categoryTree.previewCsv
 	) 
 	
 CancelPreviewCsv
-	on ok (reset common.state.State.data.AuthorView.categoryTree.CategoryTree.previewCsv)
+	on ok (reset common.authorView.categoryTree.previewCsv)
 		
 SwapPreviewCsv
-	on ok (set common.state.State.data.AuthorView.categoryTree.CategoryTree.previewCsv)
+	on ok (set common.authorView.categoryTree.previewCsv)
 	
 ImportCsv
 	call com.anfelisa.card.ImportCsv
-	loadingFlag common.state.State.displaySpinner 
+	loadingFlag common.displaySpinner 
 	on ok ( 
-		reset common.state.State.data.AuthorView.categoryTree.CategoryTree.previewCsv
+		reset common.authorView.categoryTree.previewCsv
 	) triggers (card.LoadCards)
 	
 		

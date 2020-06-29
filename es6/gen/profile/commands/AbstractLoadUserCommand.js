@@ -21,6 +21,7 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import ACEController from "../../ace/ACEController";
+import * as AppState from "../../ace/AppState";
 import LoadUserOkEvent from "../../../gen/profile/events/LoadUserOkEvent";
 
 export default class AbstractLoadUserCommand extends Command {

@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class CreateCardCommand extends AbstractCreateCardCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data;
         this.commandData.wanted = data.cardView.newCard.wanted;
         this.commandData.given = data.cardView.newCard.given;

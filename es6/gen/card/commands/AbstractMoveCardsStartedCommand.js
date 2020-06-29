@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import MoveCardsStartedOkEvent from "../../../gen/card/events/MoveCardsStartedOkEvent";
 
 export default class AbstractMoveCardsStartedCommand extends Command {

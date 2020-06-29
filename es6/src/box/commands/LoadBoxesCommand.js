@@ -2,7 +2,7 @@ import AbstractLoadBoxesCommand from "../../../gen/box/commands/AbstractLoadBoxe
 
 export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
 
-    initCommandData() {
+    validateCommandData() {
         return true;
     }
 

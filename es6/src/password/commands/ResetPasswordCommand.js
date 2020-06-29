@@ -3,7 +3,7 @@ import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
 
-    initCommandData() {
+    validateCommandData() {
         this.commandData.token = AppState.get_state_State_data_ResetPassword_token();
         return true;
     }

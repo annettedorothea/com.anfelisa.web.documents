@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import RouteChangedLoginEvent from "../../../gen/common/events/RouteChangedLoginEvent";
 import RouteChangedRegistrationEvent from "../../../gen/common/events/RouteChangedRegistrationEvent";
 import RouteChangedForgotPasswordEvent from "../../../gen/common/events/RouteChangedForgotPasswordEvent";

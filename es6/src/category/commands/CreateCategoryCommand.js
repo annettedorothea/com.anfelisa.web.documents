@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class CreateCategoryCommand extends AbstractCreateCategoryCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data.categoryTree;
         this.commandData.categoryName = data.categoryName;
         this.commandData.parentCategoryId = data.selectedCategory ? data.selectedCategory.categoryId : null;

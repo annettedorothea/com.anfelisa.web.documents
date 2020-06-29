@@ -23,12 +23,12 @@ import {
     get_state_State_data_BoxSettings_maxCardsPerDay,
     get_state_State_data_BoxSettings_maxInterval,
     get_state_State_data_BoxSettings_wantedLanguage
-} from "../../../gen/ace/ReadAppState";
+} from "../../../gen/ace/AppState";
 //please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class CreateRootCategoryCommand extends AbstractCreateRootCategoryCommand {
 
-    initCommandData() {
+    validateCommandData() {
         this.commandData.maxCardsPerDay = get_state_State_data_BoxSettings_maxCardsPerDay();
         this.commandData.maxInterval = get_state_State_data_BoxSettings_maxInterval();
         this.commandData.categoryName = get_state_State_data_BoxSettings_categoryName();

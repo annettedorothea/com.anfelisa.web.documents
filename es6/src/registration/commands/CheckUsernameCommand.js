@@ -3,7 +3,7 @@ import * as AppState  from "../../../gen/ace/ReadAppState"
 
 export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
 
-    initCommandData() {
+    validateCommandData() {
         this.commandData.username = AppState.get_state_State_data_Registration_username();
         if (this.commandData.username.length === 0) {
             this.commandData.outcome = this.empty;

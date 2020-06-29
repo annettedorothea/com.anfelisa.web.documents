@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class MoveCategoryCommand extends AbstractMoveCategoryCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const categoryTree = getState().data.categoryTree;
         this.commandData.targetCategoryId = categoryTree.dropTargetCategoryId;
         this.commandData.movedCategoryId = categoryTree.movedCategory.categoryId;

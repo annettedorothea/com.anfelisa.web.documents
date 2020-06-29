@@ -21,6 +21,7 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import ACEController from "../../ace/ACEController";
+import * as AppState from "../../ace/AppState";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
@@ -30,6 +31,9 @@ export default class AbstractRegisterUserCommand extends Command {
         super(commandData, "registration.RegisterUserCommand");
         this.ok = "ok";
         this.error = "error";
+        this.email = AppState.get_registrationView_email;
+        this.language = AppState.get_language;
+        this.username = AppState.get_registrationView_username;
     }
 
     publishEvents() {

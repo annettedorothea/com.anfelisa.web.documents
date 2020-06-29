@@ -2,7 +2,7 @@ import AbstractGetRoleCommand from "../../../gen/login/commands/AbstractGetRoleC
 
 export default class GetRoleCommand extends AbstractGetRoleCommand {
 
-    initCommandData() {
+    validateCommandData() {
         return true;
     }
 

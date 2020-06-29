@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import ExpandTreeItemOkEvent from "../../../gen/category/events/ExpandTreeItemOkEvent";
 
 export default class AbstractExpandTreeItemCommand extends Command {

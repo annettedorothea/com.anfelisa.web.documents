@@ -5,28 +5,52 @@ registration
 ACE 
 CheckUsername
 	call com.anfelisa.user.UsernameAvailable
-	loadingFlag common.state.State.data.Registration.displayUsernameSpinner 
+	loadingFlag common.registrationView.displayUsernameSpinner 
 	on empty
-	on ok ( set common.state.State.data.Registration.available )
+	on ok ( set common.registrationView.available )
 
-UsernameChanged <username>
-	on ok (set common.state.State.data.Registration.username) triggers (CheckUsername)
+UsernameChanged ( username )
+	on ok (set common.registrationView.username) triggers (CheckUsername)
 
-EmailChanged <email>
-	on ok (set common.state.State.data.Registration.emailInvalid set common.state.State.data.Registration.email)
+EmailChanged ( email )
+	on ok (set common.registrationView.emailInvalid set common.registrationView.email)
 
-PasswordChanged <password, passwordRepetition> 
-	on ok ( set common.state.State.data.Registration.passwordMismatch )
+PasswordChanged ( password, passwordRepetition  )
+	on ok ( set common.registrationView.passwordMismatch )
 
-RegisterUser <password>
+RegisterUser ( password )
+	appState ( common.registrationView.email, common.language, common.registrationView.username)
 	call com.anfelisa.user.RegisterUser
-	loadingFlag common.state.State.displaySpinner 
+	loadingFlag common.displaySpinner 
 	on ok  triggers ( common.DisplayMessage common.Route)
 	on error triggers (common.DisplayError) 
 
-ConfirmEmail <username, token>
+ConfirmEmail ( username, token )
 	call com.anfelisa.user.ConfirmEmail
-	loadingFlag common.state.State.displaySpinner 
+	loadingFlag common.displaySpinner 
 	on ok triggers ( common.DisplayMessage common.Route)
 
-
+	
+scenarios
+	RegisterUser
+	WHEN RegisterUser ( password : "password" )
+		with response 200 
+	THEN 
+	expectedServerCall {
+		email: "email",
+		language: "de",
+		password: "lala",
+		username: "username"
+	}
+	expectedState 
+		displayMessage common.message shouldBe {
+			text : "String",
+			type: "lslsd"
+		}
+	triggeredActions common.DisplayMessage ( messageKey : "dateTime" )
+	
+	EmailChanged
+	WHEN EmailChanged ( email : "email" )
+	THEN 
+		expectedState emailWasChanged common.registrationView.email shouldBe "email"
+	

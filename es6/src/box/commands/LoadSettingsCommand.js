@@ -20,7 +20,7 @@ import AbstractLoadSettingsCommand from "../../../gen/box/commands/AbstractLoadS
 
 export default class LoadSettingsCommand extends AbstractLoadSettingsCommand {
 
-    initCommandData() {
+    validateCommandData() {
     	//add from appState to commandData
     	return true;
     }

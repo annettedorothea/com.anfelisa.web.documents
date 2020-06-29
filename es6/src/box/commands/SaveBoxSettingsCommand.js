@@ -30,7 +30,7 @@ import {
 
 export default class SaveBoxSettingsCommand extends AbstractSaveBoxSettingsCommand {
 
-    initCommandData() {
+    validateCommandData() {
         this.commandData.maxCardsPerDay = get_state_State_data_BoxSettings_maxCardsPerDay();
         this.commandData.maxInterval = get_state_State_data_BoxSettings_maxInterval();
         this.commandData.boxId = get_state_State_data_BoxSettings_boxId();

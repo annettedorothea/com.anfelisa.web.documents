@@ -1,12 +1,67 @@
 import CryptoJS from "crypto-js";
-import * as ReadAppState from "../../gen/ace/ReadAppState";
-import * as WriteAppState from "../../gen/ace/WriteAppState";
-import * as App from "./App";
+import * as AppState from "../../gen/ace/AppState";
+//import * as App from "./App";
 import Utils from "../../gen/ace/Utils";
 import {displayError, displayErrorAndLogout, displaySaveBugDialog, init} from "../../gen/common/ActionFunctions"
 import {Texts} from "./Texts"
 
+import EventListenerRegistrationAdmin from "../../gen/admin/EventListenerRegistration";
+import ActionFactoryRegistrationAdmin from "../../gen/admin/ActionFactoryRegistration";
+
+import EventListenerRegistrationCategory from "../../gen/category/EventListenerRegistration";
+import ActionFactoryRegistrationCategory from "../../gen/category/ActionFactoryRegistration";
+
+import EventListenerRegistrationCard from "../../gen/card/EventListenerRegistration";
+import ActionFactoryRegistrationCard from "../../gen/card/ActionFactoryRegistration";
+
+import EventListenerRegistrationBox from "../../gen/box/EventListenerRegistration";
+import ActionFactoryRegistrationBox from "../../gen/box/ActionFactoryRegistration";
+
+import EventListenerRegistrationCommon from "../../gen/common/EventListenerRegistration";
+import ActionFactoryRegistrationCommon from "../../gen/common/ActionFactoryRegistration";
+
+import EventListenerRegistrationProfile from "../../gen/profile/EventListenerRegistration";
+import ActionFactoryRegistrationProfile from "../../gen/profile/ActionFactoryRegistration";
+
+import EventListenerRegistrationRegistration from "../../gen/registration/EventListenerRegistration";
+import ActionFactoryRegistrationRegistration from "../../gen/registration/ActionFactoryRegistration";
+
+import EventListenerRegistrationLogin from "../../gen/login/EventListenerRegistration";
+import ActionFactoryRegistrationLogin from "../../gen/login/ActionFactoryRegistration";
+
+import EventListenerRegistrationPassword from "../../gen/password/EventListenerRegistration";
+import ActionFactoryRegistrationPassword from "../../gen/password/ActionFactoryRegistration";
+
 export default class AppUtils {
+
+    static initEventListenersAndActionFactories() {
+        EventListenerRegistrationAdmin.init();
+        ActionFactoryRegistrationAdmin.init();
+
+        EventListenerRegistrationCategory.init();
+        ActionFactoryRegistrationCategory.init();
+
+        EventListenerRegistrationCard.init();
+        ActionFactoryRegistrationCard.init();
+
+        EventListenerRegistrationBox.init();
+        ActionFactoryRegistrationBox.init();
+
+        EventListenerRegistrationCommon.init();
+        ActionFactoryRegistrationCommon.init();
+
+        EventListenerRegistrationProfile.init();
+        ActionFactoryRegistrationProfile.init();
+
+        EventListenerRegistrationRegistration.init();
+        ActionFactoryRegistrationRegistration.init();
+
+        EventListenerRegistrationLogin.init();
+        ActionFactoryRegistrationLogin.init();
+
+        EventListenerRegistrationPassword.init();
+        ActionFactoryRegistrationPassword.init();
+    }
 
     static start() {
         Utils.loadSettings().then((settings) => {
@@ -20,11 +75,11 @@ export default class AppUtils {
             texts: Texts,
             message: null
         };
-        WriteAppState.setInitialState(initialAppState);
+        AppState.setInitialAppState(initialAppState);
     }
 
     static renderNewState() {
-        App.render(ReadAppState.getState());
+        //App.render(AppState.getAppState());
     }
 
     static httpGet(url, authorize) {
@@ -141,8 +196,8 @@ export default class AppUtils {
     }
 
     static basicAuth() {
-        const username = ReadAppState.get_state_State_loggedInUser_LoggedInUser_username();
-        const password = ReadAppState.get_state_State_loggedInUser_LoggedInUser_password();
+        const username = AppState.get_loggedInUser_username();
+        const password = AppState.get_loggedInUser_password();
         if (username !== undefined && password !== undefined) {
             const wordArray = CryptoJS.enc.Utf8.parse(username + ':' + password);
             const hash = CryptoJS.enc.Base64.stringify(wordArray);

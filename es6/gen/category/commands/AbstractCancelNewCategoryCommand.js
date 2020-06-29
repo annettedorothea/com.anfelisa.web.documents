@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import CancelNewCategoryOkEvent from "../../../gen/category/events/CancelNewCategoryOkEvent";
 
 export default class AbstractCancelNewCategoryCommand extends Command {

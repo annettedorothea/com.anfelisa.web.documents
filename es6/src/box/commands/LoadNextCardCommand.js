@@ -2,7 +2,7 @@ import AbstractLoadNextCardCommand from "../../../gen/box/commands/AbstractLoadN
 
 export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
 
-    initCommandData() {
+    validateCommandData() {
         return true;
     }
 

@@ -2,7 +2,7 @@ import AbstractGetAllUsersCommand from "../../../gen/admin/commands/AbstractGetA
 
 export default class GetAllUsersCommand extends AbstractGetAllUsersCommand {
 
-    initCommandData() {
+    validateCommandData() {
         return true;
     }
 

@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import DisplayErrorOkEvent from "../../../gen/common/events/DisplayErrorOkEvent";
 
 export default class AbstractDisplayErrorCommand extends Command {

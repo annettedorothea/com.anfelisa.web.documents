@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import LoginSaveInLocalStorageEvent from "../../../gen/login/events/LoginSaveInLocalStorageEvent";
 import LoginDoNotSaveInLocalStorageEvent from "../../../gen/login/events/LoginDoNotSaveInLocalStorageEvent";
 import GetRoleAction from "../../../src/login/actions/GetRoleAction";
@@ -28,6 +29,8 @@ export default class AbstractLoginCommand extends Command {
         super(commandData, "login.LoginCommand");
         this.saveInLocalStorage = "saveInLocalStorage";
         this.doNotSaveInLocalStorage = "doNotSaveInLocalStorage";
+        this.username = AppState.get_loginView_username;
+        this.saveInLocalStorage = AppState.get_loginView_saveInLocalStorage;
     }
 
     publishEvents() {

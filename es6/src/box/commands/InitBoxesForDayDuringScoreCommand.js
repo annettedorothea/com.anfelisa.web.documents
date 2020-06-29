@@ -22,7 +22,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class InitBoxesForDayDuringScoreCommand extends AbstractInitBoxesForDayDuringScoreCommand {
 
-    initCommandData() {
+    validateCommandData() {
     	return true;
     }
 

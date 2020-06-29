@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import DisplayWantedOkEvent from "../../../gen/box/events/DisplayWantedOkEvent";
 
 export default class AbstractDisplayWantedCommand extends Command {

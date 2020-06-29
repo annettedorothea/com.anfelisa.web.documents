@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import PassValueToDictionaryOkEvent from "../../../gen/card/events/PassValueToDictionaryOkEvent";
 
 export default class AbstractPassValueToDictionaryCommand extends Command {

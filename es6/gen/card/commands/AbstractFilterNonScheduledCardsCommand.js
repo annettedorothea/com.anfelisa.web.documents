@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import FilterNonScheduledCardsOkEvent from "../../../gen/card/events/FilterNonScheduledCardsOkEvent";
 
 export default class AbstractFilterNonScheduledCardsCommand extends Command {

@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import CheckDropAllowedOkEvent from "../../../gen/category/events/CheckDropAllowedOkEvent";
 
 export default class AbstractCheckDropAllowedCommand extends Command {

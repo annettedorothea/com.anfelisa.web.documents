@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import MoveCategoryStartedOkEvent from "../../../gen/category/events/MoveCategoryStartedOkEvent";
 
 export default class AbstractMoveCategoryStartedCommand extends Command {

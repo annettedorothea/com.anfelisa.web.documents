@@ -20,7 +20,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ChangeOrderCategoryCommand extends AbstractChangeOrderCategoryCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data.categoryTree;
         this.commandData.targetCategoryId = data.dropTargetCategoryId;
         this.commandData.movedCategoryId = data.movedCategory.categoryId;

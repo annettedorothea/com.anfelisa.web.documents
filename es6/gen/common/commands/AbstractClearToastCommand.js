@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import ClearToastOkEvent from "../../../gen/common/events/ClearToastOkEvent";
 
 export default class AbstractClearToastCommand extends Command {

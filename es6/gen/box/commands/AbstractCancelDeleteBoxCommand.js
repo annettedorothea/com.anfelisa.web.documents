@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import CancelDeleteBoxOkEvent from "../../../gen/box/events/CancelDeleteBoxOkEvent";
 
 export default class AbstractCancelDeleteBoxCommand extends Command {

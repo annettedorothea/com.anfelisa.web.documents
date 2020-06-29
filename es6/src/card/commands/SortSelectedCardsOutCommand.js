@@ -21,7 +21,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class SortSelectedCardsOutCommand extends AbstractSortSelectedCardsOutCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data.cardView;
         this.commandData.cardIds = data.selectedCardIds;
         return true;

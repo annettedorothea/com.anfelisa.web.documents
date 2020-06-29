@@ -22,7 +22,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ScoreReinforceCardCommand extends AbstractScoreReinforceCardCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const appState = getState();
         this.commandData.boxId = appState.data === undefined || appState.data.boxId === undefined ? undefined : appState.data.boxId;
         this.commandData.reinforceCardId = appState.data === undefined || appState.data.reinforceCardId === undefined ? undefined : appState.data.reinforceCardId;

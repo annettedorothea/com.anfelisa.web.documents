@@ -21,6 +21,7 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import ACEController from "../../ace/ACEController";
+import * as AppState from "../../ace/AppState";
 import DeleteCategoryOkEvent from "../../../gen/category/events/DeleteCategoryOkEvent";
 import DeleteCategoryErrorEvent from "../../../gen/category/events/DeleteCategoryErrorEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";

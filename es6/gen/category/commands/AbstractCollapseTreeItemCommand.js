@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import CollapseTreeItemOkEvent from "../../../gen/category/events/CollapseTreeItemOkEvent";
 import CollapseTreeItemSelectParentCategoryEvent from "../../../gen/category/events/CollapseTreeItemSelectParentCategoryEvent";
 import SelectTreeItemAction from "../../../src/category/actions/SelectTreeItemAction";

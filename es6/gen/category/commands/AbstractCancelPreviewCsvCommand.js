@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import CancelPreviewCsvOkEvent from "../../../gen/category/events/CancelPreviewCsvOkEvent";
 
 export default class AbstractCancelPreviewCsvCommand extends Command {

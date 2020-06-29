@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data.categoryTree;
         this.commandData.categoryId = data.selectedCategory.categoryId;
         this.commandData.categoryName = data.categoryName;

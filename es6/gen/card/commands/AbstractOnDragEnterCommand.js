@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import OnDragEnterOkEvent from "../../../gen/card/events/OnDragEnterOkEvent";
 
 export default class AbstractOnDragEnterCommand extends Command {

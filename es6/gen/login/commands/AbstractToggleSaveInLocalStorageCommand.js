@@ -19,12 +19,14 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import ToggleSaveInLocalStorageOkEvent from "../../../gen/login/events/ToggleSaveInLocalStorageOkEvent";
 
 export default class AbstractToggleSaveInLocalStorageCommand extends Command {
     constructor(commandData) {
         super(commandData, "login.ToggleSaveInLocalStorageCommand");
         this.ok = "ok";
+        this.saveInLocalStorage = AppState.get_loginView_saveInLocalStorage;
     }
 
     publishEvents() {

@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import CreateNewBoxOkEvent from "../../../gen/box/events/CreateNewBoxOkEvent";
 
 export default class AbstractCreateNewBoxCommand extends Command {

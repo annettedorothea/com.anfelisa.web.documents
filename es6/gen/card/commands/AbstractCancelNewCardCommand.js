@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import CancelNewCardOkEvent from "../../../gen/card/events/CancelNewCardOkEvent";
 
 export default class AbstractCancelNewCardCommand extends Command {

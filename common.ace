@@ -3,35 +3,30 @@ HttpClient
 common
 
 ACE 
-Init<hash, username, password>
+Init 
+	appState (hash, username, password )
 	on user ( 
-		set state.State.loggedInUser 
-		set state.State.language
-		set state.State.hash
+		set loggedInUser 
+		set language
 	) triggers ( InitialLogin )
 	on noUser ( 
-		reset state.State.loggedInUser 
-		set state.State.language
-		set state.State.hash
+		reset loggedInUser 
+		set language
 	) triggers ( RouteChanged )
 
 RouteChanged 
 	on login ( 
-		set state.State.data 
-		set state.State.view
+		set loginView 
 	)
 	on registration ( 
-		set state.State.data 
-		set state.State.view
+		set registrationView
 	)
 	on confirmEmail triggers (registration.ConfirmEmail)
 	on forgotPassword ( 
-		set state.State.data 
-		set state.State.view
+		set forgotPasswordView 
 	)
 	on resetPassword ( 
-		set state.State.data 
-		set state.State.view
+		set resetPasswordView 
 	)
 	on dashboard triggers (box.InitBoxesForDay)
 	on categories triggers (category.LoadCategoryTree )
@@ -42,176 +37,209 @@ RouteChanged
 	on boxSettings triggers (box.LoadSettings)
 	on boxCreate triggers (box.CreateNewBox)
 	
-Route <hash> 
-	on ok ( set state.State.hash )
+Route ( hash ) 
+	on ok ( set hash )
+	
 	
 InitialLogin
 	call com.anfelisa.user.GetRole
-	loadingFlag state.State.displaySpinner 
-	on ok (set state.State.loggedInUser.LoggedInUser.role) triggers ( RouteChanged )
+	loadingFlag displaySpinner 
+	on ok (set loggedInUser.role) triggers ( RouteChanged )
 	on unauthorized triggers ( DisplayError Logout )
+	
 	
 Logout 
 	on ok ( 
-		reset state.State.loggedInUser
-		reset state.State.username
-		reset state.State.password
+		reset loggedInUser
+		reset username
+		reset password
 	) triggers ( Route )
 
-DisplayError <error> 
-	on ok ( set state.State.message) 
+DisplayError ( error ) 
+	on ok ( set message) 
 
-DisplayErrorAndLogout <error> 
-	on ok (set state.State.message) triggers ( Logout)
+DisplayErrorAndLogout ( error ) 
+	on ok (set message) triggers ( Logout)
 
-DisplayMessage <messageKey> 
-	on ok (set state.State.message) 
+DisplayMessage ( messageKey ) 
+	on ok (set message) 
 
 ClearToast 
-	on ok (reset state.State.message)
+	on ok (reset message)
 	
 DisplaySaveBugDialog
-	on ok (set state.State.displaySaveBugDialog)
+	on ok (set displaySaveBugDialog)
 
 async CallSaveBug
 	on ok triggers (HideSaveBugDialog)
 
 CancelSaveBugDialog
-	on ok (set state.State.displaySaveBugDialog)
+	on ok (set displaySaveBugDialog)
 
 HideSaveBugDialog
-	on ok (set state.State.displaySaveBugDialog) triggers (DisplayMessage)
+	on ok (set displaySaveBugDialog) triggers (DisplayMessage)
 
-appState state : State {
-	loggedInUser : LoggedInUser {
-		username
-		userId
-		role
-		password
-	}
-	hash location.hash
-	username storage
-	password storage
-	displaySpinner
-	view
-	language
-	texts
-	displaySaveBugDialog
-	message : Message {
-		type
-		text
-	}
+
+
+
+
+
+
+
+
+
+
+
+
 	
-	data : Login {
-		username
-		saveInLocalStorage
-	} |	: Registration {
-		displayUsernameSpinner
-        available
-        username
-        email
-        emailInvalid
-        passwordMismatch
-	} |	: ForgotPassword {
-		username
-	} |	: ResetPassword {
-		token
-		passwordMismatch
-	} |	: Dashboard {
-    	boxList list
-        deleteBox : DeleteBox {
-            confirmDelete
-            boxId
-        }
-	} |	: BoxSettings {
-    	boxId
-    	maxInterval
-    	maxIntervalInvalid
-    	maxCardsPerDay
-    	maxCardsPerDayInvalid
-		dictionaryLookup
-		dictionaryLookupInvalid
-		wantedLanguage
-		givenLanguage
-		categoryName
-		categoryId
-	} |	: Profile {
-		username
-		email
-		role
-		showDeleteUserDialog
-	} |	: UserList {
-		userList list
-		showDeleteUserDialog
-		usernameToBeDeleted
-	} |	: Card {
-		cardId
-		categoryId
-		count
-		given
-		image
-		lastQuality
-		rootCategoryId
-		scheduledCardId
-		reinforceCardId
-		scheduledDate
-		scoredDate
-		wanted
-		openTodaysCards
-		allTodaysCards
-		index
-		enableScoreButtons
-		displayImage
-		boxId
-	} |	: AuthorView {
-		categoryTree : CategoryTree {
-			selectedCategory
-			rootCategory
-			
-			displayDeleteCategory
-			
-			categoryName
-			displayEditCategory
-			displayNewCategory
-			
-			dropAllowed
-			dropTargetCategoryId
-			movedCategory
-			
-			previewCsv
+appState {
+	String loggedInUser {
+		String username
+		String role
+		String password
+	}
+	String hash location.hash
+	String username storage
+	String password storage
+	Boolean displaySpinner
+	String language
+	texts
+	Boolean displaySaveBugDialog
+	message {
+		String type
+		String text
+	}
+	group {
+		loginView {
+			String username
+			Boolean saveInLocalStorage
 		}
-        cardView : CardView {
-	        cardList list
-	        naturalInputOrder
-	        filter
-	        filterNonScheduled
-	        editedCard : EditedCard {
-	        	cardId
-	        	given
-	        	wanted
-	        	index
-	        	image
-	        	selectedCardIds
+		registrationView {
+			Boolean displayUsernameSpinner
+	        Boolean available
+	        String username
+	        String email
+	        Boolean emailInvalid
+	        Boolean passwordMismatch
+		}
+		forgotPasswordView {
+			username
+		}
+		resetPasswordView {
+			token
+			passwordMismatch
+		}
+		dashboardView {
+	    	List boxList serverModel com.anfelisa.box.BoxWithStatistics
+	        deleteBox {
+	            confirmDelete
+	            boxId
 	        }
-	        newCard : NewCard {
-	        	given
-	        	wanted
-	        	index
-	        	image
-	        	selectedCardIds
-	        	file
-	        	displaySpinner
-	        	displayTranslateSpinner
+		}
+		boxSettingsView serverModel com.anfelisa.box.BoxSettings {
+	    	maxIntervalInvalid
+	    	maxCardsPerDayInvalid
+			dictionaryLookupInvalid
+			String boxId
+			Integer maxInterval
+			Integer maxCardsPerDay
+			String categoryName
+			Boolean dictionaryLookup
+			String givenLanguage
+			String wantedLanguage
+			String categoryId
+			
+		} 
+		profileView {
+			username
+			email
+			role
+			showDeleteUserDialog
+		}
+		userListView serverModel com.anfelisa.user.UserList {
+			List userList serverModel com.anfelisa.user.User {
+				NotNull String userId 
+				NotNull String username
+				NotNull String password
+				NotNull String email
+				NotNull String role
+				NotNull Boolean emailConfirmed
+			} 
+			NotNull Boolean showDeleteUserDialog 
+			String usernameToBeDeleted
+		}
+		cardView {
+			cardId
+			categoryId
+			count
+			given
+			image
+			lastQuality
+			rootCategoryId
+			scheduledCardId
+			reinforceCardId
+			scheduledDate
+			scoredDate
+			wanted
+			openTodaysCards
+			allTodaysCards
+			index
+			enableScoreButtons
+			displayImage
+			boxId
+		}
+		authorView {
+			categoryTree {
+				selectedCategory
+				rootCategory {
+					String additional
+				}
+				
+				displayDeleteCategory
+				
+				categoryName
+				displayEditCategory
+				displayNewCategory
+				
+				dropAllowed
+				dropTargetCategoryId
+				movedCategory
+				
+				previewCsv
+			}
+	        cardView {
+		        List cardList
+		        naturalInputOrder
+		        filter
+		        filterNonScheduled
+		        editedCard {
+		        	cardId
+		        	given
+		        	wanted
+		        	index
+		        	image
+		        	selectedCardIds
+		        }
+		        newCard {
+		        	given
+		        	wanted
+		        	index
+		        	image
+		        	selectedCardIds
+		        	file
+		        	displaySpinner
+		        	displayTranslateSpinner
+		        }
+		        List cardDuplicates
+		        deleteCard {
+		        	confirmDelete
+		        	cardId
+		        }
+		        dictionaryValue
+		        List selectedCardIds
+		        movedCardIds
+		        dragTargetCardId
 	        }
-	        cardDuplicates list
-	        deleteCard : DeleteCard {
-	        	confirmDelete
-	        	cardId
-	        }
-	        dictionaryValue
-	        selectedCardIds list
-	        movedCardIds
-	        dragTargetCardId
         }
 	}
 }

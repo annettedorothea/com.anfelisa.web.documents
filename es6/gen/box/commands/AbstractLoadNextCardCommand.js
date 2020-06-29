@@ -21,6 +21,7 @@ import Command from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import ACEController from "../../ace/ACEController";
+import * as AppState from "../../ace/AppState";
 import LoadNextCardOkEvent from "../../../gen/box/events/LoadNextCardOkEvent";
 
 export default class AbstractLoadNextCardCommand extends Command {

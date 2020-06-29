@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import DeleteUserCancelOkEvent from "../../../gen/profile/events/DeleteUserCancelOkEvent";
 
 export default class AbstractDeleteUserCancelCommand extends Command {

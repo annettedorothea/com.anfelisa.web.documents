@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import EditCardOkEvent from "../../../gen/card/events/EditCardOkEvent";
 
 export default class AbstractEditCardCommand extends Command {

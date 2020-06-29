@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import NewCategoryClickOkEvent from "../../../gen/category/events/NewCategoryClickOkEvent";
 
 export default class AbstractNewCategoryClickCommand extends Command {

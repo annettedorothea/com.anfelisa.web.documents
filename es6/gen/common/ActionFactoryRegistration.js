@@ -36,7 +36,7 @@ export default class ActionFactoryRegistrationCommon {
 
 	static init() {
 		ACEController.registerFactory('common.InitAction', 
-			(actionData) => new InitAction(actionData.hash, actionData.username, actionData.password));
+			(actionData) => new InitAction());
 		ACEController.registerFactory('common.RouteChangedAction', 
 			(actionData) => new RouteChangedAction());
 		ACEController.registerFactory('common.RouteAction', 

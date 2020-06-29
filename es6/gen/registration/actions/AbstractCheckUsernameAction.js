@@ -19,7 +19,7 @@
 
 import Action from "../../ace/AsynchronousAction";
 import CheckUsernameCommand from "../../../src/registration/commands/CheckUsernameCommand";
-import * as AppState from "../../ace/WriteAppState";
+import * as AppState from "../../ace/AppState";
 
 export default class AbstractCheckUsernameAction extends Action {
 
@@ -33,11 +33,11 @@ export default class AbstractCheckUsernameAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_state_State_data_Registration_displayUsernameSpinner({displayUsernameSpinner: true});
+		AppState.set_registrationView_displayUsernameSpinner({displayUsernameSpinner: true});
 	}
 	
 	postCall() {
-		AppState.set_state_State_data_Registration_displayUsernameSpinner({displayUsernameSpinner: false});
+		AppState.set_registrationView_displayUsernameSpinner({displayUsernameSpinner: false});
 	}
 
 }

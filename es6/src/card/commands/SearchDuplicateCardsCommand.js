@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class SearchDuplicateCardsCommand extends AbstractSearchDuplicateCardsCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data;
         this.commandData.given = data.cardView.newCard.given;
         this.commandData.wanted = data.cardView.newCard.wanted;

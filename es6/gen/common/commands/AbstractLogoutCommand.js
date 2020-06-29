@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import LogoutOkEvent from "../../../gen/common/events/LogoutOkEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
 

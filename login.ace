@@ -3,28 +3,33 @@ HttpClient
 login
 
 ACE 
-	UsernameChanged <username> 
-		on ok (set common.state.State.data.Login.username)
+	UsernameChanged ( username  )
+		on ok (set common.loginView.username)
 	
 	ToggleSaveInLocalStorage 
-		on ok (set common.state.State.data.Login.saveInLocalStorage)
+		appState ( common.loginView.saveInLocalStorage )
+		on ok (set common.loginView.saveInLocalStorage)
 	
-	Login <password> 
+	Login ( password  )
+		appState (
+			common.loginView.username,
+			common.loginView.saveInLocalStorage
+		)
 		on saveInLocalStorage ( 
-			set common.state.State.loggedInUser 
-			set common.state.State.username 
-			set common.state.State.password
+			set common.loggedInUser 
+			set common.username 
+			set common.password
 		) triggers ( GetRole )
 		on doNotSaveInLocalStorage ( 
-			set common.state.State.loggedInUser
-			reset common.state.State.username 
-			reset common.state.State.password
+			set common.loggedInUser
+			reset common.username 
+			reset common.password
 		) triggers ( GetRole )
 	
 	GetRole 
 	 	call com.anfelisa.user.GetRole
-		loadingFlag common.state.State.displaySpinner 
-		on ok (merge common.state.State.loggedInUser) triggers ( common.Route )
+		loadingFlag common.displaySpinner 
+		on ok (merge common.loggedInUser) triggers ( common.Route )
 		on unauthorized triggers ( common.Logout common.DisplayError)
 	
 

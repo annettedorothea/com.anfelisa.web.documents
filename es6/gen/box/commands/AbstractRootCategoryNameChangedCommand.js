@@ -19,6 +19,7 @@
 
 import Command from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
+import * as AppState from "../../ace/AppState";
 import RootCategoryNameChangedOkEvent from "../../../gen/box/events/RootCategoryNameChangedOkEvent";
 
 export default class AbstractRootCategoryNameChangedCommand extends Command {

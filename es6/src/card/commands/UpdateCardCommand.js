@@ -3,7 +3,7 @@ import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class UpdateCardCommand extends AbstractUpdateCardCommand {
 
-    initCommandData() {
+    validateCommandData() {
         const data = getState().data.cardView;
         this.commandData.cardId = data.editedCard.cardId;
         this.commandData.given = data.editedCard.given;
