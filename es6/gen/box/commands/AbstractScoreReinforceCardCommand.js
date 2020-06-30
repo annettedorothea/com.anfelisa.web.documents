@@ -28,6 +28,7 @@ export default class AbstractScoreReinforceCardCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.ScoreReinforceCardCommand");
         this.ok = "ok";
+        this.commandData.reinforceCardId = AppState.get_cardView_reinforceCardId;
     }
 
     publishEvents() {

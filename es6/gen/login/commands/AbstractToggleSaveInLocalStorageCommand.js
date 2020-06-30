@@ -26,7 +26,7 @@ export default class AbstractToggleSaveInLocalStorageCommand extends Command {
     constructor(commandData) {
         super(commandData, "login.ToggleSaveInLocalStorageCommand");
         this.ok = "ok";
-        this.saveInLocalStorage = AppState.get_loginView_saveInLocalStorage;
+        this.commandData.saveInLocalStorage = AppState.get_loginView_saveInLocalStorage;
     }
 
     publishEvents() {

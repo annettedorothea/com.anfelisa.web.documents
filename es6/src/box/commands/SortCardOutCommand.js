@@ -16,14 +16,12 @@
 
 
 import AbstractSortCardOutCommand from "../../../gen/box/commands/AbstractSortCardOutCommand";
-import * as AppState from "../../../gen/ace/ReadAppState";
-//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class SortCardOutCommand extends AbstractSortCardOutCommand {
 
     validateCommandData() {
         this.commandData.cardIds = [];
-        this.commandData.cardIds[0] = AppState.get_state_State_data_Card_cardId();
+        this.commandData.cardIds[0] = this.commandData.cardId;
         return true;
     }
 

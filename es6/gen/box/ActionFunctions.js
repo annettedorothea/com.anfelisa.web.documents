@@ -61,12 +61,12 @@ export function cancelDeleteBox() {
     new CancelDeleteBoxAction().apply();
 }
 
-export function deleteBox(boxId) {
-    new DeleteBoxAction(boxId).apply();
+export function deleteBox() {
+    new DeleteBoxAction().apply();
 }
 
-export function loadNextCard(boxId) {
-    new LoadNextCardAction(boxId).apply();
+export function loadNextCard() {
+    new LoadNextCardAction().apply();
 }
 
 export function displayWanted(wantedItemsLength) {
@@ -89,8 +89,8 @@ export function initBoxesForDayDuringScore() {
     new InitBoxesForDayDuringScoreAction().apply();
 }
 
-export function loadSettings(boxId) {
-    new LoadSettingsAction(boxId).apply();
+export function loadSettings() {
+    new LoadSettingsAction().apply();
 }
 
 export function saveBoxSettings() {

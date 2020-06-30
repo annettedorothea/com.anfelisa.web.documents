@@ -56,9 +56,9 @@ export default class ActionFactoryRegistrationBox {
 		ACEController.registerFactory('box.CancelDeleteBoxAction', 
 			(actionData) => new CancelDeleteBoxAction());
 		ACEController.registerFactory('box.DeleteBoxAction', 
-			(actionData) => new DeleteBoxAction(actionData.boxId));
+			(actionData) => new DeleteBoxAction());
 		ACEController.registerFactory('box.LoadNextCardAction', 
-			(actionData) => new LoadNextCardAction(actionData.boxId));
+			(actionData) => new LoadNextCardAction());
 		ACEController.registerFactory('box.DisplayWantedAction', 
 			(actionData) => new DisplayWantedAction(actionData.wantedItemsLength));
 		ACEController.registerFactory('box.ScoreCardAction', 
@@ -70,7 +70,7 @@ export default class ActionFactoryRegistrationBox {
 		ACEController.registerFactory('box.InitBoxesForDayDuringScoreAction', 
 			(actionData) => new InitBoxesForDayDuringScoreAction());
 		ACEController.registerFactory('box.LoadSettingsAction', 
-			(actionData) => new LoadSettingsAction(actionData.boxId));
+			(actionData) => new LoadSettingsAction());
 		ACEController.registerFactory('box.SaveBoxSettingsAction', 
 			(actionData) => new SaveBoxSettingsAction());
 		ACEController.registerFactory('box.MaxCardsPerDayChangedAction', 

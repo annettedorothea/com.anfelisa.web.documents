@@ -23,8 +23,8 @@ import * as AppState from "../../ace/AppState";
 
 export default class AbstractDeleteBoxAction extends Action {
 
-    constructor( boxId) {
-        super({boxId}, 'box.DeleteBoxAction');
+    constructor() {
+        super({}, 'box.DeleteBoxAction');
 		this.postCall = this.postCall.bind(this);
 		}
 		

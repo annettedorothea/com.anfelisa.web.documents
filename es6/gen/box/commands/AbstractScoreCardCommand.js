@@ -28,6 +28,7 @@ export default class AbstractScoreCardCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.ScoreCardCommand");
         this.ok = "ok";
+        this.commandData.scheduledCardId = AppState.get_cardView_scheduledCardId;
     }
 
     publishEvents() {
@@ -47,8 +48,7 @@ export default class AbstractScoreCardCommand extends Command {
 	    return new Promise((resolve, reject) => {
 	    	let payload = {
 	    		uuid : this.commandData.uuid,
-	    		scoredCardScheduledCardId : this.commandData.scoredCardScheduledCardId,
-	    		boxId : this.commandData.boxId,
+	    		scheduledCardId : this.commandData.scheduledCardId,
 	    		scoredCardQuality : this.commandData.scoredCardQuality
 	    	};
 	

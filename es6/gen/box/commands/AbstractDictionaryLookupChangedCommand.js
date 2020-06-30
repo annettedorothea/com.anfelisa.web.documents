@@ -26,6 +26,9 @@ export default class AbstractDictionaryLookupChangedCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.DictionaryLookupChangedCommand");
         this.ok = "ok";
+        this.commandData.givenLanguage = AppState.get_boxSettingsView_givenLanguage;
+        this.commandData.wantedLanguage = AppState.get_boxSettingsView_wantedLanguage;
+        this.commandData.dictionaryLookup = AppState.get_boxSettingsView_dictionaryLookup;
     }
 
     publishEvents() {

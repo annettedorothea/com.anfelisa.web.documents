@@ -2,6 +2,7 @@ import React from 'react';
 import {route} from "../../gen/common/ActionFunctions";
 import {deleteUser, deleteUserCancel, deleteUserClick, saveRole} from "../../gen/admin/ActionFunctions";
 import ConfirmDanger from "./ConfirmDanger";
+import UserItem from "./UserItem";
 
 export default class UserList extends React.Component {
 
@@ -60,47 +61,5 @@ export default class UserList extends React.Component {
     }
 }
 
-class UserItem extends React.Component {
 
-    render() {
-        return (
-            <tr>
-                <td>{this.props.username}</td>
-                <td><RoleSelect {...this.props} /></td>
-                <td>{this.props.email}</td>
-                <td>{this.props.emailConfirmed === true ? <i className="fas fa-check success"/> :
-                    <i className="fas fa-times error"/>}</td>
-                <td>
-                    <button
-                        disabled={this.props.username === this.props.myUsername}
-                        onClick={() => this.props.onDeleteClick(this.props.username)}
-                        className="danger">
-                        <i className="fas fa-times"/>
-                    </button>
-                </td>
-            </tr>
-        );
-    }
-}
-
-class RoleSelect extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <select
-                onChange={(event) => saveRole(this.props.userId, event.target.value)}
-                defaultValue={this.props.role}
-                disabled={this.props.username === this.props.myUsername}
-            >
-                <option value="STUDENT">{this.props.texts.userList.roles["STUDENT"][this.props.language]}</option>
-                <option value="ADMIN">{this.props.texts.userList.roles["ADMIN"][this.props.language]}</option>
-            </select>
-        );
-    }
-
-}
 

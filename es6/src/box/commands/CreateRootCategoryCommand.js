@@ -16,25 +16,14 @@
 
 
 import AbstractCreateRootCategoryCommand from "../../../gen/box/commands/AbstractCreateRootCategoryCommand";
-import {
-    get_state_State_data_BoxSettings_categoryName,
-    get_state_State_data_BoxSettings_dictionaryLookup,
-    get_state_State_data_BoxSettings_givenLanguage,
-    get_state_State_data_BoxSettings_maxCardsPerDay,
-    get_state_State_data_BoxSettings_maxInterval,
-    get_state_State_data_BoxSettings_wantedLanguage
-} from "../../../gen/ace/AppState";
-//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class CreateRootCategoryCommand extends AbstractCreateRootCategoryCommand {
 
     validateCommandData() {
-        this.commandData.maxCardsPerDay = get_state_State_data_BoxSettings_maxCardsPerDay();
-        this.commandData.maxInterval = get_state_State_data_BoxSettings_maxInterval();
-        this.commandData.categoryName = get_state_State_data_BoxSettings_categoryName();
-        this.commandData.dictionaryLookup = get_state_State_data_BoxSettings_dictionaryLookup();
-        this.commandData.givenLanguage = get_state_State_data_BoxSettings_givenLanguage();
-        this.commandData.wantedLanguage = get_state_State_data_BoxSettings_wantedLanguage();
+        if (this.commandData.dictionaryLookup === false) {
+            this.commandData.givenLanguage = null;
+            this.commandData.wantedLanguage = null;
+        }
     	return true;
     }
 

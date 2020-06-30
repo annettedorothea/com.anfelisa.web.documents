@@ -32,9 +32,13 @@ RouteChanged
 	on categories triggers (category.LoadCategoryTree )
 	on profile triggers ( profile.LoadUser )
 	on userList triggers (admin.GetAllUsers) 
-	on nextCard triggers (box.LoadNextCard)
+	on nextCard (
+		set cardView.boxId
+	) triggers (box.LoadNextCard)
 	on invalid triggers (Route)
-	on boxSettings triggers (box.LoadSettings)
+	on boxSettings (
+		set boxSettingsView.boxId	
+	) triggers (box.LoadSettings)
 	on boxCreate triggers (box.CreateNewBox)
 	
 Route ( hash ) 
@@ -130,16 +134,30 @@ appState {
 			passwordMismatch
 		}
 		dashboardView {
-	    	List boxList serverModel com.anfelisa.box.BoxWithStatistics
+	    	List boxList serverModel com.anfelisa.box.BoxWithStatistics {
+				Integer openTodaysCards
+				String categoryName
+				String categoryId
+				String boxId
+				Integer quality0Count
+				Integer quality1Count
+				Integer quality2Count
+				Integer quality3Count
+				Integer quality4Count
+				Integer quality5Count
+				List Integer countsPerDayNextWeek
+				Integer maxCardsPerDay
+	    	}
 	        deleteBox {
-	            confirmDelete
-	            boxId
+	            Boolean confirmDelete
+	            String boxId
 	        }
 		}
 		boxSettingsView serverModel com.anfelisa.box.BoxSettings {
-	    	maxIntervalInvalid
-	    	maxCardsPerDayInvalid
-			dictionaryLookupInvalid
+	    	Boolean maxIntervalInvalid
+	    	Boolean maxCardsPerDayInvalid
+			Boolean dictionaryLookupInvalid
+			
 			String boxId
 			Integer maxInterval
 			Integer maxCardsPerDay
@@ -148,7 +166,6 @@ appState {
 			String givenLanguage
 			String wantedLanguage
 			String categoryId
-			
 		} 
 		profileView {
 			username
@@ -169,24 +186,24 @@ appState {
 			String usernameToBeDeleted
 		}
 		cardView {
-			cardId
-			categoryId
-			count
-			given
-			image
-			lastQuality
-			rootCategoryId
-			scheduledCardId
-			reinforceCardId
-			scheduledDate
-			scoredDate
-			wanted
-			openTodaysCards
-			allTodaysCards
-			index
-			enableScoreButtons
-			displayImage
-			boxId
+			String cardId
+			String categoryId
+			Integer count
+			String given
+			String image
+			Integer lastQuality
+			String rootCategoryId
+			String scheduledCardId
+			String reinforceCardId
+			DateTime scheduledDate
+			DateTime scoredDate
+			String wanted
+			Integer openTodaysCards
+			Integer allTodaysCards
+			Integer index
+			Boolean enableScoreButtons
+			Boolean displayImage
+			String boxId
 		}
 		authorView {
 			categoryTree {

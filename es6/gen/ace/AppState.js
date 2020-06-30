@@ -723,7 +723,7 @@ export function get_dashboardView_boxList() {
 	if (!appState.dashboardView) {
 		return undefined;
 	}
-	return appState.dashboardView.boxList;
+	return AppUtils.deepCopy(appState.dashboardView.boxList);
 }
 
 export function set_dashboardView_boxList(eventData) {
@@ -738,6 +738,51 @@ export function reset_dashboardView_boxList() {
 		return;
 	}
 	appState.dashboardView.boxList = undefined;
+}
+
+export function merge_dashboardView_boxList(eventData) {
+	if (!appState.dashboardView) {
+		appState.dashboardView = {};
+	}
+	if (!appState.dashboardView.boxList) {
+		appState.dashboardView.boxList = {};
+	}
+	if (eventData.openTodaysCards !== undefined) {
+		appState.dashboardView.boxList.openTodaysCards = eventData.openTodaysCards;
+	}
+	if (eventData.categoryName !== undefined) {
+		appState.dashboardView.boxList.categoryName = eventData.categoryName;
+	}
+	if (eventData.categoryId !== undefined) {
+		appState.dashboardView.boxList.categoryId = eventData.categoryId;
+	}
+	if (eventData.boxId !== undefined) {
+		appState.dashboardView.boxList.boxId = eventData.boxId;
+	}
+	if (eventData.quality0Count !== undefined) {
+		appState.dashboardView.boxList.quality0Count = eventData.quality0Count;
+	}
+	if (eventData.quality1Count !== undefined) {
+		appState.dashboardView.boxList.quality1Count = eventData.quality1Count;
+	}
+	if (eventData.quality2Count !== undefined) {
+		appState.dashboardView.boxList.quality2Count = eventData.quality2Count;
+	}
+	if (eventData.quality3Count !== undefined) {
+		appState.dashboardView.boxList.quality3Count = eventData.quality3Count;
+	}
+	if (eventData.quality4Count !== undefined) {
+		appState.dashboardView.boxList.quality4Count = eventData.quality4Count;
+	}
+	if (eventData.quality5Count !== undefined) {
+		appState.dashboardView.boxList.quality5Count = eventData.quality5Count;
+	}
+	if (eventData.countsPerDayNextWeek !== undefined) {
+		appState.dashboardView.boxList.countsPerDayNextWeek = eventData.countsPerDayNextWeek;
+	}
+	if (eventData.maxCardsPerDay !== undefined) {
+		appState.dashboardView.boxList.maxCardsPerDay = eventData.maxCardsPerDay;
+	}
 }
 
 export function get_dashboardView_deleteBox() {

@@ -26,6 +26,8 @@ export default class AbstractWantedLanguageChangedCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.WantedLanguageChangedCommand");
         this.ok = "ok";
+        this.commandData.givenLanguage = AppState.get_boxSettingsView_givenLanguage;
+        this.commandData.dictionaryLookup = AppState.get_boxSettingsView_dictionaryLookup;
     }
 
     publishEvents() {

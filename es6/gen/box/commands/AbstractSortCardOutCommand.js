@@ -28,6 +28,7 @@ export default class AbstractSortCardOutCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.SortCardOutCommand");
         this.ok = "ok";
+        this.commandData.cardId = AppState.get_cardView_cardId;
     }
 
     publishEvents() {

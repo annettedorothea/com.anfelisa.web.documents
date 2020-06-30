@@ -7,11 +7,10 @@ export default class GetAllUsersCommand extends AbstractGetAllUsersCommand {
     }
 
     handleResponse(resolve) {
-        this.commandData.data = {
+        this.commandData.userListView = {
             showDeleteUserDialog: false,
             userList: this.commandData.userList
         };
-        this.commandData.view = "user-list";
     	this.commandData.outcome = this.ok;
     	resolve();
     }

@@ -28,6 +28,14 @@ export default class AbstractSaveBoxSettingsCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.SaveBoxSettingsCommand");
         this.ok = "ok";
+        this.commandData.boxId = AppState.get_boxSettingsView_boxId;
+        this.commandData.maxInterval = AppState.get_boxSettingsView_maxInterval;
+        this.commandData.maxCardsPerDay = AppState.get_boxSettingsView_maxCardsPerDay;
+        this.commandData.categoryId = AppState.get_boxSettingsView_categoryId;
+        this.commandData.categoryName = AppState.get_boxSettingsView_categoryName;
+        this.commandData.dictionaryLookup = AppState.get_boxSettingsView_dictionaryLookup;
+        this.commandData.givenLanguage = AppState.get_boxSettingsView_givenLanguage;
+        this.commandData.wantedLanguage = AppState.get_boxSettingsView_wantedLanguage;
     }
 
     publishEvents() {

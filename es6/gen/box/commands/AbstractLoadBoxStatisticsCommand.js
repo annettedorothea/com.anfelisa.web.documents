@@ -28,6 +28,7 @@ export default class AbstractLoadBoxStatisticsCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.LoadBoxStatisticsCommand");
         this.ok = "ok";
+        this.commandData.boxList = AppState.get_dashboardView_boxList;
     }
 
     publishEvents() {
@@ -47,7 +48,7 @@ export default class AbstractLoadBoxStatisticsCommand extends Command {
 	    return new Promise((resolve, reject) => {
 	
 			this.httpGet(`/${Utils.getRootPath()}/boxes/statistics/?uuid=${this.commandData.uuid}&todayAtMidnightInUTC=${this.commandData.todayAtMidnightInUTC}`, true).then((data) => {
-				this.commandData.boxList = data.boxList;
+				this.commandData.boxStatisticsList = data.boxStatisticsList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

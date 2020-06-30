@@ -26,6 +26,8 @@ export default class AbstractDisplayWantedCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.DisplayWantedCommand");
         this.ok = "ok";
+        this.commandData.index = AppState.get_cardView_index;
+        this.commandData.image = AppState.get_cardView_image;
     }
 
     publishEvents() {

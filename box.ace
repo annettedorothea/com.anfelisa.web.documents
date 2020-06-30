@@ -12,10 +12,11 @@ ACE
 		call com.anfelisa.box.GetBoxes
 		loadingFlag common.displaySpinner 
 		on ok ( 
-			set common.dashboardView.boxList
+			set common.dashboardView
 		) triggers (LoadBoxStatistics)
 	
 	LoadBoxStatistics 
+		appState ( common.dashboardView.boxList )
 		call com.anfelisa.box.GetBoxStatistics
 		loadingFlag common.displaySpinner 
 		on ok ( 
@@ -26,15 +27,23 @@ ACE
 		on ok (set common.dashboardView.deleteBox)
 	
 	CancelDeleteBox 
-		on ok (reset common.dashboardView.deleteBox)
+		on ok (
+			reset common.dashboardView.deleteBox.boxId
+			set common.dashboardView.deleteBox.confirmDelete
+		)
 	
-	DeleteBox ( boxId )
+	DeleteBox
+		appState ( common.dashboardView.deleteBox.boxId )
 		call com.anfelisa.box.DeleteBox
 		loadingFlag common.displaySpinner 
 		on ok triggers (LoadBoxes)
-		on error (reset common.dashboardView.deleteBox.confirmDelete) triggers (common.DisplayError)
+		on error (
+			reset common.dashboardView.deleteBox.boxId
+			set common.dashboardView.deleteBox.confirmDelete
+		) triggers (common.DisplayError)
 	
-	LoadNextCard ( boxId )
+	LoadNextCard
+		appState (common.cardView.boxId)
 	 	call com.anfelisa.box.LoadNextCard
 		loadingFlag common.displaySpinner 
 		on ok (
@@ -42,21 +51,25 @@ ACE
 		)
 	
 	DisplayWanted ( wantedItemsLength )
+		appState ( common.cardView.index, common.cardView.image)
 		on ok (
 			merge common.cardView
 		)
 	
 	ScoreCard ( scoredCardQuality )
+		appState ( common.cardView.scheduledCardId )
 	 	call com.anfelisa.box.ScoreCard
 		loadingFlag common.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 	
 	ScoreReinforceCard ( scoredCardQuality )
+		appState (common.cardView.reinforceCardId)
 	 	call com.anfelisa.box.ScoreReinforceCard
 		loadingFlag common.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	SortCardOut
+		appState (common.cardView.cardId)
 	 	call com.anfelisa.box.SortCardsOut
 		loadingFlag common.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)
@@ -66,14 +79,25 @@ ACE
 		loadingFlag common.displaySpinner 
 		on ok triggers (LoadNextCard) 
 				
-	LoadSettings ( boxId )
+	LoadSettings
+		appState (common.boxSettingsView.boxId)
 	 	call com.anfelisa.box.GetBoxSettings
 		loadingFlag common.displaySpinner 
 		on ok (
-			set common.boxSettingsView
+			merge common.boxSettingsView
 		)
 		
 	SaveBoxSettings
+		appState (
+			common.boxSettingsView.boxId,
+			common.boxSettingsView.maxInterval,
+			common.boxSettingsView.maxCardsPerDay,
+			common.boxSettingsView.categoryId,
+			common.boxSettingsView.categoryName,
+			common.boxSettingsView.dictionaryLookup,
+			common.boxSettingsView.givenLanguage,
+			common.boxSettingsView.wantedLanguage
+		)
 	 	call com.anfelisa.box.UpdateBox
 		loadingFlag common.displaySpinner 
 		on ok triggers (common.Route)
@@ -81,12 +105,14 @@ ACE
 
 	MaxCardsPerDayChanged ( maxCardsPerDay )
 		on ok (
-			merge common.boxSettingsView
+			set common.boxSettingsView.maxCardsPerDay
+			set common.boxSettingsView.maxCardsPerDayInvalid
 		)
 		
 	MaxIntervalChanged ( maxInterval )
 		on ok (
-			merge common.boxSettingsView
+			set common.boxSettingsView.maxInterval
+			set common.boxSettingsView.maxIntervalInvalid
 		)
 
 	CreateNewBox
@@ -95,33 +121,58 @@ ACE
 		)
 		
 	CreateRootCategory
+		appState (
+			common.boxSettingsView.maxInterval,
+			common.boxSettingsView.maxCardsPerDay,
+			common.boxSettingsView.categoryId,
+			common.boxSettingsView.categoryName,
+			common.boxSettingsView.dictionaryLookup,
+			common.boxSettingsView.givenLanguage,
+			common.boxSettingsView.wantedLanguage
+		)
 		call com.anfelisa.box.CreateBox
 		loadingFlag common.displaySpinner 
 		on ok triggers (common.Route)
 	
 	CategoryNameChanged ( categoryName )
 		on ok (
-			merge common.boxSettingsView
+			set common.boxSettingsView.categoryName
 		)
 		
 	DictionaryLookupChanged
+		appState (
+			common.boxSettingsView.givenLanguage,
+			common.boxSettingsView.wantedLanguage,
+			common.boxSettingsView.dictionaryLookup
+		)
 		on ok (
-			merge common.boxSettingsView
+			set common.boxSettingsView.dictionaryLookup
+			set common.boxSettingsView.dictionaryLookupInvalid
 		)
 		
 	GivenLanguageChanged ( givenLanguage )
+		appState (
+			common.boxSettingsView.wantedLanguage,
+			common.boxSettingsView.dictionaryLookup
+		)
 		on ok (
-			merge common.boxSettingsView
+			set common.boxSettingsView.givenLanguage
+			set common.boxSettingsView.dictionaryLookupInvalid
 		)
 		
 	WantedLanguageChanged ( wantedLanguage )
+		appState (
+			common.boxSettingsView.givenLanguage,
+			common.boxSettingsView.dictionaryLookup
+		)
 		on ok (
-			merge common.boxSettingsView
+			set common.boxSettingsView.wantedLanguage
+			set common.boxSettingsView.dictionaryLookupInvalid
 		)
 		
 	RootCategoryNameChanged ( categoryName )
 		on ok (
-			merge common.boxSettingsView
+			set common.boxSettingsView.categoryName
 		)
 		
 		

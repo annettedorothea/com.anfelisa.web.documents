@@ -32,7 +32,7 @@ export default class StudentDashboard extends React.Component {
                             message: this.props.texts.box.confirmDelete.message[this.props.language],
                             okText: this.props.texts.box.confirmDelete.ok[this.props.language],
                             cancelText: this.props.texts.box.confirmDelete.cancel[this.props.language],
-                            ok: () => deleteBox(this.props.deleteBox.boxId),
+                            ok: () => deleteBox(),
                             cancel: () => cancelDeleteBox()
                         }}/>
                 </div>}

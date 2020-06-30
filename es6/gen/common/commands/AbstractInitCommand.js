@@ -30,9 +30,9 @@ export default class AbstractInitCommand extends Command {
         super(commandData, "common.InitCommand");
         this.user = "user";
         this.noUser = "noUser";
-        this.hash = AppState.get_hash;
-        this.username = AppState.get_username;
-        this.password = AppState.get_password;
+        this.commandData.hash = AppState.get_hash;
+        this.commandData.username = AppState.get_username;
+        this.commandData.password = AppState.get_password;
     }
 
     publishEvents() {

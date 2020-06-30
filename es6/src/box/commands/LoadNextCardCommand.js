@@ -7,8 +7,6 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
     }
 
     handleResponse(resolve) {
-        this.commandData.view = "card";
-        this.commandData.data = {};
         this.commandData.index = 0;
         this.commandData.enableScoreButtons = false;
         this.commandData.displayImage = false;

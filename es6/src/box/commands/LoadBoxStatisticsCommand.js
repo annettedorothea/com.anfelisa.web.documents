@@ -18,8 +18,6 @@
 
 
 import AbstractLoadBoxStatisticsCommand from "../../../gen/box/commands/AbstractLoadBoxStatisticsCommand";
-import * as AppState from "../../../gen/ace/ReadAppState";
-//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsCommand {
 
@@ -29,10 +27,8 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
     }
 
     handleResponse(resolve) {
-        let boxList = AppState.get_state_State_data_Dashboard_boxList();
-        const boxListWithStats = this.commandData.boxList;
-        boxList.forEach((box) => {
-            const boxWithStats = boxListWithStats.find((bs) => {
+        this.commandData.boxList.forEach((box) => {
+            const boxWithStats = this.commandData.boxStatisticsList.find((bs) => {
                 return bs.boxId === box.boxId;
             });
             box.countsPerDayNextWeek = boxWithStats.countsPerDayNextWeek;
@@ -44,7 +40,7 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
             box.quality4Count = boxWithStats.quality4Count;
             box.quality5Count = boxWithStats.quality5Count;
         });
-        this.commandData.boxList = boxList;
+        this.commandData.boxStatisticsList = undefined;
     	this.commandData.outcome = this.ok;
     	resolve();
     }

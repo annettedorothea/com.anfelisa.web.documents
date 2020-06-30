@@ -16,7 +16,6 @@
 
 
 import AbstractCategoryNameChangedCommand from "../../../gen/box/commands/AbstractCategoryNameChangedCommand";
-//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class CategoryNameChangedCommand extends AbstractCategoryNameChangedCommand {
     execute() {

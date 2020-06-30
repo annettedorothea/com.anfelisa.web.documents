@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2019, Annette Pohl, Koblenz, Germany
+ * Copyright (c) 2020, Annette Pohl, Koblenz, Germany
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -15,16 +15,13 @@
  */
 
 
-import AbstractGivenLanguageChangedCommand from "../../../gen/box/commands/AbstractGivenLanguageChangedCommand";
 
-export default class GivenLanguageChangedCommand extends AbstractGivenLanguageChangedCommand {
-    execute() {
-        if (this.commandData.dictionaryLookup === true) {
-            this.commandData.dictionaryLookupInvalid = !this.commandData.givenLanguage || !this.commandData.wantedLanguage;
-        } else {
-            this.commandData.dictionaryLookupInvalid = false;
-        }
-    	this.commandData.outcome = this.ok;
+
+import Event from "../../../gen/ace/Event";
+
+export default class RouteChangedNextCardEvent extends Event {
+    constructor(eventData) {
+        super(eventData, 'common.RouteChangedNextCardEvent');
     }
 }
 

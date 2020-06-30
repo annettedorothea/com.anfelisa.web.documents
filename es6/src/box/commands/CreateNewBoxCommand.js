@@ -16,12 +16,10 @@
 
 
 import AbstractCreateNewBoxCommand from "../../../gen/box/commands/AbstractCreateNewBoxCommand";
-//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class CreateNewBoxCommand extends AbstractCreateNewBoxCommand {
     execute() {
-        this.commandData.view = "create-box";
-        this.commandData.data = {
+        this.commandData.createBoxView = {
             maxCardsPerDay: 8,
             maxInterval: "",
             boxId: "",

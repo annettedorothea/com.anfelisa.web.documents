@@ -35,7 +35,7 @@ export default class AbstractInitBoxesForDayDuringScoreCommand extends Command {
 	    	
 		switch (this.commandData.outcome) {
 		case this.ok:
-			promises.push(new TriggerAction(new LoadNextCardAction(this.commandData.boxId)).publish());
+			promises.push(new TriggerAction(new LoadNextCardAction()).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('InitBoxesForDayDuringScoreCommand unhandled outcome: ' + this.commandData.outcome)});

@@ -31,9 +31,9 @@ export default class AbstractRegisterUserCommand extends Command {
         super(commandData, "registration.RegisterUserCommand");
         this.ok = "ok";
         this.error = "error";
-        this.email = AppState.get_registrationView_email;
-        this.language = AppState.get_language;
-        this.username = AppState.get_registrationView_username;
+        this.commandData.email = AppState.get_registrationView_email;
+        this.commandData.language = AppState.get_language;
+        this.commandData.username = AppState.get_registrationView_username;
     }
 
     publishEvents() {

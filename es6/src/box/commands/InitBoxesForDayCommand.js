@@ -20,7 +20,6 @@ import AbstractInitBoxesForDayCommand from "../../../gen/box/commands/AbstractIn
 export default class InitBoxesForDayCommand extends AbstractInitBoxesForDayCommand {
 
     validateCommandData() {
-    	//add from appState to commandData
     	return true;
     }
 

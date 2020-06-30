@@ -24,6 +24,8 @@ import RouteChangedLoginEvent from "../../../gen/common/events/RouteChangedLogin
 import RouteChangedRegistrationEvent from "../../../gen/common/events/RouteChangedRegistrationEvent";
 import RouteChangedForgotPasswordEvent from "../../../gen/common/events/RouteChangedForgotPasswordEvent";
 import RouteChangedResetPasswordEvent from "../../../gen/common/events/RouteChangedResetPasswordEvent";
+import RouteChangedNextCardEvent from "../../../gen/common/events/RouteChangedNextCardEvent";
+import RouteChangedBoxSettingsEvent from "../../../gen/common/events/RouteChangedBoxSettingsEvent";
 import ConfirmEmailAction from "../../../src/registration/actions/ConfirmEmailAction";
 import InitBoxesForDayAction from "../../../src/box/actions/InitBoxesForDayAction";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
@@ -82,13 +84,15 @@ export default class AbstractRouteChangedCommand extends Command {
 			new TriggerAction(new GetAllUsersAction()).publish();
 			break;
 		case this.nextCard:
-			new TriggerAction(new LoadNextCardAction(this.commandData.boxId)).publish();
+			new RouteChangedNextCardEvent(this.commandData).publish();
+			new TriggerAction(new LoadNextCardAction()).publish();
 			break;
 		case this.invalid:
 			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
 			break;
 		case this.boxSettings:
-			new TriggerAction(new LoadSettingsAction(this.commandData.boxId)).publish();
+			new RouteChangedBoxSettingsEvent(this.commandData).publish();
+			new TriggerAction(new LoadSettingsAction()).publish();
 			break;
 		case this.boxCreate:
 			new TriggerAction(new CreateNewBoxAction()).publish();

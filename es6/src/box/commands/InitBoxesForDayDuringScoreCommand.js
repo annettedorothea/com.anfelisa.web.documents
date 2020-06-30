@@ -17,8 +17,6 @@
 
 import AbstractInitBoxesForDayDuringScoreCommand
     from "../../../gen/box/commands/AbstractInitBoxesForDayDuringScoreCommand";
-//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
-import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class InitBoxesForDayDuringScoreCommand extends AbstractInitBoxesForDayDuringScoreCommand {
 
@@ -28,8 +26,6 @@ export default class InitBoxesForDayDuringScoreCommand extends AbstractInitBoxes
 
     handleResponse(resolve) {
     	this.commandData.outcome = this.ok;
-        const appState = getState();
-        this.commandData.boxId = appState.data === undefined || appState.data.boxId === undefined ? undefined : appState.data.boxId;
     	resolve();
     }
     handleError(resolve, reject) {

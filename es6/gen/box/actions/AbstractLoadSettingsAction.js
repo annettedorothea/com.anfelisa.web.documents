@@ -23,8 +23,8 @@ import * as AppState from "../../ace/AppState";
 
 export default class AbstractLoadSettingsAction extends Action {
 
-    constructor( boxId) {
-        super({boxId}, 'box.LoadSettingsAction');
+    constructor() {
+        super({}, 'box.LoadSettingsAction');
 		this.postCall = this.postCall.bind(this);
 		}
 		

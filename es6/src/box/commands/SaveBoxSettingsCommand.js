@@ -16,31 +16,11 @@
 
 
 import AbstractSaveBoxSettingsCommand from "../../../gen/box/commands/AbstractSaveBoxSettingsCommand";
-import {
-    get_state_State_data_BoxSettings_boxId,
-    get_state_State_data_BoxSettings_categoryId,
-    get_state_State_data_BoxSettings_categoryName,
-    get_state_State_data_BoxSettings_dictionaryLookup,
-    get_state_State_data_BoxSettings_givenLanguage,
-    get_state_State_data_BoxSettings_maxCardsPerDay,
-    get_state_State_data_BoxSettings_maxInterval,
-    get_state_State_data_BoxSettings_wantedLanguage
-} from "../../../gen/ace/ReadAppState";
-//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class SaveBoxSettingsCommand extends AbstractSaveBoxSettingsCommand {
 
     validateCommandData() {
-        this.commandData.maxCardsPerDay = get_state_State_data_BoxSettings_maxCardsPerDay();
-        this.commandData.maxInterval = get_state_State_data_BoxSettings_maxInterval();
-        this.commandData.boxId = get_state_State_data_BoxSettings_boxId();
-        this.commandData.categoryId = get_state_State_data_BoxSettings_categoryId();
-        this.commandData.categoryName = get_state_State_data_BoxSettings_categoryName();
-        this.commandData.dictionaryLookup = get_state_State_data_BoxSettings_dictionaryLookup();
-        if (this.commandData.dictionaryLookup === true) {
-            this.commandData.givenLanguage = get_state_State_data_BoxSettings_givenLanguage();
-            this.commandData.wantedLanguage = get_state_State_data_BoxSettings_wantedLanguage();
-        } else {
+        if (this.commandData.dictionaryLookup === false) {
             this.commandData.givenLanguage = null;
             this.commandData.wantedLanguage = null;
         }
@@ -48,6 +28,14 @@ export default class SaveBoxSettingsCommand extends AbstractSaveBoxSettingsComma
     }
 
     handleResponse(resolve) {
+        this.commandData.dictionaryLookup = undefined;
+        this.commandData.givenLanguage = undefined;
+        this.commandData.wantedLanguage = undefined;
+        this.commandData.boxId = undefined;
+        this.commandData.maxInterval = undefined;
+        this.commandData.maxCardsPerDay = undefined;
+        this.commandData.categoryId = undefined;
+        this.commandData.categoryName = undefined;
         this.commandData.hash = "#dashboard";
         this.commandData.outcome = this.ok;
         resolve();

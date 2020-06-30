@@ -7,13 +7,14 @@ export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
     }
 
     handleResponse(resolve) {
-        this.commandData.data = {
+        this.commandData.dashboardView = {
+            boxList: this.commandData.boxList,
             deleteBox: {
                 confirmDelete: false,
-                boxId: null
+                boxId: undefined
             }
         };
-        this.commandData.view = "dashboard";
+        this.commandData.boxList = undefined;
         this.commandData.outcome = this.ok;
         resolve();
     }

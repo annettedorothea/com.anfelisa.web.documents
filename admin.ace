@@ -17,16 +17,25 @@ ACE
 		on ok triggers (GetAllUsers)
 	
 	DeleteUser
+		appState ( common.userListView.usernameToBeDeleted )
 		call com.anfelisa.user.DeleteUser
 		loadingFlag common.displaySpinner 
 		on ok triggers ( GetAllUsers )
-		on error (reset common.userListView.usernameToBeDeleted reset common.userListView.showDeleteUserDialog) triggers (common.DisplayError)
+		on error (
+			reset common.userListView.usernameToBeDeleted 
+			set common.userListView.showDeleteUserDialog
+		) triggers (common.DisplayError)
 	
 	DeleteUserClick ( usernameToBeDeleted )
-		on ok (merge common.userListView)
+		on ok (
+			merge common.userListView
+		)
 	
 	DeleteUserCancel 
-		on ok (reset common.userListView.usernameToBeDeleted reset common.userListView.showDeleteUserDialog)
+		on ok (
+			reset common.userListView.usernameToBeDeleted 
+			set common.userListView.showDeleteUserDialog
+		)
 	
 	
 scenarios

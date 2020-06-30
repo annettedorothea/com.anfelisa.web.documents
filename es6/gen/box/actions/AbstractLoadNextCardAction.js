@@ -23,8 +23,8 @@ import * as AppState from "../../ace/AppState";
 
 export default class AbstractLoadNextCardAction extends Action {
 
-    constructor( boxId) {
-        super({boxId}, 'box.LoadNextCardAction');
+    constructor() {
+        super({}, 'box.LoadNextCardAction');
 		this.postCall = this.postCall.bind(this);
 		}
 		

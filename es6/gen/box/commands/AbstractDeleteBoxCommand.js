@@ -31,6 +31,7 @@ export default class AbstractDeleteBoxCommand extends Command {
         super(commandData, "box.DeleteBoxCommand");
         this.ok = "ok";
         this.error = "error";
+        this.commandData.boxId = AppState.get_dashboardView_deleteBox_boxId;
     }
 
     publishEvents() {
