@@ -1,17 +1,16 @@
 import AbstractMoveCardsCommand from "../../../gen/card/commands/AbstractMoveCardsCommand";
-import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class MoveCardsCommand extends AbstractMoveCardsCommand {
 
     validateCommandData() {
-        const data = getState().data;
-        this.commandData.cardIdList = data.cardView.movedCardIds;
-        this.commandData.categoryId = data.categoryTree.dropTargetCategoryId;
+        this.commandData.cardIdList = this.commandData.movedCardIds;
+        this.commandData.categoryId = this.commandData.dropTargetCategoryId;
     	return true;
     }
 
     handleResponse(resolve) {
         this.commandData.selectedCategoryId = this.commandData.categoryId;
+        this.commandData.rootCategoryId = this.commandData.rootCategory ? this.commandData.rootCategory.categoryId : "";
     	this.commandData.outcome = this.ok;
     	resolve();
     }

@@ -199,9 +199,29 @@ appState {
 		}
 		authorView {
 			categoryTree {
-				selectedCategory
+				selectedCategory {
+					String categoryId
+					String categoryName
+					Integer categoryIndex
+					Boolean empty
+					String parentCategoryId
+					Boolean dictionaryLookup
+					String givenLanguage
+					String wantedLanguage
+					String rootCategoryId
+					List CategoryTreeItem childCategories
+				}
 				rootCategory {
-					String additional
+					String categoryId
+					String categoryName
+					Integer categoryIndex
+					Boolean empty
+					String parentCategoryId
+					Boolean dictionaryLookup
+					String givenLanguage
+					String wantedLanguage
+					String rootCategoryId
+					List CategoryTreeItem childCategories
 				}
 				
 				displayDeleteCategory
@@ -217,37 +237,45 @@ appState {
 				previewCsv
 			}
 	        cardView {
-		        List cardList
-		        naturalInputOrder
-		        filter
-		        filterNonScheduled
+		        List cardList serverModel com.anfelisa.card.CardWithInfo {
+					String cardId
+					String given
+					String wanted
+					String image
+					String cardAuthor
+					Integer cardIndex
+					String categoryId
+					String rootCategoryId
+		        	DateTime next
+		        }
+		        Boolean naturalInputOrder
+		        String filter
+		        Boolean filterNonScheduled
 		        editedCard {
-		        	cardId
-		        	given
-		        	wanted
-		        	index
-		        	image
-		        	selectedCardIds
+		        	String cardId
+		        	String given
+		        	String wanted
+		        	Integer index
+		        	String image
 		        }
 		        newCard {
-		        	given
-		        	wanted
-		        	index
-		        	image
-		        	selectedCardIds
-		        	file
-		        	displaySpinner
-		        	displayTranslateSpinner
+		        	String given
+		        	String wanted
+		        	Integer index
+		        	String image
+		        	String file
+		        	Boolean displaySpinner
+		        	Boolean displayTranslateSpinner
 		        }
 		        List cardDuplicates
 		        deleteCard {
-		        	confirmDelete
-		        	cardId
+		        	Boolean confirmDelete
+		        	String cardId
 		        }
-		        dictionaryValue
-		        List selectedCardIds
-		        movedCardIds
-		        dragTargetCardId
+		        String dictionaryValue
+		        List String selectedCardIds
+		        List String movedCardIds
+		        String dragTargetCardId
 	        }
         }
 	}

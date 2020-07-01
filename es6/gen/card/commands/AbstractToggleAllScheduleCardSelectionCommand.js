@@ -26,6 +26,8 @@ export default class AbstractToggleAllScheduleCardSelectionCommand extends Comma
     constructor(commandData) {
         super(commandData, "card.ToggleAllScheduleCardSelectionCommand");
         this.ok = "ok";
+        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds;
+        this.commandData.cardList = AppState.get_authorView_cardView_cardList;
     }
 
     publishEvents() {

@@ -30,6 +30,8 @@ export default class AbstractLoadCardsCommand extends Command {
         super(commandData, "card.LoadCardsCommand");
         this.ok = "ok";
         this.noCategorySelected = "noCategorySelected";
+        this.commandData.selectedCategory = AppState.get_authorView_categoryTree_selectedCategory;
+        this.commandData.naturalInputOrder = AppState.get_authorView_cardView_naturalInputOrder;
     }
 
     publishEvents() {

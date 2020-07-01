@@ -5,8 +5,8 @@ export default class ToggleAllScheduleCardSelectionCommand extends AbstractToggl
     execute() {
         const data = getState().data.cardView;
         let selectedCardIds = [];
-        if (data.selectedCardIds.length < data.cardList.length) {
-            data.cardList.forEach(card => {
+        if (this.commandData.selectedCardIds.length < this.commandData.cardList.length) {
+            this.commandData.cardList.forEach(card => {
                 selectedCardIds.push(card.cardId)
             });
         }

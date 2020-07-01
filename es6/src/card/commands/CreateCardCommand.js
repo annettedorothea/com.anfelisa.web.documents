@@ -1,14 +1,8 @@
 import AbstractCreateCardCommand from "../../../gen/card/commands/AbstractCreateCardCommand";
-import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class CreateCardCommand extends AbstractCreateCardCommand {
 
     validateCommandData() {
-        const data = getState().data;
-        this.commandData.wanted = data.cardView.newCard.wanted;
-        this.commandData.given = data.cardView.newCard.given;
-        this.commandData.image = data.cardView.newCard.image;
-        this.commandData.categoryId = data.categoryTree.selectedCategory.categoryId;
         return true;
     }
 

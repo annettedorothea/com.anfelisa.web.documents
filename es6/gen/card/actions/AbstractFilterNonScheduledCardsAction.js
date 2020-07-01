@@ -22,8 +22,8 @@ import FilterNonScheduledCardsCommand from "../../../src/card/commands/FilterNon
 
 export default class AbstractFilterNonScheduledCardsAction extends Action {
 
-    constructor( filter) {
-        super({filter}, 'card.FilterNonScheduledCardsAction');
+    constructor() {
+        super({}, 'card.FilterNonScheduledCardsAction');
 		}
 		
 	getCommand() {

@@ -16,12 +16,10 @@
 
 
 import AbstractFilterNonScheduledCardsCommand from "../../../gen/card/commands/AbstractFilterNonScheduledCardsCommand";
-import {get_state_State_data_AuthorView_cardView_CardView_filterNonScheduled} from "../../../gen/ace/ReadAppState";
-//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class FilterNonScheduledCardsCommand extends AbstractFilterNonScheduledCardsCommand {
     execute() {
-        this.commandData.filterNonScheduled = !get_state_State_data_AuthorView_cardView_CardView_filterNonScheduled();
+        this.commandData.filterNonScheduled = !this.commandData.filterNonScheduled;
         this.commandData.outcome = this.ok;
     }
 }

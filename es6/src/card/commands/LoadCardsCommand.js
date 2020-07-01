@@ -1,22 +1,21 @@
 import AbstractLoadCardsCommand from "../../../gen/card/commands/AbstractLoadCardsCommand";
-import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class LoadCardsCommand extends AbstractLoadCardsCommand {
 
     validateCommandData() {
-        const selectedCategory = getState().data.categoryTree.selectedCategory;
-        if (!selectedCategory) {
+        if (!this.commandData.selectedCategory) {
             this.commandData.outcome = this.noCategorySelected;
             return false;
         }
-        this.commandData.categoryId = selectedCategory.categoryId;
+        this.commandData.categoryId = this.commandData.selectedCategory.categoryId;
         return true;
     }
 
     handleResponse(resolve) {
         this.commandData.outcome = this.ok;
-        const cardView = getState().data.cardView;
-        this.commandData.naturalInputOrder = cardView.naturalInputOrder === undefined ? true : cardView.naturalInputOrder;
+        if (this.commandData.naturalInputOrder === undefined) {
+            this.commandData.naturalInputOrder = true;
+        }
         this.commandData.newCard = {
             given: "",
             wanted: "",

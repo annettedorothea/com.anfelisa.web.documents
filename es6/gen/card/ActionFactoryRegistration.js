@@ -83,11 +83,11 @@ export default class ActionFactoryRegistrationCard {
 		ACEController.registerFactory('card.FilterCardsAction', 
 			(actionData) => new FilterCardsAction(actionData.filter));
 		ACEController.registerFactory('card.FilterNonScheduledCardsAction', 
-			(actionData) => new FilterNonScheduledCardsAction(actionData.filter));
+			(actionData) => new FilterNonScheduledCardsAction());
 		ACEController.registerFactory('card.PassValueToDictionaryAction', 
 			(actionData) => new PassValueToDictionaryAction());
 		ACEController.registerFactory('card.ToggleInputOrderAction', 
-			(actionData) => new ToggleInputOrderAction(actionData.naturalInputOrder));
+			(actionData) => new ToggleInputOrderAction());
 		ACEController.registerFactory('card.LoadWantedImageOfNewCardAction', 
 			(actionData) => new LoadWantedImageOfNewCardAction(actionData.image));
 		ACEController.registerFactory('card.LoadWantedImageOfEditedCardAction', 

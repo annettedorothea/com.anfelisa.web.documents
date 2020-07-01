@@ -110,7 +110,7 @@ export default class CardList extends React.Component {
                     <tr className="notPrinted">
                         <th colSpan={4}>
                             <button title={this.props.texts.cardList.toggleInputOrder[this.props.language]}
-                                    onClick={() => toggleInputOrder(this.props.cardView.naturalInputOrder)}><i
+                                    onClick={() => toggleInputOrder()}><i
                                 className="fas fa-arrows-alt-h"/></button>
                             <input
                                 type={"text"}

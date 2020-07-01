@@ -26,6 +26,7 @@ export default class AbstractToggleInputOrderCommand extends Command {
     constructor(commandData) {
         super(commandData, "card.ToggleInputOrderCommand");
         this.ok = "ok";
+        this.commandData.naturalInputOrder = AppState.get_authorView_cardView_naturalInputOrder;
     }
 
     publishEvents() {

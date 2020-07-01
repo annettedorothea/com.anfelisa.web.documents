@@ -106,16 +106,16 @@ export function filterCards(filter) {
     new FilterCardsAction(filter).apply();
 }
 
-export function filterNonScheduledCards(filter) {
-    new FilterNonScheduledCardsAction(filter).apply();
+export function filterNonScheduledCards() {
+    new FilterNonScheduledCardsAction().apply();
 }
 
 export function passValueToDictionary() {
     new PassValueToDictionaryAction().apply();
 }
 
-export function toggleInputOrder(naturalInputOrder) {
-    new ToggleInputOrderAction(naturalInputOrder).apply();
+export function toggleInputOrder() {
+    new ToggleInputOrderAction().apply();
 }
 
 export function loadWantedImageOfNewCard(image) {

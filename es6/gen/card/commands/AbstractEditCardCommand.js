@@ -26,6 +26,7 @@ export default class AbstractEditCardCommand extends Command {
     constructor(commandData) {
         super(commandData, "card.EditCardCommand");
         this.ok = "ok";
+        this.commandData.cardList = AppState.get_authorView_cardView_cardList;
     }
 
     publishEvents() {

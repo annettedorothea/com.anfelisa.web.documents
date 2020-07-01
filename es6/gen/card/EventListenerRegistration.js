@@ -25,10 +25,10 @@ export default class EventListenerRegistrationCard {
 	static init() {
 		ACEController.registerListener('card.LoadCardsOkEvent', AppState.merge_authorView_cardView);
 		ACEController.registerListener('card.LoadCardsNoCategorySelectedEvent', AppState.reset_authorView_cardView_cardList);
-		ACEController.registerListener('card.CreateCardOkEvent', AppState.merge_authorView_cardView);
-		ACEController.registerListener('card.UpdateCardOkEvent', AppState.merge_authorView_cardView);
-		ACEController.registerListener('card.DeleteCardOkEvent', AppState.merge_authorView_cardView);
-		ACEController.registerListener('card.DeleteCardErrorEvent', AppState.merge_authorView_cardView);
+		ACEController.registerListener('card.CreateCardOkEvent', AppState.set_authorView_cardView_newCard);
+		ACEController.registerListener('card.UpdateCardOkEvent', AppState.set_authorView_cardView_editedCard);
+		ACEController.registerListener('card.DeleteCardOkEvent', AppState.set_authorView_cardView_deleteCard);
+		ACEController.registerListener('card.DeleteCardErrorEvent', AppState.set_authorView_cardView_deleteCard);
 		ACEController.registerListener('card.GivenOfNewCardChangedOkEvent', AppState.merge_authorView_cardView_newCard);
 		ACEController.registerListener('card.WantedOfNewCardChangedOkEvent', AppState.merge_authorView_cardView_newCard);
 		ACEController.registerListener('card.CancelNewCardOkEvent', AppState.set_authorView_cardView_newCard);

@@ -4,32 +4,49 @@ card
 
 ACE
 LoadCards
+	appState (
+		common.authorView.categoryTree.selectedCategory, 
+		common.authorView.cardView.naturalInputOrder
+	)
 	call com.anfelisa.card.GetCards
 	loadingFlag common.displaySpinner 
 	on ok ( merge common.authorView.cardView )
 	on noCategorySelected ( reset common.authorView.cardView.cardList )
 
  CreateCard 
+ 	appState (
+ 		common.authorView.cardView.newCard.wanted,
+ 		common.authorView.cardView.newCard.given,
+ 		common.authorView.cardView.newCard.image,
+ 		common.authorView.categoryTree.selectedCategory.categoryId
+ 	)
  	call com.anfelisa.card.CreateCard
 	loadingFlag common.displaySpinner 
-	on ok ( merge common.authorView.cardView )
+	on ok ( set common.authorView.cardView.newCard )
 	triggers (LoadCards)
 
  UpdateCard 
+ 	appState (
+ 		common.authorView.cardView.editedCard.wanted,
+ 		common.authorView.cardView.editedCard.given,
+ 		common.authorView.cardView.editedCard.image,
+ 		common.authorView.cardView.editedCard.cardId
+ 	)
  	call com.anfelisa.card.UpdateCard
 	loadingFlag common.displaySpinner 
-	on ok ( merge common.authorView.cardView )
+	on ok ( set common.authorView.cardView.editedCard )
 	triggers (LoadCards)
 
 
  DeleteCard 
+ 	appState ( common.authorView.cardView.deleteCard.cardId )
  	call com.anfelisa.card.DeleteCard
 	loadingFlag common.displaySpinner 
 	on ok ( 
-		merge common.authorView.cardView
+		set common.authorView.cardView.deleteCard
 	) triggers (LoadCards)
 	on error ( 
-		merge common.authorView.cardView
+		set common.authorView.cardView.deleteCard
 	) triggers (common.DisplayError)
 
 
@@ -53,6 +70,7 @@ CancelEditCard
 	on ok (set common.authorView.cardView.editedCard)
 
 EditCard ( cardId )
+	appState (common.authorView.cardView.cardList)
 	on ok (set common.authorView.cardView.editedCard)
 
 DeleteCardClick ( cardId )
@@ -61,18 +79,20 @@ DeleteCardClick ( cardId )
 CancelDeleteCard 
 	on ok (set common.authorView.cardView.deleteCard)
 
-
 FilterCards ( filter )
 	on ok (set common.authorView.cardView.filter)
 
-FilterNonScheduledCards ( filter )
+FilterNonScheduledCards
+	appState (common.authorView.cardView.filterNonScheduled)
 	on ok (set common.authorView.cardView.filterNonScheduled)
 
 PassValueToDictionary 
+	appState (common.authorView.cardView.naturalInputOrder, common.authorView.cardView.newCard.given, common.authorView.cardView.newCard.wanted)
 	on ok (set common.authorView.cardView.dictionaryValue)
 
 
-ToggleInputOrder ( naturalInputOrder )
+ToggleInputOrder
+	appState (common.authorView.cardView.naturalInputOrder)
 	on ok (set common.authorView.cardView.naturalInputOrder)
 
 
@@ -85,36 +105,50 @@ LoadWantedImageOfEditedCard ( image )
 RemoveNewCardImage 
 	on ok ( set common.authorView.cardView.newCard.image )
 
-
 RemoveEditedCardImage 
 	on ok ( set common.authorView.cardView.editedCard.image )
 
 ToggleScheduleCardSelection ( cardId )
+	appState (common.authorView.cardView.selectedCardIds)
 	on ok (set common.authorView.cardView.selectedCardIds)
 
 ToggleAllScheduleCardSelection 
+	appState (
+		common.authorView.cardView.selectedCardIds,
+		common.authorView.cardView.cardList
+	)
 	on ok (set common.authorView.cardView.selectedCardIds)
 
-ScheduleSelectedCards 
+ScheduleSelectedCards
+	appState (common.authorView.cardView.selectedCardIds) 
  	call com.anfelisa.box.ScheduleCards
 	loadingFlag common.displaySpinner 
 	on ok triggers (LoadCards)
 	
 SortSelectedCardsOut 
+	appState (common.authorView.cardView.selectedCardIds) 
  	call com.anfelisa.box.SortCardsOut
 	loadingFlag common.displaySpinner 
 	on ok triggers (LoadCards)
 	
 MoveCardsStarted
+	appState (common.authorView.cardView.selectedCardIds) 
 	on ok (set common.authorView.cardView.movedCardIds)
 	
 MoveCards
+	appState (
+		common.authorView.cardView.movedCardIds,
+		common.authorView.categoryTree.dropTargetCategoryId,
+		common.authorView.categoryTree.rootCategory
+	)
  	call com.anfelisa.card.MoveCards
 	loadingFlag common.displaySpinner 
 	on ok (
 		reset common.authorView.cardView.movedCardIds
 	) triggers (category.LoadCategoryTree)
 	
+	
+// NEXT
 ChangeCardOrder ( cardId )
  	call com.anfelisa.card.ChangeOrder
 	loadingFlag common.displaySpinner 

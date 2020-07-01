@@ -32,6 +32,7 @@ export default class AbstractDeleteCardCommand extends Command {
         super(commandData, "card.DeleteCardCommand");
         this.ok = "ok";
         this.error = "error";
+        this.commandData.cardId = AppState.get_authorView_cardView_deleteCard_cardId;
     }
 
     publishEvents() {

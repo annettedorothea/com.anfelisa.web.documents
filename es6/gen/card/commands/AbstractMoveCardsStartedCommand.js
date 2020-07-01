@@ -26,6 +26,7 @@ export default class AbstractMoveCardsStartedCommand extends Command {
     constructor(commandData) {
         super(commandData, "card.MoveCardsStartedCommand");
         this.ok = "ok";
+        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds;
     }
 
     publishEvents() {
