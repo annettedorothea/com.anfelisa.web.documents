@@ -3,9 +3,9 @@ import AbstractRouteChangedCommand from "../../../gen/common/commands/AbstractRo
 export default class RouteChangedCommand extends AbstractRouteChangedCommand {
     execute() {
         const hashes = this.commandData.hash.split("/");
-        if (this.commandData.hash.startsWith("#confirmemail")) {
-            this.commandData.username = hashes[1] ? hashes[1] : "";
-            this.commandData.token = hashes[2] ? hashes[2] : "";
+        if (this.commandData.hash.startsWith("#confirmemail") && hashes.length >= 2 && hashes[1] && hashes[2]) {
+            this.commandData.username = hashes[1];
+            this.commandData.token = hashes[2];
             this.commandData.outcome = this.confirmEmail;
         } else if (this.commandData.hash.startsWith("#resetpassword" && hashes.length >= 1 && hashes[1])) {
             this.commandData.resetPasswordView = {

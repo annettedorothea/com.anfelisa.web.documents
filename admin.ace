@@ -38,39 +38,3 @@ ACE
 		)
 	
 	
-scenarios
-	GetAllUsers 
-	GIVEN GetAllUsers
-		registration.RegisterUser
-	WHEN GetAllUsers
-	with response 200 {
-		userList : [
-			{
-				email: "email",
-				emailConfirmed: true,
-				password: "pw",
-				role: "ADMIN",
-				userId: "userId",
-				username: "name"
-			}
-		]
-	}
-	THEN 
-	expectedServerCall {
-		
-	}
-	expectedState userListWasSet common.userListView shouldBe {
-		userList: [
-			{
-				email: "email",
-				emailConfirmed: true,
-				password: "pw",
-				role: "ADMIN",
-				userId: "userId",
-				username: "name"
-			}
-		]	
-	} 
-	
-
-	

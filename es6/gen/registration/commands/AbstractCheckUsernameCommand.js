@@ -29,6 +29,7 @@ export default class AbstractCheckUsernameCommand extends Command {
         super(commandData, "registration.CheckUsernameCommand");
         this.empty = "empty";
         this.ok = "ok";
+        this.commandData.username = AppState.get_registrationView_username;
     }
 
     publishEvents() {

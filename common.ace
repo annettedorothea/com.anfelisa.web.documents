@@ -122,8 +122,8 @@ appState {
 			String username
 		}
 		resetPasswordView {
-			token
-			passwordMismatch
+			String token
+			Boolean passwordMismatch
 		}
 		dashboardView {
 	    	List boxList serverModel com.anfelisa.box.BoxWithStatistics {

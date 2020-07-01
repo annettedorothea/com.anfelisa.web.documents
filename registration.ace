@@ -4,6 +4,7 @@ registration
 
 ACE 
 CheckUsername
+	appState (common.registrationView.username)
 	call com.anfelisa.user.UsernameAvailable
 	loadingFlag common.registrationView.displayUsernameSpinner 
 	on empty
@@ -30,27 +31,3 @@ ConfirmEmail ( username, token )
 	loadingFlag common.displaySpinner 
 	on ok triggers ( common.DisplayMessage common.Route)
 
-	
-scenarios
-	RegisterUser
-	WHEN RegisterUser ( password : "password" )
-		with response 200 
-	THEN 
-	expectedServerCall {
-		email: "email",
-		language: "de",
-		password: "lala",
-		username: "username"
-	}
-	expectedState 
-		displayMessage common.message shouldBe {
-			text : "String",
-			type: "lslsd"
-		}
-	triggeredActions common.DisplayMessage ( messageKey : "dateTime" )
-	
-	EmailChanged
-	WHEN EmailChanged ( email : "email" )
-	THEN 
-		expectedState emailWasChanged common.registrationView.email shouldBe "email"
-	
