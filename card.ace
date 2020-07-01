@@ -148,8 +148,8 @@ MoveCards
 	) triggers (category.LoadCategoryTree)
 	
 	
-// NEXT
 ChangeCardOrder ( cardId )
+	appState ( common.authorView.cardView.movedCardIds	)
  	call com.anfelisa.card.ChangeOrder
 	loadingFlag common.displaySpinner 
 	on ok (
@@ -163,11 +163,24 @@ OnDragExit ( dragTargetCardId )
 	on ok (reset common.authorView.cardView.dragTargetCardId)
 	
 SearchDuplicateCards 
+	appState (
+		common.authorView.cardView.naturalInputOrder,
+		common.authorView.cardView.newCard.given,
+		common.authorView.cardView.newCard.wanted,
+		common.authorView.categoryTree.selectedCategory.categoryId
+	)
 	call com.anfelisa.card.GetDuplicates
 	loadingFlag common.authorView.cardView.newCard.displaySpinner 
 	on ok ( set common.authorView.cardView.cardDuplicates )
 	
 Translate 
+	appState (
+		common.authorView.cardView.naturalInputOrder,
+		common.authorView.cardView.newCard.given,
+		common.authorView.cardView.newCard.wanted,
+		common.authorView.categoryTree.selectedCategory.givenLanguage,
+		common.authorView.categoryTree.selectedCategory.wantedLanguage
+	)
 	call com.anfelisa.card.GetTranslation
 	loadingFlag common.authorView.cardView.newCard.displayTranslateSpinner 
 	on wantedFetched (merge common.authorView.cardView.newCard ) triggers (SearchDuplicateCards)

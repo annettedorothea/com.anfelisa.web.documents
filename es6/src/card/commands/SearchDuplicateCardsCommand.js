@@ -1,14 +1,8 @@
 import AbstractSearchDuplicateCardsCommand from "../../../gen/card/commands/AbstractSearchDuplicateCardsCommand";
-import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class SearchDuplicateCardsCommand extends AbstractSearchDuplicateCardsCommand {
 
     validateCommandData() {
-        const data = getState().data;
-        this.commandData.given = data.cardView.newCard.given;
-        this.commandData.wanted = data.cardView.newCard.wanted;
-        this.commandData.naturalInputOrder = data.cardView.naturalInputOrder;
-        this.commandData.categoryId = data.categoryTree.selectedCategory.categoryId;
         return true;
     }
 

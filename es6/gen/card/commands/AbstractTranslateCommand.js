@@ -34,6 +34,11 @@ export default class AbstractTranslateCommand extends Command {
         this.error = "error";
         this.empty = "empty";
         this.targetNotEmtpy = "targetNotEmtpy";
+        this.commandData.naturalInputOrder = AppState.get_authorView_cardView_naturalInputOrder;
+        this.commandData.given = AppState.get_authorView_cardView_newCard_given;
+        this.commandData.wanted = AppState.get_authorView_cardView_newCard_wanted;
+        this.commandData.givenLanguage = AppState.get_authorView_categoryTree_selectedCategory_givenLanguage;
+        this.commandData.wantedLanguage = AppState.get_authorView_categoryTree_selectedCategory_wantedLanguage;
     }
 
     publishEvents() {

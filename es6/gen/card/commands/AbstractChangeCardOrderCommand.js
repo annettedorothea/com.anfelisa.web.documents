@@ -29,6 +29,7 @@ export default class AbstractChangeCardOrderCommand extends Command {
     constructor(commandData) {
         super(commandData, "card.ChangeCardOrderCommand");
         this.ok = "ok";
+        this.commandData.movedCardIds = AppState.get_authorView_cardView_movedCardIds;
     }
 
     publishEvents() {

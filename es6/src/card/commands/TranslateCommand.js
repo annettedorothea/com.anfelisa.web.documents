@@ -18,43 +18,40 @@
 
 
 import AbstractTranslateCommand from "../../../gen/card/commands/AbstractTranslateCommand";
-import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class TranslateCommand extends AbstractTranslateCommand {
 
     validateCommandData() {
-        const data = getState().data;
-        if (!!data.cardView.naturalInputOrder) {
-            if (!data.cardView.newCard.given) {
+        if (!!this.commandData.naturalInputOrder) {
+            if (!this.commandData.given) {
                 this.commandData.outcome = this.empty;
                 return false;
             }
-            if (!!data.cardView.newCard.wanted) {
+            if (!!this.commandData.wanted) {
                 this.commandData.outcome = this.targetNotEmtpy;
                 return false;
             }
-            this.commandData.sourceValue = data.cardView.newCard.given;
-            this.commandData.sourceLanguage = data.categoryTree.selectedCategory.givenLanguage;
-            this.commandData.targetLanguage = data.categoryTree.selectedCategory.wantedLanguage;
+            this.commandData.sourceValue = this.commandData.given;
+            this.commandData.sourceLanguage = this.commandData.givenLanguage;
+            this.commandData.targetLanguage = this.commandData.wantedLanguage;
         } else {
-            if (!data.cardView.newCard.wanted) {
+            if (!this.commandData.wanted) {
                 this.commandData.outcome = this.empty;
                 return false;
             }
-            if (!!data.cardView.newCard.given) {
+            if (!!this.commandData.given) {
                 this.commandData.outcome = this.targetNotEmtpy;
                 return false;
             }
-            this.commandData.sourceValue = data.cardView.newCard.wanted;
-            this.commandData.sourceLanguage = data.categoryTree.selectedCategory.wantedLanguage;
-            this.commandData.targetLanguage = data.categoryTree.selectedCategory.givenLanguage;
+            this.commandData.sourceValue = this.commandData.wanted;
+            this.commandData.sourceLanguage = this.commandData.wantedLanguage;
+            this.commandData.targetLanguage = this.commandData.givenLanguage;
         }
         return true;
     }
 
     handleResponse(resolve) {
-        const data = getState().data.cardView;
-        if (!!data.naturalInputOrder) {
+        if (!!this.commandData.naturalInputOrder) {
             this.commandData.wanted = this.commandData.targetValue;
             this.commandData.outcome = this.wantedFetched;
         } else {
