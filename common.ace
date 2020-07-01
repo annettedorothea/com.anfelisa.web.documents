@@ -119,7 +119,7 @@ appState {
 	        Boolean passwordMismatch
 		}
 		forgotPasswordView {
-			username
+			String username
 		}
 		resetPasswordView {
 			token

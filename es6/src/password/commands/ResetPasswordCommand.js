@@ -1,10 +1,8 @@
 import AbstractResetPasswordCommand from "../../../gen/password/commands/AbstractResetPasswordCommand";
-import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
 
     validateCommandData() {
-        this.commandData.token = AppState.get_state_State_data_ResetPassword_token();
         return true;
     }
 

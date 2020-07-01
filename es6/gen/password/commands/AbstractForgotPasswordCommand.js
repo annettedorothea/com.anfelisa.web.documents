@@ -29,6 +29,8 @@ export default class AbstractForgotPasswordCommand extends Command {
     constructor(commandData) {
         super(commandData, "password.ForgotPasswordCommand");
         this.ok = "ok";
+        this.commandData.language = AppState.get_language;
+        this.commandData.username = AppState.get_forgotPasswordView_username;
     }
 
     publishEvents() {
