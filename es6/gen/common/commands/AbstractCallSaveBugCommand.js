@@ -28,6 +28,7 @@ export default class AbstractCallSaveBugCommand extends Command {
     constructor(commandData) {
         super(commandData, "common.CallSaveBugCommand");
         this.ok = "ok";
+        this.commandData.username = AppState.get_loggedInUser_username;
     }
 
     publishEvents() {

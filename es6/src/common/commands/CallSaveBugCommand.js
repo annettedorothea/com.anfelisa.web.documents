@@ -15,29 +15,23 @@
  */
 
 
-
-
 import AbstractCallSaveBugCommand from "../../../gen/common/commands/AbstractCallSaveBugCommand";
-import * as AppState from "../../../gen/ace/ReadAppState";
 import {saveBug} from "../../../gen/ace/Bug";
-//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class CallSaveBugCommand extends AbstractCallSaveBugCommand {
 
-execute() {
-	return new Promise((resolve, reject) => {
-        saveBug("unknown user interaction", AppState.get_state_State_loggedInUser_LoggedInUser_username()).then(() => {
-            this.commandData.outcome = this.ok;
-            resolve();
-        }, () => {
-            this.commandData.outcome = this.ok;
-            resolve();
+    execute() {
+        return new Promise((resolve, reject) => {
+            saveBug("unknown user interaction", this.commandData.username).then(() => {
+                this.commandData.outcome = this.ok;
+                resolve();
+            }, () => {
+                this.commandData.outcome = this.ok;
+                resolve();
+            });
         });
-    });
+    }
 }
-}
-
-
 
 
 /******* S.D.G. *******/

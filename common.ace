@@ -4,7 +4,7 @@ common
 
 ACE 
 Init 
-	appState (hash, username, password )
+	appState (username, password )
 	on user ( 
 		set loggedInUser 
 		set language
@@ -14,7 +14,8 @@ Init
 		set language
 	) triggers ( RouteChanged )
 
-RouteChanged 
+RouteChanged
+	appState ( hash, loggedInUser ) 
 	on login ( 
 		set loginView 
 	)
@@ -35,22 +36,20 @@ RouteChanged
 	on nextCard (
 		set cardView.boxId
 	) triggers (box.LoadNextCard)
-	on invalid triggers (Route)
 	on boxSettings (
 		set boxSettingsView.boxId	
 	) triggers (box.LoadSettings)
 	on boxCreate triggers (box.CreateNewBox)
+	on invalid triggers (Route)
 	
 Route ( hash ) 
 	on ok ( set hash )
-	
 	
 InitialLogin
 	call com.anfelisa.user.GetRole
 	loadingFlag displaySpinner 
 	on ok (set loggedInUser.role) triggers ( RouteChanged )
 	on unauthorized triggers ( DisplayError Logout )
-	
 	
 Logout 
 	on ok ( 
@@ -60,12 +59,15 @@ Logout
 	) triggers ( Route )
 
 DisplayError ( error ) 
+	appState( language, texts)
 	on ok ( set message) 
 
 DisplayErrorAndLogout ( error ) 
+	appState( language, texts)
 	on ok (set message) triggers ( Logout)
 
 DisplayMessage ( messageKey ) 
+	appState( language, texts)
 	on ok (set message) 
 
 ClearToast 
@@ -75,6 +77,7 @@ DisplaySaveBugDialog
 	on ok (set displaySaveBugDialog)
 
 async CallSaveBug
+	appState( loggedInUser.username )
 	on ok triggers (HideSaveBugDialog)
 
 CancelSaveBugDialog
@@ -85,17 +88,6 @@ HideSaveBugDialog
 
 
 
-
-
-
-
-
-
-
-
-
-
-	
 appState {
 	String loggedInUser {
 		String username

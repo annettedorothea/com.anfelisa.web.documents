@@ -1,13 +1,13 @@
 import AbstractDisplayMessageCommand from "../../../gen/common/commands/AbstractDisplayMessageCommand";
-import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class DisplayMessageCommand extends AbstractDisplayMessageCommand {
     execute() {
-        const texts = AppState.get_state_State_texts();
-        const language = AppState.get_state_State_language();
+        const text = this.commandData.texts.messages[this.commandData.messageKey] && this.commandData.texts.messages[this.commandData.messageKey][this.commandData.language] ?
+            this.commandData.texts.messages[this.commandData.messageKey][this.commandData.language] :
+            this.commandData.messageKey;
         this.commandData.message = {
             type: "info",
-            text: texts.messages[this.commandData.messageKey][language]
+            text
         };
         this.commandData.outcome = this.ok;
     }

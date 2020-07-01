@@ -32,9 +32,9 @@ import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTr
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
-import RouteAction from "../../../src/common/actions/RouteAction";
 import LoadSettingsAction from "../../../src/box/actions/LoadSettingsAction";
 import CreateNewBoxAction from "../../../src/box/actions/CreateNewBoxAction";
+import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractRouteChangedCommand extends Command {
     constructor(commandData) {
@@ -49,9 +49,11 @@ export default class AbstractRouteChangedCommand extends Command {
         this.profile = "profile";
         this.userList = "userList";
         this.nextCard = "nextCard";
-        this.invalid = "invalid";
         this.boxSettings = "boxSettings";
         this.boxCreate = "boxCreate";
+        this.invalid = "invalid";
+        this.commandData.hash = AppState.get_hash;
+        this.commandData.loggedInUser = AppState.get_loggedInUser;
     }
 
     publishEvents() {
@@ -87,15 +89,15 @@ export default class AbstractRouteChangedCommand extends Command {
 			new RouteChangedNextCardEvent(this.commandData).publish();
 			new TriggerAction(new LoadNextCardAction()).publish();
 			break;
-		case this.invalid:
-			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
-			break;
 		case this.boxSettings:
 			new RouteChangedBoxSettingsEvent(this.commandData).publish();
 			new TriggerAction(new LoadSettingsAction()).publish();
 			break;
 		case this.boxCreate:
 			new TriggerAction(new CreateNewBoxAction()).publish();
+			break;
+		case this.invalid:
+			new TriggerAction(new RouteAction(this.commandData.hash)).publish();
 			break;
 		default:
 			throw 'RouteChangedCommand unhandled outcome: ' + this.commandData.outcome;

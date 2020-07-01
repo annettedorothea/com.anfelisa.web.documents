@@ -26,6 +26,8 @@ export default class AbstractDisplayErrorCommand extends Command {
     constructor(commandData) {
         super(commandData, "common.DisplayErrorCommand");
         this.ok = "ok";
+        this.commandData.language = AppState.get_language;
+        this.commandData.texts = AppState.get_texts;
     }
 
     publishEvents() {

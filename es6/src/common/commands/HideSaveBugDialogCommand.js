@@ -18,8 +18,6 @@
 
 
 import AbstractHideSaveBugDialogCommand from "../../../gen/common/commands/AbstractHideSaveBugDialogCommand";
-import * as AppState from "../../../gen/ace/ReadAppState";
-//please do not import "../../../gen/ace/WriteAppState" for you should not write the state in a command
 
 export default class HideSaveBugDialogCommand extends AbstractHideSaveBugDialogCommand {
     execute() {
