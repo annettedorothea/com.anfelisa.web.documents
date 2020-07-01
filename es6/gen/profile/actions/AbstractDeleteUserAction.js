@@ -23,8 +23,8 @@ import * as AppState from "../../ace/AppState";
 
 export default class AbstractDeleteUserAction extends Action {
 
-    constructor( usernameToBeDeleted) {
-        super({usernameToBeDeleted}, 'profile.DeleteUserAction');
+    constructor() {
+        super({}, 'profile.DeleteUserAction');
 		this.postCall = this.postCall.bind(this);
 		}
 		

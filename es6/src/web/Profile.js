@@ -20,7 +20,7 @@ export default class Profile extends React.Component {
                             message: this.props.texts.profile.confirmDelete.message[this.props.language],
                             okText: this.props.texts.profile.confirmDelete.ok[this.props.language],
                             cancelText: this.props.texts.profile.confirmDelete.cancel[this.props.language],
-                            ok: () => deleteUser(this.props.username),
+                            ok: () => deleteUser(),
                             cancel: () => deleteUserCancel()
                         }}/>
                 </div>}

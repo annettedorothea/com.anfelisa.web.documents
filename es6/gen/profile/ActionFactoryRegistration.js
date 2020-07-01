@@ -29,7 +29,7 @@ export default class ActionFactoryRegistrationProfile {
 		ACEController.registerFactory('profile.LoadUserAction', 
 			(actionData) => new LoadUserAction());
 		ACEController.registerFactory('profile.DeleteUserAction', 
-			(actionData) => new DeleteUserAction(actionData.usernameToBeDeleted));
+			(actionData) => new DeleteUserAction());
 		ACEController.registerFactory('profile.DeleteUserClickAction', 
 			(actionData) => new DeleteUserClickAction());
 		ACEController.registerFactory('profile.DeleteUserCancelAction', 

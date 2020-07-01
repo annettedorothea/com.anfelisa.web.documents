@@ -27,7 +27,7 @@ export default class EventListenerRegistrationProfile {
 		ACEController.registerListener('profile.DeleteUserOkEvent', AppState.reset_profileView_showDeleteUserDialog);
 		ACEController.registerListener('profile.DeleteUserErrorEvent', AppState.reset_profileView_showDeleteUserDialog);
 		ACEController.registerListener('profile.DeleteUserClickOkEvent', AppState.set_profileView_showDeleteUserDialog);
-		ACEController.registerListener('profile.DeleteUserCancelOkEvent', AppState.reset_profileView_showDeleteUserDialog);
+		ACEController.registerListener('profile.DeleteUserCancelOkEvent', AppState.set_profileView_showDeleteUserDialog);
 	}
 
 }

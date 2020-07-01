@@ -4,13 +4,15 @@ profile
 
 ACE 
 	LoadUser 
+		appState (common.loggedInUser.role)
 		call com.anfelisa.user.GetUserProfile
 		loadingFlag common.displaySpinner 
 		on ok (
 			set common.profileView
 		)
 	
-	DeleteUser ( usernameToBeDeleted )
+	DeleteUser
+		appState (common.profileView.username)
 		call com.anfelisa.user.DeleteUser
 		loadingFlag common.displaySpinner 
 		on ok ( reset common.profileView.showDeleteUserDialog ) triggers ( common.Logout )
@@ -20,7 +22,7 @@ ACE
 		on ok (set common.profileView.showDeleteUserDialog)
 	
 	DeleteUserCancel 
-		on ok (reset common.profileView.showDeleteUserDialog)
+		on ok (set common.profileView.showDeleteUserDialog)
 	
 
 

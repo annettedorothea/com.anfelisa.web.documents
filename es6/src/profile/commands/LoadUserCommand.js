@@ -1,5 +1,4 @@
 import AbstractLoadUserCommand from "../../../gen/profile/commands/AbstractLoadUserCommand";
-import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class LoadUserCommand extends AbstractLoadUserCommand {
 
@@ -9,11 +8,10 @@ export default class LoadUserCommand extends AbstractLoadUserCommand {
 
     handleResponse(resolve) {
     	this.commandData.outcome = this.ok;
-    	this.commandData.view = "profile";
-        this.commandData.data = {
+        this.commandData.profileView = {
             username: this.commandData.username,
             email: this.commandData.email,
-            role: getState().loggedInUser.role,
+            role: this.commandData.role,
             showDeleteUserDialog: false
         };
     	resolve();

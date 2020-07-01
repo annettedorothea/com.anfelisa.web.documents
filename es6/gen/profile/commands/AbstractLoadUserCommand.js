@@ -28,6 +28,7 @@ export default class AbstractLoadUserCommand extends Command {
     constructor(commandData) {
         super(commandData, "profile.LoadUserCommand");
         this.ok = "ok";
+        this.commandData.role = AppState.get_loggedInUser_role;
     }
 
     publishEvents() {

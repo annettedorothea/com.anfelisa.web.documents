@@ -3,6 +3,7 @@ import AbstractDeleteUserCommand from "../../../gen/profile/commands/AbstractDel
 export default class DeleteUserCommand extends AbstractDeleteUserCommand {
 
     validateCommandData() {
+        this.commandData.usernameToBeDeleted = this.commandData.username;
         return true;
     }
 

@@ -26,8 +26,8 @@ export function loadUser() {
     new LoadUserAction().apply();
 }
 
-export function deleteUser(usernameToBeDeleted) {
-    new DeleteUserAction(usernameToBeDeleted).apply();
+export function deleteUser() {
+    new DeleteUserAction().apply();
 }
 
 export function deleteUserClick() {

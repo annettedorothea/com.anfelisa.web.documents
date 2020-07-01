@@ -160,10 +160,10 @@ appState {
 			String categoryId
 		} 
 		profileView {
-			username
-			email
-			role
-			showDeleteUserDialog
+			String username
+			String email
+			String role
+			Boolean showDeleteUserDialog
 		}
 		userListView serverModel com.anfelisa.user.UserList {
 			List userList serverModel com.anfelisa.user.User {
