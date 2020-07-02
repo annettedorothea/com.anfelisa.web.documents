@@ -29,6 +29,10 @@ export default class AbstractMoveCategoryCommand extends Command {
     constructor(commandData) {
         super(commandData, "category.MoveCategoryCommand");
         this.ok = "ok";
+        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId;
+        this.commandData.selectedCategoryId = AppState.get_authorView_categoryTree_dropTargetCategoryId;
+        this.commandData.targetCategoryId = AppState.get_authorView_categoryTree_dropTargetCategoryId;
+        this.commandData.movedCategoryId = AppState.get_authorView_categoryTree_movedCategory_categoryId;
     }
 
     publishEvents() {

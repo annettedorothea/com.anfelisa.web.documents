@@ -1,14 +1,11 @@
 import AbstractCollapseTreeItemCommand from "../../../gen/category/commands/AbstractCollapseTreeItemCommand";
 import {findCategory, isCategoryChildOfParent} from "../utils/CategoryTreeUtils"
-import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class CollapseTreeItemCommand extends AbstractCollapseTreeItemCommand {
     execute() {
-        const categoryTree = getState().data.categoryTree;
-        let category = findCategory(categoryTree.rootCategory.childCategories, this.commandData.categoryId);
+        let category = findCategory(this.commandData.rootCategory.childCategories, this.commandData.categoryId);
         category.expanded = false;
-        this.commandData.rootCategory = categoryTree.rootCategory;
-        if (categoryTree.selectedCategory && isCategoryChildOfParent(category, categoryTree.selectedCategory.categoryId)) {
+        if (this.commandData.selectedCategory && isCategoryChildOfParent(category, this.commandData.selectedCategory.categoryId)) {
             this.commandData.outcome = this.selectParentCategory;
         } else {
             this.commandData.outcome = this.ok;

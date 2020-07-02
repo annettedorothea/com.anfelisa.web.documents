@@ -2,9 +2,7 @@ import AbstractCancelNewCategoryCommand from "../../../gen/category/commands/Abs
 
 export default class CancelNewCategoryCommand extends AbstractCancelNewCategoryCommand {
     execute() {
-        this.commandData.dictionaryLookup = false;
-        this.commandData.wantedLanguage = "";
-        this.commandData.givenLanguage = "";
+        this.commandData.categoryName = "";
         this.commandData.displayNewCategory = false;
     	this.commandData.outcome = this.ok;
     }

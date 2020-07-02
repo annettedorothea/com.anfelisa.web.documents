@@ -26,6 +26,7 @@ export default class AbstractMoveCategoryStartedCommand extends Command {
     constructor(commandData) {
         super(commandData, "category.MoveCategoryStartedCommand");
         this.ok = "ok";
+        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory;
     }
 
     publishEvents() {

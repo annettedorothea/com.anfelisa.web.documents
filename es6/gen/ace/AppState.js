@@ -3213,7 +3213,7 @@ export function get_authorView_categoryTree_movedCategory() {
 	if (!appState.authorView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory;
+	return AppUtils.deepCopy(appState.authorView.categoryTree.movedCategory);
 }
 
 export function set_authorView_categoryTree_movedCategory(eventData) {
@@ -3234,6 +3234,480 @@ export function reset_authorView_categoryTree_movedCategory() {
 		return;
 	}
 	appState.authorView.categoryTree.movedCategory = undefined;
+}
+
+export function merge_authorView_categoryTree_movedCategory(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	if (eventData.categoryId !== undefined) {
+		appState.authorView.categoryTree.movedCategory.categoryId = eventData.categoryId;
+	}
+	if (eventData.categoryName !== undefined) {
+		appState.authorView.categoryTree.movedCategory.categoryName = eventData.categoryName;
+	}
+	if (eventData.categoryIndex !== undefined) {
+		appState.authorView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
+	}
+	if (eventData.empty !== undefined) {
+		appState.authorView.categoryTree.movedCategory.empty = eventData.empty;
+	}
+	if (eventData.parentCategoryId !== undefined) {
+		appState.authorView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
+	}
+	if (eventData.dictionaryLookup !== undefined) {
+		appState.authorView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
+	}
+	if (eventData.givenLanguage !== undefined) {
+		appState.authorView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
+	}
+	if (eventData.wantedLanguage !== undefined) {
+		appState.authorView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
+	}
+	if (eventData.rootCategoryId !== undefined) {
+		appState.authorView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
+	}
+	if (eventData.CategoryTreeItem !== undefined) {
+		appState.authorView.categoryTree.movedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+	}
+	if (eventData.childCategories !== undefined) {
+		appState.authorView.categoryTree.movedCategory.childCategories = eventData.childCategories;
+	}
+}
+
+export function get_authorView_categoryTree_movedCategory_categoryId() {
+	if (!appState.authorView) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.authorView.categoryTree.movedCategory.categoryId;
+}
+
+export function set_authorView_categoryTree_movedCategory_categoryId(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	appState.authorView.categoryTree.movedCategory.categoryId = eventData.categoryId;
+}
+
+export function reset_authorView_categoryTree_movedCategory_categoryId() {
+	if (!appState.authorView) {
+		return;
+	}
+	if (!appState.authorView.categoryTree) {
+		return;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return;
+	}
+	appState.authorView.categoryTree.movedCategory.categoryId = undefined;
+}
+
+export function get_authorView_categoryTree_movedCategory_categoryName() {
+	if (!appState.authorView) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.authorView.categoryTree.movedCategory.categoryName;
+}
+
+export function set_authorView_categoryTree_movedCategory_categoryName(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	appState.authorView.categoryTree.movedCategory.categoryName = eventData.categoryName;
+}
+
+export function reset_authorView_categoryTree_movedCategory_categoryName() {
+	if (!appState.authorView) {
+		return;
+	}
+	if (!appState.authorView.categoryTree) {
+		return;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return;
+	}
+	appState.authorView.categoryTree.movedCategory.categoryName = undefined;
+}
+
+export function get_authorView_categoryTree_movedCategory_categoryIndex() {
+	if (!appState.authorView) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.authorView.categoryTree.movedCategory.categoryIndex;
+}
+
+export function set_authorView_categoryTree_movedCategory_categoryIndex(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	appState.authorView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
+}
+
+export function reset_authorView_categoryTree_movedCategory_categoryIndex() {
+	if (!appState.authorView) {
+		return;
+	}
+	if (!appState.authorView.categoryTree) {
+		return;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return;
+	}
+	appState.authorView.categoryTree.movedCategory.categoryIndex = undefined;
+}
+
+export function get_authorView_categoryTree_movedCategory_empty() {
+	if (!appState.authorView) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.authorView.categoryTree.movedCategory.empty;
+}
+
+export function set_authorView_categoryTree_movedCategory_empty(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	appState.authorView.categoryTree.movedCategory.empty = eventData.empty;
+}
+
+export function reset_authorView_categoryTree_movedCategory_empty() {
+	if (!appState.authorView) {
+		return;
+	}
+	if (!appState.authorView.categoryTree) {
+		return;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return;
+	}
+	appState.authorView.categoryTree.movedCategory.empty = undefined;
+}
+
+export function get_authorView_categoryTree_movedCategory_parentCategoryId() {
+	if (!appState.authorView) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.authorView.categoryTree.movedCategory.parentCategoryId;
+}
+
+export function set_authorView_categoryTree_movedCategory_parentCategoryId(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	appState.authorView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
+}
+
+export function reset_authorView_categoryTree_movedCategory_parentCategoryId() {
+	if (!appState.authorView) {
+		return;
+	}
+	if (!appState.authorView.categoryTree) {
+		return;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return;
+	}
+	appState.authorView.categoryTree.movedCategory.parentCategoryId = undefined;
+}
+
+export function get_authorView_categoryTree_movedCategory_dictionaryLookup() {
+	if (!appState.authorView) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.authorView.categoryTree.movedCategory.dictionaryLookup;
+}
+
+export function set_authorView_categoryTree_movedCategory_dictionaryLookup(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	appState.authorView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
+}
+
+export function reset_authorView_categoryTree_movedCategory_dictionaryLookup() {
+	if (!appState.authorView) {
+		return;
+	}
+	if (!appState.authorView.categoryTree) {
+		return;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return;
+	}
+	appState.authorView.categoryTree.movedCategory.dictionaryLookup = undefined;
+}
+
+export function get_authorView_categoryTree_movedCategory_givenLanguage() {
+	if (!appState.authorView) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.authorView.categoryTree.movedCategory.givenLanguage;
+}
+
+export function set_authorView_categoryTree_movedCategory_givenLanguage(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	appState.authorView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
+}
+
+export function reset_authorView_categoryTree_movedCategory_givenLanguage() {
+	if (!appState.authorView) {
+		return;
+	}
+	if (!appState.authorView.categoryTree) {
+		return;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return;
+	}
+	appState.authorView.categoryTree.movedCategory.givenLanguage = undefined;
+}
+
+export function get_authorView_categoryTree_movedCategory_wantedLanguage() {
+	if (!appState.authorView) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.authorView.categoryTree.movedCategory.wantedLanguage;
+}
+
+export function set_authorView_categoryTree_movedCategory_wantedLanguage(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	appState.authorView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
+}
+
+export function reset_authorView_categoryTree_movedCategory_wantedLanguage() {
+	if (!appState.authorView) {
+		return;
+	}
+	if (!appState.authorView.categoryTree) {
+		return;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return;
+	}
+	appState.authorView.categoryTree.movedCategory.wantedLanguage = undefined;
+}
+
+export function get_authorView_categoryTree_movedCategory_rootCategoryId() {
+	if (!appState.authorView) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.authorView.categoryTree.movedCategory.rootCategoryId;
+}
+
+export function set_authorView_categoryTree_movedCategory_rootCategoryId(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	appState.authorView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
+}
+
+export function reset_authorView_categoryTree_movedCategory_rootCategoryId() {
+	if (!appState.authorView) {
+		return;
+	}
+	if (!appState.authorView.categoryTree) {
+		return;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return;
+	}
+	appState.authorView.categoryTree.movedCategory.rootCategoryId = undefined;
+}
+
+export function get_authorView_categoryTree_movedCategory_CategoryTreeItem() {
+	if (!appState.authorView) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.authorView.categoryTree.movedCategory.CategoryTreeItem;
+}
+
+export function set_authorView_categoryTree_movedCategory_CategoryTreeItem(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	appState.authorView.categoryTree.movedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+}
+
+export function reset_authorView_categoryTree_movedCategory_CategoryTreeItem() {
+	if (!appState.authorView) {
+		return;
+	}
+	if (!appState.authorView.categoryTree) {
+		return;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return;
+	}
+	appState.authorView.categoryTree.movedCategory.CategoryTreeItem = undefined;
+}
+
+export function get_authorView_categoryTree_movedCategory_childCategories() {
+	if (!appState.authorView) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.authorView.categoryTree.movedCategory.childCategories;
+}
+
+export function set_authorView_categoryTree_movedCategory_childCategories(eventData) {
+	if (!appState.authorView) {
+		appState.authorView = {};
+	}
+	if (!appState.authorView.categoryTree) {
+		appState.authorView.categoryTree = {};
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		appState.authorView.categoryTree.movedCategory = {};
+	}
+	appState.authorView.categoryTree.movedCategory.childCategories = eventData.childCategories;
+}
+
+export function reset_authorView_categoryTree_movedCategory_childCategories() {
+	if (!appState.authorView) {
+		return;
+	}
+	if (!appState.authorView.categoryTree) {
+		return;
+	}
+	if (!appState.authorView.categoryTree.movedCategory) {
+		return;
+	}
+	appState.authorView.categoryTree.movedCategory.childCategories = undefined;
 }
 
 export function get_authorView_categoryTree_previewCsv() {

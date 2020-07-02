@@ -29,6 +29,8 @@ export default class AbstractCollapseTreeItemCommand extends Command {
         super(commandData, "category.CollapseTreeItemCommand");
         this.ok = "ok";
         this.selectParentCategory = "selectParentCategory";
+        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory;
+        this.commandData.selectedCategory = AppState.get_authorView_categoryTree_selectedCategory;
     }
 
     publishEvents() {

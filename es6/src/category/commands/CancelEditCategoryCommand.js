@@ -2,9 +2,7 @@ import AbstractCancelEditCategoryCommand from "../../../gen/category/commands/Ab
 
 export default class CancelEditCategoryCommand extends AbstractCancelEditCategoryCommand {
     execute() {
-        this.commandData.dictionaryLookup = false;
-        this.commandData.wantedLanguage = "";
-        this.commandData.givenLanguage = "";
+        this.commandData.categoryName = "";
         this.commandData.displayEditCategory = false;
     	this.commandData.outcome = this.ok;
     }

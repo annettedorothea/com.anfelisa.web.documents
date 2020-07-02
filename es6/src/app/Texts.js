@@ -233,7 +233,7 @@ export const Texts = {
         duplicateCards: {
             de: "Ähnliche Karten"
         },
-        filter: {
+        filterCards: {
             de: "Suchen und filtern"
         },
         filterNonScheduled: {

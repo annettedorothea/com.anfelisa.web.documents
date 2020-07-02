@@ -1,26 +1,27 @@
 import AbstractLoadCategoryTreeCommand from "../../../gen/category/commands/AbstractLoadCategoryTreeCommand";
 import {findExpandedCategories, initExpandedState, initSelected} from "../utils/CategoryTreeUtils"
-import {getState, get_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory} from "../../../gen/ace/ReadAppState";
 
 export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCommand {
 
     validateCommandData() {
         if (!this.commandData.rootCategoryId) {
-            this.commandData.rootCategoryId = get_state_State_data_AuthorView_categoryTree_CategoryTree_rootCategory().categoryId;
+            if (!this.commandData.rootCategory) {
+                return false;
+            }
+            this.commandData.rootCategoryId = this.commandData.rootCategory.categoryId;
         }
         return true;
     }
 
     handleResponse(resolve) {
         this.commandData.outcome = this.ok;
-        const appState = getState();
         const expandedCategories = [];
-        if (appState.data && appState.data.categoryTree && appState.data.categoryTree.rootCategory) {
-            findExpandedCategories(appState.data.categoryTree.rootCategory, expandedCategories);
+        if (this.commandData.rootCategory) {
+            findExpandedCategories(this.commandData.rootCategory, expandedCategories);
         }
         initExpandedState(this.commandData.rootCategory, expandedCategories);
 
-        this.commandData.data = {
+        this.commandData.authorView = {
             categoryTree: {
                 selectedCategory: initSelected(this.commandData.rootCategory, this.commandData.selectedCategoryId),
                 rootCategory: this.commandData.rootCategory,
@@ -34,7 +35,6 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
                 naturalInputOrder: true
             }
         };
-        this.commandData.view = "category-tree";
         this.commandData.selectedCategoryId = undefined;
         resolve();
     }

@@ -28,6 +28,7 @@ export default class AbstractItemDroppedCommand extends Command {
         super(commandData, "category.ItemDroppedCommand");
         this.card = "card";
         this.category = "category";
+        this.commandData.movedCategory = AppState.get_authorView_categoryTree_movedCategory;
     }
 
     publishEvents() {

@@ -29,6 +29,7 @@ export default class AbstractLoadCategoryTreeCommand extends Command {
     constructor(commandData) {
         super(commandData, "category.LoadCategoryTreeCommand");
         this.ok = "ok";
+        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory;
     }
 
     publishEvents() {

@@ -4,7 +4,7 @@ card
 
 ACE
 LoadCards
-	appState (
+	fromAppState (
 		common.authorView.categoryTree.selectedCategory, 
 		common.authorView.cardView.naturalInputOrder
 	)
@@ -14,7 +14,7 @@ LoadCards
 	on noCategorySelected ( reset common.authorView.cardView.cardList )
 
  CreateCard 
- 	appState (
+ 	fromAppState (
  		common.authorView.cardView.newCard.wanted,
  		common.authorView.cardView.newCard.given,
  		common.authorView.cardView.newCard.image,
@@ -26,7 +26,7 @@ LoadCards
 	triggers (LoadCards)
 
  UpdateCard 
- 	appState (
+ 	fromAppState (
  		common.authorView.cardView.editedCard.wanted,
  		common.authorView.cardView.editedCard.given,
  		common.authorView.cardView.editedCard.image,
@@ -39,7 +39,7 @@ LoadCards
 
 
  DeleteCard 
- 	appState ( common.authorView.cardView.deleteCard.cardId )
+ 	fromAppState ( common.authorView.cardView.deleteCard.cardId )
  	call com.anfelisa.card.DeleteCard
 	loadingFlag common.displaySpinner 
 	on ok ( 
@@ -70,7 +70,7 @@ CancelEditCard
 	on ok (set common.authorView.cardView.editedCard)
 
 EditCard ( cardId )
-	appState (common.authorView.cardView.cardList)
+	fromAppState (common.authorView.cardView.cardList)
 	on ok (set common.authorView.cardView.editedCard)
 
 DeleteCardClick ( cardId )
@@ -83,16 +83,16 @@ FilterCards ( filter )
 	on ok (set common.authorView.cardView.filter)
 
 FilterNonScheduledCards
-	appState (common.authorView.cardView.filterNonScheduled)
+	fromAppState (common.authorView.cardView.filterNonScheduled)
 	on ok (set common.authorView.cardView.filterNonScheduled)
 
 PassValueToDictionary 
-	appState (common.authorView.cardView.naturalInputOrder, common.authorView.cardView.newCard.given, common.authorView.cardView.newCard.wanted)
+	fromAppState (common.authorView.cardView.naturalInputOrder, common.authorView.cardView.newCard.given, common.authorView.cardView.newCard.wanted)
 	on ok (set common.authorView.cardView.dictionaryValue)
 
 
 ToggleInputOrder
-	appState (common.authorView.cardView.naturalInputOrder)
+	fromAppState (common.authorView.cardView.naturalInputOrder)
 	on ok (set common.authorView.cardView.naturalInputOrder)
 
 
@@ -109,34 +109,34 @@ RemoveEditedCardImage
 	on ok ( set common.authorView.cardView.editedCard.image )
 
 ToggleScheduleCardSelection ( cardId )
-	appState (common.authorView.cardView.selectedCardIds)
+	fromAppState (common.authorView.cardView.selectedCardIds)
 	on ok (set common.authorView.cardView.selectedCardIds)
 
 ToggleAllScheduleCardSelection 
-	appState (
+	fromAppState (
 		common.authorView.cardView.selectedCardIds,
 		common.authorView.cardView.cardList
 	)
 	on ok (set common.authorView.cardView.selectedCardIds)
 
 ScheduleSelectedCards
-	appState (common.authorView.cardView.selectedCardIds) 
+	fromAppState (common.authorView.cardView.selectedCardIds) 
  	call com.anfelisa.box.ScheduleCards
 	loadingFlag common.displaySpinner 
 	on ok triggers (LoadCards)
 	
 SortSelectedCardsOut 
-	appState (common.authorView.cardView.selectedCardIds) 
+	fromAppState (common.authorView.cardView.selectedCardIds) 
  	call com.anfelisa.box.SortCardsOut
 	loadingFlag common.displaySpinner 
 	on ok triggers (LoadCards)
 	
 MoveCardsStarted
-	appState (common.authorView.cardView.selectedCardIds) 
+	fromAppState (common.authorView.cardView.selectedCardIds) 
 	on ok (set common.authorView.cardView.movedCardIds)
 	
 MoveCards
-	appState (
+	fromAppState (
 		common.authorView.cardView.movedCardIds,
 		common.authorView.categoryTree.dropTargetCategoryId,
 		common.authorView.categoryTree.rootCategory
@@ -149,7 +149,7 @@ MoveCards
 	
 	
 ChangeCardOrder ( cardId )
-	appState ( common.authorView.cardView.movedCardIds	)
+	fromAppState ( common.authorView.cardView.movedCardIds	)
  	call com.anfelisa.card.ChangeOrder
 	loadingFlag common.displaySpinner 
 	on ok (
@@ -163,7 +163,7 @@ OnDragExit ( dragTargetCardId )
 	on ok (reset common.authorView.cardView.dragTargetCardId)
 	
 SearchDuplicateCards 
-	appState (
+	fromAppState (
 		common.authorView.cardView.naturalInputOrder,
 		common.authorView.cardView.newCard.given,
 		common.authorView.cardView.newCard.wanted,
@@ -174,7 +174,7 @@ SearchDuplicateCards
 	on ok ( set common.authorView.cardView.cardDuplicates )
 	
 Translate 
-	appState (
+	fromAppState (
 		common.authorView.cardView.naturalInputOrder,
 		common.authorView.cardView.newCard.given,
 		common.authorView.cardView.newCard.wanted,

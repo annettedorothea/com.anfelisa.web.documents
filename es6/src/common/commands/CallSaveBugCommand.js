@@ -21,7 +21,7 @@ import {saveBug} from "../../../gen/ace/Bug";
 export default class CallSaveBugCommand extends AbstractCallSaveBugCommand {
 
     execute() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             saveBug("unknown user interaction", this.commandData.username).then(() => {
                 this.commandData.outcome = this.ok;
                 resolve();

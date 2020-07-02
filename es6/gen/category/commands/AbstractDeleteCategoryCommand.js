@@ -31,6 +31,9 @@ export default class AbstractDeleteCategoryCommand extends Command {
         super(commandData, "category.DeleteCategoryCommand");
         this.ok = "ok";
         this.error = "error";
+        this.commandData.categoryId = AppState.get_authorView_categoryTree_selectedCategory_categoryId;
+        this.commandData.selectedCategoryId = AppState.get_authorView_categoryTree_selectedCategory_parentCategoryId;
+        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId;
     }
 
     publishEvents() {

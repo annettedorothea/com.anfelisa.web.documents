@@ -26,6 +26,7 @@ export default class AbstractEditCategoryClickCommand extends Command {
     constructor(commandData) {
         super(commandData, "category.EditCategoryClickCommand");
         this.ok = "ok";
+        this.commandData.categoryName = AppState.get_authorView_categoryTree_selectedCategory_categoryName;
     }
 
     publishEvents() {

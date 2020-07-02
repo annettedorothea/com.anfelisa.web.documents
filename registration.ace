@@ -4,7 +4,7 @@ registration
 
 ACE 
 CheckUsername
-	appState (common.registrationView.username)
+	fromAppState (common.registrationView.username)
 	call com.anfelisa.user.UsernameAvailable
 	loadingFlag common.registrationView.displayUsernameSpinner 
 	on empty
@@ -20,7 +20,7 @@ PasswordChanged ( password, passwordRepetition  )
 	on ok ( set common.registrationView.passwordMismatch )
 
 RegisterUser ( password )
-	appState ( common.registrationView.email, common.language, common.registrationView.username)
+	fromAppState ( common.registrationView.email, common.language, common.registrationView.username)
 	call com.anfelisa.user.RegisterUser
 	loadingFlag common.displaySpinner 
 	on ok  triggers ( common.DisplayMessage common.Route)

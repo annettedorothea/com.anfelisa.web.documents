@@ -16,7 +16,7 @@ ACE
 		) triggers (LoadBoxStatistics)
 	
 	LoadBoxStatistics 
-		appState ( common.dashboardView.boxList )
+		fromAppState ( common.dashboardView.boxList )
 		call com.anfelisa.box.GetBoxStatistics
 		loadingFlag common.displaySpinner 
 		on ok ( 
@@ -33,7 +33,7 @@ ACE
 		)
 	
 	DeleteBox
-		appState ( common.dashboardView.deleteBox.boxId )
+		fromAppState ( common.dashboardView.deleteBox.boxId )
 		call com.anfelisa.box.DeleteBox
 		loadingFlag common.displaySpinner 
 		on ok triggers (LoadBoxes)
@@ -43,7 +43,7 @@ ACE
 		) triggers (common.DisplayError)
 	
 	LoadNextCard
-		appState (common.cardView.boxId)
+		fromAppState (common.cardView.boxId)
 	 	call com.anfelisa.box.LoadNextCard
 		loadingFlag common.displaySpinner 
 		on ok (
@@ -51,25 +51,25 @@ ACE
 		)
 	
 	DisplayWanted ( wantedItemsLength )
-		appState ( common.cardView.index, common.cardView.image)
+		fromAppState ( common.cardView.index, common.cardView.image)
 		on ok (
 			merge common.cardView
 		)
 	
 	ScoreCard ( scoredCardQuality )
-		appState ( common.cardView.scheduledCardId )
+		fromAppState ( common.cardView.scheduledCardId )
 	 	call com.anfelisa.box.ScoreCard
 		loadingFlag common.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 	
 	ScoreReinforceCard ( scoredCardQuality )
-		appState (common.cardView.reinforceCardId)
+		fromAppState (common.cardView.reinforceCardId)
 	 	call com.anfelisa.box.ScoreReinforceCard
 		loadingFlag common.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	SortCardOut
-		appState (common.cardView.cardId)
+		fromAppState (common.cardView.cardId)
 	 	call com.anfelisa.box.SortCardsOut
 		loadingFlag common.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)
@@ -80,7 +80,7 @@ ACE
 		on ok triggers (LoadNextCard) 
 				
 	LoadSettings
-		appState (common.boxSettingsView.boxId)
+		fromAppState (common.boxSettingsView.boxId)
 	 	call com.anfelisa.box.GetBoxSettings
 		loadingFlag common.displaySpinner 
 		on ok (
@@ -88,7 +88,7 @@ ACE
 		)
 		
 	SaveBoxSettings
-		appState (
+		fromAppState (
 			common.boxSettingsView.boxId,
 			common.boxSettingsView.maxInterval,
 			common.boxSettingsView.maxCardsPerDay,
@@ -121,7 +121,7 @@ ACE
 		)
 		
 	CreateRootCategory
-		appState (
+		fromAppState (
 			common.boxSettingsView.maxInterval,
 			common.boxSettingsView.maxCardsPerDay,
 			common.boxSettingsView.categoryId,
@@ -140,7 +140,7 @@ ACE
 		)
 		
 	DictionaryLookupChanged
-		appState (
+		fromAppState (
 			common.boxSettingsView.givenLanguage,
 			common.boxSettingsView.wantedLanguage,
 			common.boxSettingsView.dictionaryLookup
@@ -151,7 +151,7 @@ ACE
 		)
 		
 	GivenLanguageChanged ( givenLanguage )
-		appState (
+		fromAppState (
 			common.boxSettingsView.wantedLanguage,
 			common.boxSettingsView.dictionaryLookup
 		)
@@ -161,7 +161,7 @@ ACE
 		)
 		
 	WantedLanguageChanged ( wantedLanguage )
-		appState (
+		fromAppState (
 			common.boxSettingsView.givenLanguage,
 			common.boxSettingsView.dictionaryLookup
 		)

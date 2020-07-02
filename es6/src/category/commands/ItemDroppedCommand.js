@@ -1,10 +1,8 @@
 import AbstractItemDroppedCommand from "../../../gen/category/commands/AbstractItemDroppedCommand";
-import {getState} from "../../../gen/ace/ReadAppState";
 
 export default class ItemDroppedCommand extends AbstractItemDroppedCommand {
     execute() {
-        const data = getState().data;
-        if (data.categoryTree.movedCategory) {
+        if (this.commandData.movedCategory) {
             this.commandData.outcome = this.category;
         } else {
             this.commandData.outcome = this.card;

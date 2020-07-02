@@ -4,7 +4,7 @@ common
 
 ACE 
 Init 
-	appState (username, password )
+	fromAppState (username, password )
 	on user ( 
 		set loggedInUser 
 		set language
@@ -15,7 +15,7 @@ Init
 	) triggers ( RouteChanged )
 
 RouteChanged
-	appState ( hash, loggedInUser ) 
+	fromAppState ( hash, loggedInUser ) 
 	on login ( 
 		set loginView 
 	)
@@ -59,15 +59,15 @@ Logout
 	) triggers ( Route )
 
 DisplayError ( error ) 
-	appState( language, texts)
+	fromAppState( language, texts)
 	on ok ( set message) 
 
 DisplayErrorAndLogout ( error ) 
-	appState( language, texts)
+	fromAppState( language, texts)
 	on ok (set message) triggers ( Logout)
 
 DisplayMessage ( messageKey ) 
-	appState( language, texts)
+	fromAppState( language, texts)
 	on ok (set message) 
 
 ClearToast 
@@ -77,7 +77,7 @@ DisplaySaveBugDialog
 	on ok (set displaySaveBugDialog)
 
 async CallSaveBug
-	appState( loggedInUser.username )
+	fromAppState( loggedInUser.username )
 	on ok triggers (HideSaveBugDialog)
 
 CancelSaveBugDialog
@@ -224,15 +224,26 @@ appState {
 					List CategoryTreeItem childCategories
 				}
 				
-				displayDeleteCategory
+				Boolean displayDeleteCategory
 				
-				categoryName
-				displayEditCategory
-				displayNewCategory
+				String categoryName
+				Boolean displayEditCategory
+				Boolean displayNewCategory
 				
-				dropAllowed
-				dropTargetCategoryId
-				movedCategory
+				Boolean dropAllowed
+				String dropTargetCategoryId
+				String movedCategory {
+					String categoryId
+					String categoryName
+					Integer categoryIndex
+					Boolean empty
+					String parentCategoryId
+					Boolean dictionaryLookup
+					String givenLanguage
+					String wantedLanguage
+					String rootCategoryId
+					List CategoryTreeItem childCategories
+				}
 				
 				previewCsv
 			}

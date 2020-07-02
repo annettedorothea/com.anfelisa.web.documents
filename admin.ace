@@ -17,7 +17,7 @@ ACE
 		on ok triggers (GetAllUsers)
 	
 	DeleteUser
-		appState ( common.userListView.usernameToBeDeleted )
+		fromAppState ( common.userListView.usernameToBeDeleted )
 		call com.anfelisa.user.DeleteUser
 		loadingFlag common.displaySpinner 
 		on ok triggers ( GetAllUsers )

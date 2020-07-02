@@ -18,22 +18,21 @@
 
 
 import AbstractSwapPreviewCsvCommand from "../../../gen/category/commands/AbstractSwapPreviewCsvCommand";
-import * as AppState from "../../../gen/ace/ReadAppState";
 import AppUtils from "../../app/AppUtils";
 
 export default class SwapPreviewCsvCommand extends AbstractSwapPreviewCsvCommand {
     execute() {
-        this.commandData.previewCsv = [];
-        const csv = AppState.get_state_State_data_AuthorView_categoryTree_CategoryTree_previewCsv();
-        csv.forEach(row => {
+        const csv = [];
+        this.commandData.previewCsv.forEach(row => {
             if (row.length >= 2 && row[0].length > 0 && row[1].length > 0) {
                 const normalizedRow = [];
                 normalizedRow[0] = row[1];
                 normalizedRow[1] = row[0];
                 normalizedRow[2] = AppUtils.createUUID();
-                this.commandData.previewCsv.push(normalizedRow);
+                csv.push(normalizedRow);
             }
         });
+        this.commandData.previewCsv = csv;
     	this.commandData.outcome = this.ok;
     }
 }

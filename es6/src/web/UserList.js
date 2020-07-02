@@ -1,6 +1,6 @@
 import React from 'react';
 import {route} from "../../gen/common/ActionFunctions";
-import {deleteUser, deleteUserCancel, deleteUserClick, saveRole} from "../../gen/admin/ActionFunctions";
+import {deleteUser, deleteUserCancel, deleteUserClick} from "../../gen/admin/ActionFunctions";
 import ConfirmDanger from "./ConfirmDanger";
 import UserItem from "./UserItem";
 

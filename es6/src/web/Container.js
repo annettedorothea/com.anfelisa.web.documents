@@ -4,7 +4,7 @@ import AnonymousContainer from "./AnonymousContainer";
 import UserContainer from "./UserContainer";
 import ToastContainer from "./ToastContainer";
 import Utils from "../../gen/ace/Utils";
-import * as AppState from "../../gen/ace/ReadAppState";
+import * as AppState from "../../gen/ace/AppState";
 import Confirm from "./Confirm";
 import {callSaveBug, cancelSaveBugDialog} from "../../gen/common/ActionFunctions";
 
@@ -12,7 +12,7 @@ export default class Container extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = AppState.getState();
+        this.state = AppState.getAppState();
     }
 
     render() {

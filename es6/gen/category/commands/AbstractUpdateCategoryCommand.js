@@ -31,6 +31,10 @@ export default class AbstractUpdateCategoryCommand extends Command {
         super(commandData, "category.UpdateCategoryCommand");
         this.ok = "ok";
         this.error = "error";
+        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId;
+        this.commandData.selectedCategoryId = AppState.get_authorView_categoryTree_selectedCategory_categoryId;
+        this.commandData.categoryId = AppState.get_authorView_categoryTree_selectedCategory_categoryId;
+        this.commandData.categoryName = AppState.get_authorView_categoryTree_categoryName;
     }
 
     publishEvents() {

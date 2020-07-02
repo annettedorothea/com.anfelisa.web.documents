@@ -18,21 +18,19 @@
 
 
 import AbstractImportCsvCommand from "../../../gen/category/commands/AbstractImportCsvCommand";
-import * as AppState from "../../../gen/ace/ReadAppState";
 
 export default class ImportCsvCommand extends AbstractImportCsvCommand {
 
     validateCommandData() {
-        const previewCsv = AppState.get_state_State_data_AuthorView_categoryTree_CategoryTree_previewCsv();
-        this.commandData.previewCsv = [];
-        previewCsv.forEach(row => {
-            this.commandData.previewCsv.push({
+        const previewCsv = [];
+        this.commandData.previewCsv.forEach(row => {
+            previewCsv.push({
                 given: row[0],
                 wanted: row[1],
                 id: row[2]
             });
         });
-        this.commandData.categoryId = AppState.get_state_State_data_AuthorView_categoryTree_CategoryTree_selectedCategory().categoryId;
+        this.commandData.previewCsv = previewCsv;
     	return true;
     }
 

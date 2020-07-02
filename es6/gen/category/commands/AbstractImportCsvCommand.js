@@ -29,6 +29,10 @@ export default class AbstractImportCsvCommand extends Command {
     constructor(commandData) {
         super(commandData, "category.ImportCsvCommand");
         this.ok = "ok";
+        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId;
+        this.commandData.selectedCategoryId = AppState.get_authorView_categoryTree_movedCategory_categoryId;
+        this.commandData.previewCsv = AppState.get_authorView_categoryTree_previewCsv;
+        this.commandData.categoryId = AppState.get_authorView_categoryTree_selectedCategory_categoryId;
     }
 
     publishEvents() {

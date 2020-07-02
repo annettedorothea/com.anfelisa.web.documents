@@ -6,7 +6,7 @@ export default class LoginCommand extends AbstractLoginCommand {
             username: this.commandData.username,
             password: this.commandData.password
         };
-        if (saveInLocalStorage === true) {
+        if (this.commandData.saveInLocalStorage === true) {
             this.commandData.outcome = this.saveInLocalStorage;
         } else {
             this.commandData.outcome = this.doNotSaveInLocalStorage;

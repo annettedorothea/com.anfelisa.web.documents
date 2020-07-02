@@ -1,4 +1,5 @@
 import React from 'react';
+import RoleSelect from "./RoleSelect";
 
 export default class UserItem extends React.Component {
 

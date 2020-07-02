@@ -117,7 +117,7 @@ export default class CardList extends React.Component {
                                 onChange={(event) => filterCards(event.target.value)}
                                 autoComplete="off"
                                 value={this.props.cardView.filter}
-                                placeholder={this.props.texts.cardList.filter[this.props.language]}
+                                placeholder={this.props.texts.cardList.filterCards[this.props.language]}
                             />
                             <input
                                 type={"checkbox"}

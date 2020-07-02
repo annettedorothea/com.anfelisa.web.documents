@@ -7,11 +7,11 @@ ACE
 		on ok (set common.loginView.username)
 	
 	ToggleSaveInLocalStorage 
-		appState ( common.loginView.saveInLocalStorage )
+		fromAppState ( common.loginView.saveInLocalStorage )
 		on ok (set common.loginView.saveInLocalStorage)
 	
 	Login ( password  )
-		appState (
+		fromAppState (
 			common.loginView.username,
 			common.loginView.saveInLocalStorage
 		)
