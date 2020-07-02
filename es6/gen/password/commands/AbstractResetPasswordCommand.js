@@ -31,7 +31,7 @@ export default class AbstractResetPasswordCommand extends Command {
         super(commandData, "password.ResetPasswordCommand");
         this.ok = "ok";
         this.error = "error";
-        this.commandData.token = AppState.get_resetPasswordView_token;
+        this.commandData.token = AppState.get_resetPasswordView_token();
     }
 
     publishEvents() {

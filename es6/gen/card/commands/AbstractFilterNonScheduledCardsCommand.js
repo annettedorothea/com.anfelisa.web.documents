@@ -26,7 +26,7 @@ export default class AbstractFilterNonScheduledCardsCommand extends Command {
     constructor(commandData) {
         super(commandData, "card.FilterNonScheduledCardsCommand");
         this.ok = "ok";
-        this.commandData.filterNonScheduled = AppState.get_authorView_cardView_filterNonScheduled;
+        this.commandData.filterNonScheduled = AppState.get_authorView_cardView_filterNonScheduled();
     }
 
     publishEvents() {

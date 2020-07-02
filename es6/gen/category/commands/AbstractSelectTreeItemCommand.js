@@ -28,7 +28,7 @@ export default class AbstractSelectTreeItemCommand extends Command {
     constructor(commandData) {
         super(commandData, "category.SelectTreeItemCommand");
         this.ok = "ok";
-        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory;
+        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
     }
 
     publishEvents() {

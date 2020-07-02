@@ -29,10 +29,10 @@ export default class AbstractUpdateCardCommand extends Command {
     constructor(commandData) {
         super(commandData, "card.UpdateCardCommand");
         this.ok = "ok";
-        this.commandData.wanted = AppState.get_authorView_cardView_editedCard_wanted;
-        this.commandData.given = AppState.get_authorView_cardView_editedCard_given;
-        this.commandData.image = AppState.get_authorView_cardView_editedCard_image;
-        this.commandData.cardId = AppState.get_authorView_cardView_editedCard_cardId;
+        this.commandData.wanted = AppState.get_authorView_cardView_editedCard_wanted();
+        this.commandData.given = AppState.get_authorView_cardView_editedCard_given();
+        this.commandData.image = AppState.get_authorView_cardView_editedCard_image();
+        this.commandData.cardId = AppState.get_authorView_cardView_editedCard_cardId();
     }
 
     publishEvents() {

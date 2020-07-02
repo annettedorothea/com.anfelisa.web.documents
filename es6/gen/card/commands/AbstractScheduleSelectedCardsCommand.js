@@ -28,7 +28,7 @@ export default class AbstractScheduleSelectedCardsCommand extends Command {
     constructor(commandData) {
         super(commandData, "card.ScheduleSelectedCardsCommand");
         this.ok = "ok";
-        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds;
+        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds();
     }
 
     publishEvents() {

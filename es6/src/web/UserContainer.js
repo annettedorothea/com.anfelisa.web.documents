@@ -7,65 +7,50 @@ import QueryCards from "./Box/QueryCards";
 import CategoryCardSplitView from "./CategoryCardSplitView";
 import {route} from "../../gen/common/ActionFunctions";
 import BoxSettings from "./Box/BoxSettings";
-import {createRootCategory, saveBoxSettings} from "../../gen/box/ActionFunctions"
 
 export default class UserContainer extends React.Component {
 
     render() {
         let content;
-        switch (this.props.view) {
-            case "user-list":
-                content = <UserList
-                    {...this.props.data}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
-                break;
-            case "category-tree":
-                content = <CategoryCardSplitView
-                    {...this.props.data}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
-                break;
-            case "profile":
-                content = <Profile
-                    {...this.props.data}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
-                break;
-            case "card":
-                content = <QueryCards
-                    {...this.props.data}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
-                break;
-            case "box-settings":
-                content = <BoxSettings
-                    {...this.props.data}
-                    onSaveClick={saveBoxSettings}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
-                break;
-            case "create-box":
-                content = <BoxSettings
-                    {...this.props.data}
-                    onSaveClick={createRootCategory}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
-                break;
-            case "dashboard":
-            default:
-                content = <Dashboard
-                    {...this.props.data}
-                    role={this.props.loggedInUser.role}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
+        if (this.props.userListView) {
+            content = <UserList
+                {...this.props.userListView}
+                texts={this.props.texts}
+                language={this.props.language}
+            />;
+        } else if (this.props.authorView) {
+            content = <CategoryCardSplitView
+                {...this.props.authorView}
+                texts={this.props.texts}
+                language={this.props.language}
+            />;
+        } else if (this.props.profileView) {
+            content = <Profile
+                {...this.props.profileView}
+                texts={this.props.texts}
+                language={this.props.language}
+            />;
+        } else if (this.props.cardView) {
+            content = <QueryCards
+                {...this.props.cardView}
+                texts={this.props.texts}
+                language={this.props.language}
+            />;
+        } else if (this.props.boxSettingsView) {
+            content = <BoxSettings
+                {...this.props.boxSettingsView}
+                texts={this.props.texts}
+                language={this.props.language}
+            />;
+        } else if (this.props.dashboardView) {
+            content = <Dashboard
+                {...this.props.dashboardView}
+                role={this.props.loggedInUser.role}
+                texts={this.props.texts}
+                language={this.props.language}
+            />;
+        } else {
+            content = <div />
         }
 
         return (

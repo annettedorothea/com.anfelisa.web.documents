@@ -33,7 +33,7 @@ export default class AbstractDeleteUserCommand extends Command {
         super(commandData, "profile.DeleteUserCommand");
         this.ok = "ok";
         this.error = "error";
-        this.commandData.username = AppState.get_profileView_username;
+        this.commandData.username = AppState.get_profileView_username();
     }
 
     publishEvents() {

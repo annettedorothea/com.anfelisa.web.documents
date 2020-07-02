@@ -26,7 +26,7 @@ export default class AbstractSwapPreviewCsvCommand extends Command {
     constructor(commandData) {
         super(commandData, "category.SwapPreviewCsvCommand");
         this.ok = "ok";
-        this.commandData.previewCsv = AppState.get_authorView_categoryTree_previewCsv;
+        this.commandData.previewCsv = AppState.get_authorView_categoryTree_previewCsv();
     }
 
     publishEvents() {

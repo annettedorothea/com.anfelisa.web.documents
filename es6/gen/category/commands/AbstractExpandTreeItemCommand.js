@@ -26,7 +26,7 @@ export default class AbstractExpandTreeItemCommand extends Command {
     constructor(commandData) {
         super(commandData, "category.ExpandTreeItemCommand");
         this.ok = "ok";
-        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory;
+        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
     }
 
     publishEvents() {

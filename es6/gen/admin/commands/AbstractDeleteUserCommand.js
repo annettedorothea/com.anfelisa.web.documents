@@ -31,7 +31,7 @@ export default class AbstractDeleteUserCommand extends Command {
         super(commandData, "admin.DeleteUserCommand");
         this.ok = "ok";
         this.error = "error";
-        this.commandData.usernameToBeDeleted = AppState.get_userListView_usernameToBeDeleted;
+        this.commandData.usernameToBeDeleted = AppState.get_userListView_usernameToBeDeleted();
     }
 
     publishEvents() {

@@ -28,7 +28,7 @@ export default class AbstractLoadNextCardCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.LoadNextCardCommand");
         this.ok = "ok";
-        this.commandData.boxId = AppState.get_cardView_boxId;
+        this.commandData.boxId = AppState.get_cardView_boxId();
     }
 
     publishEvents() {

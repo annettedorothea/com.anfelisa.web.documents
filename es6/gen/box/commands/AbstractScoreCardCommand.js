@@ -28,7 +28,7 @@ export default class AbstractScoreCardCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.ScoreCardCommand");
         this.ok = "ok";
-        this.commandData.scheduledCardId = AppState.get_cardView_scheduledCardId;
+        this.commandData.scheduledCardId = AppState.get_cardView_scheduledCardId();
     }
 
     publishEvents() {

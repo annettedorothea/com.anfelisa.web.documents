@@ -6,7 +6,9 @@ import {
     maxCardsPerDayChanged,
     maxIntervalChanged,
     rootCategoryNameChanged,
-    wantedLanguageChanged
+    wantedLanguageChanged,
+    createRootCategory,
+    saveBoxSettings
 } from "../../../gen/box/ActionFunctions"
 
 export default class BoxSettings extends React.Component {
@@ -94,7 +96,7 @@ export default class BoxSettings extends React.Component {
                                 this.props.dictionaryLookupInvalid ||
                                 !this.props.categoryName.trim()
                             }
-                            onClick={this.props.onSaveClick}>
+                            onClick={this.props.boxId ? () => saveBoxSettings() : () => createRootCategory()}>
                             {this.props.texts.boxSettings.save[this.props.language]}
                         </button>
                         <button

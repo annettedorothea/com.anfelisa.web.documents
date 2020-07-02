@@ -29,8 +29,8 @@ export default class AbstractLoginCommand extends Command {
         super(commandData, "login.LoginCommand");
         this.saveInLocalStorage = "saveInLocalStorage";
         this.doNotSaveInLocalStorage = "doNotSaveInLocalStorage";
-        this.commandData.username = AppState.get_loginView_username;
-        this.commandData.saveInLocalStorage = AppState.get_loginView_saveInLocalStorage;
+        this.commandData.username = AppState.get_loginView_username();
+        this.commandData.saveInLocalStorage = AppState.get_loginView_saveInLocalStorage();
     }
 
     publishEvents() {

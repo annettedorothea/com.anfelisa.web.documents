@@ -7,33 +7,34 @@ import ResetPassword from "./ResetPassword";
 export default class AnonymousContainer extends React.Component {
 
     render() {
-        switch (this.props.view) {
-            case "registration":
-                return <Registration
-                    {...this.props.data}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
-            case "forgot-password":
-                return <ForgotPassword
-                    {...this.props.data}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
-            case "reset-password":
-                return <ResetPassword
-                    {...this.props.data}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
-            case "login":
-                return <Login
-                    {...this.props.data}
-                    texts={this.props.texts}
-                    language={this.props.language}
-                />;
+        if (this.props.registrationView) {
+            return <Registration
+                {...this.props.registrationView}
+                texts={this.props.texts}
+                language={this.props.language}
+            />;
         }
-
+        if (this.props.forgotPasswordView) {
+            return <ForgotPassword
+                {...this.props.forgotPasswordView}
+                texts={this.props.texts}
+                language={this.props.language}
+            />;
+        }
+        if (this.props.resetPasswordView) {
+            return <ResetPassword
+                {...this.props.resetPasswordView}
+                texts={this.props.texts}
+                language={this.props.language}
+            />;
+        }
+        if (this.props.loginView) {
+            return <Login
+                {...this.props.loginView}
+                texts={this.props.texts}
+                language={this.props.language}
+            />;
+        }
         return (
             <div/>
         );

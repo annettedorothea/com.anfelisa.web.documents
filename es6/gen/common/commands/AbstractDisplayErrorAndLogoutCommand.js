@@ -27,8 +27,8 @@ export default class AbstractDisplayErrorAndLogoutCommand extends Command {
     constructor(commandData) {
         super(commandData, "common.DisplayErrorAndLogoutCommand");
         this.ok = "ok";
-        this.commandData.language = AppState.get_language;
-        this.commandData.texts = AppState.get_texts;
+        this.commandData.language = AppState.get_language();
+        this.commandData.texts = AppState.get_texts();
     }
 
     publishEvents() {

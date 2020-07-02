@@ -26,9 +26,9 @@ export default class AbstractCheckDropAllowedCommand extends Command {
     constructor(commandData) {
         super(commandData, "category.CheckDropAllowedCommand");
         this.ok = "ok";
-        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory;
-        this.commandData.movedCategory = AppState.get_authorView_categoryTree_movedCategory;
-        this.commandData.selectedCategory = AppState.get_authorView_categoryTree_selectedCategory;
+        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
+        this.commandData.movedCategory = AppState.get_authorView_categoryTree_movedCategory();
+        this.commandData.selectedCategory = AppState.get_authorView_categoryTree_selectedCategory();
     }
 
     publishEvents() {

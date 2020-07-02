@@ -28,7 +28,7 @@ export default class AbstractLoadBoxStatisticsCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.LoadBoxStatisticsCommand");
         this.ok = "ok";
-        this.commandData.boxList = AppState.get_dashboardView_boxList;
+        this.commandData.boxList = AppState.get_dashboardView_boxList();
     }
 
     publishEvents() {

@@ -34,14 +34,14 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             } else {
             }
         } else if (this.commandData.hash === "" && !this.isUserLoggedIn()) {
-            this.commandData.data = {
+            this.commandData.loginView = {
                 username: "",
                 password: "",
                 saveInLocalStorage: false
             };
             this.commandData.outcome = this.login;
         } else if (this.commandData.hash === "#registration" && !this.isUserLoggedIn()) {
-            this.commandData.data = {
+            this.commandData.registrationView = {
                 displayUsernameSpinner: false,
                 usernameAvailable: undefined,
                 username: "",
@@ -51,7 +51,7 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             };
             this.commandData.outcome = this.registration;
         } else if (this.commandData.hash === "#forgotpassword" && !this.isUserLoggedIn()) {
-            this.commandData.data = {
+            this.commandData.forgotPasswordView = {
                 username: ""
             };
             this.commandData.outcome = this.forgotPassword;

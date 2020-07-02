@@ -22,7 +22,7 @@ import AppUtils from "../../src/app/AppUtils";
 export let appState;
 
 export function getAppState() {
-	return AppUtils.deepCopy(state);
+	return AppUtils.deepCopy(appState);
 }
 
 export function setInitialAppState(initialAppState) {
@@ -132,7 +132,7 @@ export function reset_hash() {
 }
 
 export function get_username() {
-	localStorage.getItem("username");
+	return localStorage.getItem("username");
 }
 
 export function set_username(eventData) {
@@ -144,7 +144,7 @@ export function reset_username() {
 }
 
 export function get_password() {
-	localStorage.getItem("password");
+	return localStorage.getItem("password");
 }
 
 export function set_password(eventData) {

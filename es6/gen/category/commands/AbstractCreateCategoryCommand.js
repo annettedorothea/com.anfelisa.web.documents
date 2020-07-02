@@ -31,9 +31,9 @@ export default class AbstractCreateCategoryCommand extends Command {
         super(commandData, "category.CreateCategoryCommand");
         this.ok = "ok";
         this.error = "error";
-        this.commandData.categoryName = AppState.get_authorView_categoryTree_categoryName;
-        this.commandData.parentCategoryId = AppState.get_authorView_categoryTree_selectedCategory_categoryId;
-        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId;
+        this.commandData.categoryName = AppState.get_authorView_categoryTree_categoryName();
+        this.commandData.parentCategoryId = AppState.get_authorView_categoryTree_selectedCategory_categoryId();
+        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId();
     }
 
     publishEvents() {

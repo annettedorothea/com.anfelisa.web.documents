@@ -28,7 +28,7 @@ export default class AbstractSortSelectedCardsOutCommand extends Command {
     constructor(commandData) {
         super(commandData, "card.SortSelectedCardsOutCommand");
         this.ok = "ok";
-        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds;
+        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds();
     }
 
     publishEvents() {

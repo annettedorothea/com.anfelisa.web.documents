@@ -1,6 +1,6 @@
 import CryptoJS from "crypto-js";
 import * as AppState from "../../gen/ace/AppState";
-//import * as App from "./App";
+import * as App from "./App";
 import Utils from "../../gen/ace/Utils";
 import {displayError, displayErrorAndLogout, displaySaveBugDialog, init} from "../../gen/common/ActionFunctions"
 import {Texts} from "./Texts"
@@ -79,7 +79,7 @@ export default class AppUtils {
     }
 
     static renderNewState() {
-        //App.render(AppState.getAppState());
+        App.render(AppState.getAppState());
     }
 
     static httpGet(url, authorize) {

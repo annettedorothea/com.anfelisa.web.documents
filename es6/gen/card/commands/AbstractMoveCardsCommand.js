@@ -29,9 +29,9 @@ export default class AbstractMoveCardsCommand extends Command {
     constructor(commandData) {
         super(commandData, "card.MoveCardsCommand");
         this.ok = "ok";
-        this.commandData.movedCardIds = AppState.get_authorView_cardView_movedCardIds;
-        this.commandData.dropTargetCategoryId = AppState.get_authorView_categoryTree_dropTargetCategoryId;
-        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory;
+        this.commandData.movedCardIds = AppState.get_authorView_cardView_movedCardIds();
+        this.commandData.dropTargetCategoryId = AppState.get_authorView_categoryTree_dropTargetCategoryId();
+        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
     }
 
     publishEvents() {

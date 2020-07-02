@@ -26,7 +26,7 @@ export default class AbstractToggleScheduleCardSelectionCommand extends Command 
     constructor(commandData) {
         super(commandData, "card.ToggleScheduleCardSelectionCommand");
         this.ok = "ok";
-        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds;
+        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds();
     }
 
     publishEvents() {

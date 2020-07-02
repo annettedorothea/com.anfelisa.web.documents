@@ -52,8 +52,8 @@ export default class AbstractRouteChangedCommand extends Command {
         this.boxSettings = "boxSettings";
         this.boxCreate = "boxCreate";
         this.invalid = "invalid";
-        this.commandData.hash = AppState.get_hash;
-        this.commandData.loggedInUser = AppState.get_loggedInUser;
+        this.commandData.hash = AppState.get_hash();
+        this.commandData.loggedInUser = AppState.get_loggedInUser();
     }
 
     publishEvents() {
