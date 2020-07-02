@@ -38,7 +38,7 @@ export function set_loggedInUser(eventData) {
 }
 
 export function reset_loggedInUser() {
-	appState.loggedInUser = undefined;
+	appState.loggedInUser = null;
 }
 
 export function merge_loggedInUser(eventData) {
@@ -74,7 +74,7 @@ export function reset_loggedInUser_username() {
 	if (!appState.loggedInUser) {
 		return;
 	}
-	appState.loggedInUser.username = undefined;
+	appState.loggedInUser.username = null;
 }
 
 export function get_loggedInUser_role() {
@@ -95,7 +95,7 @@ export function reset_loggedInUser_role() {
 	if (!appState.loggedInUser) {
 		return;
 	}
-	appState.loggedInUser.role = undefined;
+	appState.loggedInUser.role = null;
 }
 
 export function get_loggedInUser_password() {
@@ -116,7 +116,7 @@ export function reset_loggedInUser_password() {
 	if (!appState.loggedInUser) {
 		return;
 	}
-	appState.loggedInUser.password = undefined;
+	appState.loggedInUser.password = null;
 }
 
 export function get_hash() {
@@ -164,7 +164,7 @@ export function set_displaySpinner(eventData) {
 }
 
 export function reset_displaySpinner() {
-	appState.displaySpinner = undefined;
+	appState.displaySpinner = null;
 }
 
 export function get_language() {
@@ -176,7 +176,7 @@ export function set_language(eventData) {
 }
 
 export function reset_language() {
-	appState.language = undefined;
+	appState.language = null;
 }
 
 export function get_texts() {
@@ -188,7 +188,7 @@ export function set_texts(eventData) {
 }
 
 export function reset_texts() {
-	appState.texts = undefined;
+	appState.texts = null;
 }
 
 export function get_displaySaveBugDialog() {
@@ -200,7 +200,7 @@ export function set_displaySaveBugDialog(eventData) {
 }
 
 export function reset_displaySaveBugDialog() {
-	appState.displaySaveBugDialog = undefined;
+	appState.displaySaveBugDialog = null;
 }
 
 export function get_message() {
@@ -212,7 +212,7 @@ export function set_message(eventData) {
 }
 
 export function reset_message() {
-	appState.message = undefined;
+	appState.message = null;
 }
 
 export function merge_message(eventData) {
@@ -245,7 +245,7 @@ export function reset_message_type() {
 	if (!appState.message) {
 		return;
 	}
-	appState.message.type = undefined;
+	appState.message.type = null;
 }
 
 export function get_message_text() {
@@ -266,7 +266,7 @@ export function reset_message_text() {
 	if (!appState.message) {
 		return;
 	}
-	appState.message.text = undefined;
+	appState.message.text = null;
 }
 
 export function get_loginView() {
@@ -287,7 +287,7 @@ export function set_loginView(eventData) {
 }
 
 export function reset_loginView() {
-	appState.loginView = undefined;
+	appState.loginView = null;
 }
 
 export function merge_loginView(eventData) {
@@ -329,7 +329,7 @@ export function reset_loginView_username() {
 	if (!appState.loginView) {
 		return;
 	}
-	appState.loginView.username = undefined;
+	appState.loginView.username = null;
 }
 
 export function get_loginView_saveInLocalStorage() {
@@ -350,7 +350,7 @@ export function reset_loginView_saveInLocalStorage() {
 	if (!appState.loginView) {
 		return;
 	}
-	appState.loginView.saveInLocalStorage = undefined;
+	appState.loginView.saveInLocalStorage = null;
 }
 
 export function get_registrationView() {
@@ -371,7 +371,7 @@ export function set_registrationView(eventData) {
 }
 
 export function reset_registrationView() {
-	appState.registrationView = undefined;
+	appState.registrationView = null;
 }
 
 export function merge_registrationView(eventData) {
@@ -425,7 +425,7 @@ export function reset_registrationView_displayUsernameSpinner() {
 	if (!appState.registrationView) {
 		return;
 	}
-	appState.registrationView.displayUsernameSpinner = undefined;
+	appState.registrationView.displayUsernameSpinner = null;
 }
 
 export function get_registrationView_available() {
@@ -446,7 +446,7 @@ export function reset_registrationView_available() {
 	if (!appState.registrationView) {
 		return;
 	}
-	appState.registrationView.available = undefined;
+	appState.registrationView.available = null;
 }
 
 export function get_registrationView_username() {
@@ -467,7 +467,7 @@ export function reset_registrationView_username() {
 	if (!appState.registrationView) {
 		return;
 	}
-	appState.registrationView.username = undefined;
+	appState.registrationView.username = null;
 }
 
 export function get_registrationView_email() {
@@ -488,7 +488,7 @@ export function reset_registrationView_email() {
 	if (!appState.registrationView) {
 		return;
 	}
-	appState.registrationView.email = undefined;
+	appState.registrationView.email = null;
 }
 
 export function get_registrationView_emailInvalid() {
@@ -509,7 +509,7 @@ export function reset_registrationView_emailInvalid() {
 	if (!appState.registrationView) {
 		return;
 	}
-	appState.registrationView.emailInvalid = undefined;
+	appState.registrationView.emailInvalid = null;
 }
 
 export function get_registrationView_passwordMismatch() {
@@ -530,7 +530,7 @@ export function reset_registrationView_passwordMismatch() {
 	if (!appState.registrationView) {
 		return;
 	}
-	appState.registrationView.passwordMismatch = undefined;
+	appState.registrationView.passwordMismatch = null;
 }
 
 export function get_forgotPasswordView() {
@@ -551,7 +551,7 @@ export function set_forgotPasswordView(eventData) {
 }
 
 export function reset_forgotPasswordView() {
-	appState.forgotPasswordView = undefined;
+	appState.forgotPasswordView = null;
 }
 
 export function merge_forgotPasswordView(eventData) {
@@ -590,7 +590,7 @@ export function reset_forgotPasswordView_username() {
 	if (!appState.forgotPasswordView) {
 		return;
 	}
-	appState.forgotPasswordView.username = undefined;
+	appState.forgotPasswordView.username = null;
 }
 
 export function get_resetPasswordView() {
@@ -611,7 +611,7 @@ export function set_resetPasswordView(eventData) {
 }
 
 export function reset_resetPasswordView() {
-	appState.resetPasswordView = undefined;
+	appState.resetPasswordView = null;
 }
 
 export function merge_resetPasswordView(eventData) {
@@ -653,7 +653,7 @@ export function reset_resetPasswordView_token() {
 	if (!appState.resetPasswordView) {
 		return;
 	}
-	appState.resetPasswordView.token = undefined;
+	appState.resetPasswordView.token = null;
 }
 
 export function get_resetPasswordView_passwordMismatch() {
@@ -674,7 +674,7 @@ export function reset_resetPasswordView_passwordMismatch() {
 	if (!appState.resetPasswordView) {
 		return;
 	}
-	appState.resetPasswordView.passwordMismatch = undefined;
+	appState.resetPasswordView.passwordMismatch = null;
 }
 
 export function get_dashboardView() {
@@ -695,7 +695,7 @@ export function set_dashboardView(eventData) {
 }
 
 export function reset_dashboardView() {
-	appState.dashboardView = undefined;
+	appState.dashboardView = null;
 }
 
 export function merge_dashboardView(eventData) {
@@ -737,7 +737,7 @@ export function reset_dashboardView_boxList() {
 	if (!appState.dashboardView) {
 		return;
 	}
-	appState.dashboardView.boxList = undefined;
+	appState.dashboardView.boxList = null;
 }
 
 export function merge_dashboardView_boxList(eventData) {
@@ -803,7 +803,7 @@ export function reset_dashboardView_deleteBox() {
 	if (!appState.dashboardView) {
 		return;
 	}
-	appState.dashboardView.deleteBox = undefined;
+	appState.dashboardView.deleteBox = null;
 }
 
 export function merge_dashboardView_deleteBox(eventData) {
@@ -848,7 +848,7 @@ export function reset_dashboardView_deleteBox_confirmDelete() {
 	if (!appState.dashboardView.deleteBox) {
 		return;
 	}
-	appState.dashboardView.deleteBox.confirmDelete = undefined;
+	appState.dashboardView.deleteBox.confirmDelete = null;
 }
 
 export function get_dashboardView_deleteBox_boxId() {
@@ -878,7 +878,7 @@ export function reset_dashboardView_deleteBox_boxId() {
 	if (!appState.dashboardView.deleteBox) {
 		return;
 	}
-	appState.dashboardView.deleteBox.boxId = undefined;
+	appState.dashboardView.deleteBox.boxId = null;
 }
 
 export function get_boxSettingsView() {
@@ -899,7 +899,7 @@ export function set_boxSettingsView(eventData) {
 }
 
 export function reset_boxSettingsView() {
-	appState.boxSettingsView = undefined;
+	appState.boxSettingsView = null;
 }
 
 export function merge_boxSettingsView(eventData) {
@@ -968,7 +968,7 @@ export function reset_boxSettingsView_maxIntervalInvalid() {
 	if (!appState.boxSettingsView) {
 		return;
 	}
-	appState.boxSettingsView.maxIntervalInvalid = undefined;
+	appState.boxSettingsView.maxIntervalInvalid = null;
 }
 
 export function get_boxSettingsView_maxCardsPerDayInvalid() {
@@ -989,7 +989,7 @@ export function reset_boxSettingsView_maxCardsPerDayInvalid() {
 	if (!appState.boxSettingsView) {
 		return;
 	}
-	appState.boxSettingsView.maxCardsPerDayInvalid = undefined;
+	appState.boxSettingsView.maxCardsPerDayInvalid = null;
 }
 
 export function get_boxSettingsView_dictionaryLookupInvalid() {
@@ -1010,7 +1010,7 @@ export function reset_boxSettingsView_dictionaryLookupInvalid() {
 	if (!appState.boxSettingsView) {
 		return;
 	}
-	appState.boxSettingsView.dictionaryLookupInvalid = undefined;
+	appState.boxSettingsView.dictionaryLookupInvalid = null;
 }
 
 export function get_boxSettingsView_boxId() {
@@ -1031,7 +1031,7 @@ export function reset_boxSettingsView_boxId() {
 	if (!appState.boxSettingsView) {
 		return;
 	}
-	appState.boxSettingsView.boxId = undefined;
+	appState.boxSettingsView.boxId = null;
 }
 
 export function get_boxSettingsView_maxInterval() {
@@ -1052,7 +1052,7 @@ export function reset_boxSettingsView_maxInterval() {
 	if (!appState.boxSettingsView) {
 		return;
 	}
-	appState.boxSettingsView.maxInterval = undefined;
+	appState.boxSettingsView.maxInterval = null;
 }
 
 export function get_boxSettingsView_maxCardsPerDay() {
@@ -1073,7 +1073,7 @@ export function reset_boxSettingsView_maxCardsPerDay() {
 	if (!appState.boxSettingsView) {
 		return;
 	}
-	appState.boxSettingsView.maxCardsPerDay = undefined;
+	appState.boxSettingsView.maxCardsPerDay = null;
 }
 
 export function get_boxSettingsView_categoryName() {
@@ -1094,7 +1094,7 @@ export function reset_boxSettingsView_categoryName() {
 	if (!appState.boxSettingsView) {
 		return;
 	}
-	appState.boxSettingsView.categoryName = undefined;
+	appState.boxSettingsView.categoryName = null;
 }
 
 export function get_boxSettingsView_dictionaryLookup() {
@@ -1115,7 +1115,7 @@ export function reset_boxSettingsView_dictionaryLookup() {
 	if (!appState.boxSettingsView) {
 		return;
 	}
-	appState.boxSettingsView.dictionaryLookup = undefined;
+	appState.boxSettingsView.dictionaryLookup = null;
 }
 
 export function get_boxSettingsView_givenLanguage() {
@@ -1136,7 +1136,7 @@ export function reset_boxSettingsView_givenLanguage() {
 	if (!appState.boxSettingsView) {
 		return;
 	}
-	appState.boxSettingsView.givenLanguage = undefined;
+	appState.boxSettingsView.givenLanguage = null;
 }
 
 export function get_boxSettingsView_wantedLanguage() {
@@ -1157,7 +1157,7 @@ export function reset_boxSettingsView_wantedLanguage() {
 	if (!appState.boxSettingsView) {
 		return;
 	}
-	appState.boxSettingsView.wantedLanguage = undefined;
+	appState.boxSettingsView.wantedLanguage = null;
 }
 
 export function get_boxSettingsView_categoryId() {
@@ -1178,7 +1178,7 @@ export function reset_boxSettingsView_categoryId() {
 	if (!appState.boxSettingsView) {
 		return;
 	}
-	appState.boxSettingsView.categoryId = undefined;
+	appState.boxSettingsView.categoryId = null;
 }
 
 export function get_profileView() {
@@ -1199,7 +1199,7 @@ export function set_profileView(eventData) {
 }
 
 export function reset_profileView() {
-	appState.profileView = undefined;
+	appState.profileView = null;
 }
 
 export function merge_profileView(eventData) {
@@ -1247,7 +1247,7 @@ export function reset_profileView_username() {
 	if (!appState.profileView) {
 		return;
 	}
-	appState.profileView.username = undefined;
+	appState.profileView.username = null;
 }
 
 export function get_profileView_email() {
@@ -1268,7 +1268,7 @@ export function reset_profileView_email() {
 	if (!appState.profileView) {
 		return;
 	}
-	appState.profileView.email = undefined;
+	appState.profileView.email = null;
 }
 
 export function get_profileView_role() {
@@ -1289,7 +1289,7 @@ export function reset_profileView_role() {
 	if (!appState.profileView) {
 		return;
 	}
-	appState.profileView.role = undefined;
+	appState.profileView.role = null;
 }
 
 export function get_profileView_showDeleteUserDialog() {
@@ -1310,7 +1310,7 @@ export function reset_profileView_showDeleteUserDialog() {
 	if (!appState.profileView) {
 		return;
 	}
-	appState.profileView.showDeleteUserDialog = undefined;
+	appState.profileView.showDeleteUserDialog = null;
 }
 
 export function get_userListView() {
@@ -1331,7 +1331,7 @@ export function set_userListView(eventData) {
 }
 
 export function reset_userListView() {
-	appState.userListView = undefined;
+	appState.userListView = null;
 }
 
 export function merge_userListView(eventData) {
@@ -1376,7 +1376,7 @@ export function reset_userListView_userList() {
 	if (!appState.userListView) {
 		return;
 	}
-	appState.userListView.userList = undefined;
+	appState.userListView.userList = null;
 }
 
 export function merge_userListView_userList(eventData) {
@@ -1424,7 +1424,7 @@ export function reset_userListView_showDeleteUserDialog() {
 	if (!appState.userListView) {
 		return;
 	}
-	appState.userListView.showDeleteUserDialog = undefined;
+	appState.userListView.showDeleteUserDialog = null;
 }
 
 export function get_userListView_usernameToBeDeleted() {
@@ -1445,7 +1445,7 @@ export function reset_userListView_usernameToBeDeleted() {
 	if (!appState.userListView) {
 		return;
 	}
-	appState.userListView.usernameToBeDeleted = undefined;
+	appState.userListView.usernameToBeDeleted = null;
 }
 
 export function get_cardView() {
@@ -1466,7 +1466,7 @@ export function set_cardView(eventData) {
 }
 
 export function reset_cardView() {
-	appState.cardView = undefined;
+	appState.cardView = null;
 }
 
 export function merge_cardView(eventData) {
@@ -1556,7 +1556,7 @@ export function reset_cardView_cardId() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.cardId = undefined;
+	appState.cardView.cardId = null;
 }
 
 export function get_cardView_categoryId() {
@@ -1577,7 +1577,7 @@ export function reset_cardView_categoryId() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.categoryId = undefined;
+	appState.cardView.categoryId = null;
 }
 
 export function get_cardView_count() {
@@ -1598,7 +1598,7 @@ export function reset_cardView_count() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.count = undefined;
+	appState.cardView.count = null;
 }
 
 export function get_cardView_given() {
@@ -1619,7 +1619,7 @@ export function reset_cardView_given() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.given = undefined;
+	appState.cardView.given = null;
 }
 
 export function get_cardView_image() {
@@ -1640,7 +1640,7 @@ export function reset_cardView_image() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.image = undefined;
+	appState.cardView.image = null;
 }
 
 export function get_cardView_lastQuality() {
@@ -1661,7 +1661,7 @@ export function reset_cardView_lastQuality() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.lastQuality = undefined;
+	appState.cardView.lastQuality = null;
 }
 
 export function get_cardView_rootCategoryId() {
@@ -1682,7 +1682,7 @@ export function reset_cardView_rootCategoryId() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.rootCategoryId = undefined;
+	appState.cardView.rootCategoryId = null;
 }
 
 export function get_cardView_scheduledCardId() {
@@ -1703,7 +1703,7 @@ export function reset_cardView_scheduledCardId() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.scheduledCardId = undefined;
+	appState.cardView.scheduledCardId = null;
 }
 
 export function get_cardView_reinforceCardId() {
@@ -1724,7 +1724,7 @@ export function reset_cardView_reinforceCardId() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.reinforceCardId = undefined;
+	appState.cardView.reinforceCardId = null;
 }
 
 export function get_cardView_scheduledDate() {
@@ -1745,7 +1745,7 @@ export function reset_cardView_scheduledDate() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.scheduledDate = undefined;
+	appState.cardView.scheduledDate = null;
 }
 
 export function get_cardView_scoredDate() {
@@ -1766,7 +1766,7 @@ export function reset_cardView_scoredDate() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.scoredDate = undefined;
+	appState.cardView.scoredDate = null;
 }
 
 export function get_cardView_wanted() {
@@ -1787,7 +1787,7 @@ export function reset_cardView_wanted() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.wanted = undefined;
+	appState.cardView.wanted = null;
 }
 
 export function get_cardView_openTodaysCards() {
@@ -1808,7 +1808,7 @@ export function reset_cardView_openTodaysCards() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.openTodaysCards = undefined;
+	appState.cardView.openTodaysCards = null;
 }
 
 export function get_cardView_allTodaysCards() {
@@ -1829,7 +1829,7 @@ export function reset_cardView_allTodaysCards() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.allTodaysCards = undefined;
+	appState.cardView.allTodaysCards = null;
 }
 
 export function get_cardView_index() {
@@ -1850,7 +1850,7 @@ export function reset_cardView_index() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.index = undefined;
+	appState.cardView.index = null;
 }
 
 export function get_cardView_enableScoreButtons() {
@@ -1871,7 +1871,7 @@ export function reset_cardView_enableScoreButtons() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.enableScoreButtons = undefined;
+	appState.cardView.enableScoreButtons = null;
 }
 
 export function get_cardView_displayImage() {
@@ -1892,7 +1892,7 @@ export function reset_cardView_displayImage() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.displayImage = undefined;
+	appState.cardView.displayImage = null;
 }
 
 export function get_cardView_boxId() {
@@ -1913,7 +1913,7 @@ export function reset_cardView_boxId() {
 	if (!appState.cardView) {
 		return;
 	}
-	appState.cardView.boxId = undefined;
+	appState.cardView.boxId = null;
 }
 
 export function get_authorView() {
@@ -1934,7 +1934,7 @@ export function set_authorView(eventData) {
 }
 
 export function reset_authorView() {
-	appState.authorView = undefined;
+	appState.authorView = null;
 }
 
 export function merge_authorView(eventData) {
@@ -1976,7 +1976,7 @@ export function reset_authorView_categoryTree() {
 	if (!appState.authorView) {
 		return;
 	}
-	appState.authorView.categoryTree = undefined;
+	appState.authorView.categoryTree = null;
 }
 
 export function merge_authorView_categoryTree(eventData) {
@@ -2045,7 +2045,7 @@ export function reset_authorView_categoryTree_selectedCategory() {
 	if (!appState.authorView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory = undefined;
+	appState.authorView.categoryTree.selectedCategory = null;
 }
 
 export function merge_authorView_categoryTree_selectedCategory(eventData) {
@@ -2129,7 +2129,7 @@ export function reset_authorView_categoryTree_selectedCategory_categoryId() {
 	if (!appState.authorView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.categoryId = undefined;
+	appState.authorView.categoryTree.selectedCategory.categoryId = null;
 }
 
 export function get_authorView_categoryTree_selectedCategory_categoryName() {
@@ -2168,7 +2168,7 @@ export function reset_authorView_categoryTree_selectedCategory_categoryName() {
 	if (!appState.authorView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.categoryName = undefined;
+	appState.authorView.categoryTree.selectedCategory.categoryName = null;
 }
 
 export function get_authorView_categoryTree_selectedCategory_categoryIndex() {
@@ -2207,7 +2207,7 @@ export function reset_authorView_categoryTree_selectedCategory_categoryIndex() {
 	if (!appState.authorView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.categoryIndex = undefined;
+	appState.authorView.categoryTree.selectedCategory.categoryIndex = null;
 }
 
 export function get_authorView_categoryTree_selectedCategory_empty() {
@@ -2246,7 +2246,7 @@ export function reset_authorView_categoryTree_selectedCategory_empty() {
 	if (!appState.authorView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.empty = undefined;
+	appState.authorView.categoryTree.selectedCategory.empty = null;
 }
 
 export function get_authorView_categoryTree_selectedCategory_parentCategoryId() {
@@ -2285,7 +2285,7 @@ export function reset_authorView_categoryTree_selectedCategory_parentCategoryId(
 	if (!appState.authorView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.parentCategoryId = undefined;
+	appState.authorView.categoryTree.selectedCategory.parentCategoryId = null;
 }
 
 export function get_authorView_categoryTree_selectedCategory_dictionaryLookup() {
@@ -2324,7 +2324,7 @@ export function reset_authorView_categoryTree_selectedCategory_dictionaryLookup(
 	if (!appState.authorView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.dictionaryLookup = undefined;
+	appState.authorView.categoryTree.selectedCategory.dictionaryLookup = null;
 }
 
 export function get_authorView_categoryTree_selectedCategory_givenLanguage() {
@@ -2363,7 +2363,7 @@ export function reset_authorView_categoryTree_selectedCategory_givenLanguage() {
 	if (!appState.authorView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.givenLanguage = undefined;
+	appState.authorView.categoryTree.selectedCategory.givenLanguage = null;
 }
 
 export function get_authorView_categoryTree_selectedCategory_wantedLanguage() {
@@ -2402,7 +2402,7 @@ export function reset_authorView_categoryTree_selectedCategory_wantedLanguage() 
 	if (!appState.authorView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.wantedLanguage = undefined;
+	appState.authorView.categoryTree.selectedCategory.wantedLanguage = null;
 }
 
 export function get_authorView_categoryTree_selectedCategory_rootCategoryId() {
@@ -2441,7 +2441,7 @@ export function reset_authorView_categoryTree_selectedCategory_rootCategoryId() 
 	if (!appState.authorView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.rootCategoryId = undefined;
+	appState.authorView.categoryTree.selectedCategory.rootCategoryId = null;
 }
 
 export function get_authorView_categoryTree_selectedCategory_CategoryTreeItem() {
@@ -2480,7 +2480,7 @@ export function reset_authorView_categoryTree_selectedCategory_CategoryTreeItem(
 	if (!appState.authorView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.CategoryTreeItem = undefined;
+	appState.authorView.categoryTree.selectedCategory.CategoryTreeItem = null;
 }
 
 export function get_authorView_categoryTree_selectedCategory_childCategories() {
@@ -2519,7 +2519,7 @@ export function reset_authorView_categoryTree_selectedCategory_childCategories()
 	if (!appState.authorView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.childCategories = undefined;
+	appState.authorView.categoryTree.selectedCategory.childCategories = null;
 }
 
 export function get_authorView_categoryTree_rootCategory() {
@@ -2549,7 +2549,7 @@ export function reset_authorView_categoryTree_rootCategory() {
 	if (!appState.authorView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory = undefined;
+	appState.authorView.categoryTree.rootCategory = null;
 }
 
 export function merge_authorView_categoryTree_rootCategory(eventData) {
@@ -2633,7 +2633,7 @@ export function reset_authorView_categoryTree_rootCategory_categoryId() {
 	if (!appState.authorView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.categoryId = undefined;
+	appState.authorView.categoryTree.rootCategory.categoryId = null;
 }
 
 export function get_authorView_categoryTree_rootCategory_categoryName() {
@@ -2672,7 +2672,7 @@ export function reset_authorView_categoryTree_rootCategory_categoryName() {
 	if (!appState.authorView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.categoryName = undefined;
+	appState.authorView.categoryTree.rootCategory.categoryName = null;
 }
 
 export function get_authorView_categoryTree_rootCategory_categoryIndex() {
@@ -2711,7 +2711,7 @@ export function reset_authorView_categoryTree_rootCategory_categoryIndex() {
 	if (!appState.authorView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.categoryIndex = undefined;
+	appState.authorView.categoryTree.rootCategory.categoryIndex = null;
 }
 
 export function get_authorView_categoryTree_rootCategory_empty() {
@@ -2750,7 +2750,7 @@ export function reset_authorView_categoryTree_rootCategory_empty() {
 	if (!appState.authorView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.empty = undefined;
+	appState.authorView.categoryTree.rootCategory.empty = null;
 }
 
 export function get_authorView_categoryTree_rootCategory_parentCategoryId() {
@@ -2789,7 +2789,7 @@ export function reset_authorView_categoryTree_rootCategory_parentCategoryId() {
 	if (!appState.authorView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.parentCategoryId = undefined;
+	appState.authorView.categoryTree.rootCategory.parentCategoryId = null;
 }
 
 export function get_authorView_categoryTree_rootCategory_dictionaryLookup() {
@@ -2828,7 +2828,7 @@ export function reset_authorView_categoryTree_rootCategory_dictionaryLookup() {
 	if (!appState.authorView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.dictionaryLookup = undefined;
+	appState.authorView.categoryTree.rootCategory.dictionaryLookup = null;
 }
 
 export function get_authorView_categoryTree_rootCategory_givenLanguage() {
@@ -2867,7 +2867,7 @@ export function reset_authorView_categoryTree_rootCategory_givenLanguage() {
 	if (!appState.authorView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.givenLanguage = undefined;
+	appState.authorView.categoryTree.rootCategory.givenLanguage = null;
 }
 
 export function get_authorView_categoryTree_rootCategory_wantedLanguage() {
@@ -2906,7 +2906,7 @@ export function reset_authorView_categoryTree_rootCategory_wantedLanguage() {
 	if (!appState.authorView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.wantedLanguage = undefined;
+	appState.authorView.categoryTree.rootCategory.wantedLanguage = null;
 }
 
 export function get_authorView_categoryTree_rootCategory_rootCategoryId() {
@@ -2945,7 +2945,7 @@ export function reset_authorView_categoryTree_rootCategory_rootCategoryId() {
 	if (!appState.authorView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.rootCategoryId = undefined;
+	appState.authorView.categoryTree.rootCategory.rootCategoryId = null;
 }
 
 export function get_authorView_categoryTree_rootCategory_CategoryTreeItem() {
@@ -2984,7 +2984,7 @@ export function reset_authorView_categoryTree_rootCategory_CategoryTreeItem() {
 	if (!appState.authorView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.CategoryTreeItem = undefined;
+	appState.authorView.categoryTree.rootCategory.CategoryTreeItem = null;
 }
 
 export function get_authorView_categoryTree_rootCategory_childCategories() {
@@ -3023,7 +3023,7 @@ export function reset_authorView_categoryTree_rootCategory_childCategories() {
 	if (!appState.authorView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.childCategories = undefined;
+	appState.authorView.categoryTree.rootCategory.childCategories = null;
 }
 
 export function get_authorView_categoryTree_displayDeleteCategory() {
@@ -3053,7 +3053,7 @@ export function reset_authorView_categoryTree_displayDeleteCategory() {
 	if (!appState.authorView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.displayDeleteCategory = undefined;
+	appState.authorView.categoryTree.displayDeleteCategory = null;
 }
 
 export function get_authorView_categoryTree_categoryName() {
@@ -3083,7 +3083,7 @@ export function reset_authorView_categoryTree_categoryName() {
 	if (!appState.authorView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.categoryName = undefined;
+	appState.authorView.categoryTree.categoryName = null;
 }
 
 export function get_authorView_categoryTree_displayEditCategory() {
@@ -3113,7 +3113,7 @@ export function reset_authorView_categoryTree_displayEditCategory() {
 	if (!appState.authorView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.displayEditCategory = undefined;
+	appState.authorView.categoryTree.displayEditCategory = null;
 }
 
 export function get_authorView_categoryTree_displayNewCategory() {
@@ -3143,7 +3143,7 @@ export function reset_authorView_categoryTree_displayNewCategory() {
 	if (!appState.authorView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.displayNewCategory = undefined;
+	appState.authorView.categoryTree.displayNewCategory = null;
 }
 
 export function get_authorView_categoryTree_dropAllowed() {
@@ -3173,7 +3173,7 @@ export function reset_authorView_categoryTree_dropAllowed() {
 	if (!appState.authorView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.dropAllowed = undefined;
+	appState.authorView.categoryTree.dropAllowed = null;
 }
 
 export function get_authorView_categoryTree_dropTargetCategoryId() {
@@ -3203,7 +3203,7 @@ export function reset_authorView_categoryTree_dropTargetCategoryId() {
 	if (!appState.authorView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.dropTargetCategoryId = undefined;
+	appState.authorView.categoryTree.dropTargetCategoryId = null;
 }
 
 export function get_authorView_categoryTree_movedCategory() {
@@ -3233,7 +3233,7 @@ export function reset_authorView_categoryTree_movedCategory() {
 	if (!appState.authorView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory = undefined;
+	appState.authorView.categoryTree.movedCategory = null;
 }
 
 export function merge_authorView_categoryTree_movedCategory(eventData) {
@@ -3317,7 +3317,7 @@ export function reset_authorView_categoryTree_movedCategory_categoryId() {
 	if (!appState.authorView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.categoryId = undefined;
+	appState.authorView.categoryTree.movedCategory.categoryId = null;
 }
 
 export function get_authorView_categoryTree_movedCategory_categoryName() {
@@ -3356,7 +3356,7 @@ export function reset_authorView_categoryTree_movedCategory_categoryName() {
 	if (!appState.authorView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.categoryName = undefined;
+	appState.authorView.categoryTree.movedCategory.categoryName = null;
 }
 
 export function get_authorView_categoryTree_movedCategory_categoryIndex() {
@@ -3395,7 +3395,7 @@ export function reset_authorView_categoryTree_movedCategory_categoryIndex() {
 	if (!appState.authorView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.categoryIndex = undefined;
+	appState.authorView.categoryTree.movedCategory.categoryIndex = null;
 }
 
 export function get_authorView_categoryTree_movedCategory_empty() {
@@ -3434,7 +3434,7 @@ export function reset_authorView_categoryTree_movedCategory_empty() {
 	if (!appState.authorView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.empty = undefined;
+	appState.authorView.categoryTree.movedCategory.empty = null;
 }
 
 export function get_authorView_categoryTree_movedCategory_parentCategoryId() {
@@ -3473,7 +3473,7 @@ export function reset_authorView_categoryTree_movedCategory_parentCategoryId() {
 	if (!appState.authorView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.parentCategoryId = undefined;
+	appState.authorView.categoryTree.movedCategory.parentCategoryId = null;
 }
 
 export function get_authorView_categoryTree_movedCategory_dictionaryLookup() {
@@ -3512,7 +3512,7 @@ export function reset_authorView_categoryTree_movedCategory_dictionaryLookup() {
 	if (!appState.authorView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.dictionaryLookup = undefined;
+	appState.authorView.categoryTree.movedCategory.dictionaryLookup = null;
 }
 
 export function get_authorView_categoryTree_movedCategory_givenLanguage() {
@@ -3551,7 +3551,7 @@ export function reset_authorView_categoryTree_movedCategory_givenLanguage() {
 	if (!appState.authorView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.givenLanguage = undefined;
+	appState.authorView.categoryTree.movedCategory.givenLanguage = null;
 }
 
 export function get_authorView_categoryTree_movedCategory_wantedLanguage() {
@@ -3590,7 +3590,7 @@ export function reset_authorView_categoryTree_movedCategory_wantedLanguage() {
 	if (!appState.authorView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.wantedLanguage = undefined;
+	appState.authorView.categoryTree.movedCategory.wantedLanguage = null;
 }
 
 export function get_authorView_categoryTree_movedCategory_rootCategoryId() {
@@ -3629,7 +3629,7 @@ export function reset_authorView_categoryTree_movedCategory_rootCategoryId() {
 	if (!appState.authorView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.rootCategoryId = undefined;
+	appState.authorView.categoryTree.movedCategory.rootCategoryId = null;
 }
 
 export function get_authorView_categoryTree_movedCategory_CategoryTreeItem() {
@@ -3668,7 +3668,7 @@ export function reset_authorView_categoryTree_movedCategory_CategoryTreeItem() {
 	if (!appState.authorView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.CategoryTreeItem = undefined;
+	appState.authorView.categoryTree.movedCategory.CategoryTreeItem = null;
 }
 
 export function get_authorView_categoryTree_movedCategory_childCategories() {
@@ -3707,7 +3707,7 @@ export function reset_authorView_categoryTree_movedCategory_childCategories() {
 	if (!appState.authorView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.childCategories = undefined;
+	appState.authorView.categoryTree.movedCategory.childCategories = null;
 }
 
 export function get_authorView_categoryTree_previewCsv() {
@@ -3737,7 +3737,7 @@ export function reset_authorView_categoryTree_previewCsv() {
 	if (!appState.authorView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.previewCsv = undefined;
+	appState.authorView.categoryTree.previewCsv = null;
 }
 
 export function get_authorView_cardView() {
@@ -3758,7 +3758,7 @@ export function reset_authorView_cardView() {
 	if (!appState.authorView) {
 		return;
 	}
-	appState.authorView.cardView = undefined;
+	appState.authorView.cardView = null;
 }
 
 export function merge_authorView_cardView(eventData) {
@@ -3833,7 +3833,7 @@ export function reset_authorView_cardView_cardList() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.cardList = undefined;
+	appState.authorView.cardView.cardList = null;
 }
 
 export function merge_authorView_cardView_cardList(eventData) {
@@ -3902,7 +3902,7 @@ export function reset_authorView_cardView_naturalInputOrder() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.naturalInputOrder = undefined;
+	appState.authorView.cardView.naturalInputOrder = null;
 }
 
 export function get_authorView_cardView_filter() {
@@ -3932,7 +3932,7 @@ export function reset_authorView_cardView_filter() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.filter = undefined;
+	appState.authorView.cardView.filter = null;
 }
 
 export function get_authorView_cardView_filterNonScheduled() {
@@ -3962,7 +3962,7 @@ export function reset_authorView_cardView_filterNonScheduled() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.filterNonScheduled = undefined;
+	appState.authorView.cardView.filterNonScheduled = null;
 }
 
 export function get_authorView_cardView_editedCard() {
@@ -3992,7 +3992,7 @@ export function reset_authorView_cardView_editedCard() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.editedCard = undefined;
+	appState.authorView.cardView.editedCard = null;
 }
 
 export function merge_authorView_cardView_editedCard(eventData) {
@@ -4058,7 +4058,7 @@ export function reset_authorView_cardView_editedCard_cardId() {
 	if (!appState.authorView.cardView.editedCard) {
 		return;
 	}
-	appState.authorView.cardView.editedCard.cardId = undefined;
+	appState.authorView.cardView.editedCard.cardId = null;
 }
 
 export function get_authorView_cardView_editedCard_given() {
@@ -4097,7 +4097,7 @@ export function reset_authorView_cardView_editedCard_given() {
 	if (!appState.authorView.cardView.editedCard) {
 		return;
 	}
-	appState.authorView.cardView.editedCard.given = undefined;
+	appState.authorView.cardView.editedCard.given = null;
 }
 
 export function get_authorView_cardView_editedCard_wanted() {
@@ -4136,7 +4136,7 @@ export function reset_authorView_cardView_editedCard_wanted() {
 	if (!appState.authorView.cardView.editedCard) {
 		return;
 	}
-	appState.authorView.cardView.editedCard.wanted = undefined;
+	appState.authorView.cardView.editedCard.wanted = null;
 }
 
 export function get_authorView_cardView_editedCard_index() {
@@ -4175,7 +4175,7 @@ export function reset_authorView_cardView_editedCard_index() {
 	if (!appState.authorView.cardView.editedCard) {
 		return;
 	}
-	appState.authorView.cardView.editedCard.index = undefined;
+	appState.authorView.cardView.editedCard.index = null;
 }
 
 export function get_authorView_cardView_editedCard_image() {
@@ -4214,7 +4214,7 @@ export function reset_authorView_cardView_editedCard_image() {
 	if (!appState.authorView.cardView.editedCard) {
 		return;
 	}
-	appState.authorView.cardView.editedCard.image = undefined;
+	appState.authorView.cardView.editedCard.image = null;
 }
 
 export function get_authorView_cardView_newCard() {
@@ -4244,7 +4244,7 @@ export function reset_authorView_cardView_newCard() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.newCard = undefined;
+	appState.authorView.cardView.newCard = null;
 }
 
 export function merge_authorView_cardView_newCard(eventData) {
@@ -4316,7 +4316,7 @@ export function reset_authorView_cardView_newCard_given() {
 	if (!appState.authorView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.given = undefined;
+	appState.authorView.cardView.newCard.given = null;
 }
 
 export function get_authorView_cardView_newCard_wanted() {
@@ -4355,7 +4355,7 @@ export function reset_authorView_cardView_newCard_wanted() {
 	if (!appState.authorView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.wanted = undefined;
+	appState.authorView.cardView.newCard.wanted = null;
 }
 
 export function get_authorView_cardView_newCard_index() {
@@ -4394,7 +4394,7 @@ export function reset_authorView_cardView_newCard_index() {
 	if (!appState.authorView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.index = undefined;
+	appState.authorView.cardView.newCard.index = null;
 }
 
 export function get_authorView_cardView_newCard_image() {
@@ -4433,7 +4433,7 @@ export function reset_authorView_cardView_newCard_image() {
 	if (!appState.authorView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.image = undefined;
+	appState.authorView.cardView.newCard.image = null;
 }
 
 export function get_authorView_cardView_newCard_file() {
@@ -4472,7 +4472,7 @@ export function reset_authorView_cardView_newCard_file() {
 	if (!appState.authorView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.file = undefined;
+	appState.authorView.cardView.newCard.file = null;
 }
 
 export function get_authorView_cardView_newCard_displaySpinner() {
@@ -4511,7 +4511,7 @@ export function reset_authorView_cardView_newCard_displaySpinner() {
 	if (!appState.authorView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.displaySpinner = undefined;
+	appState.authorView.cardView.newCard.displaySpinner = null;
 }
 
 export function get_authorView_cardView_newCard_displayTranslateSpinner() {
@@ -4550,7 +4550,7 @@ export function reset_authorView_cardView_newCard_displayTranslateSpinner() {
 	if (!appState.authorView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.displayTranslateSpinner = undefined;
+	appState.authorView.cardView.newCard.displayTranslateSpinner = null;
 }
 
 export function get_authorView_cardView_cardDuplicates() {
@@ -4580,7 +4580,7 @@ export function reset_authorView_cardView_cardDuplicates() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.cardDuplicates = undefined;
+	appState.authorView.cardView.cardDuplicates = null;
 }
 
 export function get_authorView_cardView_deleteCard() {
@@ -4610,7 +4610,7 @@ export function reset_authorView_cardView_deleteCard() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.deleteCard = undefined;
+	appState.authorView.cardView.deleteCard = null;
 }
 
 export function merge_authorView_cardView_deleteCard(eventData) {
@@ -4667,7 +4667,7 @@ export function reset_authorView_cardView_deleteCard_confirmDelete() {
 	if (!appState.authorView.cardView.deleteCard) {
 		return;
 	}
-	appState.authorView.cardView.deleteCard.confirmDelete = undefined;
+	appState.authorView.cardView.deleteCard.confirmDelete = null;
 }
 
 export function get_authorView_cardView_deleteCard_cardId() {
@@ -4706,7 +4706,7 @@ export function reset_authorView_cardView_deleteCard_cardId() {
 	if (!appState.authorView.cardView.deleteCard) {
 		return;
 	}
-	appState.authorView.cardView.deleteCard.cardId = undefined;
+	appState.authorView.cardView.deleteCard.cardId = null;
 }
 
 export function get_authorView_cardView_dictionaryValue() {
@@ -4736,7 +4736,7 @@ export function reset_authorView_cardView_dictionaryValue() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.dictionaryValue = undefined;
+	appState.authorView.cardView.dictionaryValue = null;
 }
 
 export function get_authorView_cardView_selectedCardIds() {
@@ -4766,7 +4766,7 @@ export function reset_authorView_cardView_selectedCardIds() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.selectedCardIds = undefined;
+	appState.authorView.cardView.selectedCardIds = null;
 }
 
 export function get_authorView_cardView_movedCardIds() {
@@ -4796,7 +4796,7 @@ export function reset_authorView_cardView_movedCardIds() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.movedCardIds = undefined;
+	appState.authorView.cardView.movedCardIds = null;
 }
 
 export function get_authorView_cardView_dragTargetCardId() {
@@ -4826,6 +4826,6 @@ export function reset_authorView_cardView_dragTargetCardId() {
 	if (!appState.authorView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.dragTargetCardId = undefined;
+	appState.authorView.cardView.dragTargetCardId = null;
 }
 

@@ -28,7 +28,6 @@ export default class AbstractLoadSettingsCommand extends Command {
     constructor(commandData) {
         super(commandData, "box.LoadSettingsCommand");
         this.ok = "ok";
-        this.commandData.boxId = AppState.get_boxSettingsView_boxId();
     }
 
     publishEvents() {

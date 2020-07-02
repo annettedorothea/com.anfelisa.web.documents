@@ -34,7 +34,6 @@ import LoadSettingsAction from "../../src/box/actions/LoadSettingsAction";
 import SaveBoxSettingsAction from "../../src/box/actions/SaveBoxSettingsAction";
 import MaxCardsPerDayChangedAction from "../../src/box/actions/MaxCardsPerDayChangedAction";
 import MaxIntervalChangedAction from "../../src/box/actions/MaxIntervalChangedAction";
-import CreateNewBoxAction from "../../src/box/actions/CreateNewBoxAction";
 import CreateRootCategoryAction from "../../src/box/actions/CreateRootCategoryAction";
 import CategoryNameChangedAction from "../../src/box/actions/CategoryNameChangedAction";
 import DictionaryLookupChangedAction from "../../src/box/actions/DictionaryLookupChangedAction";
@@ -70,15 +69,13 @@ export default class ActionFactoryRegistrationBox {
 		ACEController.registerFactory('box.InitBoxesForDayDuringScoreAction', 
 			(actionData) => new InitBoxesForDayDuringScoreAction());
 		ACEController.registerFactory('box.LoadSettingsAction', 
-			(actionData) => new LoadSettingsAction());
+			(actionData) => new LoadSettingsAction(actionData.boxId));
 		ACEController.registerFactory('box.SaveBoxSettingsAction', 
 			(actionData) => new SaveBoxSettingsAction());
 		ACEController.registerFactory('box.MaxCardsPerDayChangedAction', 
 			(actionData) => new MaxCardsPerDayChangedAction(actionData.maxCardsPerDay));
 		ACEController.registerFactory('box.MaxIntervalChangedAction', 
 			(actionData) => new MaxIntervalChangedAction(actionData.maxInterval));
-		ACEController.registerFactory('box.CreateNewBoxAction', 
-			(actionData) => new CreateNewBoxAction());
 		ACEController.registerFactory('box.CreateRootCategoryAction', 
 			(actionData) => new CreateRootCategoryAction());
 		ACEController.registerFactory('box.CategoryNameChangedAction', 

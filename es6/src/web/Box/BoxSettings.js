@@ -54,6 +54,8 @@ export default class BoxSettings extends React.Component {
                                 type={"text"}
                                 value={this.props.maxInterval}
                             />
+                            {this.props.maxIntervalInvalid === true &&
+                            <i className="fas fa-times outside error"/>}
                         </div>
                     </div>
                     <div className="noBreak line">
@@ -87,6 +89,8 @@ export default class BoxSettings extends React.Component {
                             <option
                                 value="fr">{this.props.texts.boxSettings.languages.fr[this.props.language]}</option>
                         </select>
+                        {this.props.dictionaryLookupInvalid === true &&
+                        <i className="fas fa-times outside error"/>}
                     </div>
                     <div className="moreMarginLine hCenter">
                         <button

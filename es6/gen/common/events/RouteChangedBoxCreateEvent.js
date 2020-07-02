@@ -17,20 +17,12 @@
 
 
 
-import Action from "../../ace/SynchronousAction";
-import CreateNewBoxCommand from "../../../src/box/commands/CreateNewBoxCommand";
+import Event from "../../../gen/ace/Event";
 
-export default class AbstractCreateNewBoxAction extends Action {
-
-    constructor() {
-        super({}, 'box.CreateNewBoxAction');
-		}
-		
-	getCommand() {
-		return new CreateNewBoxCommand(this.actionData);
-	}
-
-
+export default class RouteChangedBoxCreateEvent extends Event {
+    constructor(eventData) {
+        super(eventData, 'common.RouteChangedBoxCreateEvent');
+    }
 }
 
 

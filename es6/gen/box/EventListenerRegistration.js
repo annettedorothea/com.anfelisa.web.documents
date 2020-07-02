@@ -37,7 +37,6 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_boxSettingsView_maxCardsPerDayInvalid);
 		ACEController.registerListener('box.MaxIntervalChangedOkEvent', AppState.set_boxSettingsView_maxInterval);
 		ACEController.registerListener('box.MaxIntervalChangedOkEvent', AppState.set_boxSettingsView_maxIntervalInvalid);
-		ACEController.registerListener('box.CreateNewBoxOkEvent', AppState.set_boxSettingsView);
 		ACEController.registerListener('box.CategoryNameChangedOkEvent', AppState.set_boxSettingsView_categoryName);
 		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', AppState.set_boxSettingsView_dictionaryLookup);
 		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', AppState.set_boxSettingsView_dictionaryLookupInvalid);

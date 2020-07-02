@@ -25,7 +25,7 @@ import RouteChangedRegistrationEvent from "../../../gen/common/events/RouteChang
 import RouteChangedForgotPasswordEvent from "../../../gen/common/events/RouteChangedForgotPasswordEvent";
 import RouteChangedResetPasswordEvent from "../../../gen/common/events/RouteChangedResetPasswordEvent";
 import RouteChangedNextCardEvent from "../../../gen/common/events/RouteChangedNextCardEvent";
-import RouteChangedBoxSettingsEvent from "../../../gen/common/events/RouteChangedBoxSettingsEvent";
+import RouteChangedBoxCreateEvent from "../../../gen/common/events/RouteChangedBoxCreateEvent";
 import ConfirmEmailAction from "../../../src/registration/actions/ConfirmEmailAction";
 import InitBoxesForDayAction from "../../../src/box/actions/InitBoxesForDayAction";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
@@ -33,7 +33,6 @@ import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import LoadSettingsAction from "../../../src/box/actions/LoadSettingsAction";
-import CreateNewBoxAction from "../../../src/box/actions/CreateNewBoxAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractRouteChangedCommand extends Command {
@@ -90,11 +89,10 @@ export default class AbstractRouteChangedCommand extends Command {
 			new TriggerAction(new LoadNextCardAction()).publish();
 			break;
 		case this.boxSettings:
-			new RouteChangedBoxSettingsEvent(this.commandData).publish();
-			new TriggerAction(new LoadSettingsAction()).publish();
+			new TriggerAction(new LoadSettingsAction(this.commandData.boxId)).publish();
 			break;
 		case this.boxCreate:
-			new TriggerAction(new CreateNewBoxAction()).publish();
+			new RouteChangedBoxCreateEvent(this.commandData).publish();
 			break;
 		case this.invalid:
 			new TriggerAction(new RouteAction(this.commandData.hash)).publish();

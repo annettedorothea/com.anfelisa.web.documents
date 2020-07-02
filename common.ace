@@ -33,13 +33,9 @@ RouteChanged
 	on categories triggers (category.LoadCategoryTree )
 	on profile triggers ( profile.LoadUser )
 	on userList triggers (admin.GetAllUsers) 
-	on nextCard (
-		set cardView.boxId
-	) triggers (box.LoadNextCard)
-	on boxSettings (
-		set boxSettingsView.boxId	
-	) triggers (box.LoadSettings)
-	on boxCreate triggers (box.CreateNewBox)
+	on nextCard (set cardView.boxId) triggers (box.LoadNextCard)
+	on boxSettings triggers (box.LoadSettings)
+	on boxCreate ( set common.boxSettingsView )
 	on invalid triggers (Route)
 	
 Route ( hash ) 

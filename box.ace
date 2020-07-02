@@ -79,13 +79,10 @@ ACE
 		loadingFlag common.displaySpinner 
 		on ok triggers (LoadNextCard) 
 				
-	LoadSettings
-		fromAppState (common.boxSettingsView.boxId)
+	LoadSettings (boxId)
 	 	call com.anfelisa.box.GetBoxSettings
 		loadingFlag common.displaySpinner 
-		on ok (
-			merge common.boxSettingsView
-		)
+		on ok (	merge common.boxSettingsView	)
 		
 	SaveBoxSettings
 		fromAppState (
@@ -115,11 +112,6 @@ ACE
 			set common.boxSettingsView.maxIntervalInvalid
 		)
 
-	CreateNewBox
-		on ok (
-			set common.boxSettingsView
-		)
-		
 	CreateRootCategory
 		fromAppState (
 			common.boxSettingsView.maxInterval,

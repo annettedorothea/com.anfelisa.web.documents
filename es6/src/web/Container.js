@@ -12,7 +12,7 @@ export default class Container extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = AppState.getAppState();
+        this.state = AppState.appState;
     }
 
     render() {
@@ -20,7 +20,7 @@ export default class Container extends React.Component {
             return "";
         }
         let content;
-        if (this.state.loggedInUser &&  this.state.loggedInUser.role) {
+        if (this.state.loggedInUser && this.state.loggedInUser.role) {
             content = <UserContainer {...this.state} />;
         } else {
             content = <AnonymousContainer {...this.state} />;

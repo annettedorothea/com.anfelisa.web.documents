@@ -243,6 +243,7 @@ export default class AppUtils {
     }
 
     static deepCopy(object) {
+        //return object;
         return object ? JSON.parse(JSON.stringify(object)) : undefined;
     }
 

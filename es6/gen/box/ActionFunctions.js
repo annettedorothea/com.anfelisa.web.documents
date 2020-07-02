@@ -33,7 +33,6 @@ import LoadSettingsAction from "../../src/box/actions/LoadSettingsAction";
 import SaveBoxSettingsAction from "../../src/box/actions/SaveBoxSettingsAction";
 import MaxCardsPerDayChangedAction from "../../src/box/actions/MaxCardsPerDayChangedAction";
 import MaxIntervalChangedAction from "../../src/box/actions/MaxIntervalChangedAction";
-import CreateNewBoxAction from "../../src/box/actions/CreateNewBoxAction";
 import CreateRootCategoryAction from "../../src/box/actions/CreateRootCategoryAction";
 import CategoryNameChangedAction from "../../src/box/actions/CategoryNameChangedAction";
 import DictionaryLookupChangedAction from "../../src/box/actions/DictionaryLookupChangedAction";
@@ -89,8 +88,8 @@ export function initBoxesForDayDuringScore() {
     new InitBoxesForDayDuringScoreAction().apply();
 }
 
-export function loadSettings() {
-    new LoadSettingsAction().apply();
+export function loadSettings(boxId) {
+    new LoadSettingsAction(boxId).apply();
 }
 
 export function saveBoxSettings() {
@@ -103,10 +102,6 @@ export function maxCardsPerDayChanged(maxCardsPerDay) {
 
 export function maxIntervalChanged(maxInterval) {
     new MaxIntervalChangedAction(maxInterval).apply();
-}
-
-export function createNewBox() {
-    new CreateNewBoxAction().apply();
 }
 
 export function createRootCategory() {

@@ -25,14 +25,20 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
         } else if (this.commandData.hash.startsWith("#box/settings") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn()) {
             this.commandData.boxId = hashes[2];
             this.commandData.outcome = this.boxSettings;
-        } else if (this.commandData.hash.startsWith("#box/create" && this.isUserLoggedIn())) {
+        } else if (this.commandData.hash === "#box/create" && this.isUserLoggedIn()) {
+            this.commandData.boxSettingsView = {
+                maxCardsPerDay: 8,
+                maxInterval: "",
+                boxId: "",
+                categoryName: "",
+                dictionaryLookup: false,
+                wantedLanguage: "",
+                givenLanguage: ""
+            };
             this.commandData.outcome = this.boxCreate;
-        } else if (this.commandData.hash.startsWith("#box" && hashes.length >= 1 && hashes[1] && this.isUserLoggedIn())) {
-            if (hashes[1]) {
-                this.commandData.boxId = hashes[1];
-                this.commandData.outcome = this.nextCard;
-            } else {
-            }
+        } else if (this.commandData.hash.startsWith("#box") && hashes.length >= 1 && hashes[1] && this.isUserLoggedIn()) {
+            this.commandData.boxId = hashes[1];
+            this.commandData.outcome = this.nextCard;
         } else if (this.commandData.hash === "" && !this.isUserLoggedIn()) {
             this.commandData.loginView = {
                 username: "",
