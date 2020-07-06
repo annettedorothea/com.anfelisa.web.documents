@@ -28,7 +28,7 @@ See [com.anfelisa.server](https://github.com/annettedorothea/com.anfelisa.server
 - Run ```npm install```. 
 - Start the server with ```npm start```.
 
-If you want to user the [de.acegen](https://github.com/annettedorothea/de.acegen) 
+If you want to use the [de.acegen](https://github.com/annettedorothea/de.acegen) 
 Eclpise plugin, see [de.anfelisa.server](https://github.com/annettedorothea/com.anfelisa.server)
 for instructions.
 
