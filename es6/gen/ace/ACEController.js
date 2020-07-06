@@ -90,9 +90,9 @@ export default class ACEController {
     }
 
     static applyNextActions() {
-    	ACEController.addItemToTimeLine({appState: AppState.getAppState()});
         let action = ACEController.actionQueue.shift();
         if (action) {
+	    	ACEController.addItemToTimeLine({appState: AppState.getAppState()});
 			if (action.asynchronous) {
 			    action.applyAction().then(() => {
 			    	ACEController.callApplyNextActions();

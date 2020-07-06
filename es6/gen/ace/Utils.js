@@ -197,7 +197,7 @@ export default class Utils {
     static replayE2E(pauseInMillis, serverTimeline) {
         ReplayUtils.prepareReplay();
         AppUtils.createInitialAppState();
-        AppUtils.httpPut('replay/e2e/start', false, [], JSON.parse(serverTimeline)).then(() => {
+        AppUtils.httpPut('replay/e2e/start', false, JSON.parse(serverTimeline)).then(() => {
             ACEController.startReplay(ACEController.E2E, pauseInMillis)
         });
     }

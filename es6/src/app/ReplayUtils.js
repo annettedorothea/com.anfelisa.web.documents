@@ -5,6 +5,8 @@ export default class ReplayUtils {
     static itemStringifyReplacer(key, value) {
         if (key === 'timestamp') {
             return undefined;
+        } else if (key === 'texts') {
+            return undefined;
         } else {
             return value;
         }
