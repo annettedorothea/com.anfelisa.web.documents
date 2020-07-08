@@ -35,6 +35,7 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.RouteChangedForgotPasswordEvent', AppState.set_forgotPasswordView);
 		ACEController.registerListener('common.RouteChangedResetPasswordEvent', AppState.set_resetPasswordView);
 		ACEController.registerListener('common.RouteChangedNextCardEvent', AppState.set_cardView_boxId);
+		ACEController.registerListener('common.RouteChangedBoxSettingsEvent', AppState.set_boxSettingsView_boxId);
 		ACEController.registerListener('common.RouteChangedBoxCreateEvent', AppState.set_boxSettingsView);
 		ACEController.registerListener('common.RouteOkEvent', AppState.set_hash);
 		ACEController.registerListener('common.InitialLoginOkEvent', AppState.set_loggedInUser_role);

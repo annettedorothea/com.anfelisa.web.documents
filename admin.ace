@@ -8,7 +8,7 @@ ACE
 		call com.anfelisa.user.GetAllUsers
 		loadingFlag common.displaySpinner
 		on ok ( 
-			set common.userListView
+			set common.mainView.userListView
 		)
 	
 	SaveRole ( editedUserId, newRole )
@@ -17,24 +17,24 @@ ACE
 		on ok triggers (GetAllUsers)
 	
 	DeleteUser
-		fromAppState ( common.userListView.usernameToBeDeleted )
+		fromAppState ( common.mainView.userListView.usernameToBeDeleted )
 		call com.anfelisa.user.DeleteUser
 		loadingFlag common.displaySpinner 
 		on ok triggers ( GetAllUsers )
 		on error (
-			reset common.userListView.usernameToBeDeleted 
-			set common.userListView.showDeleteUserDialog
+			reset common.mainView.userListView.usernameToBeDeleted 
+			set common.mainView.userListView.showDeleteUserDialog
 		) triggers (common.DisplayError)
 	
 	DeleteUserClick ( usernameToBeDeleted )
 		on ok (
-			merge common.userListView
+			merge common.mainView.userListView
 		)
 	
 	DeleteUserCancel 
 		on ok (
-			reset common.userListView.usernameToBeDeleted 
-			set common.userListView.showDeleteUserDialog
+			reset common.mainView.userListView.usernameToBeDeleted 
+			set common.mainView.userListView.showDeleteUserDialog
 		)
 	
 	

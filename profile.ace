@@ -8,21 +8,21 @@ ACE
 		call com.anfelisa.user.GetUserProfile
 		loadingFlag common.displaySpinner 
 		on ok (
-			set common.profileView
+			set common.mainView.profileView
 		)
 	
 	DeleteUser
-		fromAppState (common.profileView.username)
+		fromAppState (common.mainView.profileView.username)
 		call com.anfelisa.user.DeleteUser
 		loadingFlag common.displaySpinner 
-		on ok ( reset common.profileView.showDeleteUserDialog ) triggers ( common.Logout )
-		on error ( reset common.profileView.showDeleteUserDialog ) triggers (LoadUser common.DisplayError)
+		on ok ( reset common.mainView.profileView.showDeleteUserDialog ) triggers ( common.Logout )
+		on error ( reset common.mainView.profileView.showDeleteUserDialog ) triggers (LoadUser common.DisplayError)
 	
 	DeleteUserClick 
-		on ok (set common.profileView.showDeleteUserDialog)
+		on ok (set common.mainView.profileView.showDeleteUserDialog)
 	
 	DeleteUserCancel 
-		on ok (set common.profileView.showDeleteUserDialog)
+		on ok (set common.mainView.profileView.showDeleteUserDialog)
 	
 
 

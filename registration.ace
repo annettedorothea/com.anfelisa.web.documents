@@ -4,23 +4,23 @@ registration
 
 ACE 
 CheckUsername
-	fromAppState (common.registrationView.username)
+	fromAppState (common.mainView.registrationView.username)
 	call com.anfelisa.user.UsernameAvailable
-	loadingFlag common.registrationView.displayUsernameSpinner 
+	loadingFlag common.mainView.registrationView.displayUsernameSpinner 
 	on empty
-	on ok ( set common.registrationView.available )
+	on ok ( set common.mainView.registrationView.available )
 
 UsernameChanged ( username )
-	on ok (set common.registrationView.username) triggers (CheckUsername)
+	on ok (set common.mainView.registrationView.username) triggers (CheckUsername)
 
 EmailChanged ( email )
-	on ok (set common.registrationView.emailInvalid set common.registrationView.email)
+	on ok (set common.mainView.registrationView.emailInvalid set common.mainView.registrationView.email)
 
 PasswordChanged ( password, passwordRepetition  )
-	on ok ( set common.registrationView.passwordMismatch )
+	on ok ( set common.mainView.registrationView.passwordMismatch )
 
 RegisterUser ( password )
-	fromAppState ( common.registrationView.email, common.language, common.registrationView.username)
+	fromAppState ( common.mainView.registrationView.email, common.language, common.mainView.registrationView.username)
 	call com.anfelisa.user.RegisterUser
 	loadingFlag common.displaySpinner 
 	on ok  triggers ( common.DisplayMessage common.Route)

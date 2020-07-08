@@ -39,7 +39,7 @@ export default class Registration extends React.Component {
     render() {
         return (
             <div className="center">
-                <div className="form">
+                <form className="form">
                     <h1>{this.props.texts.registration.title[this.props.language]}</h1>
                     <div className="line">
                         <label>{this.props.texts.registration.username[this.props.language]}</label>
@@ -110,7 +110,7 @@ export default class Registration extends React.Component {
                         <div
                             className="small-font">{this.props.texts.registration.terms[this.props.language]}</div>
                     </div>
-                </div>
+                </form>
             </div>
         );
     }

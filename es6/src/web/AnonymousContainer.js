@@ -7,33 +7,35 @@ import ResetPassword from "./ResetPassword";
 export default class AnonymousContainer extends React.Component {
 
     render() {
-        if (this.props.registrationView) {
-            return <Registration
-                {...this.props.registrationView}
-                texts={this.props.texts}
-                language={this.props.language}
-            />;
-        }
-        if (this.props.forgotPasswordView) {
-            return <ForgotPassword
-                {...this.props.forgotPasswordView}
-                texts={this.props.texts}
-                language={this.props.language}
-            />;
-        }
-        if (this.props.resetPasswordView) {
-            return <ResetPassword
-                {...this.props.resetPasswordView}
-                texts={this.props.texts}
-                language={this.props.language}
-            />;
-        }
-        if (this.props.loginView) {
-            return <Login
-                {...this.props.loginView}
-                texts={this.props.texts}
-                language={this.props.language}
-            />;
+        if (this.props.mainView) {
+            if (this.props.mainView.isRegistrationView) {
+                return <Registration
+                    {...this.props.mainView}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            }
+            if (this.props.mainView.isForgotPasswordView) {
+                return <ForgotPassword
+                    {...this.props.mainView}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            }
+            if (this.props.mainView.isResetPasswordView) {
+                return <ResetPassword
+                    {...this.props.mainView}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            }
+            if (this.props.mainView.isLoginView) {
+                return <Login
+                    {...this.props.mainView}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            }
         }
         return (
             <div/>

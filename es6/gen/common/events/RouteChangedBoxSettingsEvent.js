@@ -20,29 +20,12 @@
 
 
 
-import Action from "../../ace/AsynchronousAction";
-import LoadSettingsCommand from "../../../src/box/commands/LoadSettingsCommand";
-import * as AppState from "../../ace/AppState";
+import Event from "../../../gen/ace/Event";
 
-export default class AbstractLoadSettingsAction extends Action {
-
-    constructor() {
-        super({}, 'box.LoadSettingsAction');
-		this.postCall = this.postCall.bind(this);
-		}
-		
-	getCommand() {
-		return new LoadSettingsCommand(this.actionData);
-	}
-
-	preCall() {
-		AppState.set_displaySpinner({displaySpinner: true});
-	}
-	
-	postCall() {
-		AppState.set_displaySpinner({displaySpinner: false});
-	}
-
+export default class RouteChangedBoxSettingsEvent extends Event {
+    constructor(eventData) {
+        super(eventData, 'common.RouteChangedBoxSettingsEvent');
+    }
 }
 
 

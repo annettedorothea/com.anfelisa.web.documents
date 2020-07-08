@@ -2,6 +2,8 @@ HttpClient
 
 common
 
+
+
 ACE 
 Init 
 	fromAppState (username, password )
@@ -17,25 +19,25 @@ Init
 RouteChanged
 	fromAppState ( hash, loggedInUser ) 
 	on login ( 
-		set loginView 
+		set mainView.loginView 
 	)
 	on registration ( 
-		set registrationView
+		set mainView.registrationView
 	)
 	on confirmEmail triggers (registration.ConfirmEmail)
 	on forgotPassword ( 
-		set forgotPasswordView 
+		set mainView.forgotPasswordView 
 	)
 	on resetPassword ( 
-		set resetPasswordView 
+		set mainView.resetPasswordView 
 	)
 	on dashboard triggers (box.InitBoxesForDay)
 	on categories triggers (category.LoadCategoryTree )
 	on profile triggers ( profile.LoadUser )
 	on userList triggers (admin.GetAllUsers) 
-	on nextCard (set cardView.boxId) triggers (box.LoadNextCard)
-	on boxSettings triggers (box.LoadSettings)
-	on boxCreate ( set common.boxSettingsView )
+	on nextCard (set mainView.cardView.boxId) triggers (box.LoadNextCard)
+	on boxSettings (set mainView.boxSettingsView.boxId) triggers (box.LoadSettings)
+	on boxCreate ( set mainView.boxSettingsView )
 	on invalid triggers (Route)
 	
 Route ( hash ) 
@@ -84,6 +86,10 @@ HideSaveBugDialog
 
 
 
+
+
+
+
 appState {
 	String loggedInUser {
 		String username
@@ -101,7 +107,7 @@ appState {
 		String type
 		String text
 	}
-	group {
+	group mainView {
 		loginView {
 			String username
 			Boolean saveInLocalStorage

@@ -72,7 +72,7 @@ export default class ActionFactoryRegistrationBox {
 		ACEController.registerFactory('box.InitBoxesForDayDuringScoreAction', 
 			(actionData) => new InitBoxesForDayDuringScoreAction());
 		ACEController.registerFactory('box.LoadSettingsAction', 
-			(actionData) => new LoadSettingsAction(actionData.boxId));
+			(actionData) => new LoadSettingsAction());
 		ACEController.registerFactory('box.SaveBoxSettingsAction', 
 			(actionData) => new SaveBoxSettingsAction());
 		ACEController.registerFactory('box.MaxCardsPerDayChangedAction', 

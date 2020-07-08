@@ -33,6 +33,9 @@ export function setInitialAppState(initialAppState) {
 }
 
 export function get_loggedInUser() {
+	if (!appState.loggedInUser) {
+		return undefined;
+	}
 	return AppUtils.deepCopy(appState.loggedInUser);
 }
 
@@ -41,7 +44,7 @@ export function set_loggedInUser(eventData) {
 }
 
 export function reset_loggedInUser() {
-	appState.loggedInUser = null;
+	appState.loggedInUser = undefined;
 }
 
 export function merge_loggedInUser(eventData) {
@@ -77,7 +80,7 @@ export function reset_loggedInUser_username() {
 	if (!appState.loggedInUser) {
 		return;
 	}
-	appState.loggedInUser.username = null;
+	appState.loggedInUser.username = undefined;
 }
 
 export function get_loggedInUser_role() {
@@ -98,7 +101,7 @@ export function reset_loggedInUser_role() {
 	if (!appState.loggedInUser) {
 		return;
 	}
-	appState.loggedInUser.role = null;
+	appState.loggedInUser.role = undefined;
 }
 
 export function get_loggedInUser_password() {
@@ -119,7 +122,7 @@ export function reset_loggedInUser_password() {
 	if (!appState.loggedInUser) {
 		return;
 	}
-	appState.loggedInUser.password = null;
+	appState.loggedInUser.password = undefined;
 }
 
 export function get_hash() {
@@ -167,7 +170,7 @@ export function set_displaySpinner(eventData) {
 }
 
 export function reset_displaySpinner() {
-	appState.displaySpinner = null;
+	appState.displaySpinner = undefined;
 }
 
 export function get_language() {
@@ -179,7 +182,7 @@ export function set_language(eventData) {
 }
 
 export function reset_language() {
-	appState.language = null;
+	appState.language = undefined;
 }
 
 export function get_texts() {
@@ -191,7 +194,7 @@ export function set_texts(eventData) {
 }
 
 export function reset_texts() {
-	appState.texts = null;
+	appState.texts = undefined;
 }
 
 export function get_displaySaveBugDialog() {
@@ -203,10 +206,13 @@ export function set_displaySaveBugDialog(eventData) {
 }
 
 export function reset_displaySaveBugDialog() {
-	appState.displaySaveBugDialog = null;
+	appState.displaySaveBugDialog = undefined;
 }
 
 export function get_message() {
+	if (!appState.message) {
+		return undefined;
+	}
 	return AppUtils.deepCopy(appState.message);
 }
 
@@ -215,7 +221,7 @@ export function set_message(eventData) {
 }
 
 export function reset_message() {
-	appState.message = null;
+	appState.message = undefined;
 }
 
 export function merge_message(eventData) {
@@ -248,7 +254,7 @@ export function reset_message_type() {
 	if (!appState.message) {
 		return;
 	}
-	appState.message.type = null;
+	appState.message.type = undefined;
 }
 
 export function get_message_text() {
@@ -269,4566 +275,5093 @@ export function reset_message_text() {
 	if (!appState.message) {
 		return;
 	}
-	appState.message.text = null;
+	appState.message.text = undefined;
 }
 
 export function get_loginView() {
-	return AppUtils.deepCopy(appState.loginView);
+	if (appState.mainView && appState.mainView.isLoginView === true) {
+		return AppUtils.deepCopy(appState.mainView);
+	}
+	return undefined;
 }
 
 export function set_loginView(eventData) {
-	appState.loginView = eventData.loginView;
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
+	appState.mainView = eventData.loginView;
+	appState.mainView.isLoginView = true;
 }
 
 export function reset_loginView() {
-	appState.loginView = null;
+	appState.mainView = undefined;
 }
 
 export function merge_loginView(eventData) {
-	if (!appState.loginView) {
-		appState.loginView = {};
+	if (!appState.mainView) {
+		appState.mainView = {
+			isLoginView : true
+		};
 	}
 	if (eventData.username !== undefined) {
-		appState.loginView.username = eventData.username;
+		appState.mainView.username = eventData.username;
 	}
 	if (eventData.saveInLocalStorage !== undefined) {
-		appState.loginView.saveInLocalStorage = eventData.saveInLocalStorage;
+		appState.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
 	}
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
 }
 
 export function get_loginView_username() {
-	if (!appState.loginView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.loginView.username;
+	if (appState.mainView.isLoginView !== true) {
+		return undefined;
+	}
+	return appState.mainView.username;
 }
 
 export function set_loginView_username(eventData) {
-	if (!appState.loginView) {
-		appState.loginView = {};
+	if (!appState.mainView || appState.mainView.isLoginView !== true) {
+		appState.mainView = {
+			isLoginView : true
+		};
 	}
-	appState.loginView.username = eventData.username;
+	appState.mainView.username = eventData.username;
 }
 
 export function reset_loginView_username() {
-	if (!appState.loginView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.loginView.username = null;
+	appState.mainView.username = undefined;
 }
 
 export function get_loginView_saveInLocalStorage() {
-	if (!appState.loginView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.loginView.saveInLocalStorage;
+	if (appState.mainView.isLoginView !== true) {
+		return undefined;
+	}
+	return appState.mainView.saveInLocalStorage;
 }
 
 export function set_loginView_saveInLocalStorage(eventData) {
-	if (!appState.loginView) {
-		appState.loginView = {};
+	if (!appState.mainView || appState.mainView.isLoginView !== true) {
+		appState.mainView = {
+			isLoginView : true
+		};
 	}
-	appState.loginView.saveInLocalStorage = eventData.saveInLocalStorage;
+	appState.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
 }
 
 export function reset_loginView_saveInLocalStorage() {
-	if (!appState.loginView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.loginView.saveInLocalStorage = null;
+	appState.mainView.saveInLocalStorage = undefined;
 }
 
 export function get_registrationView() {
-	return AppUtils.deepCopy(appState.registrationView);
+	if (appState.mainView && appState.mainView.isRegistrationView === true) {
+		return AppUtils.deepCopy(appState.mainView);
+	}
+	return undefined;
 }
 
 export function set_registrationView(eventData) {
-	appState.registrationView = eventData.registrationView;
-	reset_loginView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
+	appState.mainView = eventData.registrationView;
+	appState.mainView.isRegistrationView = true;
 }
 
 export function reset_registrationView() {
-	appState.registrationView = null;
+	appState.mainView = undefined;
 }
 
 export function merge_registrationView(eventData) {
-	if (!appState.registrationView) {
-		appState.registrationView = {};
+	if (!appState.mainView) {
+		appState.mainView = {
+			isRegistrationView : true
+		};
 	}
 	if (eventData.displayUsernameSpinner !== undefined) {
-		appState.registrationView.displayUsernameSpinner = eventData.displayUsernameSpinner;
+		appState.mainView.displayUsernameSpinner = eventData.displayUsernameSpinner;
 	}
 	if (eventData.available !== undefined) {
-		appState.registrationView.available = eventData.available;
+		appState.mainView.available = eventData.available;
 	}
 	if (eventData.username !== undefined) {
-		appState.registrationView.username = eventData.username;
+		appState.mainView.username = eventData.username;
 	}
 	if (eventData.email !== undefined) {
-		appState.registrationView.email = eventData.email;
+		appState.mainView.email = eventData.email;
 	}
 	if (eventData.emailInvalid !== undefined) {
-		appState.registrationView.emailInvalid = eventData.emailInvalid;
+		appState.mainView.emailInvalid = eventData.emailInvalid;
 	}
 	if (eventData.passwordMismatch !== undefined) {
-		appState.registrationView.passwordMismatch = eventData.passwordMismatch;
+		appState.mainView.passwordMismatch = eventData.passwordMismatch;
 	}
-	reset_loginView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
 }
 
 export function get_registrationView_displayUsernameSpinner() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.registrationView.displayUsernameSpinner;
+	if (appState.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.mainView.displayUsernameSpinner;
 }
 
 export function set_registrationView_displayUsernameSpinner(eventData) {
-	if (!appState.registrationView) {
-		appState.registrationView = {};
+	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
+		appState.mainView = {
+			isRegistrationView : true
+		};
 	}
-	appState.registrationView.displayUsernameSpinner = eventData.displayUsernameSpinner;
+	appState.mainView.displayUsernameSpinner = eventData.displayUsernameSpinner;
 }
 
 export function reset_registrationView_displayUsernameSpinner() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.registrationView.displayUsernameSpinner = null;
+	appState.mainView.displayUsernameSpinner = undefined;
 }
 
 export function get_registrationView_available() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.registrationView.available;
+	if (appState.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.mainView.available;
 }
 
 export function set_registrationView_available(eventData) {
-	if (!appState.registrationView) {
-		appState.registrationView = {};
+	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
+		appState.mainView = {
+			isRegistrationView : true
+		};
 	}
-	appState.registrationView.available = eventData.available;
+	appState.mainView.available = eventData.available;
 }
 
 export function reset_registrationView_available() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.registrationView.available = null;
+	appState.mainView.available = undefined;
 }
 
 export function get_registrationView_username() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.registrationView.username;
+	if (appState.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.mainView.username;
 }
 
 export function set_registrationView_username(eventData) {
-	if (!appState.registrationView) {
-		appState.registrationView = {};
+	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
+		appState.mainView = {
+			isRegistrationView : true
+		};
 	}
-	appState.registrationView.username = eventData.username;
+	appState.mainView.username = eventData.username;
 }
 
 export function reset_registrationView_username() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.registrationView.username = null;
+	appState.mainView.username = undefined;
 }
 
 export function get_registrationView_email() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.registrationView.email;
+	if (appState.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.mainView.email;
 }
 
 export function set_registrationView_email(eventData) {
-	if (!appState.registrationView) {
-		appState.registrationView = {};
+	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
+		appState.mainView = {
+			isRegistrationView : true
+		};
 	}
-	appState.registrationView.email = eventData.email;
+	appState.mainView.email = eventData.email;
 }
 
 export function reset_registrationView_email() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.registrationView.email = null;
+	appState.mainView.email = undefined;
 }
 
 export function get_registrationView_emailInvalid() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.registrationView.emailInvalid;
+	if (appState.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.mainView.emailInvalid;
 }
 
 export function set_registrationView_emailInvalid(eventData) {
-	if (!appState.registrationView) {
-		appState.registrationView = {};
+	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
+		appState.mainView = {
+			isRegistrationView : true
+		};
 	}
-	appState.registrationView.emailInvalid = eventData.emailInvalid;
+	appState.mainView.emailInvalid = eventData.emailInvalid;
 }
 
 export function reset_registrationView_emailInvalid() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.registrationView.emailInvalid = null;
+	appState.mainView.emailInvalid = undefined;
 }
 
 export function get_registrationView_passwordMismatch() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.registrationView.passwordMismatch;
+	if (appState.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.mainView.passwordMismatch;
 }
 
 export function set_registrationView_passwordMismatch(eventData) {
-	if (!appState.registrationView) {
-		appState.registrationView = {};
+	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
+		appState.mainView = {
+			isRegistrationView : true
+		};
 	}
-	appState.registrationView.passwordMismatch = eventData.passwordMismatch;
+	appState.mainView.passwordMismatch = eventData.passwordMismatch;
 }
 
 export function reset_registrationView_passwordMismatch() {
-	if (!appState.registrationView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.registrationView.passwordMismatch = null;
+	appState.mainView.passwordMismatch = undefined;
 }
 
 export function get_forgotPasswordView() {
-	return AppUtils.deepCopy(appState.forgotPasswordView);
+	if (appState.mainView && appState.mainView.isForgotPasswordView === true) {
+		return AppUtils.deepCopy(appState.mainView);
+	}
+	return undefined;
 }
 
 export function set_forgotPasswordView(eventData) {
-	appState.forgotPasswordView = eventData.forgotPasswordView;
-	reset_loginView();
-	reset_registrationView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
+	appState.mainView = eventData.forgotPasswordView;
+	appState.mainView.isForgotPasswordView = true;
 }
 
 export function reset_forgotPasswordView() {
-	appState.forgotPasswordView = null;
+	appState.mainView = undefined;
 }
 
 export function merge_forgotPasswordView(eventData) {
-	if (!appState.forgotPasswordView) {
-		appState.forgotPasswordView = {};
+	if (!appState.mainView) {
+		appState.mainView = {
+			isForgotPasswordView : true
+		};
 	}
 	if (eventData.username !== undefined) {
-		appState.forgotPasswordView.username = eventData.username;
+		appState.mainView.username = eventData.username;
 	}
-	reset_loginView();
-	reset_registrationView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
 }
 
 export function get_forgotPasswordView_username() {
-	if (!appState.forgotPasswordView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.forgotPasswordView.username;
+	if (appState.mainView.isForgotPasswordView !== true) {
+		return undefined;
+	}
+	return appState.mainView.username;
 }
 
 export function set_forgotPasswordView_username(eventData) {
-	if (!appState.forgotPasswordView) {
-		appState.forgotPasswordView = {};
+	if (!appState.mainView || appState.mainView.isForgotPasswordView !== true) {
+		appState.mainView = {
+			isForgotPasswordView : true
+		};
 	}
-	appState.forgotPasswordView.username = eventData.username;
+	appState.mainView.username = eventData.username;
 }
 
 export function reset_forgotPasswordView_username() {
-	if (!appState.forgotPasswordView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.forgotPasswordView.username = null;
+	appState.mainView.username = undefined;
 }
 
 export function get_resetPasswordView() {
-	return AppUtils.deepCopy(appState.resetPasswordView);
+	if (appState.mainView && appState.mainView.isResetPasswordView === true) {
+		return AppUtils.deepCopy(appState.mainView);
+	}
+	return undefined;
 }
 
 export function set_resetPasswordView(eventData) {
-	appState.resetPasswordView = eventData.resetPasswordView;
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
+	appState.mainView = eventData.resetPasswordView;
+	appState.mainView.isResetPasswordView = true;
 }
 
 export function reset_resetPasswordView() {
-	appState.resetPasswordView = null;
+	appState.mainView = undefined;
 }
 
 export function merge_resetPasswordView(eventData) {
-	if (!appState.resetPasswordView) {
-		appState.resetPasswordView = {};
+	if (!appState.mainView) {
+		appState.mainView = {
+			isResetPasswordView : true
+		};
 	}
 	if (eventData.token !== undefined) {
-		appState.resetPasswordView.token = eventData.token;
+		appState.mainView.token = eventData.token;
 	}
 	if (eventData.passwordMismatch !== undefined) {
-		appState.resetPasswordView.passwordMismatch = eventData.passwordMismatch;
+		appState.mainView.passwordMismatch = eventData.passwordMismatch;
 	}
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
 }
 
 export function get_resetPasswordView_token() {
-	if (!appState.resetPasswordView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.resetPasswordView.token;
+	if (appState.mainView.isResetPasswordView !== true) {
+		return undefined;
+	}
+	return appState.mainView.token;
 }
 
 export function set_resetPasswordView_token(eventData) {
-	if (!appState.resetPasswordView) {
-		appState.resetPasswordView = {};
+	if (!appState.mainView || appState.mainView.isResetPasswordView !== true) {
+		appState.mainView = {
+			isResetPasswordView : true
+		};
 	}
-	appState.resetPasswordView.token = eventData.token;
+	appState.mainView.token = eventData.token;
 }
 
 export function reset_resetPasswordView_token() {
-	if (!appState.resetPasswordView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.resetPasswordView.token = null;
+	appState.mainView.token = undefined;
 }
 
 export function get_resetPasswordView_passwordMismatch() {
-	if (!appState.resetPasswordView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.resetPasswordView.passwordMismatch;
+	if (appState.mainView.isResetPasswordView !== true) {
+		return undefined;
+	}
+	return appState.mainView.passwordMismatch;
 }
 
 export function set_resetPasswordView_passwordMismatch(eventData) {
-	if (!appState.resetPasswordView) {
-		appState.resetPasswordView = {};
+	if (!appState.mainView || appState.mainView.isResetPasswordView !== true) {
+		appState.mainView = {
+			isResetPasswordView : true
+		};
 	}
-	appState.resetPasswordView.passwordMismatch = eventData.passwordMismatch;
+	appState.mainView.passwordMismatch = eventData.passwordMismatch;
 }
 
 export function reset_resetPasswordView_passwordMismatch() {
-	if (!appState.resetPasswordView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.resetPasswordView.passwordMismatch = null;
+	appState.mainView.passwordMismatch = undefined;
 }
 
 export function get_dashboardView() {
-	return AppUtils.deepCopy(appState.dashboardView);
+	if (appState.mainView && appState.mainView.isDashboardView === true) {
+		return AppUtils.deepCopy(appState.mainView);
+	}
+	return undefined;
 }
 
 export function set_dashboardView(eventData) {
-	appState.dashboardView = eventData.dashboardView;
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
+	appState.mainView = eventData.dashboardView;
+	appState.mainView.isDashboardView = true;
 }
 
 export function reset_dashboardView() {
-	appState.dashboardView = null;
+	appState.mainView = undefined;
 }
 
 export function merge_dashboardView(eventData) {
-	if (!appState.dashboardView) {
-		appState.dashboardView = {};
+	if (!appState.mainView) {
+		appState.mainView = {
+			isDashboardView : true
+		};
 	}
 	if (eventData.boxList !== undefined) {
-		appState.dashboardView.boxList = eventData.boxList;
+		appState.mainView.boxList = eventData.boxList;
 	}
 	if (eventData.deleteBox !== undefined) {
-		appState.dashboardView.deleteBox = eventData.deleteBox;
+		appState.mainView.deleteBox = eventData.deleteBox;
 	}
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
 }
 
 export function get_dashboardView_boxList() {
-	if (!appState.dashboardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.dashboardView.boxList);
+	if (appState.mainView.isDashboardView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.boxList) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.boxList);
 }
 
 export function set_dashboardView_boxList(eventData) {
-	if (!appState.dashboardView) {
-		appState.dashboardView = {};
+	if (!appState.mainView || appState.mainView.isDashboardView !== true) {
+		appState.mainView = {
+			isDashboardView : true
+		};
 	}
-	appState.dashboardView.boxList = eventData.boxList;
+	appState.mainView.boxList = eventData.boxList;
 }
 
 export function reset_dashboardView_boxList() {
-	if (!appState.dashboardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.dashboardView.boxList = null;
+	appState.mainView.boxList = undefined;
 }
 
 export function merge_dashboardView_boxList(eventData) {
-	if (!appState.dashboardView) {
-		appState.dashboardView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.dashboardView.boxList) {
-		appState.dashboardView.boxList = {};
+	if (!appState.mainView.boxList) {
+		appState.mainView.boxList = {};
 	}
 	if (eventData.openTodaysCards !== undefined) {
-		appState.dashboardView.boxList.openTodaysCards = eventData.openTodaysCards;
+		appState.mainView.boxList.openTodaysCards = eventData.openTodaysCards;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.dashboardView.boxList.categoryName = eventData.categoryName;
+		appState.mainView.boxList.categoryName = eventData.categoryName;
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.dashboardView.boxList.categoryId = eventData.categoryId;
+		appState.mainView.boxList.categoryId = eventData.categoryId;
 	}
 	if (eventData.boxId !== undefined) {
-		appState.dashboardView.boxList.boxId = eventData.boxId;
+		appState.mainView.boxList.boxId = eventData.boxId;
 	}
 	if (eventData.quality0Count !== undefined) {
-		appState.dashboardView.boxList.quality0Count = eventData.quality0Count;
+		appState.mainView.boxList.quality0Count = eventData.quality0Count;
 	}
 	if (eventData.quality1Count !== undefined) {
-		appState.dashboardView.boxList.quality1Count = eventData.quality1Count;
+		appState.mainView.boxList.quality1Count = eventData.quality1Count;
 	}
 	if (eventData.quality2Count !== undefined) {
-		appState.dashboardView.boxList.quality2Count = eventData.quality2Count;
+		appState.mainView.boxList.quality2Count = eventData.quality2Count;
 	}
 	if (eventData.quality3Count !== undefined) {
-		appState.dashboardView.boxList.quality3Count = eventData.quality3Count;
+		appState.mainView.boxList.quality3Count = eventData.quality3Count;
 	}
 	if (eventData.quality4Count !== undefined) {
-		appState.dashboardView.boxList.quality4Count = eventData.quality4Count;
+		appState.mainView.boxList.quality4Count = eventData.quality4Count;
 	}
 	if (eventData.quality5Count !== undefined) {
-		appState.dashboardView.boxList.quality5Count = eventData.quality5Count;
+		appState.mainView.boxList.quality5Count = eventData.quality5Count;
 	}
 	if (eventData.countsPerDayNextWeek !== undefined) {
-		appState.dashboardView.boxList.countsPerDayNextWeek = eventData.countsPerDayNextWeek;
+		appState.mainView.boxList.countsPerDayNextWeek = eventData.countsPerDayNextWeek;
 	}
 	if (eventData.maxCardsPerDay !== undefined) {
-		appState.dashboardView.boxList.maxCardsPerDay = eventData.maxCardsPerDay;
+		appState.mainView.boxList.maxCardsPerDay = eventData.maxCardsPerDay;
 	}
 }
 
 export function get_dashboardView_deleteBox() {
-	if (!appState.dashboardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.dashboardView.deleteBox);
+	if (appState.mainView.isDashboardView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.deleteBox) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.deleteBox);
 }
 
 export function set_dashboardView_deleteBox(eventData) {
-	if (!appState.dashboardView) {
-		appState.dashboardView = {};
+	if (!appState.mainView || appState.mainView.isDashboardView !== true) {
+		appState.mainView = {
+			isDashboardView : true
+		};
 	}
-	appState.dashboardView.deleteBox = eventData.deleteBox;
+	appState.mainView.deleteBox = eventData.deleteBox;
 }
 
 export function reset_dashboardView_deleteBox() {
-	if (!appState.dashboardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.dashboardView.deleteBox = null;
+	appState.mainView.deleteBox = undefined;
 }
 
 export function merge_dashboardView_deleteBox(eventData) {
-	if (!appState.dashboardView) {
-		appState.dashboardView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.dashboardView.deleteBox) {
-		appState.dashboardView.deleteBox = {};
+	if (!appState.mainView.deleteBox) {
+		appState.mainView.deleteBox = {};
 	}
 	if (eventData.confirmDelete !== undefined) {
-		appState.dashboardView.deleteBox.confirmDelete = eventData.confirmDelete;
+		appState.mainView.deleteBox.confirmDelete = eventData.confirmDelete;
 	}
 	if (eventData.boxId !== undefined) {
-		appState.dashboardView.deleteBox.boxId = eventData.boxId;
+		appState.mainView.deleteBox.boxId = eventData.boxId;
 	}
 }
 
 export function get_dashboardView_deleteBox_confirmDelete() {
-	if (!appState.dashboardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.dashboardView.deleteBox) {
+	if (appState.mainView.isDashboardView !== true) {
 		return undefined;
 	}
-	return appState.dashboardView.deleteBox.confirmDelete;
+	if (!appState.mainView.deleteBox) {
+		return undefined;
+	}
+	return appState.mainView.deleteBox.confirmDelete;
 }
 
 export function set_dashboardView_deleteBox_confirmDelete(eventData) {
-	if (!appState.dashboardView) {
-		appState.dashboardView = {};
+	if (!appState.mainView || appState.mainView.isDashboardView !== true) {
+		appState.mainView = {
+			isDashboardView : true
+		};
 	}
-	if (!appState.dashboardView.deleteBox) {
-		appState.dashboardView.deleteBox = {};
+	if (!appState.mainView.deleteBox) {
+		appState.mainView.deleteBox = {};
 	}
-	appState.dashboardView.deleteBox.confirmDelete = eventData.confirmDelete;
+	appState.mainView.deleteBox.confirmDelete = eventData.confirmDelete;
 }
 
 export function reset_dashboardView_deleteBox_confirmDelete() {
-	if (!appState.dashboardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.dashboardView.deleteBox) {
+	if (!appState.mainView.deleteBox) {
 		return;
 	}
-	appState.dashboardView.deleteBox.confirmDelete = null;
+	appState.mainView.deleteBox.confirmDelete = undefined;
 }
 
 export function get_dashboardView_deleteBox_boxId() {
-	if (!appState.dashboardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.dashboardView.deleteBox) {
+	if (appState.mainView.isDashboardView !== true) {
 		return undefined;
 	}
-	return appState.dashboardView.deleteBox.boxId;
+	if (!appState.mainView.deleteBox) {
+		return undefined;
+	}
+	return appState.mainView.deleteBox.boxId;
 }
 
 export function set_dashboardView_deleteBox_boxId(eventData) {
-	if (!appState.dashboardView) {
-		appState.dashboardView = {};
+	if (!appState.mainView || appState.mainView.isDashboardView !== true) {
+		appState.mainView = {
+			isDashboardView : true
+		};
 	}
-	if (!appState.dashboardView.deleteBox) {
-		appState.dashboardView.deleteBox = {};
+	if (!appState.mainView.deleteBox) {
+		appState.mainView.deleteBox = {};
 	}
-	appState.dashboardView.deleteBox.boxId = eventData.boxId;
+	appState.mainView.deleteBox.boxId = eventData.boxId;
 }
 
 export function reset_dashboardView_deleteBox_boxId() {
-	if (!appState.dashboardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.dashboardView.deleteBox) {
+	if (!appState.mainView.deleteBox) {
 		return;
 	}
-	appState.dashboardView.deleteBox.boxId = null;
+	appState.mainView.deleteBox.boxId = undefined;
 }
 
 export function get_boxSettingsView() {
-	return AppUtils.deepCopy(appState.boxSettingsView);
+	if (appState.mainView && appState.mainView.isBoxSettingsView === true) {
+		return AppUtils.deepCopy(appState.mainView);
+	}
+	return undefined;
 }
 
 export function set_boxSettingsView(eventData) {
-	appState.boxSettingsView = eventData.boxSettingsView;
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
+	appState.mainView = eventData.boxSettingsView;
+	appState.mainView.isBoxSettingsView = true;
+	console.log("set_boxSettingsView", appState.mainView);
 }
 
 export function reset_boxSettingsView() {
-	appState.boxSettingsView = null;
+	appState.mainView = undefined;
 }
 
 export function merge_boxSettingsView(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
 	if (eventData.maxIntervalInvalid !== undefined) {
-		appState.boxSettingsView.maxIntervalInvalid = eventData.maxIntervalInvalid;
+		appState.mainView.maxIntervalInvalid = eventData.maxIntervalInvalid;
 	}
 	if (eventData.maxCardsPerDayInvalid !== undefined) {
-		appState.boxSettingsView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
+		appState.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
 	}
 	if (eventData.dictionaryLookupInvalid !== undefined) {
-		appState.boxSettingsView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
+		appState.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
 	}
 	if (eventData.boxId !== undefined) {
-		appState.boxSettingsView.boxId = eventData.boxId;
+		appState.mainView.boxId = eventData.boxId;
 	}
 	if (eventData.maxInterval !== undefined) {
-		appState.boxSettingsView.maxInterval = eventData.maxInterval;
+		appState.mainView.maxInterval = eventData.maxInterval;
 	}
 	if (eventData.maxCardsPerDay !== undefined) {
-		appState.boxSettingsView.maxCardsPerDay = eventData.maxCardsPerDay;
+		appState.mainView.maxCardsPerDay = eventData.maxCardsPerDay;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.boxSettingsView.categoryName = eventData.categoryName;
+		appState.mainView.categoryName = eventData.categoryName;
 	}
 	if (eventData.dictionaryLookup !== undefined) {
-		appState.boxSettingsView.dictionaryLookup = eventData.dictionaryLookup;
+		appState.mainView.dictionaryLookup = eventData.dictionaryLookup;
 	}
 	if (eventData.givenLanguage !== undefined) {
-		appState.boxSettingsView.givenLanguage = eventData.givenLanguage;
+		appState.mainView.givenLanguage = eventData.givenLanguage;
 	}
 	if (eventData.wantedLanguage !== undefined) {
-		appState.boxSettingsView.wantedLanguage = eventData.wantedLanguage;
+		appState.mainView.wantedLanguage = eventData.wantedLanguage;
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.boxSettingsView.categoryId = eventData.categoryId;
+		appState.mainView.categoryId = eventData.categoryId;
 	}
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
 }
 
 export function get_boxSettingsView_maxIntervalInvalid() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.boxSettingsView.maxIntervalInvalid;
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.maxIntervalInvalid;
 }
 
 export function set_boxSettingsView_maxIntervalInvalid(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
-	appState.boxSettingsView.maxIntervalInvalid = eventData.maxIntervalInvalid;
+	appState.mainView.maxIntervalInvalid = eventData.maxIntervalInvalid;
 }
 
 export function reset_boxSettingsView_maxIntervalInvalid() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.boxSettingsView.maxIntervalInvalid = null;
+	appState.mainView.maxIntervalInvalid = undefined;
 }
 
 export function get_boxSettingsView_maxCardsPerDayInvalid() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.boxSettingsView.maxCardsPerDayInvalid;
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.maxCardsPerDayInvalid;
 }
 
 export function set_boxSettingsView_maxCardsPerDayInvalid(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
-	appState.boxSettingsView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
+	appState.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
 }
 
 export function reset_boxSettingsView_maxCardsPerDayInvalid() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.boxSettingsView.maxCardsPerDayInvalid = null;
+	appState.mainView.maxCardsPerDayInvalid = undefined;
 }
 
 export function get_boxSettingsView_dictionaryLookupInvalid() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.boxSettingsView.dictionaryLookupInvalid;
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.dictionaryLookupInvalid;
 }
 
 export function set_boxSettingsView_dictionaryLookupInvalid(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
-	appState.boxSettingsView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
+	appState.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
 }
 
 export function reset_boxSettingsView_dictionaryLookupInvalid() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.boxSettingsView.dictionaryLookupInvalid = null;
+	appState.mainView.dictionaryLookupInvalid = undefined;
 }
 
 export function get_boxSettingsView_boxId() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.boxSettingsView.boxId;
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.boxId;
 }
 
 export function set_boxSettingsView_boxId(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
-	appState.boxSettingsView.boxId = eventData.boxId;
+	appState.mainView.boxId = eventData.boxId;
 }
 
 export function reset_boxSettingsView_boxId() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.boxSettingsView.boxId = null;
+	appState.mainView.boxId = undefined;
 }
 
 export function get_boxSettingsView_maxInterval() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.boxSettingsView.maxInterval;
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.maxInterval;
 }
 
 export function set_boxSettingsView_maxInterval(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
-	appState.boxSettingsView.maxInterval = eventData.maxInterval;
+	appState.mainView.maxInterval = eventData.maxInterval;
 }
 
 export function reset_boxSettingsView_maxInterval() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.boxSettingsView.maxInterval = null;
+	appState.mainView.maxInterval = undefined;
 }
 
 export function get_boxSettingsView_maxCardsPerDay() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.boxSettingsView.maxCardsPerDay;
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.maxCardsPerDay;
 }
 
 export function set_boxSettingsView_maxCardsPerDay(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
-	appState.boxSettingsView.maxCardsPerDay = eventData.maxCardsPerDay;
+	appState.mainView.maxCardsPerDay = eventData.maxCardsPerDay;
 }
 
 export function reset_boxSettingsView_maxCardsPerDay() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.boxSettingsView.maxCardsPerDay = null;
+	appState.mainView.maxCardsPerDay = undefined;
 }
 
 export function get_boxSettingsView_categoryName() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.boxSettingsView.categoryName;
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.categoryName;
 }
 
 export function set_boxSettingsView_categoryName(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
-	appState.boxSettingsView.categoryName = eventData.categoryName;
+	appState.mainView.categoryName = eventData.categoryName;
 }
 
 export function reset_boxSettingsView_categoryName() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.boxSettingsView.categoryName = null;
+	appState.mainView.categoryName = undefined;
 }
 
 export function get_boxSettingsView_dictionaryLookup() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.boxSettingsView.dictionaryLookup;
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.dictionaryLookup;
 }
 
 export function set_boxSettingsView_dictionaryLookup(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
-	appState.boxSettingsView.dictionaryLookup = eventData.dictionaryLookup;
+	appState.mainView.dictionaryLookup = eventData.dictionaryLookup;
 }
 
 export function reset_boxSettingsView_dictionaryLookup() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.boxSettingsView.dictionaryLookup = null;
+	appState.mainView.dictionaryLookup = undefined;
 }
 
 export function get_boxSettingsView_givenLanguage() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.boxSettingsView.givenLanguage;
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.givenLanguage;
 }
 
 export function set_boxSettingsView_givenLanguage(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
-	appState.boxSettingsView.givenLanguage = eventData.givenLanguage;
+	appState.mainView.givenLanguage = eventData.givenLanguage;
 }
 
 export function reset_boxSettingsView_givenLanguage() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.boxSettingsView.givenLanguage = null;
+	appState.mainView.givenLanguage = undefined;
 }
 
 export function get_boxSettingsView_wantedLanguage() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.boxSettingsView.wantedLanguage;
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.wantedLanguage;
 }
 
 export function set_boxSettingsView_wantedLanguage(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
-	appState.boxSettingsView.wantedLanguage = eventData.wantedLanguage;
+	appState.mainView.wantedLanguage = eventData.wantedLanguage;
 }
 
 export function reset_boxSettingsView_wantedLanguage() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.boxSettingsView.wantedLanguage = null;
+	appState.mainView.wantedLanguage = undefined;
 }
 
 export function get_boxSettingsView_categoryId() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.boxSettingsView.categoryId;
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.categoryId;
 }
 
 export function set_boxSettingsView_categoryId(eventData) {
-	if (!appState.boxSettingsView) {
-		appState.boxSettingsView = {};
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
 	}
-	appState.boxSettingsView.categoryId = eventData.categoryId;
+	appState.mainView.categoryId = eventData.categoryId;
 }
 
 export function reset_boxSettingsView_categoryId() {
-	if (!appState.boxSettingsView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.boxSettingsView.categoryId = null;
+	appState.mainView.categoryId = undefined;
 }
 
 export function get_profileView() {
-	return AppUtils.deepCopy(appState.profileView);
+	if (appState.mainView && appState.mainView.isProfileView === true) {
+		return AppUtils.deepCopy(appState.mainView);
+	}
+	return undefined;
 }
 
 export function set_profileView(eventData) {
-	appState.profileView = eventData.profileView;
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
+	appState.mainView = eventData.profileView;
+	appState.mainView.isProfileView = true;
 }
 
 export function reset_profileView() {
-	appState.profileView = null;
+	appState.mainView = undefined;
 }
 
 export function merge_profileView(eventData) {
-	if (!appState.profileView) {
-		appState.profileView = {};
+	if (!appState.mainView) {
+		appState.mainView = {
+			isProfileView : true
+		};
 	}
 	if (eventData.username !== undefined) {
-		appState.profileView.username = eventData.username;
+		appState.mainView.username = eventData.username;
 	}
 	if (eventData.email !== undefined) {
-		appState.profileView.email = eventData.email;
+		appState.mainView.email = eventData.email;
 	}
 	if (eventData.role !== undefined) {
-		appState.profileView.role = eventData.role;
+		appState.mainView.role = eventData.role;
 	}
 	if (eventData.showDeleteUserDialog !== undefined) {
-		appState.profileView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+		appState.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 	}
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_userListView();
-	reset_cardView();
-	reset_authorView();
 }
 
 export function get_profileView_username() {
-	if (!appState.profileView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.profileView.username;
+	if (appState.mainView.isProfileView !== true) {
+		return undefined;
+	}
+	return appState.mainView.username;
 }
 
 export function set_profileView_username(eventData) {
-	if (!appState.profileView) {
-		appState.profileView = {};
+	if (!appState.mainView || appState.mainView.isProfileView !== true) {
+		appState.mainView = {
+			isProfileView : true
+		};
 	}
-	appState.profileView.username = eventData.username;
+	appState.mainView.username = eventData.username;
 }
 
 export function reset_profileView_username() {
-	if (!appState.profileView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.profileView.username = null;
+	appState.mainView.username = undefined;
 }
 
 export function get_profileView_email() {
-	if (!appState.profileView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.profileView.email;
+	if (appState.mainView.isProfileView !== true) {
+		return undefined;
+	}
+	return appState.mainView.email;
 }
 
 export function set_profileView_email(eventData) {
-	if (!appState.profileView) {
-		appState.profileView = {};
+	if (!appState.mainView || appState.mainView.isProfileView !== true) {
+		appState.mainView = {
+			isProfileView : true
+		};
 	}
-	appState.profileView.email = eventData.email;
+	appState.mainView.email = eventData.email;
 }
 
 export function reset_profileView_email() {
-	if (!appState.profileView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.profileView.email = null;
+	appState.mainView.email = undefined;
 }
 
 export function get_profileView_role() {
-	if (!appState.profileView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.profileView.role;
+	if (appState.mainView.isProfileView !== true) {
+		return undefined;
+	}
+	return appState.mainView.role;
 }
 
 export function set_profileView_role(eventData) {
-	if (!appState.profileView) {
-		appState.profileView = {};
+	if (!appState.mainView || appState.mainView.isProfileView !== true) {
+		appState.mainView = {
+			isProfileView : true
+		};
 	}
-	appState.profileView.role = eventData.role;
+	appState.mainView.role = eventData.role;
 }
 
 export function reset_profileView_role() {
-	if (!appState.profileView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.profileView.role = null;
+	appState.mainView.role = undefined;
 }
 
 export function get_profileView_showDeleteUserDialog() {
-	if (!appState.profileView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.profileView.showDeleteUserDialog;
+	if (appState.mainView.isProfileView !== true) {
+		return undefined;
+	}
+	return appState.mainView.showDeleteUserDialog;
 }
 
 export function set_profileView_showDeleteUserDialog(eventData) {
-	if (!appState.profileView) {
-		appState.profileView = {};
+	if (!appState.mainView || appState.mainView.isProfileView !== true) {
+		appState.mainView = {
+			isProfileView : true
+		};
 	}
-	appState.profileView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+	appState.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 }
 
 export function reset_profileView_showDeleteUserDialog() {
-	if (!appState.profileView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.profileView.showDeleteUserDialog = null;
+	appState.mainView.showDeleteUserDialog = undefined;
 }
 
 export function get_userListView() {
-	return AppUtils.deepCopy(appState.userListView);
+	if (appState.mainView && appState.mainView.isUserListView === true) {
+		return AppUtils.deepCopy(appState.mainView);
+	}
+	return undefined;
 }
 
 export function set_userListView(eventData) {
-	appState.userListView = eventData.userListView;
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_cardView();
-	reset_authorView();
+	appState.mainView = eventData.userListView;
+	appState.mainView.isUserListView = true;
 }
 
 export function reset_userListView() {
-	appState.userListView = null;
+	appState.mainView = undefined;
 }
 
 export function merge_userListView(eventData) {
-	if (!appState.userListView) {
-		appState.userListView = {};
+	if (!appState.mainView) {
+		appState.mainView = {
+			isUserListView : true
+		};
 	}
 	if (eventData.userList !== undefined) {
-		appState.userListView.userList = eventData.userList;
+		appState.mainView.userList = eventData.userList;
 	}
 	if (eventData.showDeleteUserDialog !== undefined) {
-		appState.userListView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+		appState.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 	}
 	if (eventData.usernameToBeDeleted !== undefined) {
-		appState.userListView.usernameToBeDeleted = eventData.usernameToBeDeleted;
+		appState.mainView.usernameToBeDeleted = eventData.usernameToBeDeleted;
 	}
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_cardView();
-	reset_authorView();
 }
 
 export function get_userListView_userList() {
-	if (!appState.userListView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.userListView.userList);
+	if (appState.mainView.isUserListView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.userList) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.userList);
 }
 
 export function set_userListView_userList(eventData) {
-	if (!appState.userListView) {
-		appState.userListView = {};
+	if (!appState.mainView || appState.mainView.isUserListView !== true) {
+		appState.mainView = {
+			isUserListView : true
+		};
 	}
-	appState.userListView.userList = eventData.userList;
+	appState.mainView.userList = eventData.userList;
 }
 
 export function reset_userListView_userList() {
-	if (!appState.userListView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.userListView.userList = null;
+	appState.mainView.userList = undefined;
 }
 
 export function merge_userListView_userList(eventData) {
-	if (!appState.userListView) {
-		appState.userListView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.userListView.userList) {
-		appState.userListView.userList = {};
+	if (!appState.mainView.userList) {
+		appState.mainView.userList = {};
 	}
 	if (eventData.userId !== undefined) {
-		appState.userListView.userList.userId = eventData.userId;
+		appState.mainView.userList.userId = eventData.userId;
 	}
 	if (eventData.username !== undefined) {
-		appState.userListView.userList.username = eventData.username;
+		appState.mainView.userList.username = eventData.username;
 	}
 	if (eventData.password !== undefined) {
-		appState.userListView.userList.password = eventData.password;
+		appState.mainView.userList.password = eventData.password;
 	}
 	if (eventData.email !== undefined) {
-		appState.userListView.userList.email = eventData.email;
+		appState.mainView.userList.email = eventData.email;
 	}
 	if (eventData.role !== undefined) {
-		appState.userListView.userList.role = eventData.role;
+		appState.mainView.userList.role = eventData.role;
 	}
 	if (eventData.emailConfirmed !== undefined) {
-		appState.userListView.userList.emailConfirmed = eventData.emailConfirmed;
+		appState.mainView.userList.emailConfirmed = eventData.emailConfirmed;
 	}
 }
 
 export function get_userListView_showDeleteUserDialog() {
-	if (!appState.userListView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.userListView.showDeleteUserDialog;
+	if (appState.mainView.isUserListView !== true) {
+		return undefined;
+	}
+	return appState.mainView.showDeleteUserDialog;
 }
 
 export function set_userListView_showDeleteUserDialog(eventData) {
-	if (!appState.userListView) {
-		appState.userListView = {};
+	if (!appState.mainView || appState.mainView.isUserListView !== true) {
+		appState.mainView = {
+			isUserListView : true
+		};
 	}
-	appState.userListView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+	appState.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 }
 
 export function reset_userListView_showDeleteUserDialog() {
-	if (!appState.userListView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.userListView.showDeleteUserDialog = null;
+	appState.mainView.showDeleteUserDialog = undefined;
 }
 
 export function get_userListView_usernameToBeDeleted() {
-	if (!appState.userListView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.userListView.usernameToBeDeleted;
+	if (appState.mainView.isUserListView !== true) {
+		return undefined;
+	}
+	return appState.mainView.usernameToBeDeleted;
 }
 
 export function set_userListView_usernameToBeDeleted(eventData) {
-	if (!appState.userListView) {
-		appState.userListView = {};
+	if (!appState.mainView || appState.mainView.isUserListView !== true) {
+		appState.mainView = {
+			isUserListView : true
+		};
 	}
-	appState.userListView.usernameToBeDeleted = eventData.usernameToBeDeleted;
+	appState.mainView.usernameToBeDeleted = eventData.usernameToBeDeleted;
 }
 
 export function reset_userListView_usernameToBeDeleted() {
-	if (!appState.userListView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.userListView.usernameToBeDeleted = null;
+	appState.mainView.usernameToBeDeleted = undefined;
 }
 
 export function get_cardView() {
-	return AppUtils.deepCopy(appState.cardView);
+	if (appState.mainView && appState.mainView.isCardView === true) {
+		return AppUtils.deepCopy(appState.mainView);
+	}
+	return undefined;
 }
 
 export function set_cardView(eventData) {
-	appState.cardView = eventData.cardView;
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_authorView();
+	appState.mainView = eventData.cardView;
+	appState.mainView.isCardView = true;
 }
 
 export function reset_cardView() {
-	appState.cardView = null;
+	appState.mainView = undefined;
 }
 
 export function merge_cardView(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
 	if (eventData.cardId !== undefined) {
-		appState.cardView.cardId = eventData.cardId;
+		appState.mainView.cardId = eventData.cardId;
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.cardView.categoryId = eventData.categoryId;
+		appState.mainView.categoryId = eventData.categoryId;
 	}
 	if (eventData.count !== undefined) {
-		appState.cardView.count = eventData.count;
+		appState.mainView.count = eventData.count;
 	}
 	if (eventData.given !== undefined) {
-		appState.cardView.given = eventData.given;
+		appState.mainView.given = eventData.given;
 	}
 	if (eventData.image !== undefined) {
-		appState.cardView.image = eventData.image;
+		appState.mainView.image = eventData.image;
 	}
 	if (eventData.lastQuality !== undefined) {
-		appState.cardView.lastQuality = eventData.lastQuality;
+		appState.mainView.lastQuality = eventData.lastQuality;
 	}
 	if (eventData.rootCategoryId !== undefined) {
-		appState.cardView.rootCategoryId = eventData.rootCategoryId;
+		appState.mainView.rootCategoryId = eventData.rootCategoryId;
 	}
 	if (eventData.scheduledCardId !== undefined) {
-		appState.cardView.scheduledCardId = eventData.scheduledCardId;
+		appState.mainView.scheduledCardId = eventData.scheduledCardId;
 	}
 	if (eventData.reinforceCardId !== undefined) {
-		appState.cardView.reinforceCardId = eventData.reinforceCardId;
+		appState.mainView.reinforceCardId = eventData.reinforceCardId;
 	}
 	if (eventData.scheduledDate !== undefined) {
-		appState.cardView.scheduledDate = eventData.scheduledDate;
+		appState.mainView.scheduledDate = eventData.scheduledDate;
 	}
 	if (eventData.scoredDate !== undefined) {
-		appState.cardView.scoredDate = eventData.scoredDate;
+		appState.mainView.scoredDate = eventData.scoredDate;
 	}
 	if (eventData.wanted !== undefined) {
-		appState.cardView.wanted = eventData.wanted;
+		appState.mainView.wanted = eventData.wanted;
 	}
 	if (eventData.openTodaysCards !== undefined) {
-		appState.cardView.openTodaysCards = eventData.openTodaysCards;
+		appState.mainView.openTodaysCards = eventData.openTodaysCards;
 	}
 	if (eventData.allTodaysCards !== undefined) {
-		appState.cardView.allTodaysCards = eventData.allTodaysCards;
+		appState.mainView.allTodaysCards = eventData.allTodaysCards;
 	}
 	if (eventData.index !== undefined) {
-		appState.cardView.index = eventData.index;
+		appState.mainView.index = eventData.index;
 	}
 	if (eventData.enableScoreButtons !== undefined) {
-		appState.cardView.enableScoreButtons = eventData.enableScoreButtons;
+		appState.mainView.enableScoreButtons = eventData.enableScoreButtons;
 	}
 	if (eventData.displayImage !== undefined) {
-		appState.cardView.displayImage = eventData.displayImage;
+		appState.mainView.displayImage = eventData.displayImage;
 	}
 	if (eventData.boxId !== undefined) {
-		appState.cardView.boxId = eventData.boxId;
+		appState.mainView.boxId = eventData.boxId;
 	}
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_authorView();
 }
 
 export function get_cardView_cardId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.cardId;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.cardId;
 }
 
 export function set_cardView_cardId(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.cardId = eventData.cardId;
+	appState.mainView.cardId = eventData.cardId;
 }
 
 export function reset_cardView_cardId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.cardId = null;
+	appState.mainView.cardId = undefined;
 }
 
 export function get_cardView_categoryId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.categoryId;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.categoryId;
 }
 
 export function set_cardView_categoryId(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.categoryId = eventData.categoryId;
+	appState.mainView.categoryId = eventData.categoryId;
 }
 
 export function reset_cardView_categoryId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.categoryId = null;
+	appState.mainView.categoryId = undefined;
 }
 
 export function get_cardView_count() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.count;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.count;
 }
 
 export function set_cardView_count(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.count = eventData.count;
+	appState.mainView.count = eventData.count;
 }
 
 export function reset_cardView_count() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.count = null;
+	appState.mainView.count = undefined;
 }
 
 export function get_cardView_given() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.given;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.given;
 }
 
 export function set_cardView_given(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.given = eventData.given;
+	appState.mainView.given = eventData.given;
 }
 
 export function reset_cardView_given() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.given = null;
+	appState.mainView.given = undefined;
 }
 
 export function get_cardView_image() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.image;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.image;
 }
 
 export function set_cardView_image(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.image = eventData.image;
+	appState.mainView.image = eventData.image;
 }
 
 export function reset_cardView_image() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.image = null;
+	appState.mainView.image = undefined;
 }
 
 export function get_cardView_lastQuality() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.lastQuality;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.lastQuality;
 }
 
 export function set_cardView_lastQuality(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.lastQuality = eventData.lastQuality;
+	appState.mainView.lastQuality = eventData.lastQuality;
 }
 
 export function reset_cardView_lastQuality() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.lastQuality = null;
+	appState.mainView.lastQuality = undefined;
 }
 
 export function get_cardView_rootCategoryId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.rootCategoryId;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.rootCategoryId;
 }
 
 export function set_cardView_rootCategoryId(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.rootCategoryId = eventData.rootCategoryId;
+	appState.mainView.rootCategoryId = eventData.rootCategoryId;
 }
 
 export function reset_cardView_rootCategoryId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.rootCategoryId = null;
+	appState.mainView.rootCategoryId = undefined;
 }
 
 export function get_cardView_scheduledCardId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.scheduledCardId;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.scheduledCardId;
 }
 
 export function set_cardView_scheduledCardId(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.scheduledCardId = eventData.scheduledCardId;
+	appState.mainView.scheduledCardId = eventData.scheduledCardId;
 }
 
 export function reset_cardView_scheduledCardId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.scheduledCardId = null;
+	appState.mainView.scheduledCardId = undefined;
 }
 
 export function get_cardView_reinforceCardId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.reinforceCardId;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.reinforceCardId;
 }
 
 export function set_cardView_reinforceCardId(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.reinforceCardId = eventData.reinforceCardId;
+	appState.mainView.reinforceCardId = eventData.reinforceCardId;
 }
 
 export function reset_cardView_reinforceCardId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.reinforceCardId = null;
+	appState.mainView.reinforceCardId = undefined;
 }
 
 export function get_cardView_scheduledDate() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.scheduledDate;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.scheduledDate;
 }
 
 export function set_cardView_scheduledDate(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.scheduledDate = eventData.scheduledDate;
+	appState.mainView.scheduledDate = eventData.scheduledDate;
 }
 
 export function reset_cardView_scheduledDate() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.scheduledDate = null;
+	appState.mainView.scheduledDate = undefined;
 }
 
 export function get_cardView_scoredDate() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.scoredDate;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.scoredDate;
 }
 
 export function set_cardView_scoredDate(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.scoredDate = eventData.scoredDate;
+	appState.mainView.scoredDate = eventData.scoredDate;
 }
 
 export function reset_cardView_scoredDate() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.scoredDate = null;
+	appState.mainView.scoredDate = undefined;
 }
 
 export function get_cardView_wanted() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.wanted;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.wanted;
 }
 
 export function set_cardView_wanted(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.wanted = eventData.wanted;
+	appState.mainView.wanted = eventData.wanted;
 }
 
 export function reset_cardView_wanted() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.wanted = null;
+	appState.mainView.wanted = undefined;
 }
 
 export function get_cardView_openTodaysCards() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.openTodaysCards;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.openTodaysCards;
 }
 
 export function set_cardView_openTodaysCards(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.openTodaysCards = eventData.openTodaysCards;
+	appState.mainView.openTodaysCards = eventData.openTodaysCards;
 }
 
 export function reset_cardView_openTodaysCards() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.openTodaysCards = null;
+	appState.mainView.openTodaysCards = undefined;
 }
 
 export function get_cardView_allTodaysCards() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.allTodaysCards;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.allTodaysCards;
 }
 
 export function set_cardView_allTodaysCards(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.allTodaysCards = eventData.allTodaysCards;
+	appState.mainView.allTodaysCards = eventData.allTodaysCards;
 }
 
 export function reset_cardView_allTodaysCards() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.allTodaysCards = null;
+	appState.mainView.allTodaysCards = undefined;
 }
 
 export function get_cardView_index() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.index;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.index;
 }
 
 export function set_cardView_index(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.index = eventData.index;
+	appState.mainView.index = eventData.index;
 }
 
 export function reset_cardView_index() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.index = null;
+	appState.mainView.index = undefined;
 }
 
 export function get_cardView_enableScoreButtons() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.enableScoreButtons;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.enableScoreButtons;
 }
 
 export function set_cardView_enableScoreButtons(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.enableScoreButtons = eventData.enableScoreButtons;
+	appState.mainView.enableScoreButtons = eventData.enableScoreButtons;
 }
 
 export function reset_cardView_enableScoreButtons() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.enableScoreButtons = null;
+	appState.mainView.enableScoreButtons = undefined;
 }
 
 export function get_cardView_displayImage() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.displayImage;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.displayImage;
 }
 
 export function set_cardView_displayImage(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.displayImage = eventData.displayImage;
+	appState.mainView.displayImage = eventData.displayImage;
 }
 
 export function reset_cardView_displayImage() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.displayImage = null;
+	appState.mainView.displayImage = undefined;
 }
 
 export function get_cardView_boxId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return appState.cardView.boxId;
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.boxId;
 }
 
 export function set_cardView_boxId(eventData) {
-	if (!appState.cardView) {
-		appState.cardView = {};
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
 	}
-	appState.cardView.boxId = eventData.boxId;
+	appState.mainView.boxId = eventData.boxId;
 }
 
 export function reset_cardView_boxId() {
-	if (!appState.cardView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.cardView.boxId = null;
+	appState.mainView.boxId = undefined;
 }
 
 export function get_authorView() {
-	return AppUtils.deepCopy(appState.authorView);
+	if (appState.mainView && appState.mainView.isAuthorView === true) {
+		return AppUtils.deepCopy(appState.mainView);
+	}
+	return undefined;
 }
 
 export function set_authorView(eventData) {
-	appState.authorView = eventData.authorView;
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
+	appState.mainView = eventData.authorView;
+	appState.mainView.isAuthorView = true;
 }
 
 export function reset_authorView() {
-	appState.authorView = null;
+	appState.mainView = undefined;
 }
 
 export function merge_authorView(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (eventData.categoryTree !== undefined) {
-		appState.authorView.categoryTree = eventData.categoryTree;
+		appState.mainView.categoryTree = eventData.categoryTree;
 	}
 	if (eventData.cardView !== undefined) {
-		appState.authorView.cardView = eventData.cardView;
+		appState.mainView.cardView = eventData.cardView;
 	}
-	reset_loginView();
-	reset_registrationView();
-	reset_forgotPasswordView();
-	reset_resetPasswordView();
-	reset_dashboardView();
-	reset_boxSettingsView();
-	reset_profileView();
-	reset_userListView();
-	reset_cardView();
 }
 
 export function get_authorView_categoryTree() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.authorView.categoryTree);
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.categoryTree);
 }
 
 export function set_authorView_categoryTree(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	appState.authorView.categoryTree = eventData.categoryTree;
+	appState.mainView.categoryTree = eventData.categoryTree;
 }
 
 export function reset_authorView_categoryTree() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.authorView.categoryTree = null;
+	appState.mainView.categoryTree = undefined;
 }
 
 export function merge_authorView_categoryTree(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
 	if (eventData.selectedCategory !== undefined) {
-		appState.authorView.categoryTree.selectedCategory = eventData.selectedCategory;
+		appState.mainView.categoryTree.selectedCategory = eventData.selectedCategory;
 	}
 	if (eventData.rootCategory !== undefined) {
-		appState.authorView.categoryTree.rootCategory = eventData.rootCategory;
+		appState.mainView.categoryTree.rootCategory = eventData.rootCategory;
 	}
 	if (eventData.displayDeleteCategory !== undefined) {
-		appState.authorView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
+		appState.mainView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.authorView.categoryTree.categoryName = eventData.categoryName;
+		appState.mainView.categoryTree.categoryName = eventData.categoryName;
 	}
 	if (eventData.displayEditCategory !== undefined) {
-		appState.authorView.categoryTree.displayEditCategory = eventData.displayEditCategory;
+		appState.mainView.categoryTree.displayEditCategory = eventData.displayEditCategory;
 	}
 	if (eventData.displayNewCategory !== undefined) {
-		appState.authorView.categoryTree.displayNewCategory = eventData.displayNewCategory;
+		appState.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
 	}
 	if (eventData.dropAllowed !== undefined) {
-		appState.authorView.categoryTree.dropAllowed = eventData.dropAllowed;
+		appState.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
 	}
 	if (eventData.dropTargetCategoryId !== undefined) {
-		appState.authorView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
+		appState.mainView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
 	}
 	if (eventData.movedCategory !== undefined) {
-		appState.authorView.categoryTree.movedCategory = eventData.movedCategory;
+		appState.mainView.categoryTree.movedCategory = eventData.movedCategory;
 	}
 	if (eventData.previewCsv !== undefined) {
-		appState.authorView.categoryTree.previewCsv = eventData.previewCsv;
+		appState.mainView.categoryTree.previewCsv = eventData.previewCsv;
 	}
 }
 
 export function get_authorView_categoryTree_selectedCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.authorView.categoryTree.selectedCategory);
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.categoryTree.selectedCategory);
 }
 
 export function set_authorView_categoryTree_selectedCategory(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	appState.authorView.categoryTree.selectedCategory = eventData.selectedCategory;
+	appState.mainView.categoryTree.selectedCategory = eventData.selectedCategory;
 }
 
 export function reset_authorView_categoryTree_selectedCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory = null;
+	appState.mainView.categoryTree.selectedCategory = undefined;
 }
 
 export function merge_authorView_categoryTree_selectedCategory(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.authorView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
+		appState.mainView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.authorView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
+		appState.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
 	}
 	if (eventData.categoryIndex !== undefined) {
-		appState.authorView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
+		appState.mainView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
 	}
 	if (eventData.empty !== undefined) {
-		appState.authorView.categoryTree.selectedCategory.empty = eventData.empty;
+		appState.mainView.categoryTree.selectedCategory.empty = eventData.empty;
 	}
 	if (eventData.parentCategoryId !== undefined) {
-		appState.authorView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
+		appState.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
 	}
 	if (eventData.dictionaryLookup !== undefined) {
-		appState.authorView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
+		appState.mainView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
 	}
 	if (eventData.givenLanguage !== undefined) {
-		appState.authorView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
+		appState.mainView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
 	}
 	if (eventData.wantedLanguage !== undefined) {
-		appState.authorView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
+		appState.mainView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
 	}
 	if (eventData.rootCategoryId !== undefined) {
-		appState.authorView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
+		appState.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
 	}
 	if (eventData.CategoryTreeItem !== undefined) {
-		appState.authorView.categoryTree.selectedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+		appState.mainView.categoryTree.selectedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
 	}
 	if (eventData.childCategories !== undefined) {
-		appState.authorView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
+		appState.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
 	}
 }
 
 export function get_authorView_categoryTree_selectedCategory_categoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.selectedCategory.categoryId;
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.categoryId;
 }
 
 export function set_authorView_categoryTree_selectedCategory_categoryId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.authorView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
+	appState.mainView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
 }
 
 export function reset_authorView_categoryTree_selectedCategory_categoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.categoryId = null;
+	appState.mainView.categoryTree.selectedCategory.categoryId = undefined;
 }
 
 export function get_authorView_categoryTree_selectedCategory_categoryName() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.selectedCategory.categoryName;
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.categoryName;
 }
 
 export function set_authorView_categoryTree_selectedCategory_categoryName(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.authorView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
+	appState.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
 }
 
 export function reset_authorView_categoryTree_selectedCategory_categoryName() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.categoryName = null;
+	appState.mainView.categoryTree.selectedCategory.categoryName = undefined;
 }
 
 export function get_authorView_categoryTree_selectedCategory_categoryIndex() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.selectedCategory.categoryIndex;
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.categoryIndex;
 }
 
 export function set_authorView_categoryTree_selectedCategory_categoryIndex(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.authorView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
+	appState.mainView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
 }
 
 export function reset_authorView_categoryTree_selectedCategory_categoryIndex() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.categoryIndex = null;
+	appState.mainView.categoryTree.selectedCategory.categoryIndex = undefined;
 }
 
 export function get_authorView_categoryTree_selectedCategory_empty() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.selectedCategory.empty;
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.empty;
 }
 
 export function set_authorView_categoryTree_selectedCategory_empty(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.authorView.categoryTree.selectedCategory.empty = eventData.empty;
+	appState.mainView.categoryTree.selectedCategory.empty = eventData.empty;
 }
 
 export function reset_authorView_categoryTree_selectedCategory_empty() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.empty = null;
+	appState.mainView.categoryTree.selectedCategory.empty = undefined;
 }
 
 export function get_authorView_categoryTree_selectedCategory_parentCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.selectedCategory.parentCategoryId;
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.parentCategoryId;
 }
 
 export function set_authorView_categoryTree_selectedCategory_parentCategoryId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.authorView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
+	appState.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
 }
 
 export function reset_authorView_categoryTree_selectedCategory_parentCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.parentCategoryId = null;
+	appState.mainView.categoryTree.selectedCategory.parentCategoryId = undefined;
 }
 
 export function get_authorView_categoryTree_selectedCategory_dictionaryLookup() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.selectedCategory.dictionaryLookup;
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.dictionaryLookup;
 }
 
 export function set_authorView_categoryTree_selectedCategory_dictionaryLookup(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.authorView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
+	appState.mainView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
 }
 
 export function reset_authorView_categoryTree_selectedCategory_dictionaryLookup() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.dictionaryLookup = null;
+	appState.mainView.categoryTree.selectedCategory.dictionaryLookup = undefined;
 }
 
 export function get_authorView_categoryTree_selectedCategory_givenLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.selectedCategory.givenLanguage;
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.givenLanguage;
 }
 
 export function set_authorView_categoryTree_selectedCategory_givenLanguage(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.authorView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
+	appState.mainView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
 }
 
 export function reset_authorView_categoryTree_selectedCategory_givenLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.givenLanguage = null;
+	appState.mainView.categoryTree.selectedCategory.givenLanguage = undefined;
 }
 
 export function get_authorView_categoryTree_selectedCategory_wantedLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.selectedCategory.wantedLanguage;
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.wantedLanguage;
 }
 
 export function set_authorView_categoryTree_selectedCategory_wantedLanguage(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.authorView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
+	appState.mainView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
 }
 
 export function reset_authorView_categoryTree_selectedCategory_wantedLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.wantedLanguage = null;
+	appState.mainView.categoryTree.selectedCategory.wantedLanguage = undefined;
 }
 
 export function get_authorView_categoryTree_selectedCategory_rootCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.selectedCategory.rootCategoryId;
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.rootCategoryId;
 }
 
 export function set_authorView_categoryTree_selectedCategory_rootCategoryId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.authorView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
+	appState.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
 }
 
 export function reset_authorView_categoryTree_selectedCategory_rootCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.rootCategoryId = null;
+	appState.mainView.categoryTree.selectedCategory.rootCategoryId = undefined;
 }
 
 export function get_authorView_categoryTree_selectedCategory_CategoryTreeItem() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.selectedCategory.CategoryTreeItem;
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.CategoryTreeItem;
 }
 
 export function set_authorView_categoryTree_selectedCategory_CategoryTreeItem(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.authorView.categoryTree.selectedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+	appState.mainView.categoryTree.selectedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
 }
 
 export function reset_authorView_categoryTree_selectedCategory_CategoryTreeItem() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.CategoryTreeItem = null;
+	appState.mainView.categoryTree.selectedCategory.CategoryTreeItem = undefined;
 }
 
 export function get_authorView_categoryTree_selectedCategory_childCategories() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.selectedCategory.childCategories;
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.childCategories;
 }
 
 export function set_authorView_categoryTree_selectedCategory_childCategories(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
-		appState.authorView.categoryTree.selectedCategory = {};
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.authorView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
+	appState.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
 }
 
 export function reset_authorView_categoryTree_selectedCategory_childCategories() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.selectedCategory) {
+	if (!appState.mainView.categoryTree.selectedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.selectedCategory.childCategories = null;
+	appState.mainView.categoryTree.selectedCategory.childCategories = undefined;
 }
 
 export function get_authorView_categoryTree_rootCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.authorView.categoryTree.rootCategory);
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.categoryTree.rootCategory);
 }
 
 export function set_authorView_categoryTree_rootCategory(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	appState.authorView.categoryTree.rootCategory = eventData.rootCategory;
+	appState.mainView.categoryTree.rootCategory = eventData.rootCategory;
 }
 
 export function reset_authorView_categoryTree_rootCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory = null;
+	appState.mainView.categoryTree.rootCategory = undefined;
 }
 
 export function merge_authorView_categoryTree_rootCategory(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.authorView.categoryTree.rootCategory.categoryId = eventData.categoryId;
+		appState.mainView.categoryTree.rootCategory.categoryId = eventData.categoryId;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.authorView.categoryTree.rootCategory.categoryName = eventData.categoryName;
+		appState.mainView.categoryTree.rootCategory.categoryName = eventData.categoryName;
 	}
 	if (eventData.categoryIndex !== undefined) {
-		appState.authorView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
+		appState.mainView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
 	}
 	if (eventData.empty !== undefined) {
-		appState.authorView.categoryTree.rootCategory.empty = eventData.empty;
+		appState.mainView.categoryTree.rootCategory.empty = eventData.empty;
 	}
 	if (eventData.parentCategoryId !== undefined) {
-		appState.authorView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
+		appState.mainView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
 	}
 	if (eventData.dictionaryLookup !== undefined) {
-		appState.authorView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
+		appState.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
 	}
 	if (eventData.givenLanguage !== undefined) {
-		appState.authorView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
+		appState.mainView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
 	}
 	if (eventData.wantedLanguage !== undefined) {
-		appState.authorView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
+		appState.mainView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
 	}
 	if (eventData.rootCategoryId !== undefined) {
-		appState.authorView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
+		appState.mainView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
 	}
 	if (eventData.CategoryTreeItem !== undefined) {
-		appState.authorView.categoryTree.rootCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+		appState.mainView.categoryTree.rootCategory.CategoryTreeItem = eventData.CategoryTreeItem;
 	}
 	if (eventData.childCategories !== undefined) {
-		appState.authorView.categoryTree.rootCategory.childCategories = eventData.childCategories;
+		appState.mainView.categoryTree.rootCategory.childCategories = eventData.childCategories;
 	}
 }
 
 export function get_authorView_categoryTree_rootCategory_categoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.rootCategory.categoryId;
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.categoryId;
 }
 
 export function set_authorView_categoryTree_rootCategory_categoryId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
-	appState.authorView.categoryTree.rootCategory.categoryId = eventData.categoryId;
+	appState.mainView.categoryTree.rootCategory.categoryId = eventData.categoryId;
 }
 
 export function reset_authorView_categoryTree_rootCategory_categoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.categoryId = null;
+	appState.mainView.categoryTree.rootCategory.categoryId = undefined;
 }
 
 export function get_authorView_categoryTree_rootCategory_categoryName() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.rootCategory.categoryName;
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.categoryName;
 }
 
 export function set_authorView_categoryTree_rootCategory_categoryName(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
-	appState.authorView.categoryTree.rootCategory.categoryName = eventData.categoryName;
+	appState.mainView.categoryTree.rootCategory.categoryName = eventData.categoryName;
 }
 
 export function reset_authorView_categoryTree_rootCategory_categoryName() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.categoryName = null;
+	appState.mainView.categoryTree.rootCategory.categoryName = undefined;
 }
 
 export function get_authorView_categoryTree_rootCategory_categoryIndex() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.rootCategory.categoryIndex;
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.categoryIndex;
 }
 
 export function set_authorView_categoryTree_rootCategory_categoryIndex(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
-	appState.authorView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
+	appState.mainView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
 }
 
 export function reset_authorView_categoryTree_rootCategory_categoryIndex() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.categoryIndex = null;
+	appState.mainView.categoryTree.rootCategory.categoryIndex = undefined;
 }
 
 export function get_authorView_categoryTree_rootCategory_empty() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.rootCategory.empty;
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.empty;
 }
 
 export function set_authorView_categoryTree_rootCategory_empty(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
-	appState.authorView.categoryTree.rootCategory.empty = eventData.empty;
+	appState.mainView.categoryTree.rootCategory.empty = eventData.empty;
 }
 
 export function reset_authorView_categoryTree_rootCategory_empty() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.empty = null;
+	appState.mainView.categoryTree.rootCategory.empty = undefined;
 }
 
 export function get_authorView_categoryTree_rootCategory_parentCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.rootCategory.parentCategoryId;
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.parentCategoryId;
 }
 
 export function set_authorView_categoryTree_rootCategory_parentCategoryId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
-	appState.authorView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
+	appState.mainView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
 }
 
 export function reset_authorView_categoryTree_rootCategory_parentCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.parentCategoryId = null;
+	appState.mainView.categoryTree.rootCategory.parentCategoryId = undefined;
 }
 
 export function get_authorView_categoryTree_rootCategory_dictionaryLookup() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.rootCategory.dictionaryLookup;
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.dictionaryLookup;
 }
 
 export function set_authorView_categoryTree_rootCategory_dictionaryLookup(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
-	appState.authorView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
+	appState.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
 }
 
 export function reset_authorView_categoryTree_rootCategory_dictionaryLookup() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.dictionaryLookup = null;
+	appState.mainView.categoryTree.rootCategory.dictionaryLookup = undefined;
 }
 
 export function get_authorView_categoryTree_rootCategory_givenLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.rootCategory.givenLanguage;
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.givenLanguage;
 }
 
 export function set_authorView_categoryTree_rootCategory_givenLanguage(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
-	appState.authorView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
+	appState.mainView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
 }
 
 export function reset_authorView_categoryTree_rootCategory_givenLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.givenLanguage = null;
+	appState.mainView.categoryTree.rootCategory.givenLanguage = undefined;
 }
 
 export function get_authorView_categoryTree_rootCategory_wantedLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.rootCategory.wantedLanguage;
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.wantedLanguage;
 }
 
 export function set_authorView_categoryTree_rootCategory_wantedLanguage(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
-	appState.authorView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
+	appState.mainView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
 }
 
 export function reset_authorView_categoryTree_rootCategory_wantedLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.wantedLanguage = null;
+	appState.mainView.categoryTree.rootCategory.wantedLanguage = undefined;
 }
 
 export function get_authorView_categoryTree_rootCategory_rootCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.rootCategory.rootCategoryId;
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.rootCategoryId;
 }
 
 export function set_authorView_categoryTree_rootCategory_rootCategoryId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
-	appState.authorView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
+	appState.mainView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
 }
 
 export function reset_authorView_categoryTree_rootCategory_rootCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.rootCategoryId = null;
+	appState.mainView.categoryTree.rootCategory.rootCategoryId = undefined;
 }
 
 export function get_authorView_categoryTree_rootCategory_CategoryTreeItem() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.rootCategory.CategoryTreeItem;
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.CategoryTreeItem;
 }
 
 export function set_authorView_categoryTree_rootCategory_CategoryTreeItem(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
-	appState.authorView.categoryTree.rootCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+	appState.mainView.categoryTree.rootCategory.CategoryTreeItem = eventData.CategoryTreeItem;
 }
 
 export function reset_authorView_categoryTree_rootCategory_CategoryTreeItem() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.CategoryTreeItem = null;
+	appState.mainView.categoryTree.rootCategory.CategoryTreeItem = undefined;
 }
 
 export function get_authorView_categoryTree_rootCategory_childCategories() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.rootCategory.childCategories;
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.childCategories;
 }
 
 export function set_authorView_categoryTree_rootCategory_childCategories(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
-		appState.authorView.categoryTree.rootCategory = {};
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
 	}
-	appState.authorView.categoryTree.rootCategory.childCategories = eventData.childCategories;
+	appState.mainView.categoryTree.rootCategory.childCategories = eventData.childCategories;
 }
 
 export function reset_authorView_categoryTree_rootCategory_childCategories() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.rootCategory) {
+	if (!appState.mainView.categoryTree.rootCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.rootCategory.childCategories = null;
+	appState.mainView.categoryTree.rootCategory.childCategories = undefined;
 }
 
 export function get_authorView_categoryTree_displayDeleteCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.displayDeleteCategory;
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.displayDeleteCategory;
 }
 
 export function set_authorView_categoryTree_displayDeleteCategory(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	appState.authorView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
+	appState.mainView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
 }
 
 export function reset_authorView_categoryTree_displayDeleteCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.displayDeleteCategory = null;
+	appState.mainView.categoryTree.displayDeleteCategory = undefined;
 }
 
 export function get_authorView_categoryTree_categoryName() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.categoryName;
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.categoryName;
 }
 
 export function set_authorView_categoryTree_categoryName(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	appState.authorView.categoryTree.categoryName = eventData.categoryName;
+	appState.mainView.categoryTree.categoryName = eventData.categoryName;
 }
 
 export function reset_authorView_categoryTree_categoryName() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.categoryName = null;
+	appState.mainView.categoryTree.categoryName = undefined;
 }
 
 export function get_authorView_categoryTree_displayEditCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.displayEditCategory;
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.displayEditCategory;
 }
 
 export function set_authorView_categoryTree_displayEditCategory(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	appState.authorView.categoryTree.displayEditCategory = eventData.displayEditCategory;
+	appState.mainView.categoryTree.displayEditCategory = eventData.displayEditCategory;
 }
 
 export function reset_authorView_categoryTree_displayEditCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.displayEditCategory = null;
+	appState.mainView.categoryTree.displayEditCategory = undefined;
 }
 
 export function get_authorView_categoryTree_displayNewCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.displayNewCategory;
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.displayNewCategory;
 }
 
 export function set_authorView_categoryTree_displayNewCategory(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	appState.authorView.categoryTree.displayNewCategory = eventData.displayNewCategory;
+	appState.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
 }
 
 export function reset_authorView_categoryTree_displayNewCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.displayNewCategory = null;
+	appState.mainView.categoryTree.displayNewCategory = undefined;
 }
 
 export function get_authorView_categoryTree_dropAllowed() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.dropAllowed;
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.dropAllowed;
 }
 
 export function set_authorView_categoryTree_dropAllowed(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	appState.authorView.categoryTree.dropAllowed = eventData.dropAllowed;
+	appState.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
 }
 
 export function reset_authorView_categoryTree_dropAllowed() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.dropAllowed = null;
+	appState.mainView.categoryTree.dropAllowed = undefined;
 }
 
 export function get_authorView_categoryTree_dropTargetCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.dropTargetCategoryId;
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.dropTargetCategoryId;
 }
 
 export function set_authorView_categoryTree_dropTargetCategoryId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	appState.authorView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
+	appState.mainView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
 }
 
 export function reset_authorView_categoryTree_dropTargetCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.dropTargetCategoryId = null;
+	appState.mainView.categoryTree.dropTargetCategoryId = undefined;
 }
 
 export function get_authorView_categoryTree_movedCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.authorView.categoryTree.movedCategory);
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.categoryTree.movedCategory);
 }
 
 export function set_authorView_categoryTree_movedCategory(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	appState.authorView.categoryTree.movedCategory = eventData.movedCategory;
+	appState.mainView.categoryTree.movedCategory = eventData.movedCategory;
 }
 
 export function reset_authorView_categoryTree_movedCategory() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory = null;
+	appState.mainView.categoryTree.movedCategory = undefined;
 }
 
 export function merge_authorView_categoryTree_movedCategory(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.authorView.categoryTree.movedCategory.categoryId = eventData.categoryId;
+		appState.mainView.categoryTree.movedCategory.categoryId = eventData.categoryId;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.authorView.categoryTree.movedCategory.categoryName = eventData.categoryName;
+		appState.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
 	}
 	if (eventData.categoryIndex !== undefined) {
-		appState.authorView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
+		appState.mainView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
 	}
 	if (eventData.empty !== undefined) {
-		appState.authorView.categoryTree.movedCategory.empty = eventData.empty;
+		appState.mainView.categoryTree.movedCategory.empty = eventData.empty;
 	}
 	if (eventData.parentCategoryId !== undefined) {
-		appState.authorView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
+		appState.mainView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
 	}
 	if (eventData.dictionaryLookup !== undefined) {
-		appState.authorView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
+		appState.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
 	}
 	if (eventData.givenLanguage !== undefined) {
-		appState.authorView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
+		appState.mainView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
 	}
 	if (eventData.wantedLanguage !== undefined) {
-		appState.authorView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
+		appState.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
 	}
 	if (eventData.rootCategoryId !== undefined) {
-		appState.authorView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
+		appState.mainView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
 	}
 	if (eventData.CategoryTreeItem !== undefined) {
-		appState.authorView.categoryTree.movedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+		appState.mainView.categoryTree.movedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
 	}
 	if (eventData.childCategories !== undefined) {
-		appState.authorView.categoryTree.movedCategory.childCategories = eventData.childCategories;
+		appState.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
 	}
 }
 
 export function get_authorView_categoryTree_movedCategory_categoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory.categoryId;
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.movedCategory.categoryId;
 }
 
 export function set_authorView_categoryTree_movedCategory_categoryId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
-	appState.authorView.categoryTree.movedCategory.categoryId = eventData.categoryId;
+	appState.mainView.categoryTree.movedCategory.categoryId = eventData.categoryId;
 }
 
 export function reset_authorView_categoryTree_movedCategory_categoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.categoryId = null;
+	appState.mainView.categoryTree.movedCategory.categoryId = undefined;
 }
 
 export function get_authorView_categoryTree_movedCategory_categoryName() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory.categoryName;
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.movedCategory.categoryName;
 }
 
 export function set_authorView_categoryTree_movedCategory_categoryName(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
-	appState.authorView.categoryTree.movedCategory.categoryName = eventData.categoryName;
+	appState.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
 }
 
 export function reset_authorView_categoryTree_movedCategory_categoryName() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.categoryName = null;
+	appState.mainView.categoryTree.movedCategory.categoryName = undefined;
 }
 
 export function get_authorView_categoryTree_movedCategory_categoryIndex() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory.categoryIndex;
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.movedCategory.categoryIndex;
 }
 
 export function set_authorView_categoryTree_movedCategory_categoryIndex(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
-	appState.authorView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
+	appState.mainView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
 }
 
 export function reset_authorView_categoryTree_movedCategory_categoryIndex() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.categoryIndex = null;
+	appState.mainView.categoryTree.movedCategory.categoryIndex = undefined;
 }
 
 export function get_authorView_categoryTree_movedCategory_empty() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory.empty;
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.movedCategory.empty;
 }
 
 export function set_authorView_categoryTree_movedCategory_empty(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
-	appState.authorView.categoryTree.movedCategory.empty = eventData.empty;
+	appState.mainView.categoryTree.movedCategory.empty = eventData.empty;
 }
 
 export function reset_authorView_categoryTree_movedCategory_empty() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.empty = null;
+	appState.mainView.categoryTree.movedCategory.empty = undefined;
 }
 
 export function get_authorView_categoryTree_movedCategory_parentCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory.parentCategoryId;
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.movedCategory.parentCategoryId;
 }
 
 export function set_authorView_categoryTree_movedCategory_parentCategoryId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
-	appState.authorView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
+	appState.mainView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
 }
 
 export function reset_authorView_categoryTree_movedCategory_parentCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.parentCategoryId = null;
+	appState.mainView.categoryTree.movedCategory.parentCategoryId = undefined;
 }
 
 export function get_authorView_categoryTree_movedCategory_dictionaryLookup() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory.dictionaryLookup;
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.movedCategory.dictionaryLookup;
 }
 
 export function set_authorView_categoryTree_movedCategory_dictionaryLookup(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
-	appState.authorView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
+	appState.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
 }
 
 export function reset_authorView_categoryTree_movedCategory_dictionaryLookup() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.dictionaryLookup = null;
+	appState.mainView.categoryTree.movedCategory.dictionaryLookup = undefined;
 }
 
 export function get_authorView_categoryTree_movedCategory_givenLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory.givenLanguage;
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.movedCategory.givenLanguage;
 }
 
 export function set_authorView_categoryTree_movedCategory_givenLanguage(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
-	appState.authorView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
+	appState.mainView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
 }
 
 export function reset_authorView_categoryTree_movedCategory_givenLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.givenLanguage = null;
+	appState.mainView.categoryTree.movedCategory.givenLanguage = undefined;
 }
 
 export function get_authorView_categoryTree_movedCategory_wantedLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory.wantedLanguage;
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.movedCategory.wantedLanguage;
 }
 
 export function set_authorView_categoryTree_movedCategory_wantedLanguage(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
-	appState.authorView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
+	appState.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
 }
 
 export function reset_authorView_categoryTree_movedCategory_wantedLanguage() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.wantedLanguage = null;
+	appState.mainView.categoryTree.movedCategory.wantedLanguage = undefined;
 }
 
 export function get_authorView_categoryTree_movedCategory_rootCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory.rootCategoryId;
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.movedCategory.rootCategoryId;
 }
 
 export function set_authorView_categoryTree_movedCategory_rootCategoryId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
-	appState.authorView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
+	appState.mainView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
 }
 
 export function reset_authorView_categoryTree_movedCategory_rootCategoryId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.rootCategoryId = null;
+	appState.mainView.categoryTree.movedCategory.rootCategoryId = undefined;
 }
 
 export function get_authorView_categoryTree_movedCategory_CategoryTreeItem() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory.CategoryTreeItem;
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.movedCategory.CategoryTreeItem;
 }
 
 export function set_authorView_categoryTree_movedCategory_CategoryTreeItem(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
-	appState.authorView.categoryTree.movedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+	appState.mainView.categoryTree.movedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
 }
 
 export function reset_authorView_categoryTree_movedCategory_CategoryTreeItem() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.CategoryTreeItem = null;
+	appState.mainView.categoryTree.movedCategory.CategoryTreeItem = undefined;
 }
 
 export function get_authorView_categoryTree_movedCategory_childCategories() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.movedCategory.childCategories;
+	if (!appState.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.movedCategory.childCategories;
 }
 
 export function set_authorView_categoryTree_movedCategory_childCategories(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
-		appState.authorView.categoryTree.movedCategory = {};
+	if (!appState.mainView.categoryTree.movedCategory) {
+		appState.mainView.categoryTree.movedCategory = {};
 	}
-	appState.authorView.categoryTree.movedCategory.childCategories = eventData.childCategories;
+	appState.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
 }
 
 export function reset_authorView_categoryTree_movedCategory_childCategories() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	if (!appState.authorView.categoryTree.movedCategory) {
+	if (!appState.mainView.categoryTree.movedCategory) {
 		return;
 	}
-	appState.authorView.categoryTree.movedCategory.childCategories = null;
+	appState.mainView.categoryTree.movedCategory.childCategories = undefined;
 }
 
 export function get_authorView_categoryTree_previewCsv() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.categoryTree.previewCsv;
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.previewCsv;
 }
 
 export function set_authorView_categoryTree_previewCsv(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.categoryTree) {
-		appState.authorView.categoryTree = {};
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
 	}
-	appState.authorView.categoryTree.previewCsv = eventData.previewCsv;
+	appState.mainView.categoryTree.previewCsv = eventData.previewCsv;
 }
 
 export function reset_authorView_categoryTree_previewCsv() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.categoryTree) {
+	if (!appState.mainView.categoryTree) {
 		return;
 	}
-	appState.authorView.categoryTree.previewCsv = null;
+	appState.mainView.categoryTree.previewCsv = undefined;
 }
 
 export function get_authorView_cardView() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.authorView.cardView);
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.cardView);
 }
 
 export function set_authorView_cardView(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	appState.authorView.cardView = eventData.cardView;
+	appState.mainView.cardView = eventData.cardView;
 }
 
 export function reset_authorView_cardView() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	appState.authorView.cardView = null;
+	appState.mainView.cardView = undefined;
 }
 
 export function merge_authorView_cardView(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
 	if (eventData.cardList !== undefined) {
-		appState.authorView.cardView.cardList = eventData.cardList;
+		appState.mainView.cardView.cardList = eventData.cardList;
 	}
 	if (eventData.naturalInputOrder !== undefined) {
-		appState.authorView.cardView.naturalInputOrder = eventData.naturalInputOrder;
+		appState.mainView.cardView.naturalInputOrder = eventData.naturalInputOrder;
 	}
 	if (eventData.filter !== undefined) {
-		appState.authorView.cardView.filter = eventData.filter;
+		appState.mainView.cardView.filter = eventData.filter;
 	}
 	if (eventData.filterNonScheduled !== undefined) {
-		appState.authorView.cardView.filterNonScheduled = eventData.filterNonScheduled;
+		appState.mainView.cardView.filterNonScheduled = eventData.filterNonScheduled;
 	}
 	if (eventData.editedCard !== undefined) {
-		appState.authorView.cardView.editedCard = eventData.editedCard;
+		appState.mainView.cardView.editedCard = eventData.editedCard;
 	}
 	if (eventData.newCard !== undefined) {
-		appState.authorView.cardView.newCard = eventData.newCard;
+		appState.mainView.cardView.newCard = eventData.newCard;
 	}
 	if (eventData.cardDuplicates !== undefined) {
-		appState.authorView.cardView.cardDuplicates = eventData.cardDuplicates;
+		appState.mainView.cardView.cardDuplicates = eventData.cardDuplicates;
 	}
 	if (eventData.deleteCard !== undefined) {
-		appState.authorView.cardView.deleteCard = eventData.deleteCard;
+		appState.mainView.cardView.deleteCard = eventData.deleteCard;
 	}
 	if (eventData.dictionaryValue !== undefined) {
-		appState.authorView.cardView.dictionaryValue = eventData.dictionaryValue;
+		appState.mainView.cardView.dictionaryValue = eventData.dictionaryValue;
 	}
 	if (eventData.selectedCardIds !== undefined) {
-		appState.authorView.cardView.selectedCardIds = eventData.selectedCardIds;
+		appState.mainView.cardView.selectedCardIds = eventData.selectedCardIds;
 	}
 	if (eventData.movedCardIds !== undefined) {
-		appState.authorView.cardView.movedCardIds = eventData.movedCardIds;
+		appState.mainView.cardView.movedCardIds = eventData.movedCardIds;
 	}
 	if (eventData.dragTargetCardId !== undefined) {
-		appState.authorView.cardView.dragTargetCardId = eventData.dragTargetCardId;
+		appState.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
 	}
 }
 
 export function get_authorView_cardView_cardList() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.authorView.cardView.cardList);
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	if (!appState.mainView.cardView.cardList) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.cardView.cardList);
 }
 
 export function set_authorView_cardView_cardList(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.cardList = eventData.cardList;
+	appState.mainView.cardView.cardList = eventData.cardList;
 }
 
 export function reset_authorView_cardView_cardList() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.cardList = null;
+	appState.mainView.cardView.cardList = undefined;
 }
 
 export function merge_authorView_cardView_cardList(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.cardList) {
-		appState.authorView.cardView.cardList = {};
+	if (!appState.mainView.cardView.cardList) {
+		appState.mainView.cardView.cardList = {};
 	}
 	if (eventData.cardId !== undefined) {
-		appState.authorView.cardView.cardList.cardId = eventData.cardId;
+		appState.mainView.cardView.cardList.cardId = eventData.cardId;
 	}
 	if (eventData.given !== undefined) {
-		appState.authorView.cardView.cardList.given = eventData.given;
+		appState.mainView.cardView.cardList.given = eventData.given;
 	}
 	if (eventData.wanted !== undefined) {
-		appState.authorView.cardView.cardList.wanted = eventData.wanted;
+		appState.mainView.cardView.cardList.wanted = eventData.wanted;
 	}
 	if (eventData.image !== undefined) {
-		appState.authorView.cardView.cardList.image = eventData.image;
+		appState.mainView.cardView.cardList.image = eventData.image;
 	}
 	if (eventData.cardAuthor !== undefined) {
-		appState.authorView.cardView.cardList.cardAuthor = eventData.cardAuthor;
+		appState.mainView.cardView.cardList.cardAuthor = eventData.cardAuthor;
 	}
 	if (eventData.cardIndex !== undefined) {
-		appState.authorView.cardView.cardList.cardIndex = eventData.cardIndex;
+		appState.mainView.cardView.cardList.cardIndex = eventData.cardIndex;
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.authorView.cardView.cardList.categoryId = eventData.categoryId;
+		appState.mainView.cardView.cardList.categoryId = eventData.categoryId;
 	}
 	if (eventData.rootCategoryId !== undefined) {
-		appState.authorView.cardView.cardList.rootCategoryId = eventData.rootCategoryId;
+		appState.mainView.cardView.cardList.rootCategoryId = eventData.rootCategoryId;
 	}
 	if (eventData.next !== undefined) {
-		appState.authorView.cardView.cardList.next = eventData.next;
+		appState.mainView.cardView.cardList.next = eventData.next;
 	}
 }
 
 export function get_authorView_cardView_naturalInputOrder() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.cardView.naturalInputOrder;
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	return appState.mainView.cardView.naturalInputOrder;
 }
 
 export function set_authorView_cardView_naturalInputOrder(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.naturalInputOrder = eventData.naturalInputOrder;
+	appState.mainView.cardView.naturalInputOrder = eventData.naturalInputOrder;
 }
 
 export function reset_authorView_cardView_naturalInputOrder() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.naturalInputOrder = null;
+	appState.mainView.cardView.naturalInputOrder = undefined;
 }
 
 export function get_authorView_cardView_filter() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.cardView.filter;
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	return appState.mainView.cardView.filter;
 }
 
 export function set_authorView_cardView_filter(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.filter = eventData.filter;
+	appState.mainView.cardView.filter = eventData.filter;
 }
 
 export function reset_authorView_cardView_filter() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.filter = null;
+	appState.mainView.cardView.filter = undefined;
 }
 
 export function get_authorView_cardView_filterNonScheduled() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.cardView.filterNonScheduled;
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	return appState.mainView.cardView.filterNonScheduled;
 }
 
 export function set_authorView_cardView_filterNonScheduled(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.filterNonScheduled = eventData.filterNonScheduled;
+	appState.mainView.cardView.filterNonScheduled = eventData.filterNonScheduled;
 }
 
 export function reset_authorView_cardView_filterNonScheduled() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.filterNonScheduled = null;
+	appState.mainView.cardView.filterNonScheduled = undefined;
 }
 
 export function get_authorView_cardView_editedCard() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.authorView.cardView.editedCard);
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	if (!appState.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.cardView.editedCard);
 }
 
 export function set_authorView_cardView_editedCard(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.editedCard = eventData.editedCard;
+	appState.mainView.cardView.editedCard = eventData.editedCard;
 }
 
 export function reset_authorView_cardView_editedCard() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.editedCard = null;
+	appState.mainView.cardView.editedCard = undefined;
 }
 
 export function merge_authorView_cardView_editedCard(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.editedCard) {
-		appState.authorView.cardView.editedCard = {};
+	if (!appState.mainView.cardView.editedCard) {
+		appState.mainView.cardView.editedCard = {};
 	}
 	if (eventData.cardId !== undefined) {
-		appState.authorView.cardView.editedCard.cardId = eventData.cardId;
+		appState.mainView.cardView.editedCard.cardId = eventData.cardId;
 	}
 	if (eventData.given !== undefined) {
-		appState.authorView.cardView.editedCard.given = eventData.given;
+		appState.mainView.cardView.editedCard.given = eventData.given;
 	}
 	if (eventData.wanted !== undefined) {
-		appState.authorView.cardView.editedCard.wanted = eventData.wanted;
+		appState.mainView.cardView.editedCard.wanted = eventData.wanted;
 	}
 	if (eventData.index !== undefined) {
-		appState.authorView.cardView.editedCard.index = eventData.index;
+		appState.mainView.cardView.editedCard.index = eventData.index;
 	}
 	if (eventData.image !== undefined) {
-		appState.authorView.cardView.editedCard.image = eventData.image;
+		appState.mainView.cardView.editedCard.image = eventData.image;
 	}
 }
 
 export function get_authorView_cardView_editedCard_cardId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.editedCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.editedCard.cardId;
+	if (!appState.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.editedCard.cardId;
 }
 
 export function set_authorView_cardView_editedCard_cardId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.editedCard) {
-		appState.authorView.cardView.editedCard = {};
+	if (!appState.mainView.cardView.editedCard) {
+		appState.mainView.cardView.editedCard = {};
 	}
-	appState.authorView.cardView.editedCard.cardId = eventData.cardId;
+	appState.mainView.cardView.editedCard.cardId = eventData.cardId;
 }
 
 export function reset_authorView_cardView_editedCard_cardId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.editedCard) {
+	if (!appState.mainView.cardView.editedCard) {
 		return;
 	}
-	appState.authorView.cardView.editedCard.cardId = null;
+	appState.mainView.cardView.editedCard.cardId = undefined;
 }
 
 export function get_authorView_cardView_editedCard_given() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.editedCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.editedCard.given;
+	if (!appState.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.editedCard.given;
 }
 
 export function set_authorView_cardView_editedCard_given(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.editedCard) {
-		appState.authorView.cardView.editedCard = {};
+	if (!appState.mainView.cardView.editedCard) {
+		appState.mainView.cardView.editedCard = {};
 	}
-	appState.authorView.cardView.editedCard.given = eventData.given;
+	appState.mainView.cardView.editedCard.given = eventData.given;
 }
 
 export function reset_authorView_cardView_editedCard_given() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.editedCard) {
+	if (!appState.mainView.cardView.editedCard) {
 		return;
 	}
-	appState.authorView.cardView.editedCard.given = null;
+	appState.mainView.cardView.editedCard.given = undefined;
 }
 
 export function get_authorView_cardView_editedCard_wanted() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.editedCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.editedCard.wanted;
+	if (!appState.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.editedCard.wanted;
 }
 
 export function set_authorView_cardView_editedCard_wanted(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.editedCard) {
-		appState.authorView.cardView.editedCard = {};
+	if (!appState.mainView.cardView.editedCard) {
+		appState.mainView.cardView.editedCard = {};
 	}
-	appState.authorView.cardView.editedCard.wanted = eventData.wanted;
+	appState.mainView.cardView.editedCard.wanted = eventData.wanted;
 }
 
 export function reset_authorView_cardView_editedCard_wanted() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.editedCard) {
+	if (!appState.mainView.cardView.editedCard) {
 		return;
 	}
-	appState.authorView.cardView.editedCard.wanted = null;
+	appState.mainView.cardView.editedCard.wanted = undefined;
 }
 
 export function get_authorView_cardView_editedCard_index() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.editedCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.editedCard.index;
+	if (!appState.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.editedCard.index;
 }
 
 export function set_authorView_cardView_editedCard_index(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.editedCard) {
-		appState.authorView.cardView.editedCard = {};
+	if (!appState.mainView.cardView.editedCard) {
+		appState.mainView.cardView.editedCard = {};
 	}
-	appState.authorView.cardView.editedCard.index = eventData.index;
+	appState.mainView.cardView.editedCard.index = eventData.index;
 }
 
 export function reset_authorView_cardView_editedCard_index() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.editedCard) {
+	if (!appState.mainView.cardView.editedCard) {
 		return;
 	}
-	appState.authorView.cardView.editedCard.index = null;
+	appState.mainView.cardView.editedCard.index = undefined;
 }
 
 export function get_authorView_cardView_editedCard_image() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.editedCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.editedCard.image;
+	if (!appState.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.editedCard.image;
 }
 
 export function set_authorView_cardView_editedCard_image(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.editedCard) {
-		appState.authorView.cardView.editedCard = {};
+	if (!appState.mainView.cardView.editedCard) {
+		appState.mainView.cardView.editedCard = {};
 	}
-	appState.authorView.cardView.editedCard.image = eventData.image;
+	appState.mainView.cardView.editedCard.image = eventData.image;
 }
 
 export function reset_authorView_cardView_editedCard_image() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.editedCard) {
+	if (!appState.mainView.cardView.editedCard) {
 		return;
 	}
-	appState.authorView.cardView.editedCard.image = null;
+	appState.mainView.cardView.editedCard.image = undefined;
 }
 
 export function get_authorView_cardView_newCard() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.authorView.cardView.newCard);
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	if (!appState.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.cardView.newCard);
 }
 
 export function set_authorView_cardView_newCard(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.newCard = eventData.newCard;
+	appState.mainView.cardView.newCard = eventData.newCard;
 }
 
 export function reset_authorView_cardView_newCard() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.newCard = null;
+	appState.mainView.cardView.newCard = undefined;
 }
 
 export function merge_authorView_cardView_newCard(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.newCard) {
-		appState.authorView.cardView.newCard = {};
+	if (!appState.mainView.cardView.newCard) {
+		appState.mainView.cardView.newCard = {};
 	}
 	if (eventData.given !== undefined) {
-		appState.authorView.cardView.newCard.given = eventData.given;
+		appState.mainView.cardView.newCard.given = eventData.given;
 	}
 	if (eventData.wanted !== undefined) {
-		appState.authorView.cardView.newCard.wanted = eventData.wanted;
+		appState.mainView.cardView.newCard.wanted = eventData.wanted;
 	}
 	if (eventData.index !== undefined) {
-		appState.authorView.cardView.newCard.index = eventData.index;
+		appState.mainView.cardView.newCard.index = eventData.index;
 	}
 	if (eventData.image !== undefined) {
-		appState.authorView.cardView.newCard.image = eventData.image;
+		appState.mainView.cardView.newCard.image = eventData.image;
 	}
 	if (eventData.file !== undefined) {
-		appState.authorView.cardView.newCard.file = eventData.file;
+		appState.mainView.cardView.newCard.file = eventData.file;
 	}
 	if (eventData.displaySpinner !== undefined) {
-		appState.authorView.cardView.newCard.displaySpinner = eventData.displaySpinner;
+		appState.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
 	}
 	if (eventData.displayTranslateSpinner !== undefined) {
-		appState.authorView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
+		appState.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
 	}
 }
 
 export function get_authorView_cardView_newCard_given() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.newCard.given;
+	if (!appState.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.newCard.given;
 }
 
 export function set_authorView_cardView_newCard_given(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.newCard) {
-		appState.authorView.cardView.newCard = {};
+	if (!appState.mainView.cardView.newCard) {
+		appState.mainView.cardView.newCard = {};
 	}
-	appState.authorView.cardView.newCard.given = eventData.given;
+	appState.mainView.cardView.newCard.given = eventData.given;
 }
 
 export function reset_authorView_cardView_newCard_given() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.given = null;
+	appState.mainView.cardView.newCard.given = undefined;
 }
 
 export function get_authorView_cardView_newCard_wanted() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.newCard.wanted;
+	if (!appState.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.newCard.wanted;
 }
 
 export function set_authorView_cardView_newCard_wanted(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.newCard) {
-		appState.authorView.cardView.newCard = {};
+	if (!appState.mainView.cardView.newCard) {
+		appState.mainView.cardView.newCard = {};
 	}
-	appState.authorView.cardView.newCard.wanted = eventData.wanted;
+	appState.mainView.cardView.newCard.wanted = eventData.wanted;
 }
 
 export function reset_authorView_cardView_newCard_wanted() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.wanted = null;
+	appState.mainView.cardView.newCard.wanted = undefined;
 }
 
 export function get_authorView_cardView_newCard_index() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.newCard.index;
+	if (!appState.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.newCard.index;
 }
 
 export function set_authorView_cardView_newCard_index(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.newCard) {
-		appState.authorView.cardView.newCard = {};
+	if (!appState.mainView.cardView.newCard) {
+		appState.mainView.cardView.newCard = {};
 	}
-	appState.authorView.cardView.newCard.index = eventData.index;
+	appState.mainView.cardView.newCard.index = eventData.index;
 }
 
 export function reset_authorView_cardView_newCard_index() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.index = null;
+	appState.mainView.cardView.newCard.index = undefined;
 }
 
 export function get_authorView_cardView_newCard_image() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.newCard.image;
+	if (!appState.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.newCard.image;
 }
 
 export function set_authorView_cardView_newCard_image(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.newCard) {
-		appState.authorView.cardView.newCard = {};
+	if (!appState.mainView.cardView.newCard) {
+		appState.mainView.cardView.newCard = {};
 	}
-	appState.authorView.cardView.newCard.image = eventData.image;
+	appState.mainView.cardView.newCard.image = eventData.image;
 }
 
 export function reset_authorView_cardView_newCard_image() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.image = null;
+	appState.mainView.cardView.newCard.image = undefined;
 }
 
 export function get_authorView_cardView_newCard_file() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.newCard.file;
+	if (!appState.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.newCard.file;
 }
 
 export function set_authorView_cardView_newCard_file(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.newCard) {
-		appState.authorView.cardView.newCard = {};
+	if (!appState.mainView.cardView.newCard) {
+		appState.mainView.cardView.newCard = {};
 	}
-	appState.authorView.cardView.newCard.file = eventData.file;
+	appState.mainView.cardView.newCard.file = eventData.file;
 }
 
 export function reset_authorView_cardView_newCard_file() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.file = null;
+	appState.mainView.cardView.newCard.file = undefined;
 }
 
 export function get_authorView_cardView_newCard_displaySpinner() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.newCard.displaySpinner;
+	if (!appState.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.newCard.displaySpinner;
 }
 
 export function set_authorView_cardView_newCard_displaySpinner(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.newCard) {
-		appState.authorView.cardView.newCard = {};
+	if (!appState.mainView.cardView.newCard) {
+		appState.mainView.cardView.newCard = {};
 	}
-	appState.authorView.cardView.newCard.displaySpinner = eventData.displaySpinner;
+	appState.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
 }
 
 export function reset_authorView_cardView_newCard_displaySpinner() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.displaySpinner = null;
+	appState.mainView.cardView.newCard.displaySpinner = undefined;
 }
 
 export function get_authorView_cardView_newCard_displayTranslateSpinner() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.newCard.displayTranslateSpinner;
+	if (!appState.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.newCard.displayTranslateSpinner;
 }
 
 export function set_authorView_cardView_newCard_displayTranslateSpinner(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.newCard) {
-		appState.authorView.cardView.newCard = {};
+	if (!appState.mainView.cardView.newCard) {
+		appState.mainView.cardView.newCard = {};
 	}
-	appState.authorView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
+	appState.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
 }
 
 export function reset_authorView_cardView_newCard_displayTranslateSpinner() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.newCard) {
+	if (!appState.mainView.cardView.newCard) {
 		return;
 	}
-	appState.authorView.cardView.newCard.displayTranslateSpinner = null;
+	appState.mainView.cardView.newCard.displayTranslateSpinner = undefined;
 }
 
 export function get_authorView_cardView_cardDuplicates() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.cardView.cardDuplicates;
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	return appState.mainView.cardView.cardDuplicates;
 }
 
 export function set_authorView_cardView_cardDuplicates(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.cardDuplicates = eventData.cardDuplicates;
+	appState.mainView.cardView.cardDuplicates = eventData.cardDuplicates;
 }
 
 export function reset_authorView_cardView_cardDuplicates() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.cardDuplicates = null;
+	appState.mainView.cardView.cardDuplicates = undefined;
 }
 
 export function get_authorView_cardView_deleteCard() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.authorView.cardView.deleteCard);
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	if (!appState.mainView.cardView.deleteCard) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.cardView.deleteCard);
 }
 
 export function set_authorView_cardView_deleteCard(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.deleteCard = eventData.deleteCard;
+	appState.mainView.cardView.deleteCard = eventData.deleteCard;
 }
 
 export function reset_authorView_cardView_deleteCard() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.deleteCard = null;
+	appState.mainView.cardView.deleteCard = undefined;
 }
 
 export function merge_authorView_cardView_deleteCard(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView) {
+		appState.mainView = {};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.deleteCard) {
-		appState.authorView.cardView.deleteCard = {};
+	if (!appState.mainView.cardView.deleteCard) {
+		appState.mainView.cardView.deleteCard = {};
 	}
 	if (eventData.confirmDelete !== undefined) {
-		appState.authorView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
+		appState.mainView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
 	}
 	if (eventData.cardId !== undefined) {
-		appState.authorView.cardView.deleteCard.cardId = eventData.cardId;
+		appState.mainView.cardView.deleteCard.cardId = eventData.cardId;
 	}
 }
 
 export function get_authorView_cardView_deleteCard_confirmDelete() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.deleteCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.deleteCard.confirmDelete;
+	if (!appState.mainView.cardView.deleteCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.deleteCard.confirmDelete;
 }
 
 export function set_authorView_cardView_deleteCard_confirmDelete(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.deleteCard) {
-		appState.authorView.cardView.deleteCard = {};
+	if (!appState.mainView.cardView.deleteCard) {
+		appState.mainView.cardView.deleteCard = {};
 	}
-	appState.authorView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
+	appState.mainView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
 }
 
 export function reset_authorView_cardView_deleteCard_confirmDelete() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.deleteCard) {
+	if (!appState.mainView.cardView.deleteCard) {
 		return;
 	}
-	appState.authorView.cardView.deleteCard.confirmDelete = null;
+	appState.mainView.cardView.deleteCard.confirmDelete = undefined;
 }
 
 export function get_authorView_cardView_deleteCard_cardId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView.deleteCard) {
+	if (!appState.mainView.cardView) {
 		return undefined;
 	}
-	return appState.authorView.cardView.deleteCard.cardId;
+	if (!appState.mainView.cardView.deleteCard) {
+		return undefined;
+	}
+	return appState.mainView.cardView.deleteCard.cardId;
 }
 
 export function set_authorView_cardView_deleteCard_cardId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	if (!appState.authorView.cardView.deleteCard) {
-		appState.authorView.cardView.deleteCard = {};
+	if (!appState.mainView.cardView.deleteCard) {
+		appState.mainView.cardView.deleteCard = {};
 	}
-	appState.authorView.cardView.deleteCard.cardId = eventData.cardId;
+	appState.mainView.cardView.deleteCard.cardId = eventData.cardId;
 }
 
 export function reset_authorView_cardView_deleteCard_cardId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	if (!appState.authorView.cardView.deleteCard) {
+	if (!appState.mainView.cardView.deleteCard) {
 		return;
 	}
-	appState.authorView.cardView.deleteCard.cardId = null;
+	appState.mainView.cardView.deleteCard.cardId = undefined;
 }
 
 export function get_authorView_cardView_dictionaryValue() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.cardView.dictionaryValue;
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	return appState.mainView.cardView.dictionaryValue;
 }
 
 export function set_authorView_cardView_dictionaryValue(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.dictionaryValue = eventData.dictionaryValue;
+	appState.mainView.cardView.dictionaryValue = eventData.dictionaryValue;
 }
 
 export function reset_authorView_cardView_dictionaryValue() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.dictionaryValue = null;
+	appState.mainView.cardView.dictionaryValue = undefined;
 }
 
 export function get_authorView_cardView_selectedCardIds() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.cardView.selectedCardIds;
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	return appState.mainView.cardView.selectedCardIds;
 }
 
 export function set_authorView_cardView_selectedCardIds(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.selectedCardIds = eventData.selectedCardIds;
+	appState.mainView.cardView.selectedCardIds = eventData.selectedCardIds;
 }
 
 export function reset_authorView_cardView_selectedCardIds() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.selectedCardIds = null;
+	appState.mainView.cardView.selectedCardIds = undefined;
 }
 
 export function get_authorView_cardView_movedCardIds() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.cardView.movedCardIds;
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	return appState.mainView.cardView.movedCardIds;
 }
 
 export function set_authorView_cardView_movedCardIds(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.movedCardIds = eventData.movedCardIds;
+	appState.mainView.cardView.movedCardIds = eventData.movedCardIds;
 }
 
 export function reset_authorView_cardView_movedCardIds() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.movedCardIds = null;
+	appState.mainView.cardView.movedCardIds = undefined;
 }
 
 export function get_authorView_cardView_dragTargetCardId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return undefined;
 	}
-	if (!appState.authorView.cardView) {
+	if (appState.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.authorView.cardView.dragTargetCardId;
+	if (!appState.mainView.cardView) {
+		return undefined;
+	}
+	return appState.mainView.cardView.dragTargetCardId;
 }
 
 export function set_authorView_cardView_dragTargetCardId(eventData) {
-	if (!appState.authorView) {
-		appState.authorView = {};
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
 	}
-	if (!appState.authorView.cardView) {
-		appState.authorView.cardView = {};
+	if (!appState.mainView.cardView) {
+		appState.mainView.cardView = {};
 	}
-	appState.authorView.cardView.dragTargetCardId = eventData.dragTargetCardId;
+	appState.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
 }
 
 export function reset_authorView_cardView_dragTargetCardId() {
-	if (!appState.authorView) {
+	if (!appState.mainView) {
 		return;
 	}
-	if (!appState.authorView.cardView) {
+	if (!appState.mainView.cardView) {
 		return;
 	}
-	appState.authorView.cardView.dragTargetCardId = null;
+	appState.mainView.cardView.dragTargetCardId = undefined;
 }
 

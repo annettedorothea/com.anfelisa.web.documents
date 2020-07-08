@@ -11,7 +11,7 @@ export default class ForgotPassword extends React.Component {
     render() {
         return (
             <div className="center">
-                <div className="form">
+                <form className="form">
                     <h1>{this.props.texts.forgotPassword.title[this.props.language]}</h1>
                     <div className="line">
                         <label>{this.props.texts.forgotPassword.username[this.props.language]}</label>
@@ -30,7 +30,7 @@ export default class ForgotPassword extends React.Component {
                         <button
                             onClick={() => route("#")}>{this.props.texts.forgotPassword.cancel[this.props.language]}</button>
                     </div>
-                </div>
+                </form>
             </div>
         );
     }

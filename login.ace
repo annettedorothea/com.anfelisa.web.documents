@@ -4,16 +4,16 @@ login
 
 ACE 
 	UsernameChanged ( username  )
-		on ok (set common.loginView.username)
+		on ok (set common.mainView.loginView.username)
 	
 	ToggleSaveInLocalStorage 
-		fromAppState ( common.loginView.saveInLocalStorage )
-		on ok (set common.loginView.saveInLocalStorage)
+		fromAppState ( common.mainView.loginView.saveInLocalStorage )
+		on ok (set common.mainView.loginView.saveInLocalStorage)
 	
 	Login ( password  )
 		fromAppState (
-			common.loginView.username,
-			common.loginView.saveInLocalStorage
+			common.mainView.loginView.username,
+			common.mainView.loginView.saveInLocalStorage
 		)
 		on saveInLocalStorage ( 
 			set common.loggedInUser 

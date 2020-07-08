@@ -12,45 +12,47 @@ export default class UserContainer extends React.Component {
 
     render() {
         let content;
-        if (this.props.userListView) {
-            content = <UserList
-                {...this.props.userListView}
-                texts={this.props.texts}
-                language={this.props.language}
-            />;
-        } else if (this.props.authorView) {
-            content = <CategoryCardSplitView
-                {...this.props.authorView}
-                texts={this.props.texts}
-                language={this.props.language}
-            />;
-        } else if (this.props.profileView) {
-            content = <Profile
-                {...this.props.profileView}
-                texts={this.props.texts}
-                language={this.props.language}
-            />;
-        } else if (this.props.cardView) {
-            content = <QueryCards
-                {...this.props.cardView}
-                texts={this.props.texts}
-                language={this.props.language}
-            />;
-        } else if (this.props.boxSettingsView) {
-            content = <BoxSettings
-                {...this.props.boxSettingsView}
-                texts={this.props.texts}
-                language={this.props.language}
-            />;
-        } else if (this.props.dashboardView) {
-            content = <Dashboard
-                {...this.props.dashboardView}
-                role={this.props.loggedInUser.role}
-                texts={this.props.texts}
-                language={this.props.language}
-            />;
-        } else {
-            content = <div />
+        if (this.props.mainView) {
+            if (this.props.mainView.isUserListView) {
+                content = <UserList
+                    {...this.props.mainView}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            } else if (this.props.mainView.isAuthorView) {
+                content = <CategoryCardSplitView
+                    {...this.props.mainView}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            } else if (this.props.mainView.isProfileView) {
+                content = <Profile
+                    {...this.props.mainView}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            } else if (this.props.mainView.isCardView) {
+                content = <QueryCards
+                    {...this.props.mainView}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            } else if (this.props.mainView.isBoxSettingsView) {
+                content = <BoxSettings
+                    {...this.props.mainView}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            } else if (this.props.mainView.isDashboardView) {
+                content = <Dashboard
+                    {...this.props.mainView}
+                    role={this.props.loggedInUser.role}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            } else {
+                content = <div/>
+            }
         }
 
         return (

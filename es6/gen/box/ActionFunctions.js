@@ -91,8 +91,8 @@ export function initBoxesForDayDuringScore() {
     new InitBoxesForDayDuringScoreAction().apply();
 }
 
-export function loadSettings(boxId) {
-    new LoadSettingsAction(boxId).apply();
+export function loadSettings() {
+    new LoadSettingsAction().apply();
 }
 
 export function saveBoxSettings() {

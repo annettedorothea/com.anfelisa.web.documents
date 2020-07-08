@@ -18,6 +18,9 @@ export default class BoxSettings extends React.Component {
     }
 
     render() {
+        if (this.props.categoryName === undefined) {
+            return <div/>;
+        }
         return (
             <div className="center-wide">
                 <div className="form">

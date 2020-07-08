@@ -21,7 +21,7 @@ export default class Login extends React.Component {
     render() {
         return (
             <div className="center">
-                <div className="form">
+                <form className="form">
                     <h1>{this.props.texts.login.title[this.props.language]}</h1>
                     <div className="line">
                         <label>{this.props.texts.login.username[this.props.language]}</label>
@@ -57,7 +57,7 @@ export default class Login extends React.Component {
                         <button className="primary"
                                 onClick={() => login(this.state.password)}>{this.props.texts.login.signin[this.props.language]}</button>
                     </div>
-                </div>
+                </form>
             </div>
         );
     }
