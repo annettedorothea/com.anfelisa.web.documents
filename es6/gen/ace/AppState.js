@@ -286,8 +286,14 @@ export function get_loginView() {
 }
 
 export function set_loginView(eventData) {
-	appState.mainView = eventData.loginView;
-	appState.mainView.isLoginView = true;
+	if (!!eventData.loginView) {
+		appState.mainView = eventData.loginView;
+		appState.mainView.isLoginView = true;
+	} else {
+		appState.mainView = {
+			isLoginView : true
+		};
+	}
 }
 
 export function reset_loginView() {
@@ -368,8 +374,14 @@ export function get_registrationView() {
 }
 
 export function set_registrationView(eventData) {
-	appState.mainView = eventData.registrationView;
-	appState.mainView.isRegistrationView = true;
+	if (!!eventData.registrationView) {
+		appState.mainView = eventData.registrationView;
+		appState.mainView.isRegistrationView = true;
+	} else {
+		appState.mainView = {
+			isRegistrationView : true
+		};
+	}
 }
 
 export function reset_registrationView() {
@@ -566,8 +578,14 @@ export function get_forgotPasswordView() {
 }
 
 export function set_forgotPasswordView(eventData) {
-	appState.mainView = eventData.forgotPasswordView;
-	appState.mainView.isForgotPasswordView = true;
+	if (!!eventData.forgotPasswordView) {
+		appState.mainView = eventData.forgotPasswordView;
+		appState.mainView.isForgotPasswordView = true;
+	} else {
+		appState.mainView = {
+			isForgotPasswordView : true
+		};
+	}
 }
 
 export function reset_forgotPasswordView() {
@@ -619,8 +637,14 @@ export function get_resetPasswordView() {
 }
 
 export function set_resetPasswordView(eventData) {
-	appState.mainView = eventData.resetPasswordView;
-	appState.mainView.isResetPasswordView = true;
+	if (!!eventData.resetPasswordView) {
+		appState.mainView = eventData.resetPasswordView;
+		appState.mainView.isResetPasswordView = true;
+	} else {
+		appState.mainView = {
+			isResetPasswordView : true
+		};
+	}
 }
 
 export function reset_resetPasswordView() {
@@ -701,8 +725,14 @@ export function get_dashboardView() {
 }
 
 export function set_dashboardView(eventData) {
-	appState.mainView = eventData.dashboardView;
-	appState.mainView.isDashboardView = true;
+	if (!!eventData.dashboardView) {
+		appState.mainView = eventData.dashboardView;
+		appState.mainView.isDashboardView = true;
+	} else {
+		appState.mainView = {
+			isDashboardView : true
+		};
+	}
 }
 
 export function reset_dashboardView() {
@@ -919,9 +949,14 @@ export function get_boxSettingsView() {
 }
 
 export function set_boxSettingsView(eventData) {
-	appState.mainView = eventData.boxSettingsView;
-	appState.mainView.isBoxSettingsView = true;
-	console.log("set_boxSettingsView", appState.mainView);
+	if (!!eventData.boxSettingsView) {
+		appState.mainView = eventData.boxSettingsView;
+		appState.mainView.isBoxSettingsView = true;
+	} else {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
+	}
 }
 
 export function reset_boxSettingsView() {
@@ -1263,8 +1298,14 @@ export function get_profileView() {
 }
 
 export function set_profileView(eventData) {
-	appState.mainView = eventData.profileView;
-	appState.mainView.isProfileView = true;
+	if (!!eventData.profileView) {
+		appState.mainView = eventData.profileView;
+		appState.mainView.isProfileView = true;
+	} else {
+		appState.mainView = {
+			isProfileView : true
+		};
+	}
 }
 
 export function reset_profileView() {
@@ -1403,8 +1444,14 @@ export function get_userListView() {
 }
 
 export function set_userListView(eventData) {
-	appState.mainView = eventData.userListView;
-	appState.mainView.isUserListView = true;
+	if (!!eventData.userListView) {
+		appState.mainView = eventData.userListView;
+		appState.mainView.isUserListView = true;
+	} else {
+		appState.mainView = {
+			isUserListView : true
+		};
+	}
 }
 
 export function reset_userListView() {
@@ -1544,8 +1591,14 @@ export function get_cardView() {
 }
 
 export function set_cardView(eventData) {
-	appState.mainView = eventData.cardView;
-	appState.mainView.isCardView = true;
+	if (!!eventData.cardView) {
+		appState.mainView = eventData.cardView;
+		appState.mainView.isCardView = true;
+	} else {
+		appState.mainView = {
+			isCardView : true
+		};
+	}
 }
 
 export function reset_cardView() {
@@ -2090,8 +2143,14 @@ export function get_authorView() {
 }
 
 export function set_authorView(eventData) {
-	appState.mainView = eventData.authorView;
-	appState.mainView.isAuthorView = true;
+	if (!!eventData.authorView) {
+		appState.mainView = eventData.authorView;
+		appState.mainView.isAuthorView = true;
+	} else {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
 }
 
 export function reset_authorView() {
