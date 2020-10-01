@@ -12,7 +12,7 @@ export default class AbstractSwapPreviewCsvAction extends Action {
 
     constructor() {
         super({}, 'category.SwapPreviewCsvAction');
-		}
+	}
 		
 	getCommand() {
 		return new SwapPreviewCsvCommand(this.actionData);

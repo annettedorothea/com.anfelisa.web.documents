@@ -14,7 +14,7 @@ export default class AbstractLoadCategoryTreeAction extends Action {
     constructor( rootCategoryId, selectedCategoryId) {
         super({rootCategoryId, selectedCategoryId}, 'category.LoadCategoryTreeAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new LoadCategoryTreeCommand(this.actionData);

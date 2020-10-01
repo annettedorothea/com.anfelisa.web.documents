@@ -14,7 +14,7 @@ export default class AbstractGetAllUsersAction extends Action {
     constructor() {
         super({}, 'admin.GetAllUsersAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new GetAllUsersCommand(this.actionData);

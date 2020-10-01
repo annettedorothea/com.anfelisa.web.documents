@@ -5,12 +5,11 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import * as AppState from "../../ace/AppState";
 import DictionaryLookupChangedOkEvent from "../../../gen/box/events/DictionaryLookupChangedOkEvent";
 
-export default class AbstractDictionaryLookupChangedCommand extends AbstractSynchronousCommand {
+export default class AbstractDictionaryLookupChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.DictionaryLookupChangedCommand");
         this.ok = "ok";

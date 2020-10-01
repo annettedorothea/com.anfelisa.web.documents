@@ -5,15 +5,15 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import UpdateCardOkEvent from "../../../gen/card/events/UpdateCardOkEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
-export default class AbstractUpdateCardCommand extends AbstractAsynchronousCommand {
+export default class AbstractUpdateCardCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.UpdateCardCommand");
         this.ok = "ok";
@@ -46,7 +46,7 @@ export default class AbstractUpdateCardCommand extends AbstractAsynchronousComma
 	    		wanted : this.commandData.wanted
 	    	};
 	
-			this.doHttpPut(`/${Utils.getRootPath()}/card/update`, true, payload).then((data) => {
+			AppUtils.httpPut(`${Utils.settings.rootPath}/card/update`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

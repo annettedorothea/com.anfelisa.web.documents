@@ -5,16 +5,16 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import DeleteCategoryOkEvent from "../../../gen/category/events/DeleteCategoryOkEvent";
 import DeleteCategoryErrorEvent from "../../../gen/category/events/DeleteCategoryErrorEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 
-export default class AbstractDeleteCategoryCommand extends AbstractAsynchronousCommand {
+export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.DeleteCategoryCommand");
         this.ok = "ok";
@@ -43,10 +43,8 @@ export default class AbstractDeleteCategoryCommand extends AbstractAsynchronousC
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    	};
 	
-			this.doHttpDelete(`/${Utils.getRootPath()}/category/delete?categoryId=${this.commandData.categoryId}`, true).then((data) => {
+			AppUtils.httpDelete(`${Utils.settings.rootPath}/category/delete?categoryId=${this.commandData.categoryId}`, this.commandData.uuid, true).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

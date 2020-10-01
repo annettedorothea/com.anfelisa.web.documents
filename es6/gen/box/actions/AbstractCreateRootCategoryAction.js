@@ -14,7 +14,7 @@ export default class AbstractCreateRootCategoryAction extends Action {
     constructor() {
         super({}, 'box.CreateRootCategoryAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new CreateRootCategoryCommand(this.actionData);

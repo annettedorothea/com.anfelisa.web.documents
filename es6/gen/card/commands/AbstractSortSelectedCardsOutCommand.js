@@ -5,14 +5,14 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
-export default class AbstractSortSelectedCardsOutCommand extends AbstractAsynchronousCommand {
+export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.SortSelectedCardsOutCommand");
         this.ok = "ok";
@@ -38,7 +38,7 @@ export default class AbstractSortSelectedCardsOutCommand extends AbstractAsynchr
 	    		cardIds : this.commandData.cardIds
 	    	};
 	
-			this.doHttpPost(`/${Utils.getRootPath()}/cards/sort-out`, true, payload).then((data) => {
+			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/sort-out`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

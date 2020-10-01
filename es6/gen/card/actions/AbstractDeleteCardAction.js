@@ -14,7 +14,7 @@ export default class AbstractDeleteCardAction extends Action {
     constructor() {
         super({}, 'card.DeleteCardAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new DeleteCardCommand(this.actionData);

@@ -14,7 +14,7 @@ export default class AbstractInitBoxesForDayDuringScoreAction extends Action {
     constructor() {
         super({}, 'box.InitBoxesForDayDuringScoreAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new InitBoxesForDayDuringScoreCommand(this.actionData);

@@ -5,12 +5,11 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import * as AppState from "../../ace/AppState";
 import EditCategoryClickOkEvent from "../../../gen/category/events/EditCategoryClickOkEvent";
 
-export default class AbstractEditCategoryClickCommand extends AbstractSynchronousCommand {
+export default class AbstractEditCategoryClickCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.EditCategoryClickCommand");
         this.ok = "ok";

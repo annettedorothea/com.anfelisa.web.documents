@@ -5,13 +5,13 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import DisplayErrorAndLogoutOkEvent from "../../../gen/common/events/DisplayErrorAndLogoutOkEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
-export default class AbstractDisplayErrorAndLogoutCommand extends AbstractSynchronousCommand {
+export default class AbstractDisplayErrorAndLogoutCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.DisplayErrorAndLogoutCommand");
         this.ok = "ok";

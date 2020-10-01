@@ -5,15 +5,15 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import LoadCategoryTreeOkEvent from "../../../gen/category/events/LoadCategoryTreeOkEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
-export default class AbstractLoadCategoryTreeCommand extends AbstractAsynchronousCommand {
+export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.LoadCategoryTreeCommand");
         this.ok = "ok";
@@ -37,7 +37,7 @@ export default class AbstractLoadCategoryTreeCommand extends AbstractAsynchronou
 	execute() {
 	    return new Promise((resolve, reject) => {
 	
-			this.doHttpGet(`/${Utils.getRootPath()}/category/tree?rootCategoryId=${this.commandData.rootCategoryId}`, true).then((data) => {
+			AppUtils.httpGet(`${Utils.settings.rootPath}/category/tree?rootCategoryId=${this.commandData.rootCategoryId}`, this.commandData.uuid, true).then((data) => {
 				this.commandData.rootCategory = data.rootCategory;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

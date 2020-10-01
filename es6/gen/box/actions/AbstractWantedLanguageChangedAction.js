@@ -12,7 +12,7 @@ export default class AbstractWantedLanguageChangedAction extends Action {
 
     constructor( wantedLanguage) {
         super({wantedLanguage}, 'box.WantedLanguageChangedAction');
-		}
+	}
 		
 	getCommand() {
 		return new WantedLanguageChangedCommand(this.actionData);

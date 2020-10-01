@@ -5,16 +5,16 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 
-export default class AbstractRegisterUserCommand extends AbstractAsynchronousCommand {
+export default class AbstractRegisterUserCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "registration.RegisterUserCommand");
         this.ok = "ok";
@@ -50,7 +50,7 @@ export default class AbstractRegisterUserCommand extends AbstractAsynchronousCom
 	    		language : this.commandData.language
 	    	};
 	
-			this.doHttpPost(`/${Utils.getRootPath()}/users/register`, false, payload).then((data) => {
+			AppUtils.httpPost(`${Utils.settings.rootPath}/users/register`, this.commandData.uuid, false, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

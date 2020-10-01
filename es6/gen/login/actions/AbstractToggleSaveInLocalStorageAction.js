@@ -12,7 +12,7 @@ export default class AbstractToggleSaveInLocalStorageAction extends Action {
 
     constructor() {
         super({}, 'login.ToggleSaveInLocalStorageAction');
-		}
+	}
 		
 	getCommand() {
 		return new ToggleSaveInLocalStorageCommand(this.actionData);

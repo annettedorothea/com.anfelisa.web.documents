@@ -14,7 +14,7 @@ export default class AbstractImportCsvAction extends Action {
     constructor() {
         super({}, 'category.ImportCsvAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new ImportCsvCommand(this.actionData);

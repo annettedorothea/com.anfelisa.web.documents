@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import DisplaySaveBugDialogOkEvent from "../../../gen/common/events/DisplaySaveBugDialogOkEvent";
 
-export default class AbstractDisplaySaveBugDialogCommand extends AbstractSynchronousCommand {
+export default class AbstractDisplaySaveBugDialogCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.DisplaySaveBugDialogCommand");
         this.ok = "ok";

@@ -5,14 +5,14 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
-export default class AbstractSaveBoxSettingsCommand extends AbstractAsynchronousCommand {
+export default class AbstractSaveBoxSettingsCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.SaveBoxSettingsCommand");
         this.ok = "ok";
@@ -52,7 +52,7 @@ export default class AbstractSaveBoxSettingsCommand extends AbstractAsynchronous
 	    		wantedLanguage : this.commandData.wantedLanguage
 	    	};
 	
-			this.doHttpPut(`/${Utils.getRootPath()}/box/update`, true, payload).then((data) => {
+			AppUtils.httpPut(`${Utils.settings.rootPath}/box/update`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

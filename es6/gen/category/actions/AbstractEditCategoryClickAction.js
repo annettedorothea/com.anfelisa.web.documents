@@ -12,7 +12,7 @@ export default class AbstractEditCategoryClickAction extends Action {
 
     constructor() {
         super({}, 'category.EditCategoryClickAction');
-		}
+	}
 		
 	getCommand() {
 		return new EditCategoryClickCommand(this.actionData);

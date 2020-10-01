@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import CancelNewCategoryOkEvent from "../../../gen/category/events/CancelNewCategoryOkEvent";
 
-export default class AbstractCancelNewCategoryCommand extends AbstractSynchronousCommand {
+export default class AbstractCancelNewCategoryCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.CancelNewCategoryCommand");
         this.ok = "ok";

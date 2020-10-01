@@ -12,7 +12,7 @@ export default class AbstractToggleScheduleCardSelectionAction extends Action {
 
     constructor( cardId) {
         super({cardId}, 'card.ToggleScheduleCardSelectionAction');
-		}
+	}
 		
 	getCommand() {
 		return new ToggleScheduleCardSelectionCommand(this.actionData);

@@ -12,7 +12,7 @@ export default class AbstractItemDroppedAction extends Action {
 
     constructor() {
         super({}, 'category.ItemDroppedAction');
-		}
+	}
 		
 	getCommand() {
 		return new ItemDroppedCommand(this.actionData);

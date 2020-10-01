@@ -5,16 +5,16 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import DeleteUserErrorEvent from "../../../gen/admin/events/DeleteUserErrorEvent";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 
-export default class AbstractDeleteUserCommand extends AbstractAsynchronousCommand {
+export default class AbstractDeleteUserCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "admin.DeleteUserCommand");
         this.ok = "ok";
@@ -41,10 +41,8 @@ export default class AbstractDeleteUserCommand extends AbstractAsynchronousComma
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    	};
 	
-			this.doHttpDelete(`/${Utils.getRootPath()}/user/delete?usernameToBeDeleted=${this.commandData.usernameToBeDeleted}`, true).then((data) => {
+			AppUtils.httpDelete(`${Utils.settings.rootPath}/user/delete?usernameToBeDeleted=${this.commandData.usernameToBeDeleted}`, this.commandData.uuid, true).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

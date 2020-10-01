@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import MaxIntervalChangedOkEvent from "../../../gen/box/events/MaxIntervalChangedOkEvent";
 
-export default class AbstractMaxIntervalChangedCommand extends AbstractSynchronousCommand {
+export default class AbstractMaxIntervalChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.MaxIntervalChangedCommand");
         this.ok = "ok";

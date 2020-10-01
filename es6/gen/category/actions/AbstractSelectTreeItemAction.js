@@ -12,7 +12,7 @@ export default class AbstractSelectTreeItemAction extends Action {
 
     constructor( categoryId) {
         super({categoryId}, 'category.SelectTreeItemAction');
-		}
+	}
 		
 	getCommand() {
 		return new SelectTreeItemCommand(this.actionData);

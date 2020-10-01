@@ -14,7 +14,7 @@ export default class AbstractLoadBoxStatisticsAction extends Action {
     constructor() {
         super({}, 'box.LoadBoxStatisticsAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new LoadBoxStatisticsCommand(this.actionData);

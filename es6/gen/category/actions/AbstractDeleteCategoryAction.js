@@ -14,7 +14,7 @@ export default class AbstractDeleteCategoryAction extends Action {
     constructor() {
         super({}, 'category.DeleteCategoryAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new DeleteCategoryCommand(this.actionData);

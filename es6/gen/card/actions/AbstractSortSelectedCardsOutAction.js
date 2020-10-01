@@ -14,7 +14,7 @@ export default class AbstractSortSelectedCardsOutAction extends Action {
     constructor() {
         super({}, 'card.SortSelectedCardsOutAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new SortSelectedCardsOutCommand(this.actionData);

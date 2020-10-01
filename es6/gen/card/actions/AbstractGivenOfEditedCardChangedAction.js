@@ -12,7 +12,7 @@ export default class AbstractGivenOfEditedCardChangedAction extends Action {
 
     constructor( given) {
         super({given}, 'card.GivenOfEditedCardChangedAction');
-		}
+	}
 		
 	getCommand() {
 		return new GivenOfEditedCardChangedCommand(this.actionData);

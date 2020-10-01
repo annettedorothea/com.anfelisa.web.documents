@@ -14,7 +14,7 @@ export default class AbstractMoveCardsAction extends Action {
     constructor() {
         super({}, 'card.MoveCardsAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new MoveCardsCommand(this.actionData);

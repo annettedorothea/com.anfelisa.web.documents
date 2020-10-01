@@ -5,13 +5,13 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import MoveCardsAction from "../../../src/card/actions/MoveCardsAction";
 import MoveCategoryAction from "../../../src/category/actions/MoveCategoryAction";
 
-export default class AbstractItemDroppedCommand extends AbstractSynchronousCommand {
+export default class AbstractItemDroppedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.ItemDroppedCommand");
         this.card = "card";

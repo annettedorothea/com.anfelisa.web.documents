@@ -5,14 +5,13 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
-import * as AppState from "../../ace/AppState";
+import AppUtils from "../../../src/app/AppUtils";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 
-export default class AbstractSaveRoleCommand extends AbstractAsynchronousCommand {
+export default class AbstractSaveRoleCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "admin.SaveRoleCommand");
         this.ok = "ok";
@@ -38,7 +37,7 @@ export default class AbstractSaveRoleCommand extends AbstractAsynchronousCommand
 	    		editedUserId : this.commandData.editedUserId
 	    	};
 	
-			this.doHttpPut(`/${Utils.getRootPath()}/user/role`, true, payload).then((data) => {
+			AppUtils.httpPut(`${Utils.settings.rootPath}/user/role`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

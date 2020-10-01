@@ -5,14 +5,13 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import SearchDuplicateCardsOkEvent from "../../../gen/card/events/SearchDuplicateCardsOkEvent";
 
-export default class AbstractSearchDuplicateCardsCommand extends AbstractAsynchronousCommand {
+export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.SearchDuplicateCardsCommand");
         this.ok = "ok";
@@ -38,7 +37,7 @@ export default class AbstractSearchDuplicateCardsCommand extends AbstractAsynchr
 	execute() {
 	    return new Promise((resolve, reject) => {
 	
-			this.doHttpGet(`/${Utils.getRootPath()}/cards/search?given=${this.commandData.given}&wanted=${this.commandData.wanted}&naturalInputOrder=${this.commandData.naturalInputOrder}&categoryId=${this.commandData.categoryId}`, true).then((data) => {
+			AppUtils.httpGet(`${Utils.settings.rootPath}/cards/search?given=${this.commandData.given}&wanted=${this.commandData.wanted}&naturalInputOrder=${this.commandData.naturalInputOrder}&categoryId=${this.commandData.categoryId}`, this.commandData.uuid, true).then((data) => {
 				this.commandData.cardList = data.cardList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

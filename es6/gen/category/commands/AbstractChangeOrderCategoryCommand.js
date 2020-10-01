@@ -5,15 +5,15 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import ChangeOrderCategoryOkEvent from "../../../gen/category/events/ChangeOrderCategoryOkEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 
-export default class AbstractChangeOrderCategoryCommand extends AbstractAsynchronousCommand {
+export default class AbstractChangeOrderCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.ChangeOrderCategoryCommand");
         this.ok = "ok";
@@ -44,7 +44,7 @@ export default class AbstractChangeOrderCategoryCommand extends AbstractAsynchro
 	    		targetCategoryId : this.commandData.targetCategoryId
 	    	};
 	
-			this.doHttpPut(`/${Utils.getRootPath()}/category/changeorder`, true, payload).then((data) => {
+			AppUtils.httpPut(`${Utils.settings.rootPath}/category/changeorder`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

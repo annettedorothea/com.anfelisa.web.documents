@@ -14,7 +14,7 @@ export default class AbstractMoveCategoryAction extends Action {
     constructor() {
         super({}, 'category.MoveCategoryAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new MoveCategoryCommand(this.actionData);

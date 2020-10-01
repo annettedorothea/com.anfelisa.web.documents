@@ -12,7 +12,7 @@ export default class AbstractPreviewCsvAction extends Action {
 
     constructor( csv) {
         super({csv}, 'category.PreviewCsvAction');
-		}
+	}
 		
 	getCommand() {
 		return new PreviewCsvCommand(this.actionData);

@@ -14,7 +14,7 @@ export default class AbstractLoadUserAction extends Action {
     constructor() {
         super({}, 'profile.LoadUserAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new LoadUserCommand(this.actionData);

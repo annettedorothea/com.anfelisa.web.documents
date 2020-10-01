@@ -14,7 +14,7 @@ export default class AbstractScheduleSelectedCardsAction extends Action {
     constructor() {
         super({}, 'card.ScheduleSelectedCardsAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new ScheduleSelectedCardsCommand(this.actionData);

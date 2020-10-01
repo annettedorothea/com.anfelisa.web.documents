@@ -5,12 +5,11 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import * as AppState from "../../ace/AppState";
 import CheckDropAllowedOkEvent from "../../../gen/category/events/CheckDropAllowedOkEvent";
 
-export default class AbstractCheckDropAllowedCommand extends AbstractSynchronousCommand {
+export default class AbstractCheckDropAllowedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.CheckDropAllowedCommand");
         this.ok = "ok";

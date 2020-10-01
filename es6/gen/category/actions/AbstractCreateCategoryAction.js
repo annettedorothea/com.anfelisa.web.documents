@@ -14,7 +14,7 @@ export default class AbstractCreateCategoryAction extends Action {
     constructor() {
         super({}, 'category.CreateCategoryAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new CreateCategoryCommand(this.actionData);

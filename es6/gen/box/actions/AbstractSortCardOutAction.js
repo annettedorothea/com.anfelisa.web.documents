@@ -14,7 +14,7 @@ export default class AbstractSortCardOutAction extends Action {
     constructor() {
         super({}, 'box.SortCardOutAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new SortCardOutCommand(this.actionData);

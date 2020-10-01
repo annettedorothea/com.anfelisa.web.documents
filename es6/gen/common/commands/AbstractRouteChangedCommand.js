@@ -5,7 +5,7 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import RouteChangedLoginEvent from "../../../gen/common/events/RouteChangedLoginEvent";
@@ -24,7 +24,7 @@ import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import LoadSettingsAction from "../../../src/box/actions/LoadSettingsAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
-export default class AbstractRouteChangedCommand extends AbstractSynchronousCommand {
+export default class AbstractRouteChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.RouteChangedCommand");
         this.login = "login";

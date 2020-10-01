@@ -12,7 +12,7 @@ export default class AbstractDeleteUserCancelAction extends Action {
 
     constructor() {
         super({}, 'profile.DeleteUserCancelAction');
-		}
+	}
 		
 	getCommand() {
 		return new DeleteUserCancelCommand(this.actionData);

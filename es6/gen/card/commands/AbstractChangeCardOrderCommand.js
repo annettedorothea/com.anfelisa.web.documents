@@ -5,15 +5,15 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import ChangeCardOrderOkEvent from "../../../gen/card/events/ChangeCardOrderOkEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
-export default class AbstractChangeCardOrderCommand extends AbstractAsynchronousCommand {
+export default class AbstractChangeCardOrderCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.ChangeCardOrderCommand");
         this.ok = "ok";
@@ -41,7 +41,7 @@ export default class AbstractChangeCardOrderCommand extends AbstractAsynchronous
 	    		cardId : this.commandData.cardId
 	    	};
 	
-			this.doHttpPut(`/${Utils.getRootPath()}/cards/changeorder`, true, payload).then((data) => {
+			AppUtils.httpPut(`${Utils.settings.rootPath}/cards/changeorder`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

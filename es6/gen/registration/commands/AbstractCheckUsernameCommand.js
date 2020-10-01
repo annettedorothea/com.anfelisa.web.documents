@@ -5,14 +5,13 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import CheckUsernameOkEvent from "../../../gen/registration/events/CheckUsernameOkEvent";
 
-export default class AbstractCheckUsernameCommand extends AbstractAsynchronousCommand {
+export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "registration.CheckUsernameCommand");
         this.empty = "empty";
@@ -38,7 +37,7 @@ export default class AbstractCheckUsernameCommand extends AbstractAsynchronousCo
 	execute() {
 	    return new Promise((resolve, reject) => {
 	
-			this.doHttpGet(`/${Utils.getRootPath()}/users/username?username=${this.commandData.username}`, false).then((data) => {
+			AppUtils.httpGet(`${Utils.settings.rootPath}/users/username?username=${this.commandData.username}`, this.commandData.uuid, false).then((data) => {
 				this.commandData.available = data.available;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import FilterCardsOkEvent from "../../../gen/card/events/FilterCardsOkEvent";
 
-export default class AbstractFilterCardsCommand extends AbstractSynchronousCommand {
+export default class AbstractFilterCardsCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.FilterCardsCommand");
         this.ok = "ok";

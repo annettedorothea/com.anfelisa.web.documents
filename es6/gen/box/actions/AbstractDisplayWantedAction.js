@@ -12,7 +12,7 @@ export default class AbstractDisplayWantedAction extends Action {
 
     constructor( wantedItemsLength) {
         super({wantedItemsLength}, 'box.DisplayWantedAction');
-		}
+	}
 		
 	getCommand() {
 		return new DisplayWantedCommand(this.actionData);

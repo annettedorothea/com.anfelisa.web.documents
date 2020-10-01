@@ -12,7 +12,7 @@ export default class AbstractFilterCardsAction extends Action {
 
     constructor( filter) {
         super({filter}, 'card.FilterCardsAction');
-		}
+	}
 		
 	getCommand() {
 		return new FilterCardsCommand(this.actionData);

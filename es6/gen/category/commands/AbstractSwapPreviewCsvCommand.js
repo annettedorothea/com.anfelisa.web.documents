@@ -5,12 +5,11 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import * as AppState from "../../ace/AppState";
 import SwapPreviewCsvOkEvent from "../../../gen/category/events/SwapPreviewCsvOkEvent";
 
-export default class AbstractSwapPreviewCsvCommand extends AbstractSynchronousCommand {
+export default class AbstractSwapPreviewCsvCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.SwapPreviewCsvCommand");
         this.ok = "ok";

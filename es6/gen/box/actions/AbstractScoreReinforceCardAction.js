@@ -14,7 +14,7 @@ export default class AbstractScoreReinforceCardAction extends Action {
     constructor( scoredCardQuality) {
         super({scoredCardQuality}, 'box.ScoreReinforceCardAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new ScoreReinforceCardCommand(this.actionData);

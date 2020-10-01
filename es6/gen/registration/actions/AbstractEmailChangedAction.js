@@ -12,7 +12,7 @@ export default class AbstractEmailChangedAction extends Action {
 
     constructor( email) {
         super({email}, 'registration.EmailChangedAction');
-		}
+	}
 		
 	getCommand() {
 		return new EmailChangedCommand(this.actionData);

@@ -14,7 +14,7 @@ export default class AbstractSearchDuplicateCardsAction extends Action {
     constructor() {
         super({}, 'card.SearchDuplicateCardsAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new SearchDuplicateCardsCommand(this.actionData);

@@ -12,7 +12,7 @@ export default class AbstractMoveCategoryStartedAction extends Action {
 
     constructor( movedCategoryId) {
         super({movedCategoryId}, 'category.MoveCategoryStartedAction');
-		}
+	}
 		
 	getCommand() {
 		return new MoveCategoryStartedCommand(this.actionData);

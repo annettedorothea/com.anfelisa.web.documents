@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import CategoryNameChangedOkEvent from "../../../gen/category/events/CategoryNameChangedOkEvent";
 
-export default class AbstractCategoryNameChangedCommand extends AbstractSynchronousCommand {
+export default class AbstractCategoryNameChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.CategoryNameChangedCommand");
         this.ok = "ok";

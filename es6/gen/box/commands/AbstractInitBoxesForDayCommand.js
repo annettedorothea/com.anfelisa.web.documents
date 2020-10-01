@@ -5,14 +5,13 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
-import * as AppState from "../../ace/AppState";
+import AppUtils from "../../../src/app/AppUtils";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 
-export default class AbstractInitBoxesForDayCommand extends AbstractAsynchronousCommand {
+export default class AbstractInitBoxesForDayCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.InitBoxesForDayCommand");
         this.ok = "ok";
@@ -37,7 +36,7 @@ export default class AbstractInitBoxesForDayCommand extends AbstractAsynchronous
 	    		todayAtMidnightInUTC : this.commandData.todayAtMidnightInUTC
 	    	};
 	
-			this.doHttpPut(`/${Utils.getRootPath()}/box/init`, true, payload).then((data) => {
+			AppUtils.httpPut(`${Utils.settings.rootPath}/box/init`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

@@ -14,7 +14,7 @@ export default class AbstractInitBoxesForDayAction extends Action {
     constructor() {
         super({}, 'box.InitBoxesForDayAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new InitBoxesForDayCommand(this.actionData);

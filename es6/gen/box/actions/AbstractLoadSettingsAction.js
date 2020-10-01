@@ -14,7 +14,7 @@ export default class AbstractLoadSettingsAction extends Action {
     constructor() {
         super({}, 'box.LoadSettingsAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new LoadSettingsCommand(this.actionData);

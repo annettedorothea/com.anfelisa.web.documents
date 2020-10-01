@@ -12,7 +12,7 @@ export default class AbstractDeleteBoxClickAction extends Action {
 
     constructor( boxId) {
         super({boxId}, 'box.DeleteBoxClickAction');
-		}
+	}
 		
 	getCommand() {
 		return new DeleteBoxClickCommand(this.actionData);

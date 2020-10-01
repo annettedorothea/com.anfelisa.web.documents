@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import MaxCardsPerDayChangedOkEvent from "../../../gen/box/events/MaxCardsPerDayChangedOkEvent";
 
-export default class AbstractMaxCardsPerDayChangedCommand extends AbstractSynchronousCommand {
+export default class AbstractMaxCardsPerDayChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.MaxCardsPerDayChangedCommand");
         this.ok = "ok";

@@ -5,14 +5,13 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import LoadSettingsOkEvent from "../../../gen/box/events/LoadSettingsOkEvent";
 
-export default class AbstractLoadSettingsCommand extends AbstractAsynchronousCommand {
+export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.LoadSettingsCommand");
         this.ok = "ok";
@@ -35,7 +34,7 @@ export default class AbstractLoadSettingsCommand extends AbstractAsynchronousCom
 	execute() {
 	    return new Promise((resolve, reject) => {
 	
-			this.doHttpGet(`/${Utils.getRootPath()}/box/settings/${this.commandData.boxId}`, true).then((data) => {
+			AppUtils.httpGet(`${Utils.settings.rootPath}/box/settings/${this.commandData.boxId}`, this.commandData.uuid, true).then((data) => {
 				this.commandData.maxCardsPerDay = data.maxCardsPerDay;
 				this.commandData.maxInterval = data.maxInterval;
 				this.commandData.categoryName = data.categoryName;

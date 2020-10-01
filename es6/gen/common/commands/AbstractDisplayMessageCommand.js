@@ -5,12 +5,11 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import * as AppState from "../../ace/AppState";
 import DisplayMessageOkEvent from "../../../gen/common/events/DisplayMessageOkEvent";
 
-export default class AbstractDisplayMessageCommand extends AbstractSynchronousCommand {
+export default class AbstractDisplayMessageCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.DisplayMessageCommand");
         this.ok = "ok";

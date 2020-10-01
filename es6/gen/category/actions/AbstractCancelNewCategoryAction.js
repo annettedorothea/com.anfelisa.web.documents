@@ -12,7 +12,7 @@ export default class AbstractCancelNewCategoryAction extends Action {
 
     constructor() {
         super({}, 'category.CancelNewCategoryAction');
-		}
+	}
 		
 	getCommand() {
 		return new CancelNewCategoryCommand(this.actionData);

@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import DeleteUserClickOkEvent from "../../../gen/profile/events/DeleteUserClickOkEvent";
 
-export default class AbstractDeleteUserClickCommand extends AbstractSynchronousCommand {
+export default class AbstractDeleteUserClickCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "profile.DeleteUserClickCommand");
         this.ok = "ok";

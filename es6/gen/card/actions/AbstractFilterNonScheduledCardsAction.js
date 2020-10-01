@@ -12,7 +12,7 @@ export default class AbstractFilterNonScheduledCardsAction extends Action {
 
     constructor() {
         super({}, 'card.FilterNonScheduledCardsAction');
-		}
+	}
 		
 	getCommand() {
 		return new FilterNonScheduledCardsCommand(this.actionData);

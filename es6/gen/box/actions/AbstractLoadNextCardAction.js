@@ -14,7 +14,7 @@ export default class AbstractLoadNextCardAction extends Action {
     constructor() {
         super({}, 'box.LoadNextCardAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new LoadNextCardCommand(this.actionData);

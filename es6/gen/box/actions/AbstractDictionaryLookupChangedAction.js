@@ -12,7 +12,7 @@ export default class AbstractDictionaryLookupChangedAction extends Action {
 
     constructor() {
         super({}, 'box.DictionaryLookupChangedAction');
-		}
+	}
 		
 	getCommand() {
 		return new DictionaryLookupChangedCommand(this.actionData);

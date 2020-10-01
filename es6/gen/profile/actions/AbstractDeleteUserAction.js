@@ -14,7 +14,7 @@ export default class AbstractDeleteUserAction extends Action {
     constructor() {
         super({}, 'profile.DeleteUserAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new DeleteUserCommand(this.actionData);

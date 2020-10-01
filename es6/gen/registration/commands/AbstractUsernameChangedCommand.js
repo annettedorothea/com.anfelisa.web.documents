@@ -5,13 +5,12 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import UsernameChangedOkEvent from "../../../gen/registration/events/UsernameChangedOkEvent";
 import CheckUsernameAction from "../../../src/registration/actions/CheckUsernameAction";
 
-export default class AbstractUsernameChangedCommand extends AbstractSynchronousCommand {
+export default class AbstractUsernameChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "registration.UsernameChangedCommand");
         this.ok = "ok";

@@ -12,7 +12,7 @@ export default class AbstractMaxCardsPerDayChangedAction extends Action {
 
     constructor( maxCardsPerDay) {
         super({maxCardsPerDay}, 'box.MaxCardsPerDayChangedAction');
-		}
+	}
 		
 	getCommand() {
 		return new MaxCardsPerDayChangedCommand(this.actionData);

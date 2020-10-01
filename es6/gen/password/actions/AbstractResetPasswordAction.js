@@ -14,7 +14,7 @@ export default class AbstractResetPasswordAction extends Action {
     constructor( password) {
         super({password}, 'password.ResetPasswordAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new ResetPasswordCommand(this.actionData);

@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import EmailChangedOkEvent from "../../../gen/registration/events/EmailChangedOkEvent";
 
-export default class AbstractEmailChangedCommand extends AbstractSynchronousCommand {
+export default class AbstractEmailChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "registration.EmailChangedCommand");
         this.ok = "ok";

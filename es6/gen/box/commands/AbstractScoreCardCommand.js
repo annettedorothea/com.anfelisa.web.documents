@@ -5,14 +5,14 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxesForDayDuringScoreAction";
 
-export default class AbstractScoreCardCommand extends AbstractAsynchronousCommand {
+export default class AbstractScoreCardCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.ScoreCardCommand");
         this.ok = "ok";
@@ -39,7 +39,7 @@ export default class AbstractScoreCardCommand extends AbstractAsynchronousComman
 	    		scoredCardQuality : this.commandData.scoredCardQuality
 	    	};
 	
-			this.doHttpPost(`/${Utils.getRootPath()}/card/score`, true, payload).then((data) => {
+			AppUtils.httpPost(`${Utils.settings.rootPath}/card/score`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

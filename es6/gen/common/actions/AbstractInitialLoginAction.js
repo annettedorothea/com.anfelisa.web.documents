@@ -14,7 +14,7 @@ export default class AbstractInitialLoginAction extends Action {
     constructor() {
         super({}, 'common.InitialLoginAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new InitialLoginCommand(this.actionData);

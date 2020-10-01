@@ -14,7 +14,7 @@ export default class AbstractDeleteBoxAction extends Action {
     constructor() {
         super({}, 'box.DeleteBoxAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new DeleteBoxCommand(this.actionData);

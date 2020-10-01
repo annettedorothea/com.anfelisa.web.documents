@@ -5,7 +5,7 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import InitUserEvent from "../../../gen/common/events/InitUserEvent";
@@ -13,7 +13,7 @@ import InitNoUserEvent from "../../../gen/common/events/InitNoUserEvent";
 import InitialLoginAction from "../../../src/common/actions/InitialLoginAction";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
 
-export default class AbstractInitCommand extends AbstractSynchronousCommand {
+export default class AbstractInitCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.InitCommand");
         this.user = "user";

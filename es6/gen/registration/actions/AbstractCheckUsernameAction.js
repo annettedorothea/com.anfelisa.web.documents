@@ -14,7 +14,7 @@ export default class AbstractCheckUsernameAction extends Action {
     constructor() {
         super({}, 'registration.CheckUsernameAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new CheckUsernameCommand(this.actionData);

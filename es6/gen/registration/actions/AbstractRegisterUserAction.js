@@ -14,7 +14,7 @@ export default class AbstractRegisterUserAction extends Action {
     constructor( password) {
         super({password}, 'registration.RegisterUserAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new RegisterUserCommand(this.actionData);

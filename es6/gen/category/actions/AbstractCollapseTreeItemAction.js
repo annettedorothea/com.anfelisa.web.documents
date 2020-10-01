@@ -12,7 +12,7 @@ export default class AbstractCollapseTreeItemAction extends Action {
 
     constructor( categoryId) {
         super({categoryId}, 'category.CollapseTreeItemAction');
-		}
+	}
 		
 	getCommand() {
 		return new CollapseTreeItemCommand(this.actionData);

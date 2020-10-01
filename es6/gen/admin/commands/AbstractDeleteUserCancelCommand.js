@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import DeleteUserCancelOkEvent from "../../../gen/admin/events/DeleteUserCancelOkEvent";
 
-export default class AbstractDeleteUserCancelCommand extends AbstractSynchronousCommand {
+export default class AbstractDeleteUserCancelCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "admin.DeleteUserCancelCommand");
         this.ok = "ok";

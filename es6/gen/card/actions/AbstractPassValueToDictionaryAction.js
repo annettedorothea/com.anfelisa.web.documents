@@ -12,7 +12,7 @@ export default class AbstractPassValueToDictionaryAction extends Action {
 
     constructor() {
         super({}, 'card.PassValueToDictionaryAction');
-		}
+	}
 		
 	getCommand() {
 		return new PassValueToDictionaryCommand(this.actionData);

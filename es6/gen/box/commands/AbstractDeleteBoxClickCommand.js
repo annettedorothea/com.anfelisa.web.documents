@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import DeleteBoxClickOkEvent from "../../../gen/box/events/DeleteBoxClickOkEvent";
 
-export default class AbstractDeleteBoxClickCommand extends AbstractSynchronousCommand {
+export default class AbstractDeleteBoxClickCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.DeleteBoxClickCommand");
         this.ok = "ok";

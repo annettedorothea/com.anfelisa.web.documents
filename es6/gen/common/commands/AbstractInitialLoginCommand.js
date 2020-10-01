@@ -5,17 +5,16 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
-import * as AppState from "../../ace/AppState";
+import AppUtils from "../../../src/app/AppUtils";
 import InitialLoginOkEvent from "../../../gen/common/events/InitialLoginOkEvent";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
-export default class AbstractInitialLoginCommand extends AbstractAsynchronousCommand {
+export default class AbstractInitialLoginCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.InitialLoginCommand");
         this.ok = "ok";
@@ -43,7 +42,7 @@ export default class AbstractInitialLoginCommand extends AbstractAsynchronousCom
 	execute() {
 	    return new Promise((resolve, reject) => {
 	
-			this.doHttpGet(`/${Utils.getRootPath()}/user/role`, true).then((data) => {
+			AppUtils.httpGet(`${Utils.settings.rootPath}/user/role`, this.commandData.uuid, true).then((data) => {
 				this.commandData.role = data.role;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

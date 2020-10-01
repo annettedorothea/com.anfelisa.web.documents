@@ -12,7 +12,7 @@ export default class AbstractHideSaveBugDialogAction extends Action {
 
     constructor() {
         super({}, 'common.HideSaveBugDialogAction');
-		}
+	}
 		
 	getCommand() {
 		return new HideSaveBugDialogCommand(this.actionData);

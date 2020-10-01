@@ -14,7 +14,7 @@ export default class AbstractUpdateCardAction extends Action {
     constructor() {
         super({}, 'card.UpdateCardAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new UpdateCardCommand(this.actionData);

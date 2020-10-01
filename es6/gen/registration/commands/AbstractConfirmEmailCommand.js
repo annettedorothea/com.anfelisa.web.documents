@@ -5,15 +5,14 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
-import * as AppState from "../../ace/AppState";
+import AppUtils from "../../../src/app/AppUtils";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
-export default class AbstractConfirmEmailCommand extends AbstractAsynchronousCommand {
+export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "registration.ConfirmEmailCommand");
         this.ok = "ok";
@@ -40,7 +39,7 @@ export default class AbstractConfirmEmailCommand extends AbstractAsynchronousCom
 	    		username : this.commandData.username
 	    	};
 	
-			this.doHttpPut(`/${Utils.getRootPath()}/users/confirm`, false, payload).then((data) => {
+			AppUtils.httpPut(`${Utils.settings.rootPath}/users/confirm`, this.commandData.uuid, false, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

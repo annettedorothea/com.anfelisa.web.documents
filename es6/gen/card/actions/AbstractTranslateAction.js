@@ -14,7 +14,7 @@ export default class AbstractTranslateAction extends Action {
     constructor() {
         super({}, 'card.TranslateAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new TranslateCommand(this.actionData);

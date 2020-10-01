@@ -12,7 +12,7 @@ export default class AbstractRootCategoryNameChangedAction extends Action {
 
     constructor( categoryName) {
         super({categoryName}, 'box.RootCategoryNameChangedAction');
-		}
+	}
 		
 	getCommand() {
 		return new RootCategoryNameChangedCommand(this.actionData);

@@ -5,14 +5,12 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
-import * as AppState from "../../ace/AppState";
+import AppUtils from "../../../src/app/AppUtils";
 import GetAllUsersOkEvent from "../../../gen/admin/events/GetAllUsersOkEvent";
 
-export default class AbstractGetAllUsersCommand extends AbstractAsynchronousCommand {
+export default class AbstractGetAllUsersCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "admin.GetAllUsersCommand");
         this.ok = "ok";
@@ -34,7 +32,7 @@ export default class AbstractGetAllUsersCommand extends AbstractAsynchronousComm
 	execute() {
 	    return new Promise((resolve, reject) => {
 	
-			this.doHttpGet(`/${Utils.getRootPath()}/users/all`, true).then((data) => {
+			AppUtils.httpGet(`${Utils.settings.rootPath}/users/all`, this.commandData.uuid, true).then((data) => {
 				this.commandData.userList = data.userList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

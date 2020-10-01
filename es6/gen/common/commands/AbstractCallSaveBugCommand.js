@@ -5,14 +5,14 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import HideSaveBugDialogAction from "../../../src/common/actions/HideSaveBugDialogAction";
 
-export default class AbstractCallSaveBugCommand extends AbstractAsynchronousCommand {
+export default class AbstractCallSaveBugCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.CallSaveBugCommand");
         this.ok = "ok";

@@ -5,12 +5,11 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import * as AppState from "../../ace/AppState";
 import ExpandTreeItemOkEvent from "../../../gen/category/events/ExpandTreeItemOkEvent";
 
-export default class AbstractExpandTreeItemCommand extends AbstractSynchronousCommand {
+export default class AbstractExpandTreeItemCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.ExpandTreeItemCommand");
         this.ok = "ok";

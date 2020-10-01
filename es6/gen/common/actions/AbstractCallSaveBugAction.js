@@ -12,7 +12,7 @@ export default class AbstractCallSaveBugAction extends Action {
 
     constructor() {
         super({}, 'common.CallSaveBugAction');
-		}
+	}
 		
 	getCommand() {
 		return new CallSaveBugCommand(this.actionData);

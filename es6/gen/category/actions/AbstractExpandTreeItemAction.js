@@ -12,7 +12,7 @@ export default class AbstractExpandTreeItemAction extends Action {
 
     constructor( categoryId) {
         super({categoryId}, 'category.ExpandTreeItemAction');
-		}
+	}
 		
 	getCommand() {
 		return new ExpandTreeItemCommand(this.actionData);

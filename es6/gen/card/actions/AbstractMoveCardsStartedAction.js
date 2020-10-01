@@ -12,7 +12,7 @@ export default class AbstractMoveCardsStartedAction extends Action {
 
     constructor() {
         super({}, 'card.MoveCardsStartedAction');
-		}
+	}
 		
 	getCommand() {
 		return new MoveCardsStartedCommand(this.actionData);

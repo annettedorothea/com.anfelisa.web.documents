@@ -5,14 +5,13 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import LoadUserOkEvent from "../../../gen/profile/events/LoadUserOkEvent";
 
-export default class AbstractLoadUserCommand extends AbstractAsynchronousCommand {
+export default class AbstractLoadUserCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "profile.LoadUserCommand");
         this.ok = "ok";
@@ -35,7 +34,7 @@ export default class AbstractLoadUserCommand extends AbstractAsynchronousCommand
 	execute() {
 	    return new Promise((resolve, reject) => {
 	
-			this.doHttpGet(`/${Utils.getRootPath()}/user/get`, true).then((data) => {
+			AppUtils.httpGet(`${Utils.settings.rootPath}/user/get`, this.commandData.uuid, true).then((data) => {
 				this.commandData.email = data.email;
 				this.commandData.username = data.username;
 				this.commandData.userId = data.userId;

@@ -5,17 +5,17 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import DeleteCardOkEvent from "../../../gen/card/events/DeleteCardOkEvent";
 import DeleteCardErrorEvent from "../../../gen/card/events/DeleteCardErrorEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 
-export default class AbstractDeleteCardCommand extends AbstractAsynchronousCommand {
+export default class AbstractDeleteCardCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.DeleteCardCommand");
         this.ok = "ok";
@@ -43,10 +43,8 @@ export default class AbstractDeleteCardCommand extends AbstractAsynchronousComma
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    	};
 	
-			this.doHttpDelete(`/${Utils.getRootPath()}/card/delete?cardId=${this.commandData.cardId}`, true).then((data) => {
+			AppUtils.httpDelete(`${Utils.settings.rootPath}/card/delete?cardId=${this.commandData.cardId}`, this.commandData.uuid, true).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

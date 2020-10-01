@@ -16,14 +16,7 @@ export default class ACEController {
         ACEController.listeners = {};
         ACEController.factories = {};
         ACEController.registerListener('TriggerAction', ACEController.triggerAction);
-        ACEController.actionIsProcessing = false;
         ACEController.actionQueue = [];
-        ACEController.UI = 1;
-        ACEController.REPLAY = 2;
-        ACEController.E2E = 3;
-        ACEController.execution = ACEController.UI;
-        ACEController.actualTimeline = [];
-        ACEController.expectedTimeline = [];
     }
 
     static registerListener(eventName, listener) {
@@ -41,40 +34,29 @@ export default class ACEController {
         listenersForEventName.push(listener);
     }
 
-    static registerFactory(actionName, factory) {
-        if (!actionName.trim()) {
-            throw new Error('cannot register factory for empty actionName');
+    static registerFactory(eventName, factory) {
+        if (!eventName.trim()) {
+            throw new Error('cannot register factory for empty eventName');
         }
         if (!factory) {
-            throw new Error('cannot register undefined factory for action ' + actionName);
+            throw new Error('cannot register undefined factory for event ' + eventName);
         }
-        ACEController.factories[actionName] = factory;
+        ACEController.factories[eventName] = factory;
     }
 
     static addItemToTimeLine(item) {
-        let timestamp = new Date();
-        item.timestamp = timestamp.getTime();
-		if (ACEController.execution === ACEController.UI && Utils.isDevelopment() && Utils.getTimelineSize() > 0) {
-		    ACEController.timeline.push(AppUtils.deepCopy(item));
-		    if (ACEController.timeline.length > Utils.getTimelineSize()) {
-                ACEController.timeline.shift();
-		        while (ACEController.timeline.length > 0 && ACEController.timeline.length > 0 && !ACEController.timeline[0].appState) {
-                    ACEController.timeline.shift();
-                }
+	    ACEController.timeline.push(AppUtils.deepCopy(item));
+		if (ACEController.timeline.length > Utils.settings.timelineSize) {
+		    ACEController.timeline.shift();
+		    while (ACEController.timeline.length > 0 && ACEController.timeline.length > 0 && !ACEController.timeline[0].appState) {
+		        ACEController.timeline.shift();
 		    }
-		} else if (ACEController.execution !== ACEController.UI) {
-		    ACEController.actualTimeline.push(AppUtils.deepCopy(item));
 		}
     }
 
     static addActionToQueue(action) {
-        if (ACEController.execution === ACEController.UI) {
-            ACEController.actionQueue.push(action);
-            if (ACEController.actionIsProcessing === false) {
-                ACEController.actionIsProcessing = true;
-                ACEController.applyNextActions();
-            }
-        }
+		ACEController.actionQueue.push(action);
+	    ACEController.applyNextActions();
     }
 
     static applyNextActions() {
@@ -97,49 +79,27 @@ export default class ACEController {
 			    	ACEController.callApplyNextActions();
 				}
 			}
-        } else if (action === undefined) {
-            ACEController.actionIsProcessing = false;
-            if (ACEController.execution !== ACEController.UI) {
-                ACEController.timeline = [];
-                ACEController.actionIsProcessing = false;
-                ACEController.actionQueue = [];
-                ACEController.execution = ACEController.UI;
-                Utils.finishReplay();
-                AppUtils.start();
-            }
         }
     }
     
     static callApplyNextActions() {
-    	if (ACEController.execution === ACEController.UI) {
-    		ACEController.applyNextActions();
-    	} else {
-			setTimeout(ACEController.applyNextActions, ACEController.pauseInMillis);
-		}
+		ACEController.applyNextActions();
     }
 
     static triggerAction(action) {
         ACEController.addActionToQueue(action);
     }
 
-    static startReplay(level, pauseInMillis) {
-        ACEController.actualTimeline = [];
-        ACEController.execution = level;
-        ACEController.pauseInMillis = pauseInMillis;
-        ACEController.readTimelineAndCreateReplayActions();
-    }
-
-    static readTimelineAndCreateReplayActions() {
-        let actions = [];
+    static startReplay(timeline, pauseInMillis) {
+        let events = [];
 		
 		let appStateWasSet = false;
-        for (let i = 0; i < ACEController.expectedTimeline.length; i++) {
-            let item = ACEController.expectedTimeline[i];
-            if (item.action) {
-                const actionData = item.action.actionData;
-                let action = ACEController.factories[item.action.actionName](actionData);
-                action.actionData = actionData;
-                actions.push(action);
+        for (let i = 0; i < timeline.length; i++) {
+            let item = timeline[i];
+            if (item.event && appStateWasSet && item.event.eventName !== "TriggerAction") {
+                const eventData = item.event.eventData;
+                let event = ACEController.factories[item.event.eventName](eventData);
+                events.push(event);
             }
 			if (item.appState && !appStateWasSet) {
 			    AppState.setInitialAppState(item.appState);
@@ -148,19 +108,27 @@ export default class ACEController {
             
         }
 
-        ACEController.actionQueue = actions;
-
-        ACEController.applyNextActions();
+		setTimeout(() => ACEController.replayNextEvent(events, pauseInMillis), pauseInMillis);
     }
+    
+    static replayNextEvent(events, pauseInMillis) {
+        let event = events.shift();
+        if (event) {
+        	event.replay();
+        	setTimeout(() => ACEController.replayNextEvent(events, pauseInMillis), pauseInMillis);
+	    } else {
+	        setTimeout(() => ACEController.finishReplay(), pauseInMillis);
+	    }
+	}
+	
+	static finishReplay() {
+	    console.log("replay finished");
+	    ACEController.timeline = [];
+	    ACEController.actionQueue = [];
+	    AppUtils.createInitialAppState();
+	    AppUtils.start();
+	}
 
-    static getCommandByUuid(uuid) {
-        for (let i = 0; i < ACEController.expectedTimeline.length; i++) {
-            let item = ACEController.expectedTimeline[i];
-            if (item.command && item.command.commandData.uuid === uuid) {
-                return item.command;
-            }
-        }
-    }
 
 }
 

@@ -12,7 +12,7 @@ export default class AbstractDisplayErrorAndLogoutAction extends Action {
 
     constructor( error) {
         super({error}, 'common.DisplayErrorAndLogoutAction');
-		}
+	}
 		
 	getCommand() {
 		return new DisplayErrorAndLogoutCommand(this.actionData);

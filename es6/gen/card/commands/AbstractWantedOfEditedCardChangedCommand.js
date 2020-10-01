@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import WantedOfEditedCardChangedOkEvent from "../../../gen/card/events/WantedOfEditedCardChangedOkEvent";
 
-export default class AbstractWantedOfEditedCardChangedCommand extends AbstractSynchronousCommand {
+export default class AbstractWantedOfEditedCardChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.WantedOfEditedCardChangedCommand");
         this.ok = "ok";

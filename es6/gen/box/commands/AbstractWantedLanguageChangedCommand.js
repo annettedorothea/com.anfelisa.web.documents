@@ -5,12 +5,11 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import * as AppState from "../../ace/AppState";
 import WantedLanguageChangedOkEvent from "../../../gen/box/events/WantedLanguageChangedOkEvent";
 
-export default class AbstractWantedLanguageChangedCommand extends AbstractSynchronousCommand {
+export default class AbstractWantedLanguageChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.WantedLanguageChangedCommand");
         this.ok = "ok";

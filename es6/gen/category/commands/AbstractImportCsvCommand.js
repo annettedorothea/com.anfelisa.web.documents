@@ -5,15 +5,15 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import ImportCsvOkEvent from "../../../gen/category/events/ImportCsvOkEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
-export default class AbstractImportCsvCommand extends AbstractAsynchronousCommand {
+export default class AbstractImportCsvCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.ImportCsvCommand");
         this.ok = "ok";
@@ -44,7 +44,7 @@ export default class AbstractImportCsvCommand extends AbstractAsynchronousComman
 	    		categoryId : this.commandData.categoryId
 	    	};
 	
-			this.doHttpPut(`/${Utils.getRootPath()}/category/import-csv`, true, payload).then((data) => {
+			AppUtils.httpPut(`${Utils.settings.rootPath}/category/import-csv`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

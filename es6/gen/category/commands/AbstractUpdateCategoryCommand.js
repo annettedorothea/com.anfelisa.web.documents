@@ -5,16 +5,16 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import UpdateCategoryOkEvent from "../../../gen/category/events/UpdateCategoryOkEvent";
 import UpdateCategoryErrorEvent from "../../../gen/category/events/UpdateCategoryErrorEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 
-export default class AbstractUpdateCategoryCommand extends AbstractAsynchronousCommand {
+export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.UpdateCategoryCommand");
         this.ok = "ok";
@@ -49,7 +49,7 @@ export default class AbstractUpdateCategoryCommand extends AbstractAsynchronousC
 	    		categoryName : this.commandData.categoryName
 	    	};
 	
-			this.doHttpPut(`/${Utils.getRootPath()}/category/update`, true, payload).then((data) => {
+			AppUtils.httpPut(`${Utils.settings.rootPath}/category/update`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

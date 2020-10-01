@@ -5,16 +5,16 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import TranslateWantedFetchedEvent from "../../../gen/card/events/TranslateWantedFetchedEvent";
 import TranslateGivenFetchedEvent from "../../../gen/card/events/TranslateGivenFetchedEvent";
 import SearchDuplicateCardsAction from "../../../src/card/actions/SearchDuplicateCardsAction";
 
-export default class AbstractTranslateCommand extends AbstractAsynchronousCommand {
+export default class AbstractTranslateCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.TranslateCommand");
         this.wantedFetched = "wantedFetched";
@@ -56,7 +56,7 @@ export default class AbstractTranslateCommand extends AbstractAsynchronousComman
 	execute() {
 	    return new Promise((resolve, reject) => {
 	
-			this.doHttpGet(`/${Utils.getRootPath()}/card/translation?sourceValue=${this.commandData.sourceValue}&sourceLanguage=${this.commandData.sourceLanguage}&targetLanguage=${this.commandData.targetLanguage}`, true).then((data) => {
+			AppUtils.httpGet(`${Utils.settings.rootPath}/card/translation?sourceValue=${this.commandData.sourceValue}&sourceLanguage=${this.commandData.sourceLanguage}&targetLanguage=${this.commandData.targetLanguage}`, this.commandData.uuid, true).then((data) => {
 				this.commandData.targetValue = data.targetValue;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

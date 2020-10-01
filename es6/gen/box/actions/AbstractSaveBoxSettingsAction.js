@@ -14,7 +14,7 @@ export default class AbstractSaveBoxSettingsAction extends Action {
     constructor() {
         super({}, 'box.SaveBoxSettingsAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new SaveBoxSettingsCommand(this.actionData);

@@ -12,7 +12,7 @@ export default class AbstractRemoveNewCardImageAction extends Action {
 
     constructor() {
         super({}, 'card.RemoveNewCardImageAction');
-		}
+	}
 		
 	getCommand() {
 		return new RemoveNewCardImageCommand(this.actionData);

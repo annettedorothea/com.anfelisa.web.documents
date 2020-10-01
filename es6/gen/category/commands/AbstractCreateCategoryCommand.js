@@ -5,16 +5,16 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import CreateCategoryOkEvent from "../../../gen/category/events/CreateCategoryOkEvent";
 import CreateCategoryErrorEvent from "../../../gen/category/events/CreateCategoryErrorEvent";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 
-export default class AbstractCreateCategoryCommand extends AbstractAsynchronousCommand {
+export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.CreateCategoryCommand");
         this.ok = "ok";
@@ -48,7 +48,7 @@ export default class AbstractCreateCategoryCommand extends AbstractAsynchronousC
 	    		parentCategoryId : this.commandData.parentCategoryId
 	    	};
 	
-			this.doHttpPost(`/${Utils.getRootPath()}/category/create`, true, payload).then((data) => {
+			AppUtils.httpPost(`${Utils.settings.rootPath}/category/create`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

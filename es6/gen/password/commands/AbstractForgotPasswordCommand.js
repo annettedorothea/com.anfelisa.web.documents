@@ -5,15 +5,15 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
-export default class AbstractForgotPasswordCommand extends AbstractAsynchronousCommand {
+export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "password.ForgotPasswordCommand");
         this.ok = "ok";
@@ -42,7 +42,7 @@ export default class AbstractForgotPasswordCommand extends AbstractAsynchronousC
 	    		language : this.commandData.language
 	    	};
 	
-			this.doHttpPost(`/${Utils.getRootPath()}/users/forgot-password`, false, payload).then((data) => {
+			AppUtils.httpPost(`${Utils.settings.rootPath}/users/forgot-password`, this.commandData.uuid, false, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

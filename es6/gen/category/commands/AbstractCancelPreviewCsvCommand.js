@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import CancelPreviewCsvOkEvent from "../../../gen/category/events/CancelPreviewCsvOkEvent";
 
-export default class AbstractCancelPreviewCsvCommand extends AbstractSynchronousCommand {
+export default class AbstractCancelPreviewCsvCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.CancelPreviewCsvCommand");
         this.ok = "ok";

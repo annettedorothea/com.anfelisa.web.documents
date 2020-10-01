@@ -14,7 +14,7 @@ export default class AbstractChangeCardOrderAction extends Action {
     constructor( cardId) {
         super({cardId}, 'card.ChangeCardOrderAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new ChangeCardOrderCommand(this.actionData);

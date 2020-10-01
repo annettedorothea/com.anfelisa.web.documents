@@ -12,7 +12,7 @@ export default class AbstractCancelNewCardAction extends Action {
 
     constructor() {
         super({}, 'card.CancelNewCardAction');
-		}
+	}
 		
 	getCommand() {
 		return new CancelNewCardCommand(this.actionData);

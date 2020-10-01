@@ -14,7 +14,7 @@ export default class AbstractForgotPasswordAction extends Action {
     constructor() {
         super({}, 'password.ForgotPasswordAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new ForgotPasswordCommand(this.actionData);

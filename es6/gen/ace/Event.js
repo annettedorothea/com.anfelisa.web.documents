@@ -16,7 +16,13 @@ export default class Event {
 
     publish() {
         this.notifyListeners();
+        AppUtils.renderNewState();
 		ACEController.addItemToTimeLine({event: this});
+    }
+
+    replay() {
+        this.notifyListeners();
+        AppUtils.renderNewState();
     }
 
     notifyListeners() {

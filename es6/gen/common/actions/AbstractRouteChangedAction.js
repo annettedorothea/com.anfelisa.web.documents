@@ -12,7 +12,7 @@ export default class AbstractRouteChangedAction extends Action {
 
     constructor() {
         super({}, 'common.RouteChangedAction');
-		}
+	}
 		
 	getCommand() {
 		return new RouteChangedCommand(this.actionData);

@@ -12,7 +12,7 @@ export default class AbstractOnDragExitAction extends Action {
 
     constructor( dragTargetCardId) {
         super({dragTargetCardId}, 'card.OnDragExitAction');
-		}
+	}
 		
 	getCommand() {
 		return new OnDragExitCommand(this.actionData);

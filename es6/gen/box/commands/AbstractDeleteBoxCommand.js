@@ -5,16 +5,16 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import DeleteBoxErrorEvent from "../../../gen/box/events/DeleteBoxErrorEvent";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 
-export default class AbstractDeleteBoxCommand extends AbstractAsynchronousCommand {
+export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.DeleteBoxCommand");
         this.ok = "ok";
@@ -41,10 +41,8 @@ export default class AbstractDeleteBoxCommand extends AbstractAsynchronousComman
     
 	execute() {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    	};
 	
-			this.doHttpDelete(`/${Utils.getRootPath()}/box/delete?boxId=${this.commandData.boxId}`, true).then((data) => {
+			AppUtils.httpDelete(`${Utils.settings.rootPath}/box/delete?boxId=${this.commandData.boxId}`, this.commandData.uuid, true).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

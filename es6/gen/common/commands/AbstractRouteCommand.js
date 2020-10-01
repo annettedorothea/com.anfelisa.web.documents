@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import RouteOkEvent from "../../../gen/common/events/RouteOkEvent";
 
-export default class AbstractRouteCommand extends AbstractSynchronousCommand {
+export default class AbstractRouteCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.RouteCommand");
         this.ok = "ok";

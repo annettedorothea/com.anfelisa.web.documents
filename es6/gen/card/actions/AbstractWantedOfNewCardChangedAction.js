@@ -12,7 +12,7 @@ export default class AbstractWantedOfNewCardChangedAction extends Action {
 
     constructor( wanted) {
         super({wanted}, 'card.WantedOfNewCardChangedAction');
-		}
+	}
 		
 	getCommand() {
 		return new WantedOfNewCardChangedCommand(this.actionData);

@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import PasswordChangedOkEvent from "../../../gen/password/events/PasswordChangedOkEvent";
 
-export default class AbstractPasswordChangedCommand extends AbstractSynchronousCommand {
+export default class AbstractPasswordChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "password.PasswordChangedCommand");
         this.ok = "ok";

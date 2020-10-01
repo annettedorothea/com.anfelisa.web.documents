@@ -14,7 +14,7 @@ export default class AbstractScoreCardAction extends Action {
     constructor( scoredCardQuality) {
         super({scoredCardQuality}, 'box.ScoreCardAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new ScoreCardCommand(this.actionData);

@@ -12,7 +12,7 @@ export default class AbstractNewCategoryClickAction extends Action {
 
     constructor() {
         super({}, 'category.NewCategoryClickAction');
-		}
+	}
 		
 	getCommand() {
 		return new NewCategoryClickCommand(this.actionData);

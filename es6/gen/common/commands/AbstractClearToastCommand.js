@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import ClearToastOkEvent from "../../../gen/common/events/ClearToastOkEvent";
 
-export default class AbstractClearToastCommand extends AbstractSynchronousCommand {
+export default class AbstractClearToastCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.ClearToastCommand");
         this.ok = "ok";

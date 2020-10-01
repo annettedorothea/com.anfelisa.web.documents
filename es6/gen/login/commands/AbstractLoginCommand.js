@@ -5,14 +5,14 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import LoginSaveInLocalStorageEvent from "../../../gen/login/events/LoginSaveInLocalStorageEvent";
 import LoginDoNotSaveInLocalStorageEvent from "../../../gen/login/events/LoginDoNotSaveInLocalStorageEvent";
 import GetRoleAction from "../../../src/login/actions/GetRoleAction";
 
-export default class AbstractLoginCommand extends AbstractSynchronousCommand {
+export default class AbstractLoginCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "login.LoginCommand");
         this.saveInLocalStorage = "saveInLocalStorage";

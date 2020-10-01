@@ -12,7 +12,7 @@ export default class AbstractLoginAction extends Action {
 
     constructor( password) {
         super({password}, 'login.LoginAction');
-		}
+	}
 		
 	getCommand() {
 		return new LoginCommand(this.actionData);

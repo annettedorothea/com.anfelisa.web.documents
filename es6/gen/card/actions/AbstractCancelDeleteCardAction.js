@@ -12,7 +12,7 @@ export default class AbstractCancelDeleteCardAction extends Action {
 
     constructor() {
         super({}, 'card.CancelDeleteCardAction');
-		}
+	}
 		
 	getCommand() {
 		return new CancelDeleteCardCommand(this.actionData);

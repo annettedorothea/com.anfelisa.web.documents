@@ -5,15 +5,14 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
-import * as AppState from "../../ace/AppState";
+import AppUtils from "../../../src/app/AppUtils";
 import LoadBoxesOkEvent from "../../../gen/box/events/LoadBoxesOkEvent";
 import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
 
-export default class AbstractLoadBoxesCommand extends AbstractAsynchronousCommand {
+export default class AbstractLoadBoxesCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.LoadBoxesCommand");
         this.ok = "ok";
@@ -36,7 +35,7 @@ export default class AbstractLoadBoxesCommand extends AbstractAsynchronousComman
 	execute() {
 	    return new Promise((resolve, reject) => {
 	
-			this.doHttpGet(`/${Utils.getRootPath()}/boxes/my/?todayAtMidnightInUTC=${this.commandData.todayAtMidnightInUTC}`, true).then((data) => {
+			AppUtils.httpGet(`${Utils.settings.rootPath}/boxes/my/?todayAtMidnightInUTC=${this.commandData.todayAtMidnightInUTC}`, this.commandData.uuid, true).then((data) => {
 				this.commandData.boxList = data.boxList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

@@ -5,12 +5,11 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import * as AppState from "../../ace/AppState";
 import ToggleAllScheduleCardSelectionOkEvent from "../../../gen/card/events/ToggleAllScheduleCardSelectionOkEvent";
 
-export default class AbstractToggleAllScheduleCardSelectionCommand extends AbstractSynchronousCommand {
+export default class AbstractToggleAllScheduleCardSelectionCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.ToggleAllScheduleCardSelectionCommand");
         this.ok = "ok";

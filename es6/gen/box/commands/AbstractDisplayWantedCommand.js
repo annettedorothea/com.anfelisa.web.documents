@@ -5,12 +5,11 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import * as AppState from "../../ace/AppState";
 import DisplayWantedOkEvent from "../../../gen/box/events/DisplayWantedOkEvent";
 
-export default class AbstractDisplayWantedCommand extends AbstractSynchronousCommand {
+export default class AbstractDisplayWantedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.DisplayWantedCommand");
         this.ok = "ok";

@@ -5,12 +5,10 @@
 
 
 
-import AbstractSynchronousCommand from "../../../gen/ace/AbstractSynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
+import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import OnDragExitOkEvent from "../../../gen/card/events/OnDragExitOkEvent";
 
-export default class AbstractOnDragExitCommand extends AbstractSynchronousCommand {
+export default class AbstractOnDragExitCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.OnDragExitCommand");
         this.ok = "ok";

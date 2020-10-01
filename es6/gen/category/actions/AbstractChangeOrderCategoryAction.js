@@ -14,7 +14,7 @@ export default class AbstractChangeOrderCategoryAction extends Action {
     constructor() {
         super({}, 'category.ChangeOrderCategoryAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new ChangeOrderCategoryCommand(this.actionData);

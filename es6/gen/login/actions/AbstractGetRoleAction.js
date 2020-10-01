@@ -14,7 +14,7 @@ export default class AbstractGetRoleAction extends Action {
     constructor() {
         super({}, 'login.GetRoleAction');
 		this.postCall = this.postCall.bind(this);
-		}
+	}
 		
 	getCommand() {
 		return new GetRoleCommand(this.actionData);

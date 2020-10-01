@@ -12,7 +12,7 @@ export default class AbstractOnDragEnterAction extends Action {
 
     constructor( dragTargetCardId) {
         super({dragTargetCardId}, 'card.OnDragEnterAction');
-		}
+	}
 		
 	getCommand() {
 		return new OnDragEnterCommand(this.actionData);

@@ -12,7 +12,7 @@ export default class AbstractClearToastAction extends Action {
 
     constructor() {
         super({}, 'common.ClearToastAction');
-		}
+	}
 		
 	getCommand() {
 		return new ClearToastCommand(this.actionData);

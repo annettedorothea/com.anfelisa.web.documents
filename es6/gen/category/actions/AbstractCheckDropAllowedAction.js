@@ -12,7 +12,7 @@ export default class AbstractCheckDropAllowedAction extends Action {
 
     constructor( categoryId, altKey, depth) {
         super({categoryId, altKey, depth}, 'category.CheckDropAllowedAction');
-		}
+	}
 		
 	getCommand() {
 		return new CheckDropAllowedCommand(this.actionData);

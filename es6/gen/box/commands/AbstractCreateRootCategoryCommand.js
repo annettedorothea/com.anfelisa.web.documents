@@ -5,14 +5,14 @@
 
 
 
-import AbstractAsynchronousCommand from "../../../gen/ace/AbstractAsynchronousCommand";
+import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
-import ACEController from "../../ace/ACEController";
+import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
-export default class AbstractCreateRootCategoryCommand extends AbstractAsynchronousCommand {
+export default class AbstractCreateRootCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.CreateRootCategoryCommand");
         this.ok = "ok";
@@ -49,7 +49,7 @@ export default class AbstractCreateRootCategoryCommand extends AbstractAsynchron
 	    		maxInterval : this.commandData.maxInterval
 	    	};
 	
-			this.doHttpPost(`/${Utils.getRootPath()}/box/create`, true, payload).then((data) => {
+			AppUtils.httpPost(`${Utils.settings.rootPath}/box/create`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;
