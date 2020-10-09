@@ -37,6 +37,11 @@ LoadCards
 	on ok ( set common.mainView.authorView.cardView.editedCard )
 	triggers (LoadCards)
 
+ UpdateCardPriority(cardId, priority)
+ 	call com.anfelisa.card.UpdateCardPriority
+	loadingFlag common.displaySpinner 
+	on ok triggers (LoadCards)
+
 
  DeleteCard 
  	fromAppState ( common.mainView.authorView.cardView.deleteCard.cardId )

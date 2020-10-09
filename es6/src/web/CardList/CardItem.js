@@ -8,6 +8,7 @@ import {
     onDragEnter,
     onDragExit
 } from "../../../gen/card/ActionFunctions";
+import Priority from "./Priority";
 
 export default class CardItem extends React.Component {
 
@@ -92,6 +93,7 @@ export default class CardItem extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderWanted(true)}
                 {this.props.naturalInputOrder === false && this.renderGiven(false)}
                 {this.props.naturalInputOrder === false && this.renderImage()}
+                <Priority priority={this.props.priority} cardId={this.props.cardId}/>
                 <td className="noBreak notPrinted">
                     <button onClick={() => editCard(this.props.cardId)}>
                         <i className="fas fa-pen"/>

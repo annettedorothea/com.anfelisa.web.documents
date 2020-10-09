@@ -287,6 +287,11 @@ table td i {
     margin: 0 8px;
 }
 
+table td.priority i {
+    margin: 0 0;
+    color: #337ab7;
+}
+
 
 /* modal */
 

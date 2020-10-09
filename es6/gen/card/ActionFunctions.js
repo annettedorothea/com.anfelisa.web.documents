@@ -8,6 +8,7 @@
 import LoadCardsAction from "../../src/card/actions/LoadCardsAction";
 import CreateCardAction from "../../src/card/actions/CreateCardAction";
 import UpdateCardAction from "../../src/card/actions/UpdateCardAction";
+import UpdateCardPriorityAction from "../../src/card/actions/UpdateCardPriorityAction";
 import DeleteCardAction from "../../src/card/actions/DeleteCardAction";
 import GivenOfNewCardChangedAction from "../../src/card/actions/GivenOfNewCardChangedAction";
 import WantedOfNewCardChangedAction from "../../src/card/actions/WantedOfNewCardChangedAction";
@@ -48,6 +49,10 @@ export function createCard() {
 
 export function updateCard() {
     new UpdateCardAction().apply();
+}
+
+export function updateCardPriority(cardId, priority) {
+    new UpdateCardPriorityAction(cardId, priority).apply();
 }
 
 export function deleteCard() {
