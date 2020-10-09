@@ -19,9 +19,7 @@ See [com.anfelisa.server](https://github.com/annettedorothea/com.anfelisa.server
   "aceScenariosApiKey": "2202ddf3-0f76-4e1a-9766-acea7edb17ab",
   "aceScenariosBaseUrl": "https://acegen.de/",
   "clientVersion": "<version>",
-  "development": true | false,
   "rootPath": "<root path as configured in your dropwizard yml file of the server, e.g. api>",
-  "replayRootPath": "<root path as configured in your dropwizard yml file of the server, e.g. replay>",
   "timelineSize": <timeline size, e.g. 32>
 }
 ```
