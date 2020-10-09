@@ -2,72 +2,90 @@ import CryptoJS from "crypto-js";
 import * as AppState from "../../gen/ace/AppState";
 import * as App from "./App";
 import Utils from "../../gen/ace/Utils";
-import {displayError, displayErrorAndLogout, displaySaveBugDialog, init} from "../../gen/common/ActionFunctions"
+import {
+    displayError,
+    displayErrorAndLogout,
+    displaySaveBugDialog,
+    init,
+    routeChanged
+} from "../../gen/common/ActionFunctions"
 import {Texts} from "./Texts"
 
 import EventListenerRegistrationAdmin from "../../gen/admin/EventListenerRegistration";
-import ActionFactoryRegistrationAdmin from "../../gen/admin/ActionFactoryRegistration";
+import EventFactoryRegistrationAdmin from "../../gen/admin/EventFactoryRegistration";
 
 import EventListenerRegistrationCategory from "../../gen/category/EventListenerRegistration";
-import ActionFactoryRegistrationCategory from "../../gen/category/ActionFactoryRegistration";
+import EventFactoryRegistrationCategory from "../../gen/category/EventFactoryRegistration";
 
 import EventListenerRegistrationCard from "../../gen/card/EventListenerRegistration";
-import ActionFactoryRegistrationCard from "../../gen/card/ActionFactoryRegistration";
+import EventFactoryRegistrationCard from "../../gen/card/EventFactoryRegistration";
 
 import EventListenerRegistrationBox from "../../gen/box/EventListenerRegistration";
-import ActionFactoryRegistrationBox from "../../gen/box/ActionFactoryRegistration";
+import EventFactoryRegistrationBox from "../../gen/box/EventFactoryRegistration";
 
 import EventListenerRegistrationCommon from "../../gen/common/EventListenerRegistration";
-import ActionFactoryRegistrationCommon from "../../gen/common/ActionFactoryRegistration";
+import EventFactoryRegistrationCommon from "../../gen/common/EventFactoryRegistration";
 
 import EventListenerRegistrationProfile from "../../gen/profile/EventListenerRegistration";
-import ActionFactoryRegistrationProfile from "../../gen/profile/ActionFactoryRegistration";
+import EventFactoryRegistrationProfile from "../../gen/profile/EventFactoryRegistration";
 
 import EventListenerRegistrationRegistration from "../../gen/registration/EventListenerRegistration";
-import ActionFactoryRegistrationRegistration from "../../gen/registration/ActionFactoryRegistration";
+import EventFactoryRegistrationRegistration from "../../gen/registration/EventFactoryRegistration";
 
 import EventListenerRegistrationLogin from "../../gen/login/EventListenerRegistration";
-import ActionFactoryRegistrationLogin from "../../gen/login/ActionFactoryRegistration";
+import EventFactoryRegistrationLogin from "../../gen/login/EventFactoryRegistration";
 
 import EventListenerRegistrationPassword from "../../gen/password/EventListenerRegistration";
-import ActionFactoryRegistrationPassword from "../../gen/password/ActionFactoryRegistration";
+import EventFactoryRegistrationPassword from "../../gen/password/EventFactoryRegistration";
+
+export function dumpAppState() {
+    console.log(AppState.getAppState());
+}
 
 export default class AppUtils {
 
     static initEventListenersAndActionFactories() {
         EventListenerRegistrationAdmin.init();
-        ActionFactoryRegistrationAdmin.init();
+        EventFactoryRegistrationAdmin.init();
 
         EventListenerRegistrationCategory.init();
-        ActionFactoryRegistrationCategory.init();
+        EventFactoryRegistrationCategory.init();
 
         EventListenerRegistrationCard.init();
-        ActionFactoryRegistrationCard.init();
+        EventFactoryRegistrationCard.init();
 
         EventListenerRegistrationBox.init();
-        ActionFactoryRegistrationBox.init();
+        EventFactoryRegistrationBox.init();
 
         EventListenerRegistrationCommon.init();
-        ActionFactoryRegistrationCommon.init();
+        EventFactoryRegistrationCommon.init();
 
         EventListenerRegistrationProfile.init();
-        ActionFactoryRegistrationProfile.init();
+        EventFactoryRegistrationProfile.init();
 
         EventListenerRegistrationRegistration.init();
-        ActionFactoryRegistrationRegistration.init();
+        EventFactoryRegistrationRegistration.init();
 
         EventListenerRegistrationLogin.init();
-        ActionFactoryRegistrationLogin.init();
+        EventFactoryRegistrationLogin.init();
 
         EventListenerRegistrationPassword.init();
-        ActionFactoryRegistrationPassword.init();
+        EventFactoryRegistrationPassword.init();
     }
 
-    static start() {
-        Utils.loadSettings().then((settings) => {
-            Utils.settings = settings;
+    static startApp() {
+        window.onhashchange = () => {
+            routeChanged();
+            window.scrollTo(0, 0);
+        };
+        Utils.loadSettings().then(() => {
             init(location.hash, localStorage.getItem("username"), localStorage.getItem("password"));
         });
+    }
+
+    static startReplay() {
+        window.onhashchange = () => {
+        };
     }
 
     static createInitialAppState() {
@@ -82,97 +100,61 @@ export default class AppUtils {
         App.render(AppState.getAppState());
     }
 
-    static httpGet(url, authorize) {
-        return new Promise((resolve, reject) => {
-            const headers = new Headers();
-            headers.append("Content-Type", "application/json");
-            headers.append("Accept", "application/json");
-            if (authorize === true) {
-                let authorization = AppUtils.basicAuth();
-                if (authorization !== undefined) {
-                    headers.append("Authorization", authorization);
-                }
+    static createHeaders(authorize) {
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        headers.append("Accept", "application/json");
+        if (authorize === true) {
+            let authorization = AppUtils.basicAuth();
+            if (authorization !== undefined) {
+                headers.append("Authorization", authorization);
             }
+        }
+        return headers;
+    }
 
+    static addUuidToUrl(url, uuid) {
+        if (uuid) {
+            if (url.indexOf("?") < 0) {
+                url += "?uuid=" + uuid;
+            } else {
+                url += "&uuid=" + uuid;
+            }
+        }
+        return url;
+    }
+
+    static httpRequest(methodType, url, uuid, authorize, data) {
+        return new Promise((resolve, reject) => {
             const options = {
-                method: 'GET',
-                headers: headers,
+                method: methodType,
+                headers: AppUtils.createHeaders(authorize),
                 mode: 'cors',
                 cache: 'no-cache'
             };
-
-            const request = new Request(url, options);
-
-            let status;
-            let statusText;
-            fetch(request).then(function (response) {
-                status = response.status;
-                statusText = response.statusText;
-                if (status >= 300) {
-                    return response.text();
-                } else {
-                    return response.json();
-                }
-            }).then(function (data) {
-                if (status >= 300) {
-                    const error = {
-                        code: status,
-                        text: statusText,
-                        errorKey: data
-                    };
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            }).catch(function (error) {
-                const status = {
-                    code: error.name,
-                    text: error.message
-                };
-                reject(status);
-            });
-        });
-    }
-
-    static httpChange(methodType, url, authorize, data) {
-        return new Promise((resolve, reject) => {
-            const headers = new Headers();
-            headers.append("Content-Type", "application/json");
-            headers.append("Accept", "application/json");
-            if (authorize === true) {
-                let authorization = AppUtils.basicAuth();
-                if (authorization !== undefined) {
-                    headers.append("Authorization", authorization);
-                }
+            if (data && methodType !== "GET") {
+                options.body = JSON.stringify(data);
             }
-
-            const options = {
-                method: methodType,
-                headers: headers,
-                mode: 'cors',
-                cache: 'no-cache',
-                body: JSON.stringify(data)
-            };
-
+            url = AppUtils.addUuidToUrl(url, uuid);
             const request = new Request(url, options);
 
-            let status;
-            let statusText;
             fetch(request).then(function (response) {
-                status = response.status;
-                statusText = response.statusText;
-                return response.text();
-            }).then(function (data) {
-                if (status >= 300) {
-                    const error = {
-                        code: status,
-                        text: statusText,
-                        errorKey: data
-                    };
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
+                response.text().then((text) => {
+                    if (response.status >= 300) {
+                        const error = {
+                            code: response.status,
+                            text: response.statusText,
+                            key: text
+                        };
+                        reject(error);
+                    } else {
+                        let data = {};
+                        if (text.length > 0) {
+                            data = JSON.parse(text);
+                        }
+                        resolve(data);
+                    }
+                });
             }).catch(function (error) {
                 const status = {
                     code: error.name,
@@ -183,16 +165,20 @@ export default class AppUtils {
         });
     }
 
-    static httpPost(url, authorize, data) {
-        return AppUtils.httpChange("POST", url, authorize, data);
+    static httpGet(url, uuid, authorize) {
+        return AppUtils.httpRequest("GET", url, uuid, authorize, null);
     }
 
-    static httpPut(url, authorize, data) {
-        return AppUtils.httpChange("PUT", url, authorize, data);
+    static httpPost(url, uuid, authorize, data) {
+        return AppUtils.httpRequest("POST", url, uuid, authorize, data);
     }
 
-    static httpDelete(url, authorize, data) {
-        return AppUtils.httpChange("DELETE", url, authorize, data);
+    static httpPut(url, uuid, authorize, data) {
+        return AppUtils.httpRequest("PUT", url, uuid, authorize, data);
+    }
+
+    static httpDelete(url, uuid, authorize, data) {
+        return AppUtils.httpRequest("DELETE", url, uuid, authorize, data);
     }
 
     static basicAuth() {
@@ -243,7 +229,6 @@ export default class AppUtils {
     }
 
     static deepCopy(object) {
-        //return object;
         return object ? JSON.parse(JSON.stringify(object)) : undefined;
     }
 

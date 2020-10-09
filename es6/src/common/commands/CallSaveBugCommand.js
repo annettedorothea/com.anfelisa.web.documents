@@ -16,13 +16,13 @@
 
 
 import AbstractCallSaveBugCommand from "../../../gen/common/commands/AbstractCallSaveBugCommand";
-import {saveBug} from "../../../gen/ace/Bug";
+import {saveTimeline} from "../../../gen/ace/Timeline";
 
 export default class CallSaveBugCommand extends AbstractCallSaveBugCommand {
 
     execute() {
         return new Promise((resolve) => {
-            saveBug("unknown user interaction", this.commandData.username).then(() => {
+            saveTimeline("unknown user interaction", this.commandData.username).then(() => {
                 this.commandData.outcome = this.ok;
                 resolve();
             }, () => {

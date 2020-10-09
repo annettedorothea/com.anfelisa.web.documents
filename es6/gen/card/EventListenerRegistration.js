@@ -12,7 +12,7 @@ export default class EventListenerRegistrationCard {
 
 	static init() {
 		ACEController.registerListener('card.LoadCardsOkEvent', AppState.merge_authorView_cardView);
-		ACEController.registerListener('card.LoadCardsNoCategorySelectedEvent', AppState.reset_authorView_cardView_cardList);
+		ACEController.registerListener('card.LoadCardsNoCategorySelectedEvent', AppState.set_authorView_cardView_cardList);
 		ACEController.registerListener('card.CreateCardOkEvent', AppState.set_authorView_cardView_newCard);
 		ACEController.registerListener('card.UpdateCardOkEvent', AppState.set_authorView_cardView_editedCard);
 		ACEController.registerListener('card.DeleteCardOkEvent', AppState.set_authorView_cardView_deleteCard);
@@ -37,10 +37,10 @@ export default class EventListenerRegistrationCard {
 		ACEController.registerListener('card.ToggleScheduleCardSelectionOkEvent', AppState.set_authorView_cardView_selectedCardIds);
 		ACEController.registerListener('card.ToggleAllScheduleCardSelectionOkEvent', AppState.set_authorView_cardView_selectedCardIds);
 		ACEController.registerListener('card.MoveCardsStartedOkEvent', AppState.set_authorView_cardView_movedCardIds);
-		ACEController.registerListener('card.MoveCardsOkEvent', AppState.reset_authorView_cardView_movedCardIds);
-		ACEController.registerListener('card.ChangeCardOrderOkEvent', AppState.reset_authorView_cardView_movedCardIds);
+		ACEController.registerListener('card.MoveCardsOkEvent', AppState.set_authorView_cardView_movedCardIds);
+		ACEController.registerListener('card.ChangeCardOrderOkEvent', AppState.set_authorView_cardView_movedCardIds);
 		ACEController.registerListener('card.OnDragEnterOkEvent', AppState.set_authorView_cardView_dragTargetCardId);
-		ACEController.registerListener('card.OnDragExitOkEvent', AppState.reset_authorView_cardView_dragTargetCardId);
+		ACEController.registerListener('card.OnDragExitOkEvent', AppState.set_authorView_cardView_dragTargetCardId);
 		ACEController.registerListener('card.SearchDuplicateCardsOkEvent', AppState.set_authorView_cardView_cardDuplicates);
 		ACEController.registerListener('card.TranslateWantedFetchedEvent', AppState.merge_authorView_cardView_newCard);
 		ACEController.registerListener('card.TranslateGivenFetchedEvent', AppState.merge_authorView_cardView_newCard);

@@ -22,8 +22,8 @@ ACE
 		) triggers ( GetRole )
 		on doNotSaveInLocalStorage ( 
 			set common.loggedInUser
-			reset common.username 
-			reset common.password
+			set common.username 
+			set common.password
 		) triggers ( GetRole )
 	
 	GetRole 

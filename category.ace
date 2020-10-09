@@ -115,7 +115,7 @@ MoveCategory
  	call com.anfelisa.category.MoveCategory
 	loadingFlag common.displaySpinner 
 	on ok ( 
-		reset common.mainView.authorView.categoryTree.movedCategory
+		set common.mainView.authorView.categoryTree.movedCategory
 	) triggers (category.LoadCategoryTree)
 
 ChangeOrderCategory
@@ -128,7 +128,7 @@ ChangeOrderCategory
  	call com.anfelisa.category.ChangeOrderCategory
 	loadingFlag common.displaySpinner 
 	on ok ( 
-		reset common.mainView.authorView.categoryTree.movedCategory
+		set common.mainView.authorView.categoryTree.movedCategory
 	) triggers (category.LoadCategoryTree)
 
 PreviewCsv ( csv )
@@ -137,7 +137,7 @@ PreviewCsv ( csv )
 	) 
 	
 CancelPreviewCsv
-	on ok (reset common.mainView.authorView.categoryTree.previewCsv)
+	on ok (set common.mainView.authorView.categoryTree.previewCsv)
 		
 SwapPreviewCsv
 	fromAppState (common.mainView.authorView.categoryTree.previewCsv)
@@ -153,7 +153,7 @@ ImportCsv
 	call com.anfelisa.card.ImportCsv
 	loadingFlag common.displaySpinner 
 	on ok ( 
-		reset common.mainView.authorView.categoryTree.previewCsv
+		set common.mainView.authorView.categoryTree.previewCsv
 	) triggers (card.LoadCards)
 	
 		

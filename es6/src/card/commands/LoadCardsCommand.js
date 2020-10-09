@@ -4,6 +4,7 @@ export default class LoadCardsCommand extends AbstractLoadCardsCommand {
 
     validateCommandData() {
         if (!this.commandData.selectedCategory) {
+            this.commandData.cardList = undefined;
             this.commandData.outcome = this.noCategorySelected;
             return false;
         }

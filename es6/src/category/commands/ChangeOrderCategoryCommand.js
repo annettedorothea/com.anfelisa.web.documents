@@ -24,8 +24,8 @@ export default class ChangeOrderCategoryCommand extends AbstractChangeOrderCateg
     }
 
     handleResponse(resolve) {
+        this.commandData.movedCategory = undefined;
         this.commandData.outcome = this.ok;
-
         resolve();
     }
     handleError(resolve, reject) {

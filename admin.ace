@@ -22,7 +22,7 @@ ACE
 		loadingFlag common.displaySpinner 
 		on ok triggers ( GetAllUsers )
 		on error (
-			reset common.mainView.userListView.usernameToBeDeleted 
+			set common.mainView.userListView.usernameToBeDeleted 
 			set common.mainView.userListView.showDeleteUserDialog
 		) triggers (common.DisplayError)
 	
@@ -33,7 +33,7 @@ ACE
 	
 	DeleteUserCancel 
 		on ok (
-			reset common.mainView.userListView.usernameToBeDeleted 
+			set common.mainView.userListView.usernameToBeDeleted 
 			set common.mainView.userListView.showDeleteUserDialog
 		)
 	

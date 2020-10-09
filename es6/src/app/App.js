@@ -1,13 +1,12 @@
 import AppUtils from "./AppUtils";
 
 import Container from "../web/Container";
-import {routeChanged} from "../../gen/common/ActionFunctions";
 
-export * from "../../gen/ace/Scenario";
-export * from "../../gen/ace/Bug";
+import React from "react";
+import ReactDOM from "react-dom";
 
-const React = require('react');
-const ReactDOM = require('react-dom');
+export * from "../../gen/ace/Timeline";
+export { dumpAppState } from "./AppUtils";
 
 AppUtils.createInitialAppState();
 
@@ -20,13 +19,8 @@ export function render(newAppState) {
     container.setState(newAppState);
 }
 
-window.onhashchange = () => {
-    routeChanged();
-    window.scrollTo(0, 0);
-};
-
 AppUtils.initEventListenersAndActionFactories();
-AppUtils.start();
+AppUtils.startApp();
 
 
 /*       S.D.G.       */

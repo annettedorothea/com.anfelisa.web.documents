@@ -21,6 +21,7 @@ import AbstractOnDragExitCommand from "../../../gen/card/commands/AbstractOnDrag
 
 export default class OnDragExitCommand extends AbstractOnDragExitCommand {
     execute() {
+    	this.commandData.dragTargetCardId = undefined;
     	this.commandData.outcome = this.ok;
     }
 }

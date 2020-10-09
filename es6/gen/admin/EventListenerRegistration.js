@@ -12,10 +12,10 @@ export default class EventListenerRegistrationAdmin {
 
 	static init() {
 		ACEController.registerListener('admin.GetAllUsersOkEvent', AppState.set_userListView);
-		ACEController.registerListener('admin.DeleteUserErrorEvent', AppState.reset_userListView_usernameToBeDeleted);
+		ACEController.registerListener('admin.DeleteUserErrorEvent', AppState.set_userListView_usernameToBeDeleted);
 		ACEController.registerListener('admin.DeleteUserErrorEvent', AppState.set_userListView_showDeleteUserDialog);
 		ACEController.registerListener('admin.DeleteUserClickOkEvent', AppState.merge_userListView);
-		ACEController.registerListener('admin.DeleteUserCancelOkEvent', AppState.reset_userListView_usernameToBeDeleted);
+		ACEController.registerListener('admin.DeleteUserCancelOkEvent', AppState.set_userListView_usernameToBeDeleted);
 		ACEController.registerListener('admin.DeleteUserCancelOkEvent', AppState.set_userListView_showDeleteUserDialog);
 	}
 

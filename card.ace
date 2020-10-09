@@ -11,7 +11,7 @@ LoadCards
 	call com.anfelisa.card.GetCards
 	loadingFlag common.displaySpinner 
 	on ok ( merge common.mainView.authorView.cardView )
-	on noCategorySelected ( reset common.mainView.authorView.cardView.cardList )
+	on noCategorySelected ( set common.mainView.authorView.cardView.cardList )
 
  CreateCard 
  	fromAppState (
@@ -144,7 +144,7 @@ MoveCards
  	call com.anfelisa.card.MoveCards
 	loadingFlag common.displaySpinner 
 	on ok (
-		reset common.mainView.authorView.cardView.movedCardIds
+		set common.mainView.authorView.cardView.movedCardIds
 	) triggers (category.LoadCategoryTree)
 	
 	
@@ -153,14 +153,14 @@ ChangeCardOrder ( cardId )
  	call com.anfelisa.card.ChangeOrder
 	loadingFlag common.displaySpinner 
 	on ok (
-		reset common.mainView.authorView.cardView.movedCardIds
+		set common.mainView.authorView.cardView.movedCardIds
 	) triggers (LoadCards)
 
 OnDragEnter ( dragTargetCardId )
 	on ok (set common.mainView.authorView.cardView.dragTargetCardId)
 	
 OnDragExit ( dragTargetCardId )
-	on ok (reset common.mainView.authorView.cardView.dragTargetCardId)
+	on ok (set common.mainView.authorView.cardView.dragTargetCardId)
 	
 SearchDuplicateCards 
 	fromAppState (

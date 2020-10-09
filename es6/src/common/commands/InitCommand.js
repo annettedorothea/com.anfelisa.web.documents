@@ -10,6 +10,7 @@ export default class InitCommand extends AbstractInitCommand {
             };
             this.commandData.outcome = this.user;
         } else {
+            this.commandData.loggedInUser = null;
             this.commandData.outcome = this.noUser;
         }
     }

@@ -15,8 +15,8 @@ ACE
 		fromAppState (common.mainView.profileView.username)
 		call com.anfelisa.user.DeleteUser
 		loadingFlag common.displaySpinner 
-		on ok ( reset common.mainView.profileView.showDeleteUserDialog ) triggers ( common.Logout )
-		on error ( reset common.mainView.profileView.showDeleteUserDialog ) triggers (LoadUser common.DisplayError)
+		on ok ( set common.mainView.profileView.showDeleteUserDialog ) triggers ( common.Logout )
+		on error ( set common.mainView.profileView.showDeleteUserDialog ) triggers (LoadUser common.DisplayError)
 	
 	DeleteUserClick 
 		on ok (set common.mainView.profileView.showDeleteUserDialog)

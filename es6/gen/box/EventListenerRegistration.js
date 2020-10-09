@@ -14,9 +14,9 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.LoadBoxesOkEvent', AppState.set_dashboardView);
 		ACEController.registerListener('box.LoadBoxStatisticsOkEvent', AppState.set_dashboardView_boxList);
 		ACEController.registerListener('box.DeleteBoxClickOkEvent', AppState.set_dashboardView_deleteBox);
-		ACEController.registerListener('box.CancelDeleteBoxOkEvent', AppState.reset_dashboardView_deleteBox_boxId);
+		ACEController.registerListener('box.CancelDeleteBoxOkEvent', AppState.set_dashboardView_deleteBox_boxId);
 		ACEController.registerListener('box.CancelDeleteBoxOkEvent', AppState.set_dashboardView_deleteBox_confirmDelete);
-		ACEController.registerListener('box.DeleteBoxErrorEvent', AppState.reset_dashboardView_deleteBox_boxId);
+		ACEController.registerListener('box.DeleteBoxErrorEvent', AppState.set_dashboardView_deleteBox_boxId);
 		ACEController.registerListener('box.DeleteBoxErrorEvent', AppState.set_dashboardView_deleteBox_confirmDelete);
 		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.merge_cardView);
 		ACEController.registerListener('box.DisplayWantedOkEvent', AppState.merge_cardView);

@@ -35,6 +35,7 @@ export default class ImportCsvCommand extends AbstractImportCsvCommand {
     }
 
     handleResponse(resolve) {
+    	this.commandData.previewCsv = [];
     	this.commandData.outcome = this.ok;
     	resolve();
     }

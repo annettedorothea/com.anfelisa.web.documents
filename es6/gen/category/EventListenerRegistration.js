@@ -31,12 +31,12 @@ export default class EventListenerRegistrationCategory {
 		ACEController.registerListener('category.UpdateCategoryErrorEvent', AppState.merge_authorView_categoryTree);
 		ACEController.registerListener('category.CheckDropAllowedOkEvent', AppState.merge_authorView_categoryTree);
 		ACEController.registerListener('category.MoveCategoryStartedOkEvent', AppState.merge_authorView_categoryTree);
-		ACEController.registerListener('category.MoveCategoryOkEvent', AppState.reset_authorView_categoryTree_movedCategory);
-		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', AppState.reset_authorView_categoryTree_movedCategory);
+		ACEController.registerListener('category.MoveCategoryOkEvent', AppState.set_authorView_categoryTree_movedCategory);
+		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', AppState.set_authorView_categoryTree_movedCategory);
 		ACEController.registerListener('category.PreviewCsvOkEvent', AppState.set_authorView_categoryTree_previewCsv);
-		ACEController.registerListener('category.CancelPreviewCsvOkEvent', AppState.reset_authorView_categoryTree_previewCsv);
+		ACEController.registerListener('category.CancelPreviewCsvOkEvent', AppState.set_authorView_categoryTree_previewCsv);
 		ACEController.registerListener('category.SwapPreviewCsvOkEvent', AppState.set_authorView_categoryTree_previewCsv);
-		ACEController.registerListener('category.ImportCsvOkEvent', AppState.reset_authorView_categoryTree_previewCsv);
+		ACEController.registerListener('category.ImportCsvOkEvent', AppState.set_authorView_categoryTree_previewCsv);
 	}
 
 }

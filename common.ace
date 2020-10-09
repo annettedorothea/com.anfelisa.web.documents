@@ -12,7 +12,7 @@ Init
 		set language
 	) triggers ( InitialLogin )
 	on noUser ( 
-		reset loggedInUser 
+		set loggedInUser 
 		set language
 	) triggers ( RouteChanged )
 
@@ -51,9 +51,9 @@ InitialLogin
 	
 Logout 
 	on ok ( 
-		reset loggedInUser
-		reset username
-		reset password
+		set loggedInUser
+		set username
+		set password
 	) triggers ( Route )
 
 DisplayError ( error ) 
@@ -69,7 +69,7 @@ DisplayMessage ( messageKey )
 	on ok (set message) 
 
 ClearToast 
-	on ok (reset message)
+	on ok (set message)
 	
 DisplaySaveBugDialog
 	on ok (set displaySaveBugDialog)

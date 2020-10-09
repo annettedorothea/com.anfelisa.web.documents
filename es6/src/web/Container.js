@@ -52,9 +52,9 @@ export default class Container extends React.Component {
                             0261 1393793 &middot; <a href="mailto:info@anfelisa.de">info@anfelisa.de</a>
                         </p>
                         <p>
-                            {this.state.texts.container.version[this.state.language]} {Utils.getClientVersion()}
+                            {this.state.texts.container.version[this.state.language]} {Utils.settings ? Utils.settings.clientVersion : ""}
                         </p>
-                        {Utils.isDevelopment() === true && <a href={`${Utils.getAceScenariosBaseUrl()}#/${Utils.getAceScenariosApiKey()}/scenarios`} target="ace">ace-scenarios</a>}
+                        {<a href={`${Utils.settings ? Utils.settings.aceScenariosBaseUrl : ""}#/${Utils.settings ? Utils.settings.aceScenariosApiKey : ""}`} target="ace">ace-scenarios</a>}
                     </div>
                 </div>
             </div>

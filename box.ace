@@ -28,7 +28,7 @@ ACE
 	
 	CancelDeleteBox 
 		on ok (
-			reset common.mainView.dashboardView.deleteBox.boxId
+			set common.mainView.dashboardView.deleteBox.boxId
 			set common.mainView.dashboardView.deleteBox.confirmDelete
 		)
 	
@@ -38,7 +38,7 @@ ACE
 		loadingFlag common.displaySpinner 
 		on ok triggers (LoadBoxes)
 		on error (
-			reset common.mainView.dashboardView.deleteBox.boxId
+			set common.mainView.dashboardView.deleteBox.boxId
 			set common.mainView.dashboardView.deleteBox.confirmDelete
 		) triggers (common.DisplayError)
 	
