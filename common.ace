@@ -54,7 +54,7 @@ Logout
 		set loggedInUser
 		set username
 		set password
-	) triggers ( Route )
+	) triggers ( Route RouteChanged )
 
 DisplayError ( error ) 
 	fromAppState( language, texts)
