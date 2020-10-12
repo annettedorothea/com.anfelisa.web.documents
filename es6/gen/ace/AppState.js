@@ -98,7 +98,11 @@ export function get_username() {
 }
 
 export function set_username(eventData) {
-	localStorage.setItem("username", eventData.username);
+	if (eventData.username) {
+		localStorage.setItem("username", eventData.username);
+	} else {
+		localStorage.removeItem("username");
+	}
 }
 
 export function get_password() {
@@ -106,7 +110,11 @@ export function get_password() {
 }
 
 export function set_password(eventData) {
-	localStorage.setItem("password", eventData.password);
+	if (eventData.password) {
+		localStorage.setItem("password", eventData.password);
+	} else {
+		localStorage.removeItem("password");
+	}
 }
 
 export function get_displaySpinner() {
