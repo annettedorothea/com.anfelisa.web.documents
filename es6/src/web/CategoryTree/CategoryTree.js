@@ -115,7 +115,7 @@ export default class CategoryTree extends React.Component {
                     onChange={() => filterNonScheduledCards()}
                     checked={this.props.filterNonScheduled}
                 /> {this.props.texts.categoryTree.filterNonScheduled[this.props.language]}
-                {this.props.filterNonScheduled === true && <FilterPriority />}
+                {this.props.filterNonScheduled === true && <FilterPriority priority={this.props.priority} />}
 
 
                 <div className="categoryTreeItems">

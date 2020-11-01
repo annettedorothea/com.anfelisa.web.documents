@@ -5,7 +5,11 @@ category
 ACE
 
 LoadCategoryTree ( rootCategoryId, selectedCategoryId )
-	fromAppState (common.mainView.authorView.categoryTree.rootCategory, common.mainView.authorView.filterNonScheduled)
+	fromAppState (
+		common.mainView.authorView.categoryTree.rootCategory, 
+		common.mainView.authorView.filterNonScheduled,
+		common.mainView.authorView.priority
+	)
 	call com.anfelisa.category.GetCategoryTree
 	loadingFlag common.displaySpinner 
 	on ok ( 

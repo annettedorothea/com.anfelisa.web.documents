@@ -19,6 +19,7 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
         this.ok = "ok";
         this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
         this.commandData.filterNonScheduled = AppState.get_authorView_filterNonScheduled();
+        this.commandData.priority = AppState.get_authorView_priority();
     }
 
     publishEvents() {

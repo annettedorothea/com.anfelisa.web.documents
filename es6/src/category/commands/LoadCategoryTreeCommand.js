@@ -40,7 +40,8 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
                 cardList: null,
                 naturalInputOrder: true
             },
-            filterNonScheduled: this.commandData.filterNonScheduled
+            filterNonScheduled: this.commandData.filterNonScheduled,
+            priority: this.commandData.priority
         };
         this.commandData.selectedCategoryId = undefined;
         resolve();
