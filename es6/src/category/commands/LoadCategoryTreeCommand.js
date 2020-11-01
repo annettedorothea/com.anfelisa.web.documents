@@ -10,6 +10,12 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
             }
             this.commandData.rootCategoryId = this.commandData.rootCategory.categoryId;
         }
+        if (this.commandData.filterNonScheduled === undefined) {
+            this.commandData.filterNonScheduled = null;
+        }
+        if (this.commandData.priority === undefined) {
+            this.commandData.priority = null;
+        }
         return true;
     }
 
@@ -33,7 +39,8 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
             cardView: {
                 cardList: null,
                 naturalInputOrder: true
-            }
+            },
+            filterNonScheduled: this.commandData.filterNonScheduled
         };
         this.commandData.selectedCategoryId = undefined;
         resolve();

@@ -567,6 +567,7 @@ a:hover.tile .buttons {
     margin: 24px 0;
 }
 
+
 /* admin user list  */
 
 .adminUserList {
@@ -999,6 +1000,15 @@ iframe {
 
 .categoryTree button {
     margin-bottom: 12px;
+}
+
+.categoryTree span.priority {
+    margin-left: 10px;
+}
+
+.categoryTree span.priority i {
+    margin: 0 0;
+    color: #337ab7;
 }
 
 .categoryTree .categoryItem {

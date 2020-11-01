@@ -34,6 +34,7 @@ export default class ExpandedCategoryItem extends React.Component {
                 <SelectableCategoryItem
                     selected={this.props.selected}
                     categoryName={this.props.categoryName}
+                    nonScheduledCount={this.props.nonScheduledCount}
                     categoryId={this.props.categoryId}
                     dropAllowed={this.props.dropAllowed}
                     dropTargetCategoryId={this.props.dropTargetCategoryId}

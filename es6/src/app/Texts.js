@@ -18,20 +18,14 @@ export const Texts = {
             title: {
                 de: "Löschen"
             }
-        },
-        cards: {
-            de: "{0} Karten"
-        },
-        noCards: {
-            de: "Keine Karten"
-        },
-        oneCard: {
-            de: "Eine Karte"
         }
     },
     boxSettings : {
         cancel: {
             de: "Abbrechen"
+        },
+        cardInfo: {
+            de: "{0} von {1} Karten"
         },
         categoryName: {
             de: "Name"
@@ -194,6 +188,9 @@ export const Texts = {
                 de: "Bearbeiten"
             }
         },
+        filterNonScheduled: {
+            de: "Nie abgefragte anzeigen"
+        },
         newCategory: {
             cancel: {
                 de: "Abbrechen"
@@ -235,9 +232,6 @@ export const Texts = {
         },
         filterCards: {
             de: "Suchen und filtern"
-        },
-        filterNonScheduled: {
-            de: "Nie abgefragte anzeigen"
         },
         noCards: {
             de: "Hier gibt es noch keine Karten."

@@ -6,7 +6,8 @@ ACE
 LoadCards
 	fromAppState (
 		common.mainView.authorView.categoryTree.selectedCategory, 
-		common.mainView.authorView.cardView.naturalInputOrder
+		common.mainView.authorView.cardView.naturalInputOrder,
+		common.mainView.authorView.filterNonScheduled
 	)
 	call com.anfelisa.card.GetCards
 	loadingFlag common.displaySpinner 
@@ -37,7 +38,7 @@ LoadCards
 	on ok ( set common.mainView.authorView.cardView.editedCard )
 	triggers (LoadCards)
 
- UpdateCardPriority(cardId, priority)
+ UpdateCardPriority(cardId, priority, actualPriority)
  	call com.anfelisa.card.UpdateCardPriority
 	loadingFlag common.displaySpinner 
 	on ok triggers (LoadCards)
@@ -86,10 +87,6 @@ CancelDeleteCard
 
 FilterCards ( filter )
 	on ok (set common.mainView.authorView.cardView.filter)
-
-FilterNonScheduledCards
-	fromAppState (common.mainView.authorView.cardView.filterNonScheduled)
-	on ok (set common.mainView.authorView.cardView.filterNonScheduled)
 
 PassValueToDictionary 
 	fromAppState (common.mainView.authorView.cardView.naturalInputOrder, common.mainView.authorView.cardView.newCard.given, common.mainView.authorView.cardView.newCard.wanted)

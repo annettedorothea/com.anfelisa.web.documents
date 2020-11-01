@@ -32,7 +32,10 @@ RouteChanged
 		set mainView.resetPasswordView 
 	)
 	on dashboard triggers (box.InitBoxesForDay)
-	on categories triggers (category.LoadCategoryTree )
+	on categories (
+		set mainView.authorView.filterNonScheduled
+		set mainView.authorView.priority
+	) triggers (category.LoadCategoryTree )
 	on profile triggers ( profile.LoadUser )
 	on userList triggers (admin.GetAllUsers) 
 	on nextCard (set mainView.cardView.boxId) triggers (box.LoadNextCard)
@@ -160,6 +163,9 @@ appState {
 			String givenLanguage
 			String wantedLanguage
 			String categoryId
+			
+			Integer allActiveCards
+			Integer allCards
 		} 
 		profileView {
 			String username
@@ -200,6 +206,8 @@ appState {
 			String boxId
 		}
 		authorView {
+	        Boolean filterNonScheduled
+	        Integer priority
 			categoryTree {
 				selectedCategory {
 					String categoryId
@@ -263,7 +271,6 @@ appState {
 		        }
 		        Boolean naturalInputOrder
 		        String filter
-		        Boolean filterNonScheduled
 		        editedCard {
 		        	String cardId
 		        	String given

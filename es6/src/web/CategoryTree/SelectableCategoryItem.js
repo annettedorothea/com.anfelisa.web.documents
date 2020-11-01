@@ -51,7 +51,7 @@ export default class SelectableCategoryItem extends React.Component {
             >
                 <span
                     className={`item ${this.props.selected ? "selected" : "notSelected"} ${this.props.dropAllowed && this.props.dropTargetCategoryId === this.props.categoryId ? "dropAllowed" : ""}`}
-                    onClick={() => this.props.selected ? "" : selectTreeItem(this.props.categoryId)}>{this.props.categoryName}</span>
+                    onClick={() => this.props.selected ? "" : selectTreeItem(this.props.categoryId)}>{this.props.categoryName} {this.props.nonScheduledCount}</span>
             </span>
         );
     }
