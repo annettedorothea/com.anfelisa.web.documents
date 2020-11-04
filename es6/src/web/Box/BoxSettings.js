@@ -25,6 +25,8 @@ export default class BoxSettings extends React.Component {
             <div className="center-wide">
                 <div className="form">
                     <h1>{this.props.texts.boxSettings.title[this.props.language]}</h1>
+                    {this.props.allActiveCards && this.props.allCards && <div
+                        className="line">{this.props.texts.boxSettings.cardInfo[this.props.language].replace("{0}", this.props.allActiveCards).replace("{1}", this.props.allCards)}</div>}
                     <div className="line">
                         <label>{this.props.texts.boxSettings.categoryName[this.props.language]}</label>
                         <div className="inputContainer">

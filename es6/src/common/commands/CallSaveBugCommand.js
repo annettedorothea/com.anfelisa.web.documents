@@ -22,13 +22,9 @@ export default class CallSaveBugCommand extends AbstractCallSaveBugCommand {
 
     execute() {
         return new Promise((resolve) => {
-            saveTimeline("unknown user interaction", this.commandData.username).then(() => {
-                this.commandData.outcome = this.ok;
-                resolve();
-            }, () => {
-                this.commandData.outcome = this.ok;
-                resolve();
-            });
+            saveTimeline("unknown user interaction", this.commandData.username);
+            this.commandData.outcome = this.ok;
+            resolve();
         });
     }
 }

@@ -5,7 +5,11 @@ category
 ACE
 
 LoadCategoryTree ( rootCategoryId, selectedCategoryId )
-	fromAppState (common.mainView.authorView.categoryTree.rootCategory)
+	fromAppState (
+		common.mainView.authorView.categoryTree.rootCategory, 
+		common.mainView.authorView.filterNonScheduled,
+		common.mainView.authorView.priority
+	)
 	call com.anfelisa.category.GetCategoryTree
 	loadingFlag common.displaySpinner 
 	on ok ( 
@@ -29,8 +33,10 @@ CollapseTreeItem ( categoryId )
 	) triggers( SelectTreeItem )
 
 SelectTreeItem ( categoryId  )
-	fromAppState (common.mainView.authorView.categoryTree.rootCategory)
-	on ok ( set common.mainView.authorView.categoryTree.selectedCategory) triggers( card.LoadCards common.Route)
+	fromAppState (
+		common.mainView.authorView.categoryTree.rootCategory
+	)
+	on ok ( set common.mainView.authorView.categoryTree.selectedCategory) triggers( card.LoadCards )
 
 NewCategoryClick
 	on ok (merge common.mainView.authorView.categoryTree)
@@ -156,5 +162,23 @@ ImportCsv
 		set common.mainView.authorView.categoryTree.previewCsv
 	) triggers (card.LoadCards)
 	
+FilterNonScheduledCards
+	fromAppState (
+		common.mainView.authorView.filterNonScheduled, 
+		common.mainView.authorView.categoryTree.selectedCategory
+	)
+	on ok (
+		set common.mainView.authorView.filterNonScheduled
+	) triggers (LoadCategoryTree)
+
+PriorityChanged(priority)
+	fromAppState (
+		common.mainView.authorView.filterNonScheduled, 
+		common.mainView.authorView.priority as actualPriority,
+		common.mainView.authorView.categoryTree.selectedCategory
+	)
+	on ok (set common.mainView.authorView.priority)
+	triggers (LoadCategoryTree)
+
 		
 

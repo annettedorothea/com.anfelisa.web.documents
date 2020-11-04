@@ -55,10 +55,6 @@ export default class Container extends React.Component {
                             {this.state.texts.container.version[this.state.language]} {Utils.settings ? Utils.settings.clientVersion : ""}
                         </p>
                         <p>
-                            <a href={`${Utils.settings ? Utils.settings.aceScenariosBaseUrl : ""}#/${Utils.settings ? Utils.settings.aceScenariosApiKey : ""}`}
-                               target="ace">ace-scenarios</a>
-                        </p>
-                        <p>
                             <a onClick={() => Utils.saveTimeline("no description", AppState.get_username())}
                                target="ace">save timeline</a>
                         </p>

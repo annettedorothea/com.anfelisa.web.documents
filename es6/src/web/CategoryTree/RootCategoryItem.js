@@ -1,5 +1,6 @@
 import React from 'react';
 import ExpandedCategoryItem from "./ExpandedCategoryItem";
+import NewCategory from "./NewCategory";
 
 export default class RootCategoryItem extends React.Component {
 
@@ -18,6 +19,8 @@ export default class RootCategoryItem extends React.Component {
                     depth={1}
                     dropAllowed={this.props.dropAllowed}
                     dropTargetCategoryId={this.props.dropTargetCategoryId}
+                    texts={this.props.texts}
+                    language={this.props.language}
                 />
             </div>
         );

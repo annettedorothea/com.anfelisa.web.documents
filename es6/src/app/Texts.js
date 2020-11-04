@@ -18,20 +18,14 @@ export const Texts = {
             title: {
                 de: "Löschen"
             }
-        },
-        cards: {
-            de: "{0} Karten"
-        },
-        noCards: {
-            de: "Keine Karten"
-        },
-        oneCard: {
-            de: "Eine Karte"
         }
     },
     boxSettings : {
         cancel: {
             de: "Abbrechen"
+        },
+        cardInfo: {
+            de: "{0} von {1} Karten"
         },
         categoryName: {
             de: "Name"
@@ -84,17 +78,6 @@ export const Texts = {
                 de: "Löschen"
             }
         },
-        invitedUsers: {
-            invite: {
-                de: "einladen"
-            },
-            title: {
-                de: "Benutzer mit Zugriff"
-            },
-            username: {
-                de: "Benutzer"
-            }
-        },
         languages: {
             de: {
                 de: "Deutsch"
@@ -117,6 +100,12 @@ export const Texts = {
         },
         newRootCategory: {
             de: "Neue Lernkartei"
+        },
+        nonScheduled: {
+            de: "{0} nie abgefragte Karten"
+        },
+        nonScheduledSingular: {
+            de: "Eine nie abgefragte Karte"
         },
         title: {
             de: "Alle Lernkarteien"
@@ -194,6 +183,9 @@ export const Texts = {
                 de: "Bearbeiten"
             }
         },
+        filterNonScheduled: {
+            de: "Nie abgefragte anzeigen"
+        },
         newCategory: {
             cancel: {
                 de: "Abbrechen"
@@ -235,9 +227,6 @@ export const Texts = {
         },
         filterCards: {
             de: "Suchen und filtern"
-        },
-        filterNonScheduled: {
-            de: "Nie abgefragte anzeigen"
         },
         noCards: {
             de: "Hier gibt es noch keine Karten."

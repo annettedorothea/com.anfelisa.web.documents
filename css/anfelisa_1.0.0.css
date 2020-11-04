@@ -567,6 +567,7 @@ a:hover.tile .buttons {
     margin: 24px 0;
 }
 
+
 /* admin user list  */
 
 .adminUserList {
@@ -1001,6 +1002,15 @@ iframe {
     margin-bottom: 12px;
 }
 
+.categoryTree span.priority {
+    margin-left: 10px;
+}
+
+.categoryTree span.priority i {
+    margin: 0 0;
+    color: #337ab7;
+}
+
 .categoryTree .categoryItem {
     margin: 4px;
 
@@ -1028,6 +1038,19 @@ iframe {
 .categoryTree .categoryItem .dropAllowed {
     background-color: #ffa84c;
     color: #fff;
+}
+
+.categoryTree .categoryItem .nonScheduledCount {
+    margin-left: 10px;
+    font-style: italic;
+}
+
+.categoryTree .categoryItem .notSelected .nonScheduledCount {
+    color: #777;
+}
+
+.categoryTree .categoryItem .selected .nonScheduledCount {
+    color: #ccc;
 }
 
 .categoryTree .categoryTreeItems {

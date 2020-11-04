@@ -14,6 +14,8 @@ import {route} from "../../../gen/common/ActionFunctions";
 import CsvFileInput from "./CsvFileInput";
 import CsvPreview from "./CsvPreview";
 import RootCategoryItem from "./RootCategoryItem";
+import {filterNonScheduledCards} from "../../../gen/category/ActionFunctions";
+import FilterPriority from "./FilterPriority";
 
 export default class CategoryTree extends React.Component {
 
@@ -108,9 +110,15 @@ export default class CategoryTree extends React.Component {
                     language={this.props.language}
                     disabled={!this.props.selectedCategory}
                 />
+                <input
+                    type={"checkbox"}
+                    onChange={() => filterNonScheduledCards()}
+                    checked={this.props.filterNonScheduled}
+                /> {this.props.texts.categoryTree.filterNonScheduled[this.props.language]}
+                {this.props.filterNonScheduled === true && <FilterPriority priority={this.props.priority} />}
 
                 <div className="categoryTreeItems">
-                    <RootCategoryItem
+                    {this.props.rootCategory && <RootCategoryItem
                         {...this.props.rootCategory}
                         childCategories={this.props.rootCategory.childCategories}
                         selectedCategory={this.props.selectedCategory}
@@ -120,6 +128,7 @@ export default class CategoryTree extends React.Component {
                         dropAllowed={this.props.dropAllowed}
                         dropTargetCategoryId={this.props.dropTargetCategoryId}
                     />
+                    }
                 </div>
 
             </div>

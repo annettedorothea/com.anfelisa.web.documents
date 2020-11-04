@@ -8,7 +8,7 @@ import DuplicateCardItem from "./DuplicateCardItem";
 import {
     cancelDeleteCard,
     deleteCard,
-    filterCards, filterNonScheduledCards,
+    filterCards,
     scheduleSelectedCards, sortSelectedCardsOut,
     toggleAllScheduleCardSelection,
     toggleInputOrder
@@ -21,7 +21,7 @@ export default class CardList extends React.Component {
     }
 
     render() {
-        const cardItems = this.props.cardView.cardList.filter((card) => (this.props.cardView.filterNonScheduled === true && !!!card.next || this.props.cardView.filterNonScheduled === false) && (card.given.indexOf(this.props.cardView.filter) >= 0 || card.wanted.indexOf(this.props.cardView.filter) >= 0)).map((card) => {
+        const cardItems = this.props.cardView.cardList.filter((card) => (card.given.indexOf(this.props.cardView.filter) >= 0 || card.wanted.indexOf(this.props.cardView.filter) >= 0)).map((card) => {
             if (card.cardId === this.props.cardView.editedCard.cardId) {
                 return <EditCard
                     key={card.cardId}
@@ -119,11 +119,6 @@ export default class CardList extends React.Component {
                                 value={this.props.cardView.filter}
                                 placeholder={this.props.texts.cardList.filterCards[this.props.language]}
                             />
-                            <input
-                                type={"checkbox"}
-                                onChange={() => filterNonScheduledCards()}
-                                checked={this.props.cardView.filterNonScheduled}
-                            /> {this.props.texts.cardList.filterNonScheduled[this.props.language]}
                         </th>
                     </tr>
 
