@@ -117,7 +117,6 @@ export default class CategoryTree extends React.Component {
                 /> {this.props.texts.categoryTree.filterNonScheduled[this.props.language]}
                 {this.props.filterNonScheduled === true && <FilterPriority priority={this.props.priority} />}
 
-
                 <div className="categoryTreeItems">
                     {this.props.rootCategory && <RootCategoryItem
                         {...this.props.rootCategory}

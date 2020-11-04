@@ -33,8 +33,10 @@ CollapseTreeItem ( categoryId )
 	) triggers( SelectTreeItem )
 
 SelectTreeItem ( categoryId  )
-	fromAppState (common.mainView.authorView.categoryTree.rootCategory)
-	on ok ( set common.mainView.authorView.categoryTree.selectedCategory) triggers( card.LoadCards common.Route)
+	fromAppState (
+		common.mainView.authorView.categoryTree.rootCategory
+	)
+	on ok ( set common.mainView.authorView.categoryTree.selectedCategory) triggers( card.LoadCards )
 
 NewCategoryClick
 	on ok (merge common.mainView.authorView.categoryTree)

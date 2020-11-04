@@ -1040,6 +1040,19 @@ iframe {
     color: #fff;
 }
 
+.categoryTree .categoryItem .nonScheduledCount {
+    margin-left: 10px;
+    font-style: italic;
+}
+
+.categoryTree .categoryItem .notSelected .nonScheduledCount {
+    color: #777;
+}
+
+.categoryTree .categoryItem .selected .nonScheduledCount {
+    color: #ccc;
+}
+
 .categoryTree .categoryTreeItems {
     margin-bottom: 20px;
 }

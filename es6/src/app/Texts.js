@@ -78,17 +78,6 @@ export const Texts = {
                 de: "Löschen"
             }
         },
-        invitedUsers: {
-            invite: {
-                de: "einladen"
-            },
-            title: {
-                de: "Benutzer mit Zugriff"
-            },
-            username: {
-                de: "Benutzer"
-            }
-        },
         languages: {
             de: {
                 de: "Deutsch"
@@ -111,6 +100,12 @@ export const Texts = {
         },
         newRootCategory: {
             de: "Neue Lernkartei"
+        },
+        nonScheduled: {
+            de: "{0} nie abgefragte Karten"
+        },
+        nonScheduledSingular: {
+            de: "Eine nie abgefragte Karte"
         },
         title: {
             de: "Alle Lernkarteien"

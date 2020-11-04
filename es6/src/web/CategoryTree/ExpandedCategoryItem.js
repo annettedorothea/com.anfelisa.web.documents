@@ -2,6 +2,7 @@ import React from 'react';
 import CategoryItem from "./CategoryItem";
 import SelectableCategoryItem from "./SelectableCategoryItem";
 import {collapseTreeItem} from "../../../gen/category/ActionFunctions";
+import NewCategory from "./NewCategory";
 
 export default class ExpandedCategoryItem extends React.Component {
 
@@ -39,6 +40,8 @@ export default class ExpandedCategoryItem extends React.Component {
                     dropAllowed={this.props.dropAllowed}
                     dropTargetCategoryId={this.props.dropTargetCategoryId}
                     depth={this.props.depth}
+                    texts={this.props.texts}
+                    language={this.props.language}
                 />
                 <div>
                     {children}

@@ -18,11 +18,15 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             this.commandData.outcome = this.profile;
         } else if (this.commandData.hash === "#users" && this.isUserLoggedIn()) {
             this.commandData.outcome = this.userList;
-        } else if (this.commandData.hash.startsWith("#categories") && hashes.length >= 2 && this.isUserLoggedIn()) {
+        } else if (this.commandData.hash.startsWith("#categories") && hashes.length === 2 && this.isUserLoggedIn()) {
             this.commandData.rootCategoryId = hashes[1];
-            this.commandData.selectedCategoryId = hashes.length === 2 ? hashes[1] : hashes[2];
-            this.commandData.filterNonScheduled = false;
-            this.commandData.priority = null;
+            this.commandData.selectedCategoryId = this.commandData.rootCategoryId;
+            if (!this.commandData.filterNonScheduled) {
+                this.commandData.filterNonScheduled = false;
+            }
+            if (!this.commandData.priority) {
+                this.commandData.priority = null;
+            }
             this.commandData.outcome = this.categories;
         } else if (this.commandData.hash.startsWith("#box/settings") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn()) {
             this.commandData.boxId = hashes[2];

@@ -1,6 +1,7 @@
 import React from 'react';
 import ExpandedCategoryItem from "./ExpandedCategoryItem";
 import CollapsedCategoryItem from "./CollapsedCategoryItem";
+import NewCategory from "./NewCategory";
 
 export default class CategoryItem extends React.Component {
 
@@ -21,6 +22,8 @@ export default class CategoryItem extends React.Component {
                     depth={this.props.depth + 1}
                     dropAllowed={this.props.dropAllowed}
                     dropTargetCategoryId={this.props.dropTargetCategoryId}
+                    texts={this.props.texts}
+                    language={this.props.language}
                 />}
                 {!expanded &&
                 <CollapsedCategoryItem
@@ -29,6 +32,8 @@ export default class CategoryItem extends React.Component {
                     dropAllowed={this.props.dropAllowed}
                     dropTargetCategoryId={this.props.dropTargetCategoryId}
                     depth={this.props.depth + 1}
+                    texts={this.props.texts}
+                    language={this.props.language}
                 />}
             </div>
         );
