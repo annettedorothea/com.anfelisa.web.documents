@@ -127,7 +127,7 @@ export default class CardList extends React.Component {
                             <input
                                 type={"checkbox"}
                                 onChange={() => toggleAllScheduleCardSelection()}
-                                checked={this.props.cardView.selectedCardIds.length === this.props.cardView.cardList.length}
+                                checked={this.props.cardView.cardList.length > 0 && this.props.cardView.selectedCardIds.length === this.props.cardView.cardList.length}
                             />
                         </th>
                         <th colSpan={4}>

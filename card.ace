@@ -123,10 +123,15 @@ ToggleAllScheduleCardSelection
 	on ok (set common.mainView.authorView.cardView.selectedCardIds)
 
 ScheduleSelectedCards
-	fromAppState (common.mainView.authorView.cardView.selectedCardIds) 
+	fromAppState (
+		common.mainView.authorView.cardView.selectedCardIds,
+		common.mainView.authorView.filterNonScheduled
+	) 
  	call com.anfelisa.box.ScheduleCards
 	loadingFlag common.displaySpinner 
-	on ok triggers (LoadCards)
+	on noFilter triggers (LoadCards)
+	on filter triggers (category.LoadCategoryTree)
+		
 	
 SortSelectedCardsOut 
 	fromAppState (common.mainView.authorView.cardView.selectedCardIds) 
