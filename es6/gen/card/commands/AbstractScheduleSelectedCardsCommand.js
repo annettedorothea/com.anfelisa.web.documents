@@ -11,20 +11,26 @@ import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
+import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
 
 export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.ScheduleSelectedCardsCommand");
-        this.ok = "ok";
+        this.noFilter = "noFilter";
+        this.filter = "filter";
         this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds();
+        this.commandData.filterNonScheduled = AppState.get_authorView_filterNonScheduled();
     }
 
     publishEvents() {
 		let promises = [];
 	    	
 		switch (this.commandData.outcome) {
-		case this.ok:
+		case this.noFilter:
 			promises.push(new TriggerAction(new LoadCardsAction()).publish());
+			break;
+		case this.filter:
+			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.rootCategoryId, this.commandData.selectedCategoryId)).publish());
 			break;
 		default:
 			return new Promise((resolve, reject) => {reject('ScheduleSelectedCardsCommand unhandled outcome: ' + this.commandData.outcome)});

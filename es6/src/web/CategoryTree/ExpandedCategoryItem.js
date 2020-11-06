@@ -2,7 +2,6 @@ import React from 'react';
 import CategoryItem from "./CategoryItem";
 import SelectableCategoryItem from "./SelectableCategoryItem";
 import {collapseTreeItem} from "../../../gen/category/ActionFunctions";
-import NewCategory from "./NewCategory";
 
 export default class ExpandedCategoryItem extends React.Component {
 

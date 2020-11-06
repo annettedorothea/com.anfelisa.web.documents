@@ -1,6 +1,5 @@
 import React from 'react';
 import ExpandedCategoryItem from "./ExpandedCategoryItem";
-import NewCategory from "./NewCategory";
 
 export default class RootCategoryItem extends React.Component {
 
