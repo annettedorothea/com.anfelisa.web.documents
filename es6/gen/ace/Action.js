@@ -7,6 +7,7 @@
 
 import ACEController from "./ACEController";
 import AppUtils from "../../src/app/AppUtils";
+import Utils from "./Utils";
 
 export default class Action {
     constructor(actionData, actionName) {
@@ -15,6 +16,26 @@ export default class Action {
             actionData = {};
         }
         this.actionData = AppUtils.deepCopy(actionData);
+        if (Utils.settings.mode === "dev") {
+        	let nonDeterministicValues = JSON.parse(localStorage.getItem("nonDeterministicValues"));
+        	if (nonDeterministicValues) {
+        		const nonDeterministicValue = nonDeterministicValues.shift();
+        		if (nonDeterministicValue) {
+	        		this.actionData.uuid = nonDeterministicValue.uuid;
+	        		this.actionData.clientSystemTime = nonDeterministicValue.clientSystemTime;
+	        	}
+        		localStorage.setItem('nonDeterministicValues', JSON.stringify(nonDeterministicValues));
+        	}
+        	if (this.actionData.uuid === null) {
+        		this.actionData.uuid = AppUtils.createUUID();
+        	}
+        	if (this.actionData.clientSystemTime === null) {
+				this.actionData.clientSystemTime = new Date();
+			}
+		} else {
+			this.actionData.uuid = AppUtils.createUUID();
+			this.actionData.clientSystemTime = new Date();
+		}
     }
 
     initActionData() {

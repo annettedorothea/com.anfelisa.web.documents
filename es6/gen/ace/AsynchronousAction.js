@@ -13,17 +13,14 @@ export default class AsynchronousAction extends Action {
 
     constructor(actionData, actionName) {
     	super(actionData, actionName);
-    	   this.asynchronous = true;
+    	this.asynchronous = true;
     }
-	
 
     applyAction() {
         return new Promise((resolve, reject) => {
             ACEController.addItemToTimeLine({action: this});
         	this.preCall();
             AppUtils.renderNewState();
-            this.actionData.uuid = AppUtils.createUUID();
-            this.actionData.clientSystemTime = new Date();
             this.initActionData();
             let command = this.getCommand();
             command.executeCommand().then(() => {

@@ -13,13 +13,11 @@ export default class SynchronousAction extends Action {
 
     constructor(actionData, actionName) {
     	super(actionData, actionName);
-    	   this.asynchronous = false;
+    	this.asynchronous = false;
     }
 
     applyAction() {
 	    ACEController.addItemToTimeLine({action: this});
-        this.actionData.uuid = AppUtils.createUUID();
-		this.actionData.clientSystemTime = new Date();
         this.initActionData();
 	    let command = this.getCommand();
 	    command.executeCommand();
