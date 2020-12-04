@@ -23,7 +23,7 @@ export default class HideSaveBugDialogCommand extends AbstractHideSaveBugDialogC
     execute() {
         this.commandData.displaySaveBugDialog = false;
         this.commandData.messageKey = "thankYou";
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

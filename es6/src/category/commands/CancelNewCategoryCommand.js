@@ -4,7 +4,7 @@ export default class CancelNewCategoryCommand extends AbstractCancelNewCategoryC
     execute() {
         this.commandData.categoryName = "";
         this.commandData.displayNewCategory = false;
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

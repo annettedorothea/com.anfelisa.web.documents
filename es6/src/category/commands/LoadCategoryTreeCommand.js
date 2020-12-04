@@ -20,7 +20,7 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
     }
 
     handleResponse(resolve) {
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
         const expandedCategories = [];
         if (this.commandData.rootCategory) {
             findExpandedCategories(this.commandData.rootCategory, expandedCategories);

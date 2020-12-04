@@ -10,7 +10,7 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
         this.commandData.index = 0;
         this.commandData.enableScoreButtons = false;
         this.commandData.displayImage = false;
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
         resolve();
     }
 

@@ -7,14 +7,14 @@ export default class CreateCategoryCommand extends AbstractCreateCategoryCommand
     }
 
     handleResponse(resolve) {
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
         this.commandData.displayNewCategory = false;
         this.commandData.selectedCategoryId = this.commandData.uuid;
         resolve();
     }
 
     handleError(resolve) {
-        this.commandData.outcome = this.error;
+        this.addErrorOutcome();
         this.commandData.displayNewCategory = false;
         resolve();
     }

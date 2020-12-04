@@ -8,7 +8,7 @@ export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
     handleResponse(resolve) {
         this.commandData.hash = "#";
         this.commandData.messageKey = "emailConfirmed";
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
         resolve();
     }
 

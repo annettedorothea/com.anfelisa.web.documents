@@ -26,7 +26,7 @@ export default class ScoreReinforceCardCommand extends AbstractScoreReinforceCar
     }
 
     handleResponse(resolve) {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     	resolve();
     }
     handleError(resolve, reject) {

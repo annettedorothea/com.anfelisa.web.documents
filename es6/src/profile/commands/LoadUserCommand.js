@@ -7,7 +7,7 @@ export default class LoadUserCommand extends AbstractLoadUserCommand {
     }
 
     handleResponse(resolve) {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
         this.commandData.profileView = {
             username: this.commandData.username,
             email: this.commandData.email,

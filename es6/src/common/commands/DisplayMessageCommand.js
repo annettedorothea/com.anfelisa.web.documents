@@ -9,7 +9,7 @@ export default class DisplayMessageCommand extends AbstractDisplayMessageCommand
             type: "info",
             text
         };
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

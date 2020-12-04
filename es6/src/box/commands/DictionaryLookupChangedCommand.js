@@ -25,7 +25,7 @@ export default class DictionaryLookupChangedCommand extends AbstractDictionaryLo
         } else {
             this.commandData.dictionaryLookupInvalid = false;
         }
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

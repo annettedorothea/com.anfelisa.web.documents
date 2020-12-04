@@ -9,7 +9,7 @@ export default class CancelNewCardCommand extends AbstractCancelNewCardCommand {
             displaySpinner: false,
             displayTranslateSpinner: false
         };
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

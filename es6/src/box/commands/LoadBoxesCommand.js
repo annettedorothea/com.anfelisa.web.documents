@@ -15,7 +15,7 @@ export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
             }
         };
         this.commandData.boxList = undefined;
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
         resolve();
     }
 

@@ -2,7 +2,7 @@ import AbstractDeleteUserCancelCommand from "../../../gen/profile/commands/Abstr
 
 export default class DeleteUserCancelCommand extends AbstractDeleteUserCancelCommand {
     execute() {
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
         this.commandData.showDeleteUserDialog = false;
     }
 }

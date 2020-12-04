@@ -3,7 +3,7 @@ import AbstractEditCategoryClickCommand from "../../../gen/category/commands/Abs
 export default class EditCategoryClickCommand extends AbstractEditCategoryClickCommand {
     execute() {
         this.commandData.displayEditCategory = true;
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

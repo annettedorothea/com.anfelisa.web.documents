@@ -7,7 +7,7 @@ export default class CreateCardCommand extends AbstractCreateCardCommand {
     }
 
     handleResponse(resolve) {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
         this.commandData.newCard = {
             given: "",
             wanted: "",

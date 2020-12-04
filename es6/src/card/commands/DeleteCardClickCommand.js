@@ -2,7 +2,7 @@ import AbstractDeleteCardClickCommand from "../../../gen/card/commands/AbstractD
 
 export default class DeleteCardClickCommand extends AbstractDeleteCardClickCommand {
     execute() {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
         this.commandData.deleteCard = {
             confirmDelete: true,
             cardId: this.commandData.cardId

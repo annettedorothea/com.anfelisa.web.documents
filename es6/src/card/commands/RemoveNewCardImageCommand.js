@@ -3,7 +3,7 @@ import AbstractRemoveNewCardImageCommand from "../../../gen/card/commands/Abstra
 export default class RemoveNewCardImageCommand extends AbstractRemoveNewCardImageCommand {
     execute() {
         this.commandData.image = "";
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

@@ -4,7 +4,7 @@ export default class DeleteUserCancelCommand extends AbstractDeleteUserCancelCom
     execute() {
         this.commandData.showDeleteUserDialog = false;
         this.commandData.usernameToBeDeleted = undefined;
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

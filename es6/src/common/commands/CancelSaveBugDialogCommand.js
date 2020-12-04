@@ -22,7 +22,7 @@ import AbstractCancelSaveBugDialogCommand from "../../../gen/common/commands/Abs
 export default class CancelSaveBugDialogCommand extends AbstractCancelSaveBugDialogCommand {
     execute() {
         this.commandData.displaySaveBugDialog = false;
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

@@ -41,7 +41,7 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
             box.quality5Count = boxWithStats.quality5Count;
         });
         this.commandData.boxStatisticsList = undefined;
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     	resolve();
     }
     handleError(resolve, reject) {

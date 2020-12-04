@@ -13,7 +13,7 @@ export default class PriorityChangedCommand extends AbstractPriorityChangedComma
             this.commandData.priority = null;
         }
         this.commandData.selectedCategoryId = this.commandData.selectedCategory ? this.commandData.selectedCategory.categoryId : undefined;
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

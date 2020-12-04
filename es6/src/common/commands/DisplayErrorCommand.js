@@ -9,7 +9,7 @@ export default class DisplayErrorCommand extends AbstractDisplayErrorCommand {
             type: "error",
             text
         };
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

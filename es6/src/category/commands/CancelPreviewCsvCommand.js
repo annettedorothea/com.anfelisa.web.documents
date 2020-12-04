@@ -20,7 +20,7 @@ import AbstractCancelPreviewCsvCommand from "../../../gen/category/commands/Abst
 export default class CancelPreviewCsvCommand extends AbstractCancelPreviewCsvCommand {
     execute() {
     	this.commandData.previewCsv = undefined;
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

@@ -7,7 +7,7 @@ export default class UpdateCardCommand extends AbstractUpdateCardCommand {
     }
 
     handleResponse(resolve) {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
         this.commandData.editedCard = {
             cardId: "",
             given: "",

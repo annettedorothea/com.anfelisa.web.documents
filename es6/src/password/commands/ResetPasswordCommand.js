@@ -9,12 +9,12 @@ export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
     handleResponse(resolve) {
         this.commandData.hash = "#";
         this.commandData.messageKey = "passwordReset";
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     	resolve();
     }
     handleError(resolve, reject) {
         this.commandData.hash = "#";
-        this.commandData.outcome = this.error;
+        this.addErrorOutcome();
     	reject(this.commandData.error);
     }
 }

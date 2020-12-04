@@ -2,7 +2,7 @@ import AbstractUsernameForgotPasswordChangedCommand from "../../../gen/password/
 
 export default class UsernameForgotPasswordChangedCommand extends AbstractUsernameForgotPasswordChangedCommand {
     execute() {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

@@ -8,10 +8,10 @@ export default class InitCommand extends AbstractInitCommand {
                 username: this.commandData.username,
                 password: this.commandData.password
             };
-            this.commandData.outcome = this.user;
+            this.addUserOutcome();
         } else {
             this.commandData.loggedInUser = null;
-            this.commandData.outcome = this.noUser;
+            this.addNoUserOutcome();
         }
     }
 }

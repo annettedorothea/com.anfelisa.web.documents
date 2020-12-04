@@ -9,7 +9,7 @@ export default class DisplayErrorAndLogoutCommand extends AbstractDisplayErrorAn
             type: "error",
             text
         };
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

@@ -37,7 +37,7 @@ export default class SaveBoxSettingsCommand extends AbstractSaveBoxSettingsComma
         this.commandData.categoryId = undefined;
         this.commandData.categoryName = undefined;
         this.commandData.hash = "#dashboard";
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
         resolve();
     }
 

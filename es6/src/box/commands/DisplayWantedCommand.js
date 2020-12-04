@@ -11,7 +11,7 @@ export default class DisplayWantedCommand extends AbstractDisplayWantedCommand {
                 this.commandData.enableScoreButtons = true;
             }
         }
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

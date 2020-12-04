@@ -23,7 +23,7 @@ export default class MaxCardsPerDayChangedCommand extends AbstractMaxCardsPerDay
             || isNaN(this.commandData.maxCardsPerDay)
             || this.commandData.maxCardsPerDay%1 !== 0
             || this.commandData.maxCardsPerDay <= 0;
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

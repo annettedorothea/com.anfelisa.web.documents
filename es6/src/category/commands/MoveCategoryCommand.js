@@ -9,7 +9,7 @@ export default class MoveCategoryCommand extends AbstractMoveCategoryCommand {
     handleResponse(resolve) {
         this.commandData.selectedCategoryId = this.commandData.targetCategoryId;
         this.commandData.movedCategory = [];
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
 
     	resolve();
     }

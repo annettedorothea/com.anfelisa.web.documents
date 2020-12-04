@@ -2,7 +2,7 @@ import AbstractCategoryNameChangedCommand from "../../../gen/category/commands/A
 
 export default class CategoryNameChangedCommand extends AbstractCategoryNameChangedCommand {
     execute() {
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

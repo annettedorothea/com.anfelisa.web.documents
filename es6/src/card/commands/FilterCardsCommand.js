@@ -2,7 +2,7 @@ import AbstractFilterCardsCommand from "../../../gen/card/commands/AbstractFilte
 
 export default class FilterCardsCommand extends AbstractFilterCardsCommand {
     execute() {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

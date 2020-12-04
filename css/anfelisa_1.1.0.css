@@ -750,6 +750,14 @@ a:hover.tile .buttons {
     background-color: #669E00;
 }
 
+.box button.keep_false {
+    background-color: #669E00;
+}
+
+.box button.keep_true {
+    background-color: #E53C16;
+}
+
 .box img.image {
     max-height: 600px;
     max-width: 100%;

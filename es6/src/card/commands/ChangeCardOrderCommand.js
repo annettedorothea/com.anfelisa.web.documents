@@ -26,7 +26,7 @@ export default class ChangeCardOrderCommand extends AbstractChangeCardOrderComma
 
     handleResponse(resolve) {
     	this.commandData.movedCardIds = undefined;
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     	resolve();
     }
     handleError(resolve, reject) {

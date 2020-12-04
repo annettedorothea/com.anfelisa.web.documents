@@ -26,7 +26,7 @@ export default class MaxIntervalChangedCommand extends AbstractMaxIntervalChange
         } else {
             this.commandData.maxIntervalInvalid = false;
         }
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

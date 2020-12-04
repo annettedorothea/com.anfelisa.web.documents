@@ -24,11 +24,11 @@ export default class TranslateCommand extends AbstractTranslateCommand {
     validateCommandData() {
         if (!!this.commandData.naturalInputOrder) {
             if (!this.commandData.given) {
-                this.commandData.outcome = this.empty;
+                this.addEmptyOutcome();
                 return false;
             }
             if (!!this.commandData.wanted) {
-                this.commandData.outcome = this.targetNotEmtpy;
+                this.addTargetNotEmtpyOutcome();
                 return false;
             }
             this.commandData.sourceValue = this.commandData.given;
@@ -36,11 +36,11 @@ export default class TranslateCommand extends AbstractTranslateCommand {
             this.commandData.targetLanguage = this.commandData.wantedLanguage;
         } else {
             if (!this.commandData.wanted) {
-                this.commandData.outcome = this.empty;
+                this.addEmptyOutcome();
                 return false;
             }
             if (!!this.commandData.given) {
-                this.commandData.outcome = this.targetNotEmtpy;
+                this.addTargetNotEmtpyOutcome();
                 return false;
             }
             this.commandData.sourceValue = this.commandData.wanted;
@@ -53,15 +53,15 @@ export default class TranslateCommand extends AbstractTranslateCommand {
     handleResponse(resolve) {
         if (!!this.commandData.naturalInputOrder) {
             this.commandData.wanted = this.commandData.targetValue;
-            this.commandData.outcome = this.wantedFetched;
+            this.addWantedFetchedOutcome();
         } else {
             this.commandData.given = this.commandData.targetValue;
-            this.commandData.outcome = this.givenFetched;
+            this.addGivenFetchedOutcome();
         }
     	resolve();
     }
     handleError(resolve) {
-        this.commandData.outcome = this.error;
+        this.addErrorOutcome();
         resolve();
     }
 }

@@ -28,7 +28,7 @@ export default class CreateRootCategoryCommand extends AbstractCreateRootCategor
     }
 
     handleResponse(resolve) {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     	resolve();
     }
     handleError(resolve, reject) {

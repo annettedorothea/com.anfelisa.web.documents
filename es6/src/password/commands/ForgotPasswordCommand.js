@@ -9,7 +9,7 @@ export default class ForgotPasswordCommand extends AbstractForgotPasswordCommand
     handleResponse(resolve) {
         this.commandData.hash = "#";
         this.commandData.messageKey = "passwordRequestSubmitted";
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     	resolve();
     }
     handleError(resolve, reject) {

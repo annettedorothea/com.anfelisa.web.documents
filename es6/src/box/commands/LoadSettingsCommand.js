@@ -28,7 +28,7 @@ export default class LoadSettingsCommand extends AbstractLoadSettingsCommand {
         this.commandData.maxInterval = this.commandData.maxInterval ? this.commandData.maxInterval : "";
         this.commandData.givenLanguage = this.commandData.givenLanguage !== null ? this.commandData.givenLanguage : "";
         this.commandData.wantedLanguage = this.commandData.wantedLanguage !== null ? this.commandData.wantedLanguage : "";
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     	resolve();
     }
     handleError(resolve, reject) {

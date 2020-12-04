@@ -9,7 +9,7 @@ export default class EditCardCommand extends AbstractEditCardCommand {
             wanted: card.wanted,
             image: card.image
         };
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

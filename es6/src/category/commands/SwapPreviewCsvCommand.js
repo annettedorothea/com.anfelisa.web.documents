@@ -33,7 +33,7 @@ export default class SwapPreviewCsvCommand extends AbstractSwapPreviewCsvCommand
             }
         });
         this.commandData.previewCsv = csv;
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

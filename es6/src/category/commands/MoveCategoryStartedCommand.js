@@ -4,7 +4,7 @@ import {findCategory} from "../utils/CategoryTreeUtils";
 export default class MoveCategoryStartedCommand extends AbstractMoveCategoryStartedCommand {
     execute() {
         this.commandData.movedCategory = findCategory(this.commandData.rootCategory.childCategories, this.commandData.movedCategoryId);
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

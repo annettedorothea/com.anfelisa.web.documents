@@ -19,7 +19,7 @@ import AbstractRootCategoryNameChangedCommand from "../../../gen/box/commands/Ab
 
 export default class RootCategoryNameChangedCommand extends AbstractRootCategoryNameChangedCommand {
     execute() {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

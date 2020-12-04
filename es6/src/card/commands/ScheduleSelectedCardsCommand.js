@@ -9,9 +9,9 @@ export default class ScheduleSelectedCardsCommand extends AbstractScheduleSelect
 
     handleResponse(resolve) {
         if (this.commandData.filterNonScheduled) {
-            this.commandData.outcome = this.filter;
+            this.addFilterOutcome();
         } else {
-            this.commandData.outcome = this.noFilter;
+            this.addNoFilterOutcome();
         }
     	resolve();
     }
