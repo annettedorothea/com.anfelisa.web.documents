@@ -1,12 +1,12 @@
 {
   "name": "anfelisa",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "anfelisa client",
   "repository": "https://github.com/annettedorothea/com.anfelisa.client",
   "scripts": {
-    "uglify": "uglifyjs lib/anfelisa_1.1.0.js --compress --mangle --output lib/anfelisa_1.1.0.min.js",
-    "build": "browserify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.1.0.js --debug --standalone Anfelisa",
-    "start": "watchify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.1.0.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_1.1.0.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8096/replay/' --browser='Google Chrome'"
+    "uglify": "uglifyjs lib/anfelisa_1.1.1.js --compress --mangle --output lib/anfelisa_1.1.1.min.js",
+    "build": "browserify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.1.1.js --debug --standalone Anfelisa",
+    "start": "watchify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.1.1.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_1.1.1.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --proxy='/replay/':'http://localhost:8096/replay/' --browser='Google Chrome'"
   },
   "author": "Annette Pohl",
   "license": "ISC",
@@ -17,13 +17,13 @@
     "react-dom": "^16.14.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1",
-    "@babel/preset-react": "^7.12.5",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
     "babelify": "^10.0.0",
     "browserify": "^16.5.2",
     "live-server": "^1.2.1",
-    "uglify-js": "^3.11.5",
+    "uglify-js": "^3.12.1",
     "watchify": "^3.11.1"
   }
 }
