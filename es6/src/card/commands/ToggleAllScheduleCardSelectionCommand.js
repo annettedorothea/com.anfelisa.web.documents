@@ -9,7 +9,7 @@ export default class ToggleAllScheduleCardSelectionCommand extends AbstractToggl
             });
         }
         this.commandData.selectedCardIds = selectedCardIds;
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

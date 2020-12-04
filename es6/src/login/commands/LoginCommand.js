@@ -7,11 +7,11 @@ export default class LoginCommand extends AbstractLoginCommand {
             password: this.commandData.password
         };
         if (this.commandData.saveInLocalStorage === true) {
-            this.commandData.outcome = this.saveInLocalStorage;
+            this.addSaveInLocalStorageOutcome();
         } else {
             this.commandData.username = undefined;
             this.commandData.password = undefined;
-            this.commandData.outcome = this.doNotSaveInLocalStorage;
+            this.addDoNotSaveInLocalStorageOutcome();
         }
     }
 }

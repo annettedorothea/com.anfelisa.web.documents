@@ -462,6 +462,14 @@ export const Texts = {
         never: {
             de: "noch nie abgefragt"
         },
+        reinforceButtons: {
+            true: {
+                de: "Nochmal!"
+            },
+            false: {
+                de: "Sitzt!"
+            }
+        },
         scoreButtons: {
             0: {
                 de: "Keine Ahnung"

@@ -7,11 +7,11 @@ export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
     }
 
     handleResponse(resolve) {
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     	resolve();
     }
     handleError(resolve) {
-        this.commandData.outcome = this.error;
+        this.addErrorOutcome();
         this.commandData.confirmDelete = false;
         this.commandData.boxId = undefined;
         resolve();

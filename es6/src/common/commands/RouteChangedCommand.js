@@ -6,31 +6,31 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
         if (this.commandData.hash.startsWith("#confirmemail") && hashes.length >= 2 && hashes[1] && hashes[2]) {
             this.commandData.username = hashes[1];
             this.commandData.token = hashes[2];
-            this.commandData.outcome = this.confirmEmail;
+            this.addConfirmEmailOutcome();
         } else if (this.commandData.hash.startsWith("#resetpassword" && hashes.length >= 1 && hashes[1])) {
             this.commandData.resetPasswordView = {
                 token: hashes[1]
             };
-            this.commandData.outcome = this.resetPassword;
+            this.addResetPasswordOutcome();
         } else if (this.commandData.hash === "#dashboard" && this.isUserLoggedIn()) {
-            this.commandData.outcome = this.dashboard;
+            this.addDashboardOutcome();
         } else if (this.commandData.hash === "#profile" && this.isUserLoggedIn()) {
-            this.commandData.outcome = this.profile;
+            this.addProfileOutcome();
         } else if (this.commandData.hash === "#users" && this.isUserLoggedIn()) {
-            this.commandData.outcome = this.userList;
-        } else if (this.commandData.hash.startsWith("#categories") && hashes.length === 2 && this.isUserLoggedIn()) {
+            this.addUserListOutcome();
+        } else if (this.commandData.hash.startsWith("#categories") && hashes.length >= 2 && this.isUserLoggedIn()) {
             this.commandData.rootCategoryId = hashes[1];
-            this.commandData.selectedCategoryId = this.commandData.rootCategoryId;
+            this.commandData.selectedCategoryId = hashes.length === 2 ? this.commandData.rootCategoryId : hashes[2];
             if (!this.commandData.filterNonScheduled) {
                 this.commandData.filterNonScheduled = false;
             }
             if (!this.commandData.priority) {
                 this.commandData.priority = null;
             }
-            this.commandData.outcome = this.categories;
+            this.addCategoriesOutcome();
         } else if (this.commandData.hash.startsWith("#box/settings") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn()) {
             this.commandData.boxId = hashes[2];
-            this.commandData.outcome = this.boxSettings;
+            this.addBoxSettingsOutcome();
         } else if (this.commandData.hash === "#box/create" && this.isUserLoggedIn()) {
             this.commandData.boxSettingsView = {
                 maxCardsPerDay: 8,
@@ -41,17 +41,17 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 wantedLanguage: "",
                 givenLanguage: ""
             };
-            this.commandData.outcome = this.boxCreate;
+            this.addBoxCreateOutcome();
         } else if (this.commandData.hash.startsWith("#box") && hashes.length >= 1 && hashes[1] && this.isUserLoggedIn()) {
             this.commandData.boxId = hashes[1];
-            this.commandData.outcome = this.nextCard;
+            this.addNextCardOutcome();
         } else if (this.commandData.hash === "" && !this.isUserLoggedIn()) {
             this.commandData.loginView = {
                 username: "",
                 password: "",
                 saveInLocalStorage: false
             };
-            this.commandData.outcome = this.login;
+            this.addLoginOutcome();
         } else if (this.commandData.hash === "#registration" && !this.isUserLoggedIn()) {
             this.commandData.registrationView = {
                 displayUsernameSpinner: false,
@@ -61,17 +61,17 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 emailInvalid: false,
                 passwordMismatch: false
             };
-            this.commandData.outcome = this.registration;
+            this.addRegistrationOutcome();
         } else if (this.commandData.hash === "#forgotpassword" && !this.isUserLoggedIn()) {
             this.commandData.forgotPasswordView = {
                 username: ""
             };
-            this.commandData.outcome = this.forgotPassword;
+            this.addForgotPasswordOutcome();
         } else if (this.isUserLoggedIn()) {
-            this.commandData.outcome = this.invalid;
+            this.addInvalidOutcome();
             this.commandData.hash = "#dashboard";
         } else {
-            this.commandData.outcome = this.invalid;
+            this.addInvalidOutcome();
             this.commandData.hash = "#";
         }
     }

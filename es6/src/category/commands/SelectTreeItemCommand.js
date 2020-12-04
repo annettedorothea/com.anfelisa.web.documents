@@ -10,7 +10,7 @@ export default class SelectTreeItemCommand extends AbstractSelectTreeItemCommand
             this.commandData.selectedCategory = findCategory(this.commandData.rootCategory.childCategories, this.commandData.categoryId);
             this.commandData.hash = `#categories/${this.commandData.selectedCategory.rootCategoryId}/${this.commandData.categoryId}`;
         }
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

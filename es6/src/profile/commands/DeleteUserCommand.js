@@ -8,12 +8,12 @@ export default class DeleteUserCommand extends AbstractDeleteUserCommand {
     }
 
     handleResponse(resolve) {
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
         this.commandData.showDeleteUserDialog = undefined;
     	resolve();
     }
     handleError(resolve, reject) {
-        this.commandData.outcome = this.error;
+        this.addErrorOutcome();
         this.commandData.showDeleteUserDialog = undefined;
     	reject(this.commandData.error);
     }

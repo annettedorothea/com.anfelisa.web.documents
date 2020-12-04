@@ -26,7 +26,7 @@ export default class SortCardOutCommand extends AbstractSortCardOutCommand {
     }
 
     handleResponse(resolve) {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     	resolve();
     }
     handleError(resolve, reject) {

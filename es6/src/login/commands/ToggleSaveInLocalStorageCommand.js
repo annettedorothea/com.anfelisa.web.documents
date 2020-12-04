@@ -3,7 +3,7 @@ import AbstractToggleSaveInLocalStorageCommand from "../../../gen/login/commands
 export default class ToggleSaveInLocalStorageCommand extends AbstractToggleSaveInLocalStorageCommand {
     execute() {
         this.commandData.saveInLocalStorage = !this.commandData.saveInLocalStorage;
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

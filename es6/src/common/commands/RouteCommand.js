@@ -2,7 +2,7 @@ import AbstractRouteCommand from "../../../gen/common/commands/AbstractRouteComm
 
 export default class RouteCommand extends AbstractRouteCommand {
     execute() {
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

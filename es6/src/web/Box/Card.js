@@ -4,6 +4,8 @@ import Wanted from "./Wanted";
 import ScoreButton from "./ScoreButton";
 import {route} from "../../../gen/common/ActionFunctions";
 import {scoreCard, scoreReinforceCard, sortCardOut} from "../../../gen/box/ActionFunctions";
+import ScoreButtons from "./ScoreButtons";
+import ReinforceButtons from "./ReinforceButtons";
 
 export default class Card extends React.Component {
 
@@ -51,23 +53,10 @@ export default class Card extends React.Component {
                     image={this.props.image}
                     displayImage={this.props.displayImage}
                 />
-                <div className="scoreButtons">
-                    <div>
-                        {this.scoreButton(5)}
-                        {this.scoreButton(2)}
-                    </div>
-                    <div>
-                        {this.scoreButton(4)}
-                        {this.scoreButton(1)}
-                    </div>
-                    <div>
-                        {this.scoreButton(3)}
-                        {this.scoreButton(0)}
-                    </div>
-                    <div>
-                        <button onClick={() => sortCardOut()}>{this.props.texts.queryCards.sortOut[this.props.language]}</button>
-                    </div>
-                </div>
+
+                {this.props.scheduledCardId && <ScoreButtons {...this.props}/>}
+                {!this.props.scheduledCardId && <ReinforceButtons {...this.props}/>}
+
                 <div className="categoryLink">
                     <a onClick={() => route(`#categories/${this.props.rootCategoryId}${this.props.categoryId !== this.props.rootCategoryId ? "/" + this.props.categoryId : ""}`)}
                     >{this.props.texts.queryCards.category[this.props.language]}</a>

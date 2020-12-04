@@ -2,7 +2,7 @@ import AbstractUsernameChangedCommand from "../../../gen/login/commands/Abstract
 
 export default class UsernameChangedCommand extends AbstractUsernameChangedCommand {
     execute() {
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

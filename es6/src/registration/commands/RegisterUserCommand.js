@@ -7,14 +7,14 @@ export default class RegisterUserCommand extends AbstractRegisterUserCommand {
     }
 
     handleResponse(resolve) {
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
         this.commandData.hash = "#";
         this.commandData.messageKey = "confirmEmail";
         resolve();
     }
 
     handleError(resolve, reject) {
-        this.commandData.outcome = this.error;
+        this.addErrorOutcome();
         reject(this.commandData.error);
     }
 }

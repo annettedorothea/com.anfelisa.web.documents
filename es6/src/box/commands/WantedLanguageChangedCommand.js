@@ -24,7 +24,7 @@ export default class WantedLanguageChangedCommand extends AbstractWantedLanguage
         } else {
             this.commandData.dictionaryLookupInvalid = false;
         }
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

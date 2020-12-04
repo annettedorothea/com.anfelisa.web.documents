@@ -6,7 +6,7 @@ export default class CancelDeleteCardCommand extends AbstractCancelDeleteCardCom
             confirmDelete: false,
             cardId: ""
         };
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

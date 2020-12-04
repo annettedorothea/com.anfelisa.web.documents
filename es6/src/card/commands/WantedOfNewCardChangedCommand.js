@@ -2,7 +2,7 @@ import AbstractWantedOfNewCardChangedCommand from "../../../gen/card/commands/Ab
 
 export default class WantedOfNewCardChangedCommand extends AbstractWantedOfNewCardChangedCommand {
     execute() {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

@@ -25,7 +25,7 @@ export default class InitBoxesForDayDuringScoreCommand extends AbstractInitBoxes
     }
 
     handleResponse(resolve) {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     	resolve();
     }
     handleError(resolve, reject) {

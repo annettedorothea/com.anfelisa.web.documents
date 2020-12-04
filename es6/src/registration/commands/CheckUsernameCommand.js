@@ -4,14 +4,14 @@ export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
 
     validateCommandData() {
         if (this.commandData.username.length === 0) {
-            this.commandData.outcome = this.empty;
+            this.addEmptyOutcome();
             return false;
         }
         return true;
     }
 
     handleResponse(resolve) {
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
         resolve();
     }
 

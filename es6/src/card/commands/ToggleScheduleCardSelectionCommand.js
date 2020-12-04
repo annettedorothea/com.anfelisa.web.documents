@@ -8,7 +8,7 @@ export default class ToggleScheduleCardSelectionCommand extends AbstractToggleSc
         } else {
             this.commandData.selectedCardIds.push(this.commandData.cardId);
         }
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

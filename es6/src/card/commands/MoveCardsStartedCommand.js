@@ -2,7 +2,7 @@ import AbstractMoveCardsStartedCommand from "../../../gen/card/commands/Abstract
 
 export default class MoveCardsStartedCommand extends AbstractMoveCardsStartedCommand {
     execute() {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     	this.commandData.movedCardIds = this.commandData.selectedCardIds;
     }
 }

@@ -4,7 +4,7 @@ export default class CancelEditCategoryCommand extends AbstractCancelEditCategor
     execute() {
         this.commandData.categoryName = "";
         this.commandData.displayEditCategory = false;
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

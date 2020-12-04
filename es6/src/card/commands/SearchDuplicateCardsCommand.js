@@ -8,7 +8,7 @@ export default class SearchDuplicateCardsCommand extends AbstractSearchDuplicate
 
     handleResponse(resolve) {
         this.commandData.cardDuplicates = this.commandData.cardList;
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
         resolve();
     }
     handleError(resolve, reject) {

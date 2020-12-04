@@ -4,7 +4,7 @@ export default class CancelDeleteBoxCommand extends AbstractCancelDeleteBoxComma
     execute() {
         this.commandData.confirmDelete = false;
         this.commandData.boxId = undefined;
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

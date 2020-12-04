@@ -6,9 +6,9 @@ export default class CollapseTreeItemCommand extends AbstractCollapseTreeItemCom
         let category = findCategory(this.commandData.rootCategory.childCategories, this.commandData.categoryId);
         category.expanded = false;
         if (this.commandData.selectedCategory && isCategoryChildOfParent(category, this.commandData.selectedCategory.categoryId)) {
-            this.commandData.outcome = this.selectParentCategory;
+            this.addSelectParentCategoryOutcome();
         } else {
-            this.commandData.outcome = this.ok;
+            this.addOkOutcome();
         }
     }
 }

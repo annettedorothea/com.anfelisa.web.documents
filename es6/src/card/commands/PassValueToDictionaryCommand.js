@@ -7,7 +7,7 @@ export default class PassValueToDictionaryCommand extends AbstractPassValueToDic
         } else {
             this.commandData.dictionaryValue = this.commandData.wanted;
         }
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

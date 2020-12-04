@@ -21,7 +21,7 @@ import AbstractOnDragEnterCommand from "../../../gen/card/commands/AbstractOnDra
 
 export default class OnDragEnterCommand extends AbstractOnDragEnterCommand {
     execute() {
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

@@ -8,11 +8,11 @@ export default class DeleteCategoryCommand extends AbstractDeleteCategoryCommand
 
     handleResponse(resolve) {
         this.commandData.displayDeleteCategory = false;
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     	resolve();
     }
     handleError(resolve) {
-        this.commandData.outcome = this.error;
+        this.addErrorOutcome();
         this.commandData.displayDeleteCategory = false;
         resolve();
     }

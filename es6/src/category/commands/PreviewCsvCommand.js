@@ -43,7 +43,7 @@ export default class PreviewCsvCommand extends AbstractPreviewCsvCommand {
                this.commandData.previewCsv.push(normalizedRow);
            }
         });
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     }
 }
 

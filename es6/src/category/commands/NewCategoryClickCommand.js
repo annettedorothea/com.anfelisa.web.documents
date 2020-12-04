@@ -4,7 +4,7 @@ export default class NewCategoryClickCommand extends AbstractNewCategoryClickCom
     execute() {
         this.commandData.displayNewCategory = true;
         this.commandData.categoryName = "";
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

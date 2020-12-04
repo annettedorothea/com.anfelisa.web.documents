@@ -22,7 +22,7 @@ export default class CheckDropAllowedCommand extends AbstractCheckDropAllowedCom
         } else {
             this.commandData.dropAllowed = dropTarget.categoryId !== this.commandData.selectedCategory.categoryId;
         }
-        this.commandData.outcome = this.ok;
+        this.addOkOutcome();
     }
 }
 

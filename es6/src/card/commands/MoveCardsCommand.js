@@ -12,7 +12,7 @@ export default class MoveCardsCommand extends AbstractMoveCardsCommand {
         this.commandData.movedCardIds = undefined;
         this.commandData.selectedCategoryId = this.commandData.categoryId;
         this.commandData.rootCategoryId = this.commandData.rootCategory ? this.commandData.rootCategory.categoryId : "";
-    	this.commandData.outcome = this.ok;
+    	this.addOkOutcome();
     	resolve();
     }
     handleError(resolve, reject) {

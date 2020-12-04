@@ -62,7 +62,7 @@ ACE
 		loadingFlag common.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 	
-	ScoreReinforceCard ( scoredCardQuality )
+	ScoreReinforceCard ( keep )
 		fromAppState (common.mainView.cardView.reinforceCardId)
 	 	call com.anfelisa.box.ScoreReinforceCard
 		loadingFlag common.displaySpinner 
