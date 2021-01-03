@@ -14,7 +14,6 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-
 import AbstractMaxIntervalChangedCommand from "../../../gen/box/commands/AbstractMaxIntervalChangedCommand";
 
 export default class MaxIntervalChangedCommand extends AbstractMaxIntervalChangedCommand {
@@ -25,6 +24,11 @@ export default class MaxIntervalChangedCommand extends AbstractMaxIntervalChange
                 || this.commandData.maxInterval <= 0;
         } else {
             this.commandData.maxIntervalInvalid = false;
+        }
+        if (this.commandData.maxCardsPerDay && this.commandData.maxInterval && this.commandData.allActiveCards > this.commandData.maxCardsPerDay * this.commandData.maxInterval) {
+            this.commandData.tooManyCardsWarning = true;
+        } else {
+            this.commandData.tooManyCardsWarning = false;
         }
     	this.addOkOutcome();
     }

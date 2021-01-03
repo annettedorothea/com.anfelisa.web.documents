@@ -7,14 +7,13 @@
 
 import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import * as AppState from "../../ace/AppState";
-import MaxCardsPerDayChangedOkEvent from "../../../gen/box/events/MaxCardsPerDayChangedOkEvent";
+import ToggleScheduleCardSelectionOkEvent from "../../../gen/box/events/ToggleScheduleCardSelectionOkEvent";
 
-export default class AbstractMaxCardsPerDayChangedCommand extends SynchronousCommand {
+export default class AbstractToggleScheduleCardSelectionCommand extends SynchronousCommand {
     constructor(commandData) {
-        super(commandData, "box.MaxCardsPerDayChangedCommand");
+        super(commandData, "box.ToggleScheduleCardSelectionCommand");
         this.commandData.outcomes = [];
-        this.commandData.maxInterval = AppState.get_boxSettingsView_maxInterval();
-        this.commandData.allActiveCards = AppState.get_boxSettingsView_allActiveCards();
+        this.commandData.selectedCardIds = AppState.get_allActiveCardsView_selectedCardIds();
     }
 
 	addOkOutcome() {
@@ -23,7 +22,7 @@ export default class AbstractMaxCardsPerDayChangedCommand extends SynchronousCom
 
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
-			new MaxCardsPerDayChangedOkEvent(this.commandData).publish();
+			new ToggleScheduleCardSelectionOkEvent(this.commandData).publish();
 		}
     }
 }

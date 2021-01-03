@@ -31,6 +31,9 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
         } else if (this.commandData.hash.startsWith("#box/settings") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn()) {
             this.commandData.boxId = hashes[2];
             this.addBoxSettingsOutcome();
+        } else if (this.commandData.hash.startsWith("#box/active-cards") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn()) {
+            this.commandData.boxId = hashes[2];
+            this.addAllActiveCardsOutcome();
         } else if (this.commandData.hash === "#box/create" && this.isUserLoggedIn()) {
             this.commandData.boxSettingsView = {
                 maxCardsPerDay: 8,

@@ -8,6 +8,12 @@
 import InitBoxesForDayAction from "../../src/box/actions/InitBoxesForDayAction";
 import LoadBoxesAction from "../../src/box/actions/LoadBoxesAction";
 import LoadBoxStatisticsAction from "../../src/box/actions/LoadBoxStatisticsAction";
+import LoadActiveCardsAction from "../../src/box/actions/LoadActiveCardsAction";
+import ToggleScheduleCardSelectionAction from "../../src/box/actions/ToggleScheduleCardSelectionAction";
+import ToggleAllScheduleCardSelectionAction from "../../src/box/actions/ToggleAllScheduleCardSelectionAction";
+import ScheduleSelectedCardsAction from "../../src/box/actions/ScheduleSelectedCardsAction";
+import SortSelectedCardsOutAction from "../../src/box/actions/SortSelectedCardsOutAction";
+import UpdateCardPriorityAction from "../../src/box/actions/UpdateCardPriorityAction";
 import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
 import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
 import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
@@ -38,6 +44,30 @@ export function loadBoxes() {
 
 export function loadBoxStatistics() {
     new LoadBoxStatisticsAction().apply();
+}
+
+export function loadActiveCards() {
+    new LoadActiveCardsAction().apply();
+}
+
+export function toggleScheduleCardSelection(cardId) {
+    new ToggleScheduleCardSelectionAction(cardId).apply();
+}
+
+export function toggleAllScheduleCardSelection() {
+    new ToggleAllScheduleCardSelectionAction().apply();
+}
+
+export function scheduleSelectedCards() {
+    new ScheduleSelectedCardsAction().apply();
+}
+
+export function sortSelectedCardsOut() {
+    new SortSelectedCardsOutAction().apply();
+}
+
+export function updateCardPriority(cardId, priority, actualPriority) {
+    new UpdateCardPriorityAction(cardId, priority, actualPriority).apply();
 }
 
 export function deleteBoxClick(boxId) {

@@ -8,6 +8,9 @@
 import ACEController from "../ace/ACEController";
 import LoadBoxesOkEvent from "./events/LoadBoxesOkEvent";
 import LoadBoxStatisticsOkEvent from "./events/LoadBoxStatisticsOkEvent";
+import LoadActiveCardsOkEvent from "./events/LoadActiveCardsOkEvent";
+import ToggleScheduleCardSelectionOkEvent from "./events/ToggleScheduleCardSelectionOkEvent";
+import ToggleAllScheduleCardSelectionOkEvent from "./events/ToggleAllScheduleCardSelectionOkEvent";
 import DeleteBoxClickOkEvent from "./events/DeleteBoxClickOkEvent";
 import CancelDeleteBoxOkEvent from "./events/CancelDeleteBoxOkEvent";
 import DeleteBoxErrorEvent from "./events/DeleteBoxErrorEvent";
@@ -29,6 +32,12 @@ export default class EventFactoryRegistrationBox {
 			(eventData) => new LoadBoxesOkEvent(eventData));
 		ACEController.registerFactory('box.LoadBoxStatisticsOkEvent', 
 			(eventData) => new LoadBoxStatisticsOkEvent(eventData));
+		ACEController.registerFactory('box.LoadActiveCardsOkEvent', 
+			(eventData) => new LoadActiveCardsOkEvent(eventData));
+		ACEController.registerFactory('box.ToggleScheduleCardSelectionOkEvent', 
+			(eventData) => new ToggleScheduleCardSelectionOkEvent(eventData));
+		ACEController.registerFactory('box.ToggleAllScheduleCardSelectionOkEvent', 
+			(eventData) => new ToggleAllScheduleCardSelectionOkEvent(eventData));
 		ACEController.registerFactory('box.DeleteBoxClickOkEvent', 
 			(eventData) => new DeleteBoxClickOkEvent(eventData));
 		ACEController.registerFactory('box.CancelDeleteBoxOkEvent', 

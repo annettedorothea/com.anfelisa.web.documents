@@ -23,6 +23,45 @@ ACE
 			set common.mainView.dashboardView.boxList
 		)
 	
+	LoadActiveCards
+		fromAppState (common.mainView.allActiveCardsView.boxId)
+		call com.anfelisa.box.LoadAllActiveCards
+		loadingFlag common.displaySpinner 
+		on ok ( 
+			set common.mainView.allActiveCardsView.cardList
+			set common.mainView.allActiveCardsView.selectedCardIds
+		)
+	
+	ToggleScheduleCardSelection ( cardId )
+		fromAppState (common.mainView.allActiveCardsView.selectedCardIds)
+		on ok (set common.mainView.allActiveCardsView.selectedCardIds)
+	
+	ToggleAllScheduleCardSelection 
+		fromAppState (
+			common.mainView.allActiveCardsView.selectedCardIds,
+			common.mainView.allActiveCardsView.cardList
+		)
+		on ok (set common.mainView.allActiveCardsView.selectedCardIds)
+	
+	ScheduleSelectedCards
+		fromAppState (
+			common.mainView.allActiveCardsView.selectedCardIds
+		) 
+	 	call com.anfelisa.box.ScheduleCards
+		loadingFlag common.displaySpinner 
+		on noFilter triggers (LoadActiveCards)
+	
+	SortSelectedCardsOut 
+		fromAppState (common.mainView.allActiveCardsView.selectedCardIds) 
+	 	call com.anfelisa.box.SortCardsOut
+		loadingFlag common.displaySpinner 
+		on ok triggers (LoadActiveCards)
+		
+	UpdateCardPriority(cardId, priority, actualPriority)
+	 	call com.anfelisa.card.UpdateCardPriority
+		loadingFlag common.displaySpinner 
+		on ok triggers (LoadActiveCards)
+
 	DeleteBoxClick ( boxId )
 		on ok (set common.mainView.dashboardView.deleteBox)
 	
@@ -102,15 +141,25 @@ ACE
 	
 
 	MaxCardsPerDayChanged ( maxCardsPerDay )
+		fromAppState (
+			common.mainView.boxSettingsView.maxInterval,
+			common.mainView.boxSettingsView.allActiveCards
+		)
 		on ok (
 			set common.mainView.boxSettingsView.maxCardsPerDay
 			set common.mainView.boxSettingsView.maxCardsPerDayInvalid
+			set common.mainView.boxSettingsView.tooManyCardsWarning
 		)
 		
 	MaxIntervalChanged ( maxInterval )
+		fromAppState (
+			common.mainView.boxSettingsView.maxCardsPerDay,
+			common.mainView.boxSettingsView.allActiveCards
+		)
 		on ok (
 			set common.mainView.boxSettingsView.maxInterval
 			set common.mainView.boxSettingsView.maxIntervalInvalid
+			set common.mainView.boxSettingsView.tooManyCardsWarning
 		)
 
 	CreateRootCategory

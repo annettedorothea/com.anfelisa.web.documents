@@ -40,6 +40,7 @@ RouteChanged
 	on userList triggers (admin.GetAllUsers) 
 	on nextCard (set mainView.cardView.boxId) triggers (box.LoadNextCard)
 	on boxSettings (set mainView.boxSettingsView.boxId) triggers (box.LoadSettings)
+	on allActiveCards (set mainView.allActiveCardsView.boxId) triggers (box.LoadActiveCards)
 	on boxCreate ( set mainView.boxSettingsView )
 	on invalid triggers (Route)
 	
@@ -153,6 +154,7 @@ appState {
 		boxSettingsView serverModel com.anfelisa.box.BoxSettings {
 	    	Boolean maxIntervalInvalid
 	    	Boolean maxCardsPerDayInvalid
+	    	Boolean tooManyCardsWarning
 			Boolean dictionaryLookupInvalid
 			
 			String boxId
@@ -166,6 +168,22 @@ appState {
 			
 			Integer allActiveCards
 			Integer allCards
+		} 
+		allActiveCardsView {
+			String boxId
+			List cardList serverModel com.anfelisa.box.CardWithStatistics {
+				String cardId
+				String given
+				String wanted
+				String image
+				String cardAuthor
+				Integer cardIndex
+				String categoryId
+				String rootCategoryId
+				Integer priority
+				DateTime next
+			}
+			List String selectedCardIds
 		} 
 		profileView {
 			String username

@@ -15,6 +15,7 @@ import RouteChangedResetPasswordEvent from "../../../gen/common/events/RouteChan
 import RouteChangedCategoriesEvent from "../../../gen/common/events/RouteChangedCategoriesEvent";
 import RouteChangedNextCardEvent from "../../../gen/common/events/RouteChangedNextCardEvent";
 import RouteChangedBoxSettingsEvent from "../../../gen/common/events/RouteChangedBoxSettingsEvent";
+import RouteChangedAllActiveCardsEvent from "../../../gen/common/events/RouteChangedAllActiveCardsEvent";
 import RouteChangedBoxCreateEvent from "../../../gen/common/events/RouteChangedBoxCreateEvent";
 import ConfirmEmailAction from "../../../src/registration/actions/ConfirmEmailAction";
 import InitBoxesForDayAction from "../../../src/box/actions/InitBoxesForDayAction";
@@ -23,6 +24,7 @@ import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import GetAllUsersAction from "../../../src/admin/actions/GetAllUsersAction";
 import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import LoadSettingsAction from "../../../src/box/actions/LoadSettingsAction";
+import LoadActiveCardsAction from "../../../src/box/actions/LoadActiveCardsAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractRouteChangedCommand extends SynchronousCommand {
@@ -65,6 +67,9 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 	}
 	addBoxSettingsOutcome() {
 		this.commandData.outcomes.push("boxSettings");
+	}
+	addAllActiveCardsOutcome() {
+		this.commandData.outcomes.push("allActiveCards");
 	}
 	addBoxCreateOutcome() {
 		this.commandData.outcomes.push("boxCreate");
@@ -109,6 +114,10 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 		if (this.commandData.outcomes.includes("boxSettings")) {
 			new RouteChangedBoxSettingsEvent(this.commandData).publish();
 			new TriggerAction(new LoadSettingsAction()).publish();
+		}
+		if (this.commandData.outcomes.includes("allActiveCards")) {
+			new RouteChangedAllActiveCardsEvent(this.commandData).publish();
+			new TriggerAction(new LoadActiveCardsAction()).publish();
 		}
 		if (this.commandData.outcomes.includes("boxCreate")) {
 			new RouteChangedBoxCreateEvent(this.commandData).publish();

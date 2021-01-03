@@ -429,6 +429,19 @@ table td.priority i {
     margin-bottom: 8px;
 }
 
+.form .info {
+    font-size: smaller;
+    border: 2px solid #669E00;
+    border-radius: 4px;
+    padding: 10px;
+}
+.form .warning {
+    font-size: smaller;
+    border: 2px solid #ffa84c;
+    border-radius: 4px;
+    padding: 10px;
+}
+
 .form .moreMarginLine {
     margin-bottom: 20px;
 }
@@ -946,13 +959,24 @@ a:hover.tile .buttons {
     height: 100%;
 }
 
-.categoryCardSplitView table.cardTable td pre {
+.categoryCardSplitView table.cardTable td pre,
+.allActiveCards table.cardTable td pre {
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 200px;
+    max-height: 20px;
 }
 
 @media screen and (max-width: 600px) {
-    .categoryCardSplitView table.cardTable .notVisibleMobile {
+    .categoryCardSplitView table.cardTable td pre,
+    .allActiveCards table.cardTable td pre {
+        max-width: 100px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .categoryCardSplitView table.cardTable .notVisibleMobile,
+    .allActiveCards table.cardTable .notVisibleMobile {
         display: none;
     }
 }
@@ -969,7 +993,8 @@ a:hover.tile .buttons {
     }
 }
 
-.categoryCardSplitView table.cardTable td.textarea {
+.categoryCardSplitView table.cardTable td.textarea,
+.allActiveCards table.cardTable td.textarea {
     vertical-align: top;
 }
 
@@ -984,7 +1009,8 @@ a:hover.tile .buttons {
     margin-left: 8px;
 }
 
-.categoryCardSplitView .cardTable td.alignRight {
+.categoryCardSplitView .cardTable td.alignRight,
+.allActiveCards .cardTable td.alignRight {
     text-align: right;
 }
 
@@ -1099,6 +1125,34 @@ iframe {
 
 .categoryTree i.disabled {
     color: #ccc;
+}
+
+.allActiveCards td.thumbsUp i {
+    margin: 0 0;
+}
+
+.allActiveCards td.quality_0 {
+    color: #FF5DB1;
+}
+
+.allActiveCards td.quality_1 {
+    color: #E53C16;
+}
+
+.allActiveCards td.quality_2 {
+    color: #ffa84c;
+}
+
+.allActiveCards td.quality_3 {
+    color: #2AABD2;
+}
+
+.allActiveCards td.quality_4 {
+    color: #337ab7;
+}
+
+.allActiveCards td.quality_5 {
+    color: #669E00;
 }
 
 @media print {

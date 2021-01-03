@@ -27,6 +27,14 @@ export default class BoxSettings extends React.Component {
                     <h1>{this.props.texts.boxSettings.title[this.props.language]}</h1>
                     {this.props.allActiveCards && this.props.allCards && <div
                         className="line">{this.props.texts.boxSettings.cardInfo[this.props.language].replace("{0}", this.props.allActiveCards).replace("{1}", this.props.allCards)}</div>}
+
+                    {this.props.tooManyCardsWarning === true && <div className="line warning">
+                        {this.props.texts.boxSettings.tooManyCardsWarning[this.props.language].replace("{0}", this.props.maxCardsPerDay*this.props.maxInterval).replace("{1}", this.props.allActiveCards)}
+                    </div>}
+                    {this.props.tooManyCardsWarning === false && <div className="line info">
+                        {this.props.texts.boxSettings.boxInfo[this.props.language].replace("{0}", this.props.maxCardsPerDay*this.props.maxInterval).replace("{1}", this.props.allActiveCards)}
+                    </div>}
+
                     <div className="line">
                         <label>{this.props.texts.boxSettings.categoryName[this.props.language]}</label>
                         <div className="inputContainer">

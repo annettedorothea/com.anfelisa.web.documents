@@ -26,6 +26,11 @@ export default class LoadSettingsCommand extends AbstractLoadSettingsCommand {
     handleResponse(resolve) {
         this.commandData.maxCardsPerDay = this.commandData.maxCardsPerDay ? this.commandData.maxCardsPerDay : "";
         this.commandData.maxInterval = this.commandData.maxInterval ? this.commandData.maxInterval : "";
+        if (this.commandData.maxCardsPerDay && this.commandData.maxInterval && this.commandData.allActiveCards > this.commandData.maxCardsPerDay * this.commandData.maxInterval) {
+            this.commandData.tooManyCardsWarning = true;
+        } else {
+            this.commandData.tooManyCardsWarning = false;
+        }
         this.commandData.givenLanguage = this.commandData.givenLanguage !== null ? this.commandData.givenLanguage : "";
         this.commandData.wantedLanguage = this.commandData.wantedLanguage !== null ? this.commandData.wantedLanguage : "";
     	this.addOkOutcome();

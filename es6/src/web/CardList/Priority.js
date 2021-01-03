@@ -9,7 +9,7 @@ export default class Priority extends React.Component {
     }
 
     updateCardPriorityClick(priority) {
-        updateCardPriority( this.props.cardId, priority, this.props.priority)
+        this.props.updateFunction(this.props.cardId, priority, this.props.priority);
     }
     
     render() {

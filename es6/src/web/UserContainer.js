@@ -7,6 +7,8 @@ import QueryCards from "./Box/QueryCards";
 import CategoryCardSplitView from "./CategoryCardSplitView";
 import {route} from "../../gen/common/ActionFunctions";
 import BoxSettings from "./Box/BoxSettings";
+import CardList from "./CardList/CardList";
+import ActiveCardList from "./Box/ActiveCardList";
 
 export default class UserContainer extends React.Component {
 
@@ -39,6 +41,12 @@ export default class UserContainer extends React.Component {
                 />;
             } else if (this.props.mainView.isBoxSettingsView) {
                 content = <BoxSettings
+                    {...this.props.mainView}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            } else if (this.props.mainView.isAllActiveCardsView) {
+                content = <ActiveCardList
                     {...this.props.mainView}
                     texts={this.props.texts}
                     language={this.props.language}
