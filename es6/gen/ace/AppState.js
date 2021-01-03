@@ -762,6 +762,9 @@ export function merge_boxSettingsView(eventData) {
 	if (eventData.maxCardsPerDayInvalid !== undefined) {
 		appState.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
 	}
+	if (eventData.tooManyCardsWarning !== undefined) {
+		appState.mainView.tooManyCardsWarning = eventData.tooManyCardsWarning;
+	}
 	if (eventData.dictionaryLookupInvalid !== undefined) {
 		appState.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
 	}
@@ -833,6 +836,25 @@ export function set_boxSettingsView_maxCardsPerDayInvalid(eventData) {
 		};
 	}
 	appState.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
+}
+
+export function get_boxSettingsView_tooManyCardsWarning() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.tooManyCardsWarning;
+}
+
+export function set_boxSettingsView_tooManyCardsWarning(eventData) {
+	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
+		appState.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	appState.mainView.tooManyCardsWarning = eventData.tooManyCardsWarning;
 }
 
 export function get_boxSettingsView_dictionaryLookupInvalid() {
@@ -1042,6 +1064,140 @@ export function set_boxSettingsView_allCards(eventData) {
 		};
 	}
 	appState.mainView.allCards = eventData.allCards;
+}
+
+export function get_allActiveCardsView() {
+	if (appState.mainView && appState.mainView.isAllActiveCardsView === true) {
+		return AppUtils.deepCopy(appState.mainView);
+	}
+	return undefined;
+}
+
+export function set_allActiveCardsView(eventData) {
+	if (!!eventData.allActiveCardsView) {
+		appState.mainView = eventData.allActiveCardsView;
+		appState.mainView.isAllActiveCardsView = true;
+	} else {
+		appState.mainView = {
+			isAllActiveCardsView : true
+		};
+	}
+}
+
+export function merge_allActiveCardsView(eventData) {
+	if (!appState.mainView) {
+		appState.mainView = {
+			isAllActiveCardsView : true
+		};
+	}
+	if (eventData.boxId !== undefined) {
+		appState.mainView.boxId = eventData.boxId;
+	}
+	if (eventData.cardList !== undefined) {
+		appState.mainView.cardList = eventData.cardList;
+	}
+	if (eventData.selectedCardIds !== undefined) {
+		appState.mainView.selectedCardIds = eventData.selectedCardIds;
+	}
+}
+
+export function get_allActiveCardsView_boxId() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAllActiveCardsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.boxId;
+}
+
+export function set_allActiveCardsView_boxId(eventData) {
+	if (!appState.mainView || appState.mainView.isAllActiveCardsView !== true) {
+		appState.mainView = {
+			isAllActiveCardsView : true
+		};
+	}
+	appState.mainView.boxId = eventData.boxId;
+}
+
+export function get_allActiveCardsView_cardList() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAllActiveCardsView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.cardList) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.mainView.cardList);
+}
+
+export function set_allActiveCardsView_cardList(eventData) {
+	if (!appState.mainView || appState.mainView.isAllActiveCardsView !== true) {
+		appState.mainView = {
+			isAllActiveCardsView : true
+		};
+	}
+	appState.mainView.cardList = eventData.cardList;
+}
+
+export function merge_allActiveCardsView_cardList(eventData) {
+	if (!appState.mainView) {
+		appState.mainView = {};
+	}
+	if (!appState.mainView.cardList) {
+		appState.mainView.cardList = {};
+	}
+	if (eventData.cardId !== undefined) {
+		appState.mainView.cardList.cardId = eventData.cardId;
+	}
+	if (eventData.given !== undefined) {
+		appState.mainView.cardList.given = eventData.given;
+	}
+	if (eventData.wanted !== undefined) {
+		appState.mainView.cardList.wanted = eventData.wanted;
+	}
+	if (eventData.image !== undefined) {
+		appState.mainView.cardList.image = eventData.image;
+	}
+	if (eventData.cardAuthor !== undefined) {
+		appState.mainView.cardList.cardAuthor = eventData.cardAuthor;
+	}
+	if (eventData.cardIndex !== undefined) {
+		appState.mainView.cardList.cardIndex = eventData.cardIndex;
+	}
+	if (eventData.categoryId !== undefined) {
+		appState.mainView.cardList.categoryId = eventData.categoryId;
+	}
+	if (eventData.rootCategoryId !== undefined) {
+		appState.mainView.cardList.rootCategoryId = eventData.rootCategoryId;
+	}
+	if (eventData.priority !== undefined) {
+		appState.mainView.cardList.priority = eventData.priority;
+	}
+	if (eventData.next !== undefined) {
+		appState.mainView.cardList.next = eventData.next;
+	}
+}
+
+export function get_allActiveCardsView_selectedCardIds() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAllActiveCardsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.selectedCardIds;
+}
+
+export function set_allActiveCardsView_selectedCardIds(eventData) {
+	if (!appState.mainView || appState.mainView.isAllActiveCardsView !== true) {
+		appState.mainView = {
+			isAllActiveCardsView : true
+		};
+	}
+	appState.mainView.selectedCardIds = eventData.selectedCardIds;
 }
 
 export function get_profileView() {

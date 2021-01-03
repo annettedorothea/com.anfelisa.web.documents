@@ -1,7 +1,19 @@
 import React from 'react';
 import CardsNextDaysItem from "./CardsNextDaysItem";
+import {deleteBoxClick} from "../../../gen/box/ActionFunctions";
+import {route} from "../../../gen/common/ActionFunctions";
 
 export default class CardsNextDays extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick(e) {
+        e.stopPropagation();
+        route(`#box/active-cards/${this.props.boxId}`);
+    }
 
     render() {
         if (this.props.countsPerDayNextWeek && this.props.countsPerDayNextWeek.length === 7 && this.props.maxCardsPerDay && this.props.maxCardsPerDay > 0) {
@@ -22,7 +34,7 @@ export default class CardsNextDays extends React.Component {
                     rounded={index === 1 ? "rounded-left" : index === 7 ? "rounded-right" : ""}
                 />
             });
-            return <div className="cards-next-days">
+            return <div className="cards-next-days" onClick={(e) => this.onClick(e)}>
                 {items}
             </div>
         } else {

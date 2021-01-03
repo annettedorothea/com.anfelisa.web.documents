@@ -11,6 +11,18 @@ export let loadBoxes = "box_loadBoxes";
 
 export let loadBoxStatistics = "box_loadBoxStatistics";
 
+export let loadActiveCards = "box_loadActiveCards";
+
+export let toggleScheduleCardSelection = "box_toggleScheduleCardSelection";
+
+export let toggleAllScheduleCardSelection = "box_toggleAllScheduleCardSelection";
+
+export let scheduleSelectedCards = "box_scheduleSelectedCards";
+
+export let sortSelectedCardsOut = "box_sortSelectedCardsOut";
+
+export let updateCardPriority = "box_updateCardPriority";
+
 export let deleteBoxClick = "box_deleteBoxClick";
 
 export let cancelDeleteBox = "box_cancelDeleteBox";

@@ -3,198 +3,198 @@ HttpClient
 card
 
 ACE
-LoadCards
-	fromAppState (
-		common.mainView.authorView.categoryTree.selectedCategory, 
-		common.mainView.authorView.cardView.naturalInputOrder,
-		common.mainView.authorView.filterNonScheduled,
-		common.mainView.authorView.priority
-	)
-	call com.anfelisa.card.GetCards
-	loadingFlag common.displaySpinner 
-	on ok ( merge common.mainView.authorView.cardView )
-	on noCategorySelected ( set common.mainView.authorView.cardView.cardList )
-
- CreateCard 
- 	fromAppState (
- 		common.mainView.authorView.cardView.newCard.wanted,
- 		common.mainView.authorView.cardView.newCard.given,
- 		common.mainView.authorView.cardView.newCard.image,
- 		common.mainView.authorView.categoryTree.selectedCategory.categoryId
- 	)
- 	call com.anfelisa.card.CreateCard
-	loadingFlag common.displaySpinner 
-	on ok ( set common.mainView.authorView.cardView.newCard )
-	triggers (LoadCards)
-
- UpdateCard 
- 	fromAppState (
- 		common.mainView.authorView.cardView.editedCard.wanted,
- 		common.mainView.authorView.cardView.editedCard.given,
- 		common.mainView.authorView.cardView.editedCard.image,
- 		common.mainView.authorView.cardView.editedCard.cardId
- 	)
- 	call com.anfelisa.card.UpdateCard
-	loadingFlag common.displaySpinner 
-	on ok ( set common.mainView.authorView.cardView.editedCard )
-	triggers (LoadCards)
-
- UpdateCardPriority(cardId, priority, actualPriority)
- 	call com.anfelisa.card.UpdateCardPriority
-	loadingFlag common.displaySpinner 
-	on ok triggers (LoadCards)
-
-
- DeleteCard 
- 	fromAppState ( common.mainView.authorView.cardView.deleteCard.cardId )
- 	call com.anfelisa.card.DeleteCard
-	loadingFlag common.displaySpinner 
-	on ok ( 
-		set common.mainView.authorView.cardView.deleteCard
-	) triggers (LoadCards)
-	on error ( 
-		set common.mainView.authorView.cardView.deleteCard
-	) triggers (common.DisplayError)
-
-
-GivenOfNewCardChanged ( given )
-	on ok (merge common.mainView.authorView.cardView.newCard)
-
-WantedOfNewCardChanged ( wanted )
-	on ok (merge common.mainView.authorView.cardView.newCard)
-
-CancelNewCard 
-	on ok (set common.mainView.authorView.cardView.newCard)
+	LoadCards
+		fromAppState (
+			common.mainView.authorView.categoryTree.selectedCategory, 
+			common.mainView.authorView.cardView.naturalInputOrder,
+			common.mainView.authorView.filterNonScheduled,
+			common.mainView.authorView.priority
+		)
+		call com.anfelisa.card.GetCards
+		loadingFlag common.displaySpinner 
+		on ok ( merge common.mainView.authorView.cardView )
+		on noCategorySelected ( set common.mainView.authorView.cardView.cardList )
+	
+	CreateCard 
+	 	fromAppState (
+	 		common.mainView.authorView.cardView.newCard.wanted,
+	 		common.mainView.authorView.cardView.newCard.given,
+	 		common.mainView.authorView.cardView.newCard.image,
+	 		common.mainView.authorView.categoryTree.selectedCategory.categoryId
+	 	)
+	 	call com.anfelisa.card.CreateCard
+		loadingFlag common.displaySpinner 
+		on ok ( set common.mainView.authorView.cardView.newCard )
+		triggers (LoadCards)
+	
+	UpdateCard 
+	 	fromAppState (
+	 		common.mainView.authorView.cardView.editedCard.wanted,
+	 		common.mainView.authorView.cardView.editedCard.given,
+	 		common.mainView.authorView.cardView.editedCard.image,
+	 		common.mainView.authorView.cardView.editedCard.cardId
+	 	)
+	 	call com.anfelisa.card.UpdateCard
+		loadingFlag common.displaySpinner 
+		on ok ( set common.mainView.authorView.cardView.editedCard )
+		triggers (LoadCards)
+	
+	UpdateCardPriority(cardId, priority, actualPriority)
+	 	call com.anfelisa.card.UpdateCardPriority
+		loadingFlag common.displaySpinner 
+		on ok triggers (LoadCards)
+	
+	
+	DeleteCard 
+	 	fromAppState ( common.mainView.authorView.cardView.deleteCard.cardId )
+	 	call com.anfelisa.card.DeleteCard
+		loadingFlag common.displaySpinner 
+		on ok ( 
+			set common.mainView.authorView.cardView.deleteCard
+		) triggers (LoadCards)
+		on error ( 
+			set common.mainView.authorView.cardView.deleteCard
+		) triggers (common.DisplayError)
 
 
-GivenOfEditedCardChanged ( given )
-	on ok (merge common.mainView.authorView.cardView.editedCard)
-
-WantedOfEditedCardChanged ( wanted )
-	on ok (merge common.mainView.authorView.cardView.editedCard)
-
-CancelEditCard 
-	on ok (set common.mainView.authorView.cardView.editedCard)
-
-EditCard ( cardId )
-	fromAppState (common.mainView.authorView.cardView.cardList)
-	on ok (set common.mainView.authorView.cardView.editedCard)
-
-DeleteCardClick ( cardId )
-	on ok (set common.mainView.authorView.cardView.deleteCard)
-
-CancelDeleteCard 
-	on ok (set common.mainView.authorView.cardView.deleteCard)
-
-FilterCards ( filter )
-	on ok (set common.mainView.authorView.cardView.filter)
-
-PassValueToDictionary 
-	fromAppState (common.mainView.authorView.cardView.naturalInputOrder, common.mainView.authorView.cardView.newCard.given, common.mainView.authorView.cardView.newCard.wanted)
-	on ok (set common.mainView.authorView.cardView.dictionaryValue)
-
-
-ToggleInputOrder
-	fromAppState (common.mainView.authorView.cardView.naturalInputOrder)
-	on ok (set common.mainView.authorView.cardView.naturalInputOrder)
-
-
-LoadWantedImageOfNewCard ( image )
-	on ok ( set common.mainView.authorView.cardView.newCard.image )
-
-LoadWantedImageOfEditedCard ( image )
-	on ok ( set common.mainView.authorView.cardView.editedCard.image )
-
-RemoveNewCardImage 
-	on ok ( set common.mainView.authorView.cardView.newCard.image )
-
-RemoveEditedCardImage 
-	on ok ( set common.mainView.authorView.cardView.editedCard.image )
-
-ToggleScheduleCardSelection ( cardId )
-	fromAppState (common.mainView.authorView.cardView.selectedCardIds)
-	on ok (set common.mainView.authorView.cardView.selectedCardIds)
-
-ToggleAllScheduleCardSelection 
-	fromAppState (
-		common.mainView.authorView.cardView.selectedCardIds,
-		common.mainView.authorView.cardView.cardList
-	)
-	on ok (set common.mainView.authorView.cardView.selectedCardIds)
-
-ScheduleSelectedCards
-	fromAppState (
-		common.mainView.authorView.cardView.selectedCardIds,
-		common.mainView.authorView.filterNonScheduled
-	) 
- 	call com.anfelisa.box.ScheduleCards
-	loadingFlag common.displaySpinner 
-	on noFilter triggers (LoadCards)
-	on filter triggers (category.LoadCategoryTree)
+	GivenOfNewCardChanged ( given )
+		on ok (merge common.mainView.authorView.cardView.newCard)
+	
+	WantedOfNewCardChanged ( wanted )
+		on ok (merge common.mainView.authorView.cardView.newCard)
+	
+	CancelNewCard 
+		on ok (set common.mainView.authorView.cardView.newCard)
+	
+	
+	GivenOfEditedCardChanged ( given )
+		on ok (merge common.mainView.authorView.cardView.editedCard)
+	
+	WantedOfEditedCardChanged ( wanted )
+		on ok (merge common.mainView.authorView.cardView.editedCard)
+	
+	CancelEditCard 
+		on ok (set common.mainView.authorView.cardView.editedCard)
+	
+	EditCard ( cardId )
+		fromAppState (common.mainView.authorView.cardView.cardList)
+		on ok (set common.mainView.authorView.cardView.editedCard)
+	
+	DeleteCardClick ( cardId )
+		on ok (set common.mainView.authorView.cardView.deleteCard)
+	
+	CancelDeleteCard 
+		on ok (set common.mainView.authorView.cardView.deleteCard)
+	
+	FilterCards ( filter )
+		on ok (set common.mainView.authorView.cardView.filter)
+	
+	PassValueToDictionary 
+		fromAppState (common.mainView.authorView.cardView.naturalInputOrder, common.mainView.authorView.cardView.newCard.given, common.mainView.authorView.cardView.newCard.wanted)
+		on ok (set common.mainView.authorView.cardView.dictionaryValue)
+	
+	
+	ToggleInputOrder
+		fromAppState (common.mainView.authorView.cardView.naturalInputOrder)
+		on ok (set common.mainView.authorView.cardView.naturalInputOrder)
+	
+	
+	LoadWantedImageOfNewCard ( image )
+		on ok ( set common.mainView.authorView.cardView.newCard.image )
+	
+	LoadWantedImageOfEditedCard ( image )
+		on ok ( set common.mainView.authorView.cardView.editedCard.image )
+	
+	RemoveNewCardImage 
+		on ok ( set common.mainView.authorView.cardView.newCard.image )
+	
+	RemoveEditedCardImage 
+		on ok ( set common.mainView.authorView.cardView.editedCard.image )
+	
+	ToggleScheduleCardSelection ( cardId )
+		fromAppState (common.mainView.authorView.cardView.selectedCardIds)
+		on ok (set common.mainView.authorView.cardView.selectedCardIds)
+	
+	ToggleAllScheduleCardSelection 
+		fromAppState (
+			common.mainView.authorView.cardView.selectedCardIds,
+			common.mainView.authorView.cardView.cardList
+		)
+		on ok (set common.mainView.authorView.cardView.selectedCardIds)
+	
+	ScheduleSelectedCards
+		fromAppState (
+			common.mainView.authorView.cardView.selectedCardIds,
+			common.mainView.authorView.filterNonScheduled
+		) 
+	 	call com.anfelisa.box.ScheduleCards
+		loadingFlag common.displaySpinner 
+		on noFilter triggers (LoadCards)
+		on filter triggers (category.LoadCategoryTree)
+			
 		
+	SortSelectedCardsOut 
+		fromAppState (common.mainView.authorView.cardView.selectedCardIds) 
+	 	call com.anfelisa.box.SortCardsOut
+		loadingFlag common.displaySpinner 
+		on ok triggers (LoadCards)
+		
+	MoveCardsStarted
+		fromAppState (common.mainView.authorView.cardView.selectedCardIds) 
+		on ok (set common.mainView.authorView.cardView.movedCardIds)
+		
+	MoveCards
+		fromAppState (
+			common.mainView.authorView.cardView.movedCardIds,
+			common.mainView.authorView.categoryTree.dropTargetCategoryId,
+			common.mainView.authorView.categoryTree.rootCategory
+		)
+	 	call com.anfelisa.card.MoveCards
+		loadingFlag common.displaySpinner 
+		on ok (
+			set common.mainView.authorView.cardView.movedCardIds
+		) triggers (category.LoadCategoryTree)
+		
+		
+	ChangeCardOrder ( cardId )
+		fromAppState ( common.mainView.authorView.cardView.movedCardIds	)
+	 	call com.anfelisa.card.ChangeOrder
+		loadingFlag common.displaySpinner 
+		on ok (
+			set common.mainView.authorView.cardView.movedCardIds
+		) triggers (LoadCards)
 	
-SortSelectedCardsOut 
-	fromAppState (common.mainView.authorView.cardView.selectedCardIds) 
- 	call com.anfelisa.box.SortCardsOut
-	loadingFlag common.displaySpinner 
-	on ok triggers (LoadCards)
+	OnDragEnter ( dragTargetCardId )
+		on ok (set common.mainView.authorView.cardView.dragTargetCardId)
+		
+	OnDragExit ( dragTargetCardId )
+		on ok (set common.mainView.authorView.cardView.dragTargetCardId)
+		
+	SearchDuplicateCards 
+		fromAppState (
+			common.mainView.authorView.cardView.naturalInputOrder,
+			common.mainView.authorView.cardView.newCard.given,
+			common.mainView.authorView.cardView.newCard.wanted,
+			common.mainView.authorView.categoryTree.selectedCategory.categoryId
+		)
+		call com.anfelisa.card.GetDuplicates
+		loadingFlag common.mainView.authorView.cardView.newCard.displaySpinner 
+		on ok ( set common.mainView.authorView.cardView.cardDuplicates )
+		
+	Translate 
+		fromAppState (
+			common.mainView.authorView.cardView.naturalInputOrder,
+			common.mainView.authorView.cardView.newCard.given,
+			common.mainView.authorView.cardView.newCard.wanted,
+			common.mainView.authorView.categoryTree.selectedCategory.givenLanguage,
+			common.mainView.authorView.categoryTree.selectedCategory.wantedLanguage
+		)
+		call com.anfelisa.card.GetTranslation
+		loadingFlag common.mainView.authorView.cardView.newCard.displayTranslateSpinner 
+		on wantedFetched (merge common.mainView.authorView.cardView.newCard ) triggers (SearchDuplicateCards)
+		on givenFetched (merge common.mainView.authorView.cardView.newCard ) triggers (SearchDuplicateCards)
+		on error
+		on empty
+		on targetNotEmtpy
 	
-MoveCardsStarted
-	fromAppState (common.mainView.authorView.cardView.selectedCardIds) 
-	on ok (set common.mainView.authorView.cardView.movedCardIds)
-	
-MoveCards
-	fromAppState (
-		common.mainView.authorView.cardView.movedCardIds,
-		common.mainView.authorView.categoryTree.dropTargetCategoryId,
-		common.mainView.authorView.categoryTree.rootCategory
-	)
- 	call com.anfelisa.card.MoveCards
-	loadingFlag common.displaySpinner 
-	on ok (
-		set common.mainView.authorView.cardView.movedCardIds
-	) triggers (category.LoadCategoryTree)
-	
-	
-ChangeCardOrder ( cardId )
-	fromAppState ( common.mainView.authorView.cardView.movedCardIds	)
- 	call com.anfelisa.card.ChangeOrder
-	loadingFlag common.displaySpinner 
-	on ok (
-		set common.mainView.authorView.cardView.movedCardIds
-	) triggers (LoadCards)
-
-OnDragEnter ( dragTargetCardId )
-	on ok (set common.mainView.authorView.cardView.dragTargetCardId)
-	
-OnDragExit ( dragTargetCardId )
-	on ok (set common.mainView.authorView.cardView.dragTargetCardId)
-	
-SearchDuplicateCards 
-	fromAppState (
-		common.mainView.authorView.cardView.naturalInputOrder,
-		common.mainView.authorView.cardView.newCard.given,
-		common.mainView.authorView.cardView.newCard.wanted,
-		common.mainView.authorView.categoryTree.selectedCategory.categoryId
-	)
-	call com.anfelisa.card.GetDuplicates
-	loadingFlag common.mainView.authorView.cardView.newCard.displaySpinner 
-	on ok ( set common.mainView.authorView.cardView.cardDuplicates )
-	
-Translate 
-	fromAppState (
-		common.mainView.authorView.cardView.naturalInputOrder,
-		common.mainView.authorView.cardView.newCard.given,
-		common.mainView.authorView.cardView.newCard.wanted,
-		common.mainView.authorView.categoryTree.selectedCategory.givenLanguage,
-		common.mainView.authorView.categoryTree.selectedCategory.wantedLanguage
-	)
-	call com.anfelisa.card.GetTranslation
-	loadingFlag common.mainView.authorView.cardView.newCard.displayTranslateSpinner 
-	on wantedFetched (merge common.mainView.authorView.cardView.newCard ) triggers (SearchDuplicateCards)
-	on givenFetched (merge common.mainView.authorView.cardView.newCard ) triggers (SearchDuplicateCards)
-	on error
-	on empty
-	on targetNotEmtpy
-
 	

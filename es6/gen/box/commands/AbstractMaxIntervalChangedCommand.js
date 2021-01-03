@@ -6,12 +6,15 @@
 
 
 import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
+import * as AppState from "../../ace/AppState";
 import MaxIntervalChangedOkEvent from "../../../gen/box/events/MaxIntervalChangedOkEvent";
 
 export default class AbstractMaxIntervalChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.MaxIntervalChangedCommand");
         this.commandData.outcomes = [];
+        this.commandData.maxCardsPerDay = AppState.get_boxSettingsView_maxCardsPerDay();
+        this.commandData.allActiveCards = AppState.get_boxSettingsView_allActiveCards();
     }
 
 	addOkOutcome() {

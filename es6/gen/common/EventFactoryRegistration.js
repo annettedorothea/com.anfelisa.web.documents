@@ -15,6 +15,7 @@ import RouteChangedResetPasswordEvent from "./events/RouteChangedResetPasswordEv
 import RouteChangedCategoriesEvent from "./events/RouteChangedCategoriesEvent";
 import RouteChangedNextCardEvent from "./events/RouteChangedNextCardEvent";
 import RouteChangedBoxSettingsEvent from "./events/RouteChangedBoxSettingsEvent";
+import RouteChangedAllActiveCardsEvent from "./events/RouteChangedAllActiveCardsEvent";
 import RouteChangedBoxCreateEvent from "./events/RouteChangedBoxCreateEvent";
 import RouteOkEvent from "./events/RouteOkEvent";
 import InitialLoginOkEvent from "./events/InitialLoginOkEvent";
@@ -48,6 +49,8 @@ export default class EventFactoryRegistrationCommon {
 			(eventData) => new RouteChangedNextCardEvent(eventData));
 		ACEController.registerFactory('common.RouteChangedBoxSettingsEvent', 
 			(eventData) => new RouteChangedBoxSettingsEvent(eventData));
+		ACEController.registerFactory('common.RouteChangedAllActiveCardsEvent', 
+			(eventData) => new RouteChangedAllActiveCardsEvent(eventData));
 		ACEController.registerFactory('common.RouteChangedBoxCreateEvent', 
 			(eventData) => new RouteChangedBoxCreateEvent(eventData));
 		ACEController.registerFactory('common.RouteOkEvent', 

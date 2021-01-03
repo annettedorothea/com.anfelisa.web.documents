@@ -15,6 +15,7 @@
  */
 
 
+
 import AbstractMaxCardsPerDayChangedCommand from "../../../gen/box/commands/AbstractMaxCardsPerDayChangedCommand";
 
 export default class MaxCardsPerDayChangedCommand extends AbstractMaxCardsPerDayChangedCommand {
@@ -23,6 +24,11 @@ export default class MaxCardsPerDayChangedCommand extends AbstractMaxCardsPerDay
             || isNaN(this.commandData.maxCardsPerDay)
             || this.commandData.maxCardsPerDay%1 !== 0
             || this.commandData.maxCardsPerDay <= 0;
+        if (this.commandData.maxCardsPerDay && this.commandData.maxInterval && this.commandData.allActiveCards > this.commandData.maxCardsPerDay * this.commandData.maxInterval) {
+            this.commandData.tooManyCardsWarning = true;
+        } else {
+            this.commandData.tooManyCardsWarning = false;
+        }
     	this.addOkOutcome();
     }
 }

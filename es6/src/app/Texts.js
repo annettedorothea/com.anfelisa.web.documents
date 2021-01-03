@@ -4,6 +4,20 @@ export const Texts = {
             de: "Zur Benutzerverwaltung"
         }
     },
+    allActiveCards: {
+        count: {
+            de: "{0}x"
+        },
+        interval: {
+            de: "{0} Tage"
+        },
+        scheduleSelectedCards: {
+            de: "Selektierte heute abfragen"
+        },
+        sortSelectedCardsOut: {
+            de: "Selektierte aussortieren"
+        }
+    },
     box: {
         confirmDelete: {
             cancel: {
@@ -21,6 +35,9 @@ export const Texts = {
         }
     },
     boxSettings : {
+        boxInfo: {
+            de: "In diese Box passen mit deinen Einstellungen {0} Karten und du hast {1} Karten in der Box. Das passt!"
+        },
         cancel: {
             de: "Abbrechen"
         },
@@ -41,6 +58,9 @@ export const Texts = {
         },
         title: {
             de: "Einstellungen"
+        },
+        tooManyCardsWarning: {
+            de: "In diese Box passen mit deinen Einstellungen {0} Karten. Du hast aber {1} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maxiamlen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
         },
         languages: {
             de: {
