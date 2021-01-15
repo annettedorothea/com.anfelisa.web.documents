@@ -23,7 +23,7 @@ RegisterUser ( password )
 	fromAppState ( common.mainView.registrationView.email, common.language, common.mainView.registrationView.username)
 	call com.anfelisa.user.RegisterUser
 	loadingFlag common.displaySpinner 
-	on ok  triggers ( common.DisplayMessage common.Route)
+	on ok  triggers ( common.DisplayMessage Login)
 	on error triggers (common.DisplayError) 
 
 ConfirmEmail ( username, token )
@@ -31,3 +31,13 @@ ConfirmEmail ( username, token )
 	loadingFlag common.displaySpinner 
 	on ok triggers ( common.DisplayMessage common.Route)
 
+Login ( password  )
+	fromAppState (
+		common.mainView.registrationView.username
+	)
+	on ok ( 
+		set common.loggedInUser
+		set common.username 
+		set common.password
+	) triggers ( login.GetRole )
+	

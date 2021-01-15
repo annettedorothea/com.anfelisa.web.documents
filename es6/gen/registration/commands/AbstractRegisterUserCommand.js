@@ -11,7 +11,7 @@ import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
-import RouteAction from "../../../src/common/actions/RouteAction";
+import LoginAction from "../../../src/registration/actions/LoginAction";
 import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 
 export default class AbstractRegisterUserCommand extends AsynchronousCommand {
@@ -35,7 +35,7 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
 	    
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish());
-			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
+			promises.push(new TriggerAction(new LoginAction(this.commandData.password)).publish());
 		}
 		if (this.commandData.outcomes.includes("error")) {
 			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish());

@@ -16,6 +16,9 @@ export default class EventListenerRegistrationRegistration {
 		ACEController.registerListener('registration.EmailChangedOkEvent', AppState.set_registrationView_emailInvalid);
 		ACEController.registerListener('registration.EmailChangedOkEvent', AppState.set_registrationView_email);
 		ACEController.registerListener('registration.PasswordChangedOkEvent', AppState.set_registrationView_passwordMismatch);
+		ACEController.registerListener('registration.LoginOkEvent', AppState.set_loggedInUser);
+		ACEController.registerListener('registration.LoginOkEvent', AppState.set_username);
+		ACEController.registerListener('registration.LoginOkEvent', AppState.set_password);
 	}
 
 }
