@@ -122,7 +122,10 @@ export const Texts = {
             de: "Neue Lernkartei"
         },
         nonScheduled: {
-            de: "{0} nie abgefragte Karte(n)"
+            de: "{0} nie abgefragte Karten"
+        },
+        nonScheduledNone: {
+            de: "Keine nie abgefragte Karte"
         },
         nonScheduledSingular: {
             de: "Eine nie abgefragte Karte"

@@ -54,6 +54,8 @@ export default class SelectableCategoryItem extends React.Component {
                     onClick={() => this.props.selected ? "" : selectTreeItem(this.props.categoryId)}>{this.props.categoryName}
                     {this.props.nonScheduledCount === 1 && <span
                         className="nonScheduledCount">{this.props.texts.categoryList.nonScheduledSingular[this.props.language]}</span>}
+                    {this.props.nonScheduledCount === 0 && <span
+                        className="nonScheduledCount">{this.props.texts.categoryList.nonScheduledNone[this.props.language]}</span>}
                     {this.props.nonScheduledCount > 1 && <span
                         className="nonScheduledCount">{this.props.texts.categoryList.nonScheduled[this.props.language].replace("{0}", this.props.nonScheduledCount)}</span>}
                 </span>
