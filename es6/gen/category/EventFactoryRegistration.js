@@ -14,6 +14,13 @@ import SelectTreeItemOkEvent from "./events/SelectTreeItemOkEvent";
 import NewCategoryClickOkEvent from "./events/NewCategoryClickOkEvent";
 import CancelNewCategoryOkEvent from "./events/CancelNewCategoryOkEvent";
 import CategoryNameChangedOkEvent from "./events/CategoryNameChangedOkEvent";
+import InviteUserClickOkEvent from "./events/InviteUserClickOkEvent";
+import GetInvitedUsernamesOkEvent from "./events/GetInvitedUsernamesOkEvent";
+import CancelInviteUserOkEvent from "./events/CancelInviteUserOkEvent";
+import InvitedUsernameChangedOkEvent from "./events/InvitedUsernameChangedOkEvent";
+import InvitedUsernameChangedTooShortEvent from "./events/InvitedUsernameChangedTooShortEvent";
+import SearchUsernameOkEvent from "./events/SearchUsernameOkEvent";
+import InviteUserOkEvent from "./events/InviteUserOkEvent";
 import CreateCategoryOkEvent from "./events/CreateCategoryOkEvent";
 import CreateCategoryErrorEvent from "./events/CreateCategoryErrorEvent";
 import DeleteCategoryClickOkEvent from "./events/DeleteCategoryClickOkEvent";
@@ -54,6 +61,20 @@ export default class EventFactoryRegistrationCategory {
 			(eventData) => new CancelNewCategoryOkEvent(eventData));
 		ACEController.registerFactory('category.CategoryNameChangedOkEvent', 
 			(eventData) => new CategoryNameChangedOkEvent(eventData));
+		ACEController.registerFactory('category.InviteUserClickOkEvent', 
+			(eventData) => new InviteUserClickOkEvent(eventData));
+		ACEController.registerFactory('category.GetInvitedUsernamesOkEvent', 
+			(eventData) => new GetInvitedUsernamesOkEvent(eventData));
+		ACEController.registerFactory('category.CancelInviteUserOkEvent', 
+			(eventData) => new CancelInviteUserOkEvent(eventData));
+		ACEController.registerFactory('category.InvitedUsernameChangedOkEvent', 
+			(eventData) => new InvitedUsernameChangedOkEvent(eventData));
+		ACEController.registerFactory('category.InvitedUsernameChangedTooShortEvent', 
+			(eventData) => new InvitedUsernameChangedTooShortEvent(eventData));
+		ACEController.registerFactory('category.SearchUsernameOkEvent', 
+			(eventData) => new SearchUsernameOkEvent(eventData));
+		ACEController.registerFactory('category.InviteUserOkEvent', 
+			(eventData) => new InviteUserOkEvent(eventData));
 		ACEController.registerFactory('category.CreateCategoryOkEvent', 
 			(eventData) => new CreateCategoryOkEvent(eventData));
 		ACEController.registerFactory('category.CreateCategoryErrorEvent', 

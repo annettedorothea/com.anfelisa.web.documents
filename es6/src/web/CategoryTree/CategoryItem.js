@@ -19,7 +19,7 @@ export default class CategoryItem extends React.Component {
                     selected={selected}
                     selectedCategory={this.props.selectedCategory}
                     depth={this.props.depth + 1}
-                    dropAllowed={this.props.dropAllowed}
+                    dropAllowed={this.props.dropAllowed && this.props.selectedCategory.editable}
                     dropTargetCategoryId={this.props.dropTargetCategoryId}
                     texts={this.props.texts}
                     language={this.props.language}
@@ -28,7 +28,7 @@ export default class CategoryItem extends React.Component {
                 <CollapsedCategoryItem
                     {...this.props}
                     selected={selected}
-                    dropAllowed={this.props.dropAllowed}
+                    dropAllowed={this.props.dropAllowed && this.props.selectedCategory.editable}
                     dropTargetCategoryId={this.props.dropTargetCategoryId}
                     depth={this.props.depth + 1}
                     texts={this.props.texts}

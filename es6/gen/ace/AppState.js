@@ -762,8 +762,8 @@ export function merge_boxSettingsView(eventData) {
 	if (eventData.maxCardsPerDayInvalid !== undefined) {
 		appState.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
 	}
-	if (eventData.tooManyCardsWarning !== undefined) {
-		appState.mainView.tooManyCardsWarning = eventData.tooManyCardsWarning;
+	if (eventData.tooManyCardsStatus !== undefined) {
+		appState.mainView.tooManyCardsStatus = eventData.tooManyCardsStatus;
 	}
 	if (eventData.dictionaryLookupInvalid !== undefined) {
 		appState.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
@@ -838,23 +838,23 @@ export function set_boxSettingsView_maxCardsPerDayInvalid(eventData) {
 	appState.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
 }
 
-export function get_boxSettingsView_tooManyCardsWarning() {
+export function get_boxSettingsView_tooManyCardsStatus() {
 	if (!appState.mainView) {
 		return undefined;
 	}
 	if (appState.mainView.isBoxSettingsView !== true) {
 		return undefined;
 	}
-	return appState.mainView.tooManyCardsWarning;
+	return appState.mainView.tooManyCardsStatus;
 }
 
-export function set_boxSettingsView_tooManyCardsWarning(eventData) {
+export function set_boxSettingsView_tooManyCardsStatus(eventData) {
 	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
 		appState.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.tooManyCardsWarning = eventData.tooManyCardsWarning;
+	appState.mainView.tooManyCardsStatus = eventData.tooManyCardsStatus;
 }
 
 export function get_boxSettingsView_dictionaryLookupInvalid() {
@@ -1093,6 +1093,9 @@ export function merge_allActiveCardsView(eventData) {
 	if (eventData.boxId !== undefined) {
 		appState.mainView.boxId = eventData.boxId;
 	}
+	if (eventData.editable !== undefined) {
+		appState.mainView.editable = eventData.editable;
+	}
 	if (eventData.cardList !== undefined) {
 		appState.mainView.cardList = eventData.cardList;
 	}
@@ -1118,6 +1121,25 @@ export function set_allActiveCardsView_boxId(eventData) {
 		};
 	}
 	appState.mainView.boxId = eventData.boxId;
+}
+
+export function get_allActiveCardsView_editable() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAllActiveCardsView !== true) {
+		return undefined;
+	}
+	return appState.mainView.editable;
+}
+
+export function set_allActiveCardsView_editable(eventData) {
+	if (!appState.mainView || appState.mainView.isAllActiveCardsView !== true) {
+		appState.mainView = {
+			isAllActiveCardsView : true
+		};
+	}
+	appState.mainView.editable = eventData.editable;
 }
 
 export function get_allActiveCardsView_cardList() {
@@ -1980,6 +2002,18 @@ export function merge_authorView_categoryTree(eventData) {
 	}
 	if (eventData.displayNewCategory !== undefined) {
 		appState.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
+	}
+	if (eventData.displayInviteUser !== undefined) {
+		appState.mainView.categoryTree.displayInviteUser = eventData.displayInviteUser;
+	}
+	if (eventData.usernameSearchString !== undefined) {
+		appState.mainView.categoryTree.usernameSearchString = eventData.usernameSearchString;
+	}
+	if (eventData.usernames !== undefined) {
+		appState.mainView.categoryTree.usernames = eventData.usernames;
+	}
+	if (eventData.invitedUsernames !== undefined) {
+		appState.mainView.categoryTree.invitedUsernames = eventData.invitedUsernames;
 	}
 	if (eventData.dropAllowed !== undefined) {
 		appState.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
@@ -2921,6 +2955,106 @@ export function set_authorView_categoryTree_displayNewCategory(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
+}
+
+export function get_authorView_categoryTree_displayInviteUser() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.displayInviteUser;
+}
+
+export function set_authorView_categoryTree_displayInviteUser(eventData) {
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
+	}
+	appState.mainView.categoryTree.displayInviteUser = eventData.displayInviteUser;
+}
+
+export function get_authorView_categoryTree_usernameSearchString() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.usernameSearchString;
+}
+
+export function set_authorView_categoryTree_usernameSearchString(eventData) {
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
+	}
+	appState.mainView.categoryTree.usernameSearchString = eventData.usernameSearchString;
+}
+
+export function get_authorView_categoryTree_usernames() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.usernames;
+}
+
+export function set_authorView_categoryTree_usernames(eventData) {
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
+	}
+	appState.mainView.categoryTree.usernames = eventData.usernames;
+}
+
+export function get_authorView_categoryTree_invitedUsernames() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.invitedUsernames;
+}
+
+export function set_authorView_categoryTree_invitedUsernames(eventData) {
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
+	}
+	appState.mainView.categoryTree.invitedUsernames = eventData.invitedUsernames;
 }
 
 export function get_authorView_categoryTree_dropAllowed() {

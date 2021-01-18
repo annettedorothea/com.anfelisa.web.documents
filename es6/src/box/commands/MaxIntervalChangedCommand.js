@@ -25,11 +25,6 @@ export default class MaxIntervalChangedCommand extends AbstractMaxIntervalChange
         } else {
             this.commandData.maxIntervalInvalid = false;
         }
-        if (this.commandData.maxCardsPerDay && this.commandData.maxInterval && this.commandData.allActiveCards > this.commandData.maxCardsPerDay * this.commandData.maxInterval) {
-            this.commandData.tooManyCardsWarning = true;
-        } else {
-            this.commandData.tooManyCardsWarning = false;
-        }
     	this.addOkOutcome();
     }
 }

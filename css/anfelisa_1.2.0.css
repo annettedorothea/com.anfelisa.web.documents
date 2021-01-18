@@ -112,6 +112,13 @@ h2 {
     margin-bottom: 16px;
 }
 
+h3 {
+    color: #337ab7;
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 12px;
+}
+
 .text-center {
     text-align: center;
 }
@@ -331,6 +338,10 @@ table td.priority i {
 
 .modal .modalContent .message {
     margin: 24px 0;
+}
+
+.modal .modalContent ul {
+    list-style-type:none;
 }
 
 /* helper */
@@ -1089,6 +1100,7 @@ iframe {
 
 .categoryTree .categoryTreeItems {
     margin-bottom: 20px;
+    margin-top: 40px;
 }
 
 .categoryTree .categoryItem.depth_0 {

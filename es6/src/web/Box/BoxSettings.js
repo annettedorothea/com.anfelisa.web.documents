@@ -25,13 +25,13 @@ export default class BoxSettings extends React.Component {
             <div className="center-wide">
                 <div className="form">
                     <h1>{this.props.texts.boxSettings.title[this.props.language]}</h1>
-                    {this.props.allActiveCards && this.props.allCards && <div
+                    {this.props.allActiveCards > 0 && this.props.allCards > 0 && <div
                         className="line">{this.props.texts.boxSettings.cardInfo[this.props.language].replace("{0}", this.props.allActiveCards).replace("{1}", this.props.allCards)}</div>}
 
-                    {this.props.tooManyCardsWarning === true && <div className="line warning">
+                    {this.props.tooManyCardsStatus === 2 && <div className="line warning">
                         {this.props.texts.boxSettings.tooManyCardsWarning[this.props.language].replace("{0}", this.props.maxCardsPerDay*this.props.maxInterval).replace("{1}", this.props.allActiveCards)}
                     </div>}
-                    {this.props.tooManyCardsWarning === false && <div className="line info">
+                    {this.props.tooManyCardsStatus === 1 && <div className="line info">
                         {this.props.texts.boxSettings.boxInfo[this.props.language].replace("{0}", this.props.maxCardsPerDay*this.props.maxInterval).replace("{1}", this.props.allActiveCards)}
                     </div>}
 

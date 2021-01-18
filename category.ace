@@ -47,6 +47,48 @@ CancelNewCategory
 CategoryNameChanged ( categoryName )
 	on ok (merge common.mainView.authorView.categoryTree)
 	
+InviteUserClick
+	on ok (
+		set common.mainView.authorView.categoryTree.displayInviteUser
+		set common.mainView.authorView.categoryTree.usernameSearchString
+	) triggers (GetInvitedUsernames)
+	
+GetInvitedUsernames
+	fromAppState (common.mainView.authorView.categoryTree.rootCategory.categoryId)
+		call com.anfelisa.category.GetInvitedUsers
+	on ok (set common.mainView.authorView.categoryTree.invitedUsernames)
+	
+CancelInviteUser
+	on ok (
+		set common.mainView.authorView.categoryTree.displayInviteUser
+		set common.mainView.authorView.categoryTree.usernameSearchString
+		set common.mainView.authorView.categoryTree.invitedUsernames
+		set common.mainView.authorView.categoryTree.usernames
+	)
+	
+InvitedUsernameChanged ( usernameSearchString )
+	on ok (set common.mainView.authorView.categoryTree.usernameSearchString)
+	on search triggers (SearchUsername)
+	on tooShort (set common.mainView.authorView.categoryTree.usernames)
+	
+SearchUsername
+	fromAppState (
+		common.mainView.authorView.categoryTree.usernameSearchString,
+		common.mainView.authorView.categoryTree.rootCategory.categoryId
+	)
+		call com.anfelisa.category.SearchUsernameForInvitation
+	on ok (set common.mainView.authorView.categoryTree.usernames)
+
+InviteUser (invitedUsername)
+	fromAppState (common.mainView.authorView.categoryTree.rootCategory.categoryId)
+		call com.anfelisa.category.InviteUserToCategory
+	on ok (
+		set common.mainView.authorView.categoryTree.displayInviteUser
+		set common.mainView.authorView.categoryTree.usernameSearchString
+		set common.mainView.authorView.categoryTree.invitedUsernames
+		set common.mainView.authorView.categoryTree.usernames
+	)
+	
 CreateCategory
 	fromAppState (
 		common.mainView.authorView.categoryTree.categoryName,

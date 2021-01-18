@@ -12,6 +12,12 @@ import SelectTreeItemAction from "../../src/category/actions/SelectTreeItemActio
 import NewCategoryClickAction from "../../src/category/actions/NewCategoryClickAction";
 import CancelNewCategoryAction from "../../src/category/actions/CancelNewCategoryAction";
 import CategoryNameChangedAction from "../../src/category/actions/CategoryNameChangedAction";
+import InviteUserClickAction from "../../src/category/actions/InviteUserClickAction";
+import GetInvitedUsernamesAction from "../../src/category/actions/GetInvitedUsernamesAction";
+import CancelInviteUserAction from "../../src/category/actions/CancelInviteUserAction";
+import InvitedUsernameChangedAction from "../../src/category/actions/InvitedUsernameChangedAction";
+import SearchUsernameAction from "../../src/category/actions/SearchUsernameAction";
+import InviteUserAction from "../../src/category/actions/InviteUserAction";
 import CreateCategoryAction from "../../src/category/actions/CreateCategoryAction";
 import DeleteCategoryClickAction from "../../src/category/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../../src/category/actions/CancelDeleteCategoryAction";
@@ -57,6 +63,30 @@ export function cancelNewCategory() {
 
 export function categoryNameChanged(categoryName) {
     new CategoryNameChangedAction(categoryName).apply();
+}
+
+export function inviteUserClick() {
+    new InviteUserClickAction().apply();
+}
+
+export function getInvitedUsernames() {
+    new GetInvitedUsernamesAction().apply();
+}
+
+export function cancelInviteUser() {
+    new CancelInviteUserAction().apply();
+}
+
+export function invitedUsernameChanged(usernameSearchString) {
+    new InvitedUsernameChangedAction(usernameSearchString).apply();
+}
+
+export function searchUsername() {
+    new SearchUsernameAction().apply();
+}
+
+export function inviteUser(invitedUsername) {
+    new InviteUserAction(invitedUsername).apply();
 }
 
 export function createCategory() {

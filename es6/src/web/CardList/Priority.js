@@ -1,5 +1,4 @@
 import React from "react";
-import {updateCardPriority} from "../../../gen/card/ActionFunctions";
 
 export default class Priority extends React.Component {
 
@@ -9,13 +8,15 @@ export default class Priority extends React.Component {
     }
 
     updateCardPriorityClick(priority) {
-        this.props.updateFunction(this.props.cardId, priority, this.props.priority);
+        if (this.props.editable) {
+            this.props.updateFunction(this.props.cardId, priority, this.props.priority);
+        }
     }
     
     render() {
         if (this.props.priority === 1) {
             return (
-                <td className="priority">
+                <td className="priority noBreak">
                     <i className="fa fa-star" onClick={() => this.updateCardPriorityClick(1)}/>
                     <i className="far fa-star" onClick={() => this.updateCardPriorityClick(2)}/>
                     <i className="far fa-star" onClick={() => this.updateCardPriorityClick(3)}/>
@@ -23,7 +24,7 @@ export default class Priority extends React.Component {
             );
         } else if (this.props.priority === 2) {
             return (
-                <td className="priority">
+                <td className="priority noBreak">
                     <i className="fa fa-star" onClick={() => this.updateCardPriorityClick(1)}/>
                     <i className="fa fa-star" onClick={() => this.updateCardPriorityClick(2)}/>
                     <i className="far fa-star" onClick={() => this.updateCardPriorityClick(3)}/>
@@ -31,7 +32,7 @@ export default class Priority extends React.Component {
             );
         } else if (this.props.priority === 3) {
             return (
-                <td className="priority">
+                <td className="priority noBreak">
                     <i className="fa fa-star" onClick={() => this.updateCardPriorityClick(1)}/>
                     <i className="fa fa-star" onClick={() => this.updateCardPriorityClick(2)}/>
                     <i className="fa fa-star" onClick={() => this.updateCardPriorityClick(3)}/>
@@ -39,7 +40,7 @@ export default class Priority extends React.Component {
             );
         } else {
             return (
-                <td className="priority">
+                <td className="priority noBreak">
                     <i className="far fa-star" onClick={() => this.updateCardPriorityClick(1)}/>
                     <i className="far fa-star" onClick={() => this.updateCardPriorityClick(2)}/>
                     <i className="far fa-star" onClick={() => this.updateCardPriorityClick(3)}/>

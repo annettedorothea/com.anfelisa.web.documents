@@ -21,6 +21,7 @@ export default class ActiveCardList extends React.Component {
                 {...card}
                 key={index}
                 selectedCardIds={this.props.selectedCardIds}
+                editable={this.props.editable}
                 texts={this.props.texts}
                 language={this.props.language}
                 username={this.props.username}

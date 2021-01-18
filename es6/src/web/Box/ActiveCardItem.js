@@ -27,7 +27,7 @@ export default class ActiveCardItem extends React.Component {
                     <pre>{this.props.wanted}</pre>
                 </td>
                 <Priority priority={this.props.priority} cardId={this.props.cardId}
-                          updateFunction={updateCardPriority}/>
+                          updateFunction={updateCardPriority} editable={this.props.editable}/>
                 <td className="visibleMobile alignRight">
                     {this.props.next ? new Date(this.props.next).toLocaleDateString() : ""}
                 </td>

@@ -12,10 +12,10 @@ export const Texts = {
             de: "{0} Tage"
         },
         scheduleSelectedCards: {
-            de: "Selektierte heute abfragen"
+            de: "Heute abfragen"
         },
         sortSelectedCardsOut: {
-            de: "Selektierte aussortieren"
+            de: "Aussortieren"
         }
     },
     box: {
@@ -27,7 +27,7 @@ export const Texts = {
                 de: "Ja"
             },
             message: {
-                de: "Soll die Lernkartei wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden und alle Ordner und Karten werden dann auch gelöscht."
+                de: "Soll die Lernkartei wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
             },
             title: {
                 de: "Löschen"
@@ -36,13 +36,13 @@ export const Texts = {
     },
     boxSettings : {
         boxInfo: {
-            de: "In diese Box passen mit deinen Einstellungen {0} Karten und du hast {1} Karten in der Box. Das passt!"
+            de: "In diese Box passen mit deinen Einstellungen {0} Karte(n) und du hast {1} Karte(n) in der Box. Das passt!"
         },
         cancel: {
             de: "Abbrechen"
         },
         cardInfo: {
-            de: "{0} von {1} Karten"
+            de: "{0} von {1} Karte(n)"
         },
         categoryName: {
             de: "Name"
@@ -60,7 +60,7 @@ export const Texts = {
             de: "Einstellungen"
         },
         tooManyCardsWarning: {
-            de: "In diese Box passen mit deinen Einstellungen {0} Karten. Du hast aber {1} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maxiamlen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
+            de: "In diese Box passen mit deinen Einstellungen {0} Karte(n). Du hast aber {1} Karte(n) in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maxiamlen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
         },
         languages: {
             de: {
@@ -122,7 +122,7 @@ export const Texts = {
             de: "Neue Lernkartei"
         },
         nonScheduled: {
-            de: "{0} nie abgefragte Karten"
+            de: "{0} nie abgefragte Karte(n)"
         },
         nonScheduledSingular: {
             de: "Eine nie abgefragte Karte"
@@ -206,6 +206,26 @@ export const Texts = {
         filterNonScheduled: {
             de: "Nie abgefragte anzeigen"
         },
+        inviteUser: {
+            alreadyInvited: {
+                de: "Diese Benutzer hast du schon eingeladen:"
+            },
+            cancel: {
+                de: "Abbrechen"
+            },
+            rootCategory: {
+                de: "Lernkartei"
+            },
+            ok: {
+                de: "OK"
+            },
+            title: {
+                de: "Einladen"
+            },
+            username: {
+                de: "Benutzername"
+            }
+        },
         newCategory: {
             cancel: {
                 de: "Abbrechen"
@@ -258,10 +278,10 @@ export const Texts = {
             de: "Gesucht"
         },
         scheduleSelectedCards: {
-            de: "Selektierte heute abfragen"
+            de: "Heute abfragen"
         },
         sortSelectedCardsOut: {
-            de: "Selektierte aussortieren"
+            de: "Aussortieren"
         },
         toggleInputOrder: {
             de: "Spalten tauschen"

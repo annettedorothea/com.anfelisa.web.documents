@@ -15,7 +15,7 @@ export default class FilterPriority extends React.Component {
     render() {
         if (this.props.priority === 1) {
             return (
-                <span className="priority">
+                <span className="priority noBreak">
                     <i className="fa fa-star" onClick={() => this.updatePriorityClick(1)}/>
                     <i className="far fa-star" onClick={() => this.updatePriorityClick(2)}/>
                     <i className="far fa-star" onClick={() => this.updatePriorityClick(3)}/>
@@ -23,7 +23,7 @@ export default class FilterPriority extends React.Component {
             );
         } else if (this.props.priority === 2) {
             return (
-                <span className="priority">
+                <span className="priority noBreak">
                     <i className="fa fa-star" onClick={() => this.updatePriorityClick(1)}/>
                     <i className="fa fa-star" onClick={() => this.updatePriorityClick(2)}/>
                     <i className="far fa-star" onClick={() => this.updatePriorityClick(3)}/>
@@ -31,7 +31,7 @@ export default class FilterPriority extends React.Component {
             );
         } else if (this.props.priority === 3) {
             return (
-                <span className="priority">
+                <span className="priority noBreak">
                     <i className="fa fa-star" onClick={() => this.updatePriorityClick(1)}/>
                     <i className="fa fa-star" onClick={() => this.updatePriorityClick(2)}/>
                     <i className="fa fa-star" onClick={() => this.updatePriorityClick(3)}/>
@@ -39,7 +39,7 @@ export default class FilterPriority extends React.Component {
             );
         } else {
             return (
-                <span className="priority">
+                <span className="priority noBreak">
                     <i className="far fa-star" onClick={() => this.updatePriorityClick(1)}/>
                     <i className="far fa-star" onClick={() => this.updatePriorityClick(2)}/>
                     <i className="far fa-star" onClick={() => this.updatePriorityClick(3)}/>

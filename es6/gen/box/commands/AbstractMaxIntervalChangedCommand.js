@@ -6,8 +6,10 @@
 
 
 import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
+import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import MaxIntervalChangedOkEvent from "../../../gen/box/events/MaxIntervalChangedOkEvent";
+import TooManyCardsStatusAction from "../../../src/box/actions/TooManyCardsStatusAction";
 
 export default class AbstractMaxIntervalChangedCommand extends SynchronousCommand {
     constructor(commandData) {
@@ -24,6 +26,7 @@ export default class AbstractMaxIntervalChangedCommand extends SynchronousComman
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
 			new MaxIntervalChangedOkEvent(this.commandData).publish();
+			new TriggerAction(new TooManyCardsStatusAction()).publish();
 		}
     }
 }
