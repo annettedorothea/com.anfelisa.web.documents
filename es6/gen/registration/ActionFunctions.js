@@ -11,6 +11,7 @@ import EmailChangedAction from "../../src/registration/actions/EmailChangedActio
 import PasswordChangedAction from "../../src/registration/actions/PasswordChangedAction";
 import RegisterUserAction from "../../src/registration/actions/RegisterUserAction";
 import ConfirmEmailAction from "../../src/registration/actions/ConfirmEmailAction";
+import LoginAction from "../../src/registration/actions/LoginAction";
 
 export function checkUsername() {
     new CheckUsernameAction().apply();
@@ -34,6 +35,10 @@ export function registerUser(password) {
 
 export function confirmEmail(username, token) {
     new ConfirmEmailAction(username, token).apply();
+}
+
+export function login(password) {
+    new LoginAction(password).apply();
 }
 
 

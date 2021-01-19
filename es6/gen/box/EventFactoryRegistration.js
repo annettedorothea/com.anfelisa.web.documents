@@ -19,6 +19,7 @@ import DisplayWantedOkEvent from "./events/DisplayWantedOkEvent";
 import LoadSettingsOkEvent from "./events/LoadSettingsOkEvent";
 import MaxCardsPerDayChangedOkEvent from "./events/MaxCardsPerDayChangedOkEvent";
 import MaxIntervalChangedOkEvent from "./events/MaxIntervalChangedOkEvent";
+import TooManyCardsStatusOkEvent from "./events/TooManyCardsStatusOkEvent";
 import CategoryNameChangedOkEvent from "./events/CategoryNameChangedOkEvent";
 import DictionaryLookupChangedOkEvent from "./events/DictionaryLookupChangedOkEvent";
 import GivenLanguageChangedOkEvent from "./events/GivenLanguageChangedOkEvent";
@@ -54,6 +55,8 @@ export default class EventFactoryRegistrationBox {
 			(eventData) => new MaxCardsPerDayChangedOkEvent(eventData));
 		ACEController.registerFactory('box.MaxIntervalChangedOkEvent', 
 			(eventData) => new MaxIntervalChangedOkEvent(eventData));
+		ACEController.registerFactory('box.TooManyCardsStatusOkEvent', 
+			(eventData) => new TooManyCardsStatusOkEvent(eventData));
 		ACEController.registerFactory('box.CategoryNameChangedOkEvent', 
 			(eventData) => new CategoryNameChangedOkEvent(eventData));
 		ACEController.registerFactory('box.DictionaryLookupChangedOkEvent', 

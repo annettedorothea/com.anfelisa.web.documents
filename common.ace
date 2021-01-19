@@ -154,7 +154,7 @@ appState {
 		boxSettingsView serverModel com.anfelisa.box.BoxSettings {
 	    	Boolean maxIntervalInvalid
 	    	Boolean maxCardsPerDayInvalid
-	    	Boolean tooManyCardsWarning
+	    	Integer tooManyCardsStatus
 			Boolean dictionaryLookupInvalid
 			
 			String boxId
@@ -171,6 +171,7 @@ appState {
 		} 
 		allActiveCardsView {
 			String boxId
+			Boolean editable
 			List cardList serverModel com.anfelisa.box.CardWithStatistics {
 				String cardId
 				String given
@@ -257,6 +258,11 @@ appState {
 				String categoryName
 				Boolean displayEditCategory
 				Boolean displayNewCategory
+				
+				Boolean displayInviteUser
+				String usernameSearchString
+				List String usernames
+				List String invitedUsernames
 				
 				Boolean dropAllowed
 				String dropTargetCategoryId

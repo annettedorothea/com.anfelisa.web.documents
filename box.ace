@@ -30,6 +30,7 @@ ACE
 		on ok ( 
 			set common.mainView.allActiveCardsView.cardList
 			set common.mainView.allActiveCardsView.selectedCardIds
+			set common.mainView.allActiveCardsView.editable
 		)
 	
 	ToggleScheduleCardSelection ( cardId )
@@ -122,7 +123,8 @@ ACE
 		fromAppState (common.mainView.boxSettingsView.boxId)
 	 	call com.anfelisa.box.GetBoxSettings
 		loadingFlag common.displaySpinner 
-		on ok (	merge common.mainView.boxSettingsView	)
+		on ok (	merge common.mainView.boxSettingsView )
+			triggers (TooManyCardsStatus)
 		
 	SaveBoxSettings
 		fromAppState (
@@ -148,8 +150,7 @@ ACE
 		on ok (
 			set common.mainView.boxSettingsView.maxCardsPerDay
 			set common.mainView.boxSettingsView.maxCardsPerDayInvalid
-			set common.mainView.boxSettingsView.tooManyCardsWarning
-		)
+		) triggers (TooManyCardsStatus)
 		
 	MaxIntervalChanged ( maxInterval )
 		fromAppState (
@@ -159,8 +160,15 @@ ACE
 		on ok (
 			set common.mainView.boxSettingsView.maxInterval
 			set common.mainView.boxSettingsView.maxIntervalInvalid
-			set common.mainView.boxSettingsView.tooManyCardsWarning
+		) triggers (TooManyCardsStatus)
+		
+	TooManyCardsStatus
+		fromAppState (
+			common.mainView.boxSettingsView.maxCardsPerDay,
+			common.mainView.boxSettingsView.maxInterval,
+			common.mainView.boxSettingsView.allActiveCards
 		)
+		on ok (set common.mainView.boxSettingsView.tooManyCardsStatus)
 
 	CreateRootCategory
 		fromAppState (

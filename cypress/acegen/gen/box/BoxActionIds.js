@@ -49,6 +49,8 @@ export let maxCardsPerDayChanged = "box_maxCardsPerDayChanged";
 
 export let maxIntervalChanged = "box_maxIntervalChanged";
 
+export let tooManyCardsStatus = "box_tooManyCardsStatus";
+
 export let createRootCategory = "box_createRootCategory";
 
 export let categoryNameChanged = "box_categoryNameChanged";

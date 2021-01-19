@@ -6,8 +6,10 @@
 
 
 import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
+import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import MaxCardsPerDayChangedOkEvent from "../../../gen/box/events/MaxCardsPerDayChangedOkEvent";
+import TooManyCardsStatusAction from "../../../src/box/actions/TooManyCardsStatusAction";
 
 export default class AbstractMaxCardsPerDayChangedCommand extends SynchronousCommand {
     constructor(commandData) {
@@ -24,6 +26,7 @@ export default class AbstractMaxCardsPerDayChangedCommand extends SynchronousCom
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
 			new MaxCardsPerDayChangedOkEvent(this.commandData).publish();
+			new TriggerAction(new TooManyCardsStatusAction()).publish();
 		}
     }
 }

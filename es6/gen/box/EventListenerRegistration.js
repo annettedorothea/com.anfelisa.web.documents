@@ -15,6 +15,7 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.LoadBoxStatisticsOkEvent', AppState.set_dashboardView_boxList);
 		ACEController.registerListener('box.LoadActiveCardsOkEvent', AppState.set_allActiveCardsView_cardList);
 		ACEController.registerListener('box.LoadActiveCardsOkEvent', AppState.set_allActiveCardsView_selectedCardIds);
+		ACEController.registerListener('box.LoadActiveCardsOkEvent', AppState.set_allActiveCardsView_editable);
 		ACEController.registerListener('box.ToggleScheduleCardSelectionOkEvent', AppState.set_allActiveCardsView_selectedCardIds);
 		ACEController.registerListener('box.ToggleAllScheduleCardSelectionOkEvent', AppState.set_allActiveCardsView_selectedCardIds);
 		ACEController.registerListener('box.DeleteBoxClickOkEvent', AppState.set_dashboardView_deleteBox);
@@ -27,10 +28,9 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.LoadSettingsOkEvent', AppState.merge_boxSettingsView);
 		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_boxSettingsView_maxCardsPerDay);
 		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_boxSettingsView_maxCardsPerDayInvalid);
-		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_boxSettingsView_tooManyCardsWarning);
 		ACEController.registerListener('box.MaxIntervalChangedOkEvent', AppState.set_boxSettingsView_maxInterval);
 		ACEController.registerListener('box.MaxIntervalChangedOkEvent', AppState.set_boxSettingsView_maxIntervalInvalid);
-		ACEController.registerListener('box.MaxIntervalChangedOkEvent', AppState.set_boxSettingsView_tooManyCardsWarning);
+		ACEController.registerListener('box.TooManyCardsStatusOkEvent', AppState.set_boxSettingsView_tooManyCardsStatus);
 		ACEController.registerListener('box.CategoryNameChangedOkEvent', AppState.set_boxSettingsView_categoryName);
 		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', AppState.set_boxSettingsView_dictionaryLookup);
 		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', AppState.set_boxSettingsView_dictionaryLookupInvalid);

@@ -19,6 +19,18 @@ export let cancelNewCategory = "category_cancelNewCategory";
 
 export let categoryNameChanged = "category_categoryNameChanged";
 
+export let inviteUserClick = "category_inviteUserClick";
+
+export let getInvitedUsernames = "category_getInvitedUsernames";
+
+export let cancelInviteUser = "category_cancelInviteUser";
+
+export let invitedUsernameChanged = "category_invitedUsernameChanged";
+
+export let searchUsername = "category_searchUsername";
+
+export let inviteUser = "category_inviteUser";
+
 export let createCategory = "category_createCategory";
 
 export let deleteCategoryClick = "category_deleteCategoryClick";

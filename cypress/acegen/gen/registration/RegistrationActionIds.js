@@ -17,6 +17,8 @@ export let registerUser = "registration_registerUser";
 
 export let confirmEmail = "registration_confirmEmail";
 
+export let login = "registration_login";
+
 
 
 

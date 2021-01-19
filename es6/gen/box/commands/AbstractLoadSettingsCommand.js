@@ -6,10 +6,12 @@
 
 
 import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
+import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import LoadSettingsOkEvent from "../../../gen/box/events/LoadSettingsOkEvent";
+import TooManyCardsStatusAction from "../../../src/box/actions/TooManyCardsStatusAction";
 
 export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -27,6 +29,7 @@ export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
 	    
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new LoadSettingsOkEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new TooManyCardsStatusAction()).publish());
 		}
 		return Promise.all(promises);
     }

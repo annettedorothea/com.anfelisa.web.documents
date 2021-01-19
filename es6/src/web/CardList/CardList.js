@@ -21,8 +21,10 @@ export default class CardList extends React.Component {
     }
 
     render() {
+        console.log(this.props);
+        const editable = this.props.categoryTree.rootCategory.editable;
         const cardItems = this.props.cardView.cardList.filter((card) => (card.given.indexOf(this.props.cardView.filter) >= 0 || card.wanted.indexOf(this.props.cardView.filter) >= 0)).map((card) => {
-            if (card.cardId === this.props.cardView.editedCard.cardId) {
+            if (card.cardId === this.props.cardView.editedCard.cardId && editable) {
                 return <EditCard
                     key={card.cardId}
                     cardId={this.props.cardView.editedCard.cardId}
@@ -49,33 +51,36 @@ export default class CardList extends React.Component {
                     password={this.props.password}
                     userRole={this.props.role}
                     naturalInputOrder={this.props.cardView.naturalInputOrder}
+                    editable={editable}
                 />
             }
         });
-        cardItems.push(
-            <NewCard
-                key="new"
-                given={this.props.cardView.newCard.given}
-                wanted={this.props.cardView.newCard.wanted}
-                image={this.props.cardView.newCard.image}
-                file={this.props.cardView.newCard.file}
-                index={this.props.cardView.newCard.index}
-                displaySpinner={this.props.cardView.newCard.displaySpinner}
-                displayTranslateSpinner={this.props.cardView.newCard.displayTranslateSpinner}
-                cardList={this.props.cardView.cardList}
-                username={this.props.username}
-                password={this.props.password}
-                dictionaryLookup={this.props.categoryTree.selectedCategory.dictionaryLookup}
-                givenLanguage={this.props.categoryTree.selectedCategory.givenLanguage}
-                wantedLanguage={this.props.categoryTree.selectedCategory.wantedLanguage}
-                texts={this.props.texts}
-                language={this.props.language}
-                naturalInputOrder={this.props.cardView.naturalInputOrder}
-                ref={component => {
-                    this.newCard = component;
-                }}
-            />
-        );
+        if (editable) {
+            cardItems.push(
+                <NewCard
+                    key="new"
+                    given={this.props.cardView.newCard.given}
+                    wanted={this.props.cardView.newCard.wanted}
+                    image={this.props.cardView.newCard.image}
+                    file={this.props.cardView.newCard.file}
+                    index={this.props.cardView.newCard.index}
+                    displaySpinner={this.props.cardView.newCard.displaySpinner}
+                    displayTranslateSpinner={this.props.cardView.newCard.displayTranslateSpinner}
+                    cardList={this.props.cardView.cardList}
+                    username={this.props.username}
+                    password={this.props.password}
+                    dictionaryLookup={this.props.categoryTree.selectedCategory.dictionaryLookup}
+                    givenLanguage={this.props.categoryTree.selectedCategory.givenLanguage}
+                    wantedLanguage={this.props.categoryTree.selectedCategory.wantedLanguage}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                    naturalInputOrder={this.props.cardView.naturalInputOrder}
+                    ref={component => {
+                        this.newCard = component;
+                    }}
+                />
+            );
+        }
         let duplicateCards = this.props.cardView.cardDuplicates.map((card) => {
             return <DuplicateCardItem
                 {...card}
@@ -91,7 +96,7 @@ export default class CardList extends React.Component {
         });
         return (
             <div>
-                {this.props.cardView.deleteCard.confirmDelete === true &&
+                {this.props.cardView.deleteCard.confirmDelete === true && editable &&
                 <div>
                     <ConfirmDanger {...
                         {
@@ -144,7 +149,7 @@ export default class CardList extends React.Component {
 
                     <tbody>
                     {cardItems}
-                    {duplicateCards.length > 0 && <tr>
+                    {duplicateCards.length > 0 && editable && <tr>
                         <td/>
                         <td colSpan={5}>{this.props.texts.cardList.duplicateCards[this.props.language]}</td>
                     </tr>}
@@ -153,7 +158,7 @@ export default class CardList extends React.Component {
                     </tbody>
                 </table>
 
-                {!!this.props.categoryTree.selectedCategory.dictionaryLookup &&
+                {!!this.props.categoryTree.selectedCategory.dictionaryLookup && editable &&
                 <Dictionary
                     given={this.props.cardView.newCard.given}
                     wanted={this.props.cardView.newCard.wanted}
