@@ -152,6 +152,9 @@ export const Texts = {
                 de: "Löschen"
             }
         },
+        createReverseBox: {
+            de: "Box in umgedrehter Abfrage anlegen"
+        },
         csvPreview : {
             cancel: {
                 de: "Abbrechen"
@@ -271,14 +274,11 @@ export const Texts = {
         filterCards: {
             de: "Suchen und filtern"
         },
-        noCards: {
-            de: "Hier gibt es noch keine Karten."
-        },
         given: {
             de: "Gegeben"
         },
-        wanted: {
-            de: "Gesucht"
+        noCards: {
+            de: "Hier gibt es noch keine Karten."
         },
         scheduleSelectedCards: {
             de: "Heute abfragen"
@@ -288,6 +288,9 @@ export const Texts = {
         },
         toggleInputOrder: {
             de: "Spalten tauschen"
+        },
+        wanted: {
+            de: "Gesucht"
         }
     },
     container: {

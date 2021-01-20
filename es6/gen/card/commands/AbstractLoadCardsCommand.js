@@ -44,7 +44,7 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
 	execute() {
 	    return new Promise((resolve, reject) => {
 	
-			AppUtils.httpGet(`${Utils.settings.rootPath}/cards?categoryId=${this.commandData.categoryId}&filterNonScheduled=${this.commandData.filterNonScheduled}&priority=${this.commandData.priority}`, this.commandData.uuid, true).then((data) => {
+			AppUtils.httpGet(`${Utils.settings.rootPath}/cards?categoryId=${this.commandData.categoryId}&filterNonScheduled=${this.commandData.filterNonScheduled}&priority=${this.commandData.priority}&reverse=${this.commandData.reverse}`, this.commandData.uuid, true).then((data) => {
 				this.commandData.cardList = data.cardList;
 				this.handleResponse(resolve, reject);
 			}, (error) => {

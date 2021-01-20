@@ -27,6 +27,9 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             if (!this.commandData.priority) {
                 this.commandData.priority = null;
             }
+            if (!this.commandData.reverse) {
+                this.commandData.reverse = false;
+            }
             this.addCategoriesOutcome();
         } else if (this.commandData.hash.startsWith("#box/settings") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn()) {
             this.commandData.boxId = hashes[2];

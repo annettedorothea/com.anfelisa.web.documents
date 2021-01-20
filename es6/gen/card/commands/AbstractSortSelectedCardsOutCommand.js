@@ -15,7 +15,7 @@ import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.SortSelectedCardsOutCommand");
-        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds();
+        this.commandData.cardIds = AppState.get_authorView_cardView_selectedCardIds();
         this.commandData.outcomes = [];
     }
 

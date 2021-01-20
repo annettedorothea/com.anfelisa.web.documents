@@ -10,7 +10,6 @@ import AbstractSortSelectedCardsOutCommand from "../../../gen/box/commands/Abstr
 export default class SortSelectedCardsOutCommand extends AbstractSortSelectedCardsOutCommand {
 
     validateCommandData() {
-        this.commandData.cardIds = this.commandData.selectedCardIds;
     	return true;
     }
 

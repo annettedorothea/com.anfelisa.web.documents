@@ -46,15 +46,19 @@ ACE
 	
 	ScheduleSelectedCards
 		fromAppState (
-			common.mainView.allActiveCardsView.selectedCardIds
+			common.mainView.allActiveCardsView.selectedCardIds as cardIds,
+			common.mainView.allActiveCardsView.boxId
 		) 
-	 	call com.anfelisa.box.ScheduleCards
+	 	call com.anfelisa.box.ScheduleActiveCards
 		loadingFlag common.displaySpinner 
 		on noFilter triggers (LoadActiveCards)
 	
 	SortSelectedCardsOut 
-		fromAppState (common.mainView.allActiveCardsView.selectedCardIds) 
-	 	call com.anfelisa.box.SortCardsOut
+		fromAppState (
+			common.mainView.allActiveCardsView.selectedCardIds as cardIds,
+			common.mainView.allActiveCardsView.boxId
+		) 
+	 	call com.anfelisa.box.SortActiveCardsOut
 		loadingFlag common.displaySpinner 
 		on ok triggers (LoadActiveCards)
 		

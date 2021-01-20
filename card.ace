@@ -124,7 +124,7 @@ ACE
 	
 	ScheduleSelectedCards
 		fromAppState (
-			common.mainView.authorView.cardView.selectedCardIds,
+			common.mainView.authorView.cardView.selectedCardIds as cardIds,
 			common.mainView.authorView.filterNonScheduled
 		) 
 	 	call com.anfelisa.box.ScheduleCards
@@ -134,7 +134,9 @@ ACE
 			
 		
 	SortSelectedCardsOut 
-		fromAppState (common.mainView.authorView.cardView.selectedCardIds) 
+		fromAppState (
+			common.mainView.authorView.cardView.selectedCardIds as cardIds
+		) 
 	 	call com.anfelisa.box.SortCardsOut
 		loadingFlag common.displaySpinner 
 		on ok triggers (LoadCards)

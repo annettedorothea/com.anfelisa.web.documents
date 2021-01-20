@@ -15,7 +15,8 @@ import LoadActiveCardsAction from "../../../src/box/actions/LoadActiveCardsActio
 export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.SortSelectedCardsOutCommand");
-        this.commandData.selectedCardIds = AppState.get_allActiveCardsView_selectedCardIds();
+        this.commandData.cardIds = AppState.get_allActiveCardsView_selectedCardIds();
+        this.commandData.boxId = AppState.get_allActiveCardsView_boxId();
         this.commandData.outcomes = [];
     }
 
@@ -35,10 +36,11 @@ export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCom
 	execute() {
 	    return new Promise((resolve, reject) => {
 	    	let payload = {
-	    		cardIds : this.commandData.cardIds
+	    		cardIds : this.commandData.cardIds,
+	    		boxId : this.commandData.boxId
 	    	};
 	
-			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/sort-out`, this.commandData.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${Utils.settings.rootPath}/active-cards/sort-out`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

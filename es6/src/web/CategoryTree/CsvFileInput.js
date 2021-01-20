@@ -13,7 +13,8 @@ export default class CsvFileInput extends React.Component {
                     className="inputfile"
                     onChange={this.props.onCsvFileChange}
                     value={this.props.file}/>
-                <label htmlFor="csvfile" title={this.props.texts.categoryTree.csvUpload[this.props.language]}><i className="fa fa-upload"/></label>
+                <label htmlFor="csvfile" title={this.props.texts.categoryTree.csvUpload[this.props.language]}><i
+                    className="fas fa-file-upload"/></label>
             </span>
         );
     }

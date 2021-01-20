@@ -1907,6 +1907,12 @@ export function merge_authorView(eventData) {
 	if (eventData.filterNonScheduled !== undefined) {
 		appState.mainView.filterNonScheduled = eventData.filterNonScheduled;
 	}
+	if (eventData.reverse !== undefined) {
+		appState.mainView.reverse = eventData.reverse;
+	}
+	if (eventData.reverseBoxExists !== undefined) {
+		appState.mainView.reverseBoxExists = eventData.reverseBoxExists;
+	}
 	if (eventData.priority !== undefined) {
 		appState.mainView.priority = eventData.priority;
 	}
@@ -1935,6 +1941,44 @@ export function set_authorView_filterNonScheduled(eventData) {
 		};
 	}
 	appState.mainView.filterNonScheduled = eventData.filterNonScheduled;
+}
+
+export function get_authorView_reverse() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	return appState.mainView.reverse;
+}
+
+export function set_authorView_reverse(eventData) {
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
+	appState.mainView.reverse = eventData.reverse;
+}
+
+export function get_authorView_reverseBoxExists() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	return appState.mainView.reverseBoxExists;
+}
+
+export function set_authorView_reverseBoxExists(eventData) {
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
+	appState.mainView.reverseBoxExists = eventData.reverseBoxExists;
 }
 
 export function get_authorView_priority() {
@@ -2099,6 +2143,12 @@ export function merge_authorView_categoryTree_selectedCategory(eventData) {
 	}
 	if (eventData.childCategories !== undefined) {
 		appState.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
+	}
+	if (eventData.nonScheduledCount !== undefined) {
+		appState.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
+	}
+	if (eventData.editable !== undefined) {
+		appState.mainView.categoryTree.selectedCategory.editable = eventData.editable;
 	}
 }
 
@@ -2443,6 +2493,68 @@ export function set_authorView_categoryTree_selectedCategory_childCategories(eve
 	appState.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
 }
 
+export function get_authorView_categoryTree_selectedCategory_nonScheduledCount() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.nonScheduledCount;
+}
+
+export function set_authorView_categoryTree_selectedCategory_nonScheduledCount(eventData) {
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
+	}
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
+	}
+	appState.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
+}
+
+export function get_authorView_categoryTree_selectedCategory_editable() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.selectedCategory.editable;
+}
+
+export function set_authorView_categoryTree_selectedCategory_editable(eventData) {
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
+	}
+	if (!appState.mainView.categoryTree.selectedCategory) {
+		appState.mainView.categoryTree.selectedCategory = {};
+	}
+	appState.mainView.categoryTree.selectedCategory.editable = eventData.editable;
+}
+
 export function get_authorView_categoryTree_rootCategory() {
 	if (!appState.mainView) {
 		return undefined;
@@ -2513,6 +2625,12 @@ export function merge_authorView_categoryTree_rootCategory(eventData) {
 	}
 	if (eventData.childCategories !== undefined) {
 		appState.mainView.categoryTree.rootCategory.childCategories = eventData.childCategories;
+	}
+	if (eventData.nonScheduledCount !== undefined) {
+		appState.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.nonScheduledCount;
+	}
+	if (eventData.editable !== undefined) {
+		appState.mainView.categoryTree.rootCategory.editable = eventData.editable;
 	}
 }
 
@@ -2855,6 +2973,68 @@ export function set_authorView_categoryTree_rootCategory_childCategories(eventDa
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.childCategories = eventData.childCategories;
+}
+
+export function get_authorView_categoryTree_rootCategory_nonScheduledCount() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.nonScheduledCount;
+}
+
+export function set_authorView_categoryTree_rootCategory_nonScheduledCount(eventData) {
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
+	}
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
+	}
+	appState.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.nonScheduledCount;
+}
+
+export function get_authorView_categoryTree_rootCategory_editable() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.mainView.categoryTree.rootCategory.editable;
+}
+
+export function set_authorView_categoryTree_rootCategory_editable(eventData) {
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.mainView.categoryTree) {
+		appState.mainView.categoryTree = {};
+	}
+	if (!appState.mainView.categoryTree.rootCategory) {
+		appState.mainView.categoryTree.rootCategory = {};
+	}
+	appState.mainView.categoryTree.rootCategory.editable = eventData.editable;
 }
 
 export function get_authorView_categoryTree_displayDeleteCategory() {

@@ -4,9 +4,12 @@ import ConfirmDanger from "../ConfirmDanger";
 import EditCategory from "./EditCategory";
 import {
     cancelDeleteCategory,
+    createReverseBox,
     deleteCategory,
     deleteCategoryClick,
-    editCategoryClick, inviteUserClick,
+    editCategoryClick,
+    filterNonScheduledCards,
+    inviteUserClick,
     newCategoryClick,
     previewCsv
 } from "../../../gen/category/ActionFunctions";
@@ -14,7 +17,6 @@ import {route} from "../../../gen/common/ActionFunctions";
 import CsvFileInput from "./CsvFileInput";
 import CsvPreview from "./CsvPreview";
 import RootCategoryItem from "./RootCategoryItem";
-import {filterNonScheduledCards} from "../../../gen/category/ActionFunctions";
 import FilterPriority from "./FilterPriority";
 import InviteUser from "./InviteUser";
 
@@ -40,6 +42,7 @@ export default class CategoryTree extends React.Component {
 
 
     render() {
+        console.log(this.props);
         if (!this.props.rootCategory) {
             return null;
         }
@@ -137,6 +140,13 @@ export default class CategoryTree extends React.Component {
                         language={this.props.language}
                         disabled={!this.props.selectedCategory}
                     />
+                    }
+                    {this.props.reverseBoxExists === false &&
+                    <button
+                        onClick={() => createReverseBox()}
+                        title={this.props.texts.categoryTree.createReverseBox[this.props.language]}>
+                        <i className="fas fa-plus-circle"/>
+                    </button>
                     }
                 </div>
                 <div>

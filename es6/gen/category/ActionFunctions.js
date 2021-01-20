@@ -36,6 +36,7 @@ import SwapPreviewCsvAction from "../../src/category/actions/SwapPreviewCsvActio
 import ImportCsvAction from "../../src/category/actions/ImportCsvAction";
 import FilterNonScheduledCardsAction from "../../src/category/actions/FilterNonScheduledCardsAction";
 import PriorityChangedAction from "../../src/category/actions/PriorityChangedAction";
+import CreateReverseBoxAction from "../../src/category/actions/CreateReverseBoxAction";
 
 export function loadCategoryTree(rootCategoryId, selectedCategoryId) {
     new LoadCategoryTreeAction(rootCategoryId, selectedCategoryId).apply();
@@ -159,6 +160,10 @@ export function filterNonScheduledCards() {
 
 export function priorityChanged(priority) {
     new PriorityChangedAction(priority).apply();
+}
+
+export function createReverseBox() {
+    new CreateReverseBoxAction().apply();
 }
 
 

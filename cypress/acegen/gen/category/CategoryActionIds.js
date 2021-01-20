@@ -67,6 +67,8 @@ export let filterNonScheduledCards = "category_filterNonScheduledCards";
 
 export let priorityChanged = "category_priorityChanged";
 
+export let createReverseBox = "category_createReverseBox";
+
 
 
 

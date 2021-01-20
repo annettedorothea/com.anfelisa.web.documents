@@ -5,16 +5,18 @@
 
 
 
-import AbstractScheduleSelectedCardsCommand from "../../../gen/box/commands/AbstractScheduleSelectedCardsCommand";
+import AbstractCreateReverseBoxCommand from "../../../gen/category/commands/AbstractCreateReverseBoxCommand";
 
-export default class ScheduleSelectedCardsCommand extends AbstractScheduleSelectedCardsCommand {
+export default class CreateReverseBoxCommand extends AbstractCreateReverseBoxCommand {
 
     validateCommandData() {
+    	//this.commandData.boxId is mandatory String
     	return true;
     }
 
-    handleResponse(resolve, reject) {
-    	this.addNoFilterOutcome();
+    handleResponse(resolve) {
+    	this.addOkOutcome();
+    	this.commandData.hash = "#dashboard"
     	resolve();
     }
     handleError(resolve, reject) {
