@@ -89,6 +89,10 @@ i.danger {
     color: #E53C16;
 }
 
+i.disabled {
+    color: #777;
+}
+
 a {
     color: #337ab7;
     cursor: pointer;
@@ -273,6 +277,7 @@ h3 {
 
 table {
     border-collapse: collapse;
+    white-space: nowrap;
 }
 
 table, th, td {
@@ -552,12 +557,6 @@ a:hover.tile h2 {
 .tile .buttons {
     position: absolute;
     top: 8px;
-    right: 8px;
-}
-
-a:hover.tile .buttons {
-    border-radius: 4px;
-    background-color: #fff;
 }
 
 .tile .button1 {
@@ -982,19 +981,6 @@ a:hover.tile .buttons {
     .categoryCardSplitView table.cardTable td pre,
     .allActiveCards table.cardTable td pre {
         max-width: 100px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .categoryCardSplitView table.cardTable .notVisibleMobile,
-    .allActiveCards table.cardTable .notVisibleMobile {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .categoryCardSplitView table.cardTable td.input {
-        display: block;
     }
 }
 

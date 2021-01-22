@@ -42,7 +42,6 @@ export default class CategoryTree extends React.Component {
 
 
     render() {
-        console.log(this.props);
         if (!this.props.rootCategory) {
             return null;
         }
@@ -149,12 +148,14 @@ export default class CategoryTree extends React.Component {
                     </button>
                     }
                 </div>
-                <div>
+                <div className="form">
                     <input
                         type={"checkbox"}
                         onChange={() => filterNonScheduledCards()}
                         checked={this.props.filterNonScheduled}
-                    /> {this.props.texts.categoryTree.filterNonScheduled[this.props.language]}
+                        id="filterNonScheduled"
+                    />
+                    <label htmlFor="filterNonScheduled">{this.props.texts.categoryTree.filterNonScheduled[this.props.language]}</label>
                     {this.props.filterNonScheduled === true && <FilterPriority priority={this.props.priority}/>}
                 </div>
 

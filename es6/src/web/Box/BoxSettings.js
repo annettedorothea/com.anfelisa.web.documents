@@ -17,6 +17,47 @@ export default class BoxSettings extends React.Component {
         super(props);
     }
 
+    getCardInfo() {
+        if (this.props.allCards === 0) {
+            return ""
+        }
+        if (this.props.allActiveCards === 0 && this.props.allCards === 1) {
+            return this.props.texts.boxSettings.cardInfoZeroOne[this.props.language];
+        }
+        if (this.props.allActiveCards === 1 && this.props.allCards === 1) {
+            return this.props.texts.boxSettings.cardInfoOneOne[this.props.language];
+        }
+        if (this.props.allActiveCards === 1 && this.props.allCards === 1) {
+            return this.props.texts.boxSettings.cardInfoOneOne[this.props.language];
+        }
+        if (this.props.allActiveCards === 0) {
+            return this.props.texts.boxSettings.cardInfoZero[this.props.language].replace("{0}", this.props.allCards);
+        }
+        if (this.props.allActiveCards === 1) {
+            return this.props.texts.boxSettings.cardInfoOne[this.props.language].replace("{0}", this.props.allCards);
+        }
+        return this.props.texts.boxSettings.cardInfo[this.props.language].replace("{0}", this.props.allActiveCards).replace("{1}", this.props.allCards);
+    }
+
+    getCardStatusWarning() {
+        const possibleCards = this.props.maxCardsPerDay * this.props.maxInterval;
+        if (possibleCards === 1) {
+            return this.props.texts.boxSettings.tooManyCardsWarningOne[this.props.language].replace("{0}", this.props.allActiveCards);
+        }
+        return this.props.texts.boxSettings.tooManyCardsWarning[this.props.language].replace("{0}", possibleCards).replace("{1}", this.props.allActiveCards)
+    }
+
+    getCardStatusInfo() {
+        const possibleCards = this.props.maxCardsPerDay * this.props.maxInterval;
+        if (possibleCards === 1 && this.props.allActiveCards === 1) {
+            return this.props.texts.boxSettings.boxInfoOneOne[this.props.language];
+        }
+        if (this.props.allActiveCards === 1) {
+            return this.props.texts.boxSettings.boxInfoOne[this.props.language].replace("{0}", possibleCards);
+        }
+        return this.props.texts.boxSettings.boxInfo[this.props.language].replace("{0}", possibleCards).replace("{1}", this.props.allActiveCards)
+    }
+
     render() {
         if (this.props.categoryName === undefined) {
             return <div/>;
@@ -25,14 +66,13 @@ export default class BoxSettings extends React.Component {
             <div className="center-wide">
                 <div className="form">
                     <h1>{this.props.texts.boxSettings.title[this.props.language]}</h1>
-                    {this.props.allActiveCards > 0 && this.props.allCards > 0 && <div
-                        className="line">{this.props.texts.boxSettings.cardInfo[this.props.language].replace("{0}", this.props.allActiveCards).replace("{1}", this.props.allCards)}</div>}
+                    {this.props.allCards > 0 && <h2>{this.getCardInfo()}</h2>}
 
-                    {this.props.tooManyCardsStatus === 2 && <div className="line warning">
-                        {this.props.texts.boxSettings.tooManyCardsWarning[this.props.language].replace("{0}", this.props.maxCardsPerDay*this.props.maxInterval).replace("{1}", this.props.allActiveCards)}
+                    {this.props.tooManyCardsStatus === 2 && this.props.maxCardsPerDayInvalid !== true && this.props.maxIntervalInvalid !== true && <div className="line warning">
+                        {this.getCardStatusWarning()}
                     </div>}
-                    {this.props.tooManyCardsStatus === 1 && <div className="line info">
-                        {this.props.texts.boxSettings.boxInfo[this.props.language].replace("{0}", this.props.maxCardsPerDay*this.props.maxInterval).replace("{1}", this.props.allActiveCards)}
+                    {this.props.tooManyCardsStatus === 1 && this.props.maxCardsPerDayInvalid !== true && this.props.maxIntervalInvalid !== true && <div className="line info">
+                        {this.getCardStatusInfo()}
                     </div>}
 
                     <div className="line">

@@ -43,10 +43,10 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
             filterNonScheduled: this.commandData.filterNonScheduled,
             priority: this.commandData.priority,
             reverseBoxExists: this.commandData.reverseBoxExists,
-            reverse: this.commandData.reverse
+            reverse: this.commandData.reverse,
+            boxId: this.commandData.boxId
         };
         this.commandData.selectedCategoryId = undefined;
-        console.log("handleResponse", this.commandData);
         resolve();
     }
 

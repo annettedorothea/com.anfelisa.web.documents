@@ -6,10 +6,13 @@
 
 
 import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
+import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import LoadNextCardOkEvent from "../../../gen/box/events/LoadNextCardOkEvent";
+import RouteAction from "../../../src/common/actions/RouteAction";
+import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
 
 export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -21,12 +24,19 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 	addOkOutcome() {
 		this.commandData.outcomes.push("ok");
 	}
+	addFinishedOutcome() {
+		this.commandData.outcomes.push("finished");
+	}
 
     publishEvents() {
 		let promises = [];
 	    
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new LoadNextCardOkEvent(this.commandData).publish());
+		}
+		if (this.commandData.outcomes.includes("finished")) {
+			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
+			promises.push(new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish());
 		}
 		return Promise.all(promises);
     }
@@ -49,6 +59,8 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 				this.commandData.wanted = data.wanted;
 				this.commandData.openTodaysCards = data.openTodaysCards;
 				this.commandData.allTodaysCards = data.allTodaysCards;
+				this.commandData.reverse = data.reverse;
+				this.commandData.categoryName = data.categoryName;
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

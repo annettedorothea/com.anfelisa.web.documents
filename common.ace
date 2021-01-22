@@ -208,6 +208,7 @@ appState {
 		cardView {
 			String cardId
 			String categoryId
+			String categoryName
 			Integer count
 			String given
 			String image
@@ -224,11 +225,13 @@ appState {
 			Boolean enableScoreButtons
 			Boolean displayImage
 			String boxId
+			Boolean reverse
 		}
 		authorView {
 	        Boolean filterNonScheduled
 	        Boolean reverse
 			Boolean reverseBoxExists
+			String boxId
 				
 	        Integer priority
 			categoryTree {

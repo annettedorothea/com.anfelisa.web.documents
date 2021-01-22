@@ -19,6 +19,7 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
         this.commandData.naturalInputOrder = AppState.get_authorView_cardView_naturalInputOrder();
         this.commandData.filterNonScheduled = AppState.get_authorView_filterNonScheduled();
         this.commandData.priority = AppState.get_authorView_priority();
+        this.commandData.reverse = AppState.get_authorView_reverse();
         this.commandData.outcomes = [];
     }
 

@@ -29,12 +29,12 @@ export default class InviteUser extends React.Component {
             <div className="modal">
                 <div className="modalContent form">
                     <h2>{this.props.texts.categoryTree.inviteUser.title[this.props.language]}</h2>
-                    <div className="line">
+                    {invitedUsernames.length > 0 && <div className="line">
                         <h3>{this.props.texts.categoryTree.inviteUser.alreadyInvited[this.props.language]}</h3>
                         <ul>
                             {invitedUsernames}
                         </ul>
-                    </div>
+                    </div>}
                     <div className="line">
                         <input
                             type={"text"}

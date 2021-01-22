@@ -7,10 +7,16 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
     }
 
     handleResponse(resolve) {
-        this.commandData.index = 0;
-        this.commandData.enableScoreButtons = false;
-        this.commandData.displayImage = false;
-        this.addOkOutcome();
+        if (this.commandData.openTodaysCards === 0) {
+            this.addFinishedOutcome();
+            this.commandData.hash = "#dashboard"
+            this.commandData.messageKey = "finished"
+        } else {
+            this.addOkOutcome();
+            this.commandData.index = 0;
+            this.commandData.enableScoreButtons = false;
+            this.commandData.displayImage = false;
+        }
         resolve();
     }
 

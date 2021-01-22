@@ -1488,6 +1488,9 @@ export function merge_cardView(eventData) {
 	if (eventData.categoryId !== undefined) {
 		appState.mainView.categoryId = eventData.categoryId;
 	}
+	if (eventData.categoryName !== undefined) {
+		appState.mainView.categoryName = eventData.categoryName;
+	}
 	if (eventData.count !== undefined) {
 		appState.mainView.count = eventData.count;
 	}
@@ -1536,6 +1539,9 @@ export function merge_cardView(eventData) {
 	if (eventData.boxId !== undefined) {
 		appState.mainView.boxId = eventData.boxId;
 	}
+	if (eventData.reverse !== undefined) {
+		appState.mainView.reverse = eventData.reverse;
+	}
 }
 
 export function get_cardView_cardId() {
@@ -1574,6 +1580,25 @@ export function set_cardView_categoryId(eventData) {
 		};
 	}
 	appState.mainView.categoryId = eventData.categoryId;
+}
+
+export function get_cardView_categoryName() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.categoryName;
+}
+
+export function set_cardView_categoryName(eventData) {
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
+	}
+	appState.mainView.categoryName = eventData.categoryName;
 }
 
 export function get_cardView_count() {
@@ -1880,6 +1905,25 @@ export function set_cardView_boxId(eventData) {
 	appState.mainView.boxId = eventData.boxId;
 }
 
+export function get_cardView_reverse() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isCardView !== true) {
+		return undefined;
+	}
+	return appState.mainView.reverse;
+}
+
+export function set_cardView_reverse(eventData) {
+	if (!appState.mainView || appState.mainView.isCardView !== true) {
+		appState.mainView = {
+			isCardView : true
+		};
+	}
+	appState.mainView.reverse = eventData.reverse;
+}
+
 export function get_authorView() {
 	if (appState.mainView && appState.mainView.isAuthorView === true) {
 		return AppUtils.deepCopy(appState.mainView);
@@ -1912,6 +1956,9 @@ export function merge_authorView(eventData) {
 	}
 	if (eventData.reverseBoxExists !== undefined) {
 		appState.mainView.reverseBoxExists = eventData.reverseBoxExists;
+	}
+	if (eventData.boxId !== undefined) {
+		appState.mainView.boxId = eventData.boxId;
 	}
 	if (eventData.priority !== undefined) {
 		appState.mainView.priority = eventData.priority;
@@ -1979,6 +2026,25 @@ export function set_authorView_reverseBoxExists(eventData) {
 		};
 	}
 	appState.mainView.reverseBoxExists = eventData.reverseBoxExists;
+}
+
+export function get_authorView_boxId() {
+	if (!appState.mainView) {
+		return undefined;
+	}
+	if (appState.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	return appState.mainView.boxId;
+}
+
+export function set_authorView_boxId(eventData) {
+	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
+		appState.mainView = {
+			isAuthorView : true
+		};
+	}
+	appState.mainView.boxId = eventData.boxId;
 }
 
 export function get_authorView_priority() {

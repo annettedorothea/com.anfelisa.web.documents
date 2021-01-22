@@ -108,7 +108,7 @@ export default class CardList extends React.Component {
                         }}/>
                 </div>}
 
-                <h1>{this.props.categoryTree.selectedCategory.categoryName}</h1>
+                <h1>{this.props.categoryTree.selectedCategory.categoryName} {this.props.reverse === true ? <i className="fas fa-arrows-alt-h"/> : ""}</h1>
                 <table className="cardTable">
                     <thead>
                     <tr className="notPrinted">

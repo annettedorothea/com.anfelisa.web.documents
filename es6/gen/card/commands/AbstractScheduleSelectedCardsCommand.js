@@ -17,6 +17,7 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
     constructor(commandData) {
         super(commandData, "card.ScheduleSelectedCardsCommand");
         this.commandData.cardIds = AppState.get_authorView_cardView_selectedCardIds();
+        this.commandData.boxId = AppState.get_authorView_boxId();
         this.commandData.filterNonScheduled = AppState.get_authorView_filterNonScheduled();
         this.commandData.outcomes = [];
     }
@@ -44,7 +45,7 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
 	    return new Promise((resolve, reject) => {
 	    	let payload = {
 	    		cardIds : this.commandData.cardIds,
-	    		reverse : this.commandData.reverse
+	    		boxId : this.commandData.boxId
 	    	};
 	
 			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/schedule`, this.commandData.uuid, true, payload).then(() => {

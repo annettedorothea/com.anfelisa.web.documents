@@ -32,17 +32,47 @@ export const Texts = {
             title: {
                 de: "Löschen"
             }
+        },
+        deleteTitle: {
+            de: "Löschen"
+        },
+        deleteTitleShared: {
+            de: "Löschen nicht möglich, da die Box geteilt wird."
+        },
+        edit: {
+            de: "Karten verwalten"
+        },
+        settings: {
+            de: "Einstellungen"
         }
     },
     boxSettings : {
         boxInfo: {
-            de: "In diese Box passen mit deinen Einstellungen {0} Karte(n) und du hast {1} Karte(n) in der Box. Das passt!"
+            de: "In diese Box passen mit deinen Einstellungen {0} Karten und du hast {1} Karten in der Box. Das passt!"
+        },
+        boxInfoOne: {
+            de: "In diese Box passen mit deinen Einstellungen {0} Karten und du hast eine Karte in der Box. Das passt!"
+        },
+        boxInfoOneOne: {
+            de: "In diese Box passt mit deinen Einstellungen eine Karte und du hast eine Karte in der Box. Das passt!"
         },
         cancel: {
             de: "Abbrechen"
         },
         cardInfo: {
-            de: "{0} von {1} Karte(n)"
+            de: "{0} von {1} Karten"
+        },
+        cardInfoOne: {
+            de: "Eine von {0} Karten"
+        },
+        cardInfoZero: {
+            de: "Keine von {0} Karten"
+        },
+        cardInfoOneOne: {
+            de: "Eine von einer Karte"
+        },
+        cardInfoZeroOne: {
+            de: "Keine von einer Karte"
         },
         categoryName: {
             de: "Name"
@@ -60,7 +90,10 @@ export const Texts = {
             de: "Einstellungen"
         },
         tooManyCardsWarning: {
-            de: "In diese Box passen mit deinen Einstellungen {0} Karte(n). Du hast aber {1} Karte(n) in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maxiamlen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
+            de: "In diese Box passen mit deinen Einstellungen {0} Karten. Du hast aber {1} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maxiamlen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
+        },
+        tooManyCardsWarningOne: {
+            de: "In diese Box passt mit deinen Einstellungen eine Karte. Du hast aber {0} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maxiamlen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
         },
         languages: {
             de: {
@@ -153,7 +186,7 @@ export const Texts = {
             }
         },
         createReverseBox: {
-            de: "Box in umgedrehter Abfrage anlegen"
+            de: "Box mit umgedrehter Abfrage anlegen"
         },
         csvPreview : {
             cancel: {
@@ -439,6 +472,9 @@ export const Texts = {
         emailConfirmed: {
             de: "Die Email-Adresse wurde bestätigt."
         },
+        finished: {
+            de: "Du bist für heute fertig!"
+        },
         passwordRequestSubmitted: {
             de: "Eine Email mit einem Link zur Eingabe eines neuen Passwortes wurde an deine Email-Adresse verschickt."
         },
@@ -501,9 +537,6 @@ export const Texts = {
         },
         empty: {
             de: "Du hast noch keine Karten hinzugefügt. Gehe in die Lernkartei und wähle die Karten aus, die Du heute lernen willst!"
-        },
-        finished: {
-            de: "Du bist für heute fertig!"
         },
         never: {
             de: "noch nie abgefragt"

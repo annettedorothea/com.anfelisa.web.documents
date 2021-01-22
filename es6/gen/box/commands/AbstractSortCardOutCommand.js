@@ -16,6 +16,7 @@ export default class AbstractSortCardOutCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.SortCardOutCommand");
         this.commandData.cardId = AppState.get_cardView_cardId();
+        this.commandData.boxId = AppState.get_cardView_boxId();
         this.commandData.outcomes = [];
     }
 
@@ -35,7 +36,8 @@ export default class AbstractSortCardOutCommand extends AsynchronousCommand {
 	execute() {
 	    return new Promise((resolve, reject) => {
 	    	let payload = {
-	    		cardIds : this.commandData.cardIds
+	    		cardIds : this.commandData.cardIds,
+	    		boxId : this.commandData.boxId
 	    	};
 	
 			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/sort-out`, this.commandData.uuid, true, payload).then(() => {
