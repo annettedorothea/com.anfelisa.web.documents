@@ -46,14 +46,18 @@ ACE
 	
 	ScheduleSelectedCards
 		fromAppState (
-			common.mainView.allActiveCardsView.selectedCardIds
+			common.mainView.allActiveCardsView.selectedCardIds as cardIds,
+			common.mainView.allActiveCardsView.boxId
 		) 
 	 	call com.anfelisa.box.ScheduleCards
 		loadingFlag common.displaySpinner 
 		on noFilter triggers (LoadActiveCards)
 	
 	SortSelectedCardsOut 
-		fromAppState (common.mainView.allActiveCardsView.selectedCardIds) 
+		fromAppState (
+			common.mainView.allActiveCardsView.selectedCardIds as cardIds,
+			common.mainView.allActiveCardsView.boxId
+		) 
 	 	call com.anfelisa.box.SortCardsOut
 		loadingFlag common.displaySpinner 
 		on ok triggers (LoadActiveCards)
@@ -89,6 +93,10 @@ ACE
 		on ok (
 			merge common.mainView.cardView
 		)
+		on finished triggers (
+			common.Route 
+			common.DisplayMessage
+		)
 	
 	DisplayWanted ( wantedItemsLength )
 		fromAppState ( common.mainView.cardView.index, common.mainView.cardView.image)
@@ -109,7 +117,10 @@ ACE
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	SortCardOut
-		fromAppState (common.mainView.cardView.cardId)
+		fromAppState (
+			common.mainView.cardView.cardId, 
+			common.mainView.cardView.boxId
+		)
 	 	call com.anfelisa.box.SortCardsOut
 		loadingFlag common.displaySpinner 
 		on ok triggers (InitBoxesForDayDuringScore)

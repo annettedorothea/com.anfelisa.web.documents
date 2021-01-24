@@ -53,8 +53,7 @@ export default class CardItem extends React.Component {
     renderGiven(first) {
         return (
             <td
-                onDoubleClick={() => this.props.editable ? editCard(this.props.cardId) : {}}
-                className={first ? "visibleMobile" : "notVisibleMobile"}>
+                onDoubleClick={() => this.props.editable ? editCard(this.props.cardId) : {}}>
                 <pre>{this.props.given}</pre>
             </td>
         );
@@ -63,8 +62,7 @@ export default class CardItem extends React.Component {
     renderWanted(first) {
         return (
             <td
-                onDoubleClick={() => this.props.editable ? editCard(this.props.cardId) : {}}
-                className={first ? "visibleMobile" : "notVisibleMobile"}>
+                onDoubleClick={() => this.props.editable ? editCard(this.props.cardId) : {}}>
                 <pre>{this.props.wanted}</pre>
             </td>
         );
@@ -73,7 +71,7 @@ export default class CardItem extends React.Component {
     renderImage() {
         return (
             <td
-                className="preview notVisibleMobile"
+                className="preview"
                 onDoubleClick={() => this.props.editable ? editCard(this.props.cardId) : {}}
             >
                 <img src={this.props.image} alt=""/>
@@ -117,7 +115,7 @@ export default class CardItem extends React.Component {
                     }
                 </td>
                 }
-                <td className="notPrinted alignRight">
+                <td className="noBreak notPrinted alignRight">
                     {this.props.next ? new Date(this.props.next).toLocaleDateString() : ""}
                 </td>
             </tr>

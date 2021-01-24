@@ -8,7 +8,8 @@ ACE
 			common.mainView.authorView.categoryTree.selectedCategory, 
 			common.mainView.authorView.cardView.naturalInputOrder,
 			common.mainView.authorView.filterNonScheduled,
-			common.mainView.authorView.priority
+			common.mainView.authorView.priority,
+			common.mainView.authorView.reverse
 		)
 		call com.anfelisa.card.GetCards
 		loadingFlag common.displaySpinner 
@@ -124,7 +125,8 @@ ACE
 	
 	ScheduleSelectedCards
 		fromAppState (
-			common.mainView.authorView.cardView.selectedCardIds,
+			common.mainView.authorView.cardView.selectedCardIds as cardIds,
+			common.mainView.authorView.boxId,
 			common.mainView.authorView.filterNonScheduled
 		) 
 	 	call com.anfelisa.box.ScheduleCards
@@ -134,7 +136,10 @@ ACE
 			
 		
 	SortSelectedCardsOut 
-		fromAppState (common.mainView.authorView.cardView.selectedCardIds) 
+		fromAppState (
+			common.mainView.authorView.cardView.selectedCardIds as cardIds,
+			common.mainView.authorView.boxId
+		) 
 	 	call com.anfelisa.box.SortCardsOut
 		loadingFlag common.displaySpinner 
 		on ok triggers (LoadCards)

@@ -4,9 +4,12 @@ import ConfirmDanger from "../ConfirmDanger";
 import EditCategory from "./EditCategory";
 import {
     cancelDeleteCategory,
+    createReverseBox,
     deleteCategory,
     deleteCategoryClick,
-    editCategoryClick, inviteUserClick,
+    editCategoryClick,
+    filterNonScheduledCards,
+    inviteUserClick,
     newCategoryClick,
     previewCsv
 } from "../../../gen/category/ActionFunctions";
@@ -14,7 +17,6 @@ import {route} from "../../../gen/common/ActionFunctions";
 import CsvFileInput from "./CsvFileInput";
 import CsvPreview from "./CsvPreview";
 import RootCategoryItem from "./RootCategoryItem";
-import {filterNonScheduledCards} from "../../../gen/category/ActionFunctions";
 import FilterPriority from "./FilterPriority";
 import InviteUser from "./InviteUser";
 
@@ -138,13 +140,22 @@ export default class CategoryTree extends React.Component {
                         disabled={!this.props.selectedCategory}
                     />
                     }
+                    {this.props.reverseBoxExists === false &&
+                    <button
+                        onClick={() => createReverseBox()}
+                        title={this.props.texts.categoryTree.createReverseBox[this.props.language]}>
+                        <i className="fas fa-plus-circle"/>
+                    </button>
+                    }
                 </div>
-                <div>
+                <div className="form">
                     <input
                         type={"checkbox"}
                         onChange={() => filterNonScheduledCards()}
                         checked={this.props.filterNonScheduled}
-                    /> {this.props.texts.categoryTree.filterNonScheduled[this.props.language]}
+                        id="filterNonScheduled"
+                    />
+                    <label htmlFor="filterNonScheduled">{this.props.texts.categoryTree.filterNonScheduled[this.props.language]}</label>
                     {this.props.filterNonScheduled === true && <FilterPriority priority={this.props.priority}/>}
                 </div>
 

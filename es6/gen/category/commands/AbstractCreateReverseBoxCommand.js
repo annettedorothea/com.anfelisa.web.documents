@@ -10,13 +10,12 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
-import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxesForDayDuringScoreAction";
+import RouteAction from "../../../src/common/actions/RouteAction";
 
-export default class AbstractSortCardOutCommand extends AsynchronousCommand {
+export default class AbstractCreateReverseBoxCommand extends AsynchronousCommand {
     constructor(commandData) {
-        super(commandData, "box.SortCardOutCommand");
-        this.commandData.cardId = AppState.get_cardView_cardId();
-        this.commandData.boxId = AppState.get_cardView_boxId();
+        super(commandData, "category.CreateReverseBoxCommand");
+        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_rootCategoryId();
         this.commandData.outcomes = [];
     }
 
@@ -28,7 +27,7 @@ export default class AbstractSortCardOutCommand extends AsynchronousCommand {
 		let promises = [];
 	    
 		if (this.commandData.outcomes.includes("ok")) {
-			promises.push(new TriggerAction(new InitBoxesForDayDuringScoreAction()).publish());
+			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
 		}
 		return Promise.all(promises);
     }
@@ -36,11 +35,10 @@ export default class AbstractSortCardOutCommand extends AsynchronousCommand {
 	execute() {
 	    return new Promise((resolve, reject) => {
 	    	let payload = {
-	    		cardIds : this.commandData.cardIds,
-	    		boxId : this.commandData.boxId
+	    		rootCategoryId : this.commandData.rootCategoryId
 	    	};
 	
-			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/sort-out`, this.commandData.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${Utils.settings.rootPath}/box/create-reverse`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;

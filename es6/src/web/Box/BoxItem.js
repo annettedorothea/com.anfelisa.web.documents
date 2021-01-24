@@ -15,7 +15,9 @@ export default class BoxItem extends React.Component {
 
     onDeleteClick(e) {
         e.stopPropagation();
-        deleteBoxClick(this.props.boxId);
+        if (!this.props.shared) {
+            deleteBoxClick(this.props.boxId);
+        }
     }
 
     onEditClick(e) {
@@ -35,11 +37,11 @@ export default class BoxItem extends React.Component {
                 onClick={() =>
                     this.props.openTodaysCards > 0 ?
                         route(`#box/${this.props.boxId}`) :
-                        route(`#categories/${this.props.categoryId}`)
+                        route(`#categories/${this.props.categoryId}${this.props.reverse ? "/reverse" : ""}`)
                 }>
 
                 <h2>
-                    {this.props.categoryName}
+                    {this.props.categoryName} {this.props.reverse && <i className="fas fa-arrows-alt-h"/>}
                 </h2>
 
                 <Statistics {...this.props}/>
@@ -49,13 +51,25 @@ export default class BoxItem extends React.Component {
                 <CardsNextDays {...this.props}/>
 
                 <div className="buttons button1">
-                    <i className="fas fa-edit" onClick={(e) => this.onEditClick(e)}/>
+                    <i
+                        className="fas fa-edit"
+                        onClick={(e) => this.onEditClick(e)}
+                        title={this.props.texts.box.edit[this.props.language]}
+                    />
                 </div>
                 <div className="buttons button2">
-                    <i className="fas fa-cog" onClick={(e) => this.onSettingsClick(e)}/>
+                    <i
+                        className="fas fa-cog"
+                        onClick={(e) => this.onSettingsClick(e)}
+                        title={this.props.texts.box.settings[this.props.language]}
+                    />
                 </div>
                 <div className="buttons button3">
-                    <i className="fas fa-times fa-lg danger" onClick={(e) => this.onDeleteClick(e)}/>
+                    <i
+                        className={`far fa-trash-alt ${this.props.shared ? "disabled" : "danger"}`}
+                        onClick={(e) => this.onDeleteClick(e)}
+                        title={this.props.shared ? this.props.texts.box.deleteTitleShared[this.props.language] : this.props.texts.box.deleteTitle[this.props.language]}
+                    />
                 </div>
                 {this.props.openTodaysCards > 0 && <span className="badge">{this.props.openTodaysCards}</span>}
             </a>

@@ -8,7 +8,8 @@ LoadCategoryTree ( rootCategoryId, selectedCategoryId )
 	fromAppState (
 		common.mainView.authorView.categoryTree.rootCategory, 
 		common.mainView.authorView.filterNonScheduled,
-		common.mainView.authorView.priority
+		common.mainView.authorView.priority,
+		common.mainView.authorView.reverse
 	)
 	call com.anfelisa.category.GetCategoryTree
 	loadingFlag common.displaySpinner 
@@ -55,7 +56,7 @@ InviteUserClick
 	
 GetInvitedUsernames
 	fromAppState (common.mainView.authorView.categoryTree.rootCategory.categoryId)
-		call com.anfelisa.category.GetInvitedUsers
+	call com.anfelisa.category.GetInvitedUsers
 	on ok (set common.mainView.authorView.categoryTree.invitedUsernames)
 	
 CancelInviteUser
@@ -76,12 +77,14 @@ SearchUsername
 		common.mainView.authorView.categoryTree.usernameSearchString,
 		common.mainView.authorView.categoryTree.rootCategory.categoryId
 	)
-		call com.anfelisa.category.SearchUsernameForInvitation
+	call com.anfelisa.category.SearchUsernameForInvitation
+	loadingFlag common.displaySpinner 
 	on ok (set common.mainView.authorView.categoryTree.usernames)
 
 InviteUser (invitedUsername)
 	fromAppState (common.mainView.authorView.categoryTree.rootCategory.categoryId)
-		call com.anfelisa.category.InviteUserToCategory
+	call com.anfelisa.category.InviteUserToCategory
+	loadingFlag common.displaySpinner 
 	on ok (
 		set common.mainView.authorView.categoryTree.displayInviteUser
 		set common.mainView.authorView.categoryTree.usernameSearchString
@@ -221,6 +224,15 @@ PriorityChanged(priority)
 	)
 	on ok (set common.mainView.authorView.priority)
 	triggers (LoadCategoryTree)
+	
+CreateReverseBox
+	fromAppState (
+		common.mainView.authorView.categoryTree.rootCategory.rootCategoryId
+	)
+	call com.anfelisa.box.CreateReverseBox
+	loadingFlag common.displaySpinner 
+	on ok triggers (common.Route)
+	
 
 		
 

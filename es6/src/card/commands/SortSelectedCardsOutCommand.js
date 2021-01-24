@@ -20,7 +20,6 @@ import AbstractSortSelectedCardsOutCommand from "../../../gen/card/commands/Abst
 export default class SortSelectedCardsOutCommand extends AbstractSortSelectedCardsOutCommand {
 
     validateCommandData() {
-        this.commandData.cardIds = this.commandData.selectedCardIds;
         return true;
     }
 

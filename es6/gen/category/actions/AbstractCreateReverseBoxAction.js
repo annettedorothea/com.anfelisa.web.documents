@@ -6,18 +6,18 @@
 
 
 import Action from "../../ace/AsynchronousAction";
-import SearchUsernameCommand from "../../../src/category/commands/SearchUsernameCommand";
+import CreateReverseBoxCommand from "../../../src/category/commands/CreateReverseBoxCommand";
 import * as AppState from "../../ace/AppState";
 
-export default class AbstractSearchUsernameAction extends Action {
+export default class AbstractCreateReverseBoxAction extends Action {
 
     constructor() {
-        super({}, 'category.SearchUsernameAction');
+        super({}, 'category.CreateReverseBoxAction');
 		this.postCall = this.postCall.bind(this);
 	}
 		
 	getCommand() {
-		return new SearchUsernameCommand(this.actionData);
+		return new CreateReverseBoxCommand(this.actionData);
 	}
 
 	preCall() {

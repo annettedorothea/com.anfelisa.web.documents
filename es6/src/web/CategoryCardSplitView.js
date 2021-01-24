@@ -16,6 +16,7 @@ export default class CategoryCardSplitView extends React.Component {
                     {...this.props.categoryTree}
                     filterNonScheduled={this.props.filterNonScheduled}
                     priority={this.props.priority}
+                    reverseBoxExists={this.props.reverseBoxExists}
                     texts={this.props.texts}
                     language={this.props.language}
                 />

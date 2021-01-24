@@ -20,7 +20,13 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             this.addUserListOutcome();
         } else if (this.commandData.hash.startsWith("#categories") && hashes.length >= 2 && this.isUserLoggedIn()) {
             this.commandData.rootCategoryId = hashes[1];
-            this.commandData.selectedCategoryId = hashes.length === 2 ? this.commandData.rootCategoryId : hashes[2];
+            if (hashes[hashes.length-1] === "reverse") {
+                this.commandData.reverse = true;
+                this.commandData.selectedCategoryId = hashes.length === 3 ? this.commandData.rootCategoryId : hashes[2];
+            } else {
+                this.commandData.selectedCategoryId = hashes.length === 2 ? this.commandData.rootCategoryId : hashes[2];
+                this.commandData.reverse = false;
+            }
             if (!this.commandData.filterNonScheduled) {
                 this.commandData.filterNonScheduled = false;
             }

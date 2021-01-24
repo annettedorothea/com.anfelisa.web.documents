@@ -16,7 +16,8 @@ import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTr
 export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.ScheduleSelectedCardsCommand");
-        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds();
+        this.commandData.cardIds = AppState.get_authorView_cardView_selectedCardIds();
+        this.commandData.boxId = AppState.get_authorView_boxId();
         this.commandData.filterNonScheduled = AppState.get_authorView_filterNonScheduled();
         this.commandData.outcomes = [];
     }
@@ -43,7 +44,8 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
 	execute() {
 	    return new Promise((resolve, reject) => {
 	    	let payload = {
-	    		cardIds : this.commandData.cardIds
+	    		cardIds : this.commandData.cardIds,
+	    		boxId : this.commandData.boxId
 	    	};
 	
 			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/schedule`, this.commandData.uuid, true, payload).then(() => {

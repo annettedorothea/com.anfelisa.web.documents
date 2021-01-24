@@ -21,7 +21,6 @@ export default class CardList extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         const editable = this.props.categoryTree.rootCategory.editable;
         const cardItems = this.props.cardView.cardList.filter((card) => (card.given.indexOf(this.props.cardView.filter) >= 0 || card.wanted.indexOf(this.props.cardView.filter) >= 0)).map((card) => {
             if (card.cardId === this.props.cardView.editedCard.cardId && editable) {
@@ -109,7 +108,7 @@ export default class CardList extends React.Component {
                         }}/>
                 </div>}
 
-                <h1>{this.props.categoryTree.selectedCategory.categoryName}</h1>
+                <h1>{this.props.categoryTree.selectedCategory.categoryName} {this.props.reverse === true ? <i className="fas fa-arrows-alt-h"/> : ""}</h1>
                 <table className="cardTable">
                     <thead>
                     <tr className="notPrinted">

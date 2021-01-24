@@ -35,6 +35,7 @@ RouteChanged
 	on categories (
 		set mainView.authorView.filterNonScheduled
 		set mainView.authorView.priority
+		set mainView.authorView.reverse
 	) triggers (category.LoadCategoryTree )
 	on profile triggers ( profile.LoadUser )
 	on userList triggers (admin.GetAllUsers) 
@@ -207,6 +208,7 @@ appState {
 		cardView {
 			String cardId
 			String categoryId
+			String categoryName
 			Integer count
 			String given
 			String image
@@ -223,9 +225,14 @@ appState {
 			Boolean enableScoreButtons
 			Boolean displayImage
 			String boxId
+			Boolean reverse
 		}
 		authorView {
 	        Boolean filterNonScheduled
+	        Boolean reverse
+			Boolean reverseBoxExists
+			String boxId
+				
 	        Integer priority
 			categoryTree {
 				selectedCategory {
@@ -239,6 +246,8 @@ appState {
 					String wantedLanguage
 					String rootCategoryId
 					List CategoryTreeItem childCategories
+					Integer nonScheduledCount
+					Boolean editable
 				}
 				rootCategory {
 					String categoryId
@@ -251,6 +260,8 @@ appState {
 					String wantedLanguage
 					String rootCategoryId
 					List CategoryTreeItem childCategories
+					Integer nonScheduledCount
+					Boolean editable
 				}
 				
 				Boolean displayDeleteCategory

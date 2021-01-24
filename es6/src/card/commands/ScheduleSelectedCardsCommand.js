@@ -3,7 +3,6 @@ import AbstractScheduleSelectedCardsCommand from "../../../gen/card/commands/Abs
 export default class ScheduleSelectedCardsCommand extends AbstractScheduleSelectedCardsCommand {
 
     validateCommandData() {
-        this.commandData.cardIds = this.commandData.selectedCardIds;
         return true;
     }
 

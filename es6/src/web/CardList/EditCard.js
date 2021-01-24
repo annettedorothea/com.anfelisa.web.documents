@@ -119,6 +119,7 @@ export default class EditCard extends React.Component {
                 {this.props.naturalInputOrder === false && this.renderWanted()}
                 {this.props.naturalInputOrder === false && this.renderGiven()}
                 {this.props.naturalInputOrder === false && this.renderImage()}
+                <td/>
                 <td className="noBreak input">
                     <button
                         disabled={!this.isValid()}

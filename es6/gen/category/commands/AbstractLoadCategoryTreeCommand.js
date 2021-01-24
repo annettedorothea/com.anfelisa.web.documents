@@ -19,6 +19,7 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
         this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
         this.commandData.filterNonScheduled = AppState.get_authorView_filterNonScheduled();
         this.commandData.priority = AppState.get_authorView_priority();
+        this.commandData.reverse = AppState.get_authorView_reverse();
         this.commandData.outcomes = [];
     }
 
@@ -39,8 +40,10 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
 	execute() {
 	    return new Promise((resolve, reject) => {
 	
-			AppUtils.httpGet(`${Utils.settings.rootPath}/category/tree?rootCategoryId=${this.commandData.rootCategoryId}&filterNonScheduled=${this.commandData.filterNonScheduled}&priority=${this.commandData.priority}`, this.commandData.uuid, true).then((data) => {
+			AppUtils.httpGet(`${Utils.settings.rootPath}/category/tree?rootCategoryId=${this.commandData.rootCategoryId}&filterNonScheduled=${this.commandData.filterNonScheduled}&priority=${this.commandData.priority}&reverse=${this.commandData.reverse}`, this.commandData.uuid, true).then((data) => {
 				this.commandData.rootCategory = data.rootCategory;
+				this.commandData.reverseBoxExists = data.reverseBoxExists;
+				this.commandData.boxId = data.boxId;
 				this.handleResponse(resolve, reject);
 			}, (error) => {
 				this.commandData.error = error;
