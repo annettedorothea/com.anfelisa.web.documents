@@ -10,7 +10,6 @@ export default class QueryCards extends React.Component {
     }
 
     render() {
-        const open = Math.round(this.props.openTodaysCards / this.props.allTodaysCards * 100);
         return <div className="box">
 
             <h1>
@@ -23,7 +22,7 @@ export default class QueryCards extends React.Component {
 
             <Progress openTodaysCards={this.props.openTodaysCards} allTodaysCards={this.props.allTodaysCards}/>
 
-            {open > 0 && <Card {...this.props}/>}
+            {this.props.openTodaysCards > 0 && <Card {...this.props}/>}
 
         </div>
     }
