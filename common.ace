@@ -21,6 +21,9 @@ RouteChanged
 	on login ( 
 		set mainView.loginView 
 	)
+	on privacyPolicy ( 
+		set mainView.privacyPolicyView 
+	)
 	on registration ( 
 		set mainView.registrationView
 	)
@@ -79,6 +82,15 @@ ClearToast
 DisplaySaveBugDialog
 	on ok (set displaySaveBugDialog)
 
+DisplayVersionMismatchDialog
+	on ok (set displayVersionMismatchDialog)
+
+CancelVersionMismatchDialog
+	on ok (set displayVersionMismatchDialog)
+
+DisplayVersionMismatchErrorDialog
+	on ok (set displayVersionMismatchErrorDialog)
+
 async CallSaveBug
 	fromAppState( loggedInUser.username )
 	on ok triggers (HideSaveBugDialog)
@@ -108,11 +120,15 @@ appState {
 	String language
 	texts
 	Boolean displaySaveBugDialog
+	Boolean displayVersionMismatchDialog
+	Boolean displayVersionMismatchErrorDialog
 	message {
 		String type
 		String text
 	}
 	group mainView {
+		privacyPolicyView {
+		}
 		loginView {
 			String username
 			Boolean saveInLocalStorage

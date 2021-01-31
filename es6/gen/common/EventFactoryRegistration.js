@@ -9,6 +9,7 @@ import ACEController from "../ace/ACEController";
 import InitUserEvent from "./events/InitUserEvent";
 import InitNoUserEvent from "./events/InitNoUserEvent";
 import RouteChangedLoginEvent from "./events/RouteChangedLoginEvent";
+import RouteChangedPrivacyPolicyEvent from "./events/RouteChangedPrivacyPolicyEvent";
 import RouteChangedRegistrationEvent from "./events/RouteChangedRegistrationEvent";
 import RouteChangedForgotPasswordEvent from "./events/RouteChangedForgotPasswordEvent";
 import RouteChangedResetPasswordEvent from "./events/RouteChangedResetPasswordEvent";
@@ -25,6 +26,9 @@ import DisplayErrorAndLogoutOkEvent from "./events/DisplayErrorAndLogoutOkEvent"
 import DisplayMessageOkEvent from "./events/DisplayMessageOkEvent";
 import ClearToastOkEvent from "./events/ClearToastOkEvent";
 import DisplaySaveBugDialogOkEvent from "./events/DisplaySaveBugDialogOkEvent";
+import DisplayVersionMismatchDialogOkEvent from "./events/DisplayVersionMismatchDialogOkEvent";
+import CancelVersionMismatchDialogOkEvent from "./events/CancelVersionMismatchDialogOkEvent";
+import DisplayVersionMismatchErrorDialogOkEvent from "./events/DisplayVersionMismatchErrorDialogOkEvent";
 import CancelSaveBugDialogOkEvent from "./events/CancelSaveBugDialogOkEvent";
 import HideSaveBugDialogOkEvent from "./events/HideSaveBugDialogOkEvent";
 
@@ -37,6 +41,8 @@ export default class EventFactoryRegistrationCommon {
 			(eventData) => new InitNoUserEvent(eventData));
 		ACEController.registerFactory('common.RouteChangedLoginEvent', 
 			(eventData) => new RouteChangedLoginEvent(eventData));
+		ACEController.registerFactory('common.RouteChangedPrivacyPolicyEvent', 
+			(eventData) => new RouteChangedPrivacyPolicyEvent(eventData));
 		ACEController.registerFactory('common.RouteChangedRegistrationEvent', 
 			(eventData) => new RouteChangedRegistrationEvent(eventData));
 		ACEController.registerFactory('common.RouteChangedForgotPasswordEvent', 
@@ -69,6 +75,12 @@ export default class EventFactoryRegistrationCommon {
 			(eventData) => new ClearToastOkEvent(eventData));
 		ACEController.registerFactory('common.DisplaySaveBugDialogOkEvent', 
 			(eventData) => new DisplaySaveBugDialogOkEvent(eventData));
+		ACEController.registerFactory('common.DisplayVersionMismatchDialogOkEvent', 
+			(eventData) => new DisplayVersionMismatchDialogOkEvent(eventData));
+		ACEController.registerFactory('common.CancelVersionMismatchDialogOkEvent', 
+			(eventData) => new CancelVersionMismatchDialogOkEvent(eventData));
+		ACEController.registerFactory('common.DisplayVersionMismatchErrorDialogOkEvent', 
+			(eventData) => new DisplayVersionMismatchErrorDialogOkEvent(eventData));
 		ACEController.registerFactory('common.CancelSaveBugDialogOkEvent', 
 			(eventData) => new CancelSaveBugDialogOkEvent(eventData));
 		ACEController.registerFactory('common.HideSaveBugDialogOkEvent', 

@@ -149,6 +149,22 @@ export function set_displaySaveBugDialog(eventData) {
 	appState.displaySaveBugDialog = eventData.displaySaveBugDialog;
 }
 
+export function get_displayVersionMismatchDialog() {
+	return appState.displayVersionMismatchDialog;
+}
+
+export function set_displayVersionMismatchDialog(eventData) {
+	appState.displayVersionMismatchDialog = eventData.displayVersionMismatchDialog;
+}
+
+export function get_displayVersionMismatchErrorDialog() {
+	return appState.displayVersionMismatchErrorDialog;
+}
+
+export function set_displayVersionMismatchErrorDialog(eventData) {
+	appState.displayVersionMismatchErrorDialog = eventData.displayVersionMismatchErrorDialog;
+}
+
 export function get_message() {
 	if (!appState.message) {
 		return undefined;
@@ -198,6 +214,21 @@ export function set_message_text(eventData) {
 		appState.message = {};
 	}
 	appState.message.text = eventData.text;
+}
+
+export function get_privacyPolicyView() {
+	return appState.mainView;
+}
+
+export function set_privacyPolicyView(eventData) {
+	if (!!eventData.privacyPolicyView) {
+		appState.mainView = eventData.privacyPolicyView;
+		appState.mainView.isPrivacyPolicyView = true;
+	} else {
+		appState.mainView = {
+			isPrivacyPolicyView : true
+		};
+	}
 }
 
 export function get_loginView() {

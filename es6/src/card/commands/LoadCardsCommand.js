@@ -15,7 +15,7 @@ export default class LoadCardsCommand extends AbstractLoadCardsCommand {
     handleResponse(resolve) {
         this.addOkOutcome();
         if (this.commandData.naturalInputOrder === undefined) {
-            this.commandData.naturalInputOrder = true;
+            this.commandData.naturalInputOrder = this.commandData.reverse === false;
         }
         this.commandData.newCard = {
             given: "",

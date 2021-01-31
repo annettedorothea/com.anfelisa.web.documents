@@ -9,6 +9,7 @@ import {route} from "../../gen/common/ActionFunctions";
 import BoxSettings from "./Box/BoxSettings";
 import CardList from "./CardList/CardList";
 import ActiveCardList from "./Box/ActiveCardList";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 export default class UserContainer extends React.Component {
 
@@ -55,6 +56,11 @@ export default class UserContainer extends React.Component {
                 content = <Dashboard
                     {...this.props.mainView}
                     role={this.props.loggedInUser.role}
+                    texts={this.props.texts}
+                    language={this.props.language}
+                />;
+            } else if (this.props.mainView.isPrivacyPolicyView) {
+                content = <PrivacyPolicy
                     texts={this.props.texts}
                     language={this.props.language}
                 />;

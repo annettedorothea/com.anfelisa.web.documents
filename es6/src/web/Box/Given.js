@@ -7,10 +7,19 @@ export default class Given extends React.Component {
     }
 
     render() {
+        let lines = [];
+        if (this.props.given.length > 0) {
+            lines = this.props.given.split("\n");
+        }
+
+        let lineItems = [];
+        for (let i = 0; i < lines.length; i++) {
+            lineItems.push(<div key={i}>{lines[i]} </div>);
+        }
         return (
             <div className={`given lastQuality_${this.props.lastQuality}`}>
                 <div className="given-word">
-                    {this.props.given}
+                    {lineItems}
                 </div>
                 {this.props.scheduledDate &&
                 <div className="small-info">

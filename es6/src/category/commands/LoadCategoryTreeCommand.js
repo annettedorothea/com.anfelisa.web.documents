@@ -38,7 +38,7 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
             },
             cardView: {
                 cardList: null,
-                naturalInputOrder: true
+                naturalInputOrder: this.commandData.reverse === false
             },
             filterNonScheduled: this.commandData.filterNonScheduled,
             priority: this.commandData.priority,

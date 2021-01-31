@@ -36,7 +36,7 @@ export default class ActiveCardItem extends React.Component {
                         className="far fa-thumbs-up"/></div>}
                     {this.props.ef > 2.0 && this.props.ef <= 2.5 &&
                     <div><i className="far fa-thumbs-up"/><i className="far fa-thumbs-up"/></div>}
-                    {this.props.ef < 2.0 && <div><i className="far fa-thumbs-up"/></div>}
+                    {this.props.ef <= 2.0 && <div><i className="far fa-thumbs-up"/></div>}
                 </td>
                 <td className="noBreak visibleMobile alignRight">
                     {this.props.texts.allActiveCards.count[this.props.language].replace("{0}", this.props.count)}

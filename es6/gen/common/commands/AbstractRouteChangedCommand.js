@@ -9,6 +9,7 @@ import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import RouteChangedLoginEvent from "../../../gen/common/events/RouteChangedLoginEvent";
+import RouteChangedPrivacyPolicyEvent from "../../../gen/common/events/RouteChangedPrivacyPolicyEvent";
 import RouteChangedRegistrationEvent from "../../../gen/common/events/RouteChangedRegistrationEvent";
 import RouteChangedForgotPasswordEvent from "../../../gen/common/events/RouteChangedForgotPasswordEvent";
 import RouteChangedResetPasswordEvent from "../../../gen/common/events/RouteChangedResetPasswordEvent";
@@ -37,6 +38,9 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 
 	addLoginOutcome() {
 		this.commandData.outcomes.push("login");
+	}
+	addPrivacyPolicyOutcome() {
+		this.commandData.outcomes.push("privacyPolicy");
 	}
 	addRegistrationOutcome() {
 		this.commandData.outcomes.push("registration");
@@ -81,6 +85,9 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
     publishEvents() {
 		if (this.commandData.outcomes.includes("login")) {
 			new RouteChangedLoginEvent(this.commandData).publish();
+		}
+		if (this.commandData.outcomes.includes("privacyPolicy")) {
+			new RouteChangedPrivacyPolicyEvent(this.commandData).publish();
 		}
 		if (this.commandData.outcomes.includes("registration")) {
 			new RouteChangedRegistrationEvent(this.commandData).publish();

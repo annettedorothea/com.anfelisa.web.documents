@@ -16,6 +16,7 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.InitNoUserEvent', AppState.set_loggedInUser);
 		ACEController.registerListener('common.InitNoUserEvent', AppState.set_language);
 		ACEController.registerListener('common.RouteChangedLoginEvent', AppState.set_loginView);
+		ACEController.registerListener('common.RouteChangedPrivacyPolicyEvent', AppState.set_privacyPolicyView);
 		ACEController.registerListener('common.RouteChangedRegistrationEvent', AppState.set_registrationView);
 		ACEController.registerListener('common.RouteChangedForgotPasswordEvent', AppState.set_forgotPasswordView);
 		ACEController.registerListener('common.RouteChangedResetPasswordEvent', AppState.set_resetPasswordView);
@@ -36,6 +37,9 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.DisplayMessageOkEvent', AppState.set_message);
 		ACEController.registerListener('common.ClearToastOkEvent', AppState.set_message);
 		ACEController.registerListener('common.DisplaySaveBugDialogOkEvent', AppState.set_displaySaveBugDialog);
+		ACEController.registerListener('common.DisplayVersionMismatchDialogOkEvent', AppState.set_displayVersionMismatchDialog);
+		ACEController.registerListener('common.CancelVersionMismatchDialogOkEvent', AppState.set_displayVersionMismatchDialog);
+		ACEController.registerListener('common.DisplayVersionMismatchErrorDialogOkEvent', AppState.set_displayVersionMismatchErrorDialog);
 		ACEController.registerListener('common.CancelSaveBugDialogOkEvent', AppState.set_displaySaveBugDialog);
 		ACEController.registerListener('common.HideSaveBugDialogOkEvent', AppState.set_displaySaveBugDialog);
 	}

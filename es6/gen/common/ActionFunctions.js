@@ -15,6 +15,9 @@ import DisplayErrorAndLogoutAction from "../../src/common/actions/DisplayErrorAn
 import DisplayMessageAction from "../../src/common/actions/DisplayMessageAction";
 import ClearToastAction from "../../src/common/actions/ClearToastAction";
 import DisplaySaveBugDialogAction from "../../src/common/actions/DisplaySaveBugDialogAction";
+import DisplayVersionMismatchDialogAction from "../../src/common/actions/DisplayVersionMismatchDialogAction";
+import CancelVersionMismatchDialogAction from "../../src/common/actions/CancelVersionMismatchDialogAction";
+import DisplayVersionMismatchErrorDialogAction from "../../src/common/actions/DisplayVersionMismatchErrorDialogAction";
 import CallSaveBugAction from "../../src/common/actions/CallSaveBugAction";
 import CancelSaveBugDialogAction from "../../src/common/actions/CancelSaveBugDialogAction";
 import HideSaveBugDialogAction from "../../src/common/actions/HideSaveBugDialogAction";
@@ -57,6 +60,18 @@ export function clearToast() {
 
 export function displaySaveBugDialog() {
     new DisplaySaveBugDialogAction().apply();
+}
+
+export function displayVersionMismatchDialog() {
+    new DisplayVersionMismatchDialogAction().apply();
+}
+
+export function cancelVersionMismatchDialog() {
+    new CancelVersionMismatchDialogAction().apply();
+}
+
+export function displayVersionMismatchErrorDialog() {
+    new DisplayVersionMismatchErrorDialogAction().apply();
 }
 
 export function callSaveBug() {
