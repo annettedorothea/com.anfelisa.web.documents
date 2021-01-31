@@ -6,7 +6,8 @@ import ToastContainer from "./ToastContainer";
 import Utils from "../../gen/ace/Utils";
 import * as AppState from "../../gen/ace/AppState";
 import Confirm from "./Confirm";
-import {callSaveBug, cancelSaveBugDialog} from "../../gen/common/ActionFunctions";
+import {callSaveBug, cancelSaveBugDialog, cancelVersionMismatchDialog, route} from "../../gen/common/ActionFunctions";
+import MessageDanger from "./MessageDanger";
 
 export default class Container extends React.Component {
 
@@ -41,6 +42,28 @@ export default class Container extends React.Component {
                             cancel: () => cancelSaveBugDialog()
                         }}/>
                 </div>}
+                {this.state.displayVersionMismatchErrorDialog === true &&
+                <div>
+                    <MessageDanger {...
+                        {
+                            title: this.state.texts.container.versionMismatchError[this.state.language],
+                            message: this.state.texts.container.versionMismatchErrorMessage[this.state.language],
+                            okText: this.state.texts.container.ok[this.state.language],
+                            ok: () => window.location.reload(true)
+                        }}/>
+                </div>}
+                {this.state.displayVersionMismatchDialog === true &&
+                <div>
+                    <Confirm {...
+                        {
+                            title: this.state.texts.container.versionMismatch[this.state.language],
+                            message: this.state.texts.container.versionMismatchMessage[this.state.language],
+                            okText: this.state.texts.container.yes[this.state.language],
+                            cancelText: this.state.texts.container.no[this.state.language],
+                            ok: () => window.location.reload(true),
+                            cancel: () => cancelVersionMismatchDialog()
+                        }}/>
+                </div>}
                 {content}
                 <div className={`footer ${this.state.loggedInUser === undefined ? "fixed" : ""}`}>
                     <div className="footerContent">
@@ -57,6 +80,9 @@ export default class Container extends React.Component {
                         <p>
                             <a onClick={() => Utils.saveTimeline("no description", AppState.get_username())}
                                target="ace">save timeline</a>
+                        </p>
+                        <p>
+                            <a onClick={() => route("#privacypolicy")}>{this.state.texts.login.privacyPolicy[this.state.language]}</a>
                         </p>
                     </div>
                 </div>

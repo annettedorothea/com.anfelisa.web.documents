@@ -6,6 +6,7 @@ import {
     displayError,
     displayErrorAndLogout,
     displaySaveBugDialog,
+    displayVersionMismatchDialog, displayVersionMismatchErrorDialog,
     init,
     routeChanged
 } from "../../gen/common/ActionFunctions"
@@ -80,6 +81,20 @@ export default class AppUtils {
         };
         Utils.loadSettings().then(() => {
             init(location.hash, localStorage.getItem("username"), localStorage.getItem("password"));
+        });
+        setInterval(() => {
+            const currentVersion = Utils.settings.clientVersion;
+            AppUtils.loadActualClientVersion().then((actualClientVersion) => {
+                if (actualClientVersion !== currentVersion) {
+                    displayVersionMismatchDialog();
+                }
+            });
+        }, 60*1000);
+    }
+
+    static loadActualClientVersion() {
+        return AppUtils.httpRequest("GET", "settings.json").then((settings) => {
+            return settings.clientVersion;
         });
     }
 
@@ -203,29 +218,36 @@ export default class AppUtils {
 
     static displayUnexpectedError(error) {
         console.error(error);
-        try {
-            if (typeof error !== "object") {
-                error = {
-                    errorKey: error
-                };
-                displayError(error)
+        const currentVersion = Utils.settings.clientVersion;
+        AppUtils.loadActualClientVersion().then((actualClientVersion) => {
+            if (actualClientVersion !== currentVersion) {
+                displayVersionMismatchErrorDialog();
             } else {
-                if (error.code === 401) {
-                    error.errorKey = "unauthorized";
-                    displayErrorAndLogout(error);
-                } else if (error.code === 400) {
-                    displayError(error)
-                } else {
-                    error = {
-                        errorKey: error.text
-                    };
-                    displayError(error)
+                try {
+                    if (typeof error !== "object") {
+                        error = {
+                            errorKey: error
+                        };
+                        displayError(error)
+                    } else {
+                        if (error.code === 401) {
+                            error.errorKey = "unauthorized";
+                            displayErrorAndLogout(error);
+                        } else if (error.code === 400) {
+                            displayError(error)
+                        } else {
+                            error = {
+                                errorKey: error.text
+                            };
+                            displayError(error)
+                        }
+                    }
+                } catch (e) {
+                    console.error(e);
                 }
+                displaySaveBugDialog();
             }
-        } catch (e) {
-            console.error(e);
-        }
-        displaySaveBugDialog();
+        });
     }
 
     static deepCopy(object) {

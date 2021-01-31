@@ -11,18 +11,19 @@ export default class BoxItem extends React.Component {
         this.onDeleteClick = this.onDeleteClick.bind(this);
         this.onEditClick = this.onEditClick.bind(this);
         this.onSettingsClick = this.onSettingsClick.bind(this);
+        this.categoryRoute = `#categories/${this.props.categoryId}${this.props.reverse ? "/reverse" : ""}`;
     }
 
     onDeleteClick(e) {
         e.stopPropagation();
-        if (!this.props.shared) {
+        if (this.props.reverse || !this.props.shared) {
             deleteBoxClick(this.props.boxId);
         }
     }
 
     onEditClick(e) {
         e.stopPropagation();
-        route(`#categories/${this.props.categoryId}`);
+        route(this.categoryRoute);
     }
 
     onSettingsClick(e) {
@@ -37,7 +38,7 @@ export default class BoxItem extends React.Component {
                 onClick={() =>
                     this.props.openTodaysCards > 0 ?
                         route(`#box/${this.props.boxId}`) :
-                        route(`#categories/${this.props.categoryId}${this.props.reverse ? "/reverse" : ""}`)
+                        route(this.categoryRoute)
                 }>
 
                 <h2>
@@ -66,9 +67,9 @@ export default class BoxItem extends React.Component {
                 </div>
                 <div className="buttons button3">
                     <i
-                        className={`far fa-trash-alt ${this.props.shared ? "disabled" : "danger"}`}
+                        className={`far fa-trash-alt ${this.props.shared && !this.props.reverse ? "disabled" : "danger"}`}
                         onClick={(e) => this.onDeleteClick(e)}
-                        title={this.props.shared ? this.props.texts.box.deleteTitleShared[this.props.language] : this.props.texts.box.deleteTitle[this.props.language]}
+                        title={this.props.shared && !this.props.reverse ? this.props.texts.box.deleteTitleShared[this.props.language] : this.props.texts.box.deleteTitle[this.props.language]}
                     />
                 </div>
                 {this.props.openTodaysCards > 0 && <span className="badge">{this.props.openTodaysCards}</span>}

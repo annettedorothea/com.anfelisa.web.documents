@@ -76,6 +76,10 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 username: ""
             };
             this.addForgotPasswordOutcome();
+        } else if (this.commandData.hash === "#privacypolicy") {
+            this.commandData.privacyPolicyView = {
+            };
+            this.addPrivacyPolicyOutcome();
         } else if (this.isUserLoggedIn()) {
             this.addInvalidOutcome();
             this.commandData.hash = "#dashboard";

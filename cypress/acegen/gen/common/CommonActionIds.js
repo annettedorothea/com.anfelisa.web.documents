@@ -25,6 +25,12 @@ export let clearToast = "common_clearToast";
 
 export let displaySaveBugDialog = "common_displaySaveBugDialog";
 
+export let displayVersionMismatchDialog = "common_displayVersionMismatchDialog";
+
+export let cancelVersionMismatchDialog = "common_cancelVersionMismatchDialog";
+
+export let displayVersionMismatchErrorDialog = "common_displayVersionMismatchErrorDialog";
+
 export let callSaveBug = "common_callSaveBug";
 
 export let cancelSaveBugDialog = "common_cancelSaveBugDialog";

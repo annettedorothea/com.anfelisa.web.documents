@@ -333,11 +333,26 @@ export const Texts = {
         no: {
             de: "Nein"
         },
+        ok: {
+            de: "OK"
+        },
         unexpectedBug: {
             de: "Sorry, aber das hätte nicht passieren dürfen..."
         },
         unexpectedBugMessage: {
             de: "Dürfen wir deine aktuellen Daten und deine letzten Aktionen speichern, um diesen Fehler zu analysieren?"
+        },
+        versionMismatchError: {
+            de: "Leider kam es zu einem Fehler, weil du eine alte Version verwendest."
+        },
+        versionMismatchErrorMessage: {
+            de: "Wir laden die Anwendung neu. Dabei können noch nicht gespeicherte Daten verloren gehen. Wir entschuldigen uns für die Unannehmlichkeiten."
+        },
+        versionMismatch: {
+            de: "Du verwendest eine alte Version."
+        },
+        versionMismatchMessage: {
+            de: "Möchtest du die Anwendung neu laden? Dabei können noch nicht gespeicherte Daten verloren gehen."
         },
         version: {
             de: "Version"
@@ -441,6 +456,9 @@ export const Texts = {
         password: {
             de: "Passwort"
         },
+        privacyPolicy: {
+            de: "Datenschutzerklärung"
+        },
         registration: {
             de: "Neu hier?"
         },
@@ -448,7 +466,7 @@ export const Texts = {
             de: "Angemeldet bleiben."
         },
         saveInLocalStorageHint: {
-            de: "Wenn Du angemeldet bleiben willst, werden Deine Logindaten verschlüsselt in Deinem Browser gespeichert, so dass du dich später nicht erneut anmelden musst."
+            de: "Wenn du angemeldet bleiben willst, werden deine Logindaten verschlüsselt in deinem Browser gespeichert, so dass du dich später nicht erneut anmelden musst."
         },
         signin: {
             de: "Anmelden"
@@ -536,7 +554,7 @@ export const Texts = {
             de: "{0}x abgefragt"
         },
         empty: {
-            de: "Du hast noch keine Karten hinzugefügt. Gehe in die Lernkartei und wähle die Karten aus, die Du heute lernen willst!"
+            de: "Du hast noch keine Karten hinzugefügt. Gehe in die Lernkartei und wähle die Karten aus, die du heute lernen willst!"
         },
         never: {
             de: "noch nie abgefragt"
@@ -602,7 +620,7 @@ export const Texts = {
             de: "Registrieren"
         },
         terms: {
-            de: "Mit Deiner Registrierung erklärst Du Dich einverstanden, dass Deine Daten auf unserem Server gespeichert und digital verarbeitet werden."
+            de: "Mit deiner Registrierung erklärst du dich einverstanden, dass deine Daten auf unserem Server gespeichert und digital verarbeitet werden."
         },
         title: {
             de: "Registrierung"
