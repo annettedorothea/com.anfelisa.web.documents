@@ -11,6 +11,9 @@ export const Texts = {
         interval: {
             de: "{0} Tage"
         },
+        intervalOne: {
+            de: "1 Tag"
+        },
         scheduleSelectedCards: {
             de: "Heute abfragen"
         },

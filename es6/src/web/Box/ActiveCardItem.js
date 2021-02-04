@@ -42,7 +42,7 @@ export default class ActiveCardItem extends React.Component {
                     {this.props.texts.allActiveCards.count[this.props.language].replace("{0}", this.props.count)}
                 </td>
                 <td className="noBreak visibleMobile alignRight">
-                    {this.props.texts.allActiveCards.interval[this.props.language].replace("{0}", this.props.interval)}
+                    {this.props.interval === 1 ? this.props.texts.allActiveCards.intervalOne[this.props.language] : this.props.texts.allActiveCards.interval[this.props.language].replace("{0}", this.props.interval)}
                 </td>
             </tr>
         );
