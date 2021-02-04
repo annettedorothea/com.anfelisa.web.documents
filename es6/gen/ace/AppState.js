@@ -9,6 +9,19 @@ import AppUtils from "../../src/app/AppUtils";
 
 export let appState;
 
+import {setContainerState} from "../components/ContainerComponent";
+import {setLoginViewState} from "../components/LoginViewComponent";
+import {setRegistrationViewState} from "../components/RegistrationViewComponent";
+import {setForgotPasswordViewState} from "../components/ForgotPasswordViewComponent";
+import {setResetPasswordViewState} from "../components/ResetPasswordViewComponent";
+import {setDashboardViewState} from "../components/DashboardViewComponent";
+import {setBoxSettingsViewState} from "../components/BoxSettingsViewComponent";
+import {setAllActiveCardsViewState} from "../components/AllActiveCardsViewComponent";
+import {setProfileViewState} from "../components/ProfileViewComponent";
+import {setUserListViewState} from "../components/UserListViewComponent";
+import {setCardViewState} from "../components/CardViewComponent";
+import {setAuthorViewState} from "../components/AuthorViewComponent";
+
 export function getAppState() {
 	return AppUtils.deepCopy(appState);
 }
@@ -26,6 +39,8 @@ export function get_loggedInUser() {
 
 export function set_loggedInUser(eventData) {
 	appState.loggedInUser = eventData.loggedInUser;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_loggedInUser(eventData) {
@@ -41,6 +56,8 @@ export function merge_loggedInUser(eventData) {
 	if (eventData.password !== undefined) {
 		appState.loggedInUser.password = eventData.password;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_loggedInUser_username() {
@@ -55,6 +72,8 @@ export function set_loggedInUser_username(eventData) {
 		appState.loggedInUser = {};
 	}
 	appState.loggedInUser.username = eventData.username;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_loggedInUser_role() {
@@ -69,6 +88,8 @@ export function set_loggedInUser_role(eventData) {
 		appState.loggedInUser = {};
 	}
 	appState.loggedInUser.role = eventData.role;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_loggedInUser_password() {
@@ -83,6 +104,8 @@ export function set_loggedInUser_password(eventData) {
 		appState.loggedInUser = {};
 	}
 	appState.loggedInUser.password = eventData.password;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_hash() {
@@ -91,6 +114,8 @@ export function get_hash() {
 
 export function set_hash(eventData) {
 	location.hash = eventData.hash;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_username() {
@@ -103,6 +128,8 @@ export function set_username(eventData) {
 	} else {
 		localStorage.removeItem("username");
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_password() {
@@ -115,6 +142,8 @@ export function set_password(eventData) {
 	} else {
 		localStorage.removeItem("password");
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_displaySpinner() {
@@ -123,6 +152,8 @@ export function get_displaySpinner() {
 
 export function set_displaySpinner(eventData) {
 	appState.displaySpinner = eventData.displaySpinner;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_language() {
@@ -131,6 +162,8 @@ export function get_language() {
 
 export function set_language(eventData) {
 	appState.language = eventData.language;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_texts() {
@@ -139,6 +172,8 @@ export function get_texts() {
 
 export function set_texts(eventData) {
 	appState.texts = eventData.texts;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_displaySaveBugDialog() {
@@ -147,6 +182,8 @@ export function get_displaySaveBugDialog() {
 
 export function set_displaySaveBugDialog(eventData) {
 	appState.displaySaveBugDialog = eventData.displaySaveBugDialog;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_displayVersionMismatchDialog() {
@@ -155,6 +192,8 @@ export function get_displayVersionMismatchDialog() {
 
 export function set_displayVersionMismatchDialog(eventData) {
 	appState.displayVersionMismatchDialog = eventData.displayVersionMismatchDialog;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_displayVersionMismatchErrorDialog() {
@@ -163,6 +202,8 @@ export function get_displayVersionMismatchErrorDialog() {
 
 export function set_displayVersionMismatchErrorDialog(eventData) {
 	appState.displayVersionMismatchErrorDialog = eventData.displayVersionMismatchErrorDialog;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_message() {
@@ -174,6 +215,8 @@ export function get_message() {
 
 export function set_message(eventData) {
 	appState.message = eventData.message;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_message(eventData) {
@@ -186,6 +229,8 @@ export function merge_message(eventData) {
 	if (eventData.text !== undefined) {
 		appState.message.text = eventData.text;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_message_type() {
@@ -200,6 +245,8 @@ export function set_message_type(eventData) {
 		appState.message = {};
 	}
 	appState.message.type = eventData.type;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_message_text() {
@@ -214,6 +261,8 @@ export function set_message_text(eventData) {
 		appState.message = {};
 	}
 	appState.message.text = eventData.text;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_privacyPolicyView() {
@@ -229,6 +278,8 @@ export function set_privacyPolicyView(eventData) {
 			isPrivacyPolicyView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_loginView() {
@@ -247,6 +298,8 @@ export function set_loginView(eventData) {
 			isLoginView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_loginView(eventData) {
@@ -261,6 +314,8 @@ export function merge_loginView(eventData) {
 	if (eventData.saveInLocalStorage !== undefined) {
 		appState.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_loginView_username() {
@@ -280,6 +335,8 @@ export function set_loginView_username(eventData) {
 		};
 	}
 	appState.mainView.username = eventData.username;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_loginView_saveInLocalStorage() {
@@ -299,6 +356,8 @@ export function set_loginView_saveInLocalStorage(eventData) {
 		};
 	}
 	appState.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_registrationView() {
@@ -317,6 +376,8 @@ export function set_registrationView(eventData) {
 			isRegistrationView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_registrationView(eventData) {
@@ -343,6 +404,8 @@ export function merge_registrationView(eventData) {
 	if (eventData.passwordMismatch !== undefined) {
 		appState.mainView.passwordMismatch = eventData.passwordMismatch;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_registrationView_displayUsernameSpinner() {
@@ -362,6 +425,8 @@ export function set_registrationView_displayUsernameSpinner(eventData) {
 		};
 	}
 	appState.mainView.displayUsernameSpinner = eventData.displayUsernameSpinner;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_registrationView_available() {
@@ -381,6 +446,8 @@ export function set_registrationView_available(eventData) {
 		};
 	}
 	appState.mainView.available = eventData.available;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_registrationView_username() {
@@ -400,6 +467,8 @@ export function set_registrationView_username(eventData) {
 		};
 	}
 	appState.mainView.username = eventData.username;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_registrationView_email() {
@@ -419,6 +488,8 @@ export function set_registrationView_email(eventData) {
 		};
 	}
 	appState.mainView.email = eventData.email;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_registrationView_emailInvalid() {
@@ -438,6 +509,8 @@ export function set_registrationView_emailInvalid(eventData) {
 		};
 	}
 	appState.mainView.emailInvalid = eventData.emailInvalid;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_registrationView_passwordMismatch() {
@@ -457,6 +530,8 @@ export function set_registrationView_passwordMismatch(eventData) {
 		};
 	}
 	appState.mainView.passwordMismatch = eventData.passwordMismatch;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_forgotPasswordView() {
@@ -475,6 +550,8 @@ export function set_forgotPasswordView(eventData) {
 			isForgotPasswordView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_forgotPasswordView(eventData) {
@@ -486,6 +563,8 @@ export function merge_forgotPasswordView(eventData) {
 	if (eventData.username !== undefined) {
 		appState.mainView.username = eventData.username;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_forgotPasswordView_username() {
@@ -505,6 +584,8 @@ export function set_forgotPasswordView_username(eventData) {
 		};
 	}
 	appState.mainView.username = eventData.username;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_resetPasswordView() {
@@ -523,6 +604,8 @@ export function set_resetPasswordView(eventData) {
 			isResetPasswordView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_resetPasswordView(eventData) {
@@ -537,6 +620,8 @@ export function merge_resetPasswordView(eventData) {
 	if (eventData.passwordMismatch !== undefined) {
 		appState.mainView.passwordMismatch = eventData.passwordMismatch;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_resetPasswordView_token() {
@@ -556,6 +641,8 @@ export function set_resetPasswordView_token(eventData) {
 		};
 	}
 	appState.mainView.token = eventData.token;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_resetPasswordView_passwordMismatch() {
@@ -575,6 +662,8 @@ export function set_resetPasswordView_passwordMismatch(eventData) {
 		};
 	}
 	appState.mainView.passwordMismatch = eventData.passwordMismatch;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_dashboardView() {
@@ -593,6 +682,8 @@ export function set_dashboardView(eventData) {
 			isDashboardView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_dashboardView(eventData) {
@@ -607,6 +698,8 @@ export function merge_dashboardView(eventData) {
 	if (eventData.deleteBox !== undefined) {
 		appState.mainView.deleteBox = eventData.deleteBox;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_dashboardView_boxList() {
@@ -629,51 +722,8 @@ export function set_dashboardView_boxList(eventData) {
 		};
 	}
 	appState.mainView.boxList = eventData.boxList;
-}
-
-export function merge_dashboardView_boxList(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
-	}
-	if (!appState.mainView.boxList) {
-		appState.mainView.boxList = {};
-	}
-	if (eventData.openTodaysCards !== undefined) {
-		appState.mainView.boxList.openTodaysCards = eventData.openTodaysCards;
-	}
-	if (eventData.categoryName !== undefined) {
-		appState.mainView.boxList.categoryName = eventData.categoryName;
-	}
-	if (eventData.categoryId !== undefined) {
-		appState.mainView.boxList.categoryId = eventData.categoryId;
-	}
-	if (eventData.boxId !== undefined) {
-		appState.mainView.boxList.boxId = eventData.boxId;
-	}
-	if (eventData.quality0Count !== undefined) {
-		appState.mainView.boxList.quality0Count = eventData.quality0Count;
-	}
-	if (eventData.quality1Count !== undefined) {
-		appState.mainView.boxList.quality1Count = eventData.quality1Count;
-	}
-	if (eventData.quality2Count !== undefined) {
-		appState.mainView.boxList.quality2Count = eventData.quality2Count;
-	}
-	if (eventData.quality3Count !== undefined) {
-		appState.mainView.boxList.quality3Count = eventData.quality3Count;
-	}
-	if (eventData.quality4Count !== undefined) {
-		appState.mainView.boxList.quality4Count = eventData.quality4Count;
-	}
-	if (eventData.quality5Count !== undefined) {
-		appState.mainView.boxList.quality5Count = eventData.quality5Count;
-	}
-	if (eventData.countsPerDayNextWeek !== undefined) {
-		appState.mainView.boxList.countsPerDayNextWeek = eventData.countsPerDayNextWeek;
-	}
-	if (eventData.maxCardsPerDay !== undefined) {
-		appState.mainView.boxList.maxCardsPerDay = eventData.maxCardsPerDay;
-	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_dashboardView_deleteBox() {
@@ -696,6 +746,8 @@ export function set_dashboardView_deleteBox(eventData) {
 		};
 	}
 	appState.mainView.deleteBox = eventData.deleteBox;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_dashboardView_deleteBox(eventData) {
@@ -711,6 +763,8 @@ export function merge_dashboardView_deleteBox(eventData) {
 	if (eventData.boxId !== undefined) {
 		appState.mainView.deleteBox.boxId = eventData.boxId;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_dashboardView_deleteBox_confirmDelete() {
@@ -736,6 +790,8 @@ export function set_dashboardView_deleteBox_confirmDelete(eventData) {
 		appState.mainView.deleteBox = {};
 	}
 	appState.mainView.deleteBox.confirmDelete = eventData.confirmDelete;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_dashboardView_deleteBox_boxId() {
@@ -761,6 +817,8 @@ export function set_dashboardView_deleteBox_boxId(eventData) {
 		appState.mainView.deleteBox = {};
 	}
 	appState.mainView.deleteBox.boxId = eventData.boxId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView() {
@@ -779,6 +837,8 @@ export function set_boxSettingsView(eventData) {
 			isBoxSettingsView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_boxSettingsView(eventData) {
@@ -829,6 +889,8 @@ export function merge_boxSettingsView(eventData) {
 	if (eventData.allCards !== undefined) {
 		appState.mainView.allCards = eventData.allCards;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_maxIntervalInvalid() {
@@ -848,6 +910,8 @@ export function set_boxSettingsView_maxIntervalInvalid(eventData) {
 		};
 	}
 	appState.mainView.maxIntervalInvalid = eventData.maxIntervalInvalid;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_maxCardsPerDayInvalid() {
@@ -867,6 +931,8 @@ export function set_boxSettingsView_maxCardsPerDayInvalid(eventData) {
 		};
 	}
 	appState.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_tooManyCardsStatus() {
@@ -886,6 +952,8 @@ export function set_boxSettingsView_tooManyCardsStatus(eventData) {
 		};
 	}
 	appState.mainView.tooManyCardsStatus = eventData.tooManyCardsStatus;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_dictionaryLookupInvalid() {
@@ -905,6 +973,8 @@ export function set_boxSettingsView_dictionaryLookupInvalid(eventData) {
 		};
 	}
 	appState.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_boxId() {
@@ -924,6 +994,8 @@ export function set_boxSettingsView_boxId(eventData) {
 		};
 	}
 	appState.mainView.boxId = eventData.boxId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_maxInterval() {
@@ -943,6 +1015,8 @@ export function set_boxSettingsView_maxInterval(eventData) {
 		};
 	}
 	appState.mainView.maxInterval = eventData.maxInterval;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_maxCardsPerDay() {
@@ -962,6 +1036,8 @@ export function set_boxSettingsView_maxCardsPerDay(eventData) {
 		};
 	}
 	appState.mainView.maxCardsPerDay = eventData.maxCardsPerDay;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_categoryName() {
@@ -981,6 +1057,8 @@ export function set_boxSettingsView_categoryName(eventData) {
 		};
 	}
 	appState.mainView.categoryName = eventData.categoryName;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_dictionaryLookup() {
@@ -1000,6 +1078,8 @@ export function set_boxSettingsView_dictionaryLookup(eventData) {
 		};
 	}
 	appState.mainView.dictionaryLookup = eventData.dictionaryLookup;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_givenLanguage() {
@@ -1019,6 +1099,8 @@ export function set_boxSettingsView_givenLanguage(eventData) {
 		};
 	}
 	appState.mainView.givenLanguage = eventData.givenLanguage;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_wantedLanguage() {
@@ -1038,6 +1120,8 @@ export function set_boxSettingsView_wantedLanguage(eventData) {
 		};
 	}
 	appState.mainView.wantedLanguage = eventData.wantedLanguage;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_categoryId() {
@@ -1057,6 +1141,8 @@ export function set_boxSettingsView_categoryId(eventData) {
 		};
 	}
 	appState.mainView.categoryId = eventData.categoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_allActiveCards() {
@@ -1076,6 +1162,8 @@ export function set_boxSettingsView_allActiveCards(eventData) {
 		};
 	}
 	appState.mainView.allActiveCards = eventData.allActiveCards;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_boxSettingsView_allCards() {
@@ -1095,6 +1183,8 @@ export function set_boxSettingsView_allCards(eventData) {
 		};
 	}
 	appState.mainView.allCards = eventData.allCards;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_allActiveCardsView() {
@@ -1113,6 +1203,8 @@ export function set_allActiveCardsView(eventData) {
 			isAllActiveCardsView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_allActiveCardsView(eventData) {
@@ -1133,6 +1225,8 @@ export function merge_allActiveCardsView(eventData) {
 	if (eventData.selectedCardIds !== undefined) {
 		appState.mainView.selectedCardIds = eventData.selectedCardIds;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_allActiveCardsView_boxId() {
@@ -1152,6 +1246,8 @@ export function set_allActiveCardsView_boxId(eventData) {
 		};
 	}
 	appState.mainView.boxId = eventData.boxId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_allActiveCardsView_editable() {
@@ -1171,6 +1267,8 @@ export function set_allActiveCardsView_editable(eventData) {
 		};
 	}
 	appState.mainView.editable = eventData.editable;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_allActiveCardsView_cardList() {
@@ -1193,45 +1291,8 @@ export function set_allActiveCardsView_cardList(eventData) {
 		};
 	}
 	appState.mainView.cardList = eventData.cardList;
-}
-
-export function merge_allActiveCardsView_cardList(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
-	}
-	if (!appState.mainView.cardList) {
-		appState.mainView.cardList = {};
-	}
-	if (eventData.cardId !== undefined) {
-		appState.mainView.cardList.cardId = eventData.cardId;
-	}
-	if (eventData.given !== undefined) {
-		appState.mainView.cardList.given = eventData.given;
-	}
-	if (eventData.wanted !== undefined) {
-		appState.mainView.cardList.wanted = eventData.wanted;
-	}
-	if (eventData.image !== undefined) {
-		appState.mainView.cardList.image = eventData.image;
-	}
-	if (eventData.cardAuthor !== undefined) {
-		appState.mainView.cardList.cardAuthor = eventData.cardAuthor;
-	}
-	if (eventData.cardIndex !== undefined) {
-		appState.mainView.cardList.cardIndex = eventData.cardIndex;
-	}
-	if (eventData.categoryId !== undefined) {
-		appState.mainView.cardList.categoryId = eventData.categoryId;
-	}
-	if (eventData.rootCategoryId !== undefined) {
-		appState.mainView.cardList.rootCategoryId = eventData.rootCategoryId;
-	}
-	if (eventData.priority !== undefined) {
-		appState.mainView.cardList.priority = eventData.priority;
-	}
-	if (eventData.next !== undefined) {
-		appState.mainView.cardList.next = eventData.next;
-	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_allActiveCardsView_selectedCardIds() {
@@ -1251,6 +1312,8 @@ export function set_allActiveCardsView_selectedCardIds(eventData) {
 		};
 	}
 	appState.mainView.selectedCardIds = eventData.selectedCardIds;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_profileView() {
@@ -1269,6 +1332,8 @@ export function set_profileView(eventData) {
 			isProfileView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_profileView(eventData) {
@@ -1289,6 +1354,8 @@ export function merge_profileView(eventData) {
 	if (eventData.showDeleteUserDialog !== undefined) {
 		appState.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_profileView_username() {
@@ -1308,6 +1375,8 @@ export function set_profileView_username(eventData) {
 		};
 	}
 	appState.mainView.username = eventData.username;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_profileView_email() {
@@ -1327,6 +1396,8 @@ export function set_profileView_email(eventData) {
 		};
 	}
 	appState.mainView.email = eventData.email;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_profileView_role() {
@@ -1346,6 +1417,8 @@ export function set_profileView_role(eventData) {
 		};
 	}
 	appState.mainView.role = eventData.role;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_profileView_showDeleteUserDialog() {
@@ -1365,6 +1438,8 @@ export function set_profileView_showDeleteUserDialog(eventData) {
 		};
 	}
 	appState.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_userListView() {
@@ -1383,6 +1458,8 @@ export function set_userListView(eventData) {
 			isUserListView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_userListView(eventData) {
@@ -1400,6 +1477,8 @@ export function merge_userListView(eventData) {
 	if (eventData.usernameToBeDeleted !== undefined) {
 		appState.mainView.usernameToBeDeleted = eventData.usernameToBeDeleted;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_userListView_userList() {
@@ -1422,33 +1501,8 @@ export function set_userListView_userList(eventData) {
 		};
 	}
 	appState.mainView.userList = eventData.userList;
-}
-
-export function merge_userListView_userList(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
-	}
-	if (!appState.mainView.userList) {
-		appState.mainView.userList = {};
-	}
-	if (eventData.userId !== undefined) {
-		appState.mainView.userList.userId = eventData.userId;
-	}
-	if (eventData.username !== undefined) {
-		appState.mainView.userList.username = eventData.username;
-	}
-	if (eventData.password !== undefined) {
-		appState.mainView.userList.password = eventData.password;
-	}
-	if (eventData.email !== undefined) {
-		appState.mainView.userList.email = eventData.email;
-	}
-	if (eventData.role !== undefined) {
-		appState.mainView.userList.role = eventData.role;
-	}
-	if (eventData.emailConfirmed !== undefined) {
-		appState.mainView.userList.emailConfirmed = eventData.emailConfirmed;
-	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_userListView_showDeleteUserDialog() {
@@ -1468,6 +1522,8 @@ export function set_userListView_showDeleteUserDialog(eventData) {
 		};
 	}
 	appState.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_userListView_usernameToBeDeleted() {
@@ -1487,6 +1543,8 @@ export function set_userListView_usernameToBeDeleted(eventData) {
 		};
 	}
 	appState.mainView.usernameToBeDeleted = eventData.usernameToBeDeleted;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView() {
@@ -1505,6 +1563,8 @@ export function set_cardView(eventData) {
 			isCardView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_cardView(eventData) {
@@ -1573,6 +1633,8 @@ export function merge_cardView(eventData) {
 	if (eventData.reverse !== undefined) {
 		appState.mainView.reverse = eventData.reverse;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_cardId() {
@@ -1592,6 +1654,8 @@ export function set_cardView_cardId(eventData) {
 		};
 	}
 	appState.mainView.cardId = eventData.cardId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_categoryId() {
@@ -1611,6 +1675,8 @@ export function set_cardView_categoryId(eventData) {
 		};
 	}
 	appState.mainView.categoryId = eventData.categoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_categoryName() {
@@ -1630,6 +1696,8 @@ export function set_cardView_categoryName(eventData) {
 		};
 	}
 	appState.mainView.categoryName = eventData.categoryName;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_count() {
@@ -1649,6 +1717,8 @@ export function set_cardView_count(eventData) {
 		};
 	}
 	appState.mainView.count = eventData.count;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_given() {
@@ -1668,6 +1738,8 @@ export function set_cardView_given(eventData) {
 		};
 	}
 	appState.mainView.given = eventData.given;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_image() {
@@ -1687,6 +1759,8 @@ export function set_cardView_image(eventData) {
 		};
 	}
 	appState.mainView.image = eventData.image;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_lastQuality() {
@@ -1706,6 +1780,8 @@ export function set_cardView_lastQuality(eventData) {
 		};
 	}
 	appState.mainView.lastQuality = eventData.lastQuality;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_rootCategoryId() {
@@ -1725,6 +1801,8 @@ export function set_cardView_rootCategoryId(eventData) {
 		};
 	}
 	appState.mainView.rootCategoryId = eventData.rootCategoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_scheduledCardId() {
@@ -1744,6 +1822,8 @@ export function set_cardView_scheduledCardId(eventData) {
 		};
 	}
 	appState.mainView.scheduledCardId = eventData.scheduledCardId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_reinforceCardId() {
@@ -1763,6 +1843,8 @@ export function set_cardView_reinforceCardId(eventData) {
 		};
 	}
 	appState.mainView.reinforceCardId = eventData.reinforceCardId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_scheduledDate() {
@@ -1782,6 +1864,8 @@ export function set_cardView_scheduledDate(eventData) {
 		};
 	}
 	appState.mainView.scheduledDate = eventData.scheduledDate;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_scoredDate() {
@@ -1801,6 +1885,8 @@ export function set_cardView_scoredDate(eventData) {
 		};
 	}
 	appState.mainView.scoredDate = eventData.scoredDate;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_wanted() {
@@ -1820,6 +1906,8 @@ export function set_cardView_wanted(eventData) {
 		};
 	}
 	appState.mainView.wanted = eventData.wanted;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_openTodaysCards() {
@@ -1839,6 +1927,8 @@ export function set_cardView_openTodaysCards(eventData) {
 		};
 	}
 	appState.mainView.openTodaysCards = eventData.openTodaysCards;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_allTodaysCards() {
@@ -1858,6 +1948,8 @@ export function set_cardView_allTodaysCards(eventData) {
 		};
 	}
 	appState.mainView.allTodaysCards = eventData.allTodaysCards;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_index() {
@@ -1877,6 +1969,8 @@ export function set_cardView_index(eventData) {
 		};
 	}
 	appState.mainView.index = eventData.index;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_enableScoreButtons() {
@@ -1896,6 +1990,8 @@ export function set_cardView_enableScoreButtons(eventData) {
 		};
 	}
 	appState.mainView.enableScoreButtons = eventData.enableScoreButtons;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_displayImage() {
@@ -1915,6 +2011,8 @@ export function set_cardView_displayImage(eventData) {
 		};
 	}
 	appState.mainView.displayImage = eventData.displayImage;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_boxId() {
@@ -1934,6 +2032,8 @@ export function set_cardView_boxId(eventData) {
 		};
 	}
 	appState.mainView.boxId = eventData.boxId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_cardView_reverse() {
@@ -1953,6 +2053,8 @@ export function set_cardView_reverse(eventData) {
 		};
 	}
 	appState.mainView.reverse = eventData.reverse;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView() {
@@ -1971,6 +2073,8 @@ export function set_authorView(eventData) {
 			isAuthorView : true
 		};
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_authorView(eventData) {
@@ -2000,6 +2104,8 @@ export function merge_authorView(eventData) {
 	if (eventData.cardView !== undefined) {
 		appState.mainView.cardView = eventData.cardView;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_filterNonScheduled() {
@@ -2019,6 +2125,8 @@ export function set_authorView_filterNonScheduled(eventData) {
 		};
 	}
 	appState.mainView.filterNonScheduled = eventData.filterNonScheduled;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_reverse() {
@@ -2038,6 +2146,8 @@ export function set_authorView_reverse(eventData) {
 		};
 	}
 	appState.mainView.reverse = eventData.reverse;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_reverseBoxExists() {
@@ -2057,6 +2167,8 @@ export function set_authorView_reverseBoxExists(eventData) {
 		};
 	}
 	appState.mainView.reverseBoxExists = eventData.reverseBoxExists;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_boxId() {
@@ -2076,6 +2188,8 @@ export function set_authorView_boxId(eventData) {
 		};
 	}
 	appState.mainView.boxId = eventData.boxId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_priority() {
@@ -2095,6 +2209,8 @@ export function set_authorView_priority(eventData) {
 		};
 	}
 	appState.mainView.priority = eventData.priority;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree() {
@@ -2117,6 +2233,8 @@ export function set_authorView_categoryTree(eventData) {
 		};
 	}
 	appState.mainView.categoryTree = eventData.categoryTree;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_authorView_categoryTree(eventData) {
@@ -2168,6 +2286,8 @@ export function merge_authorView_categoryTree(eventData) {
 	if (eventData.previewCsv !== undefined) {
 		appState.mainView.categoryTree.previewCsv = eventData.previewCsv;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory() {
@@ -2196,6 +2316,8 @@ export function set_authorView_categoryTree_selectedCategory(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.selectedCategory = eventData.selectedCategory;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_authorView_categoryTree_selectedCategory(eventData) {
@@ -2247,6 +2369,8 @@ export function merge_authorView_categoryTree_selectedCategory(eventData) {
 	if (eventData.editable !== undefined) {
 		appState.mainView.categoryTree.selectedCategory.editable = eventData.editable;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_categoryId() {
@@ -2278,6 +2402,8 @@ export function set_authorView_categoryTree_selectedCategory_categoryId(eventDat
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_categoryName() {
@@ -2309,6 +2435,8 @@ export function set_authorView_categoryTree_selectedCategory_categoryName(eventD
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_categoryIndex() {
@@ -2340,6 +2468,8 @@ export function set_authorView_categoryTree_selectedCategory_categoryIndex(event
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_empty() {
@@ -2371,6 +2501,8 @@ export function set_authorView_categoryTree_selectedCategory_empty(eventData) {
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.empty = eventData.empty;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_parentCategoryId() {
@@ -2402,6 +2534,8 @@ export function set_authorView_categoryTree_selectedCategory_parentCategoryId(ev
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_dictionaryLookup() {
@@ -2433,6 +2567,8 @@ export function set_authorView_categoryTree_selectedCategory_dictionaryLookup(ev
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_givenLanguage() {
@@ -2464,6 +2600,8 @@ export function set_authorView_categoryTree_selectedCategory_givenLanguage(event
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_wantedLanguage() {
@@ -2495,6 +2633,8 @@ export function set_authorView_categoryTree_selectedCategory_wantedLanguage(even
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_rootCategoryId() {
@@ -2526,6 +2666,8 @@ export function set_authorView_categoryTree_selectedCategory_rootCategoryId(even
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_CategoryTreeItem() {
@@ -2557,6 +2699,8 @@ export function set_authorView_categoryTree_selectedCategory_CategoryTreeItem(ev
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_childCategories() {
@@ -2588,6 +2732,8 @@ export function set_authorView_categoryTree_selectedCategory_childCategories(eve
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_nonScheduledCount() {
@@ -2619,6 +2765,8 @@ export function set_authorView_categoryTree_selectedCategory_nonScheduledCount(e
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_selectedCategory_editable() {
@@ -2650,6 +2798,8 @@ export function set_authorView_categoryTree_selectedCategory_editable(eventData)
 		appState.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.mainView.categoryTree.selectedCategory.editable = eventData.editable;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory() {
@@ -2678,6 +2828,8 @@ export function set_authorView_categoryTree_rootCategory(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.rootCategory = eventData.rootCategory;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_authorView_categoryTree_rootCategory(eventData) {
@@ -2729,6 +2881,8 @@ export function merge_authorView_categoryTree_rootCategory(eventData) {
 	if (eventData.editable !== undefined) {
 		appState.mainView.categoryTree.rootCategory.editable = eventData.editable;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_categoryId() {
@@ -2760,6 +2914,8 @@ export function set_authorView_categoryTree_rootCategory_categoryId(eventData) {
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.categoryId = eventData.categoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_categoryName() {
@@ -2791,6 +2947,8 @@ export function set_authorView_categoryTree_rootCategory_categoryName(eventData)
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.categoryName = eventData.categoryName;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_categoryIndex() {
@@ -2822,6 +2980,8 @@ export function set_authorView_categoryTree_rootCategory_categoryIndex(eventData
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_empty() {
@@ -2853,6 +3013,8 @@ export function set_authorView_categoryTree_rootCategory_empty(eventData) {
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.empty = eventData.empty;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_parentCategoryId() {
@@ -2884,6 +3046,8 @@ export function set_authorView_categoryTree_rootCategory_parentCategoryId(eventD
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_dictionaryLookup() {
@@ -2915,6 +3079,8 @@ export function set_authorView_categoryTree_rootCategory_dictionaryLookup(eventD
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_givenLanguage() {
@@ -2946,6 +3112,8 @@ export function set_authorView_categoryTree_rootCategory_givenLanguage(eventData
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_wantedLanguage() {
@@ -2977,6 +3145,8 @@ export function set_authorView_categoryTree_rootCategory_wantedLanguage(eventDat
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_rootCategoryId() {
@@ -3008,6 +3178,8 @@ export function set_authorView_categoryTree_rootCategory_rootCategoryId(eventDat
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_CategoryTreeItem() {
@@ -3039,6 +3211,8 @@ export function set_authorView_categoryTree_rootCategory_CategoryTreeItem(eventD
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_childCategories() {
@@ -3070,6 +3244,8 @@ export function set_authorView_categoryTree_rootCategory_childCategories(eventDa
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.childCategories = eventData.childCategories;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_nonScheduledCount() {
@@ -3101,6 +3277,8 @@ export function set_authorView_categoryTree_rootCategory_nonScheduledCount(event
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.nonScheduledCount;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_rootCategory_editable() {
@@ -3132,6 +3310,8 @@ export function set_authorView_categoryTree_rootCategory_editable(eventData) {
 		appState.mainView.categoryTree.rootCategory = {};
 	}
 	appState.mainView.categoryTree.rootCategory.editable = eventData.editable;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_displayDeleteCategory() {
@@ -3157,6 +3337,8 @@ export function set_authorView_categoryTree_displayDeleteCategory(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_categoryName() {
@@ -3182,6 +3364,8 @@ export function set_authorView_categoryTree_categoryName(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.categoryName = eventData.categoryName;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_displayEditCategory() {
@@ -3207,6 +3391,8 @@ export function set_authorView_categoryTree_displayEditCategory(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.displayEditCategory = eventData.displayEditCategory;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_displayNewCategory() {
@@ -3232,6 +3418,8 @@ export function set_authorView_categoryTree_displayNewCategory(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_displayInviteUser() {
@@ -3257,6 +3445,8 @@ export function set_authorView_categoryTree_displayInviteUser(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.displayInviteUser = eventData.displayInviteUser;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_usernameSearchString() {
@@ -3282,6 +3472,8 @@ export function set_authorView_categoryTree_usernameSearchString(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.usernameSearchString = eventData.usernameSearchString;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_usernames() {
@@ -3307,6 +3499,8 @@ export function set_authorView_categoryTree_usernames(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.usernames = eventData.usernames;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_invitedUsernames() {
@@ -3332,6 +3526,8 @@ export function set_authorView_categoryTree_invitedUsernames(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.invitedUsernames = eventData.invitedUsernames;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_dropAllowed() {
@@ -3357,6 +3553,8 @@ export function set_authorView_categoryTree_dropAllowed(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_dropTargetCategoryId() {
@@ -3382,6 +3580,8 @@ export function set_authorView_categoryTree_dropTargetCategoryId(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory() {
@@ -3410,6 +3610,8 @@ export function set_authorView_categoryTree_movedCategory(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.movedCategory = eventData.movedCategory;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_authorView_categoryTree_movedCategory(eventData) {
@@ -3455,6 +3657,8 @@ export function merge_authorView_categoryTree_movedCategory(eventData) {
 	if (eventData.childCategories !== undefined) {
 		appState.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory_categoryId() {
@@ -3486,6 +3690,8 @@ export function set_authorView_categoryTree_movedCategory_categoryId(eventData) 
 		appState.mainView.categoryTree.movedCategory = {};
 	}
 	appState.mainView.categoryTree.movedCategory.categoryId = eventData.categoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory_categoryName() {
@@ -3517,6 +3723,8 @@ export function set_authorView_categoryTree_movedCategory_categoryName(eventData
 		appState.mainView.categoryTree.movedCategory = {};
 	}
 	appState.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory_categoryIndex() {
@@ -3548,6 +3756,8 @@ export function set_authorView_categoryTree_movedCategory_categoryIndex(eventDat
 		appState.mainView.categoryTree.movedCategory = {};
 	}
 	appState.mainView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory_empty() {
@@ -3579,6 +3789,8 @@ export function set_authorView_categoryTree_movedCategory_empty(eventData) {
 		appState.mainView.categoryTree.movedCategory = {};
 	}
 	appState.mainView.categoryTree.movedCategory.empty = eventData.empty;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory_parentCategoryId() {
@@ -3610,6 +3822,8 @@ export function set_authorView_categoryTree_movedCategory_parentCategoryId(event
 		appState.mainView.categoryTree.movedCategory = {};
 	}
 	appState.mainView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory_dictionaryLookup() {
@@ -3641,6 +3855,8 @@ export function set_authorView_categoryTree_movedCategory_dictionaryLookup(event
 		appState.mainView.categoryTree.movedCategory = {};
 	}
 	appState.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory_givenLanguage() {
@@ -3672,6 +3888,8 @@ export function set_authorView_categoryTree_movedCategory_givenLanguage(eventDat
 		appState.mainView.categoryTree.movedCategory = {};
 	}
 	appState.mainView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory_wantedLanguage() {
@@ -3703,6 +3921,8 @@ export function set_authorView_categoryTree_movedCategory_wantedLanguage(eventDa
 		appState.mainView.categoryTree.movedCategory = {};
 	}
 	appState.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory_rootCategoryId() {
@@ -3734,6 +3954,8 @@ export function set_authorView_categoryTree_movedCategory_rootCategoryId(eventDa
 		appState.mainView.categoryTree.movedCategory = {};
 	}
 	appState.mainView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory_CategoryTreeItem() {
@@ -3765,6 +3987,8 @@ export function set_authorView_categoryTree_movedCategory_CategoryTreeItem(event
 		appState.mainView.categoryTree.movedCategory = {};
 	}
 	appState.mainView.categoryTree.movedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_movedCategory_childCategories() {
@@ -3796,6 +4020,8 @@ export function set_authorView_categoryTree_movedCategory_childCategories(eventD
 		appState.mainView.categoryTree.movedCategory = {};
 	}
 	appState.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_categoryTree_previewCsv() {
@@ -3821,6 +4047,8 @@ export function set_authorView_categoryTree_previewCsv(eventData) {
 		appState.mainView.categoryTree = {};
 	}
 	appState.mainView.categoryTree.previewCsv = eventData.previewCsv;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView() {
@@ -3843,6 +4071,8 @@ export function set_authorView_cardView(eventData) {
 		};
 	}
 	appState.mainView.cardView = eventData.cardView;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_authorView_cardView(eventData) {
@@ -3885,6 +4115,8 @@ export function merge_authorView_cardView(eventData) {
 	if (eventData.dragTargetCardId !== undefined) {
 		appState.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_cardList() {
@@ -3913,45 +4145,8 @@ export function set_authorView_cardView_cardList(eventData) {
 		appState.mainView.cardView = {};
 	}
 	appState.mainView.cardView.cardList = eventData.cardList;
-}
-
-export function merge_authorView_cardView_cardList(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
-	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
-	}
-	if (!appState.mainView.cardView.cardList) {
-		appState.mainView.cardView.cardList = {};
-	}
-	if (eventData.cardId !== undefined) {
-		appState.mainView.cardView.cardList.cardId = eventData.cardId;
-	}
-	if (eventData.given !== undefined) {
-		appState.mainView.cardView.cardList.given = eventData.given;
-	}
-	if (eventData.wanted !== undefined) {
-		appState.mainView.cardView.cardList.wanted = eventData.wanted;
-	}
-	if (eventData.image !== undefined) {
-		appState.mainView.cardView.cardList.image = eventData.image;
-	}
-	if (eventData.cardAuthor !== undefined) {
-		appState.mainView.cardView.cardList.cardAuthor = eventData.cardAuthor;
-	}
-	if (eventData.cardIndex !== undefined) {
-		appState.mainView.cardView.cardList.cardIndex = eventData.cardIndex;
-	}
-	if (eventData.categoryId !== undefined) {
-		appState.mainView.cardView.cardList.categoryId = eventData.categoryId;
-	}
-	if (eventData.rootCategoryId !== undefined) {
-		appState.mainView.cardView.cardList.rootCategoryId = eventData.rootCategoryId;
-	}
-	if (eventData.next !== undefined) {
-		appState.mainView.cardView.cardList.next = eventData.next;
-	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_naturalInputOrder() {
@@ -3977,6 +4172,8 @@ export function set_authorView_cardView_naturalInputOrder(eventData) {
 		appState.mainView.cardView = {};
 	}
 	appState.mainView.cardView.naturalInputOrder = eventData.naturalInputOrder;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_filter() {
@@ -4002,6 +4199,8 @@ export function set_authorView_cardView_filter(eventData) {
 		appState.mainView.cardView = {};
 	}
 	appState.mainView.cardView.filter = eventData.filter;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_editedCard() {
@@ -4030,6 +4229,8 @@ export function set_authorView_cardView_editedCard(eventData) {
 		appState.mainView.cardView = {};
 	}
 	appState.mainView.cardView.editedCard = eventData.editedCard;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_authorView_cardView_editedCard(eventData) {
@@ -4057,6 +4258,8 @@ export function merge_authorView_cardView_editedCard(eventData) {
 	if (eventData.image !== undefined) {
 		appState.mainView.cardView.editedCard.image = eventData.image;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_editedCard_cardId() {
@@ -4088,6 +4291,8 @@ export function set_authorView_cardView_editedCard_cardId(eventData) {
 		appState.mainView.cardView.editedCard = {};
 	}
 	appState.mainView.cardView.editedCard.cardId = eventData.cardId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_editedCard_given() {
@@ -4119,6 +4324,8 @@ export function set_authorView_cardView_editedCard_given(eventData) {
 		appState.mainView.cardView.editedCard = {};
 	}
 	appState.mainView.cardView.editedCard.given = eventData.given;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_editedCard_wanted() {
@@ -4150,6 +4357,8 @@ export function set_authorView_cardView_editedCard_wanted(eventData) {
 		appState.mainView.cardView.editedCard = {};
 	}
 	appState.mainView.cardView.editedCard.wanted = eventData.wanted;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_editedCard_index() {
@@ -4181,6 +4390,8 @@ export function set_authorView_cardView_editedCard_index(eventData) {
 		appState.mainView.cardView.editedCard = {};
 	}
 	appState.mainView.cardView.editedCard.index = eventData.index;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_editedCard_image() {
@@ -4212,6 +4423,8 @@ export function set_authorView_cardView_editedCard_image(eventData) {
 		appState.mainView.cardView.editedCard = {};
 	}
 	appState.mainView.cardView.editedCard.image = eventData.image;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_newCard() {
@@ -4240,6 +4453,8 @@ export function set_authorView_cardView_newCard(eventData) {
 		appState.mainView.cardView = {};
 	}
 	appState.mainView.cardView.newCard = eventData.newCard;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_authorView_cardView_newCard(eventData) {
@@ -4273,6 +4488,8 @@ export function merge_authorView_cardView_newCard(eventData) {
 	if (eventData.displayTranslateSpinner !== undefined) {
 		appState.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_newCard_given() {
@@ -4304,6 +4521,8 @@ export function set_authorView_cardView_newCard_given(eventData) {
 		appState.mainView.cardView.newCard = {};
 	}
 	appState.mainView.cardView.newCard.given = eventData.given;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_newCard_wanted() {
@@ -4335,6 +4554,8 @@ export function set_authorView_cardView_newCard_wanted(eventData) {
 		appState.mainView.cardView.newCard = {};
 	}
 	appState.mainView.cardView.newCard.wanted = eventData.wanted;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_newCard_index() {
@@ -4366,6 +4587,8 @@ export function set_authorView_cardView_newCard_index(eventData) {
 		appState.mainView.cardView.newCard = {};
 	}
 	appState.mainView.cardView.newCard.index = eventData.index;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_newCard_image() {
@@ -4397,6 +4620,8 @@ export function set_authorView_cardView_newCard_image(eventData) {
 		appState.mainView.cardView.newCard = {};
 	}
 	appState.mainView.cardView.newCard.image = eventData.image;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_newCard_file() {
@@ -4428,6 +4653,8 @@ export function set_authorView_cardView_newCard_file(eventData) {
 		appState.mainView.cardView.newCard = {};
 	}
 	appState.mainView.cardView.newCard.file = eventData.file;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_newCard_displaySpinner() {
@@ -4459,6 +4686,8 @@ export function set_authorView_cardView_newCard_displaySpinner(eventData) {
 		appState.mainView.cardView.newCard = {};
 	}
 	appState.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_newCard_displayTranslateSpinner() {
@@ -4490,6 +4719,8 @@ export function set_authorView_cardView_newCard_displayTranslateSpinner(eventDat
 		appState.mainView.cardView.newCard = {};
 	}
 	appState.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_cardDuplicates() {
@@ -4515,6 +4746,8 @@ export function set_authorView_cardView_cardDuplicates(eventData) {
 		appState.mainView.cardView = {};
 	}
 	appState.mainView.cardView.cardDuplicates = eventData.cardDuplicates;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_deleteCard() {
@@ -4543,6 +4776,8 @@ export function set_authorView_cardView_deleteCard(eventData) {
 		appState.mainView.cardView = {};
 	}
 	appState.mainView.cardView.deleteCard = eventData.deleteCard;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function merge_authorView_cardView_deleteCard(eventData) {
@@ -4561,6 +4796,8 @@ export function merge_authorView_cardView_deleteCard(eventData) {
 	if (eventData.cardId !== undefined) {
 		appState.mainView.cardView.deleteCard.cardId = eventData.cardId;
 	}
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_deleteCard_confirmDelete() {
@@ -4592,6 +4829,8 @@ export function set_authorView_cardView_deleteCard_confirmDelete(eventData) {
 		appState.mainView.cardView.deleteCard = {};
 	}
 	appState.mainView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_deleteCard_cardId() {
@@ -4623,6 +4862,8 @@ export function set_authorView_cardView_deleteCard_cardId(eventData) {
 		appState.mainView.cardView.deleteCard = {};
 	}
 	appState.mainView.cardView.deleteCard.cardId = eventData.cardId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_dictionaryValue() {
@@ -4648,6 +4889,8 @@ export function set_authorView_cardView_dictionaryValue(eventData) {
 		appState.mainView.cardView = {};
 	}
 	appState.mainView.cardView.dictionaryValue = eventData.dictionaryValue;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_selectedCardIds() {
@@ -4673,6 +4916,8 @@ export function set_authorView_cardView_selectedCardIds(eventData) {
 		appState.mainView.cardView = {};
 	}
 	appState.mainView.cardView.selectedCardIds = eventData.selectedCardIds;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_movedCardIds() {
@@ -4698,6 +4943,8 @@ export function set_authorView_cardView_movedCardIds(eventData) {
 		appState.mainView.cardView = {};
 	}
 	appState.mainView.cardView.movedCardIds = eventData.movedCardIds;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 
 export function get_authorView_cardView_dragTargetCardId() {
@@ -4723,5 +4970,7 @@ export function set_authorView_cardView_dragTargetCardId(eventData) {
 		appState.mainView.cardView = {};
 	}
 	appState.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
+	const newAppState = getAppState();
+	AppUtils.stateUpdated(newAppState);
 }
 

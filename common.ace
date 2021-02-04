@@ -106,247 +106,246 @@ HideSaveBugDialog
 
 
 
-
-appState {
-	String loggedInUser {
-		String username
-		String role
-		String password
+ui {
+	loggedInUser {
+		username
+		role
+		password
 	}
-	String hash location.hash
-	String username storage
-	String password storage
-	Boolean displaySpinner
-	String language
+	hash location.hash
+	username storage
+	password storage
+	displaySpinner
+	language
 	texts
-	Boolean displaySaveBugDialog
-	Boolean displayVersionMismatchDialog
-	Boolean displayVersionMismatchErrorDialog
+	displaySaveBugDialog
+	displayVersionMismatchDialog
+	displayVersionMismatchErrorDialog
 	message {
-		String type
-		String text
+		type
+		text
 	}
 	group mainView {
 		privacyPolicyView {
 		}
 		loginView {
-			String username
-			Boolean saveInLocalStorage
+			username
+			saveInLocalStorage
 		}
 		registrationView {
-			Boolean displayUsernameSpinner
-	        Boolean available
-	        String username
-	        String email
-	        Boolean emailInvalid
-	        Boolean passwordMismatch
+			displayUsernameSpinner
+	        available
+	        username
+	        email
+	        emailInvalid
+	        passwordMismatch
 		}
 		forgotPasswordView {
-			String username
+			username
 		}
 		resetPasswordView {
-			String token
-			Boolean passwordMismatch
+			token
+			passwordMismatch
 		}
 		dashboardView {
-	    	List boxList serverModel com.anfelisa.box.BoxWithStatistics {
-				Integer openTodaysCards
-				String categoryName
-				String categoryId
-				String boxId
-				Integer quality0Count
-				Integer quality1Count
-				Integer quality2Count
-				Integer quality3Count
-				Integer quality4Count
-				Integer quality5Count
-				List Integer countsPerDayNextWeek
-				Integer maxCardsPerDay
+	    	List boxList {
+				openTodaysCards
+				categoryName
+				categoryId
+				boxId
+				quality0Count
+				quality1Count
+				quality2Count
+				quality3Count
+				quality4Count
+				quality5Count
+				List countsPerDayNextWeek
+				maxCardsPerDay
 	    	}
 	        deleteBox {
-	            Boolean confirmDelete
-	            String boxId
+	            confirmDelete
+	            boxId
 	        }
 		}
-		boxSettingsView serverModel com.anfelisa.box.BoxSettings {
-	    	Boolean maxIntervalInvalid
-	    	Boolean maxCardsPerDayInvalid
-	    	Integer tooManyCardsStatus
-			Boolean dictionaryLookupInvalid
+		boxSettingsView {
+	    	maxIntervalInvalid
+	    	maxCardsPerDayInvalid
+	    	tooManyCardsStatus
+			dictionaryLookupInvalid
 			
-			String boxId
-			Integer maxInterval
-			Integer maxCardsPerDay
-			String categoryName
-			Boolean dictionaryLookup
-			String givenLanguage
-			String wantedLanguage
-			String categoryId
+			boxId
+			maxInterval
+			maxCardsPerDay
+			categoryName
+			dictionaryLookup
+			givenLanguage
+			wantedLanguage
+			categoryId
 			
-			Integer allActiveCards
-			Integer allCards
+			allActiveCards
+			allCards
 		} 
 		allActiveCardsView {
-			String boxId
-			Boolean editable
-			List cardList serverModel com.anfelisa.box.CardWithStatistics {
-				String cardId
-				String given
-				String wanted
-				String image
-				String cardAuthor
-				Integer cardIndex
-				String categoryId
-				String rootCategoryId
-				Integer priority
-				DateTime next
+			boxId
+			editable
+			List cardList {
+				cardId
+				given
+				wanted
+				image
+				cardAuthor
+				cardIndex
+				categoryId
+				rootCategoryId
+				priority
+				next
 			}
-			List String selectedCardIds
+			List selectedCardIds
 		} 
 		profileView {
-			String username
-			String email
-			String role
-			Boolean showDeleteUserDialog
+			username
+			email
+			role
+			showDeleteUserDialog
 		}
-		userListView serverModel com.anfelisa.user.UserList {
-			List userList serverModel com.anfelisa.user.User {
-				NotNull String userId 
-				NotNull String username
-				NotNull String password
-				NotNull String email
-				NotNull String role
-				NotNull Boolean emailConfirmed
+		userListView {
+			List userList {
+				userId 
+				username
+				password
+				email
+				role
+				emailConfirmed
 			} 
-			NotNull Boolean showDeleteUserDialog 
-			String usernameToBeDeleted
+			showDeleteUserDialog 
+			usernameToBeDeleted
 		}
 		cardView {
-			String cardId
-			String categoryId
-			String categoryName
-			Integer count
-			String given
-			String image
-			Integer lastQuality
-			String rootCategoryId
-			String scheduledCardId
-			String reinforceCardId
-			DateTime scheduledDate
-			DateTime scoredDate
-			String wanted
-			Integer openTodaysCards
-			Integer allTodaysCards
-			Integer index
-			Boolean enableScoreButtons
-			Boolean displayImage
-			String boxId
-			Boolean reverse
+			cardId
+			categoryId
+			categoryName
+			count
+			given
+			image
+			lastQuality
+			rootCategoryId
+			scheduledCardId
+			reinforceCardId
+			scheduledDate
+			scoredDate
+			wanted
+			openTodaysCards
+			allTodaysCards
+			index
+			enableScoreButtons
+			displayImage
+			boxId
+			reverse
 		}
 		authorView {
-	        Boolean filterNonScheduled
-	        Boolean reverse
-			Boolean reverseBoxExists
-			String boxId
+	        filterNonScheduled
+	        reverse
+			reverseBoxExists
+			boxId
 				
-	        Integer priority
+	        priority
 			categoryTree {
 				selectedCategory {
-					String categoryId
-					String categoryName
-					Integer categoryIndex
-					Boolean empty
-					String parentCategoryId
-					Boolean dictionaryLookup
-					String givenLanguage
-					String wantedLanguage
-					String rootCategoryId
+					categoryId
+					categoryName
+					categoryIndex
+					empty
+					parentCategoryId
+					dictionaryLookup
+					givenLanguage
+					wantedLanguage
+					rootCategoryId
 					List CategoryTreeItem childCategories
-					Integer nonScheduledCount
-					Boolean editable
+					nonScheduledCount
+					editable
 				}
 				rootCategory {
-					String categoryId
-					String categoryName
-					Integer categoryIndex
-					Boolean empty
-					String parentCategoryId
-					Boolean dictionaryLookup
-					String givenLanguage
-					String wantedLanguage
-					String rootCategoryId
+					categoryId
+					categoryName
+					categoryIndex
+					empty
+					parentCategoryId
+					dictionaryLookup
+					givenLanguage
+					wantedLanguage
+					rootCategoryId
 					List CategoryTreeItem childCategories
-					Integer nonScheduledCount
-					Boolean editable
+					nonScheduledCount
+					editable
 				}
 				
-				Boolean displayDeleteCategory
+				displayDeleteCategory
 				
-				String categoryName
-				Boolean displayEditCategory
-				Boolean displayNewCategory
+				categoryName
+				displayEditCategory
+				displayNewCategory
 				
-				Boolean displayInviteUser
-				String usernameSearchString
-				List String usernames
-				List String invitedUsernames
+				displayInviteUser
+				usernameSearchString
+				List usernames
+				List invitedUsernames
 				
-				Boolean dropAllowed
-				String dropTargetCategoryId
-				String movedCategory {
-					String categoryId
-					String categoryName
-					Integer categoryIndex
-					Boolean empty
-					String parentCategoryId
-					Boolean dictionaryLookup
-					String givenLanguage
-					String wantedLanguage
-					String rootCategoryId
+				dropAllowed
+				dropTargetCategoryId
+				movedCategory {
+					categoryId
+					categoryName
+					categoryIndex
+					empty
+					parentCategoryId
+					dictionaryLookup
+					givenLanguage
+					wantedLanguage
+					rootCategoryId
 					List CategoryTreeItem childCategories
 				}
 				
 				previewCsv
 			}
 	        cardView {
-		        List cardList serverModel com.anfelisa.card.CardWithInfo {
-					String cardId
-					String given
-					String wanted
-					String image
-					String cardAuthor
-					Integer cardIndex
-					String categoryId
-					String rootCategoryId
-		        	DateTime next
+		        List cardList {
+					cardId
+					given
+					wanted
+					image
+					cardAuthor
+					cardIndex
+					categoryId
+					rootCategoryId
+		        	next
 		        }
-		        Boolean naturalInputOrder
-		        String filter
+		        naturalInputOrder
+		        filter
 		        editedCard {
-		        	String cardId
-		        	String given
-		        	String wanted
-		        	Integer index
-		        	String image
+		        	cardId
+		        	given
+		        	wanted
+		        	index
+		        	image
 		        }
 		        newCard {
-		        	String given
-		        	String wanted
-		        	Integer index
-		        	String image
-		        	String file
-		        	Boolean displaySpinner
-		        	Boolean displayTranslateSpinner
+		        	given
+		        	wanted
+		        	index
+		        	image
+		        	file
+		        	displaySpinner
+		        	displayTranslateSpinner
 		        }
 		        List cardDuplicates
 		        deleteCard {
-		        	Boolean confirmDelete
-		        	String cardId
+		        	confirmDelete
+		        	cardId
 		        }
-		        String dictionaryValue
-		        List String selectedCardIds
-		        List String movedCardIds
-		        String dragTargetCardId
+		        dictionaryValue
+		        List selectedCardIds
+		        List movedCardIds
+		        dragTargetCardId
 	        }
         }
 	}
