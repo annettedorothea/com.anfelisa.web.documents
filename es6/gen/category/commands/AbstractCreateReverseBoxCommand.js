@@ -15,7 +15,7 @@ import RouteAction from "../../../src/common/actions/RouteAction";
 export default class AbstractCreateReverseBoxCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.CreateReverseBoxCommand");
-        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_rootCategoryId();
+        this.commandData.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_rootCategoryId();
         this.commandData.outcomes = [];
     }
 

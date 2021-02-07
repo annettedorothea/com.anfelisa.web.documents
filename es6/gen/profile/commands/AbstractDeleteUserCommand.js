@@ -19,7 +19,7 @@ import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 export default class AbstractDeleteUserCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "profile.DeleteUserCommand");
-        this.commandData.username = AppState.get_profileView_username();
+        this.commandData.username = AppState.get_rootContainer_profileView_username();
         this.commandData.outcomes = [];
     }
 

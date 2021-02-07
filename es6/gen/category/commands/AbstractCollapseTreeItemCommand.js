@@ -16,8 +16,8 @@ export default class AbstractCollapseTreeItemCommand extends SynchronousCommand 
     constructor(commandData) {
         super(commandData, "category.CollapseTreeItemCommand");
         this.commandData.outcomes = [];
-        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
-        this.commandData.selectedCategory = AppState.get_authorView_categoryTree_selectedCategory();
+        this.commandData.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
+        this.commandData.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
     }
 
 	addOkOutcome() {

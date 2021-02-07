@@ -471,6 +471,9 @@ export const Texts = {
         saveInLocalStorageHint: {
             de: "Wenn du angemeldet bleiben willst, werden deine Logindaten verschlüsselt in deinem Browser gespeichert, so dass du dich später nicht erneut anmelden musst."
         },
+        saveTimeline: {
+            de: "Timeline speichern"
+        },
         signin: {
             de: "Anmelden"
         },

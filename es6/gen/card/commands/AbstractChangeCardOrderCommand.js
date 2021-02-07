@@ -16,7 +16,7 @@ import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 export default class AbstractChangeCardOrderCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.ChangeCardOrderCommand");
-        this.commandData.movedCardIds = AppState.get_authorView_cardView_movedCardIds();
+        this.commandData.movedCardIds = AppState.get_rootContainer_authorView_cardView_movedCardIds();
         this.commandData.outcomes = [];
     }
 

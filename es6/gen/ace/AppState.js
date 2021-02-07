@@ -9,18 +9,31 @@ import AppUtils from "../../src/app/AppUtils";
 
 export let appState;
 
-import {setContainerState} from "../components/ContainerComponent";
-import {setLoginViewState} from "../components/LoginViewComponent";
-import {setRegistrationViewState} from "../components/RegistrationViewComponent";
-import {setForgotPasswordViewState} from "../components/ForgotPasswordViewComponent";
-import {setResetPasswordViewState} from "../components/ResetPasswordViewComponent";
-import {setDashboardViewState} from "../components/DashboardViewComponent";
-import {setBoxSettingsViewState} from "../components/BoxSettingsViewComponent";
-import {setAllActiveCardsViewState} from "../components/AllActiveCardsViewComponent";
-import {setProfileViewState} from "../components/ProfileViewComponent";
-import {setUserListViewState} from "../components/UserListViewComponent";
-import {setCardViewState} from "../components/CardViewComponent";
-import {setAuthorViewState} from "../components/AuthorViewComponent";
+import { setRootContainerState } from "../components/RootContainerComponent";
+import { setLoggedInUserState } from "../components/rootContainer/LoggedInUserComponent";
+import { setSpinnerState } from "../components/rootContainer/SpinnerComponent";
+import { setMessageState } from "../components/rootContainer/MessageComponent";
+import { setMainViewState } from "../components/rootContainer/MainViewComponent";
+import { setLoginViewState } from "../components/rootContainer/mainView/LoginViewComponent";
+import { setRegistrationViewState } from "../components/rootContainer/mainView/RegistrationViewComponent";
+import { setForgotPasswordViewState } from "../components/rootContainer/mainView/ForgotPasswordViewComponent";
+import { setResetPasswordViewState } from "../components/rootContainer/mainView/ResetPasswordViewComponent";
+import { setDashboardViewState } from "../components/rootContainer/mainView/DashboardViewComponent";
+import { setDeleteBoxState } from "../components/rootContainer/mainView/dashboardView/DeleteBoxComponent";
+import { setBoxSettingsViewState } from "../components/rootContainer/mainView/BoxSettingsViewComponent";
+import { setAllActiveCardsViewState } from "../components/rootContainer/mainView/AllActiveCardsViewComponent";
+import { setProfileViewState } from "../components/rootContainer/mainView/ProfileViewComponent";
+import { setUserListViewState } from "../components/rootContainer/mainView/UserListViewComponent";
+import { setQueryCardViewState } from "../components/rootContainer/mainView/QueryCardViewComponent";
+import { setAuthorViewState } from "../components/rootContainer/mainView/AuthorViewComponent";
+import { setCategoryTreeState } from "../components/rootContainer/mainView/authorView/CategoryTreeComponent";
+import { setSelectedCategoryState } from "../components/rootContainer/mainView/authorView/categoryTree/SelectedCategoryComponent";
+import { setRootCategoryState } from "../components/rootContainer/mainView/authorView/categoryTree/RootCategoryComponent";
+import { setMovedCategoryState } from "../components/rootContainer/mainView/authorView/categoryTree/MovedCategoryComponent";
+import { setCardViewState } from "../components/rootContainer/mainView/authorView/CardViewComponent";
+import { setEditedCardState } from "../components/rootContainer/mainView/authorView/cardView/EditedCardComponent";
+import { setNewCardState } from "../components/rootContainer/mainView/authorView/cardView/NewCardComponent";
+import { setDeleteCardState } from "../components/rootContainer/mainView/authorView/cardView/DeleteCardComponent";
 
 export function getAppState() {
 	return AppUtils.deepCopy(appState);
@@ -30,4947 +43,6157 @@ export function setInitialAppState(initialAppState) {
 	appState = AppUtils.deepCopy(initialAppState);
 }
 
-export function get_loggedInUser() {
-	if (!appState.loggedInUser) {
+export function get_rootContainer_loggedInUser() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.loggedInUser);
+	if (!appState.rootContainer.loggedInUser) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.loggedInUser);
 }
 
-export function set_loggedInUser(eventData) {
-	appState.loggedInUser = eventData.loggedInUser;
+export function set_rootContainer_loggedInUser(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.loggedInUser = eventData.loggedInUser;
 	const newAppState = getAppState();
+	setLoggedInUserState(AppUtils.deepCopy(appState.rootContainer.loggedInUser));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_loggedInUser(eventData) {
-	if (!appState.loggedInUser) {
-		appState.loggedInUser = {};
+export function merge_rootContainer_loggedInUser(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.loggedInUser) {
+		appState.rootContainer.loggedInUser = {};
 	}
 	if (eventData.username !== undefined) {
-		appState.loggedInUser.username = eventData.username;
+		appState.rootContainer.loggedInUser.username = eventData.username;
 	}
 	if (eventData.role !== undefined) {
-		appState.loggedInUser.role = eventData.role;
+		appState.rootContainer.loggedInUser.role = eventData.role;
 	}
 	if (eventData.password !== undefined) {
-		appState.loggedInUser.password = eventData.password;
+		appState.rootContainer.loggedInUser.password = eventData.password;
 	}
 	const newAppState = getAppState();
+	setLoggedInUserState(AppUtils.deepCopy(appState.rootContainer.loggedInUser));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_loggedInUser_username() {
-	if (!appState.loggedInUser) {
+export function get_rootContainer_loggedInUser_username() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	return appState.loggedInUser.username;
-}
-
-export function set_loggedInUser_username(eventData) {
-	if (!appState.loggedInUser) {
-		appState.loggedInUser = {};
-	}
-	appState.loggedInUser.username = eventData.username;
-	const newAppState = getAppState();
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_loggedInUser_role() {
-	if (!appState.loggedInUser) {
+	if (!appState.rootContainer.loggedInUser) {
 		return undefined;
 	}
-	return appState.loggedInUser.role;
+	return appState.rootContainer.loggedInUser.username;
 }
 
-export function set_loggedInUser_role(eventData) {
-	if (!appState.loggedInUser) {
-		appState.loggedInUser = {};
+export function set_rootContainer_loggedInUser_username(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	appState.loggedInUser.role = eventData.role;
+	if (!appState.rootContainer.loggedInUser) {
+		appState.rootContainer.loggedInUser = {};
+	}
+	appState.rootContainer.loggedInUser.username = eventData.username;
 	const newAppState = getAppState();
+	setLoggedInUserState(AppUtils.deepCopy(appState.rootContainer.loggedInUser));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_loggedInUser_password() {
-	if (!appState.loggedInUser) {
+export function get_rootContainer_loggedInUser_role() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	return appState.loggedInUser.password;
+	if (!appState.rootContainer.loggedInUser) {
+		return undefined;
+	}
+	return appState.rootContainer.loggedInUser.role;
 }
 
-export function set_loggedInUser_password(eventData) {
-	if (!appState.loggedInUser) {
-		appState.loggedInUser = {};
+export function set_rootContainer_loggedInUser_role(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	appState.loggedInUser.password = eventData.password;
+	if (!appState.rootContainer.loggedInUser) {
+		appState.rootContainer.loggedInUser = {};
+	}
+	appState.rootContainer.loggedInUser.role = eventData.role;
 	const newAppState = getAppState();
+	setLoggedInUserState(AppUtils.deepCopy(appState.rootContainer.loggedInUser));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_hash() {
+export function get_rootContainer_loggedInUser_password() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.loggedInUser) {
+		return undefined;
+	}
+	return appState.rootContainer.loggedInUser.password;
+}
+
+export function set_rootContainer_loggedInUser_password(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.loggedInUser) {
+		appState.rootContainer.loggedInUser = {};
+	}
+	appState.rootContainer.loggedInUser.password = eventData.password;
+	const newAppState = getAppState();
+	setLoggedInUserState(AppUtils.deepCopy(appState.rootContainer.loggedInUser));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_hash() {
 	return location.hash;
 }
 
-export function set_hash(eventData) {
+export function set_rootContainer_hash(eventData) {
 	location.hash = eventData.hash;
 	const newAppState = getAppState();
+	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_username() {
+export function get_rootContainer_username() {
 	return localStorage.getItem("username");
 }
 
-export function set_username(eventData) {
+export function set_rootContainer_username(eventData) {
 	if (eventData.username) {
 		localStorage.setItem("username", eventData.username);
 	} else {
 		localStorage.removeItem("username");
 	}
 	const newAppState = getAppState();
+	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_password() {
+export function get_rootContainer_password() {
 	return localStorage.getItem("password");
 }
 
-export function set_password(eventData) {
+export function set_rootContainer_password(eventData) {
 	if (eventData.password) {
 		localStorage.setItem("password", eventData.password);
 	} else {
 		localStorage.removeItem("password");
 	}
 	const newAppState = getAppState();
+	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_displaySpinner() {
-	return appState.displaySpinner;
-}
-
-export function set_displaySpinner(eventData) {
-	appState.displaySpinner = eventData.displaySpinner;
-	const newAppState = getAppState();
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_language() {
-	return appState.language;
-}
-
-export function set_language(eventData) {
-	appState.language = eventData.language;
-	const newAppState = getAppState();
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_texts() {
-	return appState.texts;
-}
-
-export function set_texts(eventData) {
-	appState.texts = eventData.texts;
-	const newAppState = getAppState();
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_displaySaveBugDialog() {
-	return appState.displaySaveBugDialog;
-}
-
-export function set_displaySaveBugDialog(eventData) {
-	appState.displaySaveBugDialog = eventData.displaySaveBugDialog;
-	const newAppState = getAppState();
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_displayVersionMismatchDialog() {
-	return appState.displayVersionMismatchDialog;
-}
-
-export function set_displayVersionMismatchDialog(eventData) {
-	appState.displayVersionMismatchDialog = eventData.displayVersionMismatchDialog;
-	const newAppState = getAppState();
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_displayVersionMismatchErrorDialog() {
-	return appState.displayVersionMismatchErrorDialog;
-}
-
-export function set_displayVersionMismatchErrorDialog(eventData) {
-	appState.displayVersionMismatchErrorDialog = eventData.displayVersionMismatchErrorDialog;
-	const newAppState = getAppState();
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_message() {
-	if (!appState.message) {
+export function get_rootContainer_spinner() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.message);
+	if (!appState.rootContainer.spinner) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.spinner);
 }
 
-export function set_message(eventData) {
-	appState.message = eventData.message;
+export function set_rootContainer_spinner(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.spinner = eventData.spinner;
 	const newAppState = getAppState();
+	setSpinnerState(AppUtils.deepCopy(appState.rootContainer.spinner));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_message(eventData) {
-	if (!appState.message) {
-		appState.message = {};
+export function merge_rootContainer_spinner(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.spinner) {
+		appState.rootContainer.spinner = {};
+	}
+	if (eventData.display !== undefined) {
+		appState.rootContainer.spinner.display = eventData.display;
+	}
+	const newAppState = getAppState();
+	setSpinnerState(AppUtils.deepCopy(appState.rootContainer.spinner));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_spinner_display() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.spinner) {
+		return undefined;
+	}
+	return appState.rootContainer.spinner.display;
+}
+
+export function set_rootContainer_spinner_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.spinner) {
+		appState.rootContainer.spinner = {};
+	}
+	appState.rootContainer.spinner.display = eventData.display;
+	const newAppState = getAppState();
+	setSpinnerState(AppUtils.deepCopy(appState.rootContainer.spinner));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_language() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	return appState.rootContainer.language;
+}
+
+export function set_rootContainer_language(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.language = eventData.language;
+	const newAppState = getAppState();
+	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_texts() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	return appState.rootContainer.texts;
+}
+
+export function set_rootContainer_texts(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.texts = eventData.texts;
+	const newAppState = getAppState();
+	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_displaySaveBugDialog() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	return appState.rootContainer.displaySaveBugDialog;
+}
+
+export function set_rootContainer_displaySaveBugDialog(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.displaySaveBugDialog = eventData.displaySaveBugDialog;
+	const newAppState = getAppState();
+	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_displayVersionMismatchDialog() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	return appState.rootContainer.displayVersionMismatchDialog;
+}
+
+export function set_rootContainer_displayVersionMismatchDialog(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.displayVersionMismatchDialog = eventData.displayVersionMismatchDialog;
+	const newAppState = getAppState();
+	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_displayVersionMismatchErrorDialog() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	return appState.rootContainer.displayVersionMismatchErrorDialog;
+}
+
+export function set_rootContainer_displayVersionMismatchErrorDialog(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.displayVersionMismatchErrorDialog = eventData.displayVersionMismatchErrorDialog;
+	const newAppState = getAppState();
+	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_message() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.message) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.message);
+}
+
+export function set_rootContainer_message(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.message = eventData.message;
+	const newAppState = getAppState();
+	setMessageState(AppUtils.deepCopy(appState.rootContainer.message));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function merge_rootContainer_message(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.message) {
+		appState.rootContainer.message = {};
 	}
 	if (eventData.type !== undefined) {
-		appState.message.type = eventData.type;
+		appState.rootContainer.message.type = eventData.type;
 	}
 	if (eventData.text !== undefined) {
-		appState.message.text = eventData.text;
+		appState.rootContainer.message.text = eventData.text;
 	}
 	const newAppState = getAppState();
+	setMessageState(AppUtils.deepCopy(appState.rootContainer.message));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_message_type() {
-	if (!appState.message) {
+export function get_rootContainer_message_type() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	return appState.message.type;
-}
-
-export function set_message_type(eventData) {
-	if (!appState.message) {
-		appState.message = {};
-	}
-	appState.message.type = eventData.type;
-	const newAppState = getAppState();
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_message_text() {
-	if (!appState.message) {
+	if (!appState.rootContainer.message) {
 		return undefined;
 	}
-	return appState.message.text;
+	return appState.rootContainer.message.type;
 }
 
-export function set_message_text(eventData) {
-	if (!appState.message) {
-		appState.message = {};
+export function set_rootContainer_message_type(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	appState.message.text = eventData.text;
+	if (!appState.rootContainer.message) {
+		appState.rootContainer.message = {};
+	}
+	appState.rootContainer.message.type = eventData.type;
 	const newAppState = getAppState();
+	setMessageState(AppUtils.deepCopy(appState.rootContainer.message));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_privacyPolicyView() {
-	return appState.mainView;
+export function get_rootContainer_message_text() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.message) {
+		return undefined;
+	}
+	return appState.rootContainer.message.text;
 }
 
-export function set_privacyPolicyView(eventData) {
+export function set_rootContainer_message_text(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.message) {
+		appState.rootContainer.message = {};
+	}
+	appState.rootContainer.message.text = eventData.text;
+	const newAppState = getAppState();
+	setMessageState(AppUtils.deepCopy(appState.rootContainer.message));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_privacyPolicyView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView;
+}
+
+export function set_rootContainer_privacyPolicyView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
 	if (!!eventData.privacyPolicyView) {
-		appState.mainView = eventData.privacyPolicyView;
-		appState.mainView.isPrivacyPolicyView = true;
+		appState.rootContainer.mainView = eventData.privacyPolicyView;
+		appState.rootContainer.mainView.isPrivacyPolicyView = true;
 	} else {
-		appState.mainView = {
+		appState.rootContainer.mainView = {
 			isPrivacyPolicyView : true
 		};
 	}
 	const newAppState = getAppState();
+	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_loginView() {
-	if (appState.mainView && appState.mainView.isLoginView === true) {
-		return AppUtils.deepCopy(appState.mainView);
+export function get_rootContainer_loginView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isLoginView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
 	}
 	return undefined;
 }
 
-export function set_loginView(eventData) {
+export function set_rootContainer_loginView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
 	if (!!eventData.loginView) {
-		appState.mainView = eventData.loginView;
-		appState.mainView.isLoginView = true;
+		appState.rootContainer.mainView = eventData.loginView;
+		appState.rootContainer.mainView.isLoginView = true;
 	} else {
-		appState.mainView = {
+		appState.rootContainer.mainView = {
 			isLoginView : true
 		};
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_loginView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {
+export function merge_rootContainer_loginView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
 			isLoginView : true
 		};
 	}
 	if (eventData.username !== undefined) {
-		appState.mainView.username = eventData.username;
+		appState.rootContainer.mainView.username = eventData.username;
+	}
+	if (eventData.hashedPassword !== undefined) {
+		appState.rootContainer.mainView.hashedPassword = eventData.hashedPassword;
 	}
 	if (eventData.saveInLocalStorage !== undefined) {
-		appState.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
+		appState.rootContainer.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_loginView_username() {
-	if (!appState.mainView) {
+export function get_rootContainer_loginView_username() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isLoginView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.username;
+	if (appState.rootContainer.mainView.isLoginView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.username;
 }
 
-export function set_loginView_username(eventData) {
-	if (!appState.mainView || appState.mainView.isLoginView !== true) {
-		appState.mainView = {
+export function set_rootContainer_loginView_username(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isLoginView !== true) {
+		appState.rootContainer.mainView = {
 			isLoginView : true
 		};
 	}
-	appState.mainView.username = eventData.username;
+	appState.rootContainer.mainView.username = eventData.username;
 	const newAppState = getAppState();
+	setLoginViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_loginView_saveInLocalStorage() {
-	if (!appState.mainView) {
+export function get_rootContainer_loginView_hashedPassword() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isLoginView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.saveInLocalStorage;
+	if (appState.rootContainer.mainView.isLoginView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.hashedPassword;
 }
 
-export function set_loginView_saveInLocalStorage(eventData) {
-	if (!appState.mainView || appState.mainView.isLoginView !== true) {
-		appState.mainView = {
+export function set_rootContainer_loginView_hashedPassword(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isLoginView !== true) {
+		appState.rootContainer.mainView = {
 			isLoginView : true
 		};
 	}
-	appState.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
+	appState.rootContainer.mainView.hashedPassword = eventData.hashedPassword;
 	const newAppState = getAppState();
+	setLoginViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_registrationView() {
-	if (appState.mainView && appState.mainView.isRegistrationView === true) {
-		return AppUtils.deepCopy(appState.mainView);
+export function get_rootContainer_loginView_saveInLocalStorage() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isLoginView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.saveInLocalStorage;
+}
+
+export function set_rootContainer_loginView_saveInLocalStorage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isLoginView !== true) {
+		appState.rootContainer.mainView = {
+			isLoginView : true
+		};
+	}
+	appState.rootContainer.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
+	const newAppState = getAppState();
+	setLoginViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_registrationView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isRegistrationView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
 	}
 	return undefined;
 }
 
-export function set_registrationView(eventData) {
+export function set_rootContainer_registrationView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
 	if (!!eventData.registrationView) {
-		appState.mainView = eventData.registrationView;
-		appState.mainView.isRegistrationView = true;
+		appState.rootContainer.mainView = eventData.registrationView;
+		appState.rootContainer.mainView.isRegistrationView = true;
 	} else {
-		appState.mainView = {
+		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_registrationView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {
+export function merge_rootContainer_registrationView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
 	}
 	if (eventData.displayUsernameSpinner !== undefined) {
-		appState.mainView.displayUsernameSpinner = eventData.displayUsernameSpinner;
+		appState.rootContainer.mainView.displayUsernameSpinner = eventData.displayUsernameSpinner;
 	}
 	if (eventData.available !== undefined) {
-		appState.mainView.available = eventData.available;
+		appState.rootContainer.mainView.available = eventData.available;
 	}
 	if (eventData.username !== undefined) {
-		appState.mainView.username = eventData.username;
+		appState.rootContainer.mainView.username = eventData.username;
 	}
 	if (eventData.email !== undefined) {
-		appState.mainView.email = eventData.email;
+		appState.rootContainer.mainView.email = eventData.email;
 	}
 	if (eventData.emailInvalid !== undefined) {
-		appState.mainView.emailInvalid = eventData.emailInvalid;
+		appState.rootContainer.mainView.emailInvalid = eventData.emailInvalid;
 	}
 	if (eventData.passwordMismatch !== undefined) {
-		appState.mainView.passwordMismatch = eventData.passwordMismatch;
+		appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_registrationView_displayUsernameSpinner() {
-	if (!appState.mainView) {
+export function get_rootContainer_registrationView_displayUsernameSpinner() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isRegistrationView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.displayUsernameSpinner;
+	if (appState.rootContainer.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.displayUsernameSpinner;
 }
 
-export function set_registrationView_displayUsernameSpinner(eventData) {
-	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
-		appState.mainView = {
+export function set_rootContainer_registrationView_displayUsernameSpinner(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
 	}
-	appState.mainView.displayUsernameSpinner = eventData.displayUsernameSpinner;
+	appState.rootContainer.mainView.displayUsernameSpinner = eventData.displayUsernameSpinner;
 	const newAppState = getAppState();
+	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_registrationView_available() {
-	if (!appState.mainView) {
+export function get_rootContainer_registrationView_available() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isRegistrationView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.available;
+	if (appState.rootContainer.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.available;
 }
 
-export function set_registrationView_available(eventData) {
-	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
-		appState.mainView = {
+export function set_rootContainer_registrationView_available(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
 	}
-	appState.mainView.available = eventData.available;
+	appState.rootContainer.mainView.available = eventData.available;
 	const newAppState = getAppState();
+	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_registrationView_username() {
-	if (!appState.mainView) {
+export function get_rootContainer_registrationView_username() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isRegistrationView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.username;
+	if (appState.rootContainer.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.username;
 }
 
-export function set_registrationView_username(eventData) {
-	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
-		appState.mainView = {
+export function set_rootContainer_registrationView_username(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
 	}
-	appState.mainView.username = eventData.username;
+	appState.rootContainer.mainView.username = eventData.username;
 	const newAppState = getAppState();
+	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_registrationView_email() {
-	if (!appState.mainView) {
+export function get_rootContainer_registrationView_email() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isRegistrationView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.email;
+	if (appState.rootContainer.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.email;
 }
 
-export function set_registrationView_email(eventData) {
-	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
-		appState.mainView = {
+export function set_rootContainer_registrationView_email(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
 	}
-	appState.mainView.email = eventData.email;
+	appState.rootContainer.mainView.email = eventData.email;
 	const newAppState = getAppState();
+	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_registrationView_emailInvalid() {
-	if (!appState.mainView) {
+export function get_rootContainer_registrationView_emailInvalid() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isRegistrationView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.emailInvalid;
+	if (appState.rootContainer.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.emailInvalid;
 }
 
-export function set_registrationView_emailInvalid(eventData) {
-	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
-		appState.mainView = {
+export function set_rootContainer_registrationView_emailInvalid(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
 	}
-	appState.mainView.emailInvalid = eventData.emailInvalid;
+	appState.rootContainer.mainView.emailInvalid = eventData.emailInvalid;
 	const newAppState = getAppState();
+	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_registrationView_passwordMismatch() {
-	if (!appState.mainView) {
+export function get_rootContainer_registrationView_passwordMismatch() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isRegistrationView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.passwordMismatch;
+	if (appState.rootContainer.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.passwordMismatch;
 }
 
-export function set_registrationView_passwordMismatch(eventData) {
-	if (!appState.mainView || appState.mainView.isRegistrationView !== true) {
-		appState.mainView = {
+export function set_rootContainer_registrationView_passwordMismatch(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
 	}
-	appState.mainView.passwordMismatch = eventData.passwordMismatch;
+	appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
 	const newAppState = getAppState();
+	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_forgotPasswordView() {
-	if (appState.mainView && appState.mainView.isForgotPasswordView === true) {
-		return AppUtils.deepCopy(appState.mainView);
+export function get_rootContainer_forgotPasswordView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isForgotPasswordView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
 	}
 	return undefined;
 }
 
-export function set_forgotPasswordView(eventData) {
+export function set_rootContainer_forgotPasswordView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
 	if (!!eventData.forgotPasswordView) {
-		appState.mainView = eventData.forgotPasswordView;
-		appState.mainView.isForgotPasswordView = true;
+		appState.rootContainer.mainView = eventData.forgotPasswordView;
+		appState.rootContainer.mainView.isForgotPasswordView = true;
 	} else {
-		appState.mainView = {
+		appState.rootContainer.mainView = {
 			isForgotPasswordView : true
 		};
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_forgotPasswordView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {
+export function merge_rootContainer_forgotPasswordView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
 			isForgotPasswordView : true
 		};
 	}
 	if (eventData.username !== undefined) {
-		appState.mainView.username = eventData.username;
+		appState.rootContainer.mainView.username = eventData.username;
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_forgotPasswordView_username() {
-	if (!appState.mainView) {
+export function get_rootContainer_forgotPasswordView_username() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isForgotPasswordView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.username;
+	if (appState.rootContainer.mainView.isForgotPasswordView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.username;
 }
 
-export function set_forgotPasswordView_username(eventData) {
-	if (!appState.mainView || appState.mainView.isForgotPasswordView !== true) {
-		appState.mainView = {
+export function set_rootContainer_forgotPasswordView_username(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isForgotPasswordView !== true) {
+		appState.rootContainer.mainView = {
 			isForgotPasswordView : true
 		};
 	}
-	appState.mainView.username = eventData.username;
+	appState.rootContainer.mainView.username = eventData.username;
 	const newAppState = getAppState();
+	setForgotPasswordViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_resetPasswordView() {
-	if (appState.mainView && appState.mainView.isResetPasswordView === true) {
-		return AppUtils.deepCopy(appState.mainView);
+export function get_rootContainer_resetPasswordView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isResetPasswordView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
 	}
 	return undefined;
 }
 
-export function set_resetPasswordView(eventData) {
+export function set_rootContainer_resetPasswordView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
 	if (!!eventData.resetPasswordView) {
-		appState.mainView = eventData.resetPasswordView;
-		appState.mainView.isResetPasswordView = true;
+		appState.rootContainer.mainView = eventData.resetPasswordView;
+		appState.rootContainer.mainView.isResetPasswordView = true;
 	} else {
-		appState.mainView = {
+		appState.rootContainer.mainView = {
 			isResetPasswordView : true
 		};
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_resetPasswordView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {
+export function merge_rootContainer_resetPasswordView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
 			isResetPasswordView : true
 		};
 	}
 	if (eventData.token !== undefined) {
-		appState.mainView.token = eventData.token;
+		appState.rootContainer.mainView.token = eventData.token;
 	}
 	if (eventData.passwordMismatch !== undefined) {
-		appState.mainView.passwordMismatch = eventData.passwordMismatch;
+		appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_resetPasswordView_token() {
-	if (!appState.mainView) {
+export function get_rootContainer_resetPasswordView_token() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isResetPasswordView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.token;
+	if (appState.rootContainer.mainView.isResetPasswordView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.token;
 }
 
-export function set_resetPasswordView_token(eventData) {
-	if (!appState.mainView || appState.mainView.isResetPasswordView !== true) {
-		appState.mainView = {
+export function set_rootContainer_resetPasswordView_token(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isResetPasswordView !== true) {
+		appState.rootContainer.mainView = {
 			isResetPasswordView : true
 		};
 	}
-	appState.mainView.token = eventData.token;
+	appState.rootContainer.mainView.token = eventData.token;
 	const newAppState = getAppState();
+	setResetPasswordViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_resetPasswordView_passwordMismatch() {
-	if (!appState.mainView) {
+export function get_rootContainer_resetPasswordView_passwordMismatch() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isResetPasswordView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.passwordMismatch;
+	if (appState.rootContainer.mainView.isResetPasswordView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.passwordMismatch;
 }
 
-export function set_resetPasswordView_passwordMismatch(eventData) {
-	if (!appState.mainView || appState.mainView.isResetPasswordView !== true) {
-		appState.mainView = {
+export function set_rootContainer_resetPasswordView_passwordMismatch(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isResetPasswordView !== true) {
+		appState.rootContainer.mainView = {
 			isResetPasswordView : true
 		};
 	}
-	appState.mainView.passwordMismatch = eventData.passwordMismatch;
+	appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
 	const newAppState = getAppState();
+	setResetPasswordViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_dashboardView() {
-	if (appState.mainView && appState.mainView.isDashboardView === true) {
-		return AppUtils.deepCopy(appState.mainView);
+export function get_rootContainer_dashboardView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isDashboardView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
 	}
 	return undefined;
 }
 
-export function set_dashboardView(eventData) {
+export function set_rootContainer_dashboardView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
 	if (!!eventData.dashboardView) {
-		appState.mainView = eventData.dashboardView;
-		appState.mainView.isDashboardView = true;
+		appState.rootContainer.mainView = eventData.dashboardView;
+		appState.rootContainer.mainView.isDashboardView = true;
 	} else {
-		appState.mainView = {
+		appState.rootContainer.mainView = {
 			isDashboardView : true
 		};
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_dashboardView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {
+export function merge_rootContainer_dashboardView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
 			isDashboardView : true
 		};
 	}
 	if (eventData.boxList !== undefined) {
-		appState.mainView.boxList = eventData.boxList;
+		appState.rootContainer.mainView.boxList = eventData.boxList;
 	}
 	if (eventData.deleteBox !== undefined) {
-		appState.mainView.deleteBox = eventData.deleteBox;
+		appState.rootContainer.mainView.deleteBox = eventData.deleteBox;
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_dashboardView_boxList() {
-	if (!appState.mainView) {
+export function get_rootContainer_dashboardView_boxList() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isDashboardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.boxList) {
+	if (appState.rootContainer.mainView.isDashboardView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.mainView.boxList);
+	if (!appState.rootContainer.mainView.boxList) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.boxList);
 }
 
-export function set_dashboardView_boxList(eventData) {
-	if (!appState.mainView || appState.mainView.isDashboardView !== true) {
-		appState.mainView = {
+export function set_rootContainer_dashboardView_boxList(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isDashboardView !== true) {
+		appState.rootContainer.mainView = {
 			isDashboardView : true
 		};
 	}
-	appState.mainView.boxList = eventData.boxList;
+	appState.rootContainer.mainView.boxList = eventData.boxList;
 	const newAppState = getAppState();
+	setDashboardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_dashboardView_deleteBox() {
-	if (!appState.mainView) {
+export function get_rootContainer_dashboardView_deleteBox() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isDashboardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.deleteBox) {
+	if (appState.rootContainer.mainView.isDashboardView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.mainView.deleteBox);
+	if (!appState.rootContainer.mainView.deleteBox) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.deleteBox);
 }
 
-export function set_dashboardView_deleteBox(eventData) {
-	if (!appState.mainView || appState.mainView.isDashboardView !== true) {
-		appState.mainView = {
+export function set_rootContainer_dashboardView_deleteBox(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isDashboardView !== true) {
+		appState.rootContainer.mainView = {
 			isDashboardView : true
 		};
 	}
-	appState.mainView.deleteBox = eventData.deleteBox;
+	appState.rootContainer.mainView.deleteBox = eventData.deleteBox;
 	const newAppState = getAppState();
+	setDeleteBoxState(AppUtils.deepCopy(appState.rootContainer.mainView.deleteBox));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_dashboardView_deleteBox(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
+export function merge_rootContainer_dashboardView_deleteBox(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	if (!appState.mainView.deleteBox) {
-		appState.mainView.deleteBox = {};
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {};
+	}
+	if (!appState.rootContainer.mainView.deleteBox) {
+		appState.rootContainer.mainView.deleteBox = {};
 	}
 	if (eventData.confirmDelete !== undefined) {
-		appState.mainView.deleteBox.confirmDelete = eventData.confirmDelete;
+		appState.rootContainer.mainView.deleteBox.confirmDelete = eventData.confirmDelete;
 	}
 	if (eventData.boxId !== undefined) {
-		appState.mainView.deleteBox.boxId = eventData.boxId;
+		appState.rootContainer.mainView.deleteBox.boxId = eventData.boxId;
 	}
 	const newAppState = getAppState();
+	setDeleteBoxState(AppUtils.deepCopy(appState.rootContainer.mainView.deleteBox));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_dashboardView_deleteBox_confirmDelete() {
-	if (!appState.mainView) {
+export function get_rootContainer_dashboardView_deleteBox_confirmDelete() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isDashboardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.deleteBox) {
+	if (appState.rootContainer.mainView.isDashboardView !== true) {
 		return undefined;
 	}
-	return appState.mainView.deleteBox.confirmDelete;
+	if (!appState.rootContainer.mainView.deleteBox) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.deleteBox.confirmDelete;
 }
 
-export function set_dashboardView_deleteBox_confirmDelete(eventData) {
-	if (!appState.mainView || appState.mainView.isDashboardView !== true) {
-		appState.mainView = {
+export function set_rootContainer_dashboardView_deleteBox_confirmDelete(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isDashboardView !== true) {
+		appState.rootContainer.mainView = {
 			isDashboardView : true
 		};
 	}
-	if (!appState.mainView.deleteBox) {
-		appState.mainView.deleteBox = {};
+	if (!appState.rootContainer.mainView.deleteBox) {
+		appState.rootContainer.mainView.deleteBox = {};
 	}
-	appState.mainView.deleteBox.confirmDelete = eventData.confirmDelete;
+	appState.rootContainer.mainView.deleteBox.confirmDelete = eventData.confirmDelete;
 	const newAppState = getAppState();
+	setDeleteBoxState(AppUtils.deepCopy(appState.rootContainer.mainView.deleteBox));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_dashboardView_deleteBox_boxId() {
-	if (!appState.mainView) {
+export function get_rootContainer_dashboardView_deleteBox_boxId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isDashboardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.deleteBox) {
+	if (appState.rootContainer.mainView.isDashboardView !== true) {
 		return undefined;
 	}
-	return appState.mainView.deleteBox.boxId;
+	if (!appState.rootContainer.mainView.deleteBox) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.deleteBox.boxId;
 }
 
-export function set_dashboardView_deleteBox_boxId(eventData) {
-	if (!appState.mainView || appState.mainView.isDashboardView !== true) {
-		appState.mainView = {
+export function set_rootContainer_dashboardView_deleteBox_boxId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isDashboardView !== true) {
+		appState.rootContainer.mainView = {
 			isDashboardView : true
 		};
 	}
-	if (!appState.mainView.deleteBox) {
-		appState.mainView.deleteBox = {};
+	if (!appState.rootContainer.mainView.deleteBox) {
+		appState.rootContainer.mainView.deleteBox = {};
 	}
-	appState.mainView.deleteBox.boxId = eventData.boxId;
+	appState.rootContainer.mainView.deleteBox.boxId = eventData.boxId;
 	const newAppState = getAppState();
+	setDeleteBoxState(AppUtils.deepCopy(appState.rootContainer.mainView.deleteBox));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView() {
-	if (appState.mainView && appState.mainView.isBoxSettingsView === true) {
-		return AppUtils.deepCopy(appState.mainView);
+export function get_rootContainer_boxSettingsView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isBoxSettingsView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
 	}
 	return undefined;
 }
 
-export function set_boxSettingsView(eventData) {
+export function set_rootContainer_boxSettingsView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
 	if (!!eventData.boxSettingsView) {
-		appState.mainView = eventData.boxSettingsView;
-		appState.mainView.isBoxSettingsView = true;
+		appState.rootContainer.mainView = eventData.boxSettingsView;
+		appState.rootContainer.mainView.isBoxSettingsView = true;
 	} else {
-		appState.mainView = {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_boxSettingsView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {
+export function merge_rootContainer_boxSettingsView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
 	if (eventData.maxIntervalInvalid !== undefined) {
-		appState.mainView.maxIntervalInvalid = eventData.maxIntervalInvalid;
+		appState.rootContainer.mainView.maxIntervalInvalid = eventData.maxIntervalInvalid;
 	}
 	if (eventData.maxCardsPerDayInvalid !== undefined) {
-		appState.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
+		appState.rootContainer.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
 	}
 	if (eventData.tooManyCardsStatus !== undefined) {
-		appState.mainView.tooManyCardsStatus = eventData.tooManyCardsStatus;
+		appState.rootContainer.mainView.tooManyCardsStatus = eventData.tooManyCardsStatus;
 	}
 	if (eventData.dictionaryLookupInvalid !== undefined) {
-		appState.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
+		appState.rootContainer.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
 	}
 	if (eventData.boxId !== undefined) {
-		appState.mainView.boxId = eventData.boxId;
+		appState.rootContainer.mainView.boxId = eventData.boxId;
 	}
 	if (eventData.maxInterval !== undefined) {
-		appState.mainView.maxInterval = eventData.maxInterval;
+		appState.rootContainer.mainView.maxInterval = eventData.maxInterval;
 	}
 	if (eventData.maxCardsPerDay !== undefined) {
-		appState.mainView.maxCardsPerDay = eventData.maxCardsPerDay;
+		appState.rootContainer.mainView.maxCardsPerDay = eventData.maxCardsPerDay;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.mainView.categoryName = eventData.categoryName;
+		appState.rootContainer.mainView.categoryName = eventData.categoryName;
 	}
 	if (eventData.dictionaryLookup !== undefined) {
-		appState.mainView.dictionaryLookup = eventData.dictionaryLookup;
+		appState.rootContainer.mainView.dictionaryLookup = eventData.dictionaryLookup;
 	}
 	if (eventData.givenLanguage !== undefined) {
-		appState.mainView.givenLanguage = eventData.givenLanguage;
+		appState.rootContainer.mainView.givenLanguage = eventData.givenLanguage;
 	}
 	if (eventData.wantedLanguage !== undefined) {
-		appState.mainView.wantedLanguage = eventData.wantedLanguage;
+		appState.rootContainer.mainView.wantedLanguage = eventData.wantedLanguage;
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.mainView.categoryId = eventData.categoryId;
+		appState.rootContainer.mainView.categoryId = eventData.categoryId;
 	}
 	if (eventData.allActiveCards !== undefined) {
-		appState.mainView.allActiveCards = eventData.allActiveCards;
+		appState.rootContainer.mainView.allActiveCards = eventData.allActiveCards;
 	}
 	if (eventData.allCards !== undefined) {
-		appState.mainView.allCards = eventData.allCards;
+		appState.rootContainer.mainView.allCards = eventData.allCards;
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_maxIntervalInvalid() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_maxIntervalInvalid() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.maxIntervalInvalid;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.maxIntervalInvalid;
 }
 
-export function set_boxSettingsView_maxIntervalInvalid(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_maxIntervalInvalid(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.maxIntervalInvalid = eventData.maxIntervalInvalid;
+	appState.rootContainer.mainView.maxIntervalInvalid = eventData.maxIntervalInvalid;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_maxCardsPerDayInvalid() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_maxCardsPerDayInvalid() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.maxCardsPerDayInvalid;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.maxCardsPerDayInvalid;
 }
 
-export function set_boxSettingsView_maxCardsPerDayInvalid(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_maxCardsPerDayInvalid(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
+	appState.rootContainer.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_tooManyCardsStatus() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_tooManyCardsStatus() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.tooManyCardsStatus;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.tooManyCardsStatus;
 }
 
-export function set_boxSettingsView_tooManyCardsStatus(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_tooManyCardsStatus(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.tooManyCardsStatus = eventData.tooManyCardsStatus;
+	appState.rootContainer.mainView.tooManyCardsStatus = eventData.tooManyCardsStatus;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_dictionaryLookupInvalid() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_dictionaryLookupInvalid() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.dictionaryLookupInvalid;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.dictionaryLookupInvalid;
 }
 
-export function set_boxSettingsView_dictionaryLookupInvalid(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_dictionaryLookupInvalid(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
+	appState.rootContainer.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_boxId() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_boxId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.boxId;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxId;
 }
 
-export function set_boxSettingsView_boxId(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_boxId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.boxId = eventData.boxId;
+	appState.rootContainer.mainView.boxId = eventData.boxId;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_maxInterval() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_maxInterval() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.maxInterval;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.maxInterval;
 }
 
-export function set_boxSettingsView_maxInterval(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_maxInterval(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.maxInterval = eventData.maxInterval;
+	appState.rootContainer.mainView.maxInterval = eventData.maxInterval;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_maxCardsPerDay() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_maxCardsPerDay() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.maxCardsPerDay;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.maxCardsPerDay;
 }
 
-export function set_boxSettingsView_maxCardsPerDay(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_maxCardsPerDay(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.maxCardsPerDay = eventData.maxCardsPerDay;
+	appState.rootContainer.mainView.maxCardsPerDay = eventData.maxCardsPerDay;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_categoryName() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_categoryName() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.categoryName;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryName;
 }
 
-export function set_boxSettingsView_categoryName(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.categoryName = eventData.categoryName;
+	appState.rootContainer.mainView.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_dictionaryLookup() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_dictionaryLookup() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.dictionaryLookup;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.dictionaryLookup;
 }
 
-export function set_boxSettingsView_dictionaryLookup(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_dictionaryLookup(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.dictionaryLookup = eventData.dictionaryLookup;
+	appState.rootContainer.mainView.dictionaryLookup = eventData.dictionaryLookup;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_givenLanguage() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_givenLanguage() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.givenLanguage;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.givenLanguage;
 }
 
-export function set_boxSettingsView_givenLanguage(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_givenLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.givenLanguage = eventData.givenLanguage;
+	appState.rootContainer.mainView.givenLanguage = eventData.givenLanguage;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_wantedLanguage() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_wantedLanguage() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.wantedLanguage;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.wantedLanguage;
 }
 
-export function set_boxSettingsView_wantedLanguage(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_wantedLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.wantedLanguage = eventData.wantedLanguage;
+	appState.rootContainer.mainView.wantedLanguage = eventData.wantedLanguage;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_categoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_categoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.categoryId;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryId;
 }
 
-export function set_boxSettingsView_categoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_categoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.categoryId = eventData.categoryId;
+	appState.rootContainer.mainView.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_allActiveCards() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_allActiveCards() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.allActiveCards;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.allActiveCards;
 }
 
-export function set_boxSettingsView_allActiveCards(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_allActiveCards(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.allActiveCards = eventData.allActiveCards;
+	appState.rootContainer.mainView.allActiveCards = eventData.allActiveCards;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_boxSettingsView_allCards() {
-	if (!appState.mainView) {
+export function get_rootContainer_boxSettingsView_allCards() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isBoxSettingsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.allCards;
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.allCards;
 }
 
-export function set_boxSettingsView_allCards(eventData) {
-	if (!appState.mainView || appState.mainView.isBoxSettingsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_boxSettingsView_allCards(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	appState.mainView.allCards = eventData.allCards;
+	appState.rootContainer.mainView.allCards = eventData.allCards;
 	const newAppState = getAppState();
+	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_allActiveCardsView() {
-	if (appState.mainView && appState.mainView.isAllActiveCardsView === true) {
-		return AppUtils.deepCopy(appState.mainView);
+export function get_rootContainer_allActiveCardsView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isAllActiveCardsView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
 	}
 	return undefined;
 }
 
-export function set_allActiveCardsView(eventData) {
+export function set_rootContainer_allActiveCardsView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
 	if (!!eventData.allActiveCardsView) {
-		appState.mainView = eventData.allActiveCardsView;
-		appState.mainView.isAllActiveCardsView = true;
+		appState.rootContainer.mainView = eventData.allActiveCardsView;
+		appState.rootContainer.mainView.isAllActiveCardsView = true;
 	} else {
-		appState.mainView = {
+		appState.rootContainer.mainView = {
 			isAllActiveCardsView : true
 		};
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_allActiveCardsView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {
+export function merge_rootContainer_allActiveCardsView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
 			isAllActiveCardsView : true
 		};
 	}
 	if (eventData.boxId !== undefined) {
-		appState.mainView.boxId = eventData.boxId;
+		appState.rootContainer.mainView.boxId = eventData.boxId;
 	}
 	if (eventData.editable !== undefined) {
-		appState.mainView.editable = eventData.editable;
+		appState.rootContainer.mainView.editable = eventData.editable;
 	}
-	if (eventData.cardList !== undefined) {
-		appState.mainView.cardList = eventData.cardList;
+	if (eventData.activeCardList !== undefined) {
+		appState.rootContainer.mainView.activeCardList = eventData.activeCardList;
 	}
 	if (eventData.selectedCardIds !== undefined) {
-		appState.mainView.selectedCardIds = eventData.selectedCardIds;
+		appState.rootContainer.mainView.selectedCardIds = eventData.selectedCardIds;
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_allActiveCardsView_boxId() {
-	if (!appState.mainView) {
+export function get_rootContainer_allActiveCardsView_boxId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAllActiveCardsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.boxId;
+	if (appState.rootContainer.mainView.isAllActiveCardsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxId;
 }
 
-export function set_allActiveCardsView_boxId(eventData) {
-	if (!appState.mainView || appState.mainView.isAllActiveCardsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_allActiveCardsView_boxId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAllActiveCardsView !== true) {
+		appState.rootContainer.mainView = {
 			isAllActiveCardsView : true
 		};
 	}
-	appState.mainView.boxId = eventData.boxId;
+	appState.rootContainer.mainView.boxId = eventData.boxId;
 	const newAppState = getAppState();
+	setAllActiveCardsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_allActiveCardsView_editable() {
-	if (!appState.mainView) {
+export function get_rootContainer_allActiveCardsView_editable() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAllActiveCardsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.editable;
+	if (appState.rootContainer.mainView.isAllActiveCardsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.editable;
 }
 
-export function set_allActiveCardsView_editable(eventData) {
-	if (!appState.mainView || appState.mainView.isAllActiveCardsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_allActiveCardsView_editable(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAllActiveCardsView !== true) {
+		appState.rootContainer.mainView = {
 			isAllActiveCardsView : true
 		};
 	}
-	appState.mainView.editable = eventData.editable;
+	appState.rootContainer.mainView.editable = eventData.editable;
 	const newAppState = getAppState();
+	setAllActiveCardsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_allActiveCardsView_cardList() {
-	if (!appState.mainView) {
+export function get_rootContainer_allActiveCardsView_activeCardList() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAllActiveCardsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardList) {
+	if (appState.rootContainer.mainView.isAllActiveCardsView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.mainView.cardList);
+	if (!appState.rootContainer.mainView.activeCardList) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.activeCardList);
 }
 
-export function set_allActiveCardsView_cardList(eventData) {
-	if (!appState.mainView || appState.mainView.isAllActiveCardsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_allActiveCardsView_activeCardList(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAllActiveCardsView !== true) {
+		appState.rootContainer.mainView = {
 			isAllActiveCardsView : true
 		};
 	}
-	appState.mainView.cardList = eventData.cardList;
+	appState.rootContainer.mainView.activeCardList = eventData.activeCardList;
 	const newAppState = getAppState();
+	setAllActiveCardsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_allActiveCardsView_selectedCardIds() {
-	if (!appState.mainView) {
+export function get_rootContainer_allActiveCardsView_selectedCardIds() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAllActiveCardsView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.selectedCardIds;
+	if (appState.rootContainer.mainView.isAllActiveCardsView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.selectedCardIds;
 }
 
-export function set_allActiveCardsView_selectedCardIds(eventData) {
-	if (!appState.mainView || appState.mainView.isAllActiveCardsView !== true) {
-		appState.mainView = {
+export function set_rootContainer_allActiveCardsView_selectedCardIds(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAllActiveCardsView !== true) {
+		appState.rootContainer.mainView = {
 			isAllActiveCardsView : true
 		};
 	}
-	appState.mainView.selectedCardIds = eventData.selectedCardIds;
+	appState.rootContainer.mainView.selectedCardIds = eventData.selectedCardIds;
 	const newAppState = getAppState();
+	setAllActiveCardsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_profileView() {
-	if (appState.mainView && appState.mainView.isProfileView === true) {
-		return AppUtils.deepCopy(appState.mainView);
+export function get_rootContainer_profileView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isProfileView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
 	}
 	return undefined;
 }
 
-export function set_profileView(eventData) {
+export function set_rootContainer_profileView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
 	if (!!eventData.profileView) {
-		appState.mainView = eventData.profileView;
-		appState.mainView.isProfileView = true;
+		appState.rootContainer.mainView = eventData.profileView;
+		appState.rootContainer.mainView.isProfileView = true;
 	} else {
-		appState.mainView = {
+		appState.rootContainer.mainView = {
 			isProfileView : true
 		};
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_profileView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {
+export function merge_rootContainer_profileView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
 			isProfileView : true
 		};
 	}
 	if (eventData.username !== undefined) {
-		appState.mainView.username = eventData.username;
+		appState.rootContainer.mainView.username = eventData.username;
 	}
 	if (eventData.email !== undefined) {
-		appState.mainView.email = eventData.email;
+		appState.rootContainer.mainView.email = eventData.email;
 	}
 	if (eventData.role !== undefined) {
-		appState.mainView.role = eventData.role;
+		appState.rootContainer.mainView.role = eventData.role;
 	}
 	if (eventData.showDeleteUserDialog !== undefined) {
-		appState.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+		appState.rootContainer.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_profileView_username() {
-	if (!appState.mainView) {
+export function get_rootContainer_profileView_username() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isProfileView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.username;
+	if (appState.rootContainer.mainView.isProfileView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.username;
 }
 
-export function set_profileView_username(eventData) {
-	if (!appState.mainView || appState.mainView.isProfileView !== true) {
-		appState.mainView = {
+export function set_rootContainer_profileView_username(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isProfileView !== true) {
+		appState.rootContainer.mainView = {
 			isProfileView : true
 		};
 	}
-	appState.mainView.username = eventData.username;
+	appState.rootContainer.mainView.username = eventData.username;
 	const newAppState = getAppState();
+	setProfileViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_profileView_email() {
-	if (!appState.mainView) {
+export function get_rootContainer_profileView_email() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isProfileView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.email;
+	if (appState.rootContainer.mainView.isProfileView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.email;
 }
 
-export function set_profileView_email(eventData) {
-	if (!appState.mainView || appState.mainView.isProfileView !== true) {
-		appState.mainView = {
+export function set_rootContainer_profileView_email(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isProfileView !== true) {
+		appState.rootContainer.mainView = {
 			isProfileView : true
 		};
 	}
-	appState.mainView.email = eventData.email;
+	appState.rootContainer.mainView.email = eventData.email;
 	const newAppState = getAppState();
+	setProfileViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_profileView_role() {
-	if (!appState.mainView) {
+export function get_rootContainer_profileView_role() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isProfileView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.role;
+	if (appState.rootContainer.mainView.isProfileView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.role;
 }
 
-export function set_profileView_role(eventData) {
-	if (!appState.mainView || appState.mainView.isProfileView !== true) {
-		appState.mainView = {
+export function set_rootContainer_profileView_role(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isProfileView !== true) {
+		appState.rootContainer.mainView = {
 			isProfileView : true
 		};
 	}
-	appState.mainView.role = eventData.role;
+	appState.rootContainer.mainView.role = eventData.role;
 	const newAppState = getAppState();
+	setProfileViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_profileView_showDeleteUserDialog() {
-	if (!appState.mainView) {
+export function get_rootContainer_profileView_showDeleteUserDialog() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isProfileView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.showDeleteUserDialog;
+	if (appState.rootContainer.mainView.isProfileView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.showDeleteUserDialog;
 }
 
-export function set_profileView_showDeleteUserDialog(eventData) {
-	if (!appState.mainView || appState.mainView.isProfileView !== true) {
-		appState.mainView = {
+export function set_rootContainer_profileView_showDeleteUserDialog(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isProfileView !== true) {
+		appState.rootContainer.mainView = {
 			isProfileView : true
 		};
 	}
-	appState.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+	appState.rootContainer.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 	const newAppState = getAppState();
+	setProfileViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_userListView() {
-	if (appState.mainView && appState.mainView.isUserListView === true) {
-		return AppUtils.deepCopy(appState.mainView);
+export function get_rootContainer_userListView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isUserListView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
 	}
 	return undefined;
 }
 
-export function set_userListView(eventData) {
+export function set_rootContainer_userListView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
 	if (!!eventData.userListView) {
-		appState.mainView = eventData.userListView;
-		appState.mainView.isUserListView = true;
+		appState.rootContainer.mainView = eventData.userListView;
+		appState.rootContainer.mainView.isUserListView = true;
 	} else {
-		appState.mainView = {
+		appState.rootContainer.mainView = {
 			isUserListView : true
 		};
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_userListView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {
+export function merge_rootContainer_userListView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
 			isUserListView : true
 		};
 	}
 	if (eventData.userList !== undefined) {
-		appState.mainView.userList = eventData.userList;
+		appState.rootContainer.mainView.userList = eventData.userList;
 	}
 	if (eventData.showDeleteUserDialog !== undefined) {
-		appState.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+		appState.rootContainer.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 	}
 	if (eventData.usernameToBeDeleted !== undefined) {
-		appState.mainView.usernameToBeDeleted = eventData.usernameToBeDeleted;
+		appState.rootContainer.mainView.usernameToBeDeleted = eventData.usernameToBeDeleted;
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_userListView_userList() {
-	if (!appState.mainView) {
+export function get_rootContainer_userListView_userList() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isUserListView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.userList) {
+	if (appState.rootContainer.mainView.isUserListView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.mainView.userList);
+	if (!appState.rootContainer.mainView.userList) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.userList);
 }
 
-export function set_userListView_userList(eventData) {
-	if (!appState.mainView || appState.mainView.isUserListView !== true) {
-		appState.mainView = {
+export function set_rootContainer_userListView_userList(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isUserListView !== true) {
+		appState.rootContainer.mainView = {
 			isUserListView : true
 		};
 	}
-	appState.mainView.userList = eventData.userList;
+	appState.rootContainer.mainView.userList = eventData.userList;
 	const newAppState = getAppState();
+	setUserListViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_userListView_showDeleteUserDialog() {
-	if (!appState.mainView) {
+export function get_rootContainer_userListView_showDeleteUserDialog() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isUserListView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.showDeleteUserDialog;
+	if (appState.rootContainer.mainView.isUserListView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.showDeleteUserDialog;
 }
 
-export function set_userListView_showDeleteUserDialog(eventData) {
-	if (!appState.mainView || appState.mainView.isUserListView !== true) {
-		appState.mainView = {
+export function set_rootContainer_userListView_showDeleteUserDialog(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isUserListView !== true) {
+		appState.rootContainer.mainView = {
 			isUserListView : true
 		};
 	}
-	appState.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+	appState.rootContainer.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 	const newAppState = getAppState();
+	setUserListViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_userListView_usernameToBeDeleted() {
-	if (!appState.mainView) {
+export function get_rootContainer_userListView_usernameToBeDeleted() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isUserListView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.usernameToBeDeleted;
+	if (appState.rootContainer.mainView.isUserListView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.usernameToBeDeleted;
 }
 
-export function set_userListView_usernameToBeDeleted(eventData) {
-	if (!appState.mainView || appState.mainView.isUserListView !== true) {
-		appState.mainView = {
+export function set_rootContainer_userListView_usernameToBeDeleted(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isUserListView !== true) {
+		appState.rootContainer.mainView = {
 			isUserListView : true
 		};
 	}
-	appState.mainView.usernameToBeDeleted = eventData.usernameToBeDeleted;
+	appState.rootContainer.mainView.usernameToBeDeleted = eventData.usernameToBeDeleted;
 	const newAppState = getAppState();
+	setUserListViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView() {
-	if (appState.mainView && appState.mainView.isCardView === true) {
-		return AppUtils.deepCopy(appState.mainView);
+export function get_rootContainer_queryCardView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isQueryCardView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
 	}
 	return undefined;
 }
 
-export function set_cardView(eventData) {
-	if (!!eventData.cardView) {
-		appState.mainView = eventData.cardView;
-		appState.mainView.isCardView = true;
+export function set_rootContainer_queryCardView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!!eventData.queryCardView) {
+		appState.rootContainer.mainView = eventData.queryCardView;
+		appState.rootContainer.mainView.isQueryCardView = true;
 	} else {
-		appState.mainView = {
-			isCardView : true
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_cardView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {
-			isCardView : true
+export function merge_rootContainer_queryCardView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
 	if (eventData.cardId !== undefined) {
-		appState.mainView.cardId = eventData.cardId;
+		appState.rootContainer.mainView.cardId = eventData.cardId;
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.mainView.categoryId = eventData.categoryId;
+		appState.rootContainer.mainView.categoryId = eventData.categoryId;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.mainView.categoryName = eventData.categoryName;
+		appState.rootContainer.mainView.categoryName = eventData.categoryName;
 	}
 	if (eventData.count !== undefined) {
-		appState.mainView.count = eventData.count;
+		appState.rootContainer.mainView.count = eventData.count;
 	}
 	if (eventData.given !== undefined) {
-		appState.mainView.given = eventData.given;
+		appState.rootContainer.mainView.given = eventData.given;
 	}
 	if (eventData.image !== undefined) {
-		appState.mainView.image = eventData.image;
+		appState.rootContainer.mainView.image = eventData.image;
 	}
 	if (eventData.lastQuality !== undefined) {
-		appState.mainView.lastQuality = eventData.lastQuality;
+		appState.rootContainer.mainView.lastQuality = eventData.lastQuality;
 	}
 	if (eventData.rootCategoryId !== undefined) {
-		appState.mainView.rootCategoryId = eventData.rootCategoryId;
+		appState.rootContainer.mainView.rootCategoryId = eventData.rootCategoryId;
 	}
 	if (eventData.scheduledCardId !== undefined) {
-		appState.mainView.scheduledCardId = eventData.scheduledCardId;
+		appState.rootContainer.mainView.scheduledCardId = eventData.scheduledCardId;
 	}
 	if (eventData.reinforceCardId !== undefined) {
-		appState.mainView.reinforceCardId = eventData.reinforceCardId;
+		appState.rootContainer.mainView.reinforceCardId = eventData.reinforceCardId;
 	}
 	if (eventData.scheduledDate !== undefined) {
-		appState.mainView.scheduledDate = eventData.scheduledDate;
+		appState.rootContainer.mainView.scheduledDate = eventData.scheduledDate;
 	}
 	if (eventData.scoredDate !== undefined) {
-		appState.mainView.scoredDate = eventData.scoredDate;
+		appState.rootContainer.mainView.scoredDate = eventData.scoredDate;
 	}
 	if (eventData.wanted !== undefined) {
-		appState.mainView.wanted = eventData.wanted;
+		appState.rootContainer.mainView.wanted = eventData.wanted;
 	}
 	if (eventData.openTodaysCards !== undefined) {
-		appState.mainView.openTodaysCards = eventData.openTodaysCards;
+		appState.rootContainer.mainView.openTodaysCards = eventData.openTodaysCards;
 	}
 	if (eventData.allTodaysCards !== undefined) {
-		appState.mainView.allTodaysCards = eventData.allTodaysCards;
+		appState.rootContainer.mainView.allTodaysCards = eventData.allTodaysCards;
 	}
 	if (eventData.index !== undefined) {
-		appState.mainView.index = eventData.index;
+		appState.rootContainer.mainView.index = eventData.index;
 	}
 	if (eventData.enableScoreButtons !== undefined) {
-		appState.mainView.enableScoreButtons = eventData.enableScoreButtons;
+		appState.rootContainer.mainView.enableScoreButtons = eventData.enableScoreButtons;
 	}
 	if (eventData.displayImage !== undefined) {
-		appState.mainView.displayImage = eventData.displayImage;
+		appState.rootContainer.mainView.displayImage = eventData.displayImage;
 	}
 	if (eventData.boxId !== undefined) {
-		appState.mainView.boxId = eventData.boxId;
+		appState.rootContainer.mainView.boxId = eventData.boxId;
 	}
 	if (eventData.reverse !== undefined) {
-		appState.mainView.reverse = eventData.reverse;
+		appState.rootContainer.mainView.reverse = eventData.reverse;
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_cardId() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_cardId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.cardId;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardId;
 }
 
-export function set_cardView_cardId(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_cardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.cardId = eventData.cardId;
+	appState.rootContainer.mainView.cardId = eventData.cardId;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_categoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_categoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.categoryId;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryId;
 }
 
-export function set_cardView_categoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_categoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.categoryId = eventData.categoryId;
+	appState.rootContainer.mainView.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_categoryName() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_categoryName() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.categoryName;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryName;
 }
 
-export function set_cardView_categoryName(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.categoryName = eventData.categoryName;
+	appState.rootContainer.mainView.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_count() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_count() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.count;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.count;
 }
 
-export function set_cardView_count(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_count(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.count = eventData.count;
+	appState.rootContainer.mainView.count = eventData.count;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_given() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_given() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.given;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.given;
 }
 
-export function set_cardView_given(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_given(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.given = eventData.given;
+	appState.rootContainer.mainView.given = eventData.given;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_image() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_image() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.image;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.image;
 }
 
-export function set_cardView_image(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_image(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.image = eventData.image;
+	appState.rootContainer.mainView.image = eventData.image;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_lastQuality() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_lastQuality() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.lastQuality;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.lastQuality;
 }
 
-export function set_cardView_lastQuality(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_lastQuality(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.lastQuality = eventData.lastQuality;
+	appState.rootContainer.mainView.lastQuality = eventData.lastQuality;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_rootCategoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_rootCategoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.rootCategoryId;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.rootCategoryId;
 }
 
-export function set_cardView_rootCategoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_rootCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.rootCategoryId = eventData.rootCategoryId;
+	appState.rootContainer.mainView.rootCategoryId = eventData.rootCategoryId;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_scheduledCardId() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_scheduledCardId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.scheduledCardId;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.scheduledCardId;
 }
 
-export function set_cardView_scheduledCardId(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_scheduledCardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.scheduledCardId = eventData.scheduledCardId;
+	appState.rootContainer.mainView.scheduledCardId = eventData.scheduledCardId;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_reinforceCardId() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_reinforceCardId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.reinforceCardId;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.reinforceCardId;
 }
 
-export function set_cardView_reinforceCardId(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_reinforceCardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.reinforceCardId = eventData.reinforceCardId;
+	appState.rootContainer.mainView.reinforceCardId = eventData.reinforceCardId;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_scheduledDate() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_scheduledDate() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.scheduledDate;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.scheduledDate;
 }
 
-export function set_cardView_scheduledDate(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_scheduledDate(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.scheduledDate = eventData.scheduledDate;
+	appState.rootContainer.mainView.scheduledDate = eventData.scheduledDate;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_scoredDate() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_scoredDate() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.scoredDate;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.scoredDate;
 }
 
-export function set_cardView_scoredDate(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_scoredDate(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.scoredDate = eventData.scoredDate;
+	appState.rootContainer.mainView.scoredDate = eventData.scoredDate;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_wanted() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_wanted() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.wanted;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.wanted;
 }
 
-export function set_cardView_wanted(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_wanted(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.wanted = eventData.wanted;
+	appState.rootContainer.mainView.wanted = eventData.wanted;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_openTodaysCards() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_openTodaysCards() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.openTodaysCards;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.openTodaysCards;
 }
 
-export function set_cardView_openTodaysCards(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_openTodaysCards(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.openTodaysCards = eventData.openTodaysCards;
+	appState.rootContainer.mainView.openTodaysCards = eventData.openTodaysCards;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_allTodaysCards() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_allTodaysCards() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.allTodaysCards;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.allTodaysCards;
 }
 
-export function set_cardView_allTodaysCards(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_allTodaysCards(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.allTodaysCards = eventData.allTodaysCards;
+	appState.rootContainer.mainView.allTodaysCards = eventData.allTodaysCards;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_index() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_index() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.index;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.index;
 }
 
-export function set_cardView_index(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_index(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.index = eventData.index;
+	appState.rootContainer.mainView.index = eventData.index;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_enableScoreButtons() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_enableScoreButtons() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.enableScoreButtons;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.enableScoreButtons;
 }
 
-export function set_cardView_enableScoreButtons(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_enableScoreButtons(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.enableScoreButtons = eventData.enableScoreButtons;
+	appState.rootContainer.mainView.enableScoreButtons = eventData.enableScoreButtons;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_displayImage() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_displayImage() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.displayImage;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.displayImage;
 }
 
-export function set_cardView_displayImage(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_displayImage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.displayImage = eventData.displayImage;
+	appState.rootContainer.mainView.displayImage = eventData.displayImage;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_boxId() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_boxId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.boxId;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxId;
 }
 
-export function set_cardView_boxId(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_boxId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.boxId = eventData.boxId;
+	appState.rootContainer.mainView.boxId = eventData.boxId;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_cardView_reverse() {
-	if (!appState.mainView) {
+export function get_rootContainer_queryCardView_reverse() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isCardView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.reverse;
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.reverse;
 }
 
-export function set_cardView_reverse(eventData) {
-	if (!appState.mainView || appState.mainView.isCardView !== true) {
-		appState.mainView = {
-			isCardView : true
+export function set_rootContainer_queryCardView_reverse(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
 		};
 	}
-	appState.mainView.reverse = eventData.reverse;
+	appState.rootContainer.mainView.reverse = eventData.reverse;
 	const newAppState = getAppState();
+	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView() {
-	if (appState.mainView && appState.mainView.isAuthorView === true) {
-		return AppUtils.deepCopy(appState.mainView);
+export function get_rootContainer_authorView() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isAuthorView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
 	}
 	return undefined;
 }
 
-export function set_authorView(eventData) {
+export function set_rootContainer_authorView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
 	if (!!eventData.authorView) {
-		appState.mainView = eventData.authorView;
-		appState.mainView.isAuthorView = true;
+		appState.rootContainer.mainView = eventData.authorView;
+		appState.rootContainer.mainView.isAuthorView = true;
 	} else {
-		appState.mainView = {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_authorView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {
+export function merge_rootContainer_authorView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
 	if (eventData.filterNonScheduled !== undefined) {
-		appState.mainView.filterNonScheduled = eventData.filterNonScheduled;
+		appState.rootContainer.mainView.filterNonScheduled = eventData.filterNonScheduled;
 	}
 	if (eventData.reverse !== undefined) {
-		appState.mainView.reverse = eventData.reverse;
+		appState.rootContainer.mainView.reverse = eventData.reverse;
 	}
 	if (eventData.reverseBoxExists !== undefined) {
-		appState.mainView.reverseBoxExists = eventData.reverseBoxExists;
+		appState.rootContainer.mainView.reverseBoxExists = eventData.reverseBoxExists;
 	}
 	if (eventData.boxId !== undefined) {
-		appState.mainView.boxId = eventData.boxId;
+		appState.rootContainer.mainView.boxId = eventData.boxId;
 	}
 	if (eventData.priority !== undefined) {
-		appState.mainView.priority = eventData.priority;
+		appState.rootContainer.mainView.priority = eventData.priority;
 	}
 	if (eventData.categoryTree !== undefined) {
-		appState.mainView.categoryTree = eventData.categoryTree;
+		appState.rootContainer.mainView.categoryTree = eventData.categoryTree;
 	}
 	if (eventData.cardView !== undefined) {
-		appState.mainView.cardView = eventData.cardView;
+		appState.rootContainer.mainView.cardView = eventData.cardView;
 	}
 	const newAppState = getAppState();
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_filterNonScheduled() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_filterNonScheduled() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.filterNonScheduled;
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.filterNonScheduled;
 }
 
-export function set_authorView_filterNonScheduled(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_filterNonScheduled(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	appState.mainView.filterNonScheduled = eventData.filterNonScheduled;
+	appState.rootContainer.mainView.filterNonScheduled = eventData.filterNonScheduled;
 	const newAppState = getAppState();
+	setAuthorViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_reverse() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_reverse() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.reverse;
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.reverse;
 }
 
-export function set_authorView_reverse(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_reverse(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	appState.mainView.reverse = eventData.reverse;
+	appState.rootContainer.mainView.reverse = eventData.reverse;
 	const newAppState = getAppState();
+	setAuthorViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_reverseBoxExists() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_reverseBoxExists() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.reverseBoxExists;
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.reverseBoxExists;
 }
 
-export function set_authorView_reverseBoxExists(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_reverseBoxExists(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	appState.mainView.reverseBoxExists = eventData.reverseBoxExists;
+	appState.rootContainer.mainView.reverseBoxExists = eventData.reverseBoxExists;
 	const newAppState = getAppState();
+	setAuthorViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_boxId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_boxId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.boxId;
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxId;
 }
 
-export function set_authorView_boxId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_boxId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	appState.mainView.boxId = eventData.boxId;
+	appState.rootContainer.mainView.boxId = eventData.boxId;
 	const newAppState = getAppState();
+	setAuthorViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_priority() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_priority() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	return appState.mainView.priority;
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.priority;
 }
 
-export function set_authorView_priority(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_priority(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	appState.mainView.priority = eventData.priority;
+	appState.rootContainer.mainView.priority = eventData.priority;
 	const newAppState = getAppState();
+	setAuthorViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.mainView.categoryTree);
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree);
 }
 
-export function set_authorView_categoryTree(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	appState.mainView.categoryTree = eventData.categoryTree;
+	appState.rootContainer.mainView.categoryTree = eventData.categoryTree;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_authorView_categoryTree(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
+export function merge_rootContainer_authorView_categoryTree(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
 	if (eventData.selectedCategory !== undefined) {
-		appState.mainView.categoryTree.selectedCategory = eventData.selectedCategory;
+		appState.rootContainer.mainView.categoryTree.selectedCategory = eventData.selectedCategory;
 	}
 	if (eventData.rootCategory !== undefined) {
-		appState.mainView.categoryTree.rootCategory = eventData.rootCategory;
+		appState.rootContainer.mainView.categoryTree.rootCategory = eventData.rootCategory;
 	}
 	if (eventData.displayDeleteCategory !== undefined) {
-		appState.mainView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
+		appState.rootContainer.mainView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.mainView.categoryTree.categoryName = eventData.categoryName;
+		appState.rootContainer.mainView.categoryTree.categoryName = eventData.categoryName;
 	}
 	if (eventData.displayEditCategory !== undefined) {
-		appState.mainView.categoryTree.displayEditCategory = eventData.displayEditCategory;
+		appState.rootContainer.mainView.categoryTree.displayEditCategory = eventData.displayEditCategory;
 	}
 	if (eventData.displayNewCategory !== undefined) {
-		appState.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
+		appState.rootContainer.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
 	}
 	if (eventData.displayInviteUser !== undefined) {
-		appState.mainView.categoryTree.displayInviteUser = eventData.displayInviteUser;
+		appState.rootContainer.mainView.categoryTree.displayInviteUser = eventData.displayInviteUser;
 	}
 	if (eventData.usernameSearchString !== undefined) {
-		appState.mainView.categoryTree.usernameSearchString = eventData.usernameSearchString;
+		appState.rootContainer.mainView.categoryTree.usernameSearchString = eventData.usernameSearchString;
 	}
 	if (eventData.usernames !== undefined) {
-		appState.mainView.categoryTree.usernames = eventData.usernames;
+		appState.rootContainer.mainView.categoryTree.usernames = eventData.usernames;
 	}
 	if (eventData.invitedUsernames !== undefined) {
-		appState.mainView.categoryTree.invitedUsernames = eventData.invitedUsernames;
+		appState.rootContainer.mainView.categoryTree.invitedUsernames = eventData.invitedUsernames;
 	}
 	if (eventData.dropAllowed !== undefined) {
-		appState.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
+		appState.rootContainer.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
 	}
 	if (eventData.dropTargetCategoryId !== undefined) {
-		appState.mainView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
+		appState.rootContainer.mainView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
 	}
 	if (eventData.movedCategory !== undefined) {
-		appState.mainView.categoryTree.movedCategory = eventData.movedCategory;
+		appState.rootContainer.mainView.categoryTree.movedCategory = eventData.movedCategory;
 	}
 	if (eventData.previewCsv !== undefined) {
-		appState.mainView.categoryTree.previewCsv = eventData.previewCsv;
+		appState.rootContainer.mainView.categoryTree.previewCsv = eventData.previewCsv;
 	}
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.mainView.categoryTree.selectedCategory);
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory);
 }
 
-export function set_authorView_categoryTree_selectedCategory(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.mainView.categoryTree.selectedCategory = eventData.selectedCategory;
+	appState.rootContainer.mainView.categoryTree.selectedCategory = eventData.selectedCategory;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_authorView_categoryTree_selectedCategory(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
+export function merge_rootContainer_authorView_categoryTree_selectedCategory(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
 	}
 	if (eventData.categoryIndex !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
 	}
 	if (eventData.empty !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.empty = eventData.empty;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.empty = eventData.empty;
 	}
 	if (eventData.parentCategoryId !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
 	}
 	if (eventData.dictionaryLookup !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
 	}
 	if (eventData.givenLanguage !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
 	}
 	if (eventData.wantedLanguage !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
 	}
 	if (eventData.rootCategoryId !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
-	}
-	if (eventData.CategoryTreeItem !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
 	}
 	if (eventData.childCategories !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
 	}
 	if (eventData.nonScheduledCount !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
 	}
 	if (eventData.editable !== undefined) {
-		appState.mainView.categoryTree.selectedCategory.editable = eventData.editable;
+		appState.rootContainer.mainView.categoryTree.selectedCategory.editable = eventData.editable;
 	}
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_categoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_categoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.categoryId;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.categoryId;
 }
 
-export function set_authorView_categoryTree_selectedCategory_categoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_categoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_categoryName() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_categoryName() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.categoryName;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.categoryName;
 }
 
-export function set_authorView_categoryTree_selectedCategory_categoryName(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_categoryIndex() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_categoryIndex() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.categoryIndex;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.categoryIndex;
 }
 
-export function set_authorView_categoryTree_selectedCategory_categoryIndex(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_categoryIndex(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_empty() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_empty() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.empty;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.empty;
 }
 
-export function set_authorView_categoryTree_selectedCategory_empty(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_empty(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.empty = eventData.empty;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.empty = eventData.empty;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_parentCategoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_parentCategoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.parentCategoryId;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.parentCategoryId;
 }
 
-export function set_authorView_categoryTree_selectedCategory_parentCategoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_parentCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_dictionaryLookup() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_dictionaryLookup() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.dictionaryLookup;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.dictionaryLookup;
 }
 
-export function set_authorView_categoryTree_selectedCategory_dictionaryLookup(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_dictionaryLookup(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_givenLanguage() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_givenLanguage() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.givenLanguage;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.givenLanguage;
 }
 
-export function set_authorView_categoryTree_selectedCategory_givenLanguage(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_givenLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_wantedLanguage() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_wantedLanguage() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.wantedLanguage;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.wantedLanguage;
 }
 
-export function set_authorView_categoryTree_selectedCategory_wantedLanguage(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_wantedLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_rootCategoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_rootCategoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.rootCategoryId;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.rootCategoryId;
 }
 
-export function set_authorView_categoryTree_selectedCategory_rootCategoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_rootCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_CategoryTreeItem() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_childCategories() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.CategoryTreeItem;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.childCategories;
 }
 
-export function set_authorView_categoryTree_selectedCategory_CategoryTreeItem(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_childCategories(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_childCategories() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_nonScheduledCount() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.childCategories;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.nonScheduledCount;
 }
 
-export function set_authorView_categoryTree_selectedCategory_childCategories(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_nonScheduledCount(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_nonScheduledCount() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_selectedCategory_editable() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.nonScheduledCount;
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.selectedCategory.editable;
 }
 
-export function set_authorView_categoryTree_selectedCategory_nonScheduledCount(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_selectedCategory_editable(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	appState.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
+	appState.rootContainer.mainView.categoryTree.selectedCategory.editable = eventData.editable;
 	const newAppState = getAppState();
+	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_selectedCategory_editable() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.selectedCategory.editable;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory);
 }
 
-export function set_authorView_categoryTree_selectedCategory_editable(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.selectedCategory) {
-		appState.mainView.categoryTree.selectedCategory = {};
-	}
-	appState.mainView.categoryTree.selectedCategory.editable = eventData.editable;
+	appState.rootContainer.mainView.categoryTree.rootCategory = eventData.rootCategory;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory() {
-	if (!appState.mainView) {
-		return undefined;
+export function merge_rootContainer_authorView_categoryTree_rootCategory(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	if (appState.mainView.isAuthorView !== true) {
-		return undefined;
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {};
 	}
-	if (!appState.mainView.categoryTree) {
-		return undefined;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		return undefined;
-	}
-	return AppUtils.deepCopy(appState.mainView.categoryTree.rootCategory);
-}
-
-export function set_authorView_categoryTree_rootCategory(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
-			isAuthorView : true
-		};
-	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
-	}
-	appState.mainView.categoryTree.rootCategory = eventData.rootCategory;
-	const newAppState = getAppState();
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function merge_authorView_categoryTree_rootCategory(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
-	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
-	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.mainView.categoryTree.rootCategory.categoryId = eventData.categoryId;
+		appState.rootContainer.mainView.categoryTree.rootCategory.categoryId = eventData.categoryId;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.mainView.categoryTree.rootCategory.categoryName = eventData.categoryName;
+		appState.rootContainer.mainView.categoryTree.rootCategory.categoryName = eventData.categoryName;
 	}
 	if (eventData.categoryIndex !== undefined) {
-		appState.mainView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
+		appState.rootContainer.mainView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
 	}
 	if (eventData.empty !== undefined) {
-		appState.mainView.categoryTree.rootCategory.empty = eventData.empty;
+		appState.rootContainer.mainView.categoryTree.rootCategory.empty = eventData.empty;
 	}
 	if (eventData.parentCategoryId !== undefined) {
-		appState.mainView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
+		appState.rootContainer.mainView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
 	}
 	if (eventData.dictionaryLookup !== undefined) {
-		appState.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
+		appState.rootContainer.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
 	}
 	if (eventData.givenLanguage !== undefined) {
-		appState.mainView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
+		appState.rootContainer.mainView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
 	}
 	if (eventData.wantedLanguage !== undefined) {
-		appState.mainView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
+		appState.rootContainer.mainView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
 	}
 	if (eventData.rootCategoryId !== undefined) {
-		appState.mainView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
-	}
-	if (eventData.CategoryTreeItem !== undefined) {
-		appState.mainView.categoryTree.rootCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+		appState.rootContainer.mainView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
 	}
 	if (eventData.childCategories !== undefined) {
-		appState.mainView.categoryTree.rootCategory.childCategories = eventData.childCategories;
+		appState.rootContainer.mainView.categoryTree.rootCategory.childCategories = eventData.childCategories;
 	}
 	if (eventData.nonScheduledCount !== undefined) {
-		appState.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.nonScheduledCount;
+		appState.rootContainer.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.nonScheduledCount;
 	}
 	if (eventData.editable !== undefined) {
-		appState.mainView.categoryTree.rootCategory.editable = eventData.editable;
+		appState.rootContainer.mainView.categoryTree.rootCategory.editable = eventData.editable;
 	}
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_categoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_categoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.categoryId;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.categoryId;
 }
 
-export function set_authorView_categoryTree_rootCategory_categoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_categoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.categoryId = eventData.categoryId;
+	appState.rootContainer.mainView.categoryTree.rootCategory.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_categoryName() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_categoryName() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.categoryName;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.categoryName;
 }
 
-export function set_authorView_categoryTree_rootCategory_categoryName(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.categoryName = eventData.categoryName;
+	appState.rootContainer.mainView.categoryTree.rootCategory.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_categoryIndex() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_categoryIndex() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.categoryIndex;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.categoryIndex;
 }
 
-export function set_authorView_categoryTree_rootCategory_categoryIndex(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_categoryIndex(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
+	appState.rootContainer.mainView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_empty() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_empty() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.empty;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.empty;
 }
 
-export function set_authorView_categoryTree_rootCategory_empty(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_empty(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.empty = eventData.empty;
+	appState.rootContainer.mainView.categoryTree.rootCategory.empty = eventData.empty;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_parentCategoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_parentCategoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.parentCategoryId;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.parentCategoryId;
 }
 
-export function set_authorView_categoryTree_rootCategory_parentCategoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_parentCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
+	appState.rootContainer.mainView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_dictionaryLookup() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_dictionaryLookup() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.dictionaryLookup;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.dictionaryLookup;
 }
 
-export function set_authorView_categoryTree_rootCategory_dictionaryLookup(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_dictionaryLookup(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
+	appState.rootContainer.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_givenLanguage() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_givenLanguage() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.givenLanguage;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.givenLanguage;
 }
 
-export function set_authorView_categoryTree_rootCategory_givenLanguage(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_givenLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
+	appState.rootContainer.mainView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_wantedLanguage() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_wantedLanguage() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.wantedLanguage;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.wantedLanguage;
 }
 
-export function set_authorView_categoryTree_rootCategory_wantedLanguage(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_wantedLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
+	appState.rootContainer.mainView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_rootCategoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_rootCategoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.rootCategoryId;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.rootCategoryId;
 }
 
-export function set_authorView_categoryTree_rootCategory_rootCategoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_rootCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
+	appState.rootContainer.mainView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_CategoryTreeItem() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_childCategories() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.CategoryTreeItem;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.childCategories;
 }
 
-export function set_authorView_categoryTree_rootCategory_CategoryTreeItem(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_childCategories(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+	appState.rootContainer.mainView.categoryTree.rootCategory.childCategories = eventData.childCategories;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_childCategories() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_nonScheduledCount() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.childCategories;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.nonScheduledCount;
 }
 
-export function set_authorView_categoryTree_rootCategory_childCategories(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_nonScheduledCount(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.childCategories = eventData.childCategories;
+	appState.rootContainer.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.nonScheduledCount;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_nonScheduledCount() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_rootCategory_editable() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.nonScheduledCount;
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.rootCategory.editable;
 }
 
-export function set_authorView_categoryTree_rootCategory_nonScheduledCount(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_rootCategory_editable(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	appState.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.nonScheduledCount;
+	appState.rootContainer.mainView.categoryTree.rootCategory.editable = eventData.editable;
 	const newAppState = getAppState();
+	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_rootCategory_editable() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_displayDeleteCategory() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.rootCategory.editable;
+	return appState.rootContainer.mainView.categoryTree.displayDeleteCategory;
 }
 
-export function set_authorView_categoryTree_rootCategory_editable(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_displayDeleteCategory(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.rootCategory) {
-		appState.mainView.categoryTree.rootCategory = {};
-	}
-	appState.mainView.categoryTree.rootCategory.editable = eventData.editable;
+	appState.rootContainer.mainView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_displayDeleteCategory() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_categoryName() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.displayDeleteCategory;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.categoryName;
 }
 
-export function set_authorView_categoryTree_displayDeleteCategory(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.mainView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
+	appState.rootContainer.mainView.categoryTree.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_categoryName() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_displayEditCategory() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.categoryName;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.displayEditCategory;
 }
 
-export function set_authorView_categoryTree_categoryName(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_displayEditCategory(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.mainView.categoryTree.categoryName = eventData.categoryName;
+	appState.rootContainer.mainView.categoryTree.displayEditCategory = eventData.displayEditCategory;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_displayEditCategory() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_displayNewCategory() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.displayEditCategory;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.displayNewCategory;
 }
 
-export function set_authorView_categoryTree_displayEditCategory(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_displayNewCategory(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.mainView.categoryTree.displayEditCategory = eventData.displayEditCategory;
+	appState.rootContainer.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_displayNewCategory() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_displayInviteUser() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.displayNewCategory;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.displayInviteUser;
 }
 
-export function set_authorView_categoryTree_displayNewCategory(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_displayInviteUser(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
+	appState.rootContainer.mainView.categoryTree.displayInviteUser = eventData.displayInviteUser;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_displayInviteUser() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_usernameSearchString() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.displayInviteUser;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.usernameSearchString;
 }
 
-export function set_authorView_categoryTree_displayInviteUser(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_usernameSearchString(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.mainView.categoryTree.displayInviteUser = eventData.displayInviteUser;
+	appState.rootContainer.mainView.categoryTree.usernameSearchString = eventData.usernameSearchString;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_usernameSearchString() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_usernames() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.usernameSearchString;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.usernames;
 }
 
-export function set_authorView_categoryTree_usernameSearchString(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_usernames(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.mainView.categoryTree.usernameSearchString = eventData.usernameSearchString;
+	appState.rootContainer.mainView.categoryTree.usernames = eventData.usernames;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_usernames() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_invitedUsernames() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.usernames;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.invitedUsernames;
 }
 
-export function set_authorView_categoryTree_usernames(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_invitedUsernames(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.mainView.categoryTree.usernames = eventData.usernames;
+	appState.rootContainer.mainView.categoryTree.invitedUsernames = eventData.invitedUsernames;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_invitedUsernames() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_dropAllowed() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.invitedUsernames;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.dropAllowed;
 }
 
-export function set_authorView_categoryTree_invitedUsernames(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_dropAllowed(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.mainView.categoryTree.invitedUsernames = eventData.invitedUsernames;
+	appState.rootContainer.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_dropAllowed() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_dropTargetCategoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.dropAllowed;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.dropTargetCategoryId;
 }
 
-export function set_authorView_categoryTree_dropAllowed(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_dropTargetCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
+	appState.rootContainer.mainView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_dropTargetCategoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_movedCategory() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.dropTargetCategoryId;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory);
 }
 
-export function set_authorView_categoryTree_dropTargetCategoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_movedCategory(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.mainView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
+	appState.rootContainer.mainView.categoryTree.movedCategory = eventData.movedCategory;
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory() {
-	if (!appState.mainView) {
-		return undefined;
+export function merge_rootContainer_authorView_categoryTree_movedCategory(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	if (appState.mainView.isAuthorView !== true) {
-		return undefined;
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {};
 	}
-	if (!appState.mainView.categoryTree) {
-		return undefined;
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		return undefined;
-	}
-	return AppUtils.deepCopy(appState.mainView.categoryTree.movedCategory);
-}
-
-export function set_authorView_categoryTree_movedCategory(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
-			isAuthorView : true
-		};
-	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
-	}
-	appState.mainView.categoryTree.movedCategory = eventData.movedCategory;
-	const newAppState = getAppState();
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function merge_authorView_categoryTree_movedCategory(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
-	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
-	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
 	if (eventData.categoryId !== undefined) {
-		appState.mainView.categoryTree.movedCategory.categoryId = eventData.categoryId;
+		appState.rootContainer.mainView.categoryTree.movedCategory.categoryId = eventData.categoryId;
 	}
 	if (eventData.categoryName !== undefined) {
-		appState.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
+		appState.rootContainer.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
 	}
 	if (eventData.categoryIndex !== undefined) {
-		appState.mainView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
+		appState.rootContainer.mainView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
 	}
 	if (eventData.empty !== undefined) {
-		appState.mainView.categoryTree.movedCategory.empty = eventData.empty;
+		appState.rootContainer.mainView.categoryTree.movedCategory.empty = eventData.empty;
 	}
 	if (eventData.parentCategoryId !== undefined) {
-		appState.mainView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
+		appState.rootContainer.mainView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
 	}
 	if (eventData.dictionaryLookup !== undefined) {
-		appState.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
+		appState.rootContainer.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
 	}
 	if (eventData.givenLanguage !== undefined) {
-		appState.mainView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
+		appState.rootContainer.mainView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
 	}
 	if (eventData.wantedLanguage !== undefined) {
-		appState.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
+		appState.rootContainer.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
 	}
 	if (eventData.rootCategoryId !== undefined) {
-		appState.mainView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
-	}
-	if (eventData.CategoryTreeItem !== undefined) {
-		appState.mainView.categoryTree.movedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+		appState.rootContainer.mainView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
 	}
 	if (eventData.childCategories !== undefined) {
-		appState.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
+		appState.rootContainer.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
 	}
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory_categoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_movedCategory_categoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.movedCategory.categoryId;
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.movedCategory.categoryId;
 }
 
-export function set_authorView_categoryTree_movedCategory_categoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_movedCategory_categoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
-	appState.mainView.categoryTree.movedCategory.categoryId = eventData.categoryId;
+	appState.rootContainer.mainView.categoryTree.movedCategory.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory_categoryName() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_movedCategory_categoryName() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.movedCategory.categoryName;
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.movedCategory.categoryName;
 }
 
-export function set_authorView_categoryTree_movedCategory_categoryName(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_movedCategory_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
-	appState.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
+	appState.rootContainer.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory_categoryIndex() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_movedCategory_categoryIndex() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.movedCategory.categoryIndex;
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.movedCategory.categoryIndex;
 }
 
-export function set_authorView_categoryTree_movedCategory_categoryIndex(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_movedCategory_categoryIndex(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
-	appState.mainView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
+	appState.rootContainer.mainView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory_empty() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_movedCategory_empty() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.movedCategory.empty;
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.movedCategory.empty;
 }
 
-export function set_authorView_categoryTree_movedCategory_empty(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_movedCategory_empty(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
-	appState.mainView.categoryTree.movedCategory.empty = eventData.empty;
+	appState.rootContainer.mainView.categoryTree.movedCategory.empty = eventData.empty;
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory_parentCategoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_movedCategory_parentCategoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.movedCategory.parentCategoryId;
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.movedCategory.parentCategoryId;
 }
 
-export function set_authorView_categoryTree_movedCategory_parentCategoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_movedCategory_parentCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
-	appState.mainView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
+	appState.rootContainer.mainView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory_dictionaryLookup() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_movedCategory_dictionaryLookup() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.movedCategory.dictionaryLookup;
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.movedCategory.dictionaryLookup;
 }
 
-export function set_authorView_categoryTree_movedCategory_dictionaryLookup(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_movedCategory_dictionaryLookup(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
-	appState.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
+	appState.rootContainer.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory_givenLanguage() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_movedCategory_givenLanguage() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.movedCategory.givenLanguage;
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.movedCategory.givenLanguage;
 }
 
-export function set_authorView_categoryTree_movedCategory_givenLanguage(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_movedCategory_givenLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
-	appState.mainView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
+	appState.rootContainer.mainView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory_wantedLanguage() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_movedCategory_wantedLanguage() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.movedCategory.wantedLanguage;
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.movedCategory.wantedLanguage;
 }
 
-export function set_authorView_categoryTree_movedCategory_wantedLanguage(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_movedCategory_wantedLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
-	appState.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
+	appState.rootContainer.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory_rootCategoryId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_movedCategory_rootCategoryId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.movedCategory.rootCategoryId;
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.movedCategory.rootCategoryId;
 }
 
-export function set_authorView_categoryTree_movedCategory_rootCategoryId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_movedCategory_rootCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
-	appState.mainView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
+	appState.rootContainer.mainView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory_CategoryTreeItem() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_movedCategory_childCategories() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.movedCategory.CategoryTreeItem;
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.movedCategory.childCategories;
 }
 
-export function set_authorView_categoryTree_movedCategory_CategoryTreeItem(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_movedCategory_childCategories(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
-	appState.mainView.categoryTree.movedCategory.CategoryTreeItem = eventData.CategoryTreeItem;
+	appState.rootContainer.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
 	const newAppState = getAppState();
+	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_movedCategory_childCategories() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_categoryTree_previewCsv() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
+	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.movedCategory.childCategories;
+	return appState.rootContainer.mainView.categoryTree.previewCsv;
 }
 
-export function set_authorView_categoryTree_movedCategory_childCategories(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_categoryTree_previewCsv(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (!appState.mainView.categoryTree.movedCategory) {
-		appState.mainView.categoryTree.movedCategory = {};
-	}
-	appState.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
+	appState.rootContainer.mainView.categoryTree.previewCsv = eventData.previewCsv;
 	const newAppState = getAppState();
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_categoryTree_previewCsv() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.categoryTree) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.categoryTree.previewCsv;
+	if (!appState.rootContainer.mainView.cardView) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.cardView);
 }
 
-export function set_authorView_categoryTree_previewCsv(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.categoryTree) {
-		appState.mainView.categoryTree = {};
-	}
-	appState.mainView.categoryTree.previewCsv = eventData.previewCsv;
+	appState.rootContainer.mainView.cardView = eventData.cardView;
 	const newAppState = getAppState();
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView() {
-	if (!appState.mainView) {
-		return undefined;
+export function merge_rootContainer_authorView_cardView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	if (appState.mainView.isAuthorView !== true) {
-		return undefined;
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {};
 	}
-	if (!appState.mainView.cardView) {
-		return undefined;
-	}
-	return AppUtils.deepCopy(appState.mainView.cardView);
-}
-
-export function set_authorView_cardView(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
-			isAuthorView : true
-		};
-	}
-	appState.mainView.cardView = eventData.cardView;
-	const newAppState = getAppState();
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function merge_authorView_cardView(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
-	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
 	if (eventData.cardList !== undefined) {
-		appState.mainView.cardView.cardList = eventData.cardList;
+		appState.rootContainer.mainView.cardView.cardList = eventData.cardList;
 	}
 	if (eventData.naturalInputOrder !== undefined) {
-		appState.mainView.cardView.naturalInputOrder = eventData.naturalInputOrder;
+		appState.rootContainer.mainView.cardView.naturalInputOrder = eventData.naturalInputOrder;
 	}
 	if (eventData.filter !== undefined) {
-		appState.mainView.cardView.filter = eventData.filter;
+		appState.rootContainer.mainView.cardView.filter = eventData.filter;
 	}
 	if (eventData.editedCard !== undefined) {
-		appState.mainView.cardView.editedCard = eventData.editedCard;
+		appState.rootContainer.mainView.cardView.editedCard = eventData.editedCard;
 	}
 	if (eventData.newCard !== undefined) {
-		appState.mainView.cardView.newCard = eventData.newCard;
+		appState.rootContainer.mainView.cardView.newCard = eventData.newCard;
 	}
 	if (eventData.cardDuplicates !== undefined) {
-		appState.mainView.cardView.cardDuplicates = eventData.cardDuplicates;
+		appState.rootContainer.mainView.cardView.cardDuplicates = eventData.cardDuplicates;
 	}
 	if (eventData.deleteCard !== undefined) {
-		appState.mainView.cardView.deleteCard = eventData.deleteCard;
+		appState.rootContainer.mainView.cardView.deleteCard = eventData.deleteCard;
 	}
 	if (eventData.dictionaryValue !== undefined) {
-		appState.mainView.cardView.dictionaryValue = eventData.dictionaryValue;
+		appState.rootContainer.mainView.cardView.dictionaryValue = eventData.dictionaryValue;
 	}
 	if (eventData.selectedCardIds !== undefined) {
-		appState.mainView.cardView.selectedCardIds = eventData.selectedCardIds;
+		appState.rootContainer.mainView.cardView.selectedCardIds = eventData.selectedCardIds;
 	}
 	if (eventData.movedCardIds !== undefined) {
-		appState.mainView.cardView.movedCardIds = eventData.movedCardIds;
+		appState.rootContainer.mainView.cardView.movedCardIds = eventData.movedCardIds;
 	}
 	if (eventData.dragTargetCardId !== undefined) {
-		appState.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
+		appState.rootContainer.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
 	}
 	const newAppState = getAppState();
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_cardList() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_cardList() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.cardList) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.mainView.cardView.cardList);
+	if (!appState.rootContainer.mainView.cardView.cardList) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.cardView.cardList);
 }
 
-export function set_authorView_cardView_cardList(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_cardList(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	appState.mainView.cardView.cardList = eventData.cardList;
+	appState.rootContainer.mainView.cardView.cardList = eventData.cardList;
 	const newAppState = getAppState();
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_naturalInputOrder() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_naturalInputOrder() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.cardView.naturalInputOrder;
+	if (!appState.rootContainer.mainView.cardView) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.naturalInputOrder;
 }
 
-export function set_authorView_cardView_naturalInputOrder(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_naturalInputOrder(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	appState.mainView.cardView.naturalInputOrder = eventData.naturalInputOrder;
+	appState.rootContainer.mainView.cardView.naturalInputOrder = eventData.naturalInputOrder;
 	const newAppState = getAppState();
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_filter() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_filter() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.cardView.filter;
+	if (!appState.rootContainer.mainView.cardView) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.filter;
 }
 
-export function set_authorView_cardView_filter(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_filter(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	appState.mainView.cardView.filter = eventData.filter;
+	appState.rootContainer.mainView.cardView.filter = eventData.filter;
 	const newAppState = getAppState();
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_editedCard() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_editedCard() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.editedCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.mainView.cardView.editedCard);
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard);
 }
 
-export function set_authorView_cardView_editedCard(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_editedCard(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	appState.mainView.cardView.editedCard = eventData.editedCard;
+	appState.rootContainer.mainView.cardView.editedCard = eventData.editedCard;
 	const newAppState = getAppState();
+	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_authorView_cardView_editedCard(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
+export function merge_rootContainer_authorView_cardView_editedCard(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {};
 	}
-	if (!appState.mainView.cardView.editedCard) {
-		appState.mainView.cardView.editedCard = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		appState.rootContainer.mainView.cardView.editedCard = {};
 	}
 	if (eventData.cardId !== undefined) {
-		appState.mainView.cardView.editedCard.cardId = eventData.cardId;
+		appState.rootContainer.mainView.cardView.editedCard.cardId = eventData.cardId;
 	}
 	if (eventData.given !== undefined) {
-		appState.mainView.cardView.editedCard.given = eventData.given;
+		appState.rootContainer.mainView.cardView.editedCard.given = eventData.given;
 	}
 	if (eventData.wanted !== undefined) {
-		appState.mainView.cardView.editedCard.wanted = eventData.wanted;
+		appState.rootContainer.mainView.cardView.editedCard.wanted = eventData.wanted;
 	}
 	if (eventData.index !== undefined) {
-		appState.mainView.cardView.editedCard.index = eventData.index;
+		appState.rootContainer.mainView.cardView.editedCard.index = eventData.index;
 	}
 	if (eventData.image !== undefined) {
-		appState.mainView.cardView.editedCard.image = eventData.image;
+		appState.rootContainer.mainView.cardView.editedCard.image = eventData.image;
 	}
 	const newAppState = getAppState();
+	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_editedCard_cardId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_editedCard_cardId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.editedCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.editedCard.cardId;
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.editedCard.cardId;
 }
 
-export function set_authorView_cardView_editedCard_cardId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_editedCard_cardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.editedCard) {
-		appState.mainView.cardView.editedCard = {};
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		appState.rootContainer.mainView.cardView.editedCard = {};
 	}
-	appState.mainView.cardView.editedCard.cardId = eventData.cardId;
+	appState.rootContainer.mainView.cardView.editedCard.cardId = eventData.cardId;
 	const newAppState = getAppState();
+	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_editedCard_given() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_editedCard_given() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.editedCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.editedCard.given;
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.editedCard.given;
 }
 
-export function set_authorView_cardView_editedCard_given(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_editedCard_given(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.editedCard) {
-		appState.mainView.cardView.editedCard = {};
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		appState.rootContainer.mainView.cardView.editedCard = {};
 	}
-	appState.mainView.cardView.editedCard.given = eventData.given;
+	appState.rootContainer.mainView.cardView.editedCard.given = eventData.given;
 	const newAppState = getAppState();
+	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_editedCard_wanted() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_editedCard_wanted() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.editedCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.editedCard.wanted;
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.editedCard.wanted;
 }
 
-export function set_authorView_cardView_editedCard_wanted(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_editedCard_wanted(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.editedCard) {
-		appState.mainView.cardView.editedCard = {};
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		appState.rootContainer.mainView.cardView.editedCard = {};
 	}
-	appState.mainView.cardView.editedCard.wanted = eventData.wanted;
+	appState.rootContainer.mainView.cardView.editedCard.wanted = eventData.wanted;
 	const newAppState = getAppState();
+	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_editedCard_index() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_editedCard_index() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.editedCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.editedCard.index;
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.editedCard.index;
 }
 
-export function set_authorView_cardView_editedCard_index(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_editedCard_index(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.editedCard) {
-		appState.mainView.cardView.editedCard = {};
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		appState.rootContainer.mainView.cardView.editedCard = {};
 	}
-	appState.mainView.cardView.editedCard.index = eventData.index;
+	appState.rootContainer.mainView.cardView.editedCard.index = eventData.index;
 	const newAppState = getAppState();
+	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_editedCard_image() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_editedCard_image() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.editedCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.editedCard.image;
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.editedCard.image;
 }
 
-export function set_authorView_cardView_editedCard_image(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_editedCard_image(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.editedCard) {
-		appState.mainView.cardView.editedCard = {};
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		appState.rootContainer.mainView.cardView.editedCard = {};
 	}
-	appState.mainView.cardView.editedCard.image = eventData.image;
+	appState.rootContainer.mainView.cardView.editedCard.image = eventData.image;
 	const newAppState = getAppState();
+	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_newCard() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_newCard() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.newCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.mainView.cardView.newCard);
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard);
 }
 
-export function set_authorView_cardView_newCard(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_newCard(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	appState.mainView.cardView.newCard = eventData.newCard;
+	appState.rootContainer.mainView.cardView.newCard = eventData.newCard;
 	const newAppState = getAppState();
+	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_authorView_cardView_newCard(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
+export function merge_rootContainer_authorView_cardView_newCard(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {};
 	}
-	if (!appState.mainView.cardView.newCard) {
-		appState.mainView.cardView.newCard = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
 	}
 	if (eventData.given !== undefined) {
-		appState.mainView.cardView.newCard.given = eventData.given;
+		appState.rootContainer.mainView.cardView.newCard.given = eventData.given;
 	}
 	if (eventData.wanted !== undefined) {
-		appState.mainView.cardView.newCard.wanted = eventData.wanted;
+		appState.rootContainer.mainView.cardView.newCard.wanted = eventData.wanted;
 	}
 	if (eventData.index !== undefined) {
-		appState.mainView.cardView.newCard.index = eventData.index;
+		appState.rootContainer.mainView.cardView.newCard.index = eventData.index;
 	}
 	if (eventData.image !== undefined) {
-		appState.mainView.cardView.newCard.image = eventData.image;
+		appState.rootContainer.mainView.cardView.newCard.image = eventData.image;
 	}
 	if (eventData.file !== undefined) {
-		appState.mainView.cardView.newCard.file = eventData.file;
+		appState.rootContainer.mainView.cardView.newCard.file = eventData.file;
 	}
 	if (eventData.displaySpinner !== undefined) {
-		appState.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
+		appState.rootContainer.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
 	}
 	if (eventData.displayTranslateSpinner !== undefined) {
-		appState.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
+		appState.rootContainer.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
 	}
 	const newAppState = getAppState();
+	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_newCard_given() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_newCard_given() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.newCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.newCard.given;
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.newCard.given;
 }
 
-export function set_authorView_cardView_newCard_given(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_newCard_given(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.newCard) {
-		appState.mainView.cardView.newCard = {};
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
 	}
-	appState.mainView.cardView.newCard.given = eventData.given;
+	appState.rootContainer.mainView.cardView.newCard.given = eventData.given;
 	const newAppState = getAppState();
+	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_newCard_wanted() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_newCard_wanted() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.newCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.newCard.wanted;
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.newCard.wanted;
 }
 
-export function set_authorView_cardView_newCard_wanted(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_newCard_wanted(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.newCard) {
-		appState.mainView.cardView.newCard = {};
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
 	}
-	appState.mainView.cardView.newCard.wanted = eventData.wanted;
+	appState.rootContainer.mainView.cardView.newCard.wanted = eventData.wanted;
 	const newAppState = getAppState();
+	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_newCard_index() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_newCard_index() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.newCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.newCard.index;
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.newCard.index;
 }
 
-export function set_authorView_cardView_newCard_index(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_newCard_index(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.newCard) {
-		appState.mainView.cardView.newCard = {};
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
 	}
-	appState.mainView.cardView.newCard.index = eventData.index;
+	appState.rootContainer.mainView.cardView.newCard.index = eventData.index;
 	const newAppState = getAppState();
+	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_newCard_image() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_newCard_image() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.newCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.newCard.image;
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.newCard.image;
 }
 
-export function set_authorView_cardView_newCard_image(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_newCard_image(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.newCard) {
-		appState.mainView.cardView.newCard = {};
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
 	}
-	appState.mainView.cardView.newCard.image = eventData.image;
+	appState.rootContainer.mainView.cardView.newCard.image = eventData.image;
 	const newAppState = getAppState();
+	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_newCard_file() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_newCard_file() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.newCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.newCard.file;
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.newCard.file;
 }
 
-export function set_authorView_cardView_newCard_file(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_newCard_file(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.newCard) {
-		appState.mainView.cardView.newCard = {};
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
 	}
-	appState.mainView.cardView.newCard.file = eventData.file;
+	appState.rootContainer.mainView.cardView.newCard.file = eventData.file;
 	const newAppState = getAppState();
+	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_newCard_displaySpinner() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_newCard_displaySpinner() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.newCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.newCard.displaySpinner;
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.newCard.displaySpinner;
 }
 
-export function set_authorView_cardView_newCard_displaySpinner(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_newCard_displaySpinner(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.newCard) {
-		appState.mainView.cardView.newCard = {};
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
 	}
-	appState.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
+	appState.rootContainer.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
 	const newAppState = getAppState();
+	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_newCard_displayTranslateSpinner() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_newCard_displayTranslateSpinner() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.newCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.newCard.displayTranslateSpinner;
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.newCard.displayTranslateSpinner;
 }
 
-export function set_authorView_cardView_newCard_displayTranslateSpinner(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_newCard_displayTranslateSpinner(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.newCard) {
-		appState.mainView.cardView.newCard = {};
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
 	}
-	appState.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
+	appState.rootContainer.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
 	const newAppState = getAppState();
+	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_cardDuplicates() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_cardDuplicates() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.cardView.cardDuplicates;
+	if (!appState.rootContainer.mainView.cardView) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.cardDuplicates;
 }
 
-export function set_authorView_cardView_cardDuplicates(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_cardDuplicates(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	appState.mainView.cardView.cardDuplicates = eventData.cardDuplicates;
+	appState.rootContainer.mainView.cardView.cardDuplicates = eventData.cardDuplicates;
 	const newAppState = getAppState();
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_deleteCard() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_deleteCard() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.deleteCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.mainView.cardView.deleteCard);
+	if (!appState.rootContainer.mainView.cardView.deleteCard) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.cardView.deleteCard);
 }
 
-export function set_authorView_cardView_deleteCard(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_deleteCard(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	appState.mainView.cardView.deleteCard = eventData.deleteCard;
+	appState.rootContainer.mainView.cardView.deleteCard = eventData.deleteCard;
 	const newAppState = getAppState();
+	setDeleteCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.deleteCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function merge_authorView_cardView_deleteCard(eventData) {
-	if (!appState.mainView) {
-		appState.mainView = {};
+export function merge_rootContainer_authorView_cardView_deleteCard(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {};
 	}
-	if (!appState.mainView.cardView.deleteCard) {
-		appState.mainView.cardView.deleteCard = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.deleteCard) {
+		appState.rootContainer.mainView.cardView.deleteCard = {};
 	}
 	if (eventData.confirmDelete !== undefined) {
-		appState.mainView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
+		appState.rootContainer.mainView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
 	}
 	if (eventData.cardId !== undefined) {
-		appState.mainView.cardView.deleteCard.cardId = eventData.cardId;
+		appState.rootContainer.mainView.cardView.deleteCard.cardId = eventData.cardId;
 	}
 	const newAppState = getAppState();
+	setDeleteCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.deleteCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_deleteCard_confirmDelete() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_deleteCard_confirmDelete() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.deleteCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.deleteCard.confirmDelete;
+	if (!appState.rootContainer.mainView.cardView.deleteCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.deleteCard.confirmDelete;
 }
 
-export function set_authorView_cardView_deleteCard_confirmDelete(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_deleteCard_confirmDelete(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.deleteCard) {
-		appState.mainView.cardView.deleteCard = {};
+	if (!appState.rootContainer.mainView.cardView.deleteCard) {
+		appState.rootContainer.mainView.cardView.deleteCard = {};
 	}
-	appState.mainView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
+	appState.rootContainer.mainView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
 	const newAppState = getAppState();
+	setDeleteCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.deleteCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_deleteCard_cardId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_deleteCard_cardId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView.deleteCard) {
+	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.mainView.cardView.deleteCard.cardId;
+	if (!appState.rootContainer.mainView.cardView.deleteCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.deleteCard.cardId;
 }
 
-export function set_authorView_cardView_deleteCard_cardId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_deleteCard_cardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	if (!appState.mainView.cardView.deleteCard) {
-		appState.mainView.cardView.deleteCard = {};
+	if (!appState.rootContainer.mainView.cardView.deleteCard) {
+		appState.rootContainer.mainView.cardView.deleteCard = {};
 	}
-	appState.mainView.cardView.deleteCard.cardId = eventData.cardId;
+	appState.rootContainer.mainView.cardView.deleteCard.cardId = eventData.cardId;
 	const newAppState = getAppState();
+	setDeleteCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.deleteCard));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_dictionaryValue() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_dictionaryValue() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.cardView.dictionaryValue;
+	if (!appState.rootContainer.mainView.cardView) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.dictionaryValue;
 }
 
-export function set_authorView_cardView_dictionaryValue(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_dictionaryValue(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	appState.mainView.cardView.dictionaryValue = eventData.dictionaryValue;
+	appState.rootContainer.mainView.cardView.dictionaryValue = eventData.dictionaryValue;
 	const newAppState = getAppState();
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_selectedCardIds() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_selectedCardIds() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.cardView.selectedCardIds;
+	if (!appState.rootContainer.mainView.cardView) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.selectedCardIds;
 }
 
-export function set_authorView_cardView_selectedCardIds(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_selectedCardIds(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	appState.mainView.cardView.selectedCardIds = eventData.selectedCardIds;
+	appState.rootContainer.mainView.cardView.selectedCardIds = eventData.selectedCardIds;
 	const newAppState = getAppState();
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_movedCardIds() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_movedCardIds() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.cardView.movedCardIds;
+	if (!appState.rootContainer.mainView.cardView) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.movedCardIds;
 }
 
-export function set_authorView_cardView_movedCardIds(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_movedCardIds(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	appState.mainView.cardView.movedCardIds = eventData.movedCardIds;
+	appState.rootContainer.mainView.cardView.movedCardIds = eventData.movedCardIds;
 	const newAppState = getAppState();
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_authorView_cardView_dragTargetCardId() {
-	if (!appState.mainView) {
+export function get_rootContainer_authorView_cardView_dragTargetCardId() {
+	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (appState.mainView.isAuthorView !== true) {
+	if (!appState.rootContainer.mainView) {
 		return undefined;
 	}
-	if (!appState.mainView.cardView) {
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
 		return undefined;
 	}
-	return appState.mainView.cardView.dragTargetCardId;
+	if (!appState.rootContainer.mainView.cardView) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.cardView.dragTargetCardId;
 }
 
-export function set_authorView_cardView_dragTargetCardId(eventData) {
-	if (!appState.mainView || appState.mainView.isAuthorView !== true) {
-		appState.mainView = {
+export function set_rootContainer_authorView_cardView_dragTargetCardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (!appState.mainView.cardView) {
-		appState.mainView.cardView = {};
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
 	}
-	appState.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
+	appState.rootContainer.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
 	const newAppState = getAppState();
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 

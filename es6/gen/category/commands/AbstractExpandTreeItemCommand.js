@@ -13,7 +13,7 @@ export default class AbstractExpandTreeItemCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.ExpandTreeItemCommand");
         this.commandData.outcomes = [];
-        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
+        this.commandData.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
     }
 
 	addOkOutcome() {

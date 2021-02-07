@@ -18,7 +18,7 @@ import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 export default class AbstractDeleteCardCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.DeleteCardCommand");
-        this.commandData.cardId = AppState.get_authorView_cardView_deleteCard_cardId();
+        this.commandData.cardId = AppState.get_rootContainer_authorView_cardView_deleteCard_cardId();
         this.commandData.outcomes = [];
     }
 

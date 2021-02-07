@@ -17,9 +17,9 @@ import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTr
 export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.CreateCategoryCommand");
-        this.commandData.categoryName = AppState.get_authorView_categoryTree_categoryName();
-        this.commandData.parentCategoryId = AppState.get_authorView_categoryTree_selectedCategory_categoryId();
-        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId();
+        this.commandData.categoryName = AppState.get_rootContainer_authorView_categoryTree_categoryName();
+        this.commandData.parentCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
+        this.commandData.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
         this.commandData.outcomes = [];
     }
 

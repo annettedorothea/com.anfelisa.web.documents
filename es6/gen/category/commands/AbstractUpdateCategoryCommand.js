@@ -17,10 +17,10 @@ import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTr
 export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.UpdateCategoryCommand");
-        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId();
-        this.commandData.selectedCategoryId = AppState.get_authorView_categoryTree_selectedCategory_categoryId();
-        this.commandData.categoryId = AppState.get_authorView_categoryTree_selectedCategory_categoryId();
-        this.commandData.categoryName = AppState.get_authorView_categoryTree_categoryName();
+        this.commandData.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
+        this.commandData.selectedCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
+        this.commandData.categoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
+        this.commandData.categoryName = AppState.get_rootContainer_authorView_categoryTree_categoryName();
         this.commandData.outcomes = [];
     }
 

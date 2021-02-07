@@ -4,40 +4,40 @@ registration
 
 ACE 
 CheckUsername
-	fromAppState (common.mainView.registrationView.username)
+	fromAppState (common.rootContainer.mainView.registrationView.username)
 	call com.anfelisa.user.UsernameAvailable
-	loadingFlag common.mainView.registrationView.displayUsernameSpinner 
+	loadingFlag common.rootContainer.mainView.registrationView.displayUsernameSpinner 
 	on empty
-	on ok ( set common.mainView.registrationView.available )
+	on ok ( set common.rootContainer.mainView.registrationView.available )
 
 UsernameChanged ( username )
-	on ok (set common.mainView.registrationView.username) triggers (CheckUsername)
+	on ok (set common.rootContainer.mainView.registrationView.username) triggers (CheckUsername)
 
 EmailChanged ( email )
-	on ok (set common.mainView.registrationView.emailInvalid set common.mainView.registrationView.email)
+	on ok (set common.rootContainer.mainView.registrationView.emailInvalid set common.rootContainer.mainView.registrationView.email)
 
 PasswordChanged ( password, passwordRepetition  )
-	on ok ( set common.mainView.registrationView.passwordMismatch )
+	on ok ( set common.rootContainer.mainView.registrationView.passwordMismatch )
 
 RegisterUser ( password )
-	fromAppState ( common.mainView.registrationView.email, common.language, common.mainView.registrationView.username)
+	fromAppState ( common.rootContainer.mainView.registrationView.email, common.rootContainer.language, common.rootContainer.mainView.registrationView.username)
 	call com.anfelisa.user.RegisterUser
-	loadingFlag common.displaySpinner 
+	loadingFlag common.rootContainer.spinner 
 	on ok  triggers ( common.DisplayMessage Login)
 	on error triggers (common.DisplayError) 
 
 ConfirmEmail ( username, token )
 	call com.anfelisa.user.ConfirmEmail
-	loadingFlag common.displaySpinner 
+	loadingFlag common.rootContainer.spinner 
 	on ok triggers ( common.DisplayMessage common.Route)
 
 Login ( password  )
 	fromAppState (
-		common.mainView.registrationView.username
+		common.rootContainer.mainView.registrationView.username
 	)
 	on ok ( 
-		set common.loggedInUser
-		set common.username 
-		set common.password
+		set common.rootContainer.loggedInUser
+		set common.rootContainer.username 
+		set common.rootContainer.password
 	) triggers ( login.GetRole )
 	

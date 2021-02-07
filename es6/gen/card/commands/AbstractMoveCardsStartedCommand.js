@@ -13,7 +13,7 @@ export default class AbstractMoveCardsStartedCommand extends SynchronousCommand 
     constructor(commandData) {
         super(commandData, "card.MoveCardsStartedCommand");
         this.commandData.outcomes = [];
-        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds();
+        this.commandData.selectedCardIds = AppState.get_rootContainer_authorView_cardView_selectedCardIds();
     }
 
 	addOkOutcome() {

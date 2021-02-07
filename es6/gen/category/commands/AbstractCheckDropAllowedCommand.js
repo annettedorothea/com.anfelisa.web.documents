@@ -13,9 +13,9 @@ export default class AbstractCheckDropAllowedCommand extends SynchronousCommand 
     constructor(commandData) {
         super(commandData, "category.CheckDropAllowedCommand");
         this.commandData.outcomes = [];
-        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
-        this.commandData.movedCategory = AppState.get_authorView_categoryTree_movedCategory();
-        this.commandData.selectedCategory = AppState.get_authorView_categoryTree_selectedCategory();
+        this.commandData.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
+        this.commandData.movedCategory = AppState.get_rootContainer_authorView_categoryTree_movedCategory();
+        this.commandData.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
     }
 
 	addOkOutcome() {

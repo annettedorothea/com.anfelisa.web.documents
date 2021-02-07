@@ -16,10 +16,10 @@ import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTr
 export default class AbstractChangeOrderCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.ChangeOrderCategoryCommand");
-        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId();
-        this.commandData.selectedCategoryId = AppState.get_authorView_categoryTree_movedCategory_categoryId();
-        this.commandData.targetCategoryId = AppState.get_authorView_categoryTree_dropTargetCategoryId();
-        this.commandData.movedCategoryId = AppState.get_authorView_categoryTree_movedCategory_categoryId();
+        this.commandData.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
+        this.commandData.selectedCategoryId = AppState.get_rootContainer_authorView_categoryTree_movedCategory_categoryId();
+        this.commandData.targetCategoryId = AppState.get_rootContainer_authorView_categoryTree_dropTargetCategoryId();
+        this.commandData.movedCategoryId = AppState.get_rootContainer_authorView_categoryTree_movedCategory_categoryId();
         this.commandData.outcomes = [];
     }
 

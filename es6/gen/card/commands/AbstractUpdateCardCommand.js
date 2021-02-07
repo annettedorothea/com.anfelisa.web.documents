@@ -16,10 +16,10 @@ import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 export default class AbstractUpdateCardCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.UpdateCardCommand");
-        this.commandData.wanted = AppState.get_authorView_cardView_editedCard_wanted();
-        this.commandData.given = AppState.get_authorView_cardView_editedCard_given();
-        this.commandData.image = AppState.get_authorView_cardView_editedCard_image();
-        this.commandData.cardId = AppState.get_authorView_cardView_editedCard_cardId();
+        this.commandData.wanted = AppState.get_rootContainer_authorView_cardView_editedCard_wanted();
+        this.commandData.given = AppState.get_rootContainer_authorView_cardView_editedCard_given();
+        this.commandData.image = AppState.get_rootContainer_authorView_cardView_editedCard_image();
+        this.commandData.cardId = AppState.get_rootContainer_authorView_cardView_editedCard_cardId();
         this.commandData.outcomes = [];
     }
 

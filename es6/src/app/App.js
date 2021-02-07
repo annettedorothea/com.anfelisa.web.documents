@@ -1,23 +1,19 @@
 import AppUtils from "./AppUtils";
 
-import Container from "../web/Container";
+import {RootContainerComponent} from "../../gen/components/RootContainerComponent";
 
 import React from "react";
 import ReactDOM from "react-dom";
 
 export * from "../../gen/ace/Timeline";
-export { dumpAppState } from "./AppUtils";
+export {dumpAppState} from "./AppUtils";
 
 AppUtils.createInitialAppState();
 
 export const container = ReactDOM.render(
-    <Container/>,
+    <RootContainerComponent/>,
     document.getElementById('root')
 );
-
-export function render(newAppState) {
-    container.setState(newAppState);
-}
 
 AppUtils.initEventListenersAndActionFactories();
 AppUtils.startApp();

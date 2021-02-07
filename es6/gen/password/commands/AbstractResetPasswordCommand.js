@@ -17,7 +17,7 @@ import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 export default class AbstractResetPasswordCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "password.ResetPasswordCommand");
-        this.commandData.token = AppState.get_resetPasswordView_token();
+        this.commandData.token = AppState.get_rootContainer_resetPasswordView_token();
         this.commandData.outcomes = [];
     }
 

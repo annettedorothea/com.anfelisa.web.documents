@@ -13,7 +13,7 @@ export default class AbstractEditCategoryClickCommand extends SynchronousCommand
     constructor(commandData) {
         super(commandData, "category.EditCategoryClickCommand");
         this.commandData.outcomes = [];
-        this.commandData.categoryName = AppState.get_authorView_categoryTree_selectedCategory_categoryName();
+        this.commandData.categoryName = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryName();
     }
 
 	addOkOutcome() {

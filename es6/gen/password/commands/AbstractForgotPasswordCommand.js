@@ -16,8 +16,8 @@ import RouteAction from "../../../src/common/actions/RouteAction";
 export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "password.ForgotPasswordCommand");
-        this.commandData.language = AppState.get_language();
-        this.commandData.username = AppState.get_forgotPasswordView_username();
+        this.commandData.language = AppState.get_rootContainer_language();
+        this.commandData.username = AppState.get_rootContainer_forgotPasswordView_username();
         this.commandData.outcomes = [];
     }
 

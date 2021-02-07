@@ -15,7 +15,7 @@ export default class AbstractItemDroppedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.ItemDroppedCommand");
         this.commandData.outcomes = [];
-        this.commandData.movedCategory = AppState.get_authorView_categoryTree_movedCategory();
+        this.commandData.movedCategory = AppState.get_rootContainer_authorView_categoryTree_movedCategory();
     }
 
 	addCardOutcome() {

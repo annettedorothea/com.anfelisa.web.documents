@@ -13,7 +13,7 @@ export default class AbstractToggleInputOrderCommand extends SynchronousCommand 
     constructor(commandData) {
         super(commandData, "card.ToggleInputOrderCommand");
         this.commandData.outcomes = [];
-        this.commandData.naturalInputOrder = AppState.get_authorView_cardView_naturalInputOrder();
+        this.commandData.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
     }
 
 	addOkOutcome() {

@@ -1,112 +1,107 @@
-HttpClient 
+HttpClient React_16.8
 
 common
 
-
-
 ACE 
 Init 
-	fromAppState (username, password )
+	fromAppState (rootContainer.username, rootContainer.password )
 	on user ( 
-		set loggedInUser 
-		set language
+		set rootContainer.loggedInUser 
+		set rootContainer.language
 	) triggers ( InitialLogin )
 	on noUser ( 
-		set loggedInUser 
-		set language
+		set rootContainer.loggedInUser 
+		set rootContainer.language
 	) triggers ( RouteChanged )
 
 RouteChanged
-	fromAppState ( hash, loggedInUser ) 
+	fromAppState ( rootContainer.hash, rootContainer.loggedInUser ) 
 	on login ( 
-		set mainView.loginView 
+		set rootContainer.mainView.loginView 
 	)
 	on privacyPolicy ( 
-		set mainView.privacyPolicyView 
+		set rootContainer.mainView.privacyPolicyView 
 	)
 	on registration ( 
-		set mainView.registrationView
+		set rootContainer.mainView.registrationView
 	)
 	on confirmEmail triggers (registration.ConfirmEmail)
 	on forgotPassword ( 
-		set mainView.forgotPasswordView 
+		set rootContainer.mainView.forgotPasswordView 
 	)
 	on resetPassword ( 
-		set mainView.resetPasswordView 
+		set rootContainer.mainView.resetPasswordView 
 	)
 	on dashboard triggers (box.InitBoxesForDay)
 	on categories (
-		set mainView.authorView.filterNonScheduled
-		set mainView.authorView.priority
-		set mainView.authorView.reverse
+		set rootContainer.mainView.authorView.filterNonScheduled
+		set rootContainer.mainView.authorView.priority
+		set rootContainer.mainView.authorView.reverse
 	) triggers (category.LoadCategoryTree )
 	on profile triggers ( profile.LoadUser )
 	on userList triggers (admin.GetAllUsers) 
-	on nextCard (set mainView.cardView.boxId) triggers (box.LoadNextCard)
-	on boxSettings (set mainView.boxSettingsView.boxId) triggers (box.LoadSettings)
-	on allActiveCards (set mainView.allActiveCardsView.boxId) triggers (box.LoadActiveCards)
-	on boxCreate ( set mainView.boxSettingsView )
+	on nextCard (set rootContainer.mainView.queryCardView.boxId) triggers (box.LoadNextCard)
+	on boxSettings (set rootContainer.mainView.boxSettingsView.boxId) triggers (box.LoadSettings)
+	on allActiveCards (set rootContainer.mainView.allActiveCardsView.boxId) triggers (box.LoadActiveCards)
+	on boxCreate ( set rootContainer.mainView.boxSettingsView )
 	on invalid triggers (Route)
 	
 Route ( hash ) 
-	on ok ( set hash )
+	on ok ( set rootContainer.hash )
 	
 InitialLogin
 	call com.anfelisa.user.GetRole
-	loadingFlag displaySpinner 
-	on ok (set loggedInUser.role) triggers ( RouteChanged )
+	loadingFlag rootContainer.spinner 
+	on ok (set rootContainer.loggedInUser.role) triggers ( RouteChanged )
 	on unauthorized triggers ( DisplayError Logout )
 	
 Logout 
 	on ok ( 
-		set loggedInUser
-		set username
-		set password
+		set rootContainer.loggedInUser
+		set rootContainer.username
+		set rootContainer.password
 	) triggers ( Route RouteChanged )
 
 DisplayError ( error ) 
-	fromAppState( language, texts)
-	on ok ( set message) 
+	fromAppState( rootContainer.language, rootContainer.texts)
+	on ok ( set rootContainer.message) 
 
 DisplayErrorAndLogout ( error ) 
-	fromAppState( language, texts)
-	on ok (set message) triggers ( Logout)
+	fromAppState( rootContainer.language, rootContainer.texts)
+	on ok (set rootContainer.message) triggers ( Logout)
 
 DisplayMessage ( messageKey ) 
-	fromAppState( language, texts)
-	on ok (set message) 
+	fromAppState( rootContainer.language, rootContainer.texts)
+	on ok (set rootContainer.message) 
 
 ClearToast 
-	on ok (set message)
+	on ok (set rootContainer.message)
 	
 DisplaySaveBugDialog
-	on ok (set displaySaveBugDialog)
+	on ok (set rootContainer.displaySaveBugDialog)
 
 DisplayVersionMismatchDialog
-	on ok (set displayVersionMismatchDialog)
+	on ok (set rootContainer.displayVersionMismatchDialog)
 
 CancelVersionMismatchDialog
-	on ok (set displayVersionMismatchDialog)
+	on ok (set rootContainer.displayVersionMismatchDialog)
 
 DisplayVersionMismatchErrorDialog
-	on ok (set displayVersionMismatchErrorDialog)
+	on ok (set rootContainer.displayVersionMismatchErrorDialog)
 
 async CallSaveBug
-	fromAppState( loggedInUser.username )
+	fromAppState( rootContainer.loggedInUser.username )
 	on ok triggers (HideSaveBugDialog)
 
 CancelSaveBugDialog
-	on ok (set displaySaveBugDialog)
+	on ok (set rootContainer.displaySaveBugDialog)
 
 HideSaveBugDialog
-	on ok (set displaySaveBugDialog) triggers (DisplayMessage)
+	on ok (set rootContainer.displaySaveBugDialog) triggers (DisplayMessage)
 
 
 
-
-
-
-ui {
+ui rootContainer {
 	loggedInUser {
 		username
 		role
@@ -115,7 +110,9 @@ ui {
 	hash location.hash
 	username storage
 	password storage
-	displaySpinner
+	spinner { 
+		display
+	} 
 	language
 	texts
 	displaySaveBugDialog
@@ -130,6 +127,7 @@ ui {
 		}
 		loginView {
 			username
+			hashedPassword
 			saveInLocalStorage
 		}
 		registrationView {
@@ -188,7 +186,7 @@ ui {
 		allActiveCardsView {
 			boxId
 			editable
-			List cardList {
+			List activeCardList {
 				cardId
 				given
 				wanted
@@ -199,6 +197,10 @@ ui {
 				rootCategoryId
 				priority
 				next
+				ef
+				interval
+				count
+				lastQuality
 			}
 			List selectedCardIds
 		} 
@@ -220,7 +222,7 @@ ui {
 			showDeleteUserDialog 
 			usernameToBeDeleted
 		}
-		cardView {
+		queryCardView {
 			cardId
 			categoryId
 			categoryName
@@ -260,7 +262,7 @@ ui {
 					givenLanguage
 					wantedLanguage
 					rootCategoryId
-					List CategoryTreeItem childCategories
+					List childCategories
 					nonScheduledCount
 					editable
 				}
@@ -274,7 +276,7 @@ ui {
 					givenLanguage
 					wantedLanguage
 					rootCategoryId
-					List CategoryTreeItem childCategories
+					List childCategories
 					nonScheduledCount
 					editable
 				}
@@ -302,7 +304,7 @@ ui {
 					givenLanguage
 					wantedLanguage
 					rootCategoryId
-					List CategoryTreeItem childCategories
+					List childCategories
 				}
 				
 				previewCsv

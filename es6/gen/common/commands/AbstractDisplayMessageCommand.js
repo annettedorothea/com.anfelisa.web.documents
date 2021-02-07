@@ -13,8 +13,8 @@ export default class AbstractDisplayMessageCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.DisplayMessageCommand");
         this.commandData.outcomes = [];
-        this.commandData.language = AppState.get_language();
-        this.commandData.texts = AppState.get_texts();
+        this.commandData.language = AppState.get_rootContainer_language();
+        this.commandData.texts = AppState.get_rootContainer_texts();
     }
 
 	addOkOutcome() {

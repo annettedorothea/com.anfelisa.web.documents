@@ -21,11 +21,11 @@ export default class AbstractCheckUsernameAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_registrationView_displayUsernameSpinner({displayUsernameSpinner: true});
+		AppState.set_rootContainer_registrationView_displayUsernameSpinner({displayUsernameSpinner: true});
 	}
 	
 	postCall() {
-		AppState.set_registrationView_displayUsernameSpinner({displayUsernameSpinner: false});
+		AppState.set_rootContainer_registrationView_displayUsernameSpinner({displayUsernameSpinner: false});
 	}
 
 }

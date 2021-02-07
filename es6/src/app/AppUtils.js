@@ -1,12 +1,12 @@
 import CryptoJS from "crypto-js";
 import * as AppState from "../../gen/ace/AppState";
-import * as App from "./App";
 import Utils from "../../gen/ace/Utils";
 import {
     displayError,
     displayErrorAndLogout,
     displaySaveBugDialog,
-    displayVersionMismatchDialog, displayVersionMismatchErrorDialog,
+    displayVersionMismatchDialog,
+    displayVersionMismatchErrorDialog,
     init,
     routeChanged
 } from "../../gen/common/ActionFunctions"
@@ -80,6 +80,7 @@ export default class AppUtils {
             window.scrollTo(0, 0);
         };
         Utils.loadSettings().then(() => {
+            console.log("settings loaded", Utils.settings);
             init(location.hash, localStorage.getItem("username"), localStorage.getItem("password"));
         });
         setInterval(() => {
@@ -109,10 +110,6 @@ export default class AppUtils {
             message: null
         };
         AppState.setInitialAppState(initialAppState);
-    }
-
-    static renderNewState() {
-        App.render(AppState.getAppState());
     }
 
     static createHeaders(authorize) {
@@ -239,7 +236,8 @@ export default class AppUtils {
                             error = {
                                 errorKey: error.text
                             };
-                            displayError(error)
+                            // TODO wieder aufnehmen!
+                            //displayError(error)
                         }
                     }
                 } catch (e) {
@@ -254,6 +252,13 @@ export default class AppUtils {
         return object ? JSON.parse(JSON.stringify(object)) : undefined;
     }
 
+    static stateUpdated(appState) {
+        if (Utils.settings && Utils.settings.mode === "dev") {
+            localStorage.setItem("appState", JSON.stringify(appState));
+        }
+    }
+    static renderNewState(appState) {
+    }
 }
 
 /*       S.D.G.       */

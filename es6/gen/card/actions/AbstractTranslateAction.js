@@ -21,11 +21,11 @@ export default class AbstractTranslateAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_authorView_cardView_newCard_displayTranslateSpinner({displayTranslateSpinner: true});
+		AppState.set_rootContainer_authorView_cardView_newCard_displayTranslateSpinner({displayTranslateSpinner: true});
 	}
 	
 	postCall() {
-		AppState.set_authorView_cardView_newCard_displayTranslateSpinner({displayTranslateSpinner: false});
+		AppState.set_rootContainer_authorView_cardView_newCard_displayTranslateSpinner({displayTranslateSpinner: false});
 	}
 
 }

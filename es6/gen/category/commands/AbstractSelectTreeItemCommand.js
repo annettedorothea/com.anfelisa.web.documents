@@ -15,7 +15,7 @@ export default class AbstractSelectTreeItemCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.SelectTreeItemCommand");
         this.commandData.outcomes = [];
-        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
+        this.commandData.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
     }
 
 	addOkOutcome() {

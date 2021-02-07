@@ -15,8 +15,8 @@ import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxes
 export default class AbstractSortCardOutCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.SortCardOutCommand");
-        this.commandData.cardId = AppState.get_cardView_cardId();
-        this.commandData.boxId = AppState.get_cardView_boxId();
+        this.commandData.cardId = AppState.get_rootContainer_queryCardView_cardId();
+        this.commandData.boxId = AppState.get_rootContainer_queryCardView_boxId();
         this.commandData.outcomes = [];
     }
 

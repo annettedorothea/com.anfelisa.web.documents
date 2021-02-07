@@ -13,8 +13,8 @@ export default class AbstractWantedLanguageChangedCommand extends SynchronousCom
     constructor(commandData) {
         super(commandData, "box.WantedLanguageChangedCommand");
         this.commandData.outcomes = [];
-        this.commandData.givenLanguage = AppState.get_boxSettingsView_givenLanguage();
-        this.commandData.dictionaryLookup = AppState.get_boxSettingsView_dictionaryLookup();
+        this.commandData.givenLanguage = AppState.get_rootContainer_boxSettingsView_givenLanguage();
+        this.commandData.dictionaryLookup = AppState.get_rootContainer_boxSettingsView_dictionaryLookup();
     }
 
 	addOkOutcome() {

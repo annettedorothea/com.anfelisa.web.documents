@@ -15,11 +15,11 @@ import LoadCardsNoCategorySelectedEvent from "../../../gen/card/events/LoadCards
 export default class AbstractLoadCardsCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.LoadCardsCommand");
-        this.commandData.selectedCategory = AppState.get_authorView_categoryTree_selectedCategory();
-        this.commandData.naturalInputOrder = AppState.get_authorView_cardView_naturalInputOrder();
-        this.commandData.filterNonScheduled = AppState.get_authorView_filterNonScheduled();
-        this.commandData.priority = AppState.get_authorView_priority();
-        this.commandData.reverse = AppState.get_authorView_reverse();
+        this.commandData.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
+        this.commandData.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
+        this.commandData.filterNonScheduled = AppState.get_rootContainer_authorView_filterNonScheduled();
+        this.commandData.priority = AppState.get_rootContainer_authorView_priority();
+        this.commandData.reverse = AppState.get_rootContainer_authorView_reverse();
         this.commandData.outcomes = [];
     }
 

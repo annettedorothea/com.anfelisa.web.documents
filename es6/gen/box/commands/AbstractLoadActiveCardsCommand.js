@@ -14,7 +14,7 @@ import LoadActiveCardsOkEvent from "../../../gen/box/events/LoadActiveCardsOkEve
 export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.LoadActiveCardsCommand");
-        this.commandData.boxId = AppState.get_allActiveCardsView_boxId();
+        this.commandData.boxId = AppState.get_rootContainer_allActiveCardsView_boxId();
         this.commandData.outcomes = [];
     }
 

@@ -16,7 +16,7 @@ import TooManyCardsStatusAction from "../../../src/box/actions/TooManyCardsStatu
 export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.LoadSettingsCommand");
-        this.commandData.boxId = AppState.get_boxSettingsView_boxId();
+        this.commandData.boxId = AppState.get_rootContainer_boxSettingsView_boxId();
         this.commandData.outcomes = [];
     }
 

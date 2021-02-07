@@ -15,8 +15,8 @@ export default class AbstractFilterNonScheduledCardsCommand extends SynchronousC
     constructor(commandData) {
         super(commandData, "category.FilterNonScheduledCardsCommand");
         this.commandData.outcomes = [];
-        this.commandData.filterNonScheduled = AppState.get_authorView_filterNonScheduled();
-        this.commandData.selectedCategory = AppState.get_authorView_categoryTree_selectedCategory();
+        this.commandData.filterNonScheduled = AppState.get_rootContainer_authorView_filterNonScheduled();
+        this.commandData.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
     }
 
 	addOkOutcome() {

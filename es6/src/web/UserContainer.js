@@ -7,7 +7,6 @@ import QueryCards from "./Box/QueryCards";
 import CategoryCardSplitView from "./CategoryCardSplitView";
 import {route} from "../../gen/common/ActionFunctions";
 import BoxSettings from "./Box/BoxSettings";
-import CardList from "./CardList/CardList";
 import ActiveCardList from "./Box/ActiveCardList";
 import PrivacyPolicy from "./PrivacyPolicy";
 

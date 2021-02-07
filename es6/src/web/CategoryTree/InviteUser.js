@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    cancelEditCategory, cancelInviteUser,
-    categoryNameChanged,
-    invitedUsernameChanged, inviteUser,
-    updateCategory
-} from "../../../gen/category/ActionFunctions";
+import {cancelInviteUser, invitedUsernameChanged, inviteUser} from "../../../gen/category/ActionFunctions";
 
 export default class InviteUser extends React.Component {
 

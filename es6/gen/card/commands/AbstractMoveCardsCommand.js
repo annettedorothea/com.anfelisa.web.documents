@@ -16,9 +16,9 @@ import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTr
 export default class AbstractMoveCardsCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.MoveCardsCommand");
-        this.commandData.movedCardIds = AppState.get_authorView_cardView_movedCardIds();
-        this.commandData.dropTargetCategoryId = AppState.get_authorView_categoryTree_dropTargetCategoryId();
-        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
+        this.commandData.movedCardIds = AppState.get_rootContainer_authorView_cardView_movedCardIds();
+        this.commandData.dropTargetCategoryId = AppState.get_rootContainer_authorView_categoryTree_dropTargetCategoryId();
+        this.commandData.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
         this.commandData.outcomes = [];
     }
 

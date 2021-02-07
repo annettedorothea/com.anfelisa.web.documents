@@ -15,7 +15,7 @@ import HideSaveBugDialogAction from "../../../src/common/actions/HideSaveBugDial
 export default class AbstractCallSaveBugCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.CallSaveBugCommand");
-        this.commandData.username = AppState.get_loggedInUser_username();
+        this.commandData.username = AppState.get_rootContainer_loggedInUser_username();
         this.commandData.outcomes = [];
     }
 

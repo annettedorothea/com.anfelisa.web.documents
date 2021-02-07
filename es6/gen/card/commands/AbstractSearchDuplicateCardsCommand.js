@@ -14,10 +14,10 @@ import SearchDuplicateCardsOkEvent from "../../../gen/card/events/SearchDuplicat
 export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.SearchDuplicateCardsCommand");
-        this.commandData.naturalInputOrder = AppState.get_authorView_cardView_naturalInputOrder();
-        this.commandData.given = AppState.get_authorView_cardView_newCard_given();
-        this.commandData.wanted = AppState.get_authorView_cardView_newCard_wanted();
-        this.commandData.categoryId = AppState.get_authorView_categoryTree_selectedCategory_categoryId();
+        this.commandData.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
+        this.commandData.given = AppState.get_rootContainer_authorView_cardView_newCard_given();
+        this.commandData.wanted = AppState.get_rootContainer_authorView_cardView_newCard_wanted();
+        this.commandData.categoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
         this.commandData.outcomes = [];
     }
 

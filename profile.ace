@@ -4,25 +4,25 @@ profile
 
 ACE 
 	LoadUser 
-		fromAppState (common.loggedInUser.role)
+		fromAppState (common.rootContainer.loggedInUser.role)
 		call com.anfelisa.user.GetUserProfile
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok (
-			set common.mainView.profileView
+			set common.rootContainer.mainView.profileView
 		)
 	
 	DeleteUser
-		fromAppState (common.mainView.profileView.username)
+		fromAppState (common.rootContainer.mainView.profileView.username)
 		call com.anfelisa.user.DeleteUser
-		loadingFlag common.displaySpinner 
-		on ok ( set common.mainView.profileView.showDeleteUserDialog ) triggers ( common.Logout )
-		on error ( set common.mainView.profileView.showDeleteUserDialog ) triggers (LoadUser common.DisplayError)
+		loadingFlag common.rootContainer.spinner 
+		on ok ( set common.rootContainer.mainView.profileView.showDeleteUserDialog ) triggers ( common.Logout )
+		on error ( set common.rootContainer.mainView.profileView.showDeleteUserDialog ) triggers (LoadUser common.DisplayError)
 	
 	DeleteUserClick 
-		on ok (set common.mainView.profileView.showDeleteUserDialog)
+		on ok (set common.rootContainer.mainView.profileView.showDeleteUserDialog)
 	
 	DeleteUserCancel 
-		on ok (set common.mainView.profileView.showDeleteUserDialog)
+		on ok (set common.rootContainer.mainView.profileView.showDeleteUserDialog)
 	
 
 

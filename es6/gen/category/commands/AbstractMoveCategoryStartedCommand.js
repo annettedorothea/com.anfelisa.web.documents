@@ -13,7 +13,7 @@ export default class AbstractMoveCategoryStartedCommand extends SynchronousComma
     constructor(commandData) {
         super(commandData, "category.MoveCategoryStartedCommand");
         this.commandData.outcomes = [];
-        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
+        this.commandData.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
     }
 
 	addOkOutcome() {

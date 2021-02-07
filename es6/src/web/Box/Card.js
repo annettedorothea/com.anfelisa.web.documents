@@ -3,7 +3,7 @@ import Given from "./Given";
 import Wanted from "./Wanted";
 import ScoreButton from "./ScoreButton";
 import {route} from "../../../gen/common/ActionFunctions";
-import {scoreCard, scoreReinforceCard, sortCardOut} from "../../../gen/box/ActionFunctions";
+import {scoreCard, scoreReinforceCard} from "../../../gen/box/ActionFunctions";
 import ScoreButtons from "./ScoreButtons";
 import ReinforceButtons from "./ReinforceButtons";
 
@@ -19,7 +19,7 @@ export default class Card extends React.Component {
         if (this.props.scheduledCardId) {
             scoreCard(quality);
         } else {
-            scoreReinforceCard(quality);
+            scoreReinforceCard(quality);s
         }
     }
 

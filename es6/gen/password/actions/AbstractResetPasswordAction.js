@@ -21,11 +21,11 @@ export default class AbstractResetPasswordAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_displaySpinner({displaySpinner: true});
+		AppState.set_rootContainer_spinner({spinner: true});
 	}
 	
 	postCall() {
-		AppState.set_displaySpinner({displaySpinner: false});
+		AppState.set_rootContainer_spinner({spinner: false});
 	}
 
 }

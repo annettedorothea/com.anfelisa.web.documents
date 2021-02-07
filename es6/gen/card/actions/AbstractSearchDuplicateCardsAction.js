@@ -21,11 +21,11 @@ export default class AbstractSearchDuplicateCardsAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_authorView_cardView_newCard_displaySpinner({displaySpinner: true});
+		AppState.set_rootContainer_authorView_cardView_newCard_displaySpinner({displaySpinner: true});
 	}
 	
 	postCall() {
-		AppState.set_authorView_cardView_newCard_displaySpinner({displaySpinner: false});
+		AppState.set_rootContainer_authorView_cardView_newCard_displaySpinner({displaySpinner: false});
 	}
 
 }

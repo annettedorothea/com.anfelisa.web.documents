@@ -17,9 +17,9 @@ import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTr
 export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.DeleteCategoryCommand");
-        this.commandData.categoryId = AppState.get_authorView_categoryTree_selectedCategory_categoryId();
-        this.commandData.selectedCategoryId = AppState.get_authorView_categoryTree_selectedCategory_parentCategoryId();
-        this.commandData.rootCategoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId();
+        this.commandData.categoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
+        this.commandData.selectedCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_parentCategoryId();
+        this.commandData.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
         this.commandData.outcomes = [];
     }
 

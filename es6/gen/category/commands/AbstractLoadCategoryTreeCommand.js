@@ -16,10 +16,10 @@ import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.LoadCategoryTreeCommand");
-        this.commandData.rootCategory = AppState.get_authorView_categoryTree_rootCategory();
-        this.commandData.filterNonScheduled = AppState.get_authorView_filterNonScheduled();
-        this.commandData.priority = AppState.get_authorView_priority();
-        this.commandData.reverse = AppState.get_authorView_reverse();
+        this.commandData.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
+        this.commandData.filterNonScheduled = AppState.get_rootContainer_authorView_filterNonScheduled();
+        this.commandData.priority = AppState.get_rootContainer_authorView_priority();
+        this.commandData.reverse = AppState.get_rootContainer_authorView_reverse();
         this.commandData.outcomes = [];
     }
 

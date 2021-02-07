@@ -11,12 +11,12 @@ import * as AppState from "../ace/AppState";
 export default class EventListenerRegistrationAdmin {
 
 	static init() {
-		ACEController.registerListener('admin.GetAllUsersOkEvent', AppState.set_userListView);
-		ACEController.registerListener('admin.DeleteUserErrorEvent', AppState.set_userListView_usernameToBeDeleted);
-		ACEController.registerListener('admin.DeleteUserErrorEvent', AppState.set_userListView_showDeleteUserDialog);
-		ACEController.registerListener('admin.DeleteUserClickOkEvent', AppState.merge_userListView);
-		ACEController.registerListener('admin.DeleteUserCancelOkEvent', AppState.set_userListView_usernameToBeDeleted);
-		ACEController.registerListener('admin.DeleteUserCancelOkEvent', AppState.set_userListView_showDeleteUserDialog);
+		ACEController.registerListener('admin.GetAllUsersOkEvent', AppState.set_rootContainer_userListView);
+		ACEController.registerListener('admin.DeleteUserErrorEvent', AppState.set_rootContainer_userListView_usernameToBeDeleted);
+		ACEController.registerListener('admin.DeleteUserErrorEvent', AppState.set_rootContainer_userListView_showDeleteUserDialog);
+		ACEController.registerListener('admin.DeleteUserClickOkEvent', AppState.merge_rootContainer_userListView);
+		ACEController.registerListener('admin.DeleteUserCancelOkEvent', AppState.set_rootContainer_userListView_usernameToBeDeleted);
+		ACEController.registerListener('admin.DeleteUserCancelOkEvent', AppState.set_rootContainer_userListView_showDeleteUserDialog);
 	}
 
 }

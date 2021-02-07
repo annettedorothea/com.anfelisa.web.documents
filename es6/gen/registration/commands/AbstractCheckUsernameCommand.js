@@ -14,7 +14,7 @@ import CheckUsernameOkEvent from "../../../gen/registration/events/CheckUsername
 export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "registration.CheckUsernameCommand");
-        this.commandData.username = AppState.get_registrationView_username();
+        this.commandData.username = AppState.get_rootContainer_registrationView_username();
         this.commandData.outcomes = [];
     }
 

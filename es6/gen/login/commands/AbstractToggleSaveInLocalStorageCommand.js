@@ -13,7 +13,7 @@ export default class AbstractToggleSaveInLocalStorageCommand extends Synchronous
     constructor(commandData) {
         super(commandData, "login.ToggleSaveInLocalStorageCommand");
         this.commandData.outcomes = [];
-        this.commandData.saveInLocalStorage = AppState.get_loginView_saveInLocalStorage();
+        this.commandData.saveInLocalStorage = AppState.get_rootContainer_loginView_saveInLocalStorage();
     }
 
 	addOkOutcome() {

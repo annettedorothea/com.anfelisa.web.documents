@@ -15,8 +15,8 @@ export default class AbstractMaxCardsPerDayChangedCommand extends SynchronousCom
     constructor(commandData) {
         super(commandData, "box.MaxCardsPerDayChangedCommand");
         this.commandData.outcomes = [];
-        this.commandData.maxInterval = AppState.get_boxSettingsView_maxInterval();
-        this.commandData.allActiveCards = AppState.get_boxSettingsView_allActiveCards();
+        this.commandData.maxInterval = AppState.get_rootContainer_boxSettingsView_maxInterval();
+        this.commandData.allActiveCards = AppState.get_rootContainer_boxSettingsView_allActiveCards();
     }
 
 	addOkOutcome() {

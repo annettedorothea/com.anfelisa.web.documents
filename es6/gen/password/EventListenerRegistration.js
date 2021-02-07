@@ -11,8 +11,8 @@ import * as AppState from "../ace/AppState";
 export default class EventListenerRegistrationPassword {
 
 	static init() {
-		ACEController.registerListener('password.UsernameForgotPasswordChangedOkEvent', AppState.set_forgotPasswordView_username);
-		ACEController.registerListener('password.PasswordChangedOkEvent', AppState.set_resetPasswordView_passwordMismatch);
+		ACEController.registerListener('password.UsernameForgotPasswordChangedOkEvent', AppState.set_rootContainer_forgotPasswordView_username);
+		ACEController.registerListener('password.PasswordChangedOkEvent', AppState.set_rootContainer_resetPasswordView_passwordMismatch);
 	}
 
 }

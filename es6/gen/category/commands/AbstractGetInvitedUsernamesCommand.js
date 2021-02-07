@@ -14,7 +14,7 @@ import GetInvitedUsernamesOkEvent from "../../../gen/category/events/GetInvitedU
 export default class AbstractGetInvitedUsernamesCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.GetInvitedUsernamesCommand");
-        this.commandData.categoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId();
+        this.commandData.categoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
         this.commandData.outcomes = [];
     }
 

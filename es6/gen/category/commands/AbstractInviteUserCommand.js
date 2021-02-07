@@ -14,7 +14,7 @@ import InviteUserOkEvent from "../../../gen/category/events/InviteUserOkEvent";
 export default class AbstractInviteUserCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.InviteUserCommand");
-        this.commandData.categoryId = AppState.get_authorView_categoryTree_rootCategory_categoryId();
+        this.commandData.categoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
         this.commandData.outcomes = [];
     }
 

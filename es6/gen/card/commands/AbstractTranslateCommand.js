@@ -17,11 +17,11 @@ import SearchDuplicateCardsAction from "../../../src/card/actions/SearchDuplicat
 export default class AbstractTranslateCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "card.TranslateCommand");
-        this.commandData.naturalInputOrder = AppState.get_authorView_cardView_naturalInputOrder();
-        this.commandData.given = AppState.get_authorView_cardView_newCard_given();
-        this.commandData.wanted = AppState.get_authorView_cardView_newCard_wanted();
-        this.commandData.givenLanguage = AppState.get_authorView_categoryTree_selectedCategory_givenLanguage();
-        this.commandData.wantedLanguage = AppState.get_authorView_categoryTree_selectedCategory_wantedLanguage();
+        this.commandData.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
+        this.commandData.given = AppState.get_rootContainer_authorView_cardView_newCard_given();
+        this.commandData.wanted = AppState.get_rootContainer_authorView_cardView_newCard_wanted();
+        this.commandData.givenLanguage = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_givenLanguage();
+        this.commandData.wantedLanguage = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_wantedLanguage();
         this.commandData.outcomes = [];
     }
 

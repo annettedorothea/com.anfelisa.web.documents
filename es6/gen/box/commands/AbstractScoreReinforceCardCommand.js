@@ -15,7 +15,7 @@ import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxes
 export default class AbstractScoreReinforceCardCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.ScoreReinforceCardCommand");
-        this.commandData.reinforceCardId = AppState.get_cardView_reinforceCardId();
+        this.commandData.reinforceCardId = AppState.get_rootContainer_queryCardView_reinforceCardId();
         this.commandData.outcomes = [];
     }
 

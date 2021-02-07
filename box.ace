@@ -5,93 +5,93 @@ box
 ACE 
 	InitBoxesForDay
 		call com.anfelisa.box.InitMyBoxesForDay
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok triggers (LoadBoxes) 
 				
 	LoadBoxes 
 		call com.anfelisa.box.GetBoxes
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok ( 
-			set common.mainView.dashboardView
+			set common.rootContainer.mainView.dashboardView
 		) triggers (LoadBoxStatistics)
 	
 	LoadBoxStatistics 
-		fromAppState ( common.mainView.dashboardView.boxList )
+		fromAppState ( common.rootContainer.mainView.dashboardView.boxList )
 		call com.anfelisa.box.GetBoxStatistics
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok ( 
-			set common.mainView.dashboardView.boxList
+			set common.rootContainer.mainView.dashboardView.boxList
 		)
 	
 	LoadActiveCards
-		fromAppState (common.mainView.allActiveCardsView.boxId)
+		fromAppState (common.rootContainer.mainView.allActiveCardsView.boxId)
 		call com.anfelisa.box.LoadAllActiveCards
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok ( 
-			set common.mainView.allActiveCardsView.cardList
-			set common.mainView.allActiveCardsView.selectedCardIds
-			set common.mainView.allActiveCardsView.editable
+			set common.rootContainer.mainView.allActiveCardsView.activeCardList
+			set common.rootContainer.mainView.allActiveCardsView.selectedCardIds
+			set common.rootContainer.mainView.allActiveCardsView.editable
 		)
 	
 	ToggleScheduleCardSelection ( cardId )
-		fromAppState (common.mainView.allActiveCardsView.selectedCardIds)
-		on ok (set common.mainView.allActiveCardsView.selectedCardIds)
+		fromAppState (common.rootContainer.mainView.allActiveCardsView.selectedCardIds)
+		on ok (set common.rootContainer.mainView.allActiveCardsView.selectedCardIds)
 	
 	ToggleAllScheduleCardSelection 
 		fromAppState (
-			common.mainView.allActiveCardsView.selectedCardIds,
-			common.mainView.allActiveCardsView.cardList
+			common.rootContainer.mainView.allActiveCardsView.selectedCardIds,
+			common.rootContainer.mainView.allActiveCardsView.activeCardList
 		)
-		on ok (set common.mainView.allActiveCardsView.selectedCardIds)
+		on ok (set common.rootContainer.mainView.allActiveCardsView.selectedCardIds)
 	
 	ScheduleSelectedCards
 		fromAppState (
-			common.mainView.allActiveCardsView.selectedCardIds as cardIds,
-			common.mainView.allActiveCardsView.boxId
+			common.rootContainer.mainView.allActiveCardsView.selectedCardIds as cardIds,
+			common.rootContainer.mainView.allActiveCardsView.boxId
 		) 
 	 	call com.anfelisa.box.ScheduleCards
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on noFilter triggers (LoadActiveCards)
 	
 	SortSelectedCardsOut 
 		fromAppState (
-			common.mainView.allActiveCardsView.selectedCardIds as cardIds,
-			common.mainView.allActiveCardsView.boxId
+			common.rootContainer.mainView.allActiveCardsView.selectedCardIds as cardIds,
+			common.rootContainer.mainView.allActiveCardsView.boxId
 		) 
 	 	call com.anfelisa.box.SortCardsOut
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok triggers (LoadActiveCards)
 		
 	UpdateCardPriority(cardId, priority, actualPriority)
 	 	call com.anfelisa.card.UpdateCardPriority
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok triggers (LoadActiveCards)
 
 	DeleteBoxClick ( boxId )
-		on ok (set common.mainView.dashboardView.deleteBox)
+		on ok (set common.rootContainer.mainView.dashboardView.deleteBox)
 	
 	CancelDeleteBox 
 		on ok (
-			set common.mainView.dashboardView.deleteBox.boxId
-			set common.mainView.dashboardView.deleteBox.confirmDelete
+			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
+			set common.rootContainer.mainView.dashboardView.deleteBox.confirmDelete
 		)
 	
 	DeleteBox
-		fromAppState ( common.mainView.dashboardView.deleteBox.boxId )
+		fromAppState ( common.rootContainer.mainView.dashboardView.deleteBox.boxId )
 		call com.anfelisa.box.DeleteBox
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok triggers (LoadBoxes)
 		on error (
-			set common.mainView.dashboardView.deleteBox.boxId
-			set common.mainView.dashboardView.deleteBox.confirmDelete
+			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
+			set common.rootContainer.mainView.dashboardView.deleteBox.confirmDelete
 		) triggers (common.DisplayError)
 	
 	LoadNextCard
-		fromAppState (common.mainView.cardView.boxId)
+		fromAppState (common.rootContainer.mainView.queryCardView.boxId)
 	 	call com.anfelisa.box.LoadNextCard
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok (
-			merge common.mainView.cardView
+			merge common.rootContainer.mainView.queryCardView
 		)
 		on finished triggers (
 			common.Route 
@@ -99,141 +99,141 @@ ACE
 		)
 	
 	DisplayWanted ( wantedItemsLength )
-		fromAppState ( common.mainView.cardView.index, common.mainView.cardView.image)
+		fromAppState ( common.rootContainer.mainView.queryCardView.index, common.rootContainer.mainView.queryCardView.image)
 		on ok (
-			merge common.mainView.cardView
+			merge common.rootContainer.mainView.queryCardView
 		)
 	
 	ScoreCard ( scoredCardQuality )
-		fromAppState ( common.mainView.cardView.scheduledCardId )
+		fromAppState ( common.rootContainer.mainView.queryCardView.scheduledCardId )
 	 	call com.anfelisa.box.ScoreCard
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 	
 	ScoreReinforceCard ( keep )
-		fromAppState (common.mainView.cardView.reinforceCardId)
+		fromAppState (common.rootContainer.mainView.queryCardView.reinforceCardId)
 	 	call com.anfelisa.box.ScoreReinforceCard
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	SortCardOut
 		fromAppState (
-			common.mainView.cardView.cardId, 
-			common.mainView.cardView.boxId
+			common.rootContainer.mainView.queryCardView.cardId, 
+			common.rootContainer.mainView.queryCardView.boxId
 		)
 	 	call com.anfelisa.box.SortCardsOut
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	InitBoxesForDayDuringScore
 		call com.anfelisa.box.InitMyBoxesForDay
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok triggers (LoadNextCard) 
 				
 	LoadSettings
-		fromAppState (common.mainView.boxSettingsView.boxId)
+		fromAppState (common.rootContainer.mainView.boxSettingsView.boxId)
 	 	call com.anfelisa.box.GetBoxSettings
-		loadingFlag common.displaySpinner 
-		on ok (	merge common.mainView.boxSettingsView )
+		loadingFlag common.rootContainer.spinner 
+		on ok (	merge common.rootContainer.mainView.boxSettingsView )
 			triggers (TooManyCardsStatus)
 		
 	SaveBoxSettings
 		fromAppState (
-			common.mainView.boxSettingsView.boxId,
-			common.mainView.boxSettingsView.maxInterval,
-			common.mainView.boxSettingsView.maxCardsPerDay,
-			common.mainView.boxSettingsView.categoryId,
-			common.mainView.boxSettingsView.categoryName,
-			common.mainView.boxSettingsView.dictionaryLookup,
-			common.mainView.boxSettingsView.givenLanguage,
-			common.mainView.boxSettingsView.wantedLanguage
+			common.rootContainer.mainView.boxSettingsView.boxId,
+			common.rootContainer.mainView.boxSettingsView.maxInterval,
+			common.rootContainer.mainView.boxSettingsView.maxCardsPerDay,
+			common.rootContainer.mainView.boxSettingsView.categoryId,
+			common.rootContainer.mainView.boxSettingsView.categoryName,
+			common.rootContainer.mainView.boxSettingsView.dictionaryLookup,
+			common.rootContainer.mainView.boxSettingsView.givenLanguage,
+			common.rootContainer.mainView.boxSettingsView.wantedLanguage
 		)
 	 	call com.anfelisa.box.UpdateBox
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok triggers (common.Route)
 	
 
 	MaxCardsPerDayChanged ( maxCardsPerDay )
 		fromAppState (
-			common.mainView.boxSettingsView.maxInterval,
-			common.mainView.boxSettingsView.allActiveCards
+			common.rootContainer.mainView.boxSettingsView.maxInterval,
+			common.rootContainer.mainView.boxSettingsView.allActiveCards
 		)
 		on ok (
-			set common.mainView.boxSettingsView.maxCardsPerDay
-			set common.mainView.boxSettingsView.maxCardsPerDayInvalid
+			set common.rootContainer.mainView.boxSettingsView.maxCardsPerDay
+			set common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid
 		) triggers (TooManyCardsStatus)
 		
 	MaxIntervalChanged ( maxInterval )
 		fromAppState (
-			common.mainView.boxSettingsView.maxCardsPerDay,
-			common.mainView.boxSettingsView.allActiveCards
+			common.rootContainer.mainView.boxSettingsView.maxCardsPerDay,
+			common.rootContainer.mainView.boxSettingsView.allActiveCards
 		)
 		on ok (
-			set common.mainView.boxSettingsView.maxInterval
-			set common.mainView.boxSettingsView.maxIntervalInvalid
+			set common.rootContainer.mainView.boxSettingsView.maxInterval
+			set common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid
 		) triggers (TooManyCardsStatus)
 		
 	TooManyCardsStatus
 		fromAppState (
-			common.mainView.boxSettingsView.maxCardsPerDay,
-			common.mainView.boxSettingsView.maxInterval,
-			common.mainView.boxSettingsView.allActiveCards
+			common.rootContainer.mainView.boxSettingsView.maxCardsPerDay,
+			common.rootContainer.mainView.boxSettingsView.maxInterval,
+			common.rootContainer.mainView.boxSettingsView.allActiveCards
 		)
-		on ok (set common.mainView.boxSettingsView.tooManyCardsStatus)
+		on ok (set common.rootContainer.mainView.boxSettingsView.tooManyCardsStatus)
 
 	CreateRootCategory
 		fromAppState (
-			common.mainView.boxSettingsView.maxInterval,
-			common.mainView.boxSettingsView.maxCardsPerDay,
-			common.mainView.boxSettingsView.categoryId,
-			common.mainView.boxSettingsView.categoryName,
-			common.mainView.boxSettingsView.dictionaryLookup,
-			common.mainView.boxSettingsView.givenLanguage,
-			common.mainView.boxSettingsView.wantedLanguage
+			common.rootContainer.mainView.boxSettingsView.maxInterval,
+			common.rootContainer.mainView.boxSettingsView.maxCardsPerDay,
+			common.rootContainer.mainView.boxSettingsView.categoryId,
+			common.rootContainer.mainView.boxSettingsView.categoryName,
+			common.rootContainer.mainView.boxSettingsView.dictionaryLookup,
+			common.rootContainer.mainView.boxSettingsView.givenLanguage,
+			common.rootContainer.mainView.boxSettingsView.wantedLanguage
 		)
 		call com.anfelisa.box.CreateBox
-		loadingFlag common.displaySpinner 
+		loadingFlag common.rootContainer.spinner 
 		on ok triggers (common.Route)
 	
 	CategoryNameChanged ( categoryName )
 		on ok (
-			set common.mainView.boxSettingsView.categoryName
+			set common.rootContainer.mainView.boxSettingsView.categoryName
 		)
 		
 	DictionaryLookupChanged
 		fromAppState (
-			common.mainView.boxSettingsView.givenLanguage,
-			common.mainView.boxSettingsView.wantedLanguage,
-			common.mainView.boxSettingsView.dictionaryLookup
+			common.rootContainer.mainView.boxSettingsView.givenLanguage,
+			common.rootContainer.mainView.boxSettingsView.wantedLanguage,
+			common.rootContainer.mainView.boxSettingsView.dictionaryLookup
 		)
 		on ok (
-			set common.mainView.boxSettingsView.dictionaryLookup
-			set common.mainView.boxSettingsView.dictionaryLookupInvalid
+			set common.rootContainer.mainView.boxSettingsView.dictionaryLookup
+			set common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid
 		)
 		
 	GivenLanguageChanged ( givenLanguage )
 		fromAppState (
-			common.mainView.boxSettingsView.wantedLanguage,
-			common.mainView.boxSettingsView.dictionaryLookup
+			common.rootContainer.mainView.boxSettingsView.wantedLanguage,
+			common.rootContainer.mainView.boxSettingsView.dictionaryLookup
 		)
 		on ok (
-			set common.mainView.boxSettingsView.givenLanguage
-			set common.mainView.boxSettingsView.dictionaryLookupInvalid
+			set common.rootContainer.mainView.boxSettingsView.givenLanguage
+			set common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid
 		)
 		
 	WantedLanguageChanged ( wantedLanguage )
 		fromAppState (
-			common.mainView.boxSettingsView.givenLanguage,
-			common.mainView.boxSettingsView.dictionaryLookup
+			common.rootContainer.mainView.boxSettingsView.givenLanguage,
+			common.rootContainer.mainView.boxSettingsView.dictionaryLookup
 		)
 		on ok (
-			set common.mainView.boxSettingsView.wantedLanguage
-			set common.mainView.boxSettingsView.dictionaryLookupInvalid
+			set common.rootContainer.mainView.boxSettingsView.wantedLanguage
+			set common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid
 		)
 		
 	RootCategoryNameChanged ( categoryName )
 		on ok (
-			set common.mainView.boxSettingsView.categoryName
+			set common.rootContainer.mainView.boxSettingsView.categoryName
 		)
 		
 		

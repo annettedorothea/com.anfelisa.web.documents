@@ -11,14 +11,14 @@ import * as AppState from "../ace/AppState";
 export default class EventListenerRegistrationRegistration {
 
 	static init() {
-		ACEController.registerListener('registration.CheckUsernameOkEvent', AppState.set_registrationView_available);
-		ACEController.registerListener('registration.UsernameChangedOkEvent', AppState.set_registrationView_username);
-		ACEController.registerListener('registration.EmailChangedOkEvent', AppState.set_registrationView_emailInvalid);
-		ACEController.registerListener('registration.EmailChangedOkEvent', AppState.set_registrationView_email);
-		ACEController.registerListener('registration.PasswordChangedOkEvent', AppState.set_registrationView_passwordMismatch);
-		ACEController.registerListener('registration.LoginOkEvent', AppState.set_loggedInUser);
-		ACEController.registerListener('registration.LoginOkEvent', AppState.set_username);
-		ACEController.registerListener('registration.LoginOkEvent', AppState.set_password);
+		ACEController.registerListener('registration.CheckUsernameOkEvent', AppState.set_rootContainer_registrationView_available);
+		ACEController.registerListener('registration.UsernameChangedOkEvent', AppState.set_rootContainer_registrationView_username);
+		ACEController.registerListener('registration.EmailChangedOkEvent', AppState.set_rootContainer_registrationView_emailInvalid);
+		ACEController.registerListener('registration.EmailChangedOkEvent', AppState.set_rootContainer_registrationView_email);
+		ACEController.registerListener('registration.PasswordChangedOkEvent', AppState.set_rootContainer_registrationView_passwordMismatch);
+		ACEController.registerListener('registration.LoginOkEvent', AppState.set_rootContainer_loggedInUser);
+		ACEController.registerListener('registration.LoginOkEvent', AppState.set_rootContainer_username);
+		ACEController.registerListener('registration.LoginOkEvent', AppState.set_rootContainer_password);
 	}
 
 }

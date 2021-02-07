@@ -15,8 +15,8 @@ import LoadActiveCardsAction from "../../../src/box/actions/LoadActiveCardsActio
 export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.SortSelectedCardsOutCommand");
-        this.commandData.cardIds = AppState.get_allActiveCardsView_selectedCardIds();
-        this.commandData.boxId = AppState.get_allActiveCardsView_boxId();
+        this.commandData.cardIds = AppState.get_rootContainer_allActiveCardsView_selectedCardIds();
+        this.commandData.boxId = AppState.get_rootContainer_allActiveCardsView_boxId();
         this.commandData.outcomes = [];
     }
 

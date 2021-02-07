@@ -13,7 +13,7 @@ export default class AbstractSwapPreviewCsvCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.SwapPreviewCsvCommand");
         this.commandData.outcomes = [];
-        this.commandData.previewCsv = AppState.get_authorView_categoryTree_previewCsv();
+        this.commandData.previewCsv = AppState.get_rootContainer_authorView_categoryTree_previewCsv();
     }
 
 	addOkOutcome() {

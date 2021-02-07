@@ -15,7 +15,7 @@ export default class AbstractLoginCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "registration.LoginCommand");
         this.commandData.outcomes = [];
-        this.commandData.username = AppState.get_registrationView_username();
+        this.commandData.username = AppState.get_rootContainer_registrationView_username();
     }
 
 	addOkOutcome() {

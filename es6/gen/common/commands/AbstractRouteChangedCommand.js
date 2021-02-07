@@ -32,8 +32,8 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.RouteChangedCommand");
         this.commandData.outcomes = [];
-        this.commandData.hash = AppState.get_hash();
-        this.commandData.loggedInUser = AppState.get_loggedInUser();
+        this.commandData.hash = AppState.get_rootContainer_hash();
+        this.commandData.loggedInUser = AppState.get_rootContainer_loggedInUser();
     }
 
 	addLoginOutcome() {

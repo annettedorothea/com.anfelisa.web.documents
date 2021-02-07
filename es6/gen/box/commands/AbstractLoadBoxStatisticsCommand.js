@@ -14,7 +14,7 @@ import LoadBoxStatisticsOkEvent from "../../../gen/box/events/LoadBoxStatisticsO
 export default class AbstractLoadBoxStatisticsCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.LoadBoxStatisticsCommand");
-        this.commandData.boxList = AppState.get_dashboardView_boxList();
+        this.commandData.boxList = AppState.get_rootContainer_dashboardView_boxList();
         this.commandData.outcomes = [];
     }
 

@@ -13,7 +13,7 @@ export default class AbstractToggleScheduleCardSelectionCommand extends Synchron
     constructor(commandData) {
         super(commandData, "card.ToggleScheduleCardSelectionCommand");
         this.commandData.outcomes = [];
-        this.commandData.selectedCardIds = AppState.get_authorView_cardView_selectedCardIds();
+        this.commandData.selectedCardIds = AppState.get_rootContainer_authorView_cardView_selectedCardIds();
     }
 
 	addOkOutcome() {

@@ -17,8 +17,8 @@ export default class AbstractInitCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "common.InitCommand");
         this.commandData.outcomes = [];
-        this.commandData.username = AppState.get_username();
-        this.commandData.password = AppState.get_password();
+        this.commandData.username = AppState.get_rootContainer_username();
+        this.commandData.password = AppState.get_rootContainer_password();
     }
 
 	addUserOutcome() {

@@ -17,7 +17,7 @@ import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 export default class AbstractDeleteUserCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "admin.DeleteUserCommand");
-        this.commandData.usernameToBeDeleted = AppState.get_userListView_usernameToBeDeleted();
+        this.commandData.usernameToBeDeleted = AppState.get_rootContainer_userListView_usernameToBeDeleted();
         this.commandData.outcomes = [];
     }
 

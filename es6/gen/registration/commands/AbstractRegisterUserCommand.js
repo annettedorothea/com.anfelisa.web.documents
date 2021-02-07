@@ -17,9 +17,9 @@ import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 export default class AbstractRegisterUserCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "registration.RegisterUserCommand");
-        this.commandData.email = AppState.get_registrationView_email();
-        this.commandData.language = AppState.get_language();
-        this.commandData.username = AppState.get_registrationView_username();
+        this.commandData.email = AppState.get_rootContainer_registrationView_email();
+        this.commandData.language = AppState.get_rootContainer_language();
+        this.commandData.username = AppState.get_rootContainer_registrationView_username();
         this.commandData.outcomes = [];
     }
 

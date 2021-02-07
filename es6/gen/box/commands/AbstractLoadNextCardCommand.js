@@ -17,7 +17,7 @@ import DisplayMessageAction from "../../../src/common/actions/DisplayMessageActi
 export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.LoadNextCardCommand");
-        this.commandData.boxId = AppState.get_cardView_boxId();
+        this.commandData.boxId = AppState.get_rootContainer_queryCardView_boxId();
         this.commandData.outcomes = [];
     }
 

@@ -17,7 +17,7 @@ import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "box.DeleteBoxCommand");
-        this.commandData.boxId = AppState.get_dashboardView_deleteBox_boxId();
+        this.commandData.boxId = AppState.get_rootContainer_dashboardView_deleteBox_boxId();
         this.commandData.outcomes = [];
     }
 

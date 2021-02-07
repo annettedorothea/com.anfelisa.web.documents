@@ -1,6 +1,5 @@
 import React from 'react';
 import CardsNextDaysItem from "./CardsNextDaysItem";
-import {deleteBoxClick} from "../../../gen/box/ActionFunctions";
 import {route} from "../../../gen/common/ActionFunctions";
 
 export default class CardsNextDays extends React.Component {

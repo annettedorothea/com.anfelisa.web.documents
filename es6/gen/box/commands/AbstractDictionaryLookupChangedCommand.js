@@ -13,9 +13,9 @@ export default class AbstractDictionaryLookupChangedCommand extends SynchronousC
     constructor(commandData) {
         super(commandData, "box.DictionaryLookupChangedCommand");
         this.commandData.outcomes = [];
-        this.commandData.givenLanguage = AppState.get_boxSettingsView_givenLanguage();
-        this.commandData.wantedLanguage = AppState.get_boxSettingsView_wantedLanguage();
-        this.commandData.dictionaryLookup = AppState.get_boxSettingsView_dictionaryLookup();
+        this.commandData.givenLanguage = AppState.get_rootContainer_boxSettingsView_givenLanguage();
+        this.commandData.wantedLanguage = AppState.get_rootContainer_boxSettingsView_wantedLanguage();
+        this.commandData.dictionaryLookup = AppState.get_rootContainer_boxSettingsView_dictionaryLookup();
     }
 
 	addOkOutcome() {
