@@ -1,4 +1,5 @@
 import AppUtils from "./AppUtils";
+import * as AppState from "../../gen/ace/AppState";
 
 import {RootContainerComponent} from "../../gen/components/RootContainerComponent";
 
@@ -9,9 +10,10 @@ export * from "../../gen/ace/Timeline";
 export {dumpAppState} from "./AppUtils";
 
 AppUtils.createInitialAppState();
-
+console.log(AppState.getAppState());
+const state = AppState.getAppState();
 export const container = ReactDOM.render(
-    <RootContainerComponent/>,
+    <RootContainerComponent />,
     document.getElementById('root')
 );
 

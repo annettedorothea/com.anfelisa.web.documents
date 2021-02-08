@@ -36,12 +36,12 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.DisplayErrorAndLogoutOkEvent', AppState.set_rootContainer_message);
 		ACEController.registerListener('common.DisplayMessageOkEvent', AppState.set_rootContainer_message);
 		ACEController.registerListener('common.ClearToastOkEvent', AppState.set_rootContainer_message);
-		ACEController.registerListener('common.DisplaySaveBugDialogOkEvent', AppState.set_rootContainer_displaySaveBugDialog);
-		ACEController.registerListener('common.DisplayVersionMismatchDialogOkEvent', AppState.set_rootContainer_displayVersionMismatchDialog);
-		ACEController.registerListener('common.CancelVersionMismatchDialogOkEvent', AppState.set_rootContainer_displayVersionMismatchDialog);
-		ACEController.registerListener('common.DisplayVersionMismatchErrorDialogOkEvent', AppState.set_rootContainer_displayVersionMismatchErrorDialog);
-		ACEController.registerListener('common.CancelSaveBugDialogOkEvent', AppState.set_rootContainer_displaySaveBugDialog);
-		ACEController.registerListener('common.HideSaveBugDialogOkEvent', AppState.set_rootContainer_displaySaveBugDialog);
+		ACEController.registerListener('common.DisplaySaveBugDialogOkEvent', AppState.set_rootContainer_saveBugDialog_display);
+		ACEController.registerListener('common.DisplayVersionMismatchDialogOkEvent', AppState.set_rootContainer_versionMismatchDialog_display);
+		ACEController.registerListener('common.CancelVersionMismatchDialogOkEvent', AppState.set_rootContainer_versionMismatchDialog_display);
+		ACEController.registerListener('common.DisplayVersionMismatchErrorDialogOkEvent', AppState.set_rootContainer_versionMismatchDialog_display);
+		ACEController.registerListener('common.CancelSaveBugDialogOkEvent', AppState.set_rootContainer_saveBugDialog_display);
+		ACEController.registerListener('common.HideSaveBugDialogOkEvent', AppState.set_rootContainer_saveBugDialog_display);
 	}
 
 }

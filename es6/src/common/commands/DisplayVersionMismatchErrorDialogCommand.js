@@ -9,7 +9,7 @@ import AbstractDisplayVersionMismatchErrorDialogCommand from "../../../gen/commo
 
 export default class DisplayVersionMismatchErrorDialogCommand extends AbstractDisplayVersionMismatchErrorDialogCommand {
     execute() {
-        this.commandData.displayVersionMismatchErrorDialog = true;
+        this.commandData.display = true;
     	this.addOkOutcome();
     }
 }

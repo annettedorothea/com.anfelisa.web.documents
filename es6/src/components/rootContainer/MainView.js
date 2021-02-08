@@ -9,40 +9,40 @@ import {  privacyPolicyView, loginView, registrationView, forgotPasswordView, re
 
 export function uiElement(attributes) {
 	if (attributes.isPrivacyPolicyView === true) {
-		return privacyPolicyView(attributes, []);
+		return privacyPolicyView(attributes);
 	}
 	if (attributes.isLoginView === true) {
-		return loginView(attributes, []);
+		return loginView(attributes);
 	}
 	if (attributes.isRegistrationView === true) {
-		return registrationView(attributes, []);
+		return registrationView(attributes);
 	}
 	if (attributes.isForgotPasswordView === true) {
-		return forgotPasswordView(attributes, []);
+		return forgotPasswordView(attributes);
 	}
 	if (attributes.isResetPasswordView === true) {
-		return resetPasswordView(attributes, []);
+		return resetPasswordView(attributes);
 	}
 	if (attributes.isDashboardView === true) {
-		return dashboardView(attributes, []);
+		return dashboardView(attributes);
 	}
 	if (attributes.isBoxSettingsView === true) {
-		return boxSettingsView(attributes, []);
+		return boxSettingsView(attributes);
 	}
 	if (attributes.isAllActiveCardsView === true) {
-		return allActiveCardsView(attributes, []);
+		return allActiveCardsView(attributes);
 	}
 	if (attributes.isProfileView === true) {
-		return profileView(attributes, []);
+		return profileView(attributes);
 	}
 	if (attributes.isUserListView === true) {
-		return userListView(attributes, []);
+		return userListView(attributes);
 	}
 	if (attributes.isQueryCardView === true) {
-		return queryCardView(attributes, []);
+		return queryCardView(attributes);
 	}
 	if (attributes.isAuthorView === true) {
-		return authorView(attributes, []);
+		return authorView(attributes);
 	}
 	return null;
 }

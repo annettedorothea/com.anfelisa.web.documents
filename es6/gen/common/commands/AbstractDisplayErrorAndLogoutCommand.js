@@ -16,7 +16,6 @@ export default class AbstractDisplayErrorAndLogoutCommand extends SynchronousCom
         super(commandData, "common.DisplayErrorAndLogoutCommand");
         this.commandData.outcomes = [];
         this.commandData.language = AppState.get_rootContainer_language();
-        this.commandData.texts = AppState.get_rootContainer_texts();
     }
 
 	addOkOutcome() {

@@ -5,6 +5,7 @@
 
 
 
+
 import { div, h1, label, input, table, tbody, ul, li, tr, td, cardListItem, editedCard, newCard, deleteCard } from "../../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
@@ -13,7 +14,7 @@ export function uiElement(attributes) {
 		div({}, [
 			table({class: ""}, [
 				tbody({}, [
-					attributes.cardList.map((item) => cardListItem(item))
+					attributes.cardList.map((item) => cardListItem({ ...item.mainView, language: item.language }))
 				])
 			])
 		]),
@@ -45,14 +46,14 @@ export function uiElement(attributes) {
 			}), 
 			div({class: ""}, [attributes.filter])
 		]),
-		editedCard(),
-		newCard(),
+		editedCard({ ...attributes.mainView, language: attributes.language }),
+		newCard({ ...attributes.mainView, language: attributes.language }),
 		div({}, [
 			ul({class: ""}, [
 				attributes.cardDuplicates.map((item) => li({}, [item]))
 			])
 		]),
-		deleteCard(),
+		deleteCard({ ...attributes.mainView, language: attributes.language }),
 		div({class: ""}, [
 			label({
 				class: "",

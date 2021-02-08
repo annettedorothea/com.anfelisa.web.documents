@@ -14,7 +14,6 @@ export default class AbstractDisplayErrorCommand extends SynchronousCommand {
         super(commandData, "common.DisplayErrorCommand");
         this.commandData.outcomes = [];
         this.commandData.language = AppState.get_rootContainer_language();
-        this.commandData.texts = AppState.get_rootContainer_texts();
     }
 
 	addOkOutcome() {

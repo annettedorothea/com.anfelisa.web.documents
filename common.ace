@@ -63,41 +63,42 @@ Logout
 	) triggers ( Route RouteChanged )
 
 DisplayError ( error ) 
-	fromAppState( rootContainer.language, rootContainer.texts)
+	fromAppState( rootContainer.language)
 	on ok ( set rootContainer.message) 
 
 DisplayErrorAndLogout ( error ) 
-	fromAppState( rootContainer.language, rootContainer.texts)
+	fromAppState( rootContainer.language)
 	on ok (set rootContainer.message) triggers ( Logout)
 
 DisplayMessage ( messageKey ) 
-	fromAppState( rootContainer.language, rootContainer.texts)
+	fromAppState( rootContainer.language)
 	on ok (set rootContainer.message) 
 
 ClearToast 
 	on ok (set rootContainer.message)
 	
 DisplaySaveBugDialog
-	on ok (set rootContainer.displaySaveBugDialog)
+	on ok (set rootContainer.saveBugDialog.display)
 
 DisplayVersionMismatchDialog
-	on ok (set rootContainer.displayVersionMismatchDialog)
+	on ok (set rootContainer.versionMismatchDialog.display)
 
 CancelVersionMismatchDialog
-	on ok (set rootContainer.displayVersionMismatchDialog)
+	on ok (set rootContainer.versionMismatchDialog.display)
 
 DisplayVersionMismatchErrorDialog
-	on ok (set rootContainer.displayVersionMismatchErrorDialog)
+	on ok (set rootContainer.versionMismatchDialog.display)
 
 async CallSaveBug
 	fromAppState( rootContainer.loggedInUser.username )
 	on ok triggers (HideSaveBugDialog)
 
 CancelSaveBugDialog
-	on ok (set rootContainer.displaySaveBugDialog)
+	on ok (set rootContainer.saveBugDialog.display)
 
 HideSaveBugDialog
-	on ok (set rootContainer.displaySaveBugDialog) triggers (DisplayMessage)
+	on ok (set rootContainer.saveBugDialog.display) triggers (DisplayMessage)
+
 
 
 
@@ -113,11 +114,16 @@ ui rootContainer {
 	spinner { 
 		display
 	} 
-	language
-	texts
-	displaySaveBugDialog
-	displayVersionMismatchDialog
-	displayVersionMismatchErrorDialog
+	language passOn
+	saveBugDialog {
+		display
+	}
+	versionMismatchDialog {
+		display
+	}
+	versionMismatchErrorDialog {
+		display
+	}
 	message {
 		type
 		text
@@ -127,7 +133,7 @@ ui rootContainer {
 		}
 		loginView {
 			username
-			hashedPassword
+			password
 			saveInLocalStorage
 		}
 		registrationView {

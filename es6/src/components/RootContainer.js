@@ -3,90 +3,54 @@
  ********************************************************************************/
 
 
+import {Texts} from "../app/Texts";
 
 
-import { div, h1, label, input, table, tbody, ul, li, tr, td, loggedInUser, spinner, message, mainView } from "../../gen/components/ReactHelper";
+import {
+	a,
+	div,
+	h1,
+	loggedInUser,
+	mainView,
+	message,
+	p,
+	saveBugDialog,
+	spinner,
+	versionMismatchDialog,
+	versionMismatchErrorDialog
+} from "../../gen/components/ReactHelper";
+import Utils from "../../gen/ace/Utils";
+import {route} from "../../gen/common/ActionFunctions";
 
 export function uiElement(attributes) {
 	return div({}, [
-		h1({}, ["ROOTCONTAINER"]),
-		loggedInUser(),
-		// hash hash, 
-		// storage username, 
-		// storage password, 
-		spinner(),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "language"
-			}, ["LANGUAGE"]), 
-			input({
-				id: "language",
-				value: attributes.language, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.language])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "texts"
-			}, ["TEXTS"]), 
-			input({
-				id: "texts",
-				value: attributes.texts, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.texts])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "displaySaveBugDialog"
-			}, ["DISPLAYSAVEBUGDIALOG"]), 
-			input({
-				id: "displaySaveBugDialog",
-				value: attributes.displaySaveBugDialog, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.displaySaveBugDialog])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "displayVersionMismatchDialog"
-			}, ["DISPLAYVERSIONMISMATCHDIALOG"]), 
-			input({
-				id: "displayVersionMismatchDialog",
-				value: attributes.displayVersionMismatchDialog, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.displayVersionMismatchDialog])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "displayVersionMismatchErrorDialog"
-			}, ["DISPLAYVERSIONMISMATCHERRORDIALOG"]), 
-			input({
-				id: "displayVersionMismatchErrorDialog",
-				value: attributes.displayVersionMismatchErrorDialog, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.displayVersionMismatchErrorDialog])
-		]),
-		message(),
-		mainView()
+		loggedInUser({ ...attributes.mainView, language: attributes.language }),
+		spinner({ ...attributes.mainView, language: attributes.language }),
+		saveBugDialog({ ...attributes.mainView, language: attributes.language }),
+		versionMismatchDialog({ ...attributes.mainView, language: attributes.language }),
+		versionMismatchErrorDialog({ ...attributes.mainView, language: attributes.language }),
+		//message({ ...attributes.mainView, language: attributes.language }),
+		mainView({ language: attributes.language }),
+		div({class: `footer ${attributes.loggedInUser === undefined ? "fixed" : ""}`}, [
+			div({class: "footerContent"}, [
+					h1({}, [Texts.container.about[attributes.language]]),
+					p({}, ["Annette Pohl · St.-Josef-Str. 20 · 56068 Koblenz"]),
+					p({}, [
+						"0261 1393793 · ",
+						a({href: "mailto:info@anfelisa.de"}, ["info@anfelisa.de"])
+					]),
+					p({}, [
+						`${Texts.container.version[attributes.language]} ${Utils && Utils.settings ? Utils.settings.clientVersion : ""}`
+					]),
+					p({}, [
+						a({onClick: () => Utils.saveTimeline("save timeline", attributes.mainView && attributes.mainView.loggedInUser ? attributes.mainView.loggedInUser.username : "anonymous")}, [Texts.login.saveTimeline[attributes.language]])
+					]),
+					p({}, [
+						a({onClick: () => route("#privacypolicy")}, [Texts.login.privacyPolicy[attributes.language]])
+					]),
+				]
+			)
+		])
 	]);
 }
 

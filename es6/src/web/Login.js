@@ -2,7 +2,6 @@ import React from 'react';
 import CryptoJS from "crypto-js";
 import {route} from "../../gen/common/ActionFunctions";
 import {login, toggleSaveInLocalStorage, usernameChanged} from "../../gen/login/ActionFunctions";
-
 export default class Login extends React.Component {
 
     constructor(props) {

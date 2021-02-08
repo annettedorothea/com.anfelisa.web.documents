@@ -9,7 +9,7 @@ import AbstractCancelVersionMismatchDialogCommand from "../../../gen/common/comm
 
 export default class CancelVersionMismatchDialogCommand extends AbstractCancelVersionMismatchDialogCommand {
     execute() {
-        this.commandData.displayVersionMismatchDialog = false;
+        this.commandData.display = false;
     	this.addOkOutcome();
     }
 }

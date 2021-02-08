@@ -194,8 +194,8 @@ export default class AppUtils {
     }
 
     static basicAuth() {
-        const username = AppState.get_loggedInUser_username();
-        const password = AppState.get_loggedInUser_password();
+        const username = AppState.get_rootContainer_loggedInUser_username();
+        const password = AppState.get_rootContainer_loggedInUser_password();
         if (username !== undefined && password !== undefined) {
             const wordArray = CryptoJS.enc.Utf8.parse(username + ':' + password);
             const hash = CryptoJS.enc.Base64.stringify(wordArray);

@@ -8,6 +8,9 @@
 import React from 'react';
 import { LoggedInUserComponent } from "./rootContainer/LoggedInUserComponent";
 import { SpinnerComponent } from "./rootContainer/SpinnerComponent";
+import { SaveBugDialogComponent } from "./rootContainer/SaveBugDialogComponent";
+import { VersionMismatchDialogComponent } from "./rootContainer/VersionMismatchDialogComponent";
+import { VersionMismatchErrorDialogComponent } from "./rootContainer/VersionMismatchErrorDialogComponent";
 import { MessageComponent } from "./rootContainer/MessageComponent";
 import { MainViewComponent } from "./rootContainer/MainViewComponent";
 import { LoginViewComponent } from "./rootContainer/mainView/LoginViewComponent";
@@ -142,6 +145,10 @@ export const td = (options, children) => {
     return generic("td", options, children);
 }
 
+export const i = (options, children) => {
+    return generic("i", options, children);
+}
+
 export const input = (options) => {
     return <input {...normalize(options)}/>
 }
@@ -152,6 +159,15 @@ export const loggedInUser = (options) => {
 }
 export const spinner = (options) => {
     return <SpinnerComponent {...normalize(options)}/>
+}
+export const saveBugDialog = (options) => {
+    return <SaveBugDialogComponent {...normalize(options)}/>
+}
+export const versionMismatchDialog = (options) => {
+    return <VersionMismatchDialogComponent {...normalize(options)}/>
+}
+export const versionMismatchErrorDialog = (options) => {
+    return <VersionMismatchErrorDialogComponent {...normalize(options)}/>
 }
 export const message = (options) => {
     return <MessageComponent {...normalize(options)}/>

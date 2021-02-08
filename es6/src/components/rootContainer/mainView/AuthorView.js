@@ -5,6 +5,7 @@
 
 
 
+
 import { div, h1, label, input, table, tbody, ul, li, tr, td, categoryTree, cardView } from "../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
@@ -80,8 +81,8 @@ export function uiElement(attributes) {
 			}), 
 			div({class: ""}, [attributes.priority])
 		]),
-		categoryTree(),
-		cardView()
+		categoryTree({ ...attributes.mainView, language: attributes.language }),
+		cardView({ ...attributes.mainView, language: attributes.language })
 	]);
 }
 

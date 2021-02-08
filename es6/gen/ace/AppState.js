@@ -12,6 +12,9 @@ export let appState;
 import { setRootContainerState } from "../components/RootContainerComponent";
 import { setLoggedInUserState } from "../components/rootContainer/LoggedInUserComponent";
 import { setSpinnerState } from "../components/rootContainer/SpinnerComponent";
+import { setSaveBugDialogState } from "../components/rootContainer/SaveBugDialogComponent";
+import { setVersionMismatchDialogState } from "../components/rootContainer/VersionMismatchDialogComponent";
+import { setVersionMismatchErrorDialogState } from "../components/rootContainer/VersionMismatchErrorDialogComponent";
 import { setMessageState } from "../components/rootContainer/MessageComponent";
 import { setMainViewState } from "../components/rootContainer/MainViewComponent";
 import { setLoginViewState } from "../components/rootContainer/mainView/LoginViewComponent";
@@ -269,71 +272,177 @@ export function set_rootContainer_language(eventData) {
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_texts() {
+export function get_rootContainer_saveBugDialog() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
-	return appState.rootContainer.texts;
+	if (!appState.rootContainer.saveBugDialog) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.saveBugDialog);
 }
 
-export function set_rootContainer_texts(eventData) {
+export function set_rootContainer_saveBugDialog(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
-	appState.rootContainer.texts = eventData.texts;
+	appState.rootContainer.saveBugDialog = eventData.saveBugDialog;
 	const newAppState = getAppState();
-	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
+	setSaveBugDialogState(AppUtils.deepCopy(appState.rootContainer.saveBugDialog));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_displaySaveBugDialog() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	return appState.rootContainer.displaySaveBugDialog;
-}
-
-export function set_rootContainer_displaySaveBugDialog(eventData) {
+export function merge_rootContainer_saveBugDialog(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
-	appState.rootContainer.displaySaveBugDialog = eventData.displaySaveBugDialog;
+	if (!appState.rootContainer.saveBugDialog) {
+		appState.rootContainer.saveBugDialog = {};
+	}
+	if (eventData.display !== undefined) {
+		appState.rootContainer.saveBugDialog.display = eventData.display;
+	}
 	const newAppState = getAppState();
-	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
+	setSaveBugDialogState(AppUtils.deepCopy(appState.rootContainer.saveBugDialog));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_displayVersionMismatchDialog() {
+export function get_rootContainer_saveBugDialog_display() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
-	return appState.rootContainer.displayVersionMismatchDialog;
+	if (!appState.rootContainer.saveBugDialog) {
+		return undefined;
+	}
+	return appState.rootContainer.saveBugDialog.display;
 }
 
-export function set_rootContainer_displayVersionMismatchDialog(eventData) {
+export function set_rootContainer_saveBugDialog_display(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
-	appState.rootContainer.displayVersionMismatchDialog = eventData.displayVersionMismatchDialog;
+	if (!appState.rootContainer.saveBugDialog) {
+		appState.rootContainer.saveBugDialog = {};
+	}
+	appState.rootContainer.saveBugDialog.display = eventData.display;
 	const newAppState = getAppState();
-	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
+	setSaveBugDialogState(AppUtils.deepCopy(appState.rootContainer.saveBugDialog));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_displayVersionMismatchErrorDialog() {
+export function get_rootContainer_versionMismatchDialog() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
-	return appState.rootContainer.displayVersionMismatchErrorDialog;
+	if (!appState.rootContainer.versionMismatchDialog) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.versionMismatchDialog);
 }
 
-export function set_rootContainer_displayVersionMismatchErrorDialog(eventData) {
+export function set_rootContainer_versionMismatchDialog(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
-	appState.rootContainer.displayVersionMismatchErrorDialog = eventData.displayVersionMismatchErrorDialog;
+	appState.rootContainer.versionMismatchDialog = eventData.versionMismatchDialog;
 	const newAppState = getAppState();
-	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
+	setVersionMismatchDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchDialog));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function merge_rootContainer_versionMismatchDialog(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.versionMismatchDialog) {
+		appState.rootContainer.versionMismatchDialog = {};
+	}
+	if (eventData.display !== undefined) {
+		appState.rootContainer.versionMismatchDialog.display = eventData.display;
+	}
+	const newAppState = getAppState();
+	setVersionMismatchDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchDialog));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_versionMismatchDialog_display() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.versionMismatchDialog) {
+		return undefined;
+	}
+	return appState.rootContainer.versionMismatchDialog.display;
+}
+
+export function set_rootContainer_versionMismatchDialog_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.versionMismatchDialog) {
+		appState.rootContainer.versionMismatchDialog = {};
+	}
+	appState.rootContainer.versionMismatchDialog.display = eventData.display;
+	const newAppState = getAppState();
+	setVersionMismatchDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchDialog));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_versionMismatchErrorDialog() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.versionMismatchErrorDialog) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.versionMismatchErrorDialog);
+}
+
+export function set_rootContainer_versionMismatchErrorDialog(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.versionMismatchErrorDialog = eventData.versionMismatchErrorDialog;
+	const newAppState = getAppState();
+	setVersionMismatchErrorDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchErrorDialog));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function merge_rootContainer_versionMismatchErrorDialog(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.versionMismatchErrorDialog) {
+		appState.rootContainer.versionMismatchErrorDialog = {};
+	}
+	if (eventData.display !== undefined) {
+		appState.rootContainer.versionMismatchErrorDialog.display = eventData.display;
+	}
+	const newAppState = getAppState();
+	setVersionMismatchErrorDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchErrorDialog));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_versionMismatchErrorDialog_display() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.versionMismatchErrorDialog) {
+		return undefined;
+	}
+	return appState.rootContainer.versionMismatchErrorDialog.display;
+}
+
+export function set_rootContainer_versionMismatchErrorDialog_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.versionMismatchErrorDialog) {
+		appState.rootContainer.versionMismatchErrorDialog = {};
+	}
+	appState.rootContainer.versionMismatchErrorDialog.display = eventData.display;
+	const newAppState = getAppState();
+	setVersionMismatchErrorDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchErrorDialog));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -484,8 +593,8 @@ export function merge_rootContainer_loginView(eventData) {
 	if (eventData.username !== undefined) {
 		appState.rootContainer.mainView.username = eventData.username;
 	}
-	if (eventData.hashedPassword !== undefined) {
-		appState.rootContainer.mainView.hashedPassword = eventData.hashedPassword;
+	if (eventData.password !== undefined) {
+		appState.rootContainer.mainView.password = eventData.password;
 	}
 	if (eventData.saveInLocalStorage !== undefined) {
 		appState.rootContainer.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
@@ -523,7 +632,7 @@ export function set_rootContainer_loginView_username(eventData) {
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_loginView_hashedPassword() {
+export function get_rootContainer_loginView_password() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -533,10 +642,10 @@ export function get_rootContainer_loginView_hashedPassword() {
 	if (appState.rootContainer.mainView.isLoginView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.hashedPassword;
+	return appState.rootContainer.mainView.password;
 }
 
-export function set_rootContainer_loginView_hashedPassword(eventData) {
+export function set_rootContainer_loginView_password(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -545,7 +654,7 @@ export function set_rootContainer_loginView_hashedPassword(eventData) {
 			isLoginView : true
 		};
 	}
-	appState.rootContainer.mainView.hashedPassword = eventData.hashedPassword;
+	appState.rootContainer.mainView.password = eventData.password;
 	const newAppState = getAppState();
 	setLoginViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
@@ -590,6 +699,7 @@ export function get_rootContainer_registrationView() {
 }
 
 export function set_rootContainer_registrationView(eventData) {
+	console.log("set_rootContainer_registrationView");
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}

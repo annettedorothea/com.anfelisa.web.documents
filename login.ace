@@ -22,8 +22,6 @@ ACE
 		) triggers ( GetRole )
 		on doNotSaveInLocalStorage ( 
 			set common.rootContainer.loggedInUser
-			set common.rootContainer.username 
-			set common.rootContainer.password
 		) triggers ( GetRole )
 	
 	GetRole 

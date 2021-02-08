@@ -21,7 +21,7 @@ import AbstractHideSaveBugDialogCommand from "../../../gen/common/commands/Abstr
 
 export default class HideSaveBugDialogCommand extends AbstractHideSaveBugDialogCommand {
     execute() {
-        this.commandData.displaySaveBugDialog = false;
+        this.commandData.display = false;
         this.commandData.messageKey = "thankYou";
     	this.addOkOutcome();
     }

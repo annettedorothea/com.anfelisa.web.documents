@@ -17,8 +17,6 @@ export default class EventListenerRegistrationLogin {
 		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', AppState.set_rootContainer_username);
 		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', AppState.set_rootContainer_password);
 		ACEController.registerListener('login.LoginDoNotSaveInLocalStorageEvent', AppState.set_rootContainer_loggedInUser);
-		ACEController.registerListener('login.LoginDoNotSaveInLocalStorageEvent', AppState.set_rootContainer_username);
-		ACEController.registerListener('login.LoginDoNotSaveInLocalStorageEvent', AppState.set_rootContainer_password);
 		ACEController.registerListener('login.GetRoleOkEvent', AppState.merge_rootContainer_loggedInUser);
 	}
 

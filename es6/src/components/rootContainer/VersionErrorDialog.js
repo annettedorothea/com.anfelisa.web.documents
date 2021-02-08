@@ -9,12 +9,23 @@
 import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
-	if (attributes.username) {
-		return div({class: ""}, [
-			div({class: ""}, [attributes.username])
+	return div({}, [
+		h1({}, ["VERSIONERRORDIALOG"]),
+		div({class: ""}, [
+			label({
+				class: "",
+				htmlFor: "display"
+			}, ["DISPLAY"]), 
+			input({
+				id: "display",
+				value: attributes.display, 
+				class: "", 
+				onChange:(e) => console.log(e.target.value),
+				type: "text"
+			}), 
+			div({class: ""}, [attributes.display])
 		])
-	}
-	return null;
+	]);
 }
 
 
