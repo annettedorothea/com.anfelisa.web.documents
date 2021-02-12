@@ -7,9 +7,9 @@
 
 import Event from "../../../gen/ace/Event";
 
-export default class DisplayMessageOkEvent extends Event {
+export default class GetRoleUnauthorizedEvent extends Event {
     constructor(eventData) {
-        super(eventData, 'common.DisplayMessageOkEvent');
+        super(eventData, 'login.GetRoleUnauthorizedEvent');
     }
 }
 

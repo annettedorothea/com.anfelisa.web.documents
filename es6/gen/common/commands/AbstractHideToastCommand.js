@@ -6,14 +6,16 @@
 
 
 import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
+import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
-import DisplayErrorOkEvent from "../../../gen/common/events/DisplayErrorOkEvent";
+import HideToastOkEvent from "../../../gen/common/events/HideToastOkEvent";
+import DestroyToastAction from "../../../src/common/actions/DestroyToastAction";
 
-export default class AbstractDisplayErrorCommand extends SynchronousCommand {
+export default class AbstractHideToastCommand extends SynchronousCommand {
     constructor(commandData) {
-        super(commandData, "common.DisplayErrorCommand");
+        super(commandData, "common.HideToastCommand");
         this.commandData.outcomes = [];
-        this.commandData.language = AppState.get_rootContainer_language();
+        this.commandData.messages = AppState.get_rootContainer_messages();
     }
 
 	addOkOutcome() {
@@ -22,7 +24,8 @@ export default class AbstractDisplayErrorCommand extends SynchronousCommand {
 
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
-			new DisplayErrorOkEvent(this.commandData).publish();
+			new HideToastOkEvent(this.commandData).publish();
+			new TriggerAction(new DestroyToastAction(this.commandData.id)).publishWithDelay(1200);
 		}
     }
 }

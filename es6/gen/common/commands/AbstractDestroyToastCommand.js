@@ -6,16 +6,14 @@
 
 
 import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
-import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
-import DisplayErrorAndLogoutOkEvent from "../../../gen/common/events/DisplayErrorAndLogoutOkEvent";
-import LogoutAction from "../../../src/common/actions/LogoutAction";
+import DestroyToastOkEvent from "../../../gen/common/events/DestroyToastOkEvent";
 
-export default class AbstractDisplayErrorAndLogoutCommand extends SynchronousCommand {
+export default class AbstractDestroyToastCommand extends SynchronousCommand {
     constructor(commandData) {
-        super(commandData, "common.DisplayErrorAndLogoutCommand");
+        super(commandData, "common.DestroyToastCommand");
         this.commandData.outcomes = [];
-        this.commandData.language = AppState.get_rootContainer_language();
+        this.commandData.messages = AppState.get_rootContainer_messages();
     }
 
 	addOkOutcome() {
@@ -24,8 +22,7 @@ export default class AbstractDisplayErrorAndLogoutCommand extends SynchronousCom
 
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
-			new DisplayErrorAndLogoutOkEvent(this.commandData).publish();
-			new TriggerAction(new LogoutAction()).publish();
+			new DestroyToastOkEvent(this.commandData).publish();
 		}
     }
 }

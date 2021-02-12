@@ -1,6 +1,8 @@
-HttpClient React_16.8
+HttpClient 
 
 common
+
+
 
 ACE 
 Init 
@@ -8,10 +10,12 @@ Init
 	on user ( 
 		set rootContainer.loggedInUser 
 		set rootContainer.language
+		set rootContainer.messages
 	) triggers ( InitialLogin )
 	on noUser ( 
 		set rootContainer.loggedInUser 
 		set rootContainer.language
+		set rootContainer.messages
 	) triggers ( RouteChanged )
 
 RouteChanged
@@ -53,7 +57,7 @@ InitialLogin
 	call com.anfelisa.user.GetRole
 	loadingFlag rootContainer.spinner 
 	on ok (set rootContainer.loggedInUser.role) triggers ( RouteChanged )
-	on unauthorized triggers ( DisplayError Logout )
+	on unauthorized triggers ( DisplayToast Logout )
 	
 Logout 
 	on ok ( 
@@ -62,20 +66,24 @@ Logout
 		set rootContainer.password
 	) triggers ( Route RouteChanged )
 
-DisplayError ( error ) 
-	fromAppState( rootContainer.language)
-	on ok ( set rootContainer.message) 
+DisplayToast ( message ) 
+	fromAppState( rootContainer.language, rootContainer.messages)
+	on ok ( 
+		set rootContainer.messages
+	) triggers ( delayInMillis 5000 HideToast ) 
+	on unauthorized ( 
+		set rootContainer.messages
+	) triggers ( Logout delayInMillis 5000 HideToast ) 
 
-DisplayErrorAndLogout ( error ) 
-	fromAppState( rootContainer.language)
-	on ok (set rootContainer.message) triggers ( Logout)
-
-DisplayMessage ( messageKey ) 
-	fromAppState( rootContainer.language)
-	on ok (set rootContainer.message) 
-
-ClearToast 
-	on ok (set rootContainer.message)
+HideToast (id)
+	fromAppState( rootContainer.messages)
+	on ok (
+		set rootContainer.messages
+	) triggers ( delayInMillis 1200 DestroyToast ) 
+	
+DestroyToast (id)
+	fromAppState( rootContainer.messages)
+	on ok (set rootContainer.messages)
 	
 DisplaySaveBugDialog
 	on ok (set rootContainer.saveBugDialog.display)
@@ -97,12 +105,12 @@ CancelSaveBugDialog
 	on ok (set rootContainer.saveBugDialog.display)
 
 HideSaveBugDialog
-	on ok (set rootContainer.saveBugDialog.display) triggers (DisplayMessage)
+	on ok (set rootContainer.saveBugDialog.display) triggers (DisplayToast)
 
 
 
 
-ui rootContainer {
+ui React_16.8 rootContainer {
 	loggedInUser {
 		username
 		role
@@ -114,7 +122,7 @@ ui rootContainer {
 	spinner { 
 		display
 	} 
-	language passOn
+	language
 	saveBugDialog {
 		display
 	}
@@ -124,9 +132,11 @@ ui rootContainer {
 	versionMismatchErrorDialog {
 		display
 	}
-	message {
+	List messages {
 		type
 		text
+		id
+		visible
 	}
 	group mainView {
 		privacyPolicyView {

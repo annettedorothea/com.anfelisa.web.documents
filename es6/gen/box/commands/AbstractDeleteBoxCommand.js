@@ -12,7 +12,7 @@ import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import DeleteBoxErrorEvent from "../../../gen/box/events/DeleteBoxErrorEvent";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
-import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
+import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 
 export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -36,7 +36,7 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
 		}
 		if (this.commandData.outcomes.includes("error")) {
 			promises.push(new DeleteBoxErrorEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish());
+			promises.push(new TriggerAction(new DisplayToastAction(this.commandData.message)).publish());
 		}
 		return Promise.all(promises);
     }
@@ -46,8 +46,8 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
 	
 			AppUtils.httpDelete(`${Utils.settings.rootPath}/box/delete?boxId=${this.commandData.boxId}`, this.commandData.uuid, true).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

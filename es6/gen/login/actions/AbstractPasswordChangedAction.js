@@ -6,16 +6,16 @@
 
 
 import Action from "../../ace/SynchronousAction";
-import DisplayMessageCommand from "../../../src/common/commands/DisplayMessageCommand";
+import PasswordChangedCommand from "../../../src/login/commands/PasswordChangedCommand";
 
-export default class AbstractDisplayMessageAction extends Action {
+export default class AbstractPasswordChangedAction extends Action {
 
-    constructor( messageKey) {
-        super({messageKey}, 'common.DisplayMessageAction');
+    constructor( password) {
+        super({password}, 'login.PasswordChangedAction');
 	}
 		
 	getCommand() {
-		return new DisplayMessageCommand(this.actionData);
+		return new PasswordChangedCommand(this.actionData);
 	}
 
 

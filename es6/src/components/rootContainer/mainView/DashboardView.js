@@ -5,7 +5,6 @@
 
 
 
-
 import { div, h1, label, input, table, tbody, ul, li, tr, td, boxListItem, deleteBox } from "../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
@@ -14,11 +13,11 @@ export function uiElement(attributes) {
 		div({}, [
 			table({class: ""}, [
 				tbody({}, [
-					attributes.boxList.map((item) => boxListItem({ ...item.mainView, language: item.language }))
+					attributes.boxList ? attributes.boxList.map((item) => boxListItem()) : []
 				])
 			])
 		]),
-		deleteBox({ ...attributes.mainView, language: attributes.language })
+		deleteBox()
 	]);
 }
 

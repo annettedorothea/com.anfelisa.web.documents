@@ -8,7 +8,7 @@
 import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import HideSaveBugDialogOkEvent from "../../../gen/common/events/HideSaveBugDialogOkEvent";
-import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
+import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 
 export default class AbstractHideSaveBugDialogCommand extends SynchronousCommand {
     constructor(commandData) {
@@ -23,7 +23,7 @@ export default class AbstractHideSaveBugDialogCommand extends SynchronousCommand
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
 			new HideSaveBugDialogOkEvent(this.commandData).publish();
-			new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish();
+			new TriggerAction(new DisplayToastAction(this.commandData.message)).publish();
 		}
     }
 }

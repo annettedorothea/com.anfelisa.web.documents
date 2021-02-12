@@ -1,4 +1,5 @@
 import AbstractGetRoleCommand from "../../../gen/login/commands/AbstractGetRoleCommand";
+import AppUtils from "../../app/AppUtils";
 
 export default class GetRoleCommand extends AbstractGetRoleCommand {
 
@@ -9,15 +10,15 @@ export default class GetRoleCommand extends AbstractGetRoleCommand {
     handleResponse(resolve) {
         this.commandData.hash = "#dashboard";
         this.addOkOutcome();
-    	resolve();
+        resolve();
     }
+
     handleError(resolve, reject) {
-        if (this.commandData.error.code === 401) {
-            this.commandData.error.errorKey = "loginFailed";
+        if (AppUtils.isUnauthorized(this.commandData.message)) {
             this.addUnauthorizedOutcome();
             resolve();
         } else {
-            reject(this.commandData.error);
+            reject(this.commandData.message);
         }
     }
 }

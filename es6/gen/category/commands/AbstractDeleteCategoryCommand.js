@@ -48,8 +48,8 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
 	
 			AppUtils.httpDelete(`${Utils.settings.rootPath}/category/delete?categoryId=${this.commandData.categoryId}`, this.commandData.uuid, true).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

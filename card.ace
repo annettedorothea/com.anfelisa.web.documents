@@ -53,10 +53,6 @@ ACE
 		on ok ( 
 			set common.rootContainer.mainView.authorView.cardView.deleteCard
 		) triggers (LoadCards)
-		on error ( 
-			set common.rootContainer.mainView.authorView.cardView.deleteCard
-		) triggers (common.DisplayError)
-
 
 	GivenOfNewCardChanged ( given )
 		on ok (merge common.rootContainer.mainView.authorView.cardView.newCard)

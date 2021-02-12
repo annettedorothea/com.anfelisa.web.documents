@@ -15,7 +15,6 @@ import { setSpinnerState } from "../components/rootContainer/SpinnerComponent";
 import { setSaveBugDialogState } from "../components/rootContainer/SaveBugDialogComponent";
 import { setVersionMismatchDialogState } from "../components/rootContainer/VersionMismatchDialogComponent";
 import { setVersionMismatchErrorDialogState } from "../components/rootContainer/VersionMismatchErrorDialogComponent";
-import { setMessageState } from "../components/rootContainer/MessageComponent";
 import { setMainViewState } from "../components/rootContainer/MainViewComponent";
 import { setLoginViewState } from "../components/rootContainer/mainView/LoginViewComponent";
 import { setRegistrationViewState } from "../components/rootContainer/mainView/RegistrationViewComponent";
@@ -446,87 +445,23 @@ export function set_rootContainer_versionMismatchErrorDialog_display(eventData) 
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_message() {
+export function get_rootContainer_messages() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
-	if (!appState.rootContainer.message) {
+	if (!appState.rootContainer.messages) {
 		return undefined;
 	}
-	return AppUtils.deepCopy(appState.rootContainer.message);
+	return AppUtils.deepCopy(appState.rootContainer.messages);
 }
 
-export function set_rootContainer_message(eventData) {
+export function set_rootContainer_messages(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
-	appState.rootContainer.message = eventData.message;
+	appState.rootContainer.messages = eventData.messages;
 	const newAppState = getAppState();
-	setMessageState(AppUtils.deepCopy(appState.rootContainer.message));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function merge_rootContainer_message(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.message) {
-		appState.rootContainer.message = {};
-	}
-	if (eventData.type !== undefined) {
-		appState.rootContainer.message.type = eventData.type;
-	}
-	if (eventData.text !== undefined) {
-		appState.rootContainer.message.text = eventData.text;
-	}
-	const newAppState = getAppState();
-	setMessageState(AppUtils.deepCopy(appState.rootContainer.message));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_rootContainer_message_type() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.message) {
-		return undefined;
-	}
-	return appState.rootContainer.message.type;
-}
-
-export function set_rootContainer_message_type(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.message) {
-		appState.rootContainer.message = {};
-	}
-	appState.rootContainer.message.type = eventData.type;
-	const newAppState = getAppState();
-	setMessageState(AppUtils.deepCopy(appState.rootContainer.message));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_rootContainer_message_text() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.message) {
-		return undefined;
-	}
-	return appState.rootContainer.message.text;
-}
-
-export function set_rootContainer_message_text(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.message) {
-		appState.rootContainer.message = {};
-	}
-	appState.rootContainer.message.text = eventData.text;
-	const newAppState = getAppState();
-	setMessageState(AppUtils.deepCopy(appState.rootContainer.message));
+	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -699,7 +634,6 @@ export function get_rootContainer_registrationView() {
 }
 
 export function set_rootContainer_registrationView(eventData) {
-	console.log("set_rootContainer_registrationView");
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}

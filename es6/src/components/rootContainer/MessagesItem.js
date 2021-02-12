@@ -5,29 +5,15 @@
 
 
 
-
 import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../gen/components/ReactHelper";
+import AppUtils from "../../app/AppUtils";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["VERSIONERRORDIALOG"]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "display"
-			}, ["DISPLAY"]), 
-			input({
-				id: "display",
-				value: attributes.display, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.display])
-		])
-	]);
+	const text = AppUtils.getMessageText(attributes, attributes.language);
+	return div({class:`toastWrapper ${attributes.visible === false ? "fadeOut": ""}`}, [
+		div({class:`toast ${attributes.type}`}, [text])
+	])
 }
-
 
 
 /******* S.D.G. *******/

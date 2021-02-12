@@ -6,16 +6,16 @@
 
 
 import Action from "../../ace/SynchronousAction";
-import ClearToastCommand from "../../../src/common/commands/ClearToastCommand";
+import DisplayToastCommand from "../../../src/common/commands/DisplayToastCommand";
 
-export default class AbstractClearToastAction extends Action {
+export default class AbstractDisplayToastAction extends Action {
 
-    constructor() {
-        super({}, 'common.ClearToastAction');
+    constructor( message) {
+        super({message}, 'common.DisplayToastAction');
 	}
 		
 	getCommand() {
-		return new ClearToastCommand(this.actionData);
+		return new DisplayToastCommand(this.actionData);
 	}
 
 

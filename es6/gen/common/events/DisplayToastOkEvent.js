@@ -7,9 +7,9 @@
 
 import Event from "../../../gen/ace/Event";
 
-export default class ClearToastOkEvent extends Event {
+export default class DisplayToastOkEvent extends Event {
     constructor(eventData) {
-        super(eventData, 'common.ClearToastOkEvent');
+        super(eventData, 'common.DisplayToastOkEvent');
     }
 }
 

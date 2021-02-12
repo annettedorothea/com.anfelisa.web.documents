@@ -10,9 +10,8 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
-import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
+import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
-import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 
 export default class AbstractResetPasswordCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -32,11 +31,11 @@ export default class AbstractResetPasswordCommand extends AsynchronousCommand {
 		let promises = [];
 	    
 		if (this.commandData.outcomes.includes("ok")) {
-			promises.push(new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish());
+			promises.push(new TriggerAction(new DisplayToastAction(this.commandData.message)).publish());
 			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
 		}
 		if (this.commandData.outcomes.includes("error")) {
-			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish());
+			promises.push(new TriggerAction(new DisplayToastAction(this.commandData.message)).publish());
 			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
 		}
 		return Promise.all(promises);
@@ -51,8 +50,8 @@ export default class AbstractResetPasswordCommand extends AsynchronousCommand {
 	
 			AppUtils.httpPut(`${Utils.settings.rootPath}/users/resetpassword`, this.commandData.uuid, false, payload).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

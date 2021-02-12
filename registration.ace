@@ -23,13 +23,13 @@ RegisterUser ( password )
 	fromAppState ( common.rootContainer.mainView.registrationView.email, common.rootContainer.language, common.rootContainer.mainView.registrationView.username)
 	call com.anfelisa.user.RegisterUser
 	loadingFlag common.rootContainer.spinner 
-	on ok  triggers ( common.DisplayMessage Login)
-	on error triggers (common.DisplayError) 
+	on ok  triggers ( common.DisplayToast Login)
+	on error triggers (common.DisplayToast) 
 
 ConfirmEmail ( username, token )
 	call com.anfelisa.user.ConfirmEmail
 	loadingFlag common.rootContainer.spinner 
-	on ok triggers ( common.DisplayMessage common.Route)
+	on ok triggers ( common.DisplayToast common.Route)
 
 Login ( password  )
 	fromAppState (

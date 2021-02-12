@@ -21,10 +21,10 @@ import RouteChangedBoxCreateEvent from "./events/RouteChangedBoxCreateEvent";
 import RouteOkEvent from "./events/RouteOkEvent";
 import InitialLoginOkEvent from "./events/InitialLoginOkEvent";
 import LogoutOkEvent from "./events/LogoutOkEvent";
-import DisplayErrorOkEvent from "./events/DisplayErrorOkEvent";
-import DisplayErrorAndLogoutOkEvent from "./events/DisplayErrorAndLogoutOkEvent";
-import DisplayMessageOkEvent from "./events/DisplayMessageOkEvent";
-import ClearToastOkEvent from "./events/ClearToastOkEvent";
+import DisplayToastOkEvent from "./events/DisplayToastOkEvent";
+import DisplayToastUnauthorizedEvent from "./events/DisplayToastUnauthorizedEvent";
+import HideToastOkEvent from "./events/HideToastOkEvent";
+import DestroyToastOkEvent from "./events/DestroyToastOkEvent";
 import DisplaySaveBugDialogOkEvent from "./events/DisplaySaveBugDialogOkEvent";
 import DisplayVersionMismatchDialogOkEvent from "./events/DisplayVersionMismatchDialogOkEvent";
 import CancelVersionMismatchDialogOkEvent from "./events/CancelVersionMismatchDialogOkEvent";
@@ -65,14 +65,14 @@ export default class EventFactoryRegistrationCommon {
 			(eventData) => new InitialLoginOkEvent(eventData));
 		ACEController.registerFactory('common.LogoutOkEvent', 
 			(eventData) => new LogoutOkEvent(eventData));
-		ACEController.registerFactory('common.DisplayErrorOkEvent', 
-			(eventData) => new DisplayErrorOkEvent(eventData));
-		ACEController.registerFactory('common.DisplayErrorAndLogoutOkEvent', 
-			(eventData) => new DisplayErrorAndLogoutOkEvent(eventData));
-		ACEController.registerFactory('common.DisplayMessageOkEvent', 
-			(eventData) => new DisplayMessageOkEvent(eventData));
-		ACEController.registerFactory('common.ClearToastOkEvent', 
-			(eventData) => new ClearToastOkEvent(eventData));
+		ACEController.registerFactory('common.DisplayToastOkEvent', 
+			(eventData) => new DisplayToastOkEvent(eventData));
+		ACEController.registerFactory('common.DisplayToastUnauthorizedEvent', 
+			(eventData) => new DisplayToastUnauthorizedEvent(eventData));
+		ACEController.registerFactory('common.HideToastOkEvent', 
+			(eventData) => new HideToastOkEvent(eventData));
+		ACEController.registerFactory('common.DestroyToastOkEvent', 
+			(eventData) => new DestroyToastOkEvent(eventData));
 		ACEController.registerFactory('common.DisplaySaveBugDialogOkEvent', 
 			(eventData) => new DisplaySaveBugDialogOkEvent(eventData));
 		ACEController.registerFactory('common.DisplayVersionMismatchDialogOkEvent', 

@@ -1,4 +1,6 @@
 import AbstractForgotPasswordCommand from "../../../gen/password/commands/AbstractForgotPasswordCommand";
+import AppUtils from "../../app/AppUtils";
+import {Texts} from "../../app/Texts";
 
 export default class ForgotPasswordCommand extends AbstractForgotPasswordCommand {
 
@@ -8,7 +10,7 @@ export default class ForgotPasswordCommand extends AbstractForgotPasswordCommand
 
     handleResponse(resolve) {
         this.commandData.hash = "#";
-        this.commandData.messageKey = "passwordRequestSubmitted";
+        this.commandData.message = AppUtils.createInfoMessage("passwordRequestSubmitted");
     	this.addOkOutcome();
     	resolve();
     }

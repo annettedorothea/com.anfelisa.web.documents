@@ -38,8 +38,8 @@ export default class AbstractInitBoxesForDayCommand extends AsynchronousCommand 
 	
 			AppUtils.httpPut(`${Utils.settings.rootPath}/box/init`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

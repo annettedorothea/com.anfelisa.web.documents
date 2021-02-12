@@ -43,8 +43,8 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
 	
 			AppUtils.httpPut(`${Utils.settings.rootPath}/cards/changeorder`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

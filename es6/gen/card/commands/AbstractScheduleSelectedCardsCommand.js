@@ -50,8 +50,8 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
 	
 			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/schedule`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

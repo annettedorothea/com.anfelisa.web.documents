@@ -10,10 +10,9 @@ import RouteChangedAction from "../../src/common/actions/RouteChangedAction";
 import RouteAction from "../../src/common/actions/RouteAction";
 import InitialLoginAction from "../../src/common/actions/InitialLoginAction";
 import LogoutAction from "../../src/common/actions/LogoutAction";
-import DisplayErrorAction from "../../src/common/actions/DisplayErrorAction";
-import DisplayErrorAndLogoutAction from "../../src/common/actions/DisplayErrorAndLogoutAction";
-import DisplayMessageAction from "../../src/common/actions/DisplayMessageAction";
-import ClearToastAction from "../../src/common/actions/ClearToastAction";
+import DisplayToastAction from "../../src/common/actions/DisplayToastAction";
+import HideToastAction from "../../src/common/actions/HideToastAction";
+import DestroyToastAction from "../../src/common/actions/DestroyToastAction";
 import DisplaySaveBugDialogAction from "../../src/common/actions/DisplaySaveBugDialogAction";
 import DisplayVersionMismatchDialogAction from "../../src/common/actions/DisplayVersionMismatchDialogAction";
 import CancelVersionMismatchDialogAction from "../../src/common/actions/CancelVersionMismatchDialogAction";
@@ -42,20 +41,16 @@ export function logout() {
     new LogoutAction().apply();
 }
 
-export function displayError(error) {
-    new DisplayErrorAction(error).apply();
+export function displayToast(message) {
+    new DisplayToastAction(message).apply();
 }
 
-export function displayErrorAndLogout(error) {
-    new DisplayErrorAndLogoutAction(error).apply();
+export function hideToast(id) {
+    new HideToastAction(id).apply();
 }
 
-export function displayMessage(messageKey) {
-    new DisplayMessageAction(messageKey).apply();
-}
-
-export function clearToast() {
-    new ClearToastAction().apply();
+export function destroyToast(id) {
+    new DestroyToastAction(id).apply();
 }
 
 export function displaySaveBugDialog() {

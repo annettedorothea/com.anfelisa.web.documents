@@ -9,7 +9,7 @@
 import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
-	if (attributes.username) {
+	if (attributes.role) {
 		return div({class: ""}, [
 			div({class: ""}, [attributes.username])
 		])

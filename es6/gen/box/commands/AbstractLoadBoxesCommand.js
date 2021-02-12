@@ -38,8 +38,8 @@ export default class AbstractLoadBoxesCommand extends AsynchronousCommand {
 			AppUtils.httpGet(`${Utils.settings.rootPath}/boxes/my/?todayAtMidnightInUTC=${this.commandData.todayAtMidnightInUTC}`, this.commandData.uuid, true).then((data) => {
 				this.commandData.boxList = data.boxList;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

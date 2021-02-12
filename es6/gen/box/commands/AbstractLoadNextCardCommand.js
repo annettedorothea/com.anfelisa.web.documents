@@ -12,7 +12,7 @@ import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import LoadNextCardOkEvent from "../../../gen/box/events/LoadNextCardOkEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
-import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
+import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 
 export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -36,7 +36,7 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 		}
 		if (this.commandData.outcomes.includes("finished")) {
 			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
-			promises.push(new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish());
+			promises.push(new TriggerAction(new DisplayToastAction(this.commandData.message)).publish());
 		}
 		return Promise.all(promises);
     }
@@ -62,8 +62,8 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 				this.commandData.reverse = data.reverse;
 				this.commandData.categoryName = data.categoryName;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

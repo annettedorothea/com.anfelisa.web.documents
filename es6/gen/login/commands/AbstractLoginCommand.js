@@ -17,6 +17,7 @@ export default class AbstractLoginCommand extends SynchronousCommand {
         super(commandData, "login.LoginCommand");
         this.commandData.outcomes = [];
         this.commandData.username = AppState.get_rootContainer_loginView_username();
+        this.commandData.password = AppState.get_rootContainer_loginView_password();
         this.commandData.saveInLocalStorage = AppState.get_rootContainer_loginView_saveInLocalStorage();
     }
 

@@ -6,11 +6,11 @@
 
 
 import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
-import ClearToastOkEvent from "../../../gen/common/events/ClearToastOkEvent";
+import PasswordChangedOkEvent from "../../../gen/login/events/PasswordChangedOkEvent";
 
-export default class AbstractClearToastCommand extends SynchronousCommand {
+export default class AbstractPasswordChangedCommand extends SynchronousCommand {
     constructor(commandData) {
-        super(commandData, "common.ClearToastCommand");
+        super(commandData, "login.PasswordChangedCommand");
         this.commandData.outcomes = [];
     }
 
@@ -20,7 +20,7 @@ export default class AbstractClearToastCommand extends SynchronousCommand {
 
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
-			new ClearToastOkEvent(this.commandData).publish();
+			new PasswordChangedOkEvent(this.commandData).publish();
 		}
     }
 }

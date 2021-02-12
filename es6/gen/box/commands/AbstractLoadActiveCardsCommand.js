@@ -38,8 +38,8 @@ export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand 
 				this.commandData.cardList = data.cardList;
 				this.commandData.editable = data.editable;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

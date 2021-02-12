@@ -11,7 +11,7 @@ import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import InitialLoginOkEvent from "../../../gen/common/events/InitialLoginOkEvent";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
-import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
+import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractInitialLoginCommand extends AsynchronousCommand {
@@ -35,7 +35,7 @@ export default class AbstractInitialLoginCommand extends AsynchronousCommand {
 			promises.push(new TriggerAction(new RouteChangedAction()).publish());
 		}
 		if (this.commandData.outcomes.includes("unauthorized")) {
-			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish());
+			promises.push(new TriggerAction(new DisplayToastAction(this.commandData.message)).publish());
 			promises.push(new TriggerAction(new LogoutAction()).publish());
 		}
 		return Promise.all(promises);
@@ -47,8 +47,8 @@ export default class AbstractInitialLoginCommand extends AsynchronousCommand {
 			AppUtils.httpGet(`${Utils.settings.rootPath}/user/role`, this.commandData.uuid, true).then((data) => {
 				this.commandData.role = data.role;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

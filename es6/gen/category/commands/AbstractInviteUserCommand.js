@@ -40,8 +40,8 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
 	
 			AppUtils.httpPut(`${Utils.settings.rootPath}/category/invite`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

@@ -431,8 +431,16 @@ table td.priority i {
 }
 
 .toastWrapper {
-    width: 400px;
+    width: 320px;
     display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+.fadeOut {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s ease-in, opacity 1s ease-in;
 }
 
 .toast.error {

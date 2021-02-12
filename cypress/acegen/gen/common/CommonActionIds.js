@@ -15,13 +15,11 @@ export let initialLogin = "common_initialLogin";
 
 export let logout = "common_logout";
 
-export let displayError = "common_displayError";
+export let displayToast = "common_displayToast";
 
-export let displayErrorAndLogout = "common_displayErrorAndLogout";
+export let hideToast = "common_hideToast";
 
-export let displayMessage = "common_displayMessage";
-
-export let clearToast = "common_clearToast";
+export let destroyToast = "common_destroyToast";
 
 export let displaySaveBugDialog = "common_displaySaveBugDialog";
 

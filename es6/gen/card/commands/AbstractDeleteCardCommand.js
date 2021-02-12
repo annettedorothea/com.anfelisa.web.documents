@@ -11,9 +11,7 @@ import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import DeleteCardOkEvent from "../../../gen/card/events/DeleteCardOkEvent";
-import DeleteCardErrorEvent from "../../../gen/card/events/DeleteCardErrorEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
-import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
 
 export default class AbstractDeleteCardCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -25,9 +23,6 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
 	addOkOutcome() {
 		this.commandData.outcomes.push("ok");
 	}
-	addErrorOutcome() {
-		this.commandData.outcomes.push("error");
-	}
 
     publishEvents() {
 		let promises = [];
@@ -35,10 +30,6 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new DeleteCardOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadCardsAction()).publish());
-		}
-		if (this.commandData.outcomes.includes("error")) {
-			promises.push(new DeleteCardErrorEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish());
 		}
 		return Promise.all(promises);
     }
@@ -48,8 +39,8 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
 	
 			AppUtils.httpDelete(`${Utils.settings.rootPath}/card/delete?cardId=${this.commandData.cardId}`, this.commandData.uuid, true).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

@@ -5,14 +5,13 @@
 
 
 
-import Event from "../../../gen/ace/Event";
+import React, {useState} from 'react';
+import { uiElement } from "../../../src/components/rootContainer/MessagesItem";
 
-export default class DisplayErrorOkEvent extends Event {
-    constructor(eventData) {
-        super(eventData, 'common.DisplayErrorOkEvent');
-    }
+
+export const MessagesItemComponent = (props) => {
+	return uiElement({...props});
 }
-
 
 
 

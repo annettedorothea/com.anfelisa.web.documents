@@ -9,7 +9,6 @@ import * as AppState from "../../gen/ace/AppState";
 import {route} from "../../gen/common/ActionFunctions";
 
 export function uiElement(attributes) {
-    console.log(attributes);
     return div({}, [div({}, [
         "container",
         spinner(attributes.spinner),

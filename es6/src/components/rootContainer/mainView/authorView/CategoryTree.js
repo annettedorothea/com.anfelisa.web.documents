@@ -5,14 +5,13 @@
 
 
 
-
 import { div, h1, label, input, table, tbody, ul, li, tr, td, selectedCategory, rootCategory, movedCategory } from "../../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
 	return div({}, [
 		h1({}, ["CATEGORYTREE"]),
-		selectedCategory({ ...attributes.mainView, language: attributes.language }),
-		rootCategory({ ...attributes.mainView, language: attributes.language }),
+		selectedCategory(),
+		rootCategory(),
 		div({class: ""}, [
 			label({
 				class: "",
@@ -99,12 +98,12 @@ export function uiElement(attributes) {
 		]),
 		div({}, [
 			ul({class: ""}, [
-				attributes.usernames.map((item) => li({}, [item]))
+				attributes.usernames ? attributes.usernames.map((item) => li({}, [item])) : []
 			])
 		]),
 		div({}, [
 			ul({class: ""}, [
-				attributes.invitedUsernames.map((item) => li({}, [item]))
+				attributes.invitedUsernames ? attributes.invitedUsernames.map((item) => li({}, [item])) : []
 			])
 		]),
 		div({class: ""}, [
@@ -135,7 +134,7 @@ export function uiElement(attributes) {
 			}), 
 			div({class: ""}, [attributes.dropTargetCategoryId])
 		]),
-		movedCategory({ ...attributes.mainView, language: attributes.language }),
+		movedCategory(),
 		div({class: ""}, [
 			label({
 				class: "",

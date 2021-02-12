@@ -14,7 +14,7 @@ import DeleteUserOkEvent from "../../../gen/profile/events/DeleteUserOkEvent";
 import DeleteUserErrorEvent from "../../../gen/profile/events/DeleteUserErrorEvent";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
-import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
+import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 
 export default class AbstractDeleteUserCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -40,7 +40,7 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
 		if (this.commandData.outcomes.includes("error")) {
 			promises.push(new DeleteUserErrorEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadUserAction()).publish());
-			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish());
+			promises.push(new TriggerAction(new DisplayToastAction(this.commandData.message)).publish());
 		}
 		return Promise.all(promises);
     }
@@ -50,8 +50,8 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
 	
 			AppUtils.httpDelete(`${Utils.settings.rootPath}/user/delete?usernameToBeDeleted=${this.commandData.usernameToBeDeleted}`, this.commandData.uuid, true).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

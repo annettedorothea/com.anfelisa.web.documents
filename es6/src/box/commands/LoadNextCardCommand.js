@@ -1,4 +1,6 @@
 import AbstractLoadNextCardCommand from "../../../gen/box/commands/AbstractLoadNextCardCommand";
+import AppUtils from "../../app/AppUtils";
+import {Texts} from "../../app/Texts";
 
 export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
 
@@ -9,8 +11,8 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
     handleResponse(resolve) {
         if (this.commandData.openTodaysCards === 0) {
             this.addFinishedOutcome();
-            this.commandData.hash = "#dashboard"
-            this.commandData.messageKey = "finished"
+            this.commandData.hash = "#dashboard";
+            this.commandData.message = AppUtils.createInfoMessage("finished");
         } else {
             this.addOkOutcome();
             this.commandData.index = 0;

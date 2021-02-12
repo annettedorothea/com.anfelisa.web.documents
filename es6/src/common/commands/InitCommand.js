@@ -3,6 +3,7 @@ import AbstractInitCommand from "../../../gen/common/commands/AbstractInitComman
 export default class InitCommand extends AbstractInitCommand {
     execute() {
         this.commandData.language = "de";
+        this.commandData.messages = [];
         if (this.commandData.username && this.commandData.password) {
             this.commandData.loggedInUser = {
                 username: this.commandData.username,

@@ -39,8 +39,8 @@ export default class AbstractLoadUserCommand extends AsynchronousCommand {
 				this.commandData.username = data.username;
 				this.commandData.userId = data.userId;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

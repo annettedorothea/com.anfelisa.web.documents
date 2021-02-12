@@ -7,6 +7,8 @@
 
 export let usernameChanged = "login_usernameChanged";
 
+export let passwordChanged = "login_passwordChanged";
+
 export let toggleSaveInLocalStorage = "login_toggleSaveInLocalStorage";
 
 export let login = "login_login";

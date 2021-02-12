@@ -5,7 +5,6 @@
 
 
 
-
 import { div, h1, label, input, table, tbody, ul, li, tr, td, userListItem } from "../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
@@ -14,7 +13,7 @@ export function uiElement(attributes) {
 		div({}, [
 			table({class: ""}, [
 				tbody({}, [
-					attributes.userList.map((item) => userListItem({ ...item.mainView, language: item.language }))
+					attributes.userList ? attributes.userList.map((item) => userListItem()) : []
 				])
 			])
 		]),

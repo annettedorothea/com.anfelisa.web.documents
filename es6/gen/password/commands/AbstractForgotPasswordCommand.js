@@ -10,7 +10,7 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
-import DisplayMessageAction from "../../../src/common/actions/DisplayMessageAction";
+import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
@@ -29,7 +29,7 @@ export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
 		let promises = [];
 	    
 		if (this.commandData.outcomes.includes("ok")) {
-			promises.push(new TriggerAction(new DisplayMessageAction(this.commandData.messageKey)).publish());
+			promises.push(new TriggerAction(new DisplayToastAction(this.commandData.message)).publish());
 			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
 		}
 		return Promise.all(promises);
@@ -44,8 +44,8 @@ export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
 	
 			AppUtils.httpPost(`${Utils.settings.rootPath}/users/forgot-password`, this.commandData.uuid, false, payload).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

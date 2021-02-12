@@ -38,8 +38,8 @@ export default class AbstractSearchUsernameCommand extends AsynchronousCommand {
 			AppUtils.httpGet(`${Utils.settings.rootPath}/users/search?usernameSearchString=${this.commandData.usernameSearchString}&categoryId=${this.commandData.categoryId}`, this.commandData.uuid, true).then((data) => {
 				this.commandData.usernames = data.usernames;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

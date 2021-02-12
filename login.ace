@@ -6,13 +6,17 @@ ACE
 	UsernameChanged ( username  )
 		on ok (set common.rootContainer.mainView.loginView.username)
 	
+	PasswordChanged ( password  )
+		on ok (set common.rootContainer.mainView.loginView.password)
+	
 	ToggleSaveInLocalStorage 
 		fromAppState ( common.rootContainer.mainView.loginView.saveInLocalStorage )
 		on ok (set common.rootContainer.mainView.loginView.saveInLocalStorage)
 	
-	Login ( password  )
+	Login
 		fromAppState (
 			common.rootContainer.mainView.loginView.username,
+			common.rootContainer.mainView.loginView.password,
 			common.rootContainer.mainView.loginView.saveInLocalStorage
 		)
 		on saveInLocalStorage ( 
@@ -28,7 +32,7 @@ ACE
 	 	call com.anfelisa.user.GetRole
 		loadingFlag common.rootContainer.spinner 
 		on ok (merge common.rootContainer.loggedInUser) triggers ( common.Route )
-		on unauthorized triggers ( common.Logout common.DisplayError)
+		on unauthorized (set common.rootContainer.loggedInUser ) triggers ( common.DisplayToast)
 	
 
 

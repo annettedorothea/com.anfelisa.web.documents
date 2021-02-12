@@ -12,10 +12,10 @@ import {
 	h1,
 	loggedInUser,
 	mainView,
-	message,
+	messagesItem,
 	p,
 	saveBugDialog,
-	spinner,
+	spinner, table, tbody,
 	versionMismatchDialog,
 	versionMismatchErrorDialog
 } from "../../gen/components/ReactHelper";
@@ -24,12 +24,14 @@ import {route} from "../../gen/common/ActionFunctions";
 
 export function uiElement(attributes) {
 	return div({}, [
-		loggedInUser({ ...attributes.mainView, language: attributes.language }),
-		spinner({ ...attributes.mainView, language: attributes.language }),
-		saveBugDialog({ ...attributes.mainView, language: attributes.language }),
-		versionMismatchDialog({ ...attributes.mainView, language: attributes.language }),
-		versionMismatchErrorDialog({ ...attributes.mainView, language: attributes.language }),
-		//message({ ...attributes.mainView, language: attributes.language }),
+		loggedInUser({ language: attributes.language }),
+		spinner({ language: attributes.language }),
+		saveBugDialog({ language: attributes.language }),
+		versionMismatchDialog({ language: attributes.language }),
+		versionMismatchErrorDialog({ language: attributes.language }),
+		div({class:"toastContainer"}, [
+			attributes.messages ? attributes.messages.map((message) => messagesItem({...message, language: attributes.language})) : []
+		]),
 		mainView({ language: attributes.language }),
 		div({class: `footer ${attributes.loggedInUser === undefined ? "fixed" : ""}`}, [
 			div({class: "footerContent"}, [

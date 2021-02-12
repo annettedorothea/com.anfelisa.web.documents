@@ -11,7 +11,7 @@ import { SpinnerComponent } from "./rootContainer/SpinnerComponent";
 import { SaveBugDialogComponent } from "./rootContainer/SaveBugDialogComponent";
 import { VersionMismatchDialogComponent } from "./rootContainer/VersionMismatchDialogComponent";
 import { VersionMismatchErrorDialogComponent } from "./rootContainer/VersionMismatchErrorDialogComponent";
-import { MessageComponent } from "./rootContainer/MessageComponent";
+import { MessagesItemComponent } from "./rootContainer/MessagesItemComponent";
 import { MainViewComponent } from "./rootContainer/MainViewComponent";
 import { LoginViewComponent } from "./rootContainer/mainView/LoginViewComponent";
 import { RegistrationViewComponent } from "./rootContainer/mainView/RegistrationViewComponent";
@@ -169,8 +169,8 @@ export const versionMismatchDialog = (options) => {
 export const versionMismatchErrorDialog = (options) => {
     return <VersionMismatchErrorDialogComponent {...normalize(options)}/>
 }
-export const message = (options) => {
-    return <MessageComponent {...normalize(options)}/>
+export const messagesItem = (options) => {
+    return <MessagesItemComponent {...normalize(options)}/>
 }
 export const mainView = (options) => {
     return <MainViewComponent {...normalize(options)}/>

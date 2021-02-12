@@ -5,11 +5,9 @@
 
 
 
-
 import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
-	console.log("FORGOTPASSWORDVIEW", attributes);
 	return div({}, [
 		h1({}, ["FORGOTPASSWORDVIEW"]),
 		div({class: ""}, [

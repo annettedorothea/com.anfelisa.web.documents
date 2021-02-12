@@ -7,9 +7,9 @@
 
 import Event from "../../../gen/ace/Event";
 
-export default class DisplayErrorAndLogoutOkEvent extends Event {
+export default class PasswordChangedOkEvent extends Event {
     constructor(eventData) {
-        super(eventData, 'common.DisplayErrorAndLogoutOkEvent');
+        super(eventData, 'login.PasswordChangedOkEvent');
     }
 }
 

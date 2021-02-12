@@ -4,9 +4,10 @@
 
 
 import {div, h1, input, label, button, a} from "../../../../gen/components/ReactHelper";
-import {login, toggleSaveInLocalStorage, usernameChanged} from "../../../../gen/login/ActionFunctions";
+import {login, passwordChanged, toggleSaveInLocalStorage, usernameChanged} from "../../../../gen/login/ActionFunctions";
 import {Texts} from "../../../app/Texts";
 import {route} from "../../../../gen/common/ActionFunctions";
+import CryptoJS from "crypto-js";
 
 export function uiElement(attributes) {
 	return div({class: "center form"}, [
@@ -23,7 +24,7 @@ export function uiElement(attributes) {
 			}),
 			a({
 				onClick: () => route("#registration")
-			}, [Texts.login.registration[attributes.language] + "REG"])
+			}, [Texts.login.registration[attributes.language]])
 		]),
 		div({class: "line"}, [
 			label({
@@ -32,7 +33,7 @@ export function uiElement(attributes) {
 			input({
 				id: "password",
 				type: "password",
-				onChange:(e) => console.log(e.target.value)
+				onChange:(e) => passwordChanged(CryptoJS.MD5(e.target.value).toString())
 			}),
 			a({
 				onClick: () => route("#forgotpassword")

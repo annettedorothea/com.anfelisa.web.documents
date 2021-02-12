@@ -13,8 +13,10 @@ export default class EventListenerRegistrationCommon {
 	static init() {
 		ACEController.registerListener('common.InitUserEvent', AppState.set_rootContainer_loggedInUser);
 		ACEController.registerListener('common.InitUserEvent', AppState.set_rootContainer_language);
+		ACEController.registerListener('common.InitUserEvent', AppState.set_rootContainer_messages);
 		ACEController.registerListener('common.InitNoUserEvent', AppState.set_rootContainer_loggedInUser);
 		ACEController.registerListener('common.InitNoUserEvent', AppState.set_rootContainer_language);
+		ACEController.registerListener('common.InitNoUserEvent', AppState.set_rootContainer_messages);
 		ACEController.registerListener('common.RouteChangedLoginEvent', AppState.set_rootContainer_loginView);
 		ACEController.registerListener('common.RouteChangedPrivacyPolicyEvent', AppState.set_rootContainer_privacyPolicyView);
 		ACEController.registerListener('common.RouteChangedRegistrationEvent', AppState.set_rootContainer_registrationView);
@@ -32,10 +34,10 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.LogoutOkEvent', AppState.set_rootContainer_loggedInUser);
 		ACEController.registerListener('common.LogoutOkEvent', AppState.set_rootContainer_username);
 		ACEController.registerListener('common.LogoutOkEvent', AppState.set_rootContainer_password);
-		ACEController.registerListener('common.DisplayErrorOkEvent', AppState.set_rootContainer_message);
-		ACEController.registerListener('common.DisplayErrorAndLogoutOkEvent', AppState.set_rootContainer_message);
-		ACEController.registerListener('common.DisplayMessageOkEvent', AppState.set_rootContainer_message);
-		ACEController.registerListener('common.ClearToastOkEvent', AppState.set_rootContainer_message);
+		ACEController.registerListener('common.DisplayToastOkEvent', AppState.set_rootContainer_messages);
+		ACEController.registerListener('common.DisplayToastUnauthorizedEvent', AppState.set_rootContainer_messages);
+		ACEController.registerListener('common.HideToastOkEvent', AppState.set_rootContainer_messages);
+		ACEController.registerListener('common.DestroyToastOkEvent', AppState.set_rootContainer_messages);
 		ACEController.registerListener('common.DisplaySaveBugDialogOkEvent', AppState.set_rootContainer_saveBugDialog_display);
 		ACEController.registerListener('common.DisplayVersionMismatchDialogOkEvent', AppState.set_rootContainer_versionMismatchDialog_display);
 		ACEController.registerListener('common.CancelVersionMismatchDialogOkEvent', AppState.set_rootContainer_versionMismatchDialog_display);

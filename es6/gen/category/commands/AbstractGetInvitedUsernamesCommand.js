@@ -37,8 +37,8 @@ export default class AbstractGetInvitedUsernamesCommand extends AsynchronousComm
 			AppUtils.httpGet(`${Utils.settings.rootPath}/category/invited-usernames?categoryId=${this.commandData.categoryId}`, this.commandData.uuid, true).then((data) => {
 				this.commandData.invitedUsernames = data.invitedUsernames;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

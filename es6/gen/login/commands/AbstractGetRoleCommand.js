@@ -10,9 +10,9 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import GetRoleOkEvent from "../../../gen/login/events/GetRoleOkEvent";
+import GetRoleUnauthorizedEvent from "../../../gen/login/events/GetRoleUnauthorizedEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
-import LogoutAction from "../../../src/common/actions/LogoutAction";
-import DisplayErrorAction from "../../../src/common/actions/DisplayErrorAction";
+import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 
 export default class AbstractGetRoleCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -29,14 +29,14 @@ export default class AbstractGetRoleCommand extends AsynchronousCommand {
 
     publishEvents() {
 		let promises = [];
-	    
+
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new GetRoleOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
 		}
 		if (this.commandData.outcomes.includes("unauthorized")) {
-			promises.push(new TriggerAction(new LogoutAction()).publish());
-			promises.push(new TriggerAction(new DisplayErrorAction(this.commandData.error)).publish());
+			promises.push(new GetRoleUnauthorizedEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new DisplayToastAction(this.commandData.message)).publish());
 		}
 		return Promise.all(promises);
     }
@@ -47,8 +47,8 @@ export default class AbstractGetRoleCommand extends AsynchronousCommand {
 			AppUtils.httpGet(`${Utils.settings.rootPath}/user/role`, this.commandData.uuid, true).then((data) => {
 				this.commandData.role = data.role;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

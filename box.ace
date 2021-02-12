@@ -84,7 +84,7 @@ ACE
 		on error (
 			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
 			set common.rootContainer.mainView.dashboardView.deleteBox.confirmDelete
-		) triggers (common.DisplayError)
+		) triggers (common.DisplayToast)
 	
 	LoadNextCard
 		fromAppState (common.rootContainer.mainView.queryCardView.boxId)
@@ -95,7 +95,7 @@ ACE
 		)
 		on finished triggers (
 			common.Route 
-			common.DisplayMessage
+			common.DisplayToast
 		)
 	
 	DisplayWanted ( wantedItemsLength )

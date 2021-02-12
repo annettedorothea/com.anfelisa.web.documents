@@ -48,8 +48,8 @@ export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
 				this.commandData.allCards = data.allCards;
 				this.commandData.allActiveCards = data.allActiveCards;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

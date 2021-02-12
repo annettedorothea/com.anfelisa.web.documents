@@ -11,7 +11,6 @@ import LoadCardsNoCategorySelectedEvent from "./events/LoadCardsNoCategorySelect
 import CreateCardOkEvent from "./events/CreateCardOkEvent";
 import UpdateCardOkEvent from "./events/UpdateCardOkEvent";
 import DeleteCardOkEvent from "./events/DeleteCardOkEvent";
-import DeleteCardErrorEvent from "./events/DeleteCardErrorEvent";
 import GivenOfNewCardChangedOkEvent from "./events/GivenOfNewCardChangedOkEvent";
 import WantedOfNewCardChangedOkEvent from "./events/WantedOfNewCardChangedOkEvent";
 import CancelNewCardOkEvent from "./events/CancelNewCardOkEvent";
@@ -52,8 +51,6 @@ export default class EventFactoryRegistrationCard {
 			(eventData) => new UpdateCardOkEvent(eventData));
 		ACEController.registerFactory('card.DeleteCardOkEvent', 
 			(eventData) => new DeleteCardOkEvent(eventData));
-		ACEController.registerFactory('card.DeleteCardErrorEvent', 
-			(eventData) => new DeleteCardErrorEvent(eventData));
 		ACEController.registerFactory('card.GivenOfNewCardChangedOkEvent', 
 			(eventData) => new GivenOfNewCardChangedOkEvent(eventData));
 		ACEController.registerFactory('card.WantedOfNewCardChangedOkEvent', 

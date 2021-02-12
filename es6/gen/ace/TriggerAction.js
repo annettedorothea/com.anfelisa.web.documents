@@ -19,6 +19,13 @@ export default class TriggerAction extends Event {
 	    this.notifyListeners();
 	}
 	
+	publishWithDelay(delayInMillis) {
+    	setTimeout(() => {
+			ACEController.addItemToTimeLine({event: this});
+			this.notifyListeners();
+		}, delayInMillis);
+	}
+
 	replay() {
 	}
 	

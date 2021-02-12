@@ -42,8 +42,8 @@ export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCom
 	
 			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/sort-out`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

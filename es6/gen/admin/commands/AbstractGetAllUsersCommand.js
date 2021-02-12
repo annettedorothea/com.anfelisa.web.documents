@@ -35,8 +35,8 @@ export default class AbstractGetAllUsersCommand extends AsynchronousCommand {
 			AppUtils.httpGet(`${Utils.settings.rootPath}/users/all`, this.commandData.uuid, true).then((data) => {
 				this.commandData.userList = data.userList;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

@@ -3,12 +3,13 @@
  ********************************************************************************/
 
 
+
+
 import React, {useState} from 'react';
-import {uiElement} from "../../../src/components/rootContainer/MainView";
+import { uiElement } from "../../../src/components/rootContainer/MainView";
 
 export const setMainViewState = (newState) => {
     if (functions.setState) {
-        console.log("setMainViewState", newState);
         functions.setState(newState);
     }
 }
@@ -18,10 +19,9 @@ let functions = {};
 export const MainViewComponent = (props) => {
     const [state, setState] = useState();
     functions.setState = setState;
-    console.log("MainViewComponent props", props);
-    console.log("MainViewComponent state", state);
-    return uiElement({...state, ...props});
+    return uiElement({...props, ...state});
 }
+
 
 
 /******* S.D.G. *******/

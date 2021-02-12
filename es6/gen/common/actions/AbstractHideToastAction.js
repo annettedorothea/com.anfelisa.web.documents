@@ -6,16 +6,16 @@
 
 
 import Action from "../../ace/SynchronousAction";
-import DisplayErrorCommand from "../../../src/common/commands/DisplayErrorCommand";
+import HideToastCommand from "../../../src/common/commands/HideToastCommand";
 
-export default class AbstractDisplayErrorAction extends Action {
+export default class AbstractHideToastAction extends Action {
 
-    constructor( error) {
-        super({error}, 'common.DisplayErrorAction');
+    constructor( id) {
+        super({id}, 'common.HideToastAction');
 	}
 		
 	getCommand() {
-		return new DisplayErrorCommand(this.actionData);
+		return new HideToastCommand(this.actionData);
 	}
 
 

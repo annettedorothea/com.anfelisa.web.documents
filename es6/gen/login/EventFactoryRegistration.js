@@ -7,16 +7,20 @@
 
 import ACEController from "../ace/ACEController";
 import UsernameChangedOkEvent from "./events/UsernameChangedOkEvent";
+import PasswordChangedOkEvent from "./events/PasswordChangedOkEvent";
 import ToggleSaveInLocalStorageOkEvent from "./events/ToggleSaveInLocalStorageOkEvent";
 import LoginSaveInLocalStorageEvent from "./events/LoginSaveInLocalStorageEvent";
 import LoginDoNotSaveInLocalStorageEvent from "./events/LoginDoNotSaveInLocalStorageEvent";
 import GetRoleOkEvent from "./events/GetRoleOkEvent";
+import GetRoleUnauthorizedEvent from "./events/GetRoleUnauthorizedEvent";
 
 export default class EventFactoryRegistrationLogin {
 
 	static init() {
 		ACEController.registerFactory('login.UsernameChangedOkEvent', 
 			(eventData) => new UsernameChangedOkEvent(eventData));
+		ACEController.registerFactory('login.PasswordChangedOkEvent', 
+			(eventData) => new PasswordChangedOkEvent(eventData));
 		ACEController.registerFactory('login.ToggleSaveInLocalStorageOkEvent', 
 			(eventData) => new ToggleSaveInLocalStorageOkEvent(eventData));
 		ACEController.registerFactory('login.LoginSaveInLocalStorageEvent', 
@@ -25,6 +29,8 @@ export default class EventFactoryRegistrationLogin {
 			(eventData) => new LoginDoNotSaveInLocalStorageEvent(eventData));
 		ACEController.registerFactory('login.GetRoleOkEvent', 
 			(eventData) => new GetRoleOkEvent(eventData));
+		ACEController.registerFactory('login.GetRoleUnauthorizedEvent', 
+			(eventData) => new GetRoleUnauthorizedEvent(eventData));
 	}
 
 }

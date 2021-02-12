@@ -14,14 +14,6 @@ export default class DeleteCardCommand extends AbstractDeleteCardCommand {
         };
     	resolve();
     }
-    handleError(resolve) {
-        this.addErrorOutcome();
-        this.commandData.deleteCard = {
-            confirmDelete: false,
-            cardId: ""
-        };
-        resolve();
-    }
 }
 
 /*       S.D.G.       */

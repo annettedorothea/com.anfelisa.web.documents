@@ -6,6 +6,7 @@
 
 
 import UsernameChangedAction from "../../src/login/actions/UsernameChangedAction";
+import PasswordChangedAction from "../../src/login/actions/PasswordChangedAction";
 import ToggleSaveInLocalStorageAction from "../../src/login/actions/ToggleSaveInLocalStorageAction";
 import LoginAction from "../../src/login/actions/LoginAction";
 import GetRoleAction from "../../src/login/actions/GetRoleAction";
@@ -14,12 +15,16 @@ export function usernameChanged(username) {
     new UsernameChangedAction(username).apply();
 }
 
+export function passwordChanged(password) {
+    new PasswordChangedAction(password).apply();
+}
+
 export function toggleSaveInLocalStorage() {
     new ToggleSaveInLocalStorageAction().apply();
 }
 
-export function login(password) {
-    new LoginAction(password).apply();
+export function login() {
+    new LoginAction().apply();
 }
 
 export function getRole() {

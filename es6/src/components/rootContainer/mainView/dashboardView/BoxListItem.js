@@ -5,7 +5,6 @@
 
 
 
-
 import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
@@ -152,7 +151,7 @@ export function uiElement(attributes) {
 		]),
 		td({}, [
 			ul({class: ""}, [
-				attributes.countsPerDayNextWeek.map((item) => li({}, [item]))
+				attributes.countsPerDayNextWeek ? attributes.countsPerDayNextWeek.map((item) => li({}, [item])) : []
 			])
 		]),
 		td({class: ""}, [

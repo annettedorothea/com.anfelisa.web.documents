@@ -15,14 +15,13 @@
  */
 
 
-
-
 import AbstractHideSaveBugDialogCommand from "../../../gen/common/commands/AbstractHideSaveBugDialogCommand";
+import AppUtils from "../../app/AppUtils";
 
 export default class HideSaveBugDialogCommand extends AbstractHideSaveBugDialogCommand {
     execute() {
         this.commandData.display = false;
-        this.commandData.messageKey = "thankYou";
+        this.commandData.messageKey = AppUtils.createInfoMessage("thankYou");
     	this.addOkOutcome();
     }
 }

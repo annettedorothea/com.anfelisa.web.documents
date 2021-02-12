@@ -61,8 +61,8 @@ export default class AbstractTranslateCommand extends AsynchronousCommand {
 			AppUtils.httpGet(`${Utils.settings.rootPath}/card/translation?sourceValue=${this.commandData.sourceValue}&sourceLanguage=${this.commandData.sourceLanguage}&targetLanguage=${this.commandData.targetLanguage}`, this.commandData.uuid, true).then((data) => {
 				this.commandData.targetValue = data.targetValue;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

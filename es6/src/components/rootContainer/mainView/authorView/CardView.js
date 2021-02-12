@@ -5,7 +5,6 @@
 
 
 
-
 import { div, h1, label, input, table, tbody, ul, li, tr, td, cardListItem, editedCard, newCard, deleteCard } from "../../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
@@ -14,7 +13,7 @@ export function uiElement(attributes) {
 		div({}, [
 			table({class: ""}, [
 				tbody({}, [
-					attributes.cardList.map((item) => cardListItem({ ...item.mainView, language: item.language }))
+					attributes.cardList ? attributes.cardList.map((item) => cardListItem()) : []
 				])
 			])
 		]),
@@ -46,14 +45,14 @@ export function uiElement(attributes) {
 			}), 
 			div({class: ""}, [attributes.filter])
 		]),
-		editedCard({ ...attributes.mainView, language: attributes.language }),
-		newCard({ ...attributes.mainView, language: attributes.language }),
+		editedCard(),
+		newCard(),
 		div({}, [
 			ul({class: ""}, [
-				attributes.cardDuplicates.map((item) => li({}, [item]))
+				attributes.cardDuplicates ? attributes.cardDuplicates.map((item) => li({}, [item])) : []
 			])
 		]),
-		deleteCard({ ...attributes.mainView, language: attributes.language }),
+		deleteCard(),
 		div({class: ""}, [
 			label({
 				class: "",
@@ -70,12 +69,12 @@ export function uiElement(attributes) {
 		]),
 		div({}, [
 			ul({class: ""}, [
-				attributes.selectedCardIds.map((item) => li({}, [item]))
+				attributes.selectedCardIds ? attributes.selectedCardIds.map((item) => li({}, [item])) : []
 			])
 		]),
 		div({}, [
 			ul({class: ""}, [
-				attributes.movedCardIds.map((item) => li({}, [item]))
+				attributes.movedCardIds ? attributes.movedCardIds.map((item) => li({}, [item])) : []
 			])
 		]),
 		div({class: ""}, [

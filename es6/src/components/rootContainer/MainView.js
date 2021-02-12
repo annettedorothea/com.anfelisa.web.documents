@@ -9,40 +9,40 @@ import {  privacyPolicyView, loginView, registrationView, forgotPasswordView, re
 
 export function uiElement(attributes) {
 	if (attributes.isPrivacyPolicyView === true) {
-		return privacyPolicyView(attributes);
+		return privacyPolicyView({ language: attributes.language });
 	}
 	if (attributes.isLoginView === true) {
-		return loginView(attributes);
+		return loginView({ language: attributes.language });
 	}
 	if (attributes.isRegistrationView === true) {
-		return registrationView(attributes);
+		return registrationView({ language: attributes.language });
 	}
 	if (attributes.isForgotPasswordView === true) {
-		return forgotPasswordView(attributes);
+		return forgotPasswordView({ language: attributes.language });
 	}
 	if (attributes.isResetPasswordView === true) {
-		return resetPasswordView(attributes);
+		return resetPasswordView({ language: attributes.language });
 	}
 	if (attributes.isDashboardView === true) {
-		return dashboardView(attributes);
+		return dashboardView({ language: attributes.language });
 	}
 	if (attributes.isBoxSettingsView === true) {
-		return boxSettingsView(attributes);
+		return boxSettingsView({ language: attributes.language });
 	}
 	if (attributes.isAllActiveCardsView === true) {
-		return allActiveCardsView(attributes);
+		return allActiveCardsView({ language: attributes.language });
 	}
 	if (attributes.isProfileView === true) {
-		return profileView(attributes);
+		return profileView({ language: attributes.language });
 	}
 	if (attributes.isUserListView === true) {
-		return userListView(attributes);
+		return userListView({ language: attributes.language });
 	}
 	if (attributes.isQueryCardView === true) {
-		return queryCardView(attributes);
+		return queryCardView({ language: attributes.language });
 	}
 	if (attributes.isAuthorView === true) {
-		return authorView(attributes);
+		return authorView({ language: attributes.language });
 	}
 	return null;
 }

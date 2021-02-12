@@ -45,8 +45,8 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
 				this.commandData.reverseBoxExists = data.reverseBoxExists;
 				this.commandData.boxId = data.boxId;
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

@@ -41,8 +41,8 @@ export default class AbstractScoreReinforceCardCommand extends AsynchronousComma
 	
 			AppUtils.httpPost(`${Utils.settings.rootPath}/card/score-reinforce`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

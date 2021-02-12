@@ -1,4 +1,6 @@
 import AbstractConfirmEmailCommand from "../../../gen/registration/commands/AbstractConfirmEmailCommand";
+import AppUtils from "../../app/AppUtils";
+import {Texts} from "../../app/Texts";
 
 export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
 
@@ -7,7 +9,7 @@ export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
     }
     handleResponse(resolve) {
         this.commandData.hash = "#";
-        this.commandData.messageKey = "emailConfirmed";
+        this.commandData.message = AppUtils.createInfoMessage("emailConfirmed");
         this.addOkOutcome();
         resolve();
     }

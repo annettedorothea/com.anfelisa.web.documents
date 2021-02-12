@@ -40,8 +40,8 @@ export default class AbstractCreateReverseBoxCommand extends AsynchronousCommand
 	
 			AppUtils.httpPost(`${Utils.settings.rootPath}/box/create-reverse`, this.commandData.uuid, true, payload).then(() => {
 				this.handleResponse(resolve, reject);
-			}, (error) => {
-				this.commandData.error = error;
+			}, (message) => {
+				this.commandData.message = message;
 				this.handleError(resolve, reject);
 			});
 	    });

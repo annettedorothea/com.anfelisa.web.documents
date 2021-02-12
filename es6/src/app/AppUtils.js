@@ -2,8 +2,7 @@ import CryptoJS from "crypto-js";
 import * as AppState from "../../gen/ace/AppState";
 import Utils from "../../gen/ace/Utils";
 import {
-    displayError,
-    displayErrorAndLogout,
+    displayToast,
     displaySaveBugDialog,
     displayVersionMismatchDialog,
     displayVersionMismatchErrorDialog,
@@ -80,7 +79,6 @@ export default class AppUtils {
             window.scrollTo(0, 0);
         };
         Utils.loadSettings().then(() => {
-            console.log("settings loaded", Utils.settings);
             init(location.hash, localStorage.getItem("username"), localStorage.getItem("password"));
         });
         setInterval(() => {
@@ -90,7 +88,7 @@ export default class AppUtils {
                     displayVersionMismatchDialog();
                 }
             });
-        }, 60*1000);
+        }, 60 * 1000);
     }
 
     static loadActualClientVersion() {
@@ -153,11 +151,7 @@ export default class AppUtils {
             fetch(request).then(function (response) {
                 response.text().then((text) => {
                     if (response.status >= 300) {
-                        const error = {
-                            code: response.status,
-                            text: response.statusText,
-                            key: text
-                        };
+                        const error = AppUtils.createError(text, response.statusText, response.status);
                         reject(error);
                     } else {
                         let data = {};
@@ -168,11 +162,7 @@ export default class AppUtils {
                     }
                 });
             }).catch(function (error) {
-                const status = {
-                    code: error.name,
-                    text: error.message
-                };
-                reject(status);
+                reject(AppUtils.createError(error, error));
             });
         });
     }
@@ -220,32 +210,57 @@ export default class AppUtils {
             if (actualClientVersion !== currentVersion) {
                 displayVersionMismatchErrorDialog();
             } else {
-                try {
-                    if (typeof error !== "object") {
-                        error = {
-                            errorKey: error
-                        };
-                        displayError(error)
-                    } else {
-                        if (error.code === 401) {
-                            error.errorKey = "unauthorized";
-                            displayErrorAndLogout(error);
-                        } else if (error.code === 400) {
-                            displayError(error)
-                        } else {
-                            error = {
-                                errorKey: error.text
-                            };
-                            // TODO wieder aufnehmen!
-                            //displayError(error)
-                        }
-                    }
-                } catch (e) {
-                    console.error(e);
+                if (typeof error !== "object") {
+                    displayToast(AppUtils.createError("unknownError", error ));
+                } else {
+                    displayToast(error);
                 }
                 displaySaveBugDialog();
             }
         });
+    }
+
+    static createInfoMessage(textKey) {
+        return {
+            textKey,
+            type: "info"
+        }
+    }
+
+    static createError(textKey, text, code) {
+        return {
+            code,
+            text,
+            textKey: code && code === 401 ? "loginFailed" : textKey,
+            type: "error"
+        }
+    }
+
+    static isUnauthorized(message) {
+        return (message && message.code && message.code === 401 );
+    }
+
+    static getMessageText(message, language) {
+        if (message && language) {
+            if (message.textKey && Texts.messages[message.textKey] && Texts.messages[message.textKey][language]) {
+                return Texts.messages[message.textKey][language];
+            }
+            if (message.type === "error" && Texts.messages.unknownError && Texts.messages.unknownError[language]) {
+                if (message.text && typeof message.text !== "object") {
+                    return Texts.messages.unknownError[language].replace("{0}", message.text);
+                }
+                if (message.code && typeof message.code !== "object") {
+                    return Texts.messages.unknownError[language].replace("{0}", message.code);
+                }
+                if (message.textKey && typeof message.textKey !== "object") {
+                    return Texts.messages.unknownError[language].replace("{0}", message.textKey);
+                }
+            }
+        }
+        if (language) {
+            return Texts.messages.unknown[language];
+        }
+        return "unknown error";
     }
 
     static deepCopy(object) {
@@ -257,6 +272,7 @@ export default class AppUtils {
             localStorage.setItem("appState", JSON.stringify(appState));
         }
     }
+
     static renderNewState(appState) {
     }
 }

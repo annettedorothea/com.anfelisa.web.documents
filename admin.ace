@@ -24,7 +24,7 @@ ACE
 		on error (
 			set common.rootContainer.mainView.userListView.usernameToBeDeleted 
 			set common.rootContainer.mainView.userListView.showDeleteUserDialog
-		) triggers (common.DisplayError)
+		) triggers (common.DisplayToast)
 	
 	DeleteUserClick ( usernameToBeDeleted )
 		on ok (
