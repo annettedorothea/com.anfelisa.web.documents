@@ -10,8 +10,7 @@ export * from "../../gen/ace/Timeline";
 export {dumpAppState} from "./AppUtils";
 
 AppUtils.createInitialAppState();
-console.log(AppState.getAppState());
-const state = AppState.getAppState();
+
 export const container = ReactDOM.render(
     <RootContainerComponent />,
     document.getElementById('root')

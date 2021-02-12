@@ -1,0 +1,11 @@
+HttpClient commoninit
+
+
+scenarios NoUser 
+	WHEN common.Init()
+	THEN expectedState 
+		loggedInUser common.rootContainer.loggedInUser shouldBe null
+		language common.rootContainer.language shouldBe "de"
+		messages common.rootContainer.messages shouldBe []
+	
+		

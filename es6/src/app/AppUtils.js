@@ -260,7 +260,7 @@ export default class AppUtils {
         if (language) {
             return Texts.messages.unknown[language];
         }
-        return "unknown error";
+        return "unknown message";
     }
 
     static deepCopy(object) {
@@ -268,6 +268,8 @@ export default class AppUtils {
     }
 
     static stateUpdated(appState) {
+        console.log("stateUpdated appState", appState);
+        console.log("stateUpdated Utils.settings.mode", Utils.settings.mode);
         if (Utils.settings && Utils.settings.mode === "dev") {
             localStorage.setItem("appState", JSON.stringify(appState));
         }

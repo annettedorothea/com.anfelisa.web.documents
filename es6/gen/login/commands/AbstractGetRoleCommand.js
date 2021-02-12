@@ -29,7 +29,7 @@ export default class AbstractGetRoleCommand extends AsynchronousCommand {
 
     publishEvents() {
 		let promises = [];
-
+	    
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new GetRoleOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new RouteAction(this.commandData.hash)).publish());
