@@ -89,7 +89,7 @@ EmailChangedInvalid
 		verifications
 			registerDisabled
 
-			
+
 Register
 	GIVEN EmailChanged
 	WHEN registration.RegisterUser

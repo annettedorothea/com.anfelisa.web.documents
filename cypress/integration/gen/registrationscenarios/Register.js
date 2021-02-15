@@ -57,7 +57,7 @@ nonDeterministicValue = {
 	uuid: `uuid-${testId}`
 };
 nonDeterministicValues.push(nonDeterministicValue);
-AppUtils.httpPut(`/api/test/non-deterministic/value?uuid=uuid-${testId}&key=token&value=`${testId}-TOKEN``);
+AppUtils.httpPut(`/api/test/non-deterministic/value?uuid=uuid-${testId}&key=token&value=${testId}-TOKEN`);
 localStorage.setItem('nonDeterministicValues', JSON.stringify(nonDeterministicValues));
 
 ScenarioUtils.getCypressFor(RegistrationActionIds.registerUser, ).should(() => {
