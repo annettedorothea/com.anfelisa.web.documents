@@ -6,7 +6,7 @@ ACE
 	UsernameChanged ( username  )
 		on ok (set common.rootContainer.mainView.loginView.username)
 	
-	PasswordChanged ( password  )
+	PasswordChanged ( password )
 		on ok (set common.rootContainer.mainView.loginView.password)
 	
 	ToggleSaveInLocalStorage 

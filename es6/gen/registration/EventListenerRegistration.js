@@ -15,7 +15,10 @@ export default class EventListenerRegistrationRegistration {
 		ACEController.registerListener('registration.UsernameChangedOkEvent', AppState.set_rootContainer_registrationView_username);
 		ACEController.registerListener('registration.EmailChangedOkEvent', AppState.set_rootContainer_registrationView_emailInvalid);
 		ACEController.registerListener('registration.EmailChangedOkEvent', AppState.set_rootContainer_registrationView_email);
+		ACEController.registerListener('registration.PasswordChangedOkEvent', AppState.set_rootContainer_registrationView_password);
 		ACEController.registerListener('registration.PasswordChangedOkEvent', AppState.set_rootContainer_registrationView_passwordMismatch);
+		ACEController.registerListener('registration.PasswordRepetitionChangedOkEvent', AppState.set_rootContainer_registrationView_passwordRepetition);
+		ACEController.registerListener('registration.PasswordRepetitionChangedOkEvent', AppState.set_rootContainer_registrationView_passwordMismatch);
 		ACEController.registerListener('registration.LoginOkEvent', AppState.set_rootContainer_loggedInUser);
 		ACEController.registerListener('registration.LoginOkEvent', AppState.set_rootContainer_username);
 		ACEController.registerListener('registration.LoginOkEvent', AppState.set_rootContainer_password);

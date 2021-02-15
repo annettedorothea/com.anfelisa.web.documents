@@ -7,13 +7,13 @@
 
 import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import * as AppState from "../../ace/AppState";
-import PasswordChangedOkEvent from "../../../gen/registration/events/PasswordChangedOkEvent";
+import PasswordRepetitionChangedOkEvent from "../../../gen/registration/events/PasswordRepetitionChangedOkEvent";
 
-export default class AbstractPasswordChangedCommand extends SynchronousCommand {
+export default class AbstractPasswordRepetitionChangedCommand extends SynchronousCommand {
     constructor(commandData) {
-        super(commandData, "registration.PasswordChangedCommand");
+        super(commandData, "registration.PasswordRepetitionChangedCommand");
         this.commandData.outcomes = [];
-        this.commandData.passwordRepetition = AppState.get_rootContainer_registrationView_passwordRepetition();
+        this.commandData.password = AppState.get_rootContainer_registrationView_password();
     }
 
 	addOkOutcome() {
@@ -22,7 +22,7 @@ export default class AbstractPasswordChangedCommand extends SynchronousCommand {
 
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
-			new PasswordChangedOkEvent(this.commandData).publish();
+			new PasswordRepetitionChangedOkEvent(this.commandData).publish();
 		}
     }
 }

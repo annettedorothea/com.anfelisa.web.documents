@@ -668,14 +668,20 @@ export function merge_rootContainer_registrationView(eventData) {
 	if (eventData.username !== undefined) {
 		appState.rootContainer.mainView.username = eventData.username;
 	}
+	if (eventData.password !== undefined) {
+		appState.rootContainer.mainView.password = eventData.password;
+	}
+	if (eventData.passwordRepetition !== undefined) {
+		appState.rootContainer.mainView.passwordRepetition = eventData.passwordRepetition;
+	}
+	if (eventData.passwordMismatch !== undefined) {
+		appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
+	}
 	if (eventData.email !== undefined) {
 		appState.rootContainer.mainView.email = eventData.email;
 	}
 	if (eventData.emailInvalid !== undefined) {
 		appState.rootContainer.mainView.emailInvalid = eventData.emailInvalid;
-	}
-	if (eventData.passwordMismatch !== undefined) {
-		appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
 	}
 	const newAppState = getAppState();
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
@@ -766,6 +772,90 @@ export function set_rootContainer_registrationView_username(eventData) {
 	AppUtils.stateUpdated(newAppState);
 }
 
+export function get_rootContainer_registrationView_password() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.password;
+}
+
+export function set_rootContainer_registrationView_password(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
+			isRegistrationView : true
+		};
+	}
+	appState.rootContainer.mainView.password = eventData.password;
+	const newAppState = getAppState();
+	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_registrationView_passwordRepetition() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.passwordRepetition;
+}
+
+export function set_rootContainer_registrationView_passwordRepetition(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
+			isRegistrationView : true
+		};
+	}
+	appState.rootContainer.mainView.passwordRepetition = eventData.passwordRepetition;
+	const newAppState = getAppState();
+	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_registrationView_passwordMismatch() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isRegistrationView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.passwordMismatch;
+}
+
+export function set_rootContainer_registrationView_passwordMismatch(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
+			isRegistrationView : true
+		};
+	}
+	appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
+	const newAppState = getAppState();
+	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
+	AppUtils.stateUpdated(newAppState);
+}
+
 export function get_rootContainer_registrationView_email() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -817,34 +907,6 @@ export function set_rootContainer_registrationView_emailInvalid(eventData) {
 		};
 	}
 	appState.rootContainer.mainView.emailInvalid = eventData.emailInvalid;
-	const newAppState = getAppState();
-	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_rootContainer_registrationView_passwordMismatch() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isRegistrationView !== true) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.passwordMismatch;
-}
-
-export function set_rootContainer_registrationView_passwordMismatch(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
-		appState.rootContainer.mainView = {
-			isRegistrationView : true
-		};
-	}
-	appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
 	const newAppState = getAppState();
 	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);

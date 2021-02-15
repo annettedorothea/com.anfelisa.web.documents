@@ -135,6 +135,8 @@ ui React_16.8 rootContainer {
 		text
 		id
 		visible
+		code
+		textKey
 	}
 	group mainView {
 		privacyPolicyView {
@@ -148,9 +150,11 @@ ui React_16.8 rootContainer {
 			displayUsernameSpinner
 	        available
 	        username
+			password
+			passwordRepetition
+	        passwordMismatch
 	        email
 	        emailInvalid
-	        passwordMismatch
 		}
 		forgotPasswordView {
 			username

@@ -1,0 +1,131 @@
+HttpClient registrationscenarios
+
+scenarios
+
+RouteToRegistration
+	GIVEN commonscenarios.NoUser
+	WHEN common.Route (hash: "#registration")
+	THEN
+		expectedState 
+			displayUsernameSpinner common.rootContainer.mainView.registrationView.displayUsernameSpinner shouldBe false
+			emailInvalid common.rootContainer.mainView.registrationView.emailInvalid shouldBe false
+			passwordMismatch common.rootContainer.mainView.registrationView.emailInvalid shouldBe false
+			email common.rootContainer.mainView.registrationView.email shouldBe ""
+			username common.rootContainer.mainView.registrationView.username shouldBe ""
+			password common.rootContainer.mainView.registrationView.password shouldBe ""
+			passwordRepetition common.rootContainer.mainView.registrationView.password shouldBe ""
+		verifications
+			registerDisabled
+
+UsernameChanged
+	GIVEN RouteToRegistration
+	WHEN registration.UsernameChanged(username: "username-${testId}")
+	THEN 
+		expectedState 
+			username common.rootContainer.mainView.registrationView.username shouldBe "username-${testId}"
+		verifications
+			registerDisabled
+			
+PasswordChanged
+	GIVEN UsernameChanged
+	WHEN registration.PasswordChanged(password: "pas")
+	THEN 
+		expectedState 
+			password common.rootContainer.mainView.registrationView.password shouldBe "cd0acfe085eeb0f874391fb9b8009bed"
+			passwordMismatch common.rootContainer.mainView.registrationView.passwordMismatch shouldBe true
+		verifications
+			registerDisabled
+
+PasswordRepetitionChangedMismatch
+	GIVEN PasswordChanged
+	WHEN registration.PasswordRepetitionChanged(passwordRepetition: "password")
+	THEN 
+		expectedState 
+			password common.rootContainer.mainView.registrationView.password shouldBe "cd0acfe085eeb0f874391fb9b8009bed"
+			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition shouldBe "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordMismatch common.rootContainer.mainView.registrationView.passwordMismatch shouldBe true
+		verifications
+			registerDisabled
+
+PasswordRepetitionChanged
+	GIVEN PasswordRepetitionChangedMismatch
+	WHEN registration.PasswordRepetitionChanged(passwordRepetition: "pas")
+	THEN 
+		expectedState 
+			password common.rootContainer.mainView.registrationView.password shouldBe "cd0acfe085eeb0f874391fb9b8009bed"
+			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition shouldBe "cd0acfe085eeb0f874391fb9b8009bed"
+			passwordMatch common.rootContainer.mainView.registrationView.passwordMismatch shouldBe false
+		verifications
+			registerDisabled
+
+PasswordChangedMatch
+	GIVEN PasswordRepetitionChangedMismatch
+	WHEN registration.PasswordChanged(password: "password")
+	THEN 
+		expectedState 
+			password common.rootContainer.mainView.registrationView.password shouldBe "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition shouldBe "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordMatch common.rootContainer.mainView.registrationView.passwordMismatch shouldBe false
+		verifications
+			registerDisabled
+			
+EmailChanged
+	GIVEN PasswordChangedMatch
+	WHEN registration.EmailChanged(email: "info@anfelisa.de")
+	THEN 
+		expectedState 
+			email common.rootContainer.mainView.registrationView.email shouldBe "info@anfelisa.de"
+			emailValid common.rootContainer.mainView.registrationView.emailInvalid shouldBe false
+		verifications
+			registerEnabled
+			
+EmailChangedInvalid
+	GIVEN PasswordChangedMatch
+	WHEN registration.EmailChanged(email: "email")
+	THEN 
+		expectedState 
+			email common.rootContainer.mainView.registrationView.email shouldBe "email"
+			emailInvalid common.rootContainer.mainView.registrationView.emailInvalid shouldBe true
+		verifications
+			registerDisabled
+
+			
+Register
+	GIVEN EmailChanged
+	WHEN registration.RegisterUser
+		nonDeterministicValues {
+			uuid "uuid-${testId}"
+			nonDeterministic com.anfelisa.user.ConfirmEmail.token : "${testId}-TOKEN"
+		}
+	THEN 
+		expectedState 
+			userLoggedIn common.rootContainer.loggedInUser shouldBe {
+				password: "5f4dcc3b5aa765d61d8327deb882cf99",
+				role: "STUDENT",
+				username: "username-${testId}"
+			}
+			infoShown common.rootContainer.messages shouldBe [
+				{ 
+					textKey: "confirmEmail",
+					type: "info",
+					visible: true,
+					id: 0
+				}
+			]
+
+
+
+ConfirmEmail
+	GIVEN Register
+	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "${testId}-TOKEN")
+	THEN 
+		expectedState 
+			confirmsEmail common.rootContainer.messages shouldBe [
+				{ 
+					textKey: "confirmEmail",
+					type: "info",
+					visible: true,
+					id: 0
+				}
+			]
+			

@@ -19,6 +19,7 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
         this.commandData.email = AppState.get_rootContainer_registrationView_email();
         this.commandData.language = AppState.get_rootContainer_language();
         this.commandData.username = AppState.get_rootContainer_registrationView_username();
+        this.commandData.password = AppState.get_rootContainer_registrationView_password();
         this.commandData.outcomes = [];
     }
 

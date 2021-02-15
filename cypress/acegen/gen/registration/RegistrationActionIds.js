@@ -13,6 +13,8 @@ export let emailChanged = "registration_emailChanged";
 
 export let passwordChanged = "registration_passwordChanged";
 
+export let passwordRepetitionChanged = "registration_passwordRepetitionChanged";
+
 export let registerUser = "registration_registerUser";
 
 export let confirmEmail = "registration_confirmEmail";

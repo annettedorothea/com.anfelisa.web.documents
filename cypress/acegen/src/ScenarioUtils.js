@@ -3,16 +3,58 @@
  ********************************************************************************/
 
 import * as CommonActionIds from "../gen/common/CommonActionIds";
+import * as LoginActionIds from "../gen/login/LoginActionIds";
+import * as RegistrationActionIds from "../gen/registration/RegistrationActionIds";
+import {Texts} from "../../../es6/src/app/Texts";
 
 
 export function getCypressFor(action, args) {
     if (CommonActionIds.init === action) {
         return cy.visit("http://127.0.0.1:8888/#")
     }
+    if (LoginActionIds.usernameChanged === action) {
+        return cy.get("#username").clear().type(args[0])
+    }
+    if (LoginActionIds.passwordChanged === action) {
+        return cy.get("#password").clear().type(args[0])
+    }
+    if (LoginActionIds.toggleSaveInLocalStorage === action) {
+        return cy.contains(Texts.login.saveInLocalStorage["de"]).click()
+    }
+    if (LoginActionIds.login === action) {
+        return cy.contains(Texts.login.signin["de"]).click()
+    }
+    if (CommonActionIds.route === action) {
+        if (args[0] === "#registration") {
+            return cy.contains(Texts.login.registration["de"]).click()
+        }
+    }
+    if (RegistrationActionIds.usernameChanged === action) {
+        return cy.get("#username").clear().type(args[0])
+    }
+    if (RegistrationActionIds.passwordChanged === action) {
+        return cy.get("#password").clear().type(args[0])
+    }
+    if (RegistrationActionIds.passwordRepetitionChanged === action) {
+        return cy.get("#passwordRepetition").clear().type(args[0])
+    }
+    if (RegistrationActionIds.emailChanged === action) {
+        return cy.get("#email").clear().type(args[0])
+    }
+    if (RegistrationActionIds.registerUser === action) {
+        return cy.contains(Texts.registration.register["de"]).click()
+    }
+    if (RegistrationActionIds.confirmEmail === action) {
+        return cy.visit(`http://127.0.0.1:8888/#confirmemail/${args[0]}/${args[1]}`)
+    }
 }
 
 export function wait(numberOfSyncCalls, numberOfAsyncCalls) {
     return cy.wait(numberOfSyncCalls * 5 + numberOfAsyncCalls * 100);
+}
+
+export function waitInMillis(millis) {
+    return cy.wait(millis);
 }
 
 export function testId() {

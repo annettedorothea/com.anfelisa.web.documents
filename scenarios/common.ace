@@ -1,0 +1,40 @@
+HttpClient commonscenarios
+
+
+
+scenarios 
+
+NoUser 
+	WHEN common.Init
+	THEN expectedState 
+		loggedInUser common.rootContainer.loggedInUser shouldBe null
+		language common.rootContainer.language shouldBe "de"
+		messages common.rootContainer.messages shouldBe []
+		username common.rootContainer.mainView.loginView.username shouldBe ""
+		password common.rootContainer.mainView.loginView.password shouldBe ""
+		saveInLocalStorage common.rootContainer.mainView.loginView.saveInLocalStorage shouldBe false
+	
+
+HideToast
+	GIVEN loginscenarios.LoginUnauthorized 
+	WHEN delayInMillis 5000
+	THEN expectedState 
+		errorHidden common.rootContainer.messages shouldBe [
+				{ 
+					code: 401,
+					text: "Unauthorized",
+					textKey: "loginFailed",
+					type: "error",
+					visible: false,
+					id: 0
+				}
+			]
+
+		
+DestroyToast
+	GIVEN loginscenarios.LoginUnauthorized 
+	WHEN delayInMillis 6200
+	THEN expectedState 
+		errorDestroyed common.rootContainer.messages shouldBe []
+
+		

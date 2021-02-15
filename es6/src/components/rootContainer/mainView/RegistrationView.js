@@ -3,100 +3,103 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../gen/components/ReactHelper";
+import {div, h1, label, input, i, button, table, tbody, ul, li, tr, td} from "../../../../gen/components/ReactHelper";
+import {Texts} from "../../../app/Texts";
+import {
+    usernameChanged,
+    passwordChanged,
+    passwordRepetitionChanged,
+    emailChanged,
+    registerUser
+} from "../../../../gen/registration/ActionFunctions";
+import React from "react";
+import {route} from "../../../../gen/common/ActionFunctions";
+import CryptoJS from "crypto-js";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["REGISTRATIONVIEW"]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "displayUsernameSpinner"
-			}, ["DISPLAYUSERNAMESPINNER"]), 
-			input({
-				id: "displayUsernameSpinner",
-				value: attributes.displayUsernameSpinner, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.displayUsernameSpinner])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "available"
-			}, ["AVAILABLE"]), 
-			input({
-				id: "available",
-				value: attributes.available, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.available])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "username"
-			}, ["USERNAME"]), 
-			input({
-				id: "username",
-				value: attributes.username, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.username])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "email"
-			}, ["EMAIL"]), 
-			input({
-				id: "email",
-				value: attributes.email, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.email])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "emailInvalid"
-			}, ["EMAILINVALID"]), 
-			input({
-				id: "emailInvalid",
-				value: attributes.emailInvalid, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.emailInvalid])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "passwordMismatch"
-			}, ["PASSWORDMISMATCH"]), 
-			input({
-				id: "passwordMismatch",
-				value: attributes.passwordMismatch, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.passwordMismatch])
-		])
-	]);
+    return div({class: "center"}, [
+        div({class: "form"}, [
+            h1({}, [Texts.registration.title[attributes.language]]),
+            div({class: "line"}, [
+                label({htmlFor: "username"}, [Texts.registration.username[attributes.language]]),
+                div({class: "inputContainer"}, [
+                    input(
+                        {
+                            type: "text",
+                            onChange: (e) => usernameChanged(e.target.value),
+                            autoComplete: "new-password",
+                            value: attributes.username,
+                            id: "username"
+                        }
+                    ),
+                    attributes.displayUsernameSpinner === true ? i({class: "fas fa-cog fa-spin inside"}) : null,
+                    attributes.available === true ? i({class: "fas fa-check outside success"}) : null,
+                    attributes.available === false ? i({class: "fas fa-times outside error"}) : null
+                ])
+            ]),
+            div({class: "line"}, [
+                label({htmlFor: "password"}, [Texts.registration.password[attributes.language]]),
+                div({class: "inputContainer"}, [
+                    input(
+                        {
+                            type: "password",
+                            onChange: (e) => passwordChanged(CryptoJS.MD5(e.target.value).toString()),
+                            autoComplete: "new-password",
+                            id: "password"
+                        }
+                    )
+                ])
+            ]),
+            div({class: "line"}, [
+                label({htmlFor: "passwordRepetition"}, [Texts.registration.passwordRepetition[attributes.language]]),
+                div({class: "inputContainer"}, [
+                    input(
+                        {
+                            type: "password",
+                            onChange: (e) => passwordRepetitionChanged(CryptoJS.MD5(e.target.value).toString()),
+                            autoComplete: "new-password",
+                            id: "passwordRepetition"
+                        }
+                    ),
+                    attributes.passwordMismatch === true ? i({class: "fas fa-times outside error"}) : null,
+                ])
+            ]),
+            div({class: "line"}, [
+                label({htmlFor: "email"}, [Texts.registration.email[attributes.language]]),
+                div({class: "inputContainer"}, [
+                    input(
+                        {
+                            type: "text",
+                            onChange: (e) => emailChanged(e.target.value),
+                            autoComplete: "off",
+                            value: attributes.email,
+                            id: "email"
+                        }
+                    ),
+                    attributes.emailInvalid === true && attributes.email.length > 0 ? i({class: "fas fa-times outside error"}) : null,
+                ])
+            ]),
+            div({class: "moreMarginLine hCenter"}, [
+                button({
+                    onClick: () => registerUser(),
+                    disabled:
+                        attributes.usernameAvailable === false ||
+                        attributes.emailInvalid === true ||
+                        attributes.passwordMismatch === true ||
+                        (!attributes.username || attributes.username && attributes.username.length === 0) ||
+                        (!attributes.email || attributes.email && attributes.email.length === 0) ||
+                        (!attributes.password || attributes.password && attributes.password.length === 0)
+                }, [Texts.registration.register[attributes.language]]),
+                button({
+                    onClick: () => route("#")
+                }, [Texts.registration.cancel[attributes.language]])
+            ])
+        ]),
+        div({class: "line"}, [
+            div({class: "small-font"}, [Texts.registration.terms[attributes.language]])
+        ])
+    ]);
 }
-
 
 
 /******* S.D.G. *******/

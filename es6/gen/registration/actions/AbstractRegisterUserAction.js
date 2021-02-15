@@ -11,8 +11,8 @@ import * as AppState from "../../ace/AppState";
 
 export default class AbstractRegisterUserAction extends Action {
 
-    constructor( password) {
-        super({password}, 'registration.RegisterUserAction');
+    constructor() {
+        super({}, 'registration.RegisterUserAction');
 		this.postCall = this.postCall.bind(this);
 	}
 		

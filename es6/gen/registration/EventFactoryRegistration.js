@@ -10,6 +10,7 @@ import CheckUsernameOkEvent from "./events/CheckUsernameOkEvent";
 import UsernameChangedOkEvent from "./events/UsernameChangedOkEvent";
 import EmailChangedOkEvent from "./events/EmailChangedOkEvent";
 import PasswordChangedOkEvent from "./events/PasswordChangedOkEvent";
+import PasswordRepetitionChangedOkEvent from "./events/PasswordRepetitionChangedOkEvent";
 import LoginOkEvent from "./events/LoginOkEvent";
 
 export default class EventFactoryRegistrationRegistration {
@@ -23,6 +24,8 @@ export default class EventFactoryRegistrationRegistration {
 			(eventData) => new EmailChangedOkEvent(eventData));
 		ACEController.registerFactory('registration.PasswordChangedOkEvent', 
 			(eventData) => new PasswordChangedOkEvent(eventData));
+		ACEController.registerFactory('registration.PasswordRepetitionChangedOkEvent', 
+			(eventData) => new PasswordRepetitionChangedOkEvent(eventData));
 		ACEController.registerFactory('registration.LoginOkEvent', 
 			(eventData) => new LoginOkEvent(eventData));
 	}

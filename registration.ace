@@ -16,14 +16,30 @@ UsernameChanged ( username )
 EmailChanged ( email )
 	on ok (set common.rootContainer.mainView.registrationView.emailInvalid set common.rootContainer.mainView.registrationView.email)
 
-PasswordChanged ( password, passwordRepetition  )
-	on ok ( set common.rootContainer.mainView.registrationView.passwordMismatch )
+PasswordChanged ( password  )
+	fromAppState (common.rootContainer.mainView.registrationView.passwordRepetition)
+	on ok ( 
+		set common.rootContainer.mainView.registrationView.password
+		set common.rootContainer.mainView.registrationView.passwordMismatch
+	)
 
-RegisterUser ( password )
-	fromAppState ( common.rootContainer.mainView.registrationView.email, common.rootContainer.language, common.rootContainer.mainView.registrationView.username)
+PasswordRepetitionChanged ( passwordRepetition  )
+	fromAppState (common.rootContainer.mainView.registrationView.password)
+	on ok ( 
+		set common.rootContainer.mainView.registrationView.passwordRepetition
+		set common.rootContainer.mainView.registrationView.passwordMismatch
+	)
+
+RegisterUser
+	fromAppState ( 
+		common.rootContainer.mainView.registrationView.email, 
+		common.rootContainer.language, 
+		common.rootContainer.mainView.registrationView.username,
+		common.rootContainer.mainView.registrationView.password
+	)
 	call com.anfelisa.user.RegisterUser
 	loadingFlag common.rootContainer.spinner 
-	on ok  triggers ( common.DisplayToast Login)
+	on ok triggers ( common.DisplayToast Login)
 	on error triggers (common.DisplayToast) 
 
 ConfirmEmail ( username, token )

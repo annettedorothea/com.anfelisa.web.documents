@@ -1,0 +1,78 @@
+HttpClient loginscenarios
+
+scenarios
+
+
+UsernameChanged
+	GIVEN commonscenarios.NoUser
+	WHEN login.UsernameChanged(username: "username-${testId}")
+	THEN 
+		expectedState 
+			username common.rootContainer.mainView.loginView.username shouldBe "username-${testId}"
+			
+PasswordChanged
+	GIVEN UsernameChanged
+	WHEN login.PasswordChanged(password: "password")
+	THEN 
+		expectedState 
+			password common.rootContainer.mainView.loginView.password shouldBe "5f4dcc3b5aa765d61d8327deb882cf99"
+			
+ToggleSaveInLocalStorage
+	GIVEN PasswordChanged
+	WHEN login.ToggleSaveInLocalStorage()
+	THEN 
+		expectedState 
+			saveInLocalStorageIsTrue common.rootContainer.mainView.loginView.saveInLocalStorage shouldBe true
+			
+ToggleSaveInLocalStorageTwice
+	GIVEN ToggleSaveInLocalStorage
+	WHEN login.ToggleSaveInLocalStorage()
+	THEN 
+		expectedState 
+			saveInLocalStorageIsFalse common.rootContainer.mainView.loginView.saveInLocalStorage shouldBe false
+			
+LoginUnauthorized
+	GIVEN PasswordChanged
+	WHEN login.Login
+	THEN 
+		expectedState 
+			loggedInUserIsNotSet common.rootContainer.loggedInUser shouldBe null
+			usernameInLocalStorateWasNotSet common.rootContainer.username shouldBe undefined
+			passwordInLocalStorateWasNotSet common.rootContainer.password shouldBe undefined
+			errorShown common.rootContainer.messages shouldBe [
+				{ 
+					code: 401,
+					text: "Unauthorized",
+					textKey: "loginFailed",
+					type: "error",
+					visible: true,
+					id: 0
+				}
+			]
+			
+LoginUnauthorizedSecondTime
+	GIVEN LoginUnauthorized
+	WHEN login.Login
+	THEN 
+		expectedState 
+			loggedInUserIsNotSet common.rootContainer.loggedInUser shouldBe null
+			usernameInLocalStorateWasNotSet common.rootContainer.username shouldBe undefined
+			passwordInLocalStorateWasNotSet common.rootContainer.password shouldBe undefined
+			errorShown common.rootContainer.messages shouldBe [
+				{ 
+					code: 401,
+					text: "Unauthorized",
+					textKey: "loginFailed",
+					type: "error",
+					visible: true,
+					id: 0
+				},
+				{ 
+					code: 401,
+					text: "Unauthorized",
+					textKey: "loginFailed",
+					type: "error",
+					visible: true,
+					id: 1
+				}
+			]

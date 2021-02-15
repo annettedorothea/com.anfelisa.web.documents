@@ -68,7 +68,9 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 username: "",
                 email: "",
                 emailInvalid: false,
-                passwordMismatch: false
+                passwordMismatch: false,
+                password: "",
+                passwordRepetition: ""
             };
             this.addRegistrationOutcome();
         } else if (this.commandData.hash === "#forgotpassword" && !this.isUserLoggedIn()) {
