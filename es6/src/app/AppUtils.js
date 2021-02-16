@@ -144,7 +144,6 @@ export default class AppUtils {
             };
             if (data && methodType !== "GET") {
                 options.body = JSON.stringify(data);
-                console.log("options.body", options.body);
             }
             url = AppUtils.addUuidToUrl(url, uuid);
             const request = new Request(url, options);
@@ -177,7 +176,6 @@ export default class AppUtils {
     }
 
     static httpPut(url, uuid, authorize, data) {
-        console.log("httpPut", url);
         return AppUtils.httpRequest("PUT", url, uuid, authorize, data);
     }
 

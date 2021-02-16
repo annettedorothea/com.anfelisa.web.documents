@@ -63,15 +63,12 @@ Logout
 		set rootContainer.username
 		set rootContainer.password
 	) triggers ( Route RouteChanged )
-
+	
 DisplayToast ( message ) 
 	fromAppState( rootContainer.language, rootContainer.messages)
 	on ok ( 
 		set rootContainer.messages
 	) triggers ( delayInMillis 5000 HideToast ) 
-	on unauthorized ( 
-		set rootContainer.messages
-	) triggers ( Logout delayInMillis 5000 HideToast ) 
 
 HideToast (id)
 	fromAppState( rootContainer.messages)

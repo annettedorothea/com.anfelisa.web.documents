@@ -41,6 +41,7 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
 			promises.push(new DeleteUserErrorEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadUserAction()).publish());
 			promises.push(new TriggerAction(new DisplayToastAction(this.commandData.message)).publish());
+			promises.push(new TriggerAction(new LogoutAction()).publish());
 		}
 		return Promise.all(promises);
     }

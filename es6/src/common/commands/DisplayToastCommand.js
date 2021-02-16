@@ -3,8 +3,6 @@
  ********************************************************************************/
 
 
-
-
 import AbstractDisplayToastCommand from "../../../gen/common/commands/AbstractDisplayToastCommand";
 import AppUtils from "../../app/AppUtils";
 
@@ -14,15 +12,9 @@ export default class DisplayToastCommand extends AbstractDisplayToastCommand {
         this.commandData.message.visible = true;
         this.commandData.messages.push(this.commandData.message);
         this.commandData.id = this.commandData.message.id;
-        if (AppUtils.isUnauthorized(this.commandData.message)) {
-            this.addUnauthorizedOutcome();
-        } else {
-            this.addOkOutcome();
-        }
+        this.addOkOutcome();
     }
 }
-
-
 
 
 /******* S.D.G. *******/

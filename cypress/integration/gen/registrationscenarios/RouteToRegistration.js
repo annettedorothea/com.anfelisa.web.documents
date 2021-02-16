@@ -34,7 +34,7 @@ ScenarioUtils.getCypressFor(CommonActionIds.route, [`#registration`]).should(() 
         expect(appState.rootContainer.mainView.username, "username").to.eql(``)
         expect(appState.rootContainer.mainView.password, "password").to.eql(``)
         expect(appState.rootContainer.mainView.password, "passwordRepetition").to.eql(``)
-        Verifications.registerDisabled();
+        Verifications.registerDisabled(testId);
 	})
 })
     })

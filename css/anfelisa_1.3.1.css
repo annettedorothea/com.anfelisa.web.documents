@@ -435,6 +435,7 @@ table td.priority i {
     display: block;
     visibility: visible;
     opacity: 1;
+    cursor: pointer;
 }
 
 .fadeOut {

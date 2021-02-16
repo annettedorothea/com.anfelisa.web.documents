@@ -12,7 +12,7 @@ import * as CommonActionIds from "../../../acegen/gen/common/CommonActionIds";
 
 const testId = ScenarioUtils.testId();
 
-context('ConfirmEmail', () => {
+context('EmailChangedAdmin', () => {
     beforeEach(() => {
     	let nonDeterministicValues;
     	let nonDeterministicValue;
@@ -42,6 +42,26 @@ context('ConfirmEmail', () => {
 		localStorage.setItem('nonDeterministicValues', JSON.stringify(nonDeterministicValues));
 																	ScenarioUtils.getCypressFor(RegistrationActionIds.registerUser, ).should(() => {
 																		ScenarioUtils.wait(2, 1).should(() => {
+																			ScenarioUtils.getCypressFor(CommonActionIds.logout, ).should(() => {
+																				ScenarioUtils.wait(2, 0).should(() => {
+																					ScenarioUtils.getCypressFor(CommonActionIds.route, [`#registration`]).should(() => {
+																						ScenarioUtils.wait(1, 0).should(() => {
+																							ScenarioUtils.getCypressFor(RegistrationActionIds.usernameChanged, [`Admin`]).should(() => {
+																								ScenarioUtils.wait(1, 2).should(() => {
+																									ScenarioUtils.getCypressFor(RegistrationActionIds.passwordChanged, [`password`]).should(() => {
+																										ScenarioUtils.wait(1, 0).should(() => {
+																											ScenarioUtils.getCypressFor(RegistrationActionIds.passwordRepetitionChanged, [`password`]).should(() => {
+																												ScenarioUtils.wait(1, 0).should(() => {
+																												});
+																											});
+																										});
+																									});
+																								});
+																							});
+																						});
+																					});
+																				});
+																			});
 																		});
 																	});
 																});
@@ -60,32 +80,13 @@ context('ConfirmEmail', () => {
 			});
     })
 
-    it('confirmsEmail userLoggedIn ', () => {
+    it('email emailValid ', () => {
 
-ScenarioUtils.getCypressFor(RegistrationActionIds.confirmEmail, [`username-${testId}`,`${testId}-TOKEN`]).should(() => {
-	ScenarioUtils.wait(2, 1).should(() => {
+ScenarioUtils.getCypressFor(RegistrationActionIds.emailChanged, [`info@anfelisa.de`]).should(() => {
+	ScenarioUtils.wait(1, 0).should(() => {
         const appState = JSON.parse(localStorage.getItem('appState'))
-        expect(appState.rootContainer.messages, "confirmsEmail").to.eql([
-        	{ 
-        		textKey : `confirmEmail`,
-        		type : `info`,
-        		visible : true,
-        		id : 0
-        	},
-        	{ 
-        		textKey : `emailConfirmed`,
-        		type : `info`,
-        		visible : true,
-        		id : 1
-        	}
-        ]
-        )
-        expect(appState.rootContainer.loggedInUser, "userLoggedIn").to.eql({ 
-        	password : `5f4dcc3b5aa765d61d8327deb882cf99`,
-        	role : `STUDENT`,
-        	username : `username-${testId}`
-        }
-        )
+        expect(appState.rootContainer.mainView.email, "email").to.eql(`info@anfelisa.de`)
+        expect(appState.rootContainer.mainView.emailInvalid, "emailValid").to.eql(false)
 	})
 })
     })

@@ -112,8 +112,61 @@ Register
 					id: 0
 				}
 			]
+		verifications
+			loginDataWasNotSetInLocalStorage
+
+RouteToRegistrationAfterRegistration
+	GIVEN commonscenarios.Logout
+	WHEN common.Route (hash: "#registration")
+	THEN
+		expectedState 
+			displayUsernameSpinner common.rootContainer.mainView.registrationView.displayUsernameSpinner shouldBe false
+			emailInvalid common.rootContainer.mainView.registrationView.emailInvalid shouldBe false
+			passwordMismatch common.rootContainer.mainView.registrationView.emailInvalid shouldBe false
+			email common.rootContainer.mainView.registrationView.email shouldBe ""
+			username common.rootContainer.mainView.registrationView.username shouldBe ""
+			password common.rootContainer.mainView.registrationView.password shouldBe ""
+			passwordRepetition common.rootContainer.mainView.registrationView.password shouldBe ""
+			
+UsernameChangedAdmin
+	GIVEN RouteToRegistrationAfterRegistration
+	WHEN registration.UsernameChanged(username: "Admin")
+	THEN 
+		expectedState 
+			username common.rootContainer.mainView.registrationView.username shouldBe "Admin"
+
+PasswordChangedAdmin
+	GIVEN UsernameChangedAdmin
+	WHEN registration.PasswordChanged(password: "password")
+	THEN 
+		expectedState 
+			password common.rootContainer.mainView.registrationView.password shouldBe "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordMismatch common.rootContainer.mainView.registrationView.passwordMismatch shouldBe true
+
+PasswordRepetitionChangedAdmin
+	GIVEN PasswordChangedAdmin
+	WHEN registration.PasswordRepetitionChanged(passwordRepetition: "password")
+	THEN 
+		expectedState 
+			password common.rootContainer.mainView.registrationView.password shouldBe "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition shouldBe "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordMismatch common.rootContainer.mainView.registrationView.passwordMismatch shouldBe false
 
 
+EmailChangedAdmin
+	GIVEN PasswordRepetitionChangedAdmin
+	WHEN registration.EmailChanged(email: "info@anfelisa.de")
+	THEN 
+		expectedState 
+			email common.rootContainer.mainView.registrationView.email shouldBe "info@anfelisa.de"
+			emailValid common.rootContainer.mainView.registrationView.emailInvalid shouldBe false
+			
+
+RegisterAdmin
+	GIVEN 
+		EmailChangedAdmin
+	WHEN registration.RegisterUser
+	THEN 
 
 ConfirmEmail
 	GIVEN Register
@@ -126,6 +179,72 @@ ConfirmEmail
 					type: "info",
 					visible: true,
 					id: 0
+				},
+				{ 
+					textKey: "emailConfirmed",
+					type: "info",
+					visible: true,
+					id: 1
 				}
 			]
+			userLoggedIn common.rootContainer.loggedInUser shouldBe {
+				password: "5f4dcc3b5aa765d61d8327deb882cf99",
+				role: "STUDENT",
+				username: "username-${testId}"
+			}
+			
+
+ConfirmEmailTokenDoesNotExist
+	GIVEN Register
+	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "XXX")
+	THEN 
+		expectedState 
+			confirmEmailFails common.rootContainer.messages shouldBe [
+				{ 
+					textKey: "confirmEmail",
+					type: "info",
+					visible: true,
+					id: 0
+				},
+				{ 
+					code: 400,
+					text: "Bad Request",
+					textKey: "tokenDoesNotExist",
+					type: "error",
+					visible: true,
+					id: 1
+				}
+			]
+			
+ConfirmEmailInvalidToken
+	GIVEN RegisterAdmin
+	WHEN registration.ConfirmEmail(username: "Admin", token: "${testId}-TOKEN")
+	THEN 
+		expectedState 
+			confirmEmailFails common.rootContainer.messages shouldBe [
+				{ 
+					textKey: "confirmEmail",
+					type: "info",
+					visible: true,
+					id: 0
+				},
+				{ 
+					code: 400,
+					text: "Bad Request",
+					textKey: "usernameAlreadyTaken",
+					type: "error",
+					visible: true,
+					id: 1
+				},
+				{ 
+					code: 400,
+					text: "Bad Request",
+					textKey: "tokenDoesNotMatch",
+					type: "error",
+					visible: true,
+					id: 2
+				}
+			]
+		
+			
 			

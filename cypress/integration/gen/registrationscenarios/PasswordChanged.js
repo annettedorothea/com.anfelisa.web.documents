@@ -38,7 +38,7 @@ ScenarioUtils.getCypressFor(RegistrationActionIds.passwordChanged, [`pas`]).shou
         const appState = JSON.parse(localStorage.getItem('appState'))
         expect(appState.rootContainer.mainView.password, "password").to.eql(`cd0acfe085eeb0f874391fb9b8009bed`)
         expect(appState.rootContainer.mainView.passwordMismatch, "passwordMismatch").to.eql(true)
-        Verifications.registerDisabled();
+        Verifications.registerDisabled(testId);
 	})
 })
     })

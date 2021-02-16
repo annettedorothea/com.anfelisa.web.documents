@@ -13,6 +13,7 @@ import GetRoleOkEvent from "../../../gen/login/events/GetRoleOkEvent";
 import GetRoleUnauthorizedEvent from "../../../gen/login/events/GetRoleUnauthorizedEvent";
 import RouteAction from "../../../src/common/actions/RouteAction";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
+import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractGetRoleCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -37,6 +38,7 @@ export default class AbstractGetRoleCommand extends AsynchronousCommand {
 		if (this.commandData.outcomes.includes("unauthorized")) {
 			promises.push(new GetRoleUnauthorizedEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new DisplayToastAction(this.commandData.message)).publish());
+			promises.push(new TriggerAction(new LogoutAction()).publish());
 		}
 		return Promise.all(promises);
     }

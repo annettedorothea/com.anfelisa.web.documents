@@ -9,11 +9,10 @@ import * as ScenarioUtils from "../../../acegen/src/ScenarioUtils";
 import AppUtils from "../../../../es6/src/app/AppUtils";
 import * as RegistrationActionIds from "../../../acegen/gen/registration/RegistrationActionIds";
 import * as CommonActionIds from "../../../acegen/gen/common/CommonActionIds";
-import * as Verifications from "../../../acegen/src/registrationscenarios/EmailChangedInvalidVerifications";
 
 const testId = ScenarioUtils.testId();
 
-context('EmailChangedInvalid', () => {
+context('ConfirmEmailTokenDoesNotExist', () => {
     beforeEach(() => {
     	let nonDeterministicValues;
     	let nonDeterministicValue;
@@ -29,6 +28,24 @@ context('EmailChangedInvalid', () => {
 												ScenarioUtils.wait(1, 0).should(() => {
 													ScenarioUtils.getCypressFor(RegistrationActionIds.passwordChanged, [`password`]).should(() => {
 														ScenarioUtils.wait(1, 0).should(() => {
+															ScenarioUtils.getCypressFor(RegistrationActionIds.emailChanged, [`info@anfelisa.de`]).should(() => {
+																ScenarioUtils.wait(1, 0).should(() => {
+															nonDeterministicValues = JSON.parse(localStorage.getItem('nonDeterministicValues'));
+		if (!nonDeterministicValues) {
+			nonDeterministicValues = [];
+		}
+		nonDeterministicValue = {
+			uuid: `uuid-${testId}`
+		};
+		nonDeterministicValues.push(nonDeterministicValue);
+		AppUtils.httpPut(`/api/test/non-deterministic/value?uuid=uuid-${testId}&key=token&value=${testId}-TOKEN`);
+		localStorage.setItem('nonDeterministicValues', JSON.stringify(nonDeterministicValues));
+																	ScenarioUtils.getCypressFor(RegistrationActionIds.registerUser, ).should(() => {
+																		ScenarioUtils.wait(2, 1).should(() => {
+																		});
+																	});
+																});
+															});
 														});
 													});
 												});
@@ -43,14 +60,28 @@ context('EmailChangedInvalid', () => {
 			});
     })
 
-    it('email emailInvalid registerDisabled', () => {
+    it('confirmEmailFails ', () => {
 
-ScenarioUtils.getCypressFor(RegistrationActionIds.emailChanged, [`email`]).should(() => {
-	ScenarioUtils.wait(1, 0).should(() => {
+ScenarioUtils.getCypressFor(RegistrationActionIds.confirmEmail, [`username-${testId}`,`XXX`]).should(() => {
+	ScenarioUtils.wait(2, 1).should(() => {
         const appState = JSON.parse(localStorage.getItem('appState'))
-        expect(appState.rootContainer.mainView.email, "email").to.eql(`email`)
-        expect(appState.rootContainer.mainView.emailInvalid, "emailInvalid").to.eql(true)
-        Verifications.registerDisabled(testId);
+        expect(appState.rootContainer.messages, "confirmEmailFails").to.eql([
+        	{ 
+        		textKey : `confirmEmail`,
+        		type : `info`,
+        		visible : true,
+        		id : 0
+        	},
+        	{ 
+        		code : 400,
+        		text : `Bad Request`,
+        		textKey : `tokenDoesNotExist`,
+        		type : `error`,
+        		visible : true,
+        		id : 1
+        	}
+        ]
+        )
 	})
 })
     })

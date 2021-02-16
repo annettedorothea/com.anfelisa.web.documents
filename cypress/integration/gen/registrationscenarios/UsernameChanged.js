@@ -33,7 +33,7 @@ ScenarioUtils.getCypressFor(RegistrationActionIds.usernameChanged, [`username-${
 	ScenarioUtils.wait(1, 2).should(() => {
         const appState = JSON.parse(localStorage.getItem('appState'))
         expect(appState.rootContainer.mainView.username, "username").to.eql(`username-${testId}`)
-        Verifications.registerDisabled();
+        Verifications.registerDisabled(testId);
 	})
 })
     })

@@ -12,6 +12,15 @@ export function getCypressFor(action, args) {
     if (CommonActionIds.init === action) {
         return cy.visit("http://127.0.0.1:8888/#")
     }
+    if (CommonActionIds.route === action) {
+        if (args[0] === "#registration") {
+            return cy.contains(Texts.login.registration["de"]).click()
+        }
+    }
+    if (CommonActionIds.logout === action) {
+        return cy.contains(Texts.logout.signout["de"]).click()
+    }
+
     if (LoginActionIds.usernameChanged === action) {
         return cy.get("#username").clear().type(args[0])
     }
@@ -24,11 +33,7 @@ export function getCypressFor(action, args) {
     if (LoginActionIds.login === action) {
         return cy.contains(Texts.login.signin["de"]).click()
     }
-    if (CommonActionIds.route === action) {
-        if (args[0] === "#registration") {
-            return cy.contains(Texts.login.registration["de"]).click()
-        }
-    }
+
     if (RegistrationActionIds.usernameChanged === action) {
         return cy.get("#username").clear().type(args[0])
     }

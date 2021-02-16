@@ -13,7 +13,6 @@ NoUser
 		username common.rootContainer.mainView.loginView.username shouldBe ""
 		password common.rootContainer.mainView.loginView.password shouldBe ""
 		saveInLocalStorage common.rootContainer.mainView.loginView.saveInLocalStorage shouldBe false
-	
 
 HideToast
 	GIVEN loginscenarios.LoginUnauthorized 
@@ -29,12 +28,18 @@ HideToast
 					id: 0
 				}
 			]
-
 		
 DestroyToast
 	GIVEN loginscenarios.LoginUnauthorized 
 	WHEN delayInMillis 6200
 	THEN expectedState 
 		errorDestroyed common.rootContainer.messages shouldBe []
+		
+Logout
+	GIVEN registrationscenarios.Register
+	WHEN common.Logout
+	THEN expectedState
+		loggedInUser common.rootContainer.loggedInUser shouldBe null
+		
 
 		

@@ -9,9 +9,7 @@ import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import DisplayToastOkEvent from "../../../gen/common/events/DisplayToastOkEvent";
-import DisplayToastUnauthorizedEvent from "../../../gen/common/events/DisplayToastUnauthorizedEvent";
 import HideToastAction from "../../../src/common/actions/HideToastAction";
-import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractDisplayToastCommand extends SynchronousCommand {
     constructor(commandData) {
@@ -24,18 +22,10 @@ export default class AbstractDisplayToastCommand extends SynchronousCommand {
 	addOkOutcome() {
 		this.commandData.outcomes.push("ok");
 	}
-	addUnauthorizedOutcome() {
-		this.commandData.outcomes.push("unauthorized");
-	}
 
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
 			new DisplayToastOkEvent(this.commandData).publish();
-			new TriggerAction(new HideToastAction(this.commandData.id)).publishWithDelay(5000);
-		}
-		if (this.commandData.outcomes.includes("unauthorized")) {
-			new DisplayToastUnauthorizedEvent(this.commandData).publish();
-			new TriggerAction(new LogoutAction()).publish();
 			new TriggerAction(new HideToastAction(this.commandData.id)).publishWithDelay(5000);
 		}
     }

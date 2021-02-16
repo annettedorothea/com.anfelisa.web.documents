@@ -5,18 +5,13 @@
 
 
 
-import Event from "../../../gen/ace/Event";
-
-export default class DisplayToastUnauthorizedEvent extends Event {
-    constructor(eventData) {
-        super(eventData, 'common.DisplayToastUnauthorizedEvent');
-    }
+export function loginDataWasNotSetInLocalStorage() {
+	expect(localStorage.getItem("username"), "username").to.eql(null);
+	expect(localStorage.getItem("password"), "password").to.eql(null);
 }
 
 
 
-
 /******* S.D.G. *******/
-
 
 

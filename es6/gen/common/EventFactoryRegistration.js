@@ -22,7 +22,6 @@ import RouteOkEvent from "./events/RouteOkEvent";
 import InitialLoginOkEvent from "./events/InitialLoginOkEvent";
 import LogoutOkEvent from "./events/LogoutOkEvent";
 import DisplayToastOkEvent from "./events/DisplayToastOkEvent";
-import DisplayToastUnauthorizedEvent from "./events/DisplayToastUnauthorizedEvent";
 import HideToastOkEvent from "./events/HideToastOkEvent";
 import DestroyToastOkEvent from "./events/DestroyToastOkEvent";
 import DisplaySaveBugDialogOkEvent from "./events/DisplaySaveBugDialogOkEvent";
@@ -67,8 +66,6 @@ export default class EventFactoryRegistrationCommon {
 			(eventData) => new LogoutOkEvent(eventData));
 		ACEController.registerFactory('common.DisplayToastOkEvent', 
 			(eventData) => new DisplayToastOkEvent(eventData));
-		ACEController.registerFactory('common.DisplayToastUnauthorizedEvent', 
-			(eventData) => new DisplayToastUnauthorizedEvent(eventData));
 		ACEController.registerFactory('common.HideToastOkEvent', 
 			(eventData) => new HideToastOkEvent(eventData));
 		ACEController.registerFactory('common.DestroyToastOkEvent', 

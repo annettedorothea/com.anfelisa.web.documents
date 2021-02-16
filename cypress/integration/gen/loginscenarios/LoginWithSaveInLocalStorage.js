@@ -7,12 +7,14 @@
 
 import * as ScenarioUtils from "../../../acegen/src/ScenarioUtils";
 import AppUtils from "../../../../es6/src/app/AppUtils";
-import * as RegistrationActionIds from "../../../acegen/gen/registration/RegistrationActionIds";
+import * as LoginActionIds from "../../../acegen/gen/login/LoginActionIds";
 import * as CommonActionIds from "../../../acegen/gen/common/CommonActionIds";
+import * as RegistrationActionIds from "../../../acegen/gen/registration/RegistrationActionIds";
+import * as Verifications from "../../../acegen/src/loginscenarios/LoginWithSaveInLocalStorageVerifications";
 
 const testId = ScenarioUtils.testId();
 
-context('ConfirmEmail', () => {
+context('LoginWithSaveInLocalStorage', () => {
     beforeEach(() => {
     	let nonDeterministicValues;
     	let nonDeterministicValue;
@@ -42,6 +44,26 @@ context('ConfirmEmail', () => {
 		localStorage.setItem('nonDeterministicValues', JSON.stringify(nonDeterministicValues));
 																	ScenarioUtils.getCypressFor(RegistrationActionIds.registerUser, ).should(() => {
 																		ScenarioUtils.wait(2, 1).should(() => {
+																			ScenarioUtils.getCypressFor(CommonActionIds.logout, ).should(() => {
+																				ScenarioUtils.wait(2, 0).should(() => {
+																					ScenarioUtils.getCypressFor(CommonActionIds.init, ).should(() => {
+																						ScenarioUtils.wait(2, 2).should(() => {
+																							ScenarioUtils.getCypressFor(LoginActionIds.usernameChanged, [`username-${testId}`]).should(() => {
+																								ScenarioUtils.wait(1, 0).should(() => {
+																									ScenarioUtils.getCypressFor(LoginActionIds.passwordChanged, [`password`]).should(() => {
+																										ScenarioUtils.wait(1, 0).should(() => {
+																											ScenarioUtils.getCypressFor(LoginActionIds.toggleSaveInLocalStorage, ).should(() => {
+																												ScenarioUtils.wait(1, 0).should(() => {
+																												});
+																											});
+																										});
+																									});
+																								});
+																							});
+																						});
+																					});
+																				});
+																			});
 																		});
 																	});
 																});
@@ -60,32 +82,18 @@ context('ConfirmEmail', () => {
 			});
     })
 
-    it('confirmsEmail userLoggedIn ', () => {
+    it('userLoggedIn loginDataWasSetInLocalStorage', () => {
 
-ScenarioUtils.getCypressFor(RegistrationActionIds.confirmEmail, [`username-${testId}`,`${testId}-TOKEN`]).should(() => {
-	ScenarioUtils.wait(2, 1).should(() => {
+ScenarioUtils.getCypressFor(LoginActionIds.login, ).should(() => {
+	ScenarioUtils.wait(1, 2).should(() => {
         const appState = JSON.parse(localStorage.getItem('appState'))
-        expect(appState.rootContainer.messages, "confirmsEmail").to.eql([
-        	{ 
-        		textKey : `confirmEmail`,
-        		type : `info`,
-        		visible : true,
-        		id : 0
-        	},
-        	{ 
-        		textKey : `emailConfirmed`,
-        		type : `info`,
-        		visible : true,
-        		id : 1
-        	}
-        ]
-        )
         expect(appState.rootContainer.loggedInUser, "userLoggedIn").to.eql({ 
         	password : `5f4dcc3b5aa765d61d8327deb882cf99`,
         	role : `STUDENT`,
         	username : `username-${testId}`
         }
         )
+        Verifications.loginDataWasSetInLocalStorage(testId);
 	})
 })
     })

@@ -35,7 +35,6 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.LogoutOkEvent', AppState.set_rootContainer_username);
 		ACEController.registerListener('common.LogoutOkEvent', AppState.set_rootContainer_password);
 		ACEController.registerListener('common.DisplayToastOkEvent', AppState.set_rootContainer_messages);
-		ACEController.registerListener('common.DisplayToastUnauthorizedEvent', AppState.set_rootContainer_messages);
 		ACEController.registerListener('common.HideToastOkEvent', AppState.set_rootContainer_messages);
 		ACEController.registerListener('common.DestroyToastOkEvent', AppState.set_rootContainer_messages);
 		ACEController.registerListener('common.DisplaySaveBugDialogOkEvent', AppState.set_rootContainer_saveBugDialog_display);

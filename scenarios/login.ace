@@ -31,6 +31,36 @@ ToggleSaveInLocalStorageTwice
 		expectedState 
 			saveInLocalStorageIsFalse common.rootContainer.mainView.loginView.saveInLocalStorage shouldBe false
 			
+Login
+	GIVEN 
+		commonscenarios.Logout
+		PasswordChanged
+	WHEN login.Login
+	THEN 
+		expectedState 
+			userLoggedIn common.rootContainer.loggedInUser shouldBe {
+				password: "5f4dcc3b5aa765d61d8327deb882cf99",
+				role: "STUDENT",
+				username: "username-${testId}"
+			}
+		verifications
+			loginDataWasNotSetInLocalStorage
+			
+LoginWithSaveInLocalStorage
+	GIVEN 
+		commonscenarios.Logout
+		ToggleSaveInLocalStorage
+	WHEN login.Login
+	THEN 
+		expectedState 
+			userLoggedIn common.rootContainer.loggedInUser shouldBe {
+				password: "5f4dcc3b5aa765d61d8327deb882cf99",
+				role: "STUDENT",
+				username: "username-${testId}"
+			}
+		verifications
+			loginDataWasSetInLocalStorage
+			
 LoginUnauthorized
 	GIVEN PasswordChanged
 	WHEN login.Login

@@ -3,20 +3,20 @@
  ********************************************************************************/
 
 
-
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../gen/components/ReactHelper";
+import {a, button, div} from "../../../gen/components/ReactHelper";
+import {logout, route} from "../../../gen/common/ActionFunctions";
+import {Texts} from "../../app/Texts";
 
 export function uiElement(attributes) {
-	if (attributes.role) {
-		return div({class: ""}, [
-			div({class: ""}, [attributes.username])
-		])
-	}
-	return null;
+    console.log("logged in user", attributes);
+    if (attributes.role) {
+        return div({class: "logout"}, [
+            a({onClick: () => route("#profile")}, [attributes.username]),
+            button({onClick: () => logout()}, [Texts.logout.signout[attributes.language]])
+        ])
+    }
+    return null;
 }
-
 
 
 /******* S.D.G. *******/

@@ -16,7 +16,7 @@ ACE
 		call com.anfelisa.user.DeleteUser
 		loadingFlag common.rootContainer.spinner 
 		on ok ( set common.rootContainer.mainView.profileView.showDeleteUserDialog ) triggers ( common.Logout )
-		on error ( set common.rootContainer.mainView.profileView.showDeleteUserDialog ) triggers (LoadUser common.DisplayToast)
+		on error ( set common.rootContainer.mainView.profileView.showDeleteUserDialog ) triggers (LoadUser common.DisplayToast common.Logout)
 	
 	DeleteUserClick 
 		on ok (set common.rootContainer.mainView.profileView.showDeleteUserDialog)

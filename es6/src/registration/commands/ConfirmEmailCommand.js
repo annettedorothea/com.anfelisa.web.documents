@@ -15,7 +15,8 @@ export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
     }
 
     handleError(resolve, reject) {
-        reject(this.commandData.error);
+        this.addOkOutcome();
+        resolve();
     }
 }
 

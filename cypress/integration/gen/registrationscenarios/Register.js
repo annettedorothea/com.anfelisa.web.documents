@@ -9,6 +9,7 @@ import * as ScenarioUtils from "../../../acegen/src/ScenarioUtils";
 import AppUtils from "../../../../es6/src/app/AppUtils";
 import * as RegistrationActionIds from "../../../acegen/gen/registration/RegistrationActionIds";
 import * as CommonActionIds from "../../../acegen/gen/common/CommonActionIds";
+import * as Verifications from "../../../acegen/src/registrationscenarios/RegisterVerifications";
 
 const testId = ScenarioUtils.testId();
 
@@ -46,7 +47,7 @@ context('Register', () => {
 			});
     })
 
-    it('userLoggedIn infoShown ', () => {
+    it('userLoggedIn infoShown loginDataWasNotSetInLocalStorage', () => {
 let nonDeterministicValues;
 let nonDeterministicValue;
 nonDeterministicValues = JSON.parse(localStorage.getItem('nonDeterministicValues'));
@@ -78,6 +79,7 @@ ScenarioUtils.getCypressFor(RegistrationActionIds.registerUser, ).should(() => {
         	}
         ]
         )
+        Verifications.loginDataWasNotSetInLocalStorage(testId);
 	})
 })
     })

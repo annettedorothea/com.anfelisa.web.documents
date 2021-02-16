@@ -43,7 +43,7 @@ ScenarioUtils.getCypressFor(RegistrationActionIds.passwordRepetitionChanged, [`p
         expect(appState.rootContainer.mainView.password, "password").to.eql(`cd0acfe085eeb0f874391fb9b8009bed`)
         expect(appState.rootContainer.mainView.passwordRepetition, "passwordRepetition").to.eql(`5f4dcc3b5aa765d61d8327deb882cf99`)
         expect(appState.rootContainer.mainView.passwordMismatch, "passwordMismatch").to.eql(true)
-        Verifications.registerDisabled();
+        Verifications.registerDisabled(testId);
 	})
 })
     })

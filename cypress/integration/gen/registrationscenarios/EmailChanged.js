@@ -50,7 +50,7 @@ ScenarioUtils.getCypressFor(RegistrationActionIds.emailChanged, [`info@anfelisa.
         const appState = JSON.parse(localStorage.getItem('appState'))
         expect(appState.rootContainer.mainView.email, "email").to.eql(`info@anfelisa.de`)
         expect(appState.rootContainer.mainView.emailInvalid, "emailValid").to.eql(false)
-        Verifications.registerEnabled();
+        Verifications.registerEnabled(testId);
 	})
 })
     })
