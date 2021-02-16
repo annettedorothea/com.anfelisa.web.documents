@@ -3,174 +3,206 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../../gen/components/ReactHelper";
+import {a, br, div, h2, i} from "../../../../../gen/components/ReactHelper";
+import {route} from "../../../../../gen/common/ActionFunctions";
+import {Texts} from "../../../../app/Texts";
+import {deleteBoxClick} from "../../../../../gen/box/ActionFunctions";
+import CardsNextDaysItem from "../../../../web/Box/CardsNextDaysItem";
+import React from "react";
 
 export function uiElement(attributes) {
-	return tr({class: ""}, [
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "openTodaysCards"
-			}, ["OPENTODAYSCARDS"]), 
-			input({
-				id: "openTodaysCards",
-				value: attributes.openTodaysCards, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.openTodaysCards])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "categoryName"
-			}, ["CATEGORYNAME"]), 
-			input({
-				id: "categoryName",
-				value: attributes.categoryName, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.categoryName])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "categoryId"
-			}, ["CATEGORYID"]), 
-			input({
-				id: "categoryId",
-				value: attributes.categoryId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.categoryId])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "boxId"
-			}, ["BOXID"]), 
-			input({
-				id: "boxId",
-				value: attributes.boxId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.boxId])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "quality0Count"
-			}, ["QUALITY0COUNT"]), 
-			input({
-				id: "quality0Count",
-				value: attributes.quality0Count, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.quality0Count])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "quality1Count"
-			}, ["QUALITY1COUNT"]), 
-			input({
-				id: "quality1Count",
-				value: attributes.quality1Count, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.quality1Count])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "quality2Count"
-			}, ["QUALITY2COUNT"]), 
-			input({
-				id: "quality2Count",
-				value: attributes.quality2Count, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.quality2Count])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "quality3Count"
-			}, ["QUALITY3COUNT"]), 
-			input({
-				id: "quality3Count",
-				value: attributes.quality3Count, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.quality3Count])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "quality4Count"
-			}, ["QUALITY4COUNT"]), 
-			input({
-				id: "quality4Count",
-				value: attributes.quality4Count, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.quality4Count])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "quality5Count"
-			}, ["QUALITY5COUNT"]), 
-			input({
-				id: "quality5Count",
-				value: attributes.quality5Count, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.quality5Count])
-		]),
-		td({}, [
-			ul({class: ""}, [
-				attributes.countsPerDayNextWeek ? attributes.countsPerDayNextWeek.map((item) => li({}, [item])) : []
-			])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "maxCardsPerDay"
-			}, ["MAXCARDSPERDAY"]), 
-			input({
-				id: "maxCardsPerDay",
-				value: attributes.maxCardsPerDay, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.maxCardsPerDay])
-		])
-	]);
+    const categoryRoute = `#categories/${attributes.categoryId}${attributes.reverse ? "/reverse" : ""}`;
+
+    const onEditClick = (e) => {
+        e.stopPropagation();
+        route(categoryRoute);
+    }
+
+    const onSettingsClick = (e) => {
+        e.stopPropagation();
+        route(`#box/settings/${attributes.boxId}`);
+    }
+
+    const onDeleteClick = (e) => {
+        e.stopPropagation();
+        if (attributes.reverse || !attributes.shared) {
+            deleteBoxClick(attributes.boxId);
+        }
+    }
+
+    return a({
+        class: "tile",
+        onClick: () => attributes.openTodaysCards > 0 ?
+            route(`#box/${attributes.boxId}`) :
+            route(categoryRoute)
+    }, [
+        h2({}, [
+            attributes.categoryName,
+            attributes.reverse ? i({class: "fas fa-arrows-alt-h"}) : null
+        ]),
+        statistics(attributes),
+        br(),
+        cardsNextDays(attributes),
+        div({class: "buttons button1"}, [
+            i({
+                class: "fas fa-edit",
+                onClick: (e) => onEditClick(e),
+                title: Texts.box.edit[attributes.language]
+            })
+        ]),
+        div({class: "buttons button2"}, [
+            i({
+                class: "fas fa-cog",
+                onClick: (e) => onSettingsClick(e),
+                title: Texts.box.settings[attributes.language]
+            })
+        ]),
+        div({class: "buttons button3"}, [
+            i({
+                class: `far fa-trash-alt ${attributes.shared && !attributes.reverse ? "disabled" : "danger"}`,
+                onClick: (e) => onDeleteClick(e),
+                title: attributes.shared && !attributes.reverse ?
+                    Texts.box.deleteTitleShared[attributes.language] :
+                    Texts.box.deleteTitle[attributes.language]
+            })
+        ])
+    ]);
 }
 
+const cardsNextDays = (attributes) => {
+    const onClick = (e) => {
+        e.stopPropagation();
+        route(`#box/active-cards/${attributes.boxId}`);
+    }
+    if (attributes.countsPerDayNextWeek && attributes.countsPerDayNextWeek.length === 7 && attributes.maxCardsPerDay && attributes.maxCardsPerDay > 0) {
+        let index = 0;
+        let items = attributes.countsPerDayNextWeek.map((count) => {
+            index++;
+            let date = new Date();
+            date.setDate(date.getDate() + index);
+            date.setHours(0, 0, 0, 0);
+            const day = date.getDay();
+            return cardsNextDaysItem({
+                key: day,
+                maxCardsPerDay: attributes.maxCardsPerDay,
+                count,
+                day,
+                language: attributes.language,
+                rounded: index === 1 ? "rounded-left" : index === 7 ? "rounded-right" : ""
+            });
+        });
+        return div(
+            {
+                class: "cards-next-days",
+                onClick: (e) => onClick(e)
+            }, items);
+    }
+    return null;
+}
+
+const cardsNextDaysItem = (item) => {
+    const toDoFactor = item.count * 1.0 / item.maxCardsPerDay;
+    return div(
+        {class: `${item.rounded} cards-next-days-item`,
+            style: {background: `rgba(192, 192, 192, ${toDoFactor})`}
+        }, [item.count]);
+}
+
+const rounded = (width, elementWidthBefore, elementWidthAfter) => {
+    if (width === 100) {
+        return "rounded"
+    }
+    if (elementWidthBefore === 0) {
+        return "rounded-left"
+    }
+    if (elementWidthAfter === 0) {
+        return "rounded-right"
+    }
+}
+
+const statistics = (attributes) => {
+    const all =
+        attributes.quality0Count +
+        attributes.quality1Count +
+        attributes.quality2Count +
+        attributes.quality3Count +
+        attributes.quality4Count +
+        attributes.quality5Count;
+    if (all > 0) {
+        let qualityMap = [];
+        qualityMap[0] = {
+            key: 0,
+            value: attributes.quality0Count
+        };
+        qualityMap[1] = {
+            key: 1,
+            value: attributes.quality1Count
+        };
+        qualityMap[2] = {
+            key: 2,
+            value: attributes.quality2Count
+        };
+        qualityMap[3] = {
+            key: 3,
+            value: attributes.quality3Count
+        };
+        qualityMap[4] = {
+            key: 4,
+            value: attributes.quality4Count
+        };
+        qualityMap[5] = {
+            key: 5,
+            value: attributes.quality5Count
+        };
+        qualityMap.sort((a, b) => {
+            return a.value - b.value;
+        });
+        let sum = 0;
+        let i = 0;
+        qualityMap.forEach(e => {
+            e.percentage = Math.round(e.value * 100 / all);
+            if (sum + e.percentage > 100 || sum + e.percentage < 100 && i === 6) {
+                e.percentage = 100 - sum;
+            }
+            sum += e.percentage;
+            i++;
+        });
+        const width0 = qualityMap.find(e => e.key === 0).percentage;
+        const width1 = qualityMap.find(e => e.key === 1).percentage;
+        const width2 = qualityMap.find(e => e.key === 2).percentage;
+        const width3 = qualityMap.find(e => e.key === 3).percentage;
+        const width4 = qualityMap.find(e => e.key === 4).percentage;
+        const width5 = qualityMap.find(e => e.key === 5).percentage;
+
+        return div({class: "statistics"}, [
+            div({
+                class: `${rounded(width5, 0, width4 + width3 + width2 + width1 + width0)} quality5`,
+                style: {width: `${width5}%`}
+            }),
+            div({
+                class: `${rounded(width4, width5, width3 + width2 + width1 + width0)} quality4`,
+                style: {width: `${width4}%`}
+            }),
+            div({
+                class: `${rounded(width3, width5 + width4, width2 + width1 + width0)} quality3`,
+                style: {width: `${width3}%`}
+            }),
+            div({
+                class: `${rounded(width2, width5 + width4 + width3, width1 + width0)} quality2`,
+                style: {width: `${width2}%`}
+            }),
+            div({
+                class: `${rounded(width1, width5 + width4 + width3 + width2, width0)} quality1`,
+                style: {width: `${width1}%`}
+            }),
+            div({
+                class: `${rounded(width0, width5 + width4 + width3 + width2 + width1, 0)} quality0`,
+                style: {width: `${width0}%`}
+            })
+        ])
+    }
+    return null;
+}
 
 
 /******* S.D.G. *******/

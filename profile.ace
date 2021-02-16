@@ -4,7 +4,7 @@ profile
 
 ACE 
 	LoadUser 
-		fromAppState (common.rootContainer.loggedInUser.role)
+		fromAppState (common.rootContainer.role)
 		call com.anfelisa.user.GetUserProfile
 		loadingFlag common.rootContainer.spinner 
 		on ok (

@@ -3,9 +3,7 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td, activeCardListItem } from "../../../../gen/components/ReactHelper";
+import {activeCardListItem, div, h1, input, label, li, table, tbody, ul} from "../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
 	return div({}, [

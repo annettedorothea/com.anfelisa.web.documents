@@ -14,7 +14,7 @@ import LoadUserOkEvent from "../../../gen/profile/events/LoadUserOkEvent";
 export default class AbstractLoadUserCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "profile.LoadUserCommand");
-        this.commandData.role = AppState.get_rootContainer_loggedInUser_role();
+        this.commandData.role = AppState.get_rootContainer_role();
         this.commandData.outcomes = [];
     }
 

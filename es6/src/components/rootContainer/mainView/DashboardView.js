@@ -3,24 +3,26 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td, boxListItem, deleteBox } from "../../../../gen/components/ReactHelper";
+import {a, boxListItem, deleteBox, div, i} from "../../../../gen/components/ReactHelper";
+import {route} from "../../../../gen/common/ActionFunctions";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["DASHBOARDVIEW"]),
-		div({}, [
-			table({class: ""}, [
-				tbody({}, [
-					attributes.boxList ? attributes.boxList.map((item) => boxListItem()) : []
-				])
-			])
-		]),
-		deleteBox()
-	]);
+    return div({}, [
+        div({class: "bottomMargin"}, []),
+        deleteBox({}),
+        div({}, [
+            attributes.boxList ? attributes.boxList.map((item) => boxListItem({...item, language: attributes.language})) : []
+        ]),
+        a({
+            class: "tile box-create",
+            onClick: () => route("#box/create")
+        }, [
+            div({class: "text-center"}, [
+                i({class: "fas fa-plus-circle fa-2x"})
+            ])
+        ])
+    ]);
 }
-
 
 
 /******* S.D.G. *******/

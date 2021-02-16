@@ -3,50 +3,63 @@
  ********************************************************************************/
 
 
-
-
-import {  privacyPolicyView, loginView, registrationView, forgotPasswordView, resetPasswordView, dashboardView, boxSettingsView, allActiveCardsView, profileView, userListView, queryCardView, authorView} from "../../../gen/components/ReactHelper";
+import {
+    privacyPolicyView,
+    loginView,
+    registrationView,
+    forgotPasswordView,
+    resetPasswordView,
+    dashboardView,
+    boxSettingsView,
+    allActiveCardsView,
+    profileView,
+    userListView,
+    queryCardView,
+    authorView
+} from "../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
-	if (attributes.isPrivacyPolicyView === true) {
-		return privacyPolicyView({ language: attributes.language });
-	}
-	if (attributes.isLoginView === true) {
-		return loginView({ language: attributes.language });
-	}
-	if (attributes.isRegistrationView === true) {
-		return registrationView({ language: attributes.language });
-	}
-	if (attributes.isForgotPasswordView === true) {
-		return forgotPasswordView({ language: attributes.language });
-	}
-	if (attributes.isResetPasswordView === true) {
-		return resetPasswordView({ language: attributes.language });
-	}
-	if (attributes.isDashboardView === true) {
-		return dashboardView({ language: attributes.language });
-	}
-	if (attributes.isBoxSettingsView === true) {
-		return boxSettingsView({ language: attributes.language });
-	}
-	if (attributes.isAllActiveCardsView === true) {
-		return allActiveCardsView({ language: attributes.language });
-	}
-	if (attributes.isProfileView === true) {
-		return profileView({ language: attributes.language });
-	}
-	if (attributes.isUserListView === true) {
-		return userListView({ language: attributes.language });
-	}
-	if (attributes.isQueryCardView === true) {
-		return queryCardView({ language: attributes.language });
-	}
-	if (attributes.isAuthorView === true) {
-		return authorView({ language: attributes.language });
-	}
-	return null;
+    if (attributes.isPrivacyPolicyView === true) {
+        return privacyPolicyView({language: attributes.language});
+    }
+    if (attributes.isLoginView === true) {
+        return loginView({language: attributes.language});
+    }
+    if (attributes.isRegistrationView === true) {
+        return registrationView({language: attributes.language});
+    }
+    if (attributes.isForgotPasswordView === true) {
+        return forgotPasswordView({language: attributes.language});
+    }
+    if (attributes.isResetPasswordView === true) {
+        return resetPasswordView({language: attributes.language});
+    }
+    if (attributes.isDashboardView === true) {
+        return dashboardView({
+            language: attributes.language,
+            role: attributes.role
+        });
+    }
+    if (attributes.isBoxSettingsView === true) {
+        return boxSettingsView({language: attributes.language});
+    }
+    if (attributes.isAllActiveCardsView === true) {
+        return allActiveCardsView({language: attributes.language});
+    }
+    if (attributes.isProfileView === true) {
+        return profileView({language: attributes.language});
+    }
+    if (attributes.isUserListView === true) {
+        return userListView({language: attributes.language});
+    }
+    if (attributes.isQueryCardView === true) {
+        return queryCardView({language: attributes.language});
+    }
+    if (attributes.isAuthorView === true) {
+        return authorView({language: attributes.language});
+    }
+    return null;
 }
-
 
 
 /******* S.D.G. *******/

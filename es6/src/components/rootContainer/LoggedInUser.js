@@ -8,7 +8,6 @@ import {logout, route} from "../../../gen/common/ActionFunctions";
 import {Texts} from "../../app/Texts";
 
 export function uiElement(attributes) {
-    console.log("logged in user", attributes);
     if (attributes.role) {
         return div({class: "logout"}, [
             a({onClick: () => route("#profile")}, [attributes.username]),

@@ -12,11 +12,11 @@ export default class InitialLoginCommand extends AbstractInitialLoginCommand {
         resolve();
     }
 
-    handleError(resolve, reject) {
+    handleError(resolve) {
         if (AppUtils.isUnauthorized(this.commandData.message)) {
             this.addUnauthorizedOutcome();
         }
-        reject(this.commandData.message);
+        resolve();
     }
 }
 

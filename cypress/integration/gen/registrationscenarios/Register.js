@@ -47,7 +47,7 @@ context('Register', () => {
 			});
     })
 
-    it('userLoggedIn infoShown loginDataWasNotSetInLocalStorage', () => {
+    it('userLoggedIn role infoShown loginDataWasNotSetInLocalStorage', () => {
 let nonDeterministicValues;
 let nonDeterministicValue;
 nonDeterministicValues = JSON.parse(localStorage.getItem('nonDeterministicValues'));
@@ -66,10 +66,10 @@ ScenarioUtils.getCypressFor(RegistrationActionIds.registerUser, ).should(() => {
         const appState = JSON.parse(localStorage.getItem('appState'))
         expect(appState.rootContainer.loggedInUser, "userLoggedIn").to.eql({ 
         	password : `5f4dcc3b5aa765d61d8327deb882cf99`,
-        	role : `STUDENT`,
         	username : `username-${testId}`
         }
         )
+        expect(appState.rootContainer.role, "role").to.eql(`STUDENT`)
         expect(appState.rootContainer.messages, "infoShown").to.eql([
         	{ 
         		textKey : `confirmEmail`,

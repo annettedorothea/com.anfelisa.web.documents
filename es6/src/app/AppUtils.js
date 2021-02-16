@@ -104,7 +104,6 @@ export default class AppUtils {
 
     static createInitialAppState() {
         const initialAppState = {
-            texts: Texts,
             message: null
         };
         AppState.setInitialAppState(initialAppState);

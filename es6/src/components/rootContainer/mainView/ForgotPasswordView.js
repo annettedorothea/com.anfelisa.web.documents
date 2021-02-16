@@ -3,30 +3,37 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../gen/components/ReactHelper";
+import {button, div, h1, input, label} from "../../../../gen/components/ReactHelper";
+import {Texts} from "../../../app/Texts";
+import {forgotPassword, usernameForgotPasswordChanged} from "../../../../gen/password/ActionFunctions";
+import {route} from "../../../../gen/common/ActionFunctions";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["FORGOTPASSWORDVIEW"]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "username"
-			}, ["USERNAME"]), 
-			input({
-				id: "username",
-				value: attributes.username, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.username])
-		])
-	]);
+    return div({class: "center"}, [
+        div({class: "form"}, [
+            h1({}, [Texts.forgotPassword.title[attributes.language]]),
+            div({class: "line"}, [
+                label({htmlFor: "username"}, [Texts.forgotPassword.username[attributes.language]]),
+                input({
+                    id: "username",
+                    value: attributes.username,
+                    type: "text",
+                    autoComplete: "new-password",
+                    onChange: (e) => usernameForgotPasswordChanged(e.target.value)
+                }),
+            ]),
+            div({class: "moreMarginLine hCenter"}, [
+                button({
+                    onClick: () => forgotPassword(),
+                    disabled: (!attributes.username || attributes.username && attributes.username.length === 0)
+                }, [Texts.forgotPassword.submit[attributes.language]]),
+                button({
+                    onClick: () => route("#")
+                }, [Texts.forgotPassword.cancel[attributes.language]])
+            ])
+        ]),
+    ]);
 }
-
 
 
 /******* S.D.G. *******/

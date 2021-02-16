@@ -16,6 +16,7 @@ import { setSaveBugDialogState } from "../components/rootContainer/SaveBugDialog
 import { setVersionMismatchDialogState } from "../components/rootContainer/VersionMismatchDialogComponent";
 import { setVersionMismatchErrorDialogState } from "../components/rootContainer/VersionMismatchErrorDialogComponent";
 import { setMainViewState } from "../components/rootContainer/MainViewComponent";
+import { setPrivacyPolicyViewState } from "../components/rootContainer/mainView/PrivacyPolicyViewComponent";
 import { setLoginViewState } from "../components/rootContainer/mainView/LoginViewComponent";
 import { setRegistrationViewState } from "../components/rootContainer/mainView/RegistrationViewComponent";
 import { setForgotPasswordViewState } from "../components/rootContainer/mainView/ForgotPasswordViewComponent";
@@ -61,6 +62,7 @@ export function set_rootContainer_loggedInUser(eventData) {
 	}
 	appState.rootContainer.loggedInUser = eventData.loggedInUser;
 	const newAppState = getAppState();
+	// ELSE
 	setLoggedInUserState(AppUtils.deepCopy(appState.rootContainer.loggedInUser));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -75,13 +77,11 @@ export function merge_rootContainer_loggedInUser(eventData) {
 	if (eventData.username !== undefined) {
 		appState.rootContainer.loggedInUser.username = eventData.username;
 	}
-	if (eventData.role !== undefined) {
-		appState.rootContainer.loggedInUser.role = eventData.role;
-	}
 	if (eventData.password !== undefined) {
 		appState.rootContainer.loggedInUser.password = eventData.password;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setLoggedInUserState(AppUtils.deepCopy(appState.rootContainer.loggedInUser));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -105,29 +105,7 @@ export function set_rootContainer_loggedInUser_username(eventData) {
 	}
 	appState.rootContainer.loggedInUser.username = eventData.username;
 	const newAppState = getAppState();
-	setLoggedInUserState(AppUtils.deepCopy(appState.rootContainer.loggedInUser));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_rootContainer_loggedInUser_role() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.loggedInUser) {
-		return undefined;
-	}
-	return appState.rootContainer.loggedInUser.role;
-}
-
-export function set_rootContainer_loggedInUser_role(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.loggedInUser) {
-		appState.rootContainer.loggedInUser = {};
-	}
-	appState.rootContainer.loggedInUser.role = eventData.role;
-	const newAppState = getAppState();
+	// ELSE
 	setLoggedInUserState(AppUtils.deepCopy(appState.rootContainer.loggedInUser));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -151,6 +129,7 @@ export function set_rootContainer_loggedInUser_password(eventData) {
 	}
 	appState.rootContainer.loggedInUser.password = eventData.password;
 	const newAppState = getAppState();
+	// ELSE
 	setLoggedInUserState(AppUtils.deepCopy(appState.rootContainer.loggedInUser));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -162,6 +141,7 @@ export function get_rootContainer_hash() {
 export function set_rootContainer_hash(eventData) {
 	location.hash = eventData.hash;
 	const newAppState = getAppState();
+	// ELSE
 	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -177,6 +157,7 @@ export function set_rootContainer_username(eventData) {
 		localStorage.removeItem("username");
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -192,6 +173,25 @@ export function set_rootContainer_password(eventData) {
 		localStorage.removeItem("password");
 	}
 	const newAppState = getAppState();
+	// ELSE
+	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_role() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	return appState.rootContainer.role;
+}
+
+export function set_rootContainer_role(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.role = eventData.role;
+	const newAppState = getAppState();
+	// ELSE
 	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -212,6 +212,7 @@ export function set_rootContainer_spinner(eventData) {
 	}
 	appState.rootContainer.spinner = eventData.spinner;
 	const newAppState = getAppState();
+	// ELSE
 	setSpinnerState(AppUtils.deepCopy(appState.rootContainer.spinner));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -227,6 +228,7 @@ export function merge_rootContainer_spinner(eventData) {
 		appState.rootContainer.spinner.display = eventData.display;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setSpinnerState(AppUtils.deepCopy(appState.rootContainer.spinner));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -250,6 +252,7 @@ export function set_rootContainer_spinner_display(eventData) {
 	}
 	appState.rootContainer.spinner.display = eventData.display;
 	const newAppState = getAppState();
+	// ELSE
 	setSpinnerState(AppUtils.deepCopy(appState.rootContainer.spinner));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -267,6 +270,7 @@ export function set_rootContainer_language(eventData) {
 	}
 	appState.rootContainer.language = eventData.language;
 	const newAppState = getAppState();
+	// ELSE
 	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -287,6 +291,7 @@ export function set_rootContainer_saveBugDialog(eventData) {
 	}
 	appState.rootContainer.saveBugDialog = eventData.saveBugDialog;
 	const newAppState = getAppState();
+	// ELSE
 	setSaveBugDialogState(AppUtils.deepCopy(appState.rootContainer.saveBugDialog));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -302,6 +307,7 @@ export function merge_rootContainer_saveBugDialog(eventData) {
 		appState.rootContainer.saveBugDialog.display = eventData.display;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setSaveBugDialogState(AppUtils.deepCopy(appState.rootContainer.saveBugDialog));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -325,6 +331,7 @@ export function set_rootContainer_saveBugDialog_display(eventData) {
 	}
 	appState.rootContainer.saveBugDialog.display = eventData.display;
 	const newAppState = getAppState();
+	// ELSE
 	setSaveBugDialogState(AppUtils.deepCopy(appState.rootContainer.saveBugDialog));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -345,6 +352,7 @@ export function set_rootContainer_versionMismatchDialog(eventData) {
 	}
 	appState.rootContainer.versionMismatchDialog = eventData.versionMismatchDialog;
 	const newAppState = getAppState();
+	// ELSE
 	setVersionMismatchDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchDialog));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -360,6 +368,7 @@ export function merge_rootContainer_versionMismatchDialog(eventData) {
 		appState.rootContainer.versionMismatchDialog.display = eventData.display;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setVersionMismatchDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchDialog));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -383,6 +392,7 @@ export function set_rootContainer_versionMismatchDialog_display(eventData) {
 	}
 	appState.rootContainer.versionMismatchDialog.display = eventData.display;
 	const newAppState = getAppState();
+	// ELSE
 	setVersionMismatchDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchDialog));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -403,6 +413,7 @@ export function set_rootContainer_versionMismatchErrorDialog(eventData) {
 	}
 	appState.rootContainer.versionMismatchErrorDialog = eventData.versionMismatchErrorDialog;
 	const newAppState = getAppState();
+	// ELSE
 	setVersionMismatchErrorDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchErrorDialog));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -418,6 +429,7 @@ export function merge_rootContainer_versionMismatchErrorDialog(eventData) {
 		appState.rootContainer.versionMismatchErrorDialog.display = eventData.display;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setVersionMismatchErrorDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchErrorDialog));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -441,6 +453,7 @@ export function set_rootContainer_versionMismatchErrorDialog_display(eventData) 
 	}
 	appState.rootContainer.versionMismatchErrorDialog.display = eventData.display;
 	const newAppState = getAppState();
+	// ELSE
 	setVersionMismatchErrorDialogState(AppUtils.deepCopy(appState.rootContainer.versionMismatchErrorDialog));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -461,6 +474,7 @@ export function set_rootContainer_messages(eventData) {
 	}
 	appState.rootContainer.messages = eventData.messages;
 	const newAppState = getAppState();
+	// ELSE
 	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -469,7 +483,10 @@ export function get_rootContainer_privacyPolicyView() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView;
+	if (appState.rootContainer.mainView && appState.rootContainer.mainView.isPrivacyPolicyView === true) {
+		return AppUtils.deepCopy(appState.rootContainer.mainView);
+	}
+	return undefined;
 }
 
 export function set_rootContainer_privacyPolicyView(eventData) {
@@ -485,7 +502,55 @@ export function set_rootContainer_privacyPolicyView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
-	setRootContainerState(AppUtils.deepCopy(appState.rootContainer));
+	// parent GroupedClientAttribute
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function merge_rootContainer_privacyPolicyView(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isPrivacyPolicyView : true
+		};
+	}
+	if (eventData.display !== undefined) {
+		appState.rootContainer.mainView.display = eventData.display;
+	}
+	const newAppState = getAppState();
+	// parent GroupedClientAttribute
+	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_privacyPolicyView_display() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isPrivacyPolicyView !== true) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.display;
+}
+
+export function set_rootContainer_privacyPolicyView_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isPrivacyPolicyView !== true) {
+		appState.rootContainer.mainView = {
+			isPrivacyPolicyView : true
+		};
+	}
+	appState.rootContainer.mainView.display = eventData.display;
+	const newAppState = getAppState();
+	// ELSE
+	setPrivacyPolicyViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -512,6 +577,7 @@ export function set_rootContainer_loginView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -535,6 +601,7 @@ export function merge_rootContainer_loginView(eventData) {
 		appState.rootContainer.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -563,6 +630,7 @@ export function set_rootContainer_loginView_username(eventData) {
 	}
 	appState.rootContainer.mainView.username = eventData.username;
 	const newAppState = getAppState();
+	// ELSE
 	setLoginViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -591,6 +659,7 @@ export function set_rootContainer_loginView_password(eventData) {
 	}
 	appState.rootContainer.mainView.password = eventData.password;
 	const newAppState = getAppState();
+	// ELSE
 	setLoginViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -619,6 +688,7 @@ export function set_rootContainer_loginView_saveInLocalStorage(eventData) {
 	}
 	appState.rootContainer.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
 	const newAppState = getAppState();
+	// ELSE
 	setLoginViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -646,6 +716,7 @@ export function set_rootContainer_registrationView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -684,6 +755,7 @@ export function merge_rootContainer_registrationView(eventData) {
 		appState.rootContainer.mainView.emailInvalid = eventData.emailInvalid;
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -712,6 +784,7 @@ export function set_rootContainer_registrationView_displayUsernameSpinner(eventD
 	}
 	appState.rootContainer.mainView.displayUsernameSpinner = eventData.displayUsernameSpinner;
 	const newAppState = getAppState();
+	// ELSE
 	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -740,6 +813,7 @@ export function set_rootContainer_registrationView_available(eventData) {
 	}
 	appState.rootContainer.mainView.available = eventData.available;
 	const newAppState = getAppState();
+	// ELSE
 	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -768,6 +842,7 @@ export function set_rootContainer_registrationView_username(eventData) {
 	}
 	appState.rootContainer.mainView.username = eventData.username;
 	const newAppState = getAppState();
+	// ELSE
 	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -796,6 +871,7 @@ export function set_rootContainer_registrationView_password(eventData) {
 	}
 	appState.rootContainer.mainView.password = eventData.password;
 	const newAppState = getAppState();
+	// ELSE
 	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -824,6 +900,7 @@ export function set_rootContainer_registrationView_passwordRepetition(eventData)
 	}
 	appState.rootContainer.mainView.passwordRepetition = eventData.passwordRepetition;
 	const newAppState = getAppState();
+	// ELSE
 	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -852,6 +929,7 @@ export function set_rootContainer_registrationView_passwordMismatch(eventData) {
 	}
 	appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
 	const newAppState = getAppState();
+	// ELSE
 	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -880,6 +958,7 @@ export function set_rootContainer_registrationView_email(eventData) {
 	}
 	appState.rootContainer.mainView.email = eventData.email;
 	const newAppState = getAppState();
+	// ELSE
 	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -908,6 +987,7 @@ export function set_rootContainer_registrationView_emailInvalid(eventData) {
 	}
 	appState.rootContainer.mainView.emailInvalid = eventData.emailInvalid;
 	const newAppState = getAppState();
+	// ELSE
 	setRegistrationViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -935,6 +1015,7 @@ export function set_rootContainer_forgotPasswordView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -952,6 +1033,7 @@ export function merge_rootContainer_forgotPasswordView(eventData) {
 		appState.rootContainer.mainView.username = eventData.username;
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -980,6 +1062,7 @@ export function set_rootContainer_forgotPasswordView_username(eventData) {
 	}
 	appState.rootContainer.mainView.username = eventData.username;
 	const newAppState = getAppState();
+	// ELSE
 	setForgotPasswordViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1007,6 +1090,7 @@ export function set_rootContainer_resetPasswordView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1027,6 +1111,7 @@ export function merge_rootContainer_resetPasswordView(eventData) {
 		appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1055,6 +1140,7 @@ export function set_rootContainer_resetPasswordView_token(eventData) {
 	}
 	appState.rootContainer.mainView.token = eventData.token;
 	const newAppState = getAppState();
+	// ELSE
 	setResetPasswordViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1083,6 +1169,7 @@ export function set_rootContainer_resetPasswordView_passwordMismatch(eventData) 
 	}
 	appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
 	const newAppState = getAppState();
+	// ELSE
 	setResetPasswordViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1110,6 +1197,7 @@ export function set_rootContainer_dashboardView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1130,6 +1218,7 @@ export function merge_rootContainer_dashboardView(eventData) {
 		appState.rootContainer.mainView.deleteBox = eventData.deleteBox;
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1161,6 +1250,7 @@ export function set_rootContainer_dashboardView_boxList(eventData) {
 	}
 	appState.rootContainer.mainView.boxList = eventData.boxList;
 	const newAppState = getAppState();
+	// ELSE
 	setDashboardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1192,6 +1282,7 @@ export function set_rootContainer_dashboardView_deleteBox(eventData) {
 	}
 	appState.rootContainer.mainView.deleteBox = eventData.deleteBox;
 	const newAppState = getAppState();
+	// ELSE
 	setDeleteBoxState(AppUtils.deepCopy(appState.rootContainer.mainView.deleteBox));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1213,6 +1304,7 @@ export function merge_rootContainer_dashboardView_deleteBox(eventData) {
 		appState.rootContainer.mainView.deleteBox.boxId = eventData.boxId;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setDeleteBoxState(AppUtils.deepCopy(appState.rootContainer.mainView.deleteBox));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1247,6 +1339,7 @@ export function set_rootContainer_dashboardView_deleteBox_confirmDelete(eventDat
 	}
 	appState.rootContainer.mainView.deleteBox.confirmDelete = eventData.confirmDelete;
 	const newAppState = getAppState();
+	// ELSE
 	setDeleteBoxState(AppUtils.deepCopy(appState.rootContainer.mainView.deleteBox));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1281,6 +1374,7 @@ export function set_rootContainer_dashboardView_deleteBox_boxId(eventData) {
 	}
 	appState.rootContainer.mainView.deleteBox.boxId = eventData.boxId;
 	const newAppState = getAppState();
+	// ELSE
 	setDeleteBoxState(AppUtils.deepCopy(appState.rootContainer.mainView.deleteBox));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1308,6 +1402,7 @@ export function set_rootContainer_boxSettingsView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1364,6 +1459,7 @@ export function merge_rootContainer_boxSettingsView(eventData) {
 		appState.rootContainer.mainView.allCards = eventData.allCards;
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1392,6 +1488,7 @@ export function set_rootContainer_boxSettingsView_maxIntervalInvalid(eventData) 
 	}
 	appState.rootContainer.mainView.maxIntervalInvalid = eventData.maxIntervalInvalid;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1420,6 +1517,7 @@ export function set_rootContainer_boxSettingsView_maxCardsPerDayInvalid(eventDat
 	}
 	appState.rootContainer.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1448,6 +1546,7 @@ export function set_rootContainer_boxSettingsView_tooManyCardsStatus(eventData) 
 	}
 	appState.rootContainer.mainView.tooManyCardsStatus = eventData.tooManyCardsStatus;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1476,6 +1575,7 @@ export function set_rootContainer_boxSettingsView_dictionaryLookupInvalid(eventD
 	}
 	appState.rootContainer.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1504,6 +1604,7 @@ export function set_rootContainer_boxSettingsView_boxId(eventData) {
 	}
 	appState.rootContainer.mainView.boxId = eventData.boxId;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1532,6 +1633,7 @@ export function set_rootContainer_boxSettingsView_maxInterval(eventData) {
 	}
 	appState.rootContainer.mainView.maxInterval = eventData.maxInterval;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1560,6 +1662,7 @@ export function set_rootContainer_boxSettingsView_maxCardsPerDay(eventData) {
 	}
 	appState.rootContainer.mainView.maxCardsPerDay = eventData.maxCardsPerDay;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1588,6 +1691,7 @@ export function set_rootContainer_boxSettingsView_categoryName(eventData) {
 	}
 	appState.rootContainer.mainView.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1616,6 +1720,7 @@ export function set_rootContainer_boxSettingsView_dictionaryLookup(eventData) {
 	}
 	appState.rootContainer.mainView.dictionaryLookup = eventData.dictionaryLookup;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1644,6 +1749,7 @@ export function set_rootContainer_boxSettingsView_givenLanguage(eventData) {
 	}
 	appState.rootContainer.mainView.givenLanguage = eventData.givenLanguage;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1672,6 +1778,7 @@ export function set_rootContainer_boxSettingsView_wantedLanguage(eventData) {
 	}
 	appState.rootContainer.mainView.wantedLanguage = eventData.wantedLanguage;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1700,6 +1807,7 @@ export function set_rootContainer_boxSettingsView_categoryId(eventData) {
 	}
 	appState.rootContainer.mainView.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1728,6 +1836,7 @@ export function set_rootContainer_boxSettingsView_allActiveCards(eventData) {
 	}
 	appState.rootContainer.mainView.allActiveCards = eventData.allActiveCards;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1756,6 +1865,7 @@ export function set_rootContainer_boxSettingsView_allCards(eventData) {
 	}
 	appState.rootContainer.mainView.allCards = eventData.allCards;
 	const newAppState = getAppState();
+	// ELSE
 	setBoxSettingsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1783,6 +1893,7 @@ export function set_rootContainer_allActiveCardsView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1809,6 +1920,7 @@ export function merge_rootContainer_allActiveCardsView(eventData) {
 		appState.rootContainer.mainView.selectedCardIds = eventData.selectedCardIds;
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1837,6 +1949,7 @@ export function set_rootContainer_allActiveCardsView_boxId(eventData) {
 	}
 	appState.rootContainer.mainView.boxId = eventData.boxId;
 	const newAppState = getAppState();
+	// ELSE
 	setAllActiveCardsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1865,6 +1978,7 @@ export function set_rootContainer_allActiveCardsView_editable(eventData) {
 	}
 	appState.rootContainer.mainView.editable = eventData.editable;
 	const newAppState = getAppState();
+	// ELSE
 	setAllActiveCardsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1896,6 +2010,7 @@ export function set_rootContainer_allActiveCardsView_activeCardList(eventData) {
 	}
 	appState.rootContainer.mainView.activeCardList = eventData.activeCardList;
 	const newAppState = getAppState();
+	// ELSE
 	setAllActiveCardsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1924,6 +2039,7 @@ export function set_rootContainer_allActiveCardsView_selectedCardIds(eventData) 
 	}
 	appState.rootContainer.mainView.selectedCardIds = eventData.selectedCardIds;
 	const newAppState = getAppState();
+	// ELSE
 	setAllActiveCardsViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1951,6 +2067,7 @@ export function set_rootContainer_profileView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -1977,6 +2094,7 @@ export function merge_rootContainer_profileView(eventData) {
 		appState.rootContainer.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2005,6 +2123,7 @@ export function set_rootContainer_profileView_username(eventData) {
 	}
 	appState.rootContainer.mainView.username = eventData.username;
 	const newAppState = getAppState();
+	// ELSE
 	setProfileViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2033,6 +2152,7 @@ export function set_rootContainer_profileView_email(eventData) {
 	}
 	appState.rootContainer.mainView.email = eventData.email;
 	const newAppState = getAppState();
+	// ELSE
 	setProfileViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2061,6 +2181,7 @@ export function set_rootContainer_profileView_role(eventData) {
 	}
 	appState.rootContainer.mainView.role = eventData.role;
 	const newAppState = getAppState();
+	// ELSE
 	setProfileViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2089,6 +2210,7 @@ export function set_rootContainer_profileView_showDeleteUserDialog(eventData) {
 	}
 	appState.rootContainer.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 	const newAppState = getAppState();
+	// ELSE
 	setProfileViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2116,6 +2238,7 @@ export function set_rootContainer_userListView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2139,6 +2262,7 @@ export function merge_rootContainer_userListView(eventData) {
 		appState.rootContainer.mainView.usernameToBeDeleted = eventData.usernameToBeDeleted;
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2170,6 +2294,7 @@ export function set_rootContainer_userListView_userList(eventData) {
 	}
 	appState.rootContainer.mainView.userList = eventData.userList;
 	const newAppState = getAppState();
+	// ELSE
 	setUserListViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2198,6 +2323,7 @@ export function set_rootContainer_userListView_showDeleteUserDialog(eventData) {
 	}
 	appState.rootContainer.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
 	const newAppState = getAppState();
+	// ELSE
 	setUserListViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2226,6 +2352,7 @@ export function set_rootContainer_userListView_usernameToBeDeleted(eventData) {
 	}
 	appState.rootContainer.mainView.usernameToBeDeleted = eventData.usernameToBeDeleted;
 	const newAppState = getAppState();
+	// ELSE
 	setUserListViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2253,6 +2380,7 @@ export function set_rootContainer_queryCardView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2327,6 +2455,7 @@ export function merge_rootContainer_queryCardView(eventData) {
 		appState.rootContainer.mainView.reverse = eventData.reverse;
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2355,6 +2484,7 @@ export function set_rootContainer_queryCardView_cardId(eventData) {
 	}
 	appState.rootContainer.mainView.cardId = eventData.cardId;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2383,6 +2513,7 @@ export function set_rootContainer_queryCardView_categoryId(eventData) {
 	}
 	appState.rootContainer.mainView.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2411,6 +2542,7 @@ export function set_rootContainer_queryCardView_categoryName(eventData) {
 	}
 	appState.rootContainer.mainView.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2439,6 +2571,7 @@ export function set_rootContainer_queryCardView_count(eventData) {
 	}
 	appState.rootContainer.mainView.count = eventData.count;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2467,6 +2600,7 @@ export function set_rootContainer_queryCardView_given(eventData) {
 	}
 	appState.rootContainer.mainView.given = eventData.given;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2495,6 +2629,7 @@ export function set_rootContainer_queryCardView_image(eventData) {
 	}
 	appState.rootContainer.mainView.image = eventData.image;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2523,6 +2658,7 @@ export function set_rootContainer_queryCardView_lastQuality(eventData) {
 	}
 	appState.rootContainer.mainView.lastQuality = eventData.lastQuality;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2551,6 +2687,7 @@ export function set_rootContainer_queryCardView_rootCategoryId(eventData) {
 	}
 	appState.rootContainer.mainView.rootCategoryId = eventData.rootCategoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2579,6 +2716,7 @@ export function set_rootContainer_queryCardView_scheduledCardId(eventData) {
 	}
 	appState.rootContainer.mainView.scheduledCardId = eventData.scheduledCardId;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2607,6 +2745,7 @@ export function set_rootContainer_queryCardView_reinforceCardId(eventData) {
 	}
 	appState.rootContainer.mainView.reinforceCardId = eventData.reinforceCardId;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2635,6 +2774,7 @@ export function set_rootContainer_queryCardView_scheduledDate(eventData) {
 	}
 	appState.rootContainer.mainView.scheduledDate = eventData.scheduledDate;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2663,6 +2803,7 @@ export function set_rootContainer_queryCardView_scoredDate(eventData) {
 	}
 	appState.rootContainer.mainView.scoredDate = eventData.scoredDate;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2691,6 +2832,7 @@ export function set_rootContainer_queryCardView_wanted(eventData) {
 	}
 	appState.rootContainer.mainView.wanted = eventData.wanted;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2719,6 +2861,7 @@ export function set_rootContainer_queryCardView_openTodaysCards(eventData) {
 	}
 	appState.rootContainer.mainView.openTodaysCards = eventData.openTodaysCards;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2747,6 +2890,7 @@ export function set_rootContainer_queryCardView_allTodaysCards(eventData) {
 	}
 	appState.rootContainer.mainView.allTodaysCards = eventData.allTodaysCards;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2775,6 +2919,7 @@ export function set_rootContainer_queryCardView_index(eventData) {
 	}
 	appState.rootContainer.mainView.index = eventData.index;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2803,6 +2948,7 @@ export function set_rootContainer_queryCardView_enableScoreButtons(eventData) {
 	}
 	appState.rootContainer.mainView.enableScoreButtons = eventData.enableScoreButtons;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2831,6 +2977,7 @@ export function set_rootContainer_queryCardView_displayImage(eventData) {
 	}
 	appState.rootContainer.mainView.displayImage = eventData.displayImage;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2859,6 +3006,7 @@ export function set_rootContainer_queryCardView_boxId(eventData) {
 	}
 	appState.rootContainer.mainView.boxId = eventData.boxId;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2887,6 +3035,7 @@ export function set_rootContainer_queryCardView_reverse(eventData) {
 	}
 	appState.rootContainer.mainView.reverse = eventData.reverse;
 	const newAppState = getAppState();
+	// ELSE
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2914,6 +3063,7 @@ export function set_rootContainer_authorView(eventData) {
 		};
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2949,6 +3099,7 @@ export function merge_rootContainer_authorView(eventData) {
 		appState.rootContainer.mainView.cardView = eventData.cardView;
 	}
 	const newAppState = getAppState();
+	// parent GroupedClientAttribute
 	setMainViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -2977,6 +3128,7 @@ export function set_rootContainer_authorView_filterNonScheduled(eventData) {
 	}
 	appState.rootContainer.mainView.filterNonScheduled = eventData.filterNonScheduled;
 	const newAppState = getAppState();
+	// ELSE
 	setAuthorViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3005,6 +3157,7 @@ export function set_rootContainer_authorView_reverse(eventData) {
 	}
 	appState.rootContainer.mainView.reverse = eventData.reverse;
 	const newAppState = getAppState();
+	// ELSE
 	setAuthorViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3033,6 +3186,7 @@ export function set_rootContainer_authorView_reverseBoxExists(eventData) {
 	}
 	appState.rootContainer.mainView.reverseBoxExists = eventData.reverseBoxExists;
 	const newAppState = getAppState();
+	// ELSE
 	setAuthorViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3061,6 +3215,7 @@ export function set_rootContainer_authorView_boxId(eventData) {
 	}
 	appState.rootContainer.mainView.boxId = eventData.boxId;
 	const newAppState = getAppState();
+	// ELSE
 	setAuthorViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3089,6 +3244,7 @@ export function set_rootContainer_authorView_priority(eventData) {
 	}
 	appState.rootContainer.mainView.priority = eventData.priority;
 	const newAppState = getAppState();
+	// ELSE
 	setAuthorViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3120,6 +3276,7 @@ export function set_rootContainer_authorView_categoryTree(eventData) {
 	}
 	appState.rootContainer.mainView.categoryTree = eventData.categoryTree;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3177,6 +3334,7 @@ export function merge_rootContainer_authorView_categoryTree(eventData) {
 		appState.rootContainer.mainView.categoryTree.previewCsv = eventData.previewCsv;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3214,6 +3372,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory(event
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory = eventData.selectedCategory;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3268,6 +3427,7 @@ export function merge_rootContainer_authorView_categoryTree_selectedCategory(eve
 		appState.rootContainer.mainView.categoryTree.selectedCategory.editable = eventData.editable;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3308,6 +3468,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_categ
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3348,6 +3509,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_categ
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3388,6 +3550,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_categ
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3428,6 +3591,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_empty
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.empty = eventData.empty;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3468,6 +3632,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_paren
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3508,6 +3673,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_dicti
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3548,6 +3714,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_given
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3588,6 +3755,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_wante
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3628,6 +3796,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_rootC
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3668,6 +3837,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_child
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3708,6 +3878,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_nonSc
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3748,6 +3919,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_edita
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.editable = eventData.editable;
 	const newAppState = getAppState();
+	// ELSE
 	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3785,6 +3957,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory(eventData
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory = eventData.rootCategory;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3839,6 +4012,7 @@ export function merge_rootContainer_authorView_categoryTree_rootCategory(eventDa
 		appState.rootContainer.mainView.categoryTree.rootCategory.editable = eventData.editable;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3879,6 +4053,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_categoryI
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3919,6 +4094,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_categoryN
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3959,6 +4135,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_categoryI
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -3999,6 +4176,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_empty(eve
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.empty = eventData.empty;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4039,6 +4217,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_parentCat
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4079,6 +4258,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_dictionar
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4119,6 +4299,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_givenLang
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4159,6 +4340,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_wantedLan
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4199,6 +4381,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_rootCateg
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4239,6 +4422,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_childCate
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.childCategories = eventData.childCategories;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4279,6 +4463,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_nonSchedu
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.nonScheduledCount;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4319,6 +4504,7 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_editable(
 	}
 	appState.rootContainer.mainView.categoryTree.rootCategory.editable = eventData.editable;
 	const newAppState = getAppState();
+	// ELSE
 	setRootCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.rootCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4353,6 +4539,7 @@ export function set_rootContainer_authorView_categoryTree_displayDeleteCategory(
 	}
 	appState.rootContainer.mainView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4387,6 +4574,7 @@ export function set_rootContainer_authorView_categoryTree_categoryName(eventData
 	}
 	appState.rootContainer.mainView.categoryTree.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4421,6 +4609,7 @@ export function set_rootContainer_authorView_categoryTree_displayEditCategory(ev
 	}
 	appState.rootContainer.mainView.categoryTree.displayEditCategory = eventData.displayEditCategory;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4455,6 +4644,7 @@ export function set_rootContainer_authorView_categoryTree_displayNewCategory(eve
 	}
 	appState.rootContainer.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4489,6 +4679,7 @@ export function set_rootContainer_authorView_categoryTree_displayInviteUser(even
 	}
 	appState.rootContainer.mainView.categoryTree.displayInviteUser = eventData.displayInviteUser;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4523,6 +4714,7 @@ export function set_rootContainer_authorView_categoryTree_usernameSearchString(e
 	}
 	appState.rootContainer.mainView.categoryTree.usernameSearchString = eventData.usernameSearchString;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4557,6 +4749,7 @@ export function set_rootContainer_authorView_categoryTree_usernames(eventData) {
 	}
 	appState.rootContainer.mainView.categoryTree.usernames = eventData.usernames;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4591,6 +4784,7 @@ export function set_rootContainer_authorView_categoryTree_invitedUsernames(event
 	}
 	appState.rootContainer.mainView.categoryTree.invitedUsernames = eventData.invitedUsernames;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4625,6 +4819,7 @@ export function set_rootContainer_authorView_categoryTree_dropAllowed(eventData)
 	}
 	appState.rootContainer.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4659,6 +4854,7 @@ export function set_rootContainer_authorView_categoryTree_dropTargetCategoryId(e
 	}
 	appState.rootContainer.mainView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4696,6 +4892,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory(eventDat
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory = eventData.movedCategory;
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4744,6 +4941,7 @@ export function merge_rootContainer_authorView_categoryTree_movedCategory(eventD
 		appState.rootContainer.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4784,6 +4982,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_category
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4824,6 +5023,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_category
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4864,6 +5064,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_category
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4904,6 +5105,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_empty(ev
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.empty = eventData.empty;
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4944,6 +5146,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_parentCa
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -4984,6 +5187,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_dictiona
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5024,6 +5228,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_givenLan
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5064,6 +5269,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_wantedLa
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5104,6 +5310,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_rootCate
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5144,6 +5351,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_childCat
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
 	const newAppState = getAppState();
+	// ELSE
 	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5178,6 +5386,7 @@ export function set_rootContainer_authorView_categoryTree_previewCsv(eventData) 
 	}
 	appState.rootContainer.mainView.categoryTree.previewCsv = eventData.previewCsv;
 	const newAppState = getAppState();
+	// ELSE
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5209,6 +5418,7 @@ export function set_rootContainer_authorView_cardView(eventData) {
 	}
 	appState.rootContainer.mainView.cardView = eventData.cardView;
 	const newAppState = getAppState();
+	// ELSE
 	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5257,6 +5467,7 @@ export function merge_rootContainer_authorView_cardView(eventData) {
 		appState.rootContainer.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5294,6 +5505,7 @@ export function set_rootContainer_authorView_cardView_cardList(eventData) {
 	}
 	appState.rootContainer.mainView.cardView.cardList = eventData.cardList;
 	const newAppState = getAppState();
+	// ELSE
 	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5328,6 +5540,7 @@ export function set_rootContainer_authorView_cardView_naturalInputOrder(eventDat
 	}
 	appState.rootContainer.mainView.cardView.naturalInputOrder = eventData.naturalInputOrder;
 	const newAppState = getAppState();
+	// ELSE
 	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5362,6 +5575,7 @@ export function set_rootContainer_authorView_cardView_filter(eventData) {
 	}
 	appState.rootContainer.mainView.cardView.filter = eventData.filter;
 	const newAppState = getAppState();
+	// ELSE
 	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5399,6 +5613,7 @@ export function set_rootContainer_authorView_cardView_editedCard(eventData) {
 	}
 	appState.rootContainer.mainView.cardView.editedCard = eventData.editedCard;
 	const newAppState = getAppState();
+	// ELSE
 	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5432,6 +5647,7 @@ export function merge_rootContainer_authorView_cardView_editedCard(eventData) {
 		appState.rootContainer.mainView.cardView.editedCard.image = eventData.image;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5472,6 +5688,7 @@ export function set_rootContainer_authorView_cardView_editedCard_cardId(eventDat
 	}
 	appState.rootContainer.mainView.cardView.editedCard.cardId = eventData.cardId;
 	const newAppState = getAppState();
+	// ELSE
 	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5512,6 +5729,7 @@ export function set_rootContainer_authorView_cardView_editedCard_given(eventData
 	}
 	appState.rootContainer.mainView.cardView.editedCard.given = eventData.given;
 	const newAppState = getAppState();
+	// ELSE
 	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5552,6 +5770,7 @@ export function set_rootContainer_authorView_cardView_editedCard_wanted(eventDat
 	}
 	appState.rootContainer.mainView.cardView.editedCard.wanted = eventData.wanted;
 	const newAppState = getAppState();
+	// ELSE
 	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5592,6 +5811,7 @@ export function set_rootContainer_authorView_cardView_editedCard_index(eventData
 	}
 	appState.rootContainer.mainView.cardView.editedCard.index = eventData.index;
 	const newAppState = getAppState();
+	// ELSE
 	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5632,6 +5852,7 @@ export function set_rootContainer_authorView_cardView_editedCard_image(eventData
 	}
 	appState.rootContainer.mainView.cardView.editedCard.image = eventData.image;
 	const newAppState = getAppState();
+	// ELSE
 	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5669,6 +5890,7 @@ export function set_rootContainer_authorView_cardView_newCard(eventData) {
 	}
 	appState.rootContainer.mainView.cardView.newCard = eventData.newCard;
 	const newAppState = getAppState();
+	// ELSE
 	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5708,6 +5930,7 @@ export function merge_rootContainer_authorView_cardView_newCard(eventData) {
 		appState.rootContainer.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5748,6 +5971,7 @@ export function set_rootContainer_authorView_cardView_newCard_given(eventData) {
 	}
 	appState.rootContainer.mainView.cardView.newCard.given = eventData.given;
 	const newAppState = getAppState();
+	// ELSE
 	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5788,6 +6012,7 @@ export function set_rootContainer_authorView_cardView_newCard_wanted(eventData) 
 	}
 	appState.rootContainer.mainView.cardView.newCard.wanted = eventData.wanted;
 	const newAppState = getAppState();
+	// ELSE
 	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5828,6 +6053,7 @@ export function set_rootContainer_authorView_cardView_newCard_index(eventData) {
 	}
 	appState.rootContainer.mainView.cardView.newCard.index = eventData.index;
 	const newAppState = getAppState();
+	// ELSE
 	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5868,6 +6094,7 @@ export function set_rootContainer_authorView_cardView_newCard_image(eventData) {
 	}
 	appState.rootContainer.mainView.cardView.newCard.image = eventData.image;
 	const newAppState = getAppState();
+	// ELSE
 	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5908,6 +6135,7 @@ export function set_rootContainer_authorView_cardView_newCard_file(eventData) {
 	}
 	appState.rootContainer.mainView.cardView.newCard.file = eventData.file;
 	const newAppState = getAppState();
+	// ELSE
 	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5948,6 +6176,7 @@ export function set_rootContainer_authorView_cardView_newCard_displaySpinner(eve
 	}
 	appState.rootContainer.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
 	const newAppState = getAppState();
+	// ELSE
 	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -5988,6 +6217,7 @@ export function set_rootContainer_authorView_cardView_newCard_displayTranslateSp
 	}
 	appState.rootContainer.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
 	const newAppState = getAppState();
+	// ELSE
 	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -6022,6 +6252,7 @@ export function set_rootContainer_authorView_cardView_cardDuplicates(eventData) 
 	}
 	appState.rootContainer.mainView.cardView.cardDuplicates = eventData.cardDuplicates;
 	const newAppState = getAppState();
+	// ELSE
 	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -6059,6 +6290,7 @@ export function set_rootContainer_authorView_cardView_deleteCard(eventData) {
 	}
 	appState.rootContainer.mainView.cardView.deleteCard = eventData.deleteCard;
 	const newAppState = getAppState();
+	// ELSE
 	setDeleteCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.deleteCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -6083,6 +6315,7 @@ export function merge_rootContainer_authorView_cardView_deleteCard(eventData) {
 		appState.rootContainer.mainView.cardView.deleteCard.cardId = eventData.cardId;
 	}
 	const newAppState = getAppState();
+	// ELSE
 	setDeleteCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.deleteCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -6123,6 +6356,7 @@ export function set_rootContainer_authorView_cardView_deleteCard_confirmDelete(e
 	}
 	appState.rootContainer.mainView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
 	const newAppState = getAppState();
+	// ELSE
 	setDeleteCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.deleteCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -6163,6 +6397,7 @@ export function set_rootContainer_authorView_cardView_deleteCard_cardId(eventDat
 	}
 	appState.rootContainer.mainView.cardView.deleteCard.cardId = eventData.cardId;
 	const newAppState = getAppState();
+	// ELSE
 	setDeleteCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.deleteCard));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -6197,6 +6432,7 @@ export function set_rootContainer_authorView_cardView_dictionaryValue(eventData)
 	}
 	appState.rootContainer.mainView.cardView.dictionaryValue = eventData.dictionaryValue;
 	const newAppState = getAppState();
+	// ELSE
 	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -6231,6 +6467,7 @@ export function set_rootContainer_authorView_cardView_selectedCardIds(eventData)
 	}
 	appState.rootContainer.mainView.cardView.selectedCardIds = eventData.selectedCardIds;
 	const newAppState = getAppState();
+	// ELSE
 	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -6265,6 +6502,7 @@ export function set_rootContainer_authorView_cardView_movedCardIds(eventData) {
 	}
 	appState.rootContainer.mainView.cardView.movedCardIds = eventData.movedCardIds;
 	const newAppState = getAppState();
+	// ELSE
 	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
@@ -6299,6 +6537,7 @@ export function set_rootContainer_authorView_cardView_dragTargetCardId(eventData
 	}
 	appState.rootContainer.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
 	const newAppState = getAppState();
+	// ELSE
 	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }

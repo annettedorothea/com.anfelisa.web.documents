@@ -60,7 +60,7 @@ context('ConfirmEmail', () => {
 			});
     })
 
-    it('confirmsEmail userLoggedIn ', () => {
+    it('confirmsEmail userLoggedIn role ', () => {
 
 ScenarioUtils.getCypressFor(RegistrationActionIds.confirmEmail, [`username-${testId}`,`${testId}-TOKEN`]).should(() => {
 	ScenarioUtils.wait(2, 1).should(() => {
@@ -82,10 +82,10 @@ ScenarioUtils.getCypressFor(RegistrationActionIds.confirmEmail, [`username-${tes
         )
         expect(appState.rootContainer.loggedInUser, "userLoggedIn").to.eql({ 
         	password : `5f4dcc3b5aa765d61d8327deb882cf99`,
-        	role : `STUDENT`,
         	username : `username-${testId}`
         }
         )
+        expect(appState.rootContainer.role, "role").to.eql(`STUDENT`)
 	})
 })
     })

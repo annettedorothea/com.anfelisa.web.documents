@@ -40,9 +40,9 @@ Login
 		expectedState 
 			userLoggedIn common.rootContainer.loggedInUser shouldBe {
 				password: "5f4dcc3b5aa765d61d8327deb882cf99",
-				role: "STUDENT",
 				username: "username-${testId}"
 			}
+			role common.rootContainer.role shouldBe "STUDENT"
 		verifications
 			loginDataWasNotSetInLocalStorage
 			
@@ -55,9 +55,9 @@ LoginWithSaveInLocalStorage
 		expectedState 
 			userLoggedIn common.rootContainer.loggedInUser shouldBe {
 				password: "5f4dcc3b5aa765d61d8327deb882cf99",
-				role: "STUDENT",
 				username: "username-${testId}"
 			}
+			role common.rootContainer.role shouldBe "STUDENT"
 		verifications
 			loginDataWasSetInLocalStorage
 			

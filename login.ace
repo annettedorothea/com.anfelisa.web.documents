@@ -31,7 +31,9 @@ ACE
 	GetRole 
 	 	call com.anfelisa.user.GetRole
 		loadingFlag common.rootContainer.spinner 
-		on ok (merge common.rootContainer.loggedInUser) triggers ( common.Route )
+		on ok (
+			set common.rootContainer.role
+		) triggers ( common.Route )
 		on unauthorized (set common.rootContainer.loggedInUser ) triggers ( common.DisplayToast common.Logout)
 	
 

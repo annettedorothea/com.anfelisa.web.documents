@@ -13,7 +13,10 @@ import RouteChangedPrivacyPolicyEvent from "./events/RouteChangedPrivacyPolicyEv
 import RouteChangedRegistrationEvent from "./events/RouteChangedRegistrationEvent";
 import RouteChangedForgotPasswordEvent from "./events/RouteChangedForgotPasswordEvent";
 import RouteChangedResetPasswordEvent from "./events/RouteChangedResetPasswordEvent";
+import RouteChangedDashboardEvent from "./events/RouteChangedDashboardEvent";
 import RouteChangedCategoriesEvent from "./events/RouteChangedCategoriesEvent";
+import RouteChangedProfileEvent from "./events/RouteChangedProfileEvent";
+import RouteChangedUserListEvent from "./events/RouteChangedUserListEvent";
 import RouteChangedNextCardEvent from "./events/RouteChangedNextCardEvent";
 import RouteChangedBoxSettingsEvent from "./events/RouteChangedBoxSettingsEvent";
 import RouteChangedAllActiveCardsEvent from "./events/RouteChangedAllActiveCardsEvent";
@@ -48,8 +51,14 @@ export default class EventFactoryRegistrationCommon {
 			(eventData) => new RouteChangedForgotPasswordEvent(eventData));
 		ACEController.registerFactory('common.RouteChangedResetPasswordEvent', 
 			(eventData) => new RouteChangedResetPasswordEvent(eventData));
+		ACEController.registerFactory('common.RouteChangedDashboardEvent', 
+			(eventData) => new RouteChangedDashboardEvent(eventData));
 		ACEController.registerFactory('common.RouteChangedCategoriesEvent', 
 			(eventData) => new RouteChangedCategoriesEvent(eventData));
+		ACEController.registerFactory('common.RouteChangedProfileEvent', 
+			(eventData) => new RouteChangedProfileEvent(eventData));
+		ACEController.registerFactory('common.RouteChangedUserListEvent', 
+			(eventData) => new RouteChangedUserListEvent(eventData));
 		ACEController.registerFactory('common.RouteChangedNextCardEvent', 
 			(eventData) => new RouteChangedNextCardEvent(eventData));
 		ACEController.registerFactory('common.RouteChangedBoxSettingsEvent', 

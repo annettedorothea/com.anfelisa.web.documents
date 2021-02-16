@@ -82,17 +82,17 @@ context('LoginWithSaveInLocalStorage', () => {
 			});
     })
 
-    it('userLoggedIn loginDataWasSetInLocalStorage', () => {
+    it('userLoggedIn role loginDataWasSetInLocalStorage', () => {
 
 ScenarioUtils.getCypressFor(LoginActionIds.login, ).should(() => {
 	ScenarioUtils.wait(1, 2).should(() => {
         const appState = JSON.parse(localStorage.getItem('appState'))
         expect(appState.rootContainer.loggedInUser, "userLoggedIn").to.eql({ 
         	password : `5f4dcc3b5aa765d61d8327deb882cf99`,
-        	role : `STUDENT`,
         	username : `username-${testId}`
         }
         )
+        expect(appState.rootContainer.role, "role").to.eql(`STUDENT`)
         Verifications.loginDataWasSetInLocalStorage(testId);
 	})
 })

@@ -13,6 +13,7 @@ import { VersionMismatchDialogComponent } from "./rootContainer/VersionMismatchD
 import { VersionMismatchErrorDialogComponent } from "./rootContainer/VersionMismatchErrorDialogComponent";
 import { MessagesItemComponent } from "./rootContainer/MessagesItemComponent";
 import { MainViewComponent } from "./rootContainer/MainViewComponent";
+import { PrivacyPolicyViewComponent } from "./rootContainer/mainView/PrivacyPolicyViewComponent";
 import { LoginViewComponent } from "./rootContainer/mainView/LoginViewComponent";
 import { RegistrationViewComponent } from "./rootContainer/mainView/RegistrationViewComponent";
 import { ForgotPasswordViewComponent } from "./rootContainer/mainView/ForgotPasswordViewComponent";

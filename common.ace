@@ -2,6 +2,9 @@ HttpClient common
 
 
 
+
+
+
 ACE 
 Init 
 	fromAppState (rootContainer.username, rootContainer.password )
@@ -34,18 +37,30 @@ RouteChanged
 	on resetPassword ( 
 		set rootContainer.mainView.resetPasswordView 
 	)
-	on dashboard triggers (box.InitBoxesForDay)
+	on dashboard (
+		set rootContainer.mainView.dashboardView
+	) triggers (box.InitBoxesForDay)
 	on categories (
-		set rootContainer.mainView.authorView.filterNonScheduled
-		set rootContainer.mainView.authorView.priority
-		set rootContainer.mainView.authorView.reverse
+		set rootContainer.mainView.authorView
 	) triggers (category.LoadCategoryTree )
-	on profile triggers ( profile.LoadUser )
-	on userList triggers (admin.GetAllUsers) 
-	on nextCard (set rootContainer.mainView.queryCardView.boxId) triggers (box.LoadNextCard)
-	on boxSettings (set rootContainer.mainView.boxSettingsView.boxId) triggers (box.LoadSettings)
-	on allActiveCards (set rootContainer.mainView.allActiveCardsView.boxId) triggers (box.LoadActiveCards)
-	on boxCreate ( set rootContainer.mainView.boxSettingsView )
+	on profile (
+		set rootContainer.mainView.profileView
+	) triggers ( profile.LoadUser )
+	on userList (
+		set rootContainer.mainView.userListView
+	) triggers (admin.GetAllUsers) 
+	on nextCard (
+		set rootContainer.mainView.queryCardView
+	) triggers (box.LoadNextCard)
+	on boxSettings (
+		set rootContainer.mainView.boxSettingsView
+	) triggers (box.LoadSettings)
+	on allActiveCards (
+		set rootContainer.mainView.allActiveCardsView
+	) triggers (box.LoadActiveCards)
+	on boxCreate ( 
+		set rootContainer.mainView.boxSettingsView
+	)
 	on invalid triggers (Route)
 	
 Route ( hash ) 
@@ -54,7 +69,9 @@ Route ( hash )
 InitialLogin
 	call com.anfelisa.user.GetRole
 	loadingFlag rootContainer.spinner 
-	on ok (set rootContainer.loggedInUser.role) triggers ( RouteChanged )
+	on ok (
+		set rootContainer.role
+	) triggers ( RouteChanged )
 	on unauthorized triggers ( DisplayToast Logout )
 	
 Logout 
@@ -108,12 +125,12 @@ HideSaveBugDialog
 ui React_16.8 rootContainer {
 	loggedInUser {
 		username
-		role
 		password
 	}
 	hash location.hash
 	username storage
 	password storage
+	role
 	spinner { 
 		display
 	} 
@@ -137,6 +154,7 @@ ui React_16.8 rootContainer {
 	}
 	group mainView {
 		privacyPolicyView {
+			display
 		}
 		loginView {
 			username

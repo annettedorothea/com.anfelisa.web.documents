@@ -3,43 +3,22 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../../gen/components/ReactHelper";
+import {button, div, h2} from "../../../../../gen/components/ReactHelper";
+import {Texts} from "../../../../app/Texts";
+import {cancelDeleteBox, deleteBox} from "../../../../../gen/box/ActionFunctions";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["DELETEBOX"]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "confirmDelete"
-			}, ["CONFIRMDELETE"]), 
-			input({
-				id: "confirmDelete",
-				value: attributes.confirmDelete, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.confirmDelete])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "boxId"
-			}, ["BOXID"]), 
-			input({
-				id: "boxId",
-				value: attributes.boxId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.boxId])
-		])
-	]);
-}
+	if (attributes.confirmDelete === true) {
+		return div({class: "modal"}, [
+			div({class: "modalContent"}, [
+				h2({}, [Texts.box.confirmDelete.title[attributes.language]]),
+				div({class: "message"}, [Texts.box.confirmDelete.message[attributes.language]]),
+				button({class: "yes", onClick: () => deleteBox()}, [Texts.box.confirmDelete.ok[attributes.language]]),
+				button({onClick: () => cancelDeleteBox()}, [Texts.box.confirmDelete.cancel[attributes.language]])
+			])
+		]);
+	}
+	return null;}
 
 
 

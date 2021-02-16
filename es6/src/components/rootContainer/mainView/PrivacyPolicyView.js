@@ -3,16 +3,32 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../gen/components/ReactHelper";
+import {div, h1, h2, p, a} from "../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["PRIVACYPOLICYVIEW"])
-	]);
+    if (attributes.language === "de") {
+        return div({class: "center privacy-policy"}, [
+            h1({}, ["Datenschutzerklärung"]),
+            h2({}, ["Speicherung von Daten in Log-Dateien"]),
+            p({}, ["Um den Betrieb dieser Website sicherzustellen, werden IP-Adresse, Zeitpunkt des Zugriffs und Typ und Version des verwendeten Browsers in Log-Dateien gespeichert."]),
+            h2({}, ["Speicherung personenbezogener Daten in einer Datenbank"]),
+            p({}, [
+                "Registriert sich ein Benutzer bei der Plattform, werden personenbezogenen Daten in einer Datenbank, die bei ",
+                a({
+                    href: "https://www.hetzner.com/de/cloud",
+                    target: "hetzner"
+                }, ["Hetzner"]),
+                " auf einem Cloud-Server liegt, gespeichert. Dies ist nötig, um ihm den Zugriff auf seinen persönlichen Bereich zu gewährleisten."
+            ]),
+            h2({}, ["Keine Verwendung von Cookies"]),
+            p({}, ["Diese Website verwendet keine Cookies und analysiert auch keine Daten zu Marketingzwecken. Lediglich wenn der Benutzer angemeldet bleiben möchte, werden die Login-Daten gespeichert. Das Passwort wir dabei verschlüsselt."]),
+            h2({}, ["Keine Anbindung an soziale Netzwerke"]),
+            p({}, ["Diese Website ist mit keinem sozialen Netzwerk verbunden."])
+        ]);
+    } else {
+        return null;
+    }
 }
-
 
 
 /******* S.D.G. *******/

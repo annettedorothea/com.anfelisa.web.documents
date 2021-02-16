@@ -13,7 +13,10 @@ import RouteChangedPrivacyPolicyEvent from "../../../gen/common/events/RouteChan
 import RouteChangedRegistrationEvent from "../../../gen/common/events/RouteChangedRegistrationEvent";
 import RouteChangedForgotPasswordEvent from "../../../gen/common/events/RouteChangedForgotPasswordEvent";
 import RouteChangedResetPasswordEvent from "../../../gen/common/events/RouteChangedResetPasswordEvent";
+import RouteChangedDashboardEvent from "../../../gen/common/events/RouteChangedDashboardEvent";
 import RouteChangedCategoriesEvent from "../../../gen/common/events/RouteChangedCategoriesEvent";
+import RouteChangedProfileEvent from "../../../gen/common/events/RouteChangedProfileEvent";
+import RouteChangedUserListEvent from "../../../gen/common/events/RouteChangedUserListEvent";
 import RouteChangedNextCardEvent from "../../../gen/common/events/RouteChangedNextCardEvent";
 import RouteChangedBoxSettingsEvent from "../../../gen/common/events/RouteChangedBoxSettingsEvent";
 import RouteChangedAllActiveCardsEvent from "../../../gen/common/events/RouteChangedAllActiveCardsEvent";
@@ -102,6 +105,7 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 			new RouteChangedResetPasswordEvent(this.commandData).publish();
 		}
 		if (this.commandData.outcomes.includes("dashboard")) {
+			new RouteChangedDashboardEvent(this.commandData).publish();
 			new TriggerAction(new InitBoxesForDayAction()).publish();
 		}
 		if (this.commandData.outcomes.includes("categories")) {
@@ -109,9 +113,11 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 			new TriggerAction(new LoadCategoryTreeAction(this.commandData.rootCategoryId, this.commandData.selectedCategoryId)).publish();
 		}
 		if (this.commandData.outcomes.includes("profile")) {
+			new RouteChangedProfileEvent(this.commandData).publish();
 			new TriggerAction(new LoadUserAction()).publish();
 		}
 		if (this.commandData.outcomes.includes("userList")) {
+			new RouteChangedUserListEvent(this.commandData).publish();
 			new TriggerAction(new GetAllUsersAction()).publish();
 		}
 		if (this.commandData.outcomes.includes("nextCard")) {

@@ -33,7 +33,7 @@ const content = (attributes) => div({}, [
             language: attributes.language
         })) : []
     ]),
-    mainView({language: attributes.language}),
+    mainView({language: attributes.language, role: attributes.role}),
     div({class: `footer ${attributes.loggedInUser === undefined ? "fixed" : ""}`}, [
         div({class: "footerContent"}, [
                 h1({}, [Texts.container.about[attributes.language]]),
@@ -64,7 +64,10 @@ export function uiElement(attributes) {
                     onClick: () => route("#dashboard"),
                     class: "title"
                 }, ["Anfelisa"]),
-                loggedInUser({language: attributes.language, ...attributes.loggedInUser}),
+                loggedInUser({
+                    language: attributes.language,
+                    role: attributes.role,
+                    ...attributes.loggedInUser}),
             ]),
             div({class: "content"}, [content(attributes)])
         ]);
