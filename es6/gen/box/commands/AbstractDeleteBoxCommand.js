@@ -10,6 +10,7 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
+import DeleteBoxOkEvent from "../../../gen/box/events/DeleteBoxOkEvent";
 import DeleteBoxErrorEvent from "../../../gen/box/events/DeleteBoxErrorEvent";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
@@ -32,6 +33,7 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
 		let promises = [];
 	    
 		if (this.commandData.outcomes.includes("ok")) {
+			promises.push(new DeleteBoxOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadBoxesAction()).publish());
 		}
 		if (this.commandData.outcomes.includes("error")) {

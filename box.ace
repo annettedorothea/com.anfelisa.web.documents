@@ -80,7 +80,10 @@ ACE
 		fromAppState ( common.rootContainer.mainView.dashboardView.deleteBox.boxId )
 		call com.anfelisa.box.DeleteBox
 		loadingFlag common.rootContainer.spinner 
-		on ok triggers (LoadBoxes)
+		on ok (
+			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
+			set common.rootContainer.mainView.dashboardView.deleteBox.confirmDelete
+		) triggers (LoadBoxes)
 		on error (
 			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
 			set common.rootContainer.mainView.dashboardView.deleteBox.confirmDelete

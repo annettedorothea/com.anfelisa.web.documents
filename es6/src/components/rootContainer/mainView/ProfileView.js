@@ -3,72 +3,87 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../gen/components/ReactHelper";
+import {button, div, h1, h2, i, input, label} from "../../../../gen/components/ReactHelper";
+import {Texts} from "../../../app/Texts";
+import {deleteUser, deleteUserCancel, deleteUserClick} from "../../../../gen/profile/ActionFunctions";
+import {route} from "../../../../gen/common/ActionFunctions";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["PROFILEVIEW"]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "username"
-			}, ["USERNAME"]), 
-			input({
-				id: "username",
-				value: attributes.username, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.username])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "email"
-			}, ["EMAIL"]), 
-			input({
-				id: "email",
-				value: attributes.email, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.email])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "role"
-			}, ["ROLE"]), 
-			input({
-				id: "role",
-				value: attributes.role, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.role])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "showDeleteUserDialog"
-			}, ["SHOWDELETEUSERDIALOG"]), 
-			input({
-				id: "showDeleteUserDialog",
-				value: attributes.showDeleteUserDialog, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.showDeleteUserDialog])
-		])
-	]);
+    if (attributes.role === undefined) {
+        return null;
+    }
+    return div({class: "center-wide"}, [
+        attributes.showDeleteUserDialog === true ?
+            div({class: "modal"}, [
+                div({class: "modalContent"}, [
+                    h2({}, [Texts.profile.confirmDelete.title[attributes.language]]),
+                    div({class: "message"}, [Texts.profile.confirmDelete.message[attributes.language]]),
+                    button({
+                        class: "yes",
+                        onClick: () => deleteUser()
+                    }, [Texts.profile.confirmDelete.ok[attributes.language]]),
+                    button({onClick: () => deleteUserCancel()}, [Texts.profile.confirmDelete.cancel[attributes.language]])
+                ])
+            ]) :
+            null,
+        div({class: "form"}, [
+            h1({}, [
+                button(
+                    {
+                        onClick: () => route("#dashboard")
+                    }, [
+                        i({class: "fa fa-arrow-left"})
+                    ]),
+                Texts.profile.title[attributes.language]
+            ]),
+            div({class: "line"}, [
+                label({htmlFor: "username"}, [Texts.profile.username[attributes.language]]),
+                div({class: "inputContainer"}, [
+                    input(
+                        {
+                            type: "text",
+                            value: attributes.username,
+                            id: "username",
+                            readOnly: true
+                        }
+                    )
+                ])
+            ]),
+            div({class: "line"}, [
+                label({htmlFor: "email"}, [Texts.profile.email[attributes.language]]),
+                div({class: "inputContainer"}, [
+                    input(
+                        {
+                            type: "text",
+                            value: attributes.email,
+                            id: "email",
+                            readOnly: true
+                        }
+                    )
+                ])
+            ]),
+            div({class: "line"}, [
+                label({htmlFor: "role"}, [Texts.profile.role[attributes.language]]),
+                div({class: "inputContainer"}, [
+                    input(
+                        {
+                            type: "text",
+                            value: Texts.profile.role[attributes.role][attributes.language],
+                            id: "role",
+                            readOnly: true
+                        }
+                    )
+                ])
+            ]),
+            div({class: "moreMarginLine hCenter"}, [
+                button({
+                    class:"danger",
+                    onClick: () => deleteUserClick()
+                }, [Texts.profile.delete[attributes.language]]),
+            ])
+        ])
+    ]);
 }
-
 
 
 /******* S.D.G. *******/

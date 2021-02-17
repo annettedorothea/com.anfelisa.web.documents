@@ -3,212 +3,167 @@
  ********************************************************************************/
 
 
+import {button, div, h1, h2, i, input, label, option, select} from "../../../../gen/components/ReactHelper";
+import {route} from "../../../../gen/common/ActionFunctions";
+import {
+    createRootCategory,
+    dictionaryLookupChanged,
+    givenLanguageChanged,
+    maxCardsPerDayChanged,
+    maxIntervalChanged,
+    rootCategoryNameChanged,
+    saveBoxSettings,
+    wantedLanguageChanged
+} from "../../../../gen/box/ActionFunctions";
+import {Texts} from "../../../app/Texts";
 
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["BOXSETTINGSVIEW"]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "maxIntervalInvalid"
-			}, ["MAXINTERVALINVALID"]), 
-			input({
-				id: "maxIntervalInvalid",
-				value: attributes.maxIntervalInvalid, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.maxIntervalInvalid])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "maxCardsPerDayInvalid"
-			}, ["MAXCARDSPERDAYINVALID"]), 
-			input({
-				id: "maxCardsPerDayInvalid",
-				value: attributes.maxCardsPerDayInvalid, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.maxCardsPerDayInvalid])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "tooManyCardsStatus"
-			}, ["TOOMANYCARDSSTATUS"]), 
-			input({
-				id: "tooManyCardsStatus",
-				value: attributes.tooManyCardsStatus, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.tooManyCardsStatus])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "dictionaryLookupInvalid"
-			}, ["DICTIONARYLOOKUPINVALID"]), 
-			input({
-				id: "dictionaryLookupInvalid",
-				value: attributes.dictionaryLookupInvalid, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.dictionaryLookupInvalid])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "boxId"
-			}, ["BOXID"]), 
-			input({
-				id: "boxId",
-				value: attributes.boxId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.boxId])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "maxInterval"
-			}, ["MAXINTERVAL"]), 
-			input({
-				id: "maxInterval",
-				value: attributes.maxInterval, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.maxInterval])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "maxCardsPerDay"
-			}, ["MAXCARDSPERDAY"]), 
-			input({
-				id: "maxCardsPerDay",
-				value: attributes.maxCardsPerDay, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.maxCardsPerDay])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "categoryName"
-			}, ["CATEGORYNAME"]), 
-			input({
-				id: "categoryName",
-				value: attributes.categoryName, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.categoryName])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "dictionaryLookup"
-			}, ["DICTIONARYLOOKUP"]), 
-			input({
-				id: "dictionaryLookup",
-				value: attributes.dictionaryLookup, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.dictionaryLookup])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "givenLanguage"
-			}, ["GIVENLANGUAGE"]), 
-			input({
-				id: "givenLanguage",
-				value: attributes.givenLanguage, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.givenLanguage])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "wantedLanguage"
-			}, ["WANTEDLANGUAGE"]), 
-			input({
-				id: "wantedLanguage",
-				value: attributes.wantedLanguage, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.wantedLanguage])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "categoryId"
-			}, ["CATEGORYID"]), 
-			input({
-				id: "categoryId",
-				value: attributes.categoryId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.categoryId])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "allActiveCards"
-			}, ["ALLACTIVECARDS"]), 
-			input({
-				id: "allActiveCards",
-				value: attributes.allActiveCards, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.allActiveCards])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "allCards"
-			}, ["ALLCARDS"]), 
-			input({
-				id: "allCards",
-				value: attributes.allCards, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.allCards])
-		])
-	]);
-}
 
+    const getCardInfo = () => {
+        if (attributes.allCards === 0) {
+            return ""
+        }
+        if (attributes.allActiveCards === 0 && attributes.allCards === 1) {
+            return Texts.boxSettings.cardInfoZeroOne[attributes.language];
+        }
+        if (attributes.allActiveCards === 1 && attributes.allCards === 1) {
+            return Texts.boxSettings.cardInfoOneOne[attributes.language];
+        }
+        if (attributes.allActiveCards === 1 && attributes.allCards === 1) {
+            return Texts.boxSettings.cardInfoOneOne[attributes.language];
+        }
+        if (attributes.allActiveCards === 0) {
+            return Texts.boxSettings.cardInfoZero[attributes.language].replace("{0}", attributes.allCards);
+        }
+        if (attributes.allActiveCards === 1) {
+            return Texts.boxSettings.cardInfoOne[attributes.language].replace("{0}", attributes.allCards);
+        }
+        return Texts.boxSettings.cardInfo[attributes.language].replace("{0}", attributes.allActiveCards).replace("{1}", attributes.allCards);
+    }
+
+    const getCardStatusWarning = () => {
+        const possibleCards = attributes.maxCardsPerDay * attributes.maxInterval;
+        if (possibleCards === 1) {
+            return Texts.boxSettings.tooManyCardsWarningOne[attributes.language].replace("{0}", attributes.allActiveCards);
+        }
+        return Texts.boxSettings.tooManyCardsWarning[attributes.language].replace("{0}", possibleCards).replace("{1}", attributes.allActiveCards)
+    }
+
+    const getCardStatusInfo = () => {
+        const possibleCards = attributes.maxCardsPerDay * attributes.maxInterval;
+        if (possibleCards === 1 && attributes.allActiveCards === 1) {
+            return Texts.boxSettings.boxInfoOneOne[attributes.language];
+        }
+        if (attributes.allActiveCards === 1) {
+            return Texts.boxSettings.boxInfoOne[attributes.language].replace("{0}", possibleCards);
+        }
+        return Texts.boxSettings.boxInfo[attributes.language].replace("{0}", possibleCards).replace("{1}", attributes.allActiveCards)
+    }
+
+    if (attributes.categoryName === undefined) {
+        return null;
+    }
+    return div({class: "center-wide"}, [
+        div({class: "form"}, [
+            h1({}, [Texts.boxSettings.title[attributes.language]]),
+            attributes.allCards > 0 ? h2({}, [getCardInfo()]) : null,
+            attributes.tooManyCardsStatus === 2 && attributes.maxCardsPerDayInvalid !== true && attributes.maxIntervalInvalid !== true ?
+                div({class: "line warning"}, [getCardStatusWarning()]) : null,
+            attributes.tooManyCardsStatus === 1 && attributes.maxCardsPerDayInvalid !== true && attributes.maxIntervalInvalid !== true ?
+                div({class: "line info"}, [getCardStatusInfo()]) : null,
+            div({class: "line"}, [
+                label({htmlFor: "categoryName"}, [Texts.boxSettings.categoryName[attributes.language]]),
+                div({class: "inputContainer"}, [
+                    input(
+                        {
+                            onChange: (e) => rootCategoryNameChanged(e.target.value),
+                            type: "text",
+                            value: attributes.categoryName,
+                            id: "categoryName"
+                        }),
+                    !attributes.categoryName ? i({class: "fas fa-times outside error"}) : null
+                ]),
+            ]),
+            div({class: "line"}, [
+                label({htmlFor: "maxCardsPerDay"}, [Texts.boxSettings.maxCardsPerDay[attributes.language]]),
+                div({class: "inputContainer"}, [
+                    input(
+                        {
+                            onChange: (e) => maxCardsPerDayChanged(e.target.value),
+                            type: "text",
+                            value: attributes.maxCardsPerDay,
+                            id: "maxCardsPerDay"
+                        }),
+                    attributes.maxCardsPerDayInvalid === true ? i({class: "fas fa-times outside error"}) : null
+                ]),
+            ]),
+            div({class: "line"}, [
+                label({htmlFor: "maxInterval"}, [Texts.boxSettings.maxInterval[attributes.language]]),
+                div({class: "inputContainer"}, [
+                    input(
+                        {
+                            onChange: (e) => maxIntervalChanged(e.target.value),
+                            type: "text",
+                            value: attributes.maxInterval,
+                            id: "maxInterval"
+                        }),
+                    attributes.maxIntervalInvalid === true ? i({class: "fas fa-times outside error"}) : null
+                ]),
+            ]),
+            div({class: "noBreak line"}, [
+                input(
+                    {
+                        onChange: () => dictionaryLookupChanged(),
+                        type: "checkbox",
+                        checked: attributes.dictionaryLookup,
+                        value: attributes.dictionaryLookup,
+                        id: "dictionaryLookupEditCheckbox"
+                    }
+                ),
+                select(
+                    {
+                        onChange: (e) => givenLanguageChanged(e.target.value),
+                        value: attributes.givenLanguage,
+                        disabled: !attributes.dictionaryLookup
+                    }, [
+                        option({value: ""}, [Texts.boxSettings.languages.emtpyFrom[attributes.language]]),
+                        option({value: "de"}, [Texts.boxSettings.languages.de[attributes.language]]),
+                        option({value: "en"}, [Texts.boxSettings.languages.en[attributes.language]]),
+                        option({value: "fr"}, [Texts.boxSettings.languages.fr[attributes.language]])
+                    ]
+                ),
+                select(
+                    {
+                        onChange: (e) => wantedLanguageChanged(e.target.value),
+                        value: attributes.wantedLanguage,
+                        disabled: !attributes.dictionaryLookup
+                    }, [
+                        option({value: ""}, [Texts.boxSettings.languages.emtpyTo[attributes.language]]),
+                        option({value: "de"}, [Texts.boxSettings.languages.de[attributes.language]]),
+                        option({value: "en"}, [Texts.boxSettings.languages.en[attributes.language]]),
+                        option({value: "fr"}, [Texts.boxSettings.languages.fr[attributes.language]])
+                    ]
+                ),
+                attributes.dictionaryLookupInvalid === true ? i({class: "fas fa-times outside error"}) : null
+            ]),
+            div({class: "moreMarginLine hCenter"}, [
+                button({
+                    onClick: () => attributes.boxId ? saveBoxSettings() : createRootCategory(),
+                    disabled: (attributes.maxCardsPerDayInvalid ||
+                        attributes.maxIntervalInvalid ||
+                        attributes.dictionaryLookupInvalid ||
+                        !attributes.categoryName ||
+                        !attributes.categoryName.trim())
+                }, [Texts.boxSettings.save[attributes.language]]),
+                button({
+                    onClick: () => route("#dashboard")
+                }, [Texts.boxSettings.cancel[attributes.language]])
+            ])
+
+        ]),
+    ]);
+}
 
 
 /******* S.D.G. *******/

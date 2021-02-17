@@ -150,6 +150,14 @@ export const i = (options, children) => {
     return generic("i", options, children);
 }
 
+export const select = (options, children) => {
+    return generic("select", options, children);
+}
+
+export const option = (options, children) => {
+    return generic("option", options, children);
+}
+
 export const input = (options) => {
     return <input {...normalize(options)}/>
 }

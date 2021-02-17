@@ -9,7 +9,7 @@ import {route} from "../../../../gen/common/ActionFunctions";
 export function uiElement(attributes) {
     return div({}, [
         div({class: "bottomMargin"}, []),
-        deleteBox({}),
+        deleteBox({language: attributes.language}),
         div({}, [
             attributes.boxList ? attributes.boxList.map((item) => boxListItem({...item, language: attributes.language})) : []
         ]),
