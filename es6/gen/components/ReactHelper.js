@@ -30,9 +30,7 @@ import { UserListItemComponent } from "./rootContainer/mainView/userListView/Use
 import { QueryCardViewComponent } from "./rootContainer/mainView/QueryCardViewComponent";
 import { AuthorViewComponent } from "./rootContainer/mainView/AuthorViewComponent";
 import { CategoryTreeComponent } from "./rootContainer/mainView/authorView/CategoryTreeComponent";
-import { SelectedCategoryComponent } from "./rootContainer/mainView/authorView/categoryTree/SelectedCategoryComponent";
 import { RootCategoryComponent } from "./rootContainer/mainView/authorView/categoryTree/RootCategoryComponent";
-import { MovedCategoryComponent } from "./rootContainer/mainView/authorView/categoryTree/MovedCategoryComponent";
 import { CardViewComponent } from "./rootContainer/mainView/authorView/CardViewComponent";
 import { CardListItemComponent } from "./rootContainer/mainView/authorView/cardView/CardListItemComponent";
 import { EditedCardComponent } from "./rootContainer/mainView/authorView/cardView/EditedCardComponent";
@@ -138,12 +136,20 @@ export const tbody = (options, children) => {
     return generic("tbody", options, children);
 }
 
+export const thead = (options, children) => {
+    return generic("thead", options, children);
+}
+
 export const tr = (options, children) => {
     return generic("tr", options, children);
 }
 
 export const td = (options, children) => {
     return generic("td", options, children);
+}
+
+export const th = (options, children) => {
+    return generic("th", options, children);
 }
 
 export const i = (options, children) => {

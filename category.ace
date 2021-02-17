@@ -14,7 +14,10 @@ LoadCategoryTree ( rootCategoryId, selectedCategoryId )
 	call com.anfelisa.category.GetCategoryTree
 	loadingFlag common.rootContainer.spinner 
 	on ok ( 
-		set common.rootContainer.mainView.authorView
+		set common.rootContainer.mainView.authorView.categoryTree
+		set common.rootContainer.mainView.authorView.cardView
+		set common.rootContainer.mainView.authorView.reverseBoxExists
+		set common.rootContainer.mainView.authorView.boxId
 	) triggers (card.LoadCards)
 
 ExpandTreeItem ( categoryId  )

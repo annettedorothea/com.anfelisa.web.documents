@@ -27,26 +27,18 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
         }
         initExpandedState(this.commandData.rootCategory, expandedCategories);
 
-        this.commandData.authorView = {
-            categoryTree: {
-                selectedCategory: initSelected(this.commandData.rootCategory, this.commandData.selectedCategoryId),
-                rootCategory: this.commandData.rootCategory,
-                displayDeleteCategory: false,
-                displayEditCategory: false,
-                displayNewCategory: false,
-                displayInviteUser: false
-            },
-            cardView: {
-                cardList: null,
-                naturalInputOrder: this.commandData.reverse === false
-            },
-            filterNonScheduled: this.commandData.filterNonScheduled,
-            priority: this.commandData.priority,
-            reverseBoxExists: this.commandData.reverseBoxExists,
-            reverse: this.commandData.reverse,
-            boxId: this.commandData.boxId
+        this.commandData.categoryTree = {
+            selectedCategory: initSelected(this.commandData.rootCategory, this.commandData.selectedCategoryId),
+            rootCategory: this.commandData.rootCategory,
+            displayDeleteCategory: false,
+            displayEditCategory: false,
+            displayNewCategory: false,
+            displayInviteUser: false
         };
-        this.commandData.selectedCategoryId = undefined;
+        this.commandData.cardView = {
+            cardList: null,
+                naturalInputOrder: this.commandData.reverse === false
+        };
         resolve();
     }
 

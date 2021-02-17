@@ -11,7 +11,10 @@ import * as AppState from "../ace/AppState";
 export default class EventListenerRegistrationCategory {
 
 	static init() {
-		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView);
+		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_categoryTree);
+		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_cardView);
+		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_reverseBoxExists);
+		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_boxId);
 		ACEController.registerListener('category.ExpandTreeItemOkEvent', AppState.set_rootContainer_authorView_categoryTree_rootCategory);
 		ACEController.registerListener('category.CollapseTreeItemOkEvent', AppState.set_rootContainer_authorView_categoryTree_rootCategory);
 		ACEController.registerListener('category.CollapseTreeItemSelectParentCategoryEvent', AppState.set_rootContainer_authorView_categoryTree_rootCategory);

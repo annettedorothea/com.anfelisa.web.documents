@@ -3,155 +3,168 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td, selectedCategory, rootCategory, movedCategory } from "../../../../../gen/components/ReactHelper";
+import {
+    button,
+    div,
+    h2,
+    i,
+    input,
+    rootCategory,
+    table,
+    tbody,
+    td,
+    th,
+    thead,
+    tr
+} from "../../../../../gen/components/ReactHelper";
+import {
+    cancelNewCategory,
+    cancelPreviewCsv,
+    categoryNameChanged,
+    createCategory,
+    editCategoryClick,
+    importCsv,
+    newCategoryClick,
+    previewCsv,
+    swapPreviewCsv
+} from "../../../../../gen/category/ActionFunctions";
+import {route} from "../../../../../gen/common/ActionFunctions";
+import React from "react";
+import {Texts} from "../../../../app/Texts";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["CATEGORYTREE"]),
-		selectedCategory(),
-		rootCategory(),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "displayDeleteCategory"
-			}, ["DISPLAYDELETECATEGORY"]), 
-			input({
-				id: "displayDeleteCategory",
-				value: attributes.displayDeleteCategory, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.displayDeleteCategory])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "categoryName"
-			}, ["CATEGORYNAME"]), 
-			input({
-				id: "categoryName",
-				value: attributes.categoryName, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.categoryName])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "displayEditCategory"
-			}, ["DISPLAYEDITCATEGORY"]), 
-			input({
-				id: "displayEditCategory",
-				value: attributes.displayEditCategory, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.displayEditCategory])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "displayNewCategory"
-			}, ["DISPLAYNEWCATEGORY"]), 
-			input({
-				id: "displayNewCategory",
-				value: attributes.displayNewCategory, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.displayNewCategory])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "displayInviteUser"
-			}, ["DISPLAYINVITEUSER"]), 
-			input({
-				id: "displayInviteUser",
-				value: attributes.displayInviteUser, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.displayInviteUser])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "usernameSearchString"
-			}, ["USERNAMESEARCHSTRING"]), 
-			input({
-				id: "usernameSearchString",
-				value: attributes.usernameSearchString, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.usernameSearchString])
-		]),
-		div({}, [
-			ul({class: ""}, [
-				attributes.usernames ? attributes.usernames.map((item) => li({}, [item])) : []
-			])
-		]),
-		div({}, [
-			ul({class: ""}, [
-				attributes.invitedUsernames ? attributes.invitedUsernames.map((item) => li({}, [item])) : []
-			])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "dropAllowed"
-			}, ["DROPALLOWED"]), 
-			input({
-				id: "dropAllowed",
-				value: attributes.dropAllowed, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.dropAllowed])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "dropTargetCategoryId"
-			}, ["DROPTARGETCATEGORYID"]), 
-			input({
-				id: "dropTargetCategoryId",
-				value: attributes.dropTargetCategoryId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.dropTargetCategoryId])
-		]),
-		movedCategory(),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "previewCsv"
-			}, ["PREVIEWCSV"]), 
-			input({
-				id: "previewCsv",
-				value: attributes.previewCsv, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.previewCsv])
-		])
-	]);
-}
+    const onCsvFileChange = (event) => {
+        let files = event.target.files;
 
+        if (files.length > 0) {
+            const file = files[0];
+            event.target.value = null;
+            let reader = new FileReader();
+            reader.onload = function () {
+                previewCsv(reader.result);
+            };
+            reader.readAsText(file);
+        }
+    }
+
+    const csvPreview = () => {
+        let csv = attributes.previewCsv.map((row) => {
+            return tr({key: row[2]}, [
+                td({}, [row[0]]),
+                td({}, [row[1]]),
+            ]);
+        });
+        return div({class: "modal"}, [
+            div({class: "modalContent"}, [
+                h2({}, [Texts.categoryTree.csvPreview.title[attributes.language]]),
+                table({}, [
+                    thead({}, [
+                        tr({}, [
+                            th({}, [
+                                Texts.categoryTree.csvPreview.given[attributes.language],
+                                attributes.selectedCategory.attributes ? ' (' + Texts.categoryTree.csvPreview.languages[attributes.selectedCategory.attributes][attributes.language] + ')' : ""
+                            ]),
+                            th({}, [
+                                Texts.categoryTree.csvPreview.wanted[attributes.language],
+                                attributes.selectedCategory.wantedLanguage ? ' (' + Texts.categoryTree.csvPreview.languages[attributes.selectedCategory.wantedLanguage][attributes.language] + ')' : ""
+                            ]),
+                        ])
+                    ]),
+                    tbody({}, [csv])
+                ]),
+                button({
+                    onClick: () => swapPreviewCsv()
+                }, [Texts.categoryTree.csvPreview.swap[attributes.language]]),
+                button({
+                    onClick: () => importCsv()
+                }, [Texts.categoryTree.csvPreview.ok[attributes.language]]),
+                button({
+                    onClick: () => cancelPreviewCsv()
+                }, [Texts.categoryTree.csvPreview.cancel[attributes.language]])
+            ])
+        ]);
+    }
+
+    const newCategory = () => {
+        const disabled =
+            !attributes.categoryName ||
+            attributes.categoryName.length === 0 ||
+            attributes.dictionaryLookup && (attributes.givenLanguage.length === 0 || attributes.wantedLanguage.length === 0);
+        return div({class: "modal"}, [
+            div({class: "modalContent form"}, [
+                h2({}, [Texts.categoryTree.newCategory.title[attributes.language]]),
+                div({class: "line"}, [
+                    input({
+                        type: "text",
+                        onChange: (event) => categoryNameChanged(event.target.value),
+                        autoComplete: "off",
+                        value: attributes.categoryName,
+                        placeholder: attributes.selectedCategory === undefined ? Texts.categoryTree.newCategory.newRootCategory[attributes.language] : Texts.categoryTree.newCategory.newChildCategory[attributes.language]
+                    })
+                ]),
+                button({
+                    disabled,
+                    onClick: () => createCategory()
+                }, [Texts.categoryTree.newCategory.ok[attributes.language]]),
+                button({
+                    onClick: () => cancelNewCategory()
+                }, [Texts.categoryTree.newCategory.cancel[attributes.language]]),
+            ])
+        ]);
+    }
+
+    console.log(attributes);
+    if (!attributes.rootCategory) {
+        return null;
+    }
+
+    return div({class: "categoryTree"}, [
+        attributes.previewCsv && attributes.previewCsv.length > 0 && attributes.rootCategory.editable ?
+            csvPreview() : null,
+        attributes.displayNewCategory && attributes.rootCategory.editable ?
+            newCategory() : null,
+
+        div({}, [
+            button({
+                onClick: () => route("#dashboard"),
+                title: Texts.categoryTree.back[attributes.language]
+            }, [
+                i({class: "fa fa-arrow-left"})
+            ]),
+            attributes.rootCategory.editable ?
+                button({
+                    disabled: !attributes.selectedCategory,
+                    onClick: () => newCategoryClick(),
+                    title: attributes.selectedCategory === undefined ? Texts.categoryTree.newCategory.newRootCategory[attributes.language] : Texts.categoryTree.newCategory.newChildCategory[attributes.language]
+                }, [
+                    i({class: "fas fa-plus"})
+                ]) :
+                null,
+            attributes.rootCategory.editable ?
+                button({
+                    disabled: !attributes.selectedCategory,
+                    onClick: () => editCategoryClick(),
+                    title: Texts.categoryTree.editCategory[attributes.language]
+                }, [
+                    i({class: "fas fa-pen"})
+                ]) :
+                null
+        ]),
+
+        div({class: "categoryTreeItems"}, [
+            rootCategory({
+                ...attributes.rootCategory,
+                childCategories: attributes.rootCategory.childCategories,
+                selectedCategory: attributes.selectedCategory,
+                texts: attributes.texts,
+                language: attributes.language,
+                key: attributes.rootCategory.categoryId,
+                dropAllowed: attributes.dropAllowed && attributes.rootCategory.editable,
+                dropTargetCategoryId: attributes.dropTargetCategoryId,
+            })
+        ]),
+    ]);
+}
 
 
 /******* S.D.G. *******/

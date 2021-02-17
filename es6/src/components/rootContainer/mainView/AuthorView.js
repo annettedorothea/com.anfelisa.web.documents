@@ -3,88 +3,26 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td, categoryTree, cardView } from "../../../../gen/components/ReactHelper";
+import {cardView, categoryTree, div} from "../../../../gen/components/ReactHelper";
+import React from "react";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["AUTHORVIEW"]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "filterNonScheduled"
-			}, ["FILTERNONSCHEDULED"]), 
-			input({
-				id: "filterNonScheduled",
-				value: attributes.filterNonScheduled, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.filterNonScheduled])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "reverse"
-			}, ["REVERSE"]), 
-			input({
-				id: "reverse",
-				value: attributes.reverse, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.reverse])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "reverseBoxExists"
-			}, ["REVERSEBOXEXISTS"]), 
-			input({
-				id: "reverseBoxExists",
-				value: attributes.reverseBoxExists, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.reverseBoxExists])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "boxId"
-			}, ["BOXID"]), 
-			input({
-				id: "boxId",
-				value: attributes.boxId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.boxId])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "priority"
-			}, ["PRIORITY"]), 
-			input({
-				id: "priority",
-				value: attributes.priority, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.priority])
-		]),
-		categoryTree(),
-		cardView()
-	]);
+    return div({class: "categoryCardSplitView"}, [
+        categoryTree({
+            language: attributes.language,
+            filterNonScheduled: attributes.filterNonScheduled,
+            priority: attributes.priority,
+            reverseBoxExists: attributes.reverseBoxExists
+        }),
+        attributes.cardView && attributes.cardView.cardList ?
+            cardView(
+                {
+                    language: attributes.language,
+                    rootCategoryId: attributes.categoryTree.rootCategory.categoryId
+                }) :
+            null
+    ]);
 }
-
 
 
 /******* S.D.G. *******/

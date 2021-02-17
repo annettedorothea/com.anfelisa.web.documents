@@ -3,175 +3,328 @@
  ********************************************************************************/
 
 
+import {div, h1, i, input, label, span} from "../../../../../../gen/components/ReactHelper";
+import {
+    changeOrderCategory,
+    checkDropAllowed,
+    collapseTreeItem,
+    expandTreeItem,
+    itemDropped,
+    moveCategoryStarted,
+    selectTreeItem
+} from "../../../../../../gen/category/ActionFunctions";
+import React from "react";
+import {Texts} from "../../../../../app/Texts";
 
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../../../gen/components/ReactHelper";
-
-export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["ROOTCATEGORY"]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "categoryId"
-			}, ["CATEGORYID"]), 
-			input({
-				id: "categoryId",
-				value: attributes.categoryId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.categoryId])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "categoryName"
-			}, ["CATEGORYNAME"]), 
-			input({
-				id: "categoryName",
-				value: attributes.categoryName, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.categoryName])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "categoryIndex"
-			}, ["CATEGORYINDEX"]), 
-			input({
-				id: "categoryIndex",
-				value: attributes.categoryIndex, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.categoryIndex])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "empty"
-			}, ["EMPTY"]), 
-			input({
-				id: "empty",
-				value: attributes.empty, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.empty])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "parentCategoryId"
-			}, ["PARENTCATEGORYID"]), 
-			input({
-				id: "parentCategoryId",
-				value: attributes.parentCategoryId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.parentCategoryId])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "dictionaryLookup"
-			}, ["DICTIONARYLOOKUP"]), 
-			input({
-				id: "dictionaryLookup",
-				value: attributes.dictionaryLookup, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.dictionaryLookup])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "givenLanguage"
-			}, ["GIVENLANGUAGE"]), 
-			input({
-				id: "givenLanguage",
-				value: attributes.givenLanguage, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.givenLanguage])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "wantedLanguage"
-			}, ["WANTEDLANGUAGE"]), 
-			input({
-				id: "wantedLanguage",
-				value: attributes.wantedLanguage, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.wantedLanguage])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "rootCategoryId"
-			}, ["ROOTCATEGORYID"]), 
-			input({
-				id: "rootCategoryId",
-				value: attributes.rootCategoryId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.rootCategoryId])
-		]),
-		div({}, [
-			ul({class: ""}, [
-				attributes.childCategories ? attributes.childCategories.map((item) => li({}, [item])) : []
-			])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "nonScheduledCount"
-			}, ["NONSCHEDULEDCOUNT"]), 
-			input({
-				id: "nonScheduledCount",
-				value: attributes.nonScheduledCount, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.nonScheduledCount])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "editable"
-			}, ["EDITABLE"]), 
-			input({
-				id: "editable",
-				value: attributes.editable, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.editable])
-		])
-	]);
+const categoryItem = (attributes) => {
+    const expanded = attributes.expanded === true;
+    const selected = attributes.selectedCategory && attributes.selectedCategory.categoryId === attributes.categoryId;
+    return div({class: `categoryItem depth_${attributes.depth}`}, [
+        expanded ?
+            expandedCategoryItem({
+                ...attributes,
+                selected: selected,
+                selectedCategory: attributes.selectedCategory,
+                depth: attributes.depth + 1,
+                dropAllowed: attributes.dropAllowed && attributes.selectedCategory.editable,
+                dropTargetCategoryId: attributes.dropTargetCategoryId,
+                language: attributes.language
+            }) :
+            collapsedCategoryItem({
+                ...attributes,
+                selected: selected,
+                dropAllowed: attributes.dropAllowed && attributes.selectedCategory.editable,
+                dropTargetCategoryId: attributes.dropTargetCategoryId,
+                depth: attributes.depth + 1,
+                language: attributes.language
+            })
+    ]);
 }
 
+const collapsedCategoryItem = (attributes) => {
+    return div({class: "collapsedCategoryItem"}, [
+        attributes.empty === false ?
+            i({
+                class: "fas fa-caret-right",
+                onClick: () => expandTreeItem(attributes.categoryId)
+            }) :
+            i({
+                class: "fas fa-caret-right disabled"
+            }),
+        selectableCategoryItem({
+            selected: attributes.selected,
+            categoryName: attributes.categoryName,
+            nonScheduledCount: attributes.nonScheduledCount,
+            categoryId: attributes.categoryId,
+            dropAllowed: attributes.dropAllowed,
+            dropTargetCategoryId: attributes.dropTargetCategoryId,
+            depth: attributes.depth,
+            language: attributes.language,
+        })
+
+    ]);
+}
+
+const selectableCategoryItem = (attributes) => {
+    const onDragStart = (event) => {
+        event.dataTransfer.setData('Text', attributes.categoryName);
+        moveCategoryStarted(attributes.categoryId)
+    }
+
+    const drop = (event) => {
+        event.preventDefault();
+        if (event.altKey === false) {
+            itemDropped();
+        } else {
+            changeOrderCategory();
+        }
+    }
+
+    const onDragOver = (event) => {
+        if (!!attributes.dropAllowed) {
+            event.preventDefault();
+        }
+    }
+
+    const onDragEnter = (event) => {
+        checkDropAllowed(attributes.categoryId, event.altKey);
+    }
+
+    console.log("selectableCategoryItem", attributes);
+
+    return span({
+        draggable: true,
+        onDragStart: (event) => onDragStart(event),
+        onDragEnter: (event) => onDragEnter(event),
+        onDragOver: onDragOver,
+        onDrop: drop
+    }, [
+        span({
+            class: `item ${attributes.selected ? "selected" : "notSelected"} ${attributes.dropAllowed && attributes.dropTargetCategoryId === attributes.categoryId ? "dropAllowed" : ""}`,
+            onClick: () => attributes.selected ? "" : selectTreeItem(attributes.categoryId)
+        }, [
+            attributes.categoryName,
+            attributes.nonScheduledCount === 0 ?
+                span({class: "nonScheduledCount"}, [
+                    Texts.categoryList.nonScheduledNone[attributes.language]
+                ]) : null,
+            attributes.nonScheduledCount === 1 ?
+                span({class: "nonScheduledCount"}, [
+                    Texts.categoryList.nonScheduledSingular[attributes.language]
+                ]) : null,
+            attributes.nonScheduledCount > 1 ?
+                span({class: "nonScheduledCount"}, [
+                    Texts.categoryList.nonScheduled[attributes.language].replace("{0}", attributes.nonScheduledCount)
+                ]) : null,
+        ])
+    ]);
+}
+
+const expandedCategoryItem = (attributes) => {
+    let children = [];
+    if (attributes.childCategories) {
+        children = attributes.childCategories.map((category) => {
+            return categoryItem({
+                ...category,
+                childCategories: category.childCategories,
+                depth: attributes.depth,
+                language: attributes.language,
+                selectedCategory: attributes.selectedCategory,
+                dropAllowed: attributes.dropAllowed,
+                dropTargetCategoryId: attributes.dropTargetCategoryId,
+                key: category.categoryId,
+            });
+        });
+    }
+    return div({class: "expandedCategoryItem"}, [
+        attributes.depth > 1 ? i({
+            class: "fas fa-caret-down",
+            onClick: () => collapseTreeItem(attributes.categoryId)
+        }) : null,
+        // TODO simplify?
+        selectableCategoryItem({
+            selected: attributes.selected,
+            categoryName: attributes.categoryName,
+            nonScheduledCount: attributes.nonScheduledCount,
+            categoryId: attributes.categoryId,
+            dropAllowed: attributes.dropAllowed,
+            dropTargetCategoryId: attributes.dropTargetCategoryId,
+            depth: attributes.depth,
+            language: attributes.language
+        }),
+        div({}, children)
+    ]);
+}
+
+export function uiElement(attributes) {
+    const selected = attributes.selectedCategory && attributes.selectedCategory.categoryId === attributes.categoryId;
+    return div({class: "categoryItem depth_1"}, [
+        expandedCategoryItem({
+            ...attributes,
+            selected,
+            selectedCategory: attributes.selectedCategory,
+            depth: 1,
+            dropAllowed: attributes.dropAllowed,
+            dropTargetCategoryId: attributes.dropTargetCategoryId,
+            language: attributes.language
+        }),
+        h1({}, ["ROOTCATEGORY"]),
+        div({class: ""}, [
+            label({
+                class: "",
+                htmlFor: "categoryId"
+            }, ["CATEGORYID"]),
+            input({
+                id: "categoryId",
+                value: attributes.categoryId,
+                class: "",
+                onChange: (e) => console.log(e.target.value),
+                type: "text"
+            }),
+            div({class: ""}, [attributes.categoryId])
+        ]),
+        div({class: ""}, [
+            label({
+                class: "",
+                htmlFor: "categoryName"
+            }, ["CATEGORYNAME"]),
+            input({
+                id: "categoryName",
+                value: attributes.categoryName,
+                class: "",
+                onChange: (e) => console.log(e.target.value),
+                type: "text"
+            }),
+            div({class: ""}, [attributes.categoryName])
+        ]),
+        div({class: ""}, [
+            label({
+                class: "",
+                htmlFor: "categoryIndex"
+            }, ["CATEGORYINDEX"]),
+            input({
+                id: "categoryIndex",
+                value: attributes.categoryIndex,
+                class: "",
+                onChange: (e) => console.log(e.target.value),
+                type: "text"
+            }),
+            div({class: ""}, [attributes.categoryIndex])
+        ]),
+        div({class: ""}, [
+            label({
+                class: "",
+                htmlFor: "empty"
+            }, ["EMPTY"]),
+            input({
+                id: "empty",
+                value: attributes.empty,
+                class: "",
+                onChange: (e) => console.log(e.target.value),
+                type: "text"
+            }),
+            div({class: ""}, [attributes.empty])
+        ]),
+        div({class: ""}, [
+            label({
+                class: "",
+                htmlFor: "parentCategoryId"
+            }, ["PARENTCATEGORYID"]),
+            input({
+                id: "parentCategoryId",
+                value: attributes.parentCategoryId,
+                class: "",
+                onChange: (e) => console.log(e.target.value),
+                type: "text"
+            }),
+            div({class: ""}, [attributes.parentCategoryId])
+        ]),
+        div({class: ""}, [
+            label({
+                class: "",
+                htmlFor: "dictionaryLookup"
+            }, ["DICTIONARYLOOKUP"]),
+            input({
+                id: "dictionaryLookup",
+                value: attributes.dictionaryLookup,
+                class: "",
+                onChange: (e) => console.log(e.target.value),
+                type: "text"
+            }),
+            div({class: ""}, [attributes.dictionaryLookup])
+        ]),
+        div({class: ""}, [
+            label({
+                class: "",
+                htmlFor: "givenLanguage"
+            }, ["GIVENLANGUAGE"]),
+            input({
+                id: "givenLanguage",
+                value: attributes.givenLanguage,
+                class: "",
+                onChange: (e) => console.log(e.target.value),
+                type: "text"
+            }),
+            div({class: ""}, [attributes.givenLanguage])
+        ]),
+        div({class: ""}, [
+            label({
+                class: "",
+                htmlFor: "wantedLanguage"
+            }, ["WANTEDLANGUAGE"]),
+            input({
+                id: "wantedLanguage",
+                value: attributes.wantedLanguage,
+                class: "",
+                onChange: (e) => console.log(e.target.value),
+                type: "text"
+            }),
+            div({class: ""}, [attributes.wantedLanguage])
+        ]),
+        div({class: ""}, [
+            label({
+                class: "",
+                htmlFor: "rootCategoryId"
+            }, ["ROOTCATEGORYID"]),
+            input({
+                id: "rootCategoryId",
+                value: attributes.rootCategoryId,
+                class: "",
+                onChange: (e) => console.log(e.target.value),
+                type: "text"
+            }),
+            div({class: ""}, [attributes.rootCategoryId])
+        ]),
+        div({class: ""}, [
+            label({
+                class: "",
+                htmlFor: "nonScheduledCount"
+            }, ["NONSCHEDULEDCOUNT"]),
+            input({
+                id: "nonScheduledCount",
+                value: attributes.nonScheduledCount,
+                class: "",
+                onChange: (e) => console.log(e.target.value),
+                type: "text"
+            }),
+            div({class: ""}, [attributes.nonScheduledCount])
+        ]),
+        div({class: ""}, [
+            label({
+                class: "",
+                htmlFor: "editable"
+            }, ["EDITABLE"]),
+            input({
+                id: "editable",
+                value: attributes.editable,
+                class: "",
+                onChange: (e) => console.log(e.target.value),
+                type: "text"
+            }),
+            div({class: ""}, [attributes.editable])
+        ])
+    ]);
+}
 
 
 /******* S.D.G. *******/

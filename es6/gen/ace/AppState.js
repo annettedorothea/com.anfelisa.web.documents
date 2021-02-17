@@ -30,9 +30,7 @@ import { setUserListViewState } from "../components/rootContainer/mainView/UserL
 import { setQueryCardViewState } from "../components/rootContainer/mainView/QueryCardViewComponent";
 import { setAuthorViewState } from "../components/rootContainer/mainView/AuthorViewComponent";
 import { setCategoryTreeState } from "../components/rootContainer/mainView/authorView/CategoryTreeComponent";
-import { setSelectedCategoryState } from "../components/rootContainer/mainView/authorView/categoryTree/SelectedCategoryComponent";
 import { setRootCategoryState } from "../components/rootContainer/mainView/authorView/categoryTree/RootCategoryComponent";
-import { setMovedCategoryState } from "../components/rootContainer/mainView/authorView/categoryTree/MovedCategoryComponent";
 import { setCardViewState } from "../components/rootContainer/mainView/authorView/CardViewComponent";
 import { setEditedCardState } from "../components/rootContainer/mainView/authorView/cardView/EditedCardComponent";
 import { setNewCardState } from "../components/rootContainer/mainView/authorView/cardView/NewCardComponent";
@@ -3278,7 +3276,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory(event
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory = eventData.selectedCategory;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3332,7 +3330,7 @@ export function merge_rootContainer_authorView_categoryTree_selectedCategory(eve
 		appState.rootContainer.mainView.categoryTree.selectedCategory.editable = eventData.editable;
 	}
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3372,7 +3370,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_categ
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3412,7 +3410,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_categ
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3452,7 +3450,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_categ
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3492,7 +3490,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_empty
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.empty = eventData.empty;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3532,7 +3530,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_paren
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3572,7 +3570,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_dicti
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3612,7 +3610,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_given
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3652,7 +3650,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_wante
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3692,7 +3690,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_rootC
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3732,7 +3730,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_child
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3772,7 +3770,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_nonSc
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -3812,7 +3810,7 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_edita
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.editable = eventData.editable;
 	const newAppState = getAppState();
-	setSelectedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.selectedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -4760,7 +4758,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory(eventDat
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory = eventData.movedCategory;
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -4808,7 +4806,7 @@ export function merge_rootContainer_authorView_categoryTree_movedCategory(eventD
 		appState.rootContainer.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
 	}
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -4848,7 +4846,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_category
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.categoryId = eventData.categoryId;
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -4888,7 +4886,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_category
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -4928,7 +4926,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_category
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -4968,7 +4966,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_empty(ev
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.empty = eventData.empty;
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5008,7 +5006,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_parentCa
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5048,7 +5046,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_dictiona
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5088,7 +5086,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_givenLan
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5128,7 +5126,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_wantedLa
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5168,7 +5166,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_rootCate
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5208,7 +5206,7 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_childCat
 	}
 	appState.rootContainer.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
 	const newAppState = getAppState();
-	setMovedCategoryState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.movedCategory));
+	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
 }
 
