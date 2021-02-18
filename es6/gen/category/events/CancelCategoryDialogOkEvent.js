@@ -7,9 +7,9 @@
 
 import Event from "../../../gen/ace/Event";
 
-export default class CancelEditCategoryOkEvent extends Event {
+export default class CancelCategoryDialogOkEvent extends Event {
     constructor(eventData) {
-        super(eventData, 'category.CancelEditCategoryOkEvent');
+        super(eventData, 'category.CancelCategoryDialogOkEvent');
     }
 }
 

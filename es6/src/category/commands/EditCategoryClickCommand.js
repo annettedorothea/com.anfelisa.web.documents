@@ -2,7 +2,11 @@ import AbstractEditCategoryClickCommand from "../../../gen/category/commands/Abs
 
 export default class EditCategoryClickCommand extends AbstractEditCategoryClickCommand {
     execute() {
-        this.commandData.displayEditCategory = true;
+        this.commandData.categoryDialog = {
+            display: true,
+            categoryName: this.commandData.categoryName,
+            newCategory: false
+        };
         this.addOkOutcome();
     }
 }

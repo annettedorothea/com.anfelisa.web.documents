@@ -31,6 +31,8 @@ import { QueryCardViewComponent } from "./rootContainer/mainView/QueryCardViewCo
 import { AuthorViewComponent } from "./rootContainer/mainView/AuthorViewComponent";
 import { CategoryTreeComponent } from "./rootContainer/mainView/authorView/CategoryTreeComponent";
 import { RootCategoryComponent } from "./rootContainer/mainView/authorView/categoryTree/RootCategoryComponent";
+import { CategoryDialogComponent } from "./rootContainer/mainView/authorView/categoryTree/CategoryDialogComponent";
+import { InviteUserDialogComponent } from "./rootContainer/mainView/authorView/categoryTree/InviteUserDialogComponent";
 import { CardViewComponent } from "./rootContainer/mainView/authorView/CardViewComponent";
 import { CardListItemComponent } from "./rootContainer/mainView/authorView/cardView/CardListItemComponent";
 import { EditedCardComponent } from "./rootContainer/mainView/authorView/cardView/EditedCardComponent";
@@ -246,6 +248,12 @@ export const selectedCategory = (options) => {
 }
 export const rootCategory = (options) => {
     return <RootCategoryComponent {...normalize(options)}/>
+}
+export const categoryDialog = (options) => {
+    return <CategoryDialogComponent {...normalize(options)}/>
+}
+export const inviteUserDialog = (options) => {
+    return <InviteUserDialogComponent {...normalize(options)}/>
 }
 export const movedCategory = (options) => {
     return <MovedCategoryComponent {...normalize(options)}/>

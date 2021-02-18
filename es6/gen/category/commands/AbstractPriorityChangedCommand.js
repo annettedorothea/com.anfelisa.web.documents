@@ -9,7 +9,7 @@ import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import PriorityChangedOkEvent from "../../../gen/category/events/PriorityChangedOkEvent";
-import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
+import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractPriorityChangedCommand extends SynchronousCommand {
     constructor(commandData) {
@@ -27,7 +27,7 @@ export default class AbstractPriorityChangedCommand extends SynchronousCommand {
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
 			new PriorityChangedOkEvent(this.commandData).publish();
-			new TriggerAction(new LoadCategoryTreeAction(this.commandData.rootCategoryId, this.commandData.selectedCategoryId)).publish();
+			new TriggerAction(new ReloadCategoryTreeAction(this.commandData.selectedCategoryId, this.commandData.categoryIdToBeExpanded)).publish();
 		}
     }
 }

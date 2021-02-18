@@ -7,9 +7,9 @@
 
 import Event from "../../../gen/ace/Event";
 
-export default class UpdateCategoryErrorEvent extends Event {
+export default class ReloadCategoryTreeOkEvent extends Event {
     constructor(eventData) {
-        super(eventData, 'category.UpdateCategoryErrorEvent');
+        super(eventData, 'category.ReloadCategoryTreeOkEvent');
     }
 }
 

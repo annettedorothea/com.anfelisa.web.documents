@@ -6,11 +6,11 @@
 
 
 import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
-import CancelNewCategoryOkEvent from "../../../gen/category/events/CancelNewCategoryOkEvent";
+import CancelCategoryDialogOkEvent from "../../../gen/category/events/CancelCategoryDialogOkEvent";
 
-export default class AbstractCancelNewCategoryCommand extends SynchronousCommand {
+export default class AbstractCancelCategoryDialogCommand extends SynchronousCommand {
     constructor(commandData) {
-        super(commandData, "category.CancelNewCategoryCommand");
+        super(commandData, "category.CancelCategoryDialogCommand");
         this.commandData.outcomes = [];
     }
 
@@ -20,7 +20,7 @@ export default class AbstractCancelNewCategoryCommand extends SynchronousCommand
 
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
-			new CancelNewCategoryOkEvent(this.commandData).publish();
+			new CancelCategoryDialogOkEvent(this.commandData).publish();
 		}
     }
 }

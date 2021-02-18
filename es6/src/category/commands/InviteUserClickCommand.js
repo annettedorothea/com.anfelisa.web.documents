@@ -9,8 +9,10 @@ import AbstractInviteUserClickCommand from "../../../gen/category/commands/Abstr
 
 export default class InviteUserClickCommand extends AbstractInviteUserClickCommand {
     execute() {
-        this.commandData.displayInviteUser = true;
-        this.commandData.usernameSearchString = "";
+        this.commandData.inviteUserDialog = {
+            display: true,
+            usernameSearchString: ""
+        };
     	this.addOkOutcome();
     }
 }

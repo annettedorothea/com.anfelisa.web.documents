@@ -2,9 +2,6 @@ HttpClient common
 
 
 
-
-
-
 ACE 
 Init 
 	fromAppState (rootContainer.username, rootContainer.password )
@@ -284,7 +281,7 @@ ui React_16.8 rootContainer {
 	        reverse
 			reverseBoxExists
 			boxId
-				
+			
 	        priority
 			categoryTree {
 				noComponent selectedCategory {
@@ -316,17 +313,20 @@ ui React_16.8 rootContainer {
 					editable
 				}
 				
-				
 				displayDeleteCategory
 				
-				categoryName
-				displayEditCategory
-				displayNewCategory
+				categoryDialog {
+					categoryName
+					newCategory
+					display
+				}
 				
-				displayInviteUser
-				usernameSearchString
-				List usernames
-				List invitedUsernames
+				inviteUserDialog {
+					display
+					usernameSearchString
+					List usernames
+					List invitedUsernames
+				}
 				
 				dropAllowed
 				dropTargetCategoryId

@@ -7,13 +7,17 @@
 
 import ACEController from "../ace/ACEController";
 import LoadCategoryTreeOkEvent from "./events/LoadCategoryTreeOkEvent";
+import ReloadCategoryTreeOkEvent from "./events/ReloadCategoryTreeOkEvent";
 import ExpandTreeItemOkEvent from "./events/ExpandTreeItemOkEvent";
 import CollapseTreeItemOkEvent from "./events/CollapseTreeItemOkEvent";
 import CollapseTreeItemSelectParentCategoryEvent from "./events/CollapseTreeItemSelectParentCategoryEvent";
 import SelectTreeItemOkEvent from "./events/SelectTreeItemOkEvent";
 import NewCategoryClickOkEvent from "./events/NewCategoryClickOkEvent";
-import CancelNewCategoryOkEvent from "./events/CancelNewCategoryOkEvent";
+import CancelCategoryDialogOkEvent from "./events/CancelCategoryDialogOkEvent";
 import CategoryNameChangedOkEvent from "./events/CategoryNameChangedOkEvent";
+import CreateCategoryOkEvent from "./events/CreateCategoryOkEvent";
+import EditCategoryClickOkEvent from "./events/EditCategoryClickOkEvent";
+import UpdateCategoryOkEvent from "./events/UpdateCategoryOkEvent";
 import InviteUserClickOkEvent from "./events/InviteUserClickOkEvent";
 import GetInvitedUsernamesOkEvent from "./events/GetInvitedUsernamesOkEvent";
 import CancelInviteUserOkEvent from "./events/CancelInviteUserOkEvent";
@@ -21,16 +25,10 @@ import InvitedUsernameChangedOkEvent from "./events/InvitedUsernameChangedOkEven
 import InvitedUsernameChangedTooShortEvent from "./events/InvitedUsernameChangedTooShortEvent";
 import SearchUsernameOkEvent from "./events/SearchUsernameOkEvent";
 import InviteUserOkEvent from "./events/InviteUserOkEvent";
-import CreateCategoryOkEvent from "./events/CreateCategoryOkEvent";
-import CreateCategoryErrorEvent from "./events/CreateCategoryErrorEvent";
 import DeleteCategoryClickOkEvent from "./events/DeleteCategoryClickOkEvent";
 import CancelDeleteCategoryOkEvent from "./events/CancelDeleteCategoryOkEvent";
 import DeleteCategoryOkEvent from "./events/DeleteCategoryOkEvent";
 import DeleteCategoryErrorEvent from "./events/DeleteCategoryErrorEvent";
-import EditCategoryClickOkEvent from "./events/EditCategoryClickOkEvent";
-import CancelEditCategoryOkEvent from "./events/CancelEditCategoryOkEvent";
-import UpdateCategoryOkEvent from "./events/UpdateCategoryOkEvent";
-import UpdateCategoryErrorEvent from "./events/UpdateCategoryErrorEvent";
 import CheckDropAllowedOkEvent from "./events/CheckDropAllowedOkEvent";
 import MoveCategoryStartedOkEvent from "./events/MoveCategoryStartedOkEvent";
 import MoveCategoryOkEvent from "./events/MoveCategoryOkEvent";
@@ -47,6 +45,8 @@ export default class EventFactoryRegistrationCategory {
 	static init() {
 		ACEController.registerFactory('category.LoadCategoryTreeOkEvent', 
 			(eventData) => new LoadCategoryTreeOkEvent(eventData));
+		ACEController.registerFactory('category.ReloadCategoryTreeOkEvent', 
+			(eventData) => new ReloadCategoryTreeOkEvent(eventData));
 		ACEController.registerFactory('category.ExpandTreeItemOkEvent', 
 			(eventData) => new ExpandTreeItemOkEvent(eventData));
 		ACEController.registerFactory('category.CollapseTreeItemOkEvent', 
@@ -57,10 +57,16 @@ export default class EventFactoryRegistrationCategory {
 			(eventData) => new SelectTreeItemOkEvent(eventData));
 		ACEController.registerFactory('category.NewCategoryClickOkEvent', 
 			(eventData) => new NewCategoryClickOkEvent(eventData));
-		ACEController.registerFactory('category.CancelNewCategoryOkEvent', 
-			(eventData) => new CancelNewCategoryOkEvent(eventData));
+		ACEController.registerFactory('category.CancelCategoryDialogOkEvent', 
+			(eventData) => new CancelCategoryDialogOkEvent(eventData));
 		ACEController.registerFactory('category.CategoryNameChangedOkEvent', 
 			(eventData) => new CategoryNameChangedOkEvent(eventData));
+		ACEController.registerFactory('category.CreateCategoryOkEvent', 
+			(eventData) => new CreateCategoryOkEvent(eventData));
+		ACEController.registerFactory('category.EditCategoryClickOkEvent', 
+			(eventData) => new EditCategoryClickOkEvent(eventData));
+		ACEController.registerFactory('category.UpdateCategoryOkEvent', 
+			(eventData) => new UpdateCategoryOkEvent(eventData));
 		ACEController.registerFactory('category.InviteUserClickOkEvent', 
 			(eventData) => new InviteUserClickOkEvent(eventData));
 		ACEController.registerFactory('category.GetInvitedUsernamesOkEvent', 
@@ -75,10 +81,6 @@ export default class EventFactoryRegistrationCategory {
 			(eventData) => new SearchUsernameOkEvent(eventData));
 		ACEController.registerFactory('category.InviteUserOkEvent', 
 			(eventData) => new InviteUserOkEvent(eventData));
-		ACEController.registerFactory('category.CreateCategoryOkEvent', 
-			(eventData) => new CreateCategoryOkEvent(eventData));
-		ACEController.registerFactory('category.CreateCategoryErrorEvent', 
-			(eventData) => new CreateCategoryErrorEvent(eventData));
 		ACEController.registerFactory('category.DeleteCategoryClickOkEvent', 
 			(eventData) => new DeleteCategoryClickOkEvent(eventData));
 		ACEController.registerFactory('category.CancelDeleteCategoryOkEvent', 
@@ -87,14 +89,6 @@ export default class EventFactoryRegistrationCategory {
 			(eventData) => new DeleteCategoryOkEvent(eventData));
 		ACEController.registerFactory('category.DeleteCategoryErrorEvent', 
 			(eventData) => new DeleteCategoryErrorEvent(eventData));
-		ACEController.registerFactory('category.EditCategoryClickOkEvent', 
-			(eventData) => new EditCategoryClickOkEvent(eventData));
-		ACEController.registerFactory('category.CancelEditCategoryOkEvent', 
-			(eventData) => new CancelEditCategoryOkEvent(eventData));
-		ACEController.registerFactory('category.UpdateCategoryOkEvent', 
-			(eventData) => new UpdateCategoryOkEvent(eventData));
-		ACEController.registerFactory('category.UpdateCategoryErrorEvent', 
-			(eventData) => new UpdateCategoryErrorEvent(eventData));
 		ACEController.registerFactory('category.CheckDropAllowedOkEvent', 
 			(eventData) => new CheckDropAllowedOkEvent(eventData));
 		ACEController.registerFactory('category.MoveCategoryStartedOkEvent', 

@@ -3,7 +3,7 @@
  ********************************************************************************/
 
 
-import {div, h1, i, input, label, span} from "../../../../../../gen/components/ReactHelper";
+import {div, i, span} from "../../../../../../gen/components/ReactHelper";
 import {
     changeOrderCategory,
     checkDropAllowed,
@@ -17,23 +17,23 @@ import React from "react";
 import {Texts} from "../../../../../app/Texts";
 
 const categoryItem = (attributes) => {
-    const expanded = attributes.expanded === true;
     const selected = attributes.selectedCategory && attributes.selectedCategory.categoryId === attributes.categoryId;
+    const dropAllowed = attributes.dropAllowed && attributes.selectedCategory.editable;
     return div({class: `categoryItem depth_${attributes.depth}`}, [
-        expanded ?
+        attributes.expanded === true ?
             expandedCategoryItem({
                 ...attributes,
-                selected: selected,
+                selected,
                 selectedCategory: attributes.selectedCategory,
                 depth: attributes.depth + 1,
-                dropAllowed: attributes.dropAllowed && attributes.selectedCategory.editable,
+                dropAllowed,
                 dropTargetCategoryId: attributes.dropTargetCategoryId,
                 language: attributes.language
             }) :
             collapsedCategoryItem({
                 ...attributes,
-                selected: selected,
-                dropAllowed: attributes.dropAllowed && attributes.selectedCategory.editable,
+                selected,
+                dropAllowed,
                 dropTargetCategoryId: attributes.dropTargetCategoryId,
                 depth: attributes.depth + 1,
                 language: attributes.language
@@ -89,8 +89,6 @@ const selectableCategoryItem = (attributes) => {
     const onDragEnter = (event) => {
         checkDropAllowed(attributes.categoryId, event.altKey);
     }
-
-    console.log("selectableCategoryItem", attributes);
 
     return span({
         draggable: true,
@@ -168,161 +166,6 @@ export function uiElement(attributes) {
             dropTargetCategoryId: attributes.dropTargetCategoryId,
             language: attributes.language
         }),
-        h1({}, ["ROOTCATEGORY"]),
-        div({class: ""}, [
-            label({
-                class: "",
-                htmlFor: "categoryId"
-            }, ["CATEGORYID"]),
-            input({
-                id: "categoryId",
-                value: attributes.categoryId,
-                class: "",
-                onChange: (e) => console.log(e.target.value),
-                type: "text"
-            }),
-            div({class: ""}, [attributes.categoryId])
-        ]),
-        div({class: ""}, [
-            label({
-                class: "",
-                htmlFor: "categoryName"
-            }, ["CATEGORYNAME"]),
-            input({
-                id: "categoryName",
-                value: attributes.categoryName,
-                class: "",
-                onChange: (e) => console.log(e.target.value),
-                type: "text"
-            }),
-            div({class: ""}, [attributes.categoryName])
-        ]),
-        div({class: ""}, [
-            label({
-                class: "",
-                htmlFor: "categoryIndex"
-            }, ["CATEGORYINDEX"]),
-            input({
-                id: "categoryIndex",
-                value: attributes.categoryIndex,
-                class: "",
-                onChange: (e) => console.log(e.target.value),
-                type: "text"
-            }),
-            div({class: ""}, [attributes.categoryIndex])
-        ]),
-        div({class: ""}, [
-            label({
-                class: "",
-                htmlFor: "empty"
-            }, ["EMPTY"]),
-            input({
-                id: "empty",
-                value: attributes.empty,
-                class: "",
-                onChange: (e) => console.log(e.target.value),
-                type: "text"
-            }),
-            div({class: ""}, [attributes.empty])
-        ]),
-        div({class: ""}, [
-            label({
-                class: "",
-                htmlFor: "parentCategoryId"
-            }, ["PARENTCATEGORYID"]),
-            input({
-                id: "parentCategoryId",
-                value: attributes.parentCategoryId,
-                class: "",
-                onChange: (e) => console.log(e.target.value),
-                type: "text"
-            }),
-            div({class: ""}, [attributes.parentCategoryId])
-        ]),
-        div({class: ""}, [
-            label({
-                class: "",
-                htmlFor: "dictionaryLookup"
-            }, ["DICTIONARYLOOKUP"]),
-            input({
-                id: "dictionaryLookup",
-                value: attributes.dictionaryLookup,
-                class: "",
-                onChange: (e) => console.log(e.target.value),
-                type: "text"
-            }),
-            div({class: ""}, [attributes.dictionaryLookup])
-        ]),
-        div({class: ""}, [
-            label({
-                class: "",
-                htmlFor: "givenLanguage"
-            }, ["GIVENLANGUAGE"]),
-            input({
-                id: "givenLanguage",
-                value: attributes.givenLanguage,
-                class: "",
-                onChange: (e) => console.log(e.target.value),
-                type: "text"
-            }),
-            div({class: ""}, [attributes.givenLanguage])
-        ]),
-        div({class: ""}, [
-            label({
-                class: "",
-                htmlFor: "wantedLanguage"
-            }, ["WANTEDLANGUAGE"]),
-            input({
-                id: "wantedLanguage",
-                value: attributes.wantedLanguage,
-                class: "",
-                onChange: (e) => console.log(e.target.value),
-                type: "text"
-            }),
-            div({class: ""}, [attributes.wantedLanguage])
-        ]),
-        div({class: ""}, [
-            label({
-                class: "",
-                htmlFor: "rootCategoryId"
-            }, ["ROOTCATEGORYID"]),
-            input({
-                id: "rootCategoryId",
-                value: attributes.rootCategoryId,
-                class: "",
-                onChange: (e) => console.log(e.target.value),
-                type: "text"
-            }),
-            div({class: ""}, [attributes.rootCategoryId])
-        ]),
-        div({class: ""}, [
-            label({
-                class: "",
-                htmlFor: "nonScheduledCount"
-            }, ["NONSCHEDULEDCOUNT"]),
-            input({
-                id: "nonScheduledCount",
-                value: attributes.nonScheduledCount,
-                class: "",
-                onChange: (e) => console.log(e.target.value),
-                type: "text"
-            }),
-            div({class: ""}, [attributes.nonScheduledCount])
-        ]),
-        div({class: ""}, [
-            label({
-                class: "",
-                htmlFor: "editable"
-            }, ["EDITABLE"]),
-            input({
-                id: "editable",
-                value: attributes.editable,
-                class: "",
-                onChange: (e) => console.log(e.target.value),
-                type: "text"
-            }),
-            div({class: ""}, [attributes.editable])
-        ])
     ]);
 }
 

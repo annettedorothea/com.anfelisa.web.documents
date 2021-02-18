@@ -10,13 +10,15 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
-import LoadCategoryTreeOkEvent from "../../../gen/category/events/LoadCategoryTreeOkEvent";
+import ReloadCategoryTreeOkEvent from "../../../gen/category/events/ReloadCategoryTreeOkEvent";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
-export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand {
+export default class AbstractReloadCategoryTreeCommand extends AsynchronousCommand {
     constructor(commandData) {
-        super(commandData, "category.LoadCategoryTreeCommand");
+        super(commandData, "category.ReloadCategoryTreeCommand");
+        this.commandData.previousRootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
         this.commandData.filterNonScheduled = AppState.get_rootContainer_authorView_filterNonScheduled();
+        this.commandData.priority = AppState.get_rootContainer_authorView_priority();
         this.commandData.reverse = AppState.get_rootContainer_authorView_reverse();
         this.commandData.outcomes = [];
     }
@@ -29,7 +31,7 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
 		let promises = [];
 	    
 		if (this.commandData.outcomes.includes("ok")) {
-			promises.push(new LoadCategoryTreeOkEvent(this.commandData).publish());
+			promises.push(new ReloadCategoryTreeOkEvent(this.commandData).publish());
 			promises.push(new TriggerAction(new LoadCardsAction()).publish());
 		}
 		return Promise.all(promises);

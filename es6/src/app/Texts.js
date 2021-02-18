@@ -154,9 +154,6 @@ export const Texts = {
         newCategory: {
             de: "Neuer Ordner"
         },
-        newRootCategory: {
-            de: "Neue Lernkartei"
-        },
         nonScheduled: {
             de: "{0} nie abgefragte Karten"
         },
@@ -274,9 +271,6 @@ export const Texts = {
             },
             newChildCategory: {
                 de: "Neuer Ordner"
-            },
-            newRootCategory: {
-                de: "Neue Lernkartei"
             },
             ok: {
                 de: "OK"

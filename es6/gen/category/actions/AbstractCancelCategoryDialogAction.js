@@ -6,16 +6,16 @@
 
 
 import Action from "../../ace/SynchronousAction";
-import CancelNewCategoryCommand from "../../../src/category/commands/CancelNewCategoryCommand";
+import CancelCategoryDialogCommand from "../../../src/category/commands/CancelCategoryDialogCommand";
 
-export default class AbstractCancelNewCategoryAction extends Action {
+export default class AbstractCancelCategoryDialogAction extends Action {
 
     constructor() {
-        super({}, 'category.CancelNewCategoryAction');
+        super({}, 'category.CancelCategoryDialogAction');
 	}
 		
 	getCommand() {
-		return new CancelNewCategoryCommand(this.actionData);
+		return new CancelCategoryDialogCommand(this.actionData);
 	}
 
 

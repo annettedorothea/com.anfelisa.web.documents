@@ -11,7 +11,7 @@ import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import ChangeOrderCategoryOkEvent from "../../../gen/category/events/ChangeOrderCategoryOkEvent";
-import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
+import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractChangeOrderCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -32,7 +32,7 @@ export default class AbstractChangeOrderCategoryCommand extends AsynchronousComm
 	    
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new ChangeOrderCategoryOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.rootCategoryId, this.commandData.selectedCategoryId)).publish());
+			promises.push(new TriggerAction(new ReloadCategoryTreeAction(this.commandData.selectedCategoryId, this.commandData.categoryIdToBeExpanded)).publish());
 		}
 		return Promise.all(promises);
     }

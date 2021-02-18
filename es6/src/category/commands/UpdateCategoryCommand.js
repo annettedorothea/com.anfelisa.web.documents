@@ -8,13 +8,11 @@ export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand
 
     handleResponse(resolve) {
         this.addOkOutcome();
-        this.commandData.displayEditCategory = false;
+        this.commandData.categoryDialog = null;
         resolve();
     }
-    handleError(resolve) {
-        this.addErrorOutcome();
-        this.commandData.displayEditCategory = false;
-        resolve();
+    handleError(resolve, reject) {
+        reject(this.commandData.error);
     }
 }
 

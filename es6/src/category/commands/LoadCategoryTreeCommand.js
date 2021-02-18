@@ -5,10 +5,7 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
 
     validateCommandData() {
         if (!this.commandData.rootCategoryId) {
-            if (!this.commandData.rootCategory) {
-                return false;
-            }
-            this.commandData.rootCategoryId = this.commandData.rootCategory.categoryId;
+            return false;
         }
         if (this.commandData.filterNonScheduled === undefined) {
             this.commandData.filterNonScheduled = null;
@@ -37,7 +34,7 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
         };
         this.commandData.cardView = {
             cardList: null,
-                naturalInputOrder: this.commandData.reverse === false
+            naturalInputOrder: this.commandData.reverse === false
         };
         resolve();
     }

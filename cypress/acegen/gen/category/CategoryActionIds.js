@@ -7,6 +7,8 @@
 
 export let loadCategoryTree = "category_loadCategoryTree";
 
+export let reloadCategoryTree = "category_reloadCategoryTree";
+
 export let expandTreeItem = "category_expandTreeItem";
 
 export let collapseTreeItem = "category_collapseTreeItem";
@@ -15,9 +17,15 @@ export let selectTreeItem = "category_selectTreeItem";
 
 export let newCategoryClick = "category_newCategoryClick";
 
-export let cancelNewCategory = "category_cancelNewCategory";
+export let cancelCategoryDialog = "category_cancelCategoryDialog";
 
 export let categoryNameChanged = "category_categoryNameChanged";
+
+export let createCategory = "category_createCategory";
+
+export let editCategoryClick = "category_editCategoryClick";
+
+export let updateCategory = "category_updateCategory";
 
 export let inviteUserClick = "category_inviteUserClick";
 
@@ -31,19 +39,11 @@ export let searchUsername = "category_searchUsername";
 
 export let inviteUser = "category_inviteUser";
 
-export let createCategory = "category_createCategory";
-
 export let deleteCategoryClick = "category_deleteCategoryClick";
 
 export let cancelDeleteCategory = "category_cancelDeleteCategory";
 
 export let deleteCategory = "category_deleteCategory";
-
-export let editCategoryClick = "category_editCategoryClick";
-
-export let cancelEditCategory = "category_cancelEditCategory";
-
-export let updateCategory = "category_updateCategory";
 
 export let checkDropAllowed = "category_checkDropAllowed";
 

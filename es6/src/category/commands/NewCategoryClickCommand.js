@@ -2,8 +2,11 @@ import AbstractNewCategoryClickCommand from "../../../gen/category/commands/Abst
 
 export default class NewCategoryClickCommand extends AbstractNewCategoryClickCommand {
     execute() {
-        this.commandData.displayNewCategory = true;
-        this.commandData.categoryName = "";
+        this.commandData.categoryDialog = {
+            display: true,
+            categoryName: "",
+            newCategory: true
+        };
         this.addOkOutcome();
     }
 }

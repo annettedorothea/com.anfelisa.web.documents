@@ -4,11 +4,11 @@
 
 
 import {
-    button,
+    button, categoryDialog,
     div,
     h2,
     i,
-    input,
+    input, inviteUserDialog,
     rootCategory,
     table,
     tbody,
@@ -21,9 +21,9 @@ import {
     cancelNewCategory,
     cancelPreviewCsv,
     categoryNameChanged,
-    createCategory,
+    createCategory, deleteCategoryClick,
     editCategoryClick,
-    importCsv,
+    importCsv, inviteUserClick,
     newCategoryClick,
     previewCsv,
     swapPreviewCsv
@@ -85,35 +85,6 @@ export function uiElement(attributes) {
         ]);
     }
 
-    const newCategory = () => {
-        const disabled =
-            !attributes.categoryName ||
-            attributes.categoryName.length === 0 ||
-            attributes.dictionaryLookup && (attributes.givenLanguage.length === 0 || attributes.wantedLanguage.length === 0);
-        return div({class: "modal"}, [
-            div({class: "modalContent form"}, [
-                h2({}, [Texts.categoryTree.newCategory.title[attributes.language]]),
-                div({class: "line"}, [
-                    input({
-                        type: "text",
-                        onChange: (event) => categoryNameChanged(event.target.value),
-                        autoComplete: "off",
-                        value: attributes.categoryName,
-                        placeholder: attributes.selectedCategory === undefined ? Texts.categoryTree.newCategory.newRootCategory[attributes.language] : Texts.categoryTree.newCategory.newChildCategory[attributes.language]
-                    })
-                ]),
-                button({
-                    disabled,
-                    onClick: () => createCategory()
-                }, [Texts.categoryTree.newCategory.ok[attributes.language]]),
-                button({
-                    onClick: () => cancelNewCategory()
-                }, [Texts.categoryTree.newCategory.cancel[attributes.language]]),
-            ])
-        ]);
-    }
-
-    console.log(attributes);
     if (!attributes.rootCategory) {
         return null;
     }
@@ -121,8 +92,8 @@ export function uiElement(attributes) {
     return div({class: "categoryTree"}, [
         attributes.previewCsv && attributes.previewCsv.length > 0 && attributes.rootCategory.editable ?
             csvPreview() : null,
-        attributes.displayNewCategory && attributes.rootCategory.editable ?
-            newCategory() : null,
+        categoryDialog({...attributes.categoryDialog, language: attributes.language}),
+        inviteUserDialog({...attributes.inviteUserDialog, language: attributes.language}),
 
         div({}, [
             button({
@@ -135,7 +106,7 @@ export function uiElement(attributes) {
                 button({
                     disabled: !attributes.selectedCategory,
                     onClick: () => newCategoryClick(),
-                    title: attributes.selectedCategory === undefined ? Texts.categoryTree.newCategory.newRootCategory[attributes.language] : Texts.categoryTree.newCategory.newChildCategory[attributes.language]
+                    title: Texts.categoryTree.newCategory.newChildCategory[attributes.language]
                 }, [
                     i({class: "fas fa-plus"})
                 ]) :
@@ -144,11 +115,29 @@ export function uiElement(attributes) {
                 button({
                     disabled: !attributes.selectedCategory,
                     onClick: () => editCategoryClick(),
-                    title: Texts.categoryTree.editCategory[attributes.language]
+                    title: Texts.categoryTree.editCategory.title[attributes.language]
                 }, [
                     i({class: "fas fa-pen"})
                 ]) :
-                null
+                null,
+            attributes.rootCategory.editable ?
+                button({
+                    disabled: !attributes.selectedCategory,
+                    onClick: () => inviteUserClick(),
+                    title: Texts.categoryTree.inviteUser.title[attributes.language]
+                }, [
+                    i({class: "fas fa-share"})
+                ]) :
+                null,
+            attributes.rootCategory.editable ?
+                button({
+                    disabled: !attributes.selectedCategory || !attributes.selectedCategory.empty,
+                    onClick: () => deleteCategoryClick(),
+                    title: Texts.categoryTree.delete[attributes.language]
+                }, [
+                    i({class: "far fa-trash-alt"})
+                ]) :
+                null,
         ]),
 
         div({class: "categoryTreeItems"}, [

@@ -12,7 +12,7 @@ import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import DeleteCategoryOkEvent from "../../../gen/category/events/DeleteCategoryOkEvent";
 import DeleteCategoryErrorEvent from "../../../gen/category/events/DeleteCategoryErrorEvent";
-import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
+import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -35,7 +35,7 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
 	    
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new DeleteCategoryOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.rootCategoryId, this.commandData.selectedCategoryId)).publish());
+			promises.push(new TriggerAction(new ReloadCategoryTreeAction(this.commandData.selectedCategoryId, this.commandData.categoryIdToBeExpanded)).publish());
 		}
 		if (this.commandData.outcomes.includes("error")) {
 			promises.push(new DeleteCategoryErrorEvent(this.commandData).publish());

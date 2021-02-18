@@ -9,7 +9,7 @@ import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
 import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import FilterNonScheduledCardsOkEvent from "../../../gen/category/events/FilterNonScheduledCardsOkEvent";
-import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
+import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractFilterNonScheduledCardsCommand extends SynchronousCommand {
     constructor(commandData) {
@@ -26,7 +26,7 @@ export default class AbstractFilterNonScheduledCardsCommand extends SynchronousC
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
 			new FilterNonScheduledCardsOkEvent(this.commandData).publish();
-			new TriggerAction(new LoadCategoryTreeAction(this.commandData.rootCategoryId, this.commandData.selectedCategoryId)).publish();
+			new TriggerAction(new ReloadCategoryTreeAction(this.commandData.selectedCategoryId, this.commandData.categoryIdToBeExpanded)).publish();
 		}
     }
 }

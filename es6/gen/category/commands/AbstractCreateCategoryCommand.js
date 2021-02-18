@@ -11,13 +11,12 @@ import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import CreateCategoryOkEvent from "../../../gen/category/events/CreateCategoryOkEvent";
-import CreateCategoryErrorEvent from "../../../gen/category/events/CreateCategoryErrorEvent";
-import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
+import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.CreateCategoryCommand");
-        this.commandData.categoryName = AppState.get_rootContainer_authorView_categoryTree_categoryName();
+        this.commandData.categoryName = AppState.get_rootContainer_authorView_categoryTree_categoryDialog_categoryName();
         this.commandData.parentCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
         this.commandData.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
         this.commandData.outcomes = [];
@@ -26,19 +25,13 @@ export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
 	addOkOutcome() {
 		this.commandData.outcomes.push("ok");
 	}
-	addErrorOutcome() {
-		this.commandData.outcomes.push("error");
-	}
 
     publishEvents() {
 		let promises = [];
 	    
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new CreateCategoryOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.rootCategoryId, this.commandData.selectedCategoryId)).publish());
-		}
-		if (this.commandData.outcomes.includes("error")) {
-			promises.push(new CreateCategoryErrorEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ReloadCategoryTreeAction(this.commandData.selectedCategoryId, this.commandData.categoryIdToBeExpanded)).publish());
 		}
 		return Promise.all(promises);
     }

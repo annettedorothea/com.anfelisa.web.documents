@@ -11,8 +11,7 @@ import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import UpdateCategoryOkEvent from "../../../gen/category/events/UpdateCategoryOkEvent";
-import UpdateCategoryErrorEvent from "../../../gen/category/events/UpdateCategoryErrorEvent";
-import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
+import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -20,15 +19,12 @@ export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
         this.commandData.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
         this.commandData.selectedCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
         this.commandData.categoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
-        this.commandData.categoryName = AppState.get_rootContainer_authorView_categoryTree_categoryName();
+        this.commandData.categoryName = AppState.get_rootContainer_authorView_categoryTree_categoryDialog_categoryName();
         this.commandData.outcomes = [];
     }
 
 	addOkOutcome() {
 		this.commandData.outcomes.push("ok");
-	}
-	addErrorOutcome() {
-		this.commandData.outcomes.push("error");
 	}
 
     publishEvents() {
@@ -36,10 +32,7 @@ export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
 	    
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new UpdateCategoryOkEvent(this.commandData).publish());
-			promises.push(new TriggerAction(new LoadCategoryTreeAction(this.commandData.rootCategoryId, this.commandData.selectedCategoryId)).publish());
-		}
-		if (this.commandData.outcomes.includes("error")) {
-			promises.push(new UpdateCategoryErrorEvent(this.commandData).publish());
+			promises.push(new TriggerAction(new ReloadCategoryTreeAction(this.commandData.selectedCategoryId, this.commandData.categoryIdToBeExpanded)).publish());
 		}
 		return Promise.all(promises);
     }

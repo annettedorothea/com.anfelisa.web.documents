@@ -5,13 +5,14 @@
 
 
 
-import AbstractCancelInviteUserCommand from "../../../gen/category/commands/AbstractCancelInviteUserCommand";
+import AbstractCancelCategoryDialogCommand from "../../../gen/category/commands/AbstractCancelCategoryDialogCommand";
 
-export default class CancelInviteUserCommand extends AbstractCancelInviteUserCommand {
+export default class CancelCategoryDialogCommand extends AbstractCancelCategoryDialogCommand {
     execute() {
-        this.commandData.inviteUserDialog = {
+        this.commandData.categoryDialog = {
             display: false,
-            usernameSearchString: ""
+            categoryName: "",
+            newCategory: null
         };
     	this.addOkOutcome();
     }

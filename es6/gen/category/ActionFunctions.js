@@ -6,25 +6,25 @@
 
 
 import LoadCategoryTreeAction from "../../src/category/actions/LoadCategoryTreeAction";
+import ReloadCategoryTreeAction from "../../src/category/actions/ReloadCategoryTreeAction";
 import ExpandTreeItemAction from "../../src/category/actions/ExpandTreeItemAction";
 import CollapseTreeItemAction from "../../src/category/actions/CollapseTreeItemAction";
 import SelectTreeItemAction from "../../src/category/actions/SelectTreeItemAction";
 import NewCategoryClickAction from "../../src/category/actions/NewCategoryClickAction";
-import CancelNewCategoryAction from "../../src/category/actions/CancelNewCategoryAction";
+import CancelCategoryDialogAction from "../../src/category/actions/CancelCategoryDialogAction";
 import CategoryNameChangedAction from "../../src/category/actions/CategoryNameChangedAction";
+import CreateCategoryAction from "../../src/category/actions/CreateCategoryAction";
+import EditCategoryClickAction from "../../src/category/actions/EditCategoryClickAction";
+import UpdateCategoryAction from "../../src/category/actions/UpdateCategoryAction";
 import InviteUserClickAction from "../../src/category/actions/InviteUserClickAction";
 import GetInvitedUsernamesAction from "../../src/category/actions/GetInvitedUsernamesAction";
 import CancelInviteUserAction from "../../src/category/actions/CancelInviteUserAction";
 import InvitedUsernameChangedAction from "../../src/category/actions/InvitedUsernameChangedAction";
 import SearchUsernameAction from "../../src/category/actions/SearchUsernameAction";
 import InviteUserAction from "../../src/category/actions/InviteUserAction";
-import CreateCategoryAction from "../../src/category/actions/CreateCategoryAction";
 import DeleteCategoryClickAction from "../../src/category/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../../src/category/actions/CancelDeleteCategoryAction";
 import DeleteCategoryAction from "../../src/category/actions/DeleteCategoryAction";
-import EditCategoryClickAction from "../../src/category/actions/EditCategoryClickAction";
-import CancelEditCategoryAction from "../../src/category/actions/CancelEditCategoryAction";
-import UpdateCategoryAction from "../../src/category/actions/UpdateCategoryAction";
 import CheckDropAllowedAction from "../../src/category/actions/CheckDropAllowedAction";
 import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
 import MoveCategoryStartedAction from "../../src/category/actions/MoveCategoryStartedAction";
@@ -40,6 +40,10 @@ import CreateReverseBoxAction from "../../src/category/actions/CreateReverseBoxA
 
 export function loadCategoryTree(rootCategoryId, selectedCategoryId) {
     new LoadCategoryTreeAction(rootCategoryId, selectedCategoryId).apply();
+}
+
+export function reloadCategoryTree(selectedCategoryId, categoryIdToBeExpanded) {
+    new ReloadCategoryTreeAction(selectedCategoryId, categoryIdToBeExpanded).apply();
 }
 
 export function expandTreeItem(categoryId) {
@@ -58,12 +62,24 @@ export function newCategoryClick() {
     new NewCategoryClickAction().apply();
 }
 
-export function cancelNewCategory() {
-    new CancelNewCategoryAction().apply();
+export function cancelCategoryDialog() {
+    new CancelCategoryDialogAction().apply();
 }
 
 export function categoryNameChanged(categoryName) {
     new CategoryNameChangedAction(categoryName).apply();
+}
+
+export function createCategory() {
+    new CreateCategoryAction().apply();
+}
+
+export function editCategoryClick() {
+    new EditCategoryClickAction().apply();
+}
+
+export function updateCategory() {
+    new UpdateCategoryAction().apply();
 }
 
 export function inviteUserClick() {
@@ -90,10 +106,6 @@ export function inviteUser(invitedUsername) {
     new InviteUserAction(invitedUsername).apply();
 }
 
-export function createCategory() {
-    new CreateCategoryAction().apply();
-}
-
 export function deleteCategoryClick() {
     new DeleteCategoryClickAction().apply();
 }
@@ -104,18 +116,6 @@ export function cancelDeleteCategory() {
 
 export function deleteCategory() {
     new DeleteCategoryAction().apply();
-}
-
-export function editCategoryClick() {
-    new EditCategoryClickAction().apply();
-}
-
-export function cancelEditCategory() {
-    new CancelEditCategoryAction().apply();
-}
-
-export function updateCategory() {
-    new UpdateCategoryAction().apply();
 }
 
 export function checkDropAllowed(categoryId, altKey, depth) {

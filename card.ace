@@ -128,7 +128,7 @@ ACE
 	 	call com.anfelisa.box.ScheduleCards
 		loadingFlag common.rootContainer.spinner 
 		on noFilter triggers (LoadCards)
-		on filter triggers (category.LoadCategoryTree)
+		on filter triggers (category.ReloadCategoryTree)
 			
 		
 	SortSelectedCardsOut 
@@ -154,7 +154,7 @@ ACE
 		loadingFlag common.rootContainer.spinner 
 		on ok (
 			set common.rootContainer.mainView.authorView.cardView.movedCardIds
-		) triggers (category.LoadCategoryTree)
+		) triggers (category.ReloadCategoryTree)
 		
 		
 	ChangeCardOrder ( cardId )

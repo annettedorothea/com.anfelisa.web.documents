@@ -31,6 +31,8 @@ import { setQueryCardViewState } from "../components/rootContainer/mainView/Quer
 import { setAuthorViewState } from "../components/rootContainer/mainView/AuthorViewComponent";
 import { setCategoryTreeState } from "../components/rootContainer/mainView/authorView/CategoryTreeComponent";
 import { setRootCategoryState } from "../components/rootContainer/mainView/authorView/categoryTree/RootCategoryComponent";
+import { setCategoryDialogState } from "../components/rootContainer/mainView/authorView/categoryTree/CategoryDialogComponent";
+import { setInviteUserDialogState } from "../components/rootContainer/mainView/authorView/categoryTree/InviteUserDialogComponent";
 import { setCardViewState } from "../components/rootContainer/mainView/authorView/CardViewComponent";
 import { setEditedCardState } from "../components/rootContainer/mainView/authorView/cardView/EditedCardComponent";
 import { setNewCardState } from "../components/rootContainer/mainView/authorView/cardView/NewCardComponent";
@@ -3205,26 +3207,11 @@ export function merge_rootContainer_authorView_categoryTree(eventData) {
 	if (eventData.displayDeleteCategory !== undefined) {
 		appState.rootContainer.mainView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
 	}
-	if (eventData.categoryName !== undefined) {
-		appState.rootContainer.mainView.categoryTree.categoryName = eventData.categoryName;
+	if (eventData.categoryDialog !== undefined) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog = eventData.categoryDialog;
 	}
-	if (eventData.displayEditCategory !== undefined) {
-		appState.rootContainer.mainView.categoryTree.displayEditCategory = eventData.displayEditCategory;
-	}
-	if (eventData.displayNewCategory !== undefined) {
-		appState.rootContainer.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
-	}
-	if (eventData.displayInviteUser !== undefined) {
-		appState.rootContainer.mainView.categoryTree.displayInviteUser = eventData.displayInviteUser;
-	}
-	if (eventData.usernameSearchString !== undefined) {
-		appState.rootContainer.mainView.categoryTree.usernameSearchString = eventData.usernameSearchString;
-	}
-	if (eventData.usernames !== undefined) {
-		appState.rootContainer.mainView.categoryTree.usernames = eventData.usernames;
-	}
-	if (eventData.invitedUsernames !== undefined) {
-		appState.rootContainer.mainView.categoryTree.invitedUsernames = eventData.invitedUsernames;
+	if (eventData.inviteUserDialog !== undefined) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog = eventData.inviteUserDialog;
 	}
 	if (eventData.dropAllowed !== undefined) {
 		appState.rootContainer.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
@@ -4419,7 +4406,7 @@ export function set_rootContainer_authorView_categoryTree_displayDeleteCategory(
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_authorView_categoryTree_categoryName() {
+export function get_rootContainer_authorView_categoryTree_categoryDialog() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -4432,10 +4419,13 @@ export function get_rootContainer_authorView_categoryTree_categoryName() {
 	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.categoryTree.categoryName;
+	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.categoryDialog);
 }
 
-export function set_rootContainer_authorView_categoryTree_categoryName(eventData) {
+export function set_rootContainer_authorView_categoryTree_categoryDialog(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -4447,47 +4437,40 @@ export function set_rootContainer_authorView_categoryTree_categoryName(eventData
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.rootContainer.mainView.categoryTree.categoryName = eventData.categoryName;
+	appState.rootContainer.mainView.categoryTree.categoryDialog = eventData.categoryDialog;
 	const newAppState = getAppState();
-	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
+	setCategoryDialogState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.categoryDialog));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_authorView_categoryTree_displayEditCategory() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isAuthorView !== true) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.categoryTree) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.categoryTree.displayEditCategory;
-}
-
-export function set_rootContainer_authorView_categoryTree_displayEditCategory(eventData) {
+export function merge_rootContainer_authorView_categoryTree_categoryDialog(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
-		appState.rootContainer.mainView = {
-			isAuthorView : true
-		};
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {};
 	}
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.rootContainer.mainView.categoryTree.displayEditCategory = eventData.displayEditCategory;
+	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog = {};
+	}
+	if (eventData.categoryName !== undefined) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog.categoryName = eventData.categoryName;
+	}
+	if (eventData.newCategory !== undefined) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog.newCategory = eventData.newCategory;
+	}
+	if (eventData.display !== undefined) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog.display = eventData.display;
+	}
 	const newAppState = getAppState();
-	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
+	setCategoryDialogState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.categoryDialog));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_authorView_categoryTree_displayNewCategory() {
+export function get_rootContainer_authorView_categoryTree_categoryDialog_categoryName() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -4500,10 +4483,13 @@ export function get_rootContainer_authorView_categoryTree_displayNewCategory() {
 	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.categoryTree.displayNewCategory;
+	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.categoryDialog.categoryName;
 }
 
-export function set_rootContainer_authorView_categoryTree_displayNewCategory(eventData) {
+export function set_rootContainer_authorView_categoryTree_categoryDialog_categoryName(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -4515,13 +4501,16 @@ export function set_rootContainer_authorView_categoryTree_displayNewCategory(eve
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.rootContainer.mainView.categoryTree.displayNewCategory = eventData.displayNewCategory;
+	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.categoryDialog.categoryName = eventData.categoryName;
 	const newAppState = getAppState();
-	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
+	setCategoryDialogState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.categoryDialog));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_authorView_categoryTree_displayInviteUser() {
+export function get_rootContainer_authorView_categoryTree_categoryDialog_newCategory() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -4534,10 +4523,13 @@ export function get_rootContainer_authorView_categoryTree_displayInviteUser() {
 	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.categoryTree.displayInviteUser;
+	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.categoryDialog.newCategory;
 }
 
-export function set_rootContainer_authorView_categoryTree_displayInviteUser(eventData) {
+export function set_rootContainer_authorView_categoryTree_categoryDialog_newCategory(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -4549,13 +4541,16 @@ export function set_rootContainer_authorView_categoryTree_displayInviteUser(even
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.rootContainer.mainView.categoryTree.displayInviteUser = eventData.displayInviteUser;
+	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.categoryDialog.newCategory = eventData.newCategory;
 	const newAppState = getAppState();
-	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
+	setCategoryDialogState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.categoryDialog));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_authorView_categoryTree_usernameSearchString() {
+export function get_rootContainer_authorView_categoryTree_categoryDialog_display() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -4568,10 +4563,13 @@ export function get_rootContainer_authorView_categoryTree_usernameSearchString()
 	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.categoryTree.usernameSearchString;
+	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.categoryDialog.display;
 }
 
-export function set_rootContainer_authorView_categoryTree_usernameSearchString(eventData) {
+export function set_rootContainer_authorView_categoryTree_categoryDialog_display(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -4583,13 +4581,16 @@ export function set_rootContainer_authorView_categoryTree_usernameSearchString(e
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.rootContainer.mainView.categoryTree.usernameSearchString = eventData.usernameSearchString;
+	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.categoryDialog.display = eventData.display;
 	const newAppState = getAppState();
-	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
+	setCategoryDialogState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.categoryDialog));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_authorView_categoryTree_usernames() {
+export function get_rootContainer_authorView_categoryTree_inviteUserDialog() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -4602,10 +4603,13 @@ export function get_rootContainer_authorView_categoryTree_usernames() {
 	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.categoryTree.usernames;
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.inviteUserDialog);
 }
 
-export function set_rootContainer_authorView_categoryTree_usernames(eventData) {
+export function set_rootContainer_authorView_categoryTree_inviteUserDialog(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -4617,13 +4621,43 @@ export function set_rootContainer_authorView_categoryTree_usernames(eventData) {
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.rootContainer.mainView.categoryTree.usernames = eventData.usernames;
+	appState.rootContainer.mainView.categoryTree.inviteUserDialog = eventData.inviteUserDialog;
 	const newAppState = getAppState();
-	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
+	setInviteUserDialogState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.inviteUserDialog));
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_authorView_categoryTree_invitedUsernames() {
+export function merge_rootContainer_authorView_categoryTree_inviteUserDialog(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog = {};
+	}
+	if (eventData.display !== undefined) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog.display = eventData.display;
+	}
+	if (eventData.usernameSearchString !== undefined) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog.usernameSearchString = eventData.usernameSearchString;
+	}
+	if (eventData.usernames !== undefined) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog.usernames = eventData.usernames;
+	}
+	if (eventData.invitedUsernames !== undefined) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog.invitedUsernames = eventData.invitedUsernames;
+	}
+	const newAppState = getAppState();
+	setInviteUserDialogState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.inviteUserDialog));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_authorView_categoryTree_inviteUserDialog_display() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -4636,10 +4670,13 @@ export function get_rootContainer_authorView_categoryTree_invitedUsernames() {
 	if (!appState.rootContainer.mainView.categoryTree) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.categoryTree.invitedUsernames;
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.inviteUserDialog.display;
 }
 
-export function set_rootContainer_authorView_categoryTree_invitedUsernames(eventData) {
+export function set_rootContainer_authorView_categoryTree_inviteUserDialog_display(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -4651,9 +4688,132 @@ export function set_rootContainer_authorView_categoryTree_invitedUsernames(event
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
 	}
-	appState.rootContainer.mainView.categoryTree.invitedUsernames = eventData.invitedUsernames;
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.inviteUserDialog.display = eventData.display;
 	const newAppState = getAppState();
-	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
+	setInviteUserDialogState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.inviteUserDialog));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_authorView_categoryTree_inviteUserDialog_usernameSearchString() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.inviteUserDialog.usernameSearchString;
+}
+
+export function set_rootContainer_authorView_categoryTree_inviteUserDialog_usernameSearchString(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.inviteUserDialog.usernameSearchString = eventData.usernameSearchString;
+	const newAppState = getAppState();
+	setInviteUserDialogState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.inviteUserDialog));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_authorView_categoryTree_inviteUserDialog_usernames() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.inviteUserDialog.usernames;
+}
+
+export function set_rootContainer_authorView_categoryTree_inviteUserDialog_usernames(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.inviteUserDialog.usernames = eventData.usernames;
+	const newAppState = getAppState();
+	setInviteUserDialogState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.inviteUserDialog));
+	AppUtils.stateUpdated(newAppState);
+}
+
+export function get_rootContainer_authorView_categoryTree_inviteUserDialog_invitedUsernames() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isAuthorView !== true) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.categoryTree.inviteUserDialog.invitedUsernames;
+}
+
+export function set_rootContainer_authorView_categoryTree_inviteUserDialog_invitedUsernames(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.inviteUserDialog.invitedUsernames = eventData.invitedUsernames;
+	const newAppState = getAppState();
+	setInviteUserDialogState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree.inviteUserDialog));
 	AppUtils.stateUpdated(newAppState);
 }
 
