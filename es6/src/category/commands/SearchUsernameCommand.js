@@ -22,7 +22,7 @@ export default class SearchUsernameCommand extends AbstractSearchUsernameCommand
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

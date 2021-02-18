@@ -138,10 +138,14 @@ InviteUser (invitedUsername)
 	)
 	
 DeleteCategoryClick
-	on ok (merge common.rootContainer.mainView.authorView.categoryTree)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.deleteCategoryDialog
+	)
 	
 CancelDeleteCategory
-	on ok (merge common.rootContainer.mainView.authorView.categoryTree)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.deleteCategoryDialog
+	)
 
 DeleteCategory
 	fromAppState (
@@ -151,8 +155,9 @@ DeleteCategory
 	)
 	call com.anfelisa.category.DeleteCategory
 	loadingFlag common.rootContainer.spinner 
-	on ok (merge common.rootContainer.mainView.authorView.categoryTree) triggers (ReloadCategoryTree)
-	on error (merge common.rootContainer.mainView.authorView.categoryTree)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.deleteCategoryDialog
+	) triggers (ReloadCategoryTree)
 
 CheckDropAllowed ( categoryId, altKey, depth )
 	fromAppState (
@@ -160,7 +165,10 @@ CheckDropAllowed ( categoryId, altKey, depth )
 		common.rootContainer.mainView.authorView.categoryTree.movedCategory,
 		common.rootContainer.mainView.authorView.categoryTree.selectedCategory
 	)
-	on ok (merge common.rootContainer.mainView.authorView.categoryTree)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
+		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
+	)
 
 ItemDropped
 	fromAppState (common.rootContainer.mainView.authorView.categoryTree.movedCategory)
@@ -169,7 +177,9 @@ ItemDropped
 
 MoveCategoryStarted ( movedCategoryId )
 	fromAppState(common.rootContainer.mainView.authorView.categoryTree.rootCategory)
-	on ok (merge common.rootContainer.mainView.authorView.categoryTree)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.movedCategory
+	)
 	
 MoveCategory
 	fromAppState (
@@ -181,6 +191,8 @@ MoveCategory
  	call com.anfelisa.category.MoveCategory
 	loadingFlag common.rootContainer.spinner 
 	on ok ( 
+		set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
+		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
 		set common.rootContainer.mainView.authorView.categoryTree.movedCategory
 	) triggers (category.ReloadCategoryTree)
 
@@ -194,34 +206,11 @@ ChangeOrderCategory
  	call com.anfelisa.category.ChangeOrderCategory
 	loadingFlag common.rootContainer.spinner 
 	on ok ( 
+		set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
+		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
 		set common.rootContainer.mainView.authorView.categoryTree.movedCategory
 	) triggers (category.ReloadCategoryTree)
 
-PreviewCsv ( csv )
-	on ok (
-		set common.rootContainer.mainView.authorView.categoryTree.previewCsv
-	) 
-	
-CancelPreviewCsv
-	on ok (set common.rootContainer.mainView.authorView.categoryTree.previewCsv)
-		
-SwapPreviewCsv
-	fromAppState (common.rootContainer.mainView.authorView.categoryTree.previewCsv)
-	on ok (set common.rootContainer.mainView.authorView.categoryTree.previewCsv)
-	
-ImportCsv
-	fromAppState (
-		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId,
-		common.rootContainer.mainView.authorView.categoryTree.movedCategory.categoryId as selectedCategoryId,
-		common.rootContainer.mainView.authorView.categoryTree.previewCsv,
-		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId
-	)
-	call com.anfelisa.card.ImportCsv
-	loadingFlag common.rootContainer.spinner 
-	on ok ( 
-		set common.rootContainer.mainView.authorView.categoryTree.previewCsv
-	) triggers (card.LoadCards)
-	
 FilterNonScheduledCards
 	fromAppState (
 		common.rootContainer.mainView.authorView.filterNonScheduled, 

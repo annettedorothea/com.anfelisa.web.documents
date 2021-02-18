@@ -4,96 +4,35 @@
 
 
 import {
-    button, categoryDialog,
+    button,
+    categoryDialog,
+    deleteCategoryDialog,
     div,
-    h2,
     i,
-    input, inviteUserDialog,
-    rootCategory,
-    table,
-    tbody,
-    td,
-    th,
-    thead,
-    tr
+    inviteUserDialog,
+    rootCategory
 } from "../../../../../gen/components/ReactHelper";
 import {
-    cancelNewCategory,
-    cancelPreviewCsv,
-    categoryNameChanged,
-    createCategory, deleteCategoryClick,
+    createReverseBox,
+    deleteCategoryClick,
     editCategoryClick,
-    importCsv, inviteUserClick,
-    newCategoryClick,
-    previewCsv,
-    swapPreviewCsv
+    inviteUserClick,
+    newCategoryClick
 } from "../../../../../gen/category/ActionFunctions";
 import {route} from "../../../../../gen/common/ActionFunctions";
 import React from "react";
 import {Texts} from "../../../../app/Texts";
 
 export function uiElement(attributes) {
-    const onCsvFileChange = (event) => {
-        let files = event.target.files;
-
-        if (files.length > 0) {
-            const file = files[0];
-            event.target.value = null;
-            let reader = new FileReader();
-            reader.onload = function () {
-                previewCsv(reader.result);
-            };
-            reader.readAsText(file);
-        }
-    }
-
-    const csvPreview = () => {
-        let csv = attributes.previewCsv.map((row) => {
-            return tr({key: row[2]}, [
-                td({}, [row[0]]),
-                td({}, [row[1]]),
-            ]);
-        });
-        return div({class: "modal"}, [
-            div({class: "modalContent"}, [
-                h2({}, [Texts.categoryTree.csvPreview.title[attributes.language]]),
-                table({}, [
-                    thead({}, [
-                        tr({}, [
-                            th({}, [
-                                Texts.categoryTree.csvPreview.given[attributes.language],
-                                attributes.selectedCategory.attributes ? ' (' + Texts.categoryTree.csvPreview.languages[attributes.selectedCategory.attributes][attributes.language] + ')' : ""
-                            ]),
-                            th({}, [
-                                Texts.categoryTree.csvPreview.wanted[attributes.language],
-                                attributes.selectedCategory.wantedLanguage ? ' (' + Texts.categoryTree.csvPreview.languages[attributes.selectedCategory.wantedLanguage][attributes.language] + ')' : ""
-                            ]),
-                        ])
-                    ]),
-                    tbody({}, [csv])
-                ]),
-                button({
-                    onClick: () => swapPreviewCsv()
-                }, [Texts.categoryTree.csvPreview.swap[attributes.language]]),
-                button({
-                    onClick: () => importCsv()
-                }, [Texts.categoryTree.csvPreview.ok[attributes.language]]),
-                button({
-                    onClick: () => cancelPreviewCsv()
-                }, [Texts.categoryTree.csvPreview.cancel[attributes.language]])
-            ])
-        ]);
-    }
 
     if (!attributes.rootCategory) {
         return null;
     }
 
     return div({class: "categoryTree"}, [
-        attributes.previewCsv && attributes.previewCsv.length > 0 && attributes.rootCategory.editable ?
-            csvPreview() : null,
         categoryDialog({...attributes.categoryDialog, language: attributes.language}),
         inviteUserDialog({...attributes.inviteUserDialog, language: attributes.language}),
+        deleteCategoryDialog({...attributes.deleteCategoryDialog, language: attributes.language}),
 
         div({}, [
             button({
@@ -131,11 +70,19 @@ export function uiElement(attributes) {
                 null,
             attributes.rootCategory.editable ?
                 button({
-                    disabled: !attributes.selectedCategory || !attributes.selectedCategory.empty,
+                    disabled: !attributes.selectedCategory || !attributes.selectedCategory.empty || attributes.rootCategory.categoryId === attributes.selectedCategory.categoryId,
                     onClick: () => deleteCategoryClick(),
                     title: Texts.categoryTree.delete[attributes.language]
                 }, [
                     i({class: "far fa-trash-alt"})
+                ]) :
+                null,
+            attributes.reverseBoxExists === false ?
+                button({
+                    onClick: () => createReverseBox(),
+                    title: Texts.categoryTree.createReverseBox[attributes.language]
+                }, [
+                    i({class: "fas fa-plus-circle"})
                 ]) :
                 null,
         ]),
@@ -143,11 +90,8 @@ export function uiElement(attributes) {
         div({class: "categoryTreeItems"}, [
             rootCategory({
                 ...attributes.rootCategory,
-                childCategories: attributes.rootCategory.childCategories,
                 selectedCategory: attributes.selectedCategory,
-                texts: attributes.texts,
                 language: attributes.language,
-                key: attributes.rootCategory.categoryId,
                 dropAllowed: attributes.dropAllowed && attributes.rootCategory.editable,
                 dropTargetCategoryId: attributes.dropTargetCategoryId,
             })

@@ -37,7 +37,7 @@ export default class LoadSettingsCommand extends AbstractLoadSettingsCommand {
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

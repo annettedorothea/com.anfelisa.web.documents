@@ -151,6 +151,7 @@ export default class AppUtils {
                 response.text().then((text) => {
                     if (response.status >= 300) {
                         const error = AppUtils.createError(text, response.statusText, response.status);
+                        console.log("response.status >= 300", error);
                         reject(error);
                     } else {
                         let data = {};
@@ -161,6 +162,7 @@ export default class AppUtils {
                     }
                 });
             }).catch(function (error) {
+                console.log("catch", error);
                 reject(AppUtils.createError(error, error));
             });
         });
@@ -203,7 +205,7 @@ export default class AppUtils {
     }
 
     static displayUnexpectedError(error) {
-        console.error(error);
+        console.error("unexpected error", error);
         const currentVersion = Utils.settings.clientVersion;
         AppUtils.loadActualClientVersion().then((actualClientVersion) => {
             if (actualClientVersion !== currentVersion) {

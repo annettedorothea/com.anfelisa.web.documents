@@ -18,7 +18,7 @@ export default class SortSelectedCardsOutCommand extends AbstractSortSelectedCar
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

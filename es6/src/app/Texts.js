@@ -259,7 +259,7 @@ export const Texts = {
                 de: "OK"
             },
             title: {
-                de: "Einladen"
+                de: "Teilen"
             },
             username: {
                 de: "Benutzername"

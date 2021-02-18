@@ -13,7 +13,6 @@ import {
 } from "../../../../../../gen/category/ActionFunctions";
 
 export function uiElement(attributes) {
-    console.log("dialog", attributes);
     if (attributes.display !== true) {
         return null;
     }

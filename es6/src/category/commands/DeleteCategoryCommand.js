@@ -7,14 +7,14 @@ export default class DeleteCategoryCommand extends AbstractDeleteCategoryCommand
     }
 
     handleResponse(resolve) {
-        this.commandData.displayDeleteCategory = false;
+        this.commandData.deleteCategoryDialog = {
+            display: false,
+        };
         this.addOkOutcome();
     	resolve();
     }
-    handleError(resolve) {
-        this.addErrorOutcome();
-        this.commandData.displayDeleteCategory = false;
-        resolve();
+    handleError(resolve, reject) {
+        reject(this.commandData.message);
     }
 }
 

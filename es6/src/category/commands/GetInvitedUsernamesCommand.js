@@ -18,7 +18,7 @@ export default class GetInvitedUsernamesCommand extends AbstractGetInvitedUserna
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

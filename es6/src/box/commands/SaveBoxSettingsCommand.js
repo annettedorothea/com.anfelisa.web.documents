@@ -42,7 +42,7 @@ export default class SaveBoxSettingsCommand extends AbstractSaveBoxSettingsComma
     }
 
     handleError(resolve, reject) {
-        reject(this.commandData.error);
+        reject(this.commandData.message);
     }
 }
 

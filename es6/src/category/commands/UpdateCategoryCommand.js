@@ -12,7 +12,7 @@ export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand
         resolve();
     }
     handleError(resolve, reject) {
-        reject(this.commandData.error);
+        reject(this.commandData.message);
     }
 }
 

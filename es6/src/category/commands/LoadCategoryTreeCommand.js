@@ -40,7 +40,7 @@ export default class LoadCategoryTreeCommand extends AbstractLoadCategoryTreeCom
     }
 
     handleError(resolve, reject) {
-        reject(this.commandData.error);
+        reject(this.commandData.message);
     }
 }
 

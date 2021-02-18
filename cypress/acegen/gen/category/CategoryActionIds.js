@@ -55,14 +55,6 @@ export let moveCategory = "category_moveCategory";
 
 export let changeOrderCategory = "category_changeOrderCategory";
 
-export let previewCsv = "category_previewCsv";
-
-export let cancelPreviewCsv = "category_cancelPreviewCsv";
-
-export let swapPreviewCsv = "category_swapPreviewCsv";
-
-export let importCsv = "category_importCsv";
-
 export let filterNonScheduledCards = "category_filterNonScheduledCards";
 
 export let priorityChanged = "category_priorityChanged";

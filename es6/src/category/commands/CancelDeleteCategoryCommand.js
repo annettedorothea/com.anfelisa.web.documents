@@ -2,7 +2,9 @@ import AbstractCancelDeleteCategoryCommand from "../../../gen/category/commands/
 
 export default class CancelDeleteCategoryCommand extends AbstractCancelDeleteCategoryCommand {
     execute() {
-        this.commandData.displayDeleteCategory = false;
+        this.commandData.deleteCategoryDialog = {
+            display: false,
+        };
     	this.addOkOutcome();
     }
 }

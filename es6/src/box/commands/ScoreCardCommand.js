@@ -11,7 +11,7 @@ export default class ScoreCardCommand extends AbstractScoreCardCommand {
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

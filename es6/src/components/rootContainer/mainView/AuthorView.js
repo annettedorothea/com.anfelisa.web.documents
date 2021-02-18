@@ -14,13 +14,10 @@ export function uiElement(attributes) {
             priority: attributes.priority,
             reverseBoxExists: attributes.reverseBoxExists
         }),
-        attributes.cardView && attributes.cardView.cardList ?
-            cardView(
-                {
-                    language: attributes.language,
-                    rootCategoryId: attributes.categoryTree.rootCategory.categoryId
-                }) :
-            null
+        cardView(
+            {
+                language: attributes.language
+            })
     ]);
 }
 

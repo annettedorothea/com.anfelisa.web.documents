@@ -30,7 +30,7 @@ export default class ChangeCardOrderCommand extends AbstractChangeCardOrderComma
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

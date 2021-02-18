@@ -1,5 +1,5 @@
 import AbstractCheckDropAllowedCommand from "../../../gen/category/commands/AbstractCheckDropAllowedCommand";
-import {findCategory} from "../utils/CategoryTreeUtils";
+import {findCategory, isCategoryChildOfParent} from "../utils/CategoryTreeUtils";
 
 export default class CheckDropAllowedCommand extends AbstractCheckDropAllowedCommand {
     execute() {
@@ -10,17 +10,16 @@ export default class CheckDropAllowedCommand extends AbstractCheckDropAllowedCom
             dropTarget = findCategory(this.commandData.rootCategory.childCategories, this.commandData.categoryId);
         }
         this.commandData.dropTargetCategoryId = dropTarget.categoryId;
-        if (this.commandData.movedCategory) {
-            if (this.commandData.altKey === true) {
-                this.commandData.dropAllowed =
-                    dropTarget.parentCategoryId === this.commandData.movedCategory.parentCategoryId
-                    && dropTarget.categoryId !== this.commandData.movedCategory.categoryId;
-            } else {
-                this.commandData.dropAllowed = dropTarget.categoryId !== this.commandData.movedCategory.categoryId
-                    && dropTarget.categoryId !== this.commandData.movedCategory.parentCategoryId;
-            }
+        if (this.commandData.altKey === true) {
+            this.commandData.dropAllowed =
+                dropTarget.parentCategoryId === this.commandData.movedCategory.parentCategoryId
+                && dropTarget.categoryId !== this.commandData.movedCategory.categoryId;
         } else {
-            this.commandData.dropAllowed = dropTarget.categoryId !== this.commandData.selectedCategory.categoryId;
+            this.commandData.dropAllowed =
+                this.commandData.rootCategory.categoryId !== this.commandData.movedCategory.categoryId
+                && dropTarget.categoryId !== this.commandData.movedCategory.categoryId
+                && dropTarget.categoryId !== this.commandData.movedCategory.parentCategoryId
+                && !isCategoryChildOfParent(this.commandData.movedCategory, dropTarget.categoryId);
         }
         this.addOkOutcome();
     }

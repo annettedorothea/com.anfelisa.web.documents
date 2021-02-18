@@ -19,7 +19,7 @@ export default class UpdateCardPriorityCommand extends AbstractUpdateCardPriorit
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

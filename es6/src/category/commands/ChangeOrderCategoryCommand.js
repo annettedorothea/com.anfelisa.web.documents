@@ -24,12 +24,14 @@ export default class ChangeOrderCategoryCommand extends AbstractChangeOrderCateg
     }
 
     handleResponse(resolve) {
-        this.commandData.movedCategory = undefined;
+        this.commandData.movedCategory = null;
+        this.commandData.dropAllowed = null;
+        this.commandData.dropTargetCategoryId = null;
         this.addOkOutcome();
         resolve();
     }
     handleError(resolve, reject) {
-        reject(this.commandData.error);
+        reject(this.commandData.message);
     }
 }
 

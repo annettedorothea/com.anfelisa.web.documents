@@ -32,7 +32,7 @@ export default class CreateRootCategoryCommand extends AbstractCreateRootCategor
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

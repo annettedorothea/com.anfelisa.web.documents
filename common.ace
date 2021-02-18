@@ -328,6 +328,10 @@ ui React_16.8 rootContainer {
 					List invitedUsernames
 				}
 				
+				deleteCategoryDialog {
+					display
+				}
+				
 				dropAllowed
 				dropTargetCategoryId
 				noComponent movedCategory {
@@ -342,8 +346,6 @@ ui React_16.8 rootContainer {
 					rootCategoryId
 					List childCategories
 				}
-				
-				previewCsv
 			}
 	        cardView {
 		        List cardList {

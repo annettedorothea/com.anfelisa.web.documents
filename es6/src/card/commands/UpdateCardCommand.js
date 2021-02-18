@@ -17,7 +17,7 @@ export default class UpdateCardCommand extends AbstractUpdateCardCommand {
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

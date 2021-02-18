@@ -17,7 +17,7 @@ export default class LoadUserCommand extends AbstractLoadUserCommand {
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

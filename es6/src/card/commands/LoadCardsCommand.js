@@ -42,7 +42,7 @@ export default class LoadCardsCommand extends AbstractLoadCardsCommand {
     }
 
     handleError(resolve, reject) {
-        reject(this.commandData.error);
+        reject(this.commandData.message);
     }
 }
 

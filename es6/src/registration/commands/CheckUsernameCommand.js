@@ -16,7 +16,7 @@ export default class CheckUsernameCommand extends AbstractCheckUsernameCommand {
     }
 
     handleError(resolve, reject) {
-        reject(this.commandData.error);
+        reject(this.commandData.message);
     }
 }
 

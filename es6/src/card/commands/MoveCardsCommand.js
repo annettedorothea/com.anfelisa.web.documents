@@ -16,7 +16,7 @@ export default class MoveCardsCommand extends AbstractMoveCardsCommand {
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

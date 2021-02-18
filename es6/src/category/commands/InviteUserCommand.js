@@ -22,7 +22,7 @@ export default class InviteUserCommand extends AbstractInviteUserCommand {
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

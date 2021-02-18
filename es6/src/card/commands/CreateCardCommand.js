@@ -19,7 +19,7 @@ export default class CreateCardCommand extends AbstractCreateCardCommand {
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

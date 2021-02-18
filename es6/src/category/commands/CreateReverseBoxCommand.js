@@ -20,7 +20,7 @@ export default class CreateReverseBoxCommand extends AbstractCreateReverseBoxCom
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

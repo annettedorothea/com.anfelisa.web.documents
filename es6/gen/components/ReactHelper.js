@@ -33,6 +33,7 @@ import { CategoryTreeComponent } from "./rootContainer/mainView/authorView/Categ
 import { RootCategoryComponent } from "./rootContainer/mainView/authorView/categoryTree/RootCategoryComponent";
 import { CategoryDialogComponent } from "./rootContainer/mainView/authorView/categoryTree/CategoryDialogComponent";
 import { InviteUserDialogComponent } from "./rootContainer/mainView/authorView/categoryTree/InviteUserDialogComponent";
+import { DeleteCategoryDialogComponent } from "./rootContainer/mainView/authorView/categoryTree/DeleteCategoryDialogComponent";
 import { CardViewComponent } from "./rootContainer/mainView/authorView/CardViewComponent";
 import { CardListItemComponent } from "./rootContainer/mainView/authorView/cardView/CardListItemComponent";
 import { EditedCardComponent } from "./rootContainer/mainView/authorView/cardView/EditedCardComponent";
@@ -254,6 +255,9 @@ export const categoryDialog = (options) => {
 }
 export const inviteUserDialog = (options) => {
     return <InviteUserDialogComponent {...normalize(options)}/>
+}
+export const deleteCategoryDialog = (options) => {
+    return <DeleteCategoryDialogComponent {...normalize(options)}/>
 }
 export const movedCategory = (options) => {
     return <MovedCategoryComponent {...normalize(options)}/>

@@ -13,12 +13,13 @@ export function uiElement(attributes) {
 			div({class: "modalContent"}, [
 				h2({}, [Texts.box.confirmDelete.title[attributes.language]]),
 				div({class: "message"}, [Texts.box.confirmDelete.message[attributes.language]]),
-				button({class: "yes", onClick: () => deleteBox()}, [Texts.box.confirmDelete.ok[attributes.language]]),
+				button({class: "yes danger", onClick: () => deleteBox()}, [Texts.box.confirmDelete.ok[attributes.language]]),
 				button({onClick: () => cancelDeleteBox()}, [Texts.box.confirmDelete.cancel[attributes.language]])
 			])
 		]);
 	}
-	return null;}
+	return null;
+}
 
 
 

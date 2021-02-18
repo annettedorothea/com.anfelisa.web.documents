@@ -28,7 +28,7 @@ export default class InitBoxesForDayCommand extends AbstractInitBoxesForDayComma
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

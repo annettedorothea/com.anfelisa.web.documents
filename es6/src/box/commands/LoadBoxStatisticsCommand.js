@@ -45,7 +45,7 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

@@ -23,7 +23,7 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
     }
 
     handleError(resolve, reject) {
-        reject(this.commandData.error);
+        reject(this.commandData.message);
     }
 }
 

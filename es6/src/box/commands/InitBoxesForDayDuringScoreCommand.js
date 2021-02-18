@@ -29,7 +29,7 @@ export default class InitBoxesForDayDuringScoreCommand extends AbstractInitBoxes
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

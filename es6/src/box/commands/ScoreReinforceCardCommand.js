@@ -30,7 +30,7 @@ export default class ScoreReinforceCardCommand extends AbstractScoreReinforceCar
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

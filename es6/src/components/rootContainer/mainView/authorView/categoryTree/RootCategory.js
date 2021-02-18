@@ -24,19 +24,14 @@ const categoryItem = (attributes) => {
             expandedCategoryItem({
                 ...attributes,
                 selected,
-                selectedCategory: attributes.selectedCategory,
                 depth: attributes.depth + 1,
-                dropAllowed,
-                dropTargetCategoryId: attributes.dropTargetCategoryId,
-                language: attributes.language
+                dropAllowed
             }) :
             collapsedCategoryItem({
                 ...attributes,
                 selected,
                 dropAllowed,
-                dropTargetCategoryId: attributes.dropTargetCategoryId,
-                depth: attributes.depth + 1,
-                language: attributes.language
+                depth: attributes.depth + 1
             })
     ]);
 }
@@ -124,13 +119,11 @@ const expandedCategoryItem = (attributes) => {
         children = attributes.childCategories.map((category) => {
             return categoryItem({
                 ...category,
-                childCategories: category.childCategories,
                 depth: attributes.depth,
                 language: attributes.language,
                 selectedCategory: attributes.selectedCategory,
                 dropAllowed: attributes.dropAllowed,
-                dropTargetCategoryId: attributes.dropTargetCategoryId,
-                key: category.categoryId,
+                dropTargetCategoryId: attributes.dropTargetCategoryId
             });
         });
     }
@@ -139,17 +132,7 @@ const expandedCategoryItem = (attributes) => {
             class: "fas fa-caret-down",
             onClick: () => collapseTreeItem(attributes.categoryId)
         }) : null,
-        // TODO simplify?
-        selectableCategoryItem({
-            selected: attributes.selected,
-            categoryName: attributes.categoryName,
-            nonScheduledCount: attributes.nonScheduledCount,
-            categoryId: attributes.categoryId,
-            dropAllowed: attributes.dropAllowed,
-            dropTargetCategoryId: attributes.dropTargetCategoryId,
-            depth: attributes.depth,
-            language: attributes.language
-        }),
+        selectableCategoryItem({...attributes}),
         div({}, children)
     ]);
 }
@@ -160,11 +143,7 @@ export function uiElement(attributes) {
         expandedCategoryItem({
             ...attributes,
             selected,
-            selectedCategory: attributes.selectedCategory,
-            depth: 1,
-            dropAllowed: attributes.dropAllowed,
-            dropTargetCategoryId: attributes.dropTargetCategoryId,
-            language: attributes.language
+            depth: 1
         }),
     ]);
 }

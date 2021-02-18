@@ -19,7 +19,7 @@ export default class LoadActiveCardsCommand extends AbstractLoadActiveCardsComma
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

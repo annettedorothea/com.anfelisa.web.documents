@@ -18,7 +18,7 @@ export default class ScheduleSelectedCardsCommand extends AbstractScheduleSelect
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

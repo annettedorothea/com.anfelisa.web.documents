@@ -30,10 +30,6 @@ import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
 import MoveCategoryStartedAction from "../../src/category/actions/MoveCategoryStartedAction";
 import MoveCategoryAction from "../../src/category/actions/MoveCategoryAction";
 import ChangeOrderCategoryAction from "../../src/category/actions/ChangeOrderCategoryAction";
-import PreviewCsvAction from "../../src/category/actions/PreviewCsvAction";
-import CancelPreviewCsvAction from "../../src/category/actions/CancelPreviewCsvAction";
-import SwapPreviewCsvAction from "../../src/category/actions/SwapPreviewCsvAction";
-import ImportCsvAction from "../../src/category/actions/ImportCsvAction";
 import FilterNonScheduledCardsAction from "../../src/category/actions/FilterNonScheduledCardsAction";
 import PriorityChangedAction from "../../src/category/actions/PriorityChangedAction";
 import CreateReverseBoxAction from "../../src/category/actions/CreateReverseBoxAction";
@@ -136,22 +132,6 @@ export function moveCategory() {
 
 export function changeOrderCategory() {
     new ChangeOrderCategoryAction().apply();
-}
-
-export function previewCsv(csv) {
-    new PreviewCsvAction(csv).apply();
-}
-
-export function cancelPreviewCsv() {
-    new CancelPreviewCsvAction().apply();
-}
-
-export function swapPreviewCsv() {
-    new SwapPreviewCsvAction().apply();
-}
-
-export function importCsv() {
-    new ImportCsvAction().apply();
 }
 
 export function filterNonScheduledCards() {

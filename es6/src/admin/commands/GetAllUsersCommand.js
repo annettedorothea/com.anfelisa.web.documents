@@ -15,7 +15,7 @@ export default class GetAllUsersCommand extends AbstractGetAllUsersCommand {
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

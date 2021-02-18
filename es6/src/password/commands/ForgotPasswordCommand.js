@@ -15,7 +15,7 @@ export default class ForgotPasswordCommand extends AbstractForgotPasswordCommand
     	resolve();
     }
     handleError(resolve, reject) {
-    	reject(this.commandData.error);
+    	reject(this.commandData.message);
     }
 }
 

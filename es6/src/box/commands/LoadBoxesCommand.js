@@ -20,7 +20,7 @@ export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
     }
 
     handleError(resolve, reject) {
-        reject(this.commandData.error);
+        reject(this.commandData.message);
     }
 }
 
