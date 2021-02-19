@@ -3,114 +3,108 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../../../gen/components/ReactHelper";
+import {button, i, td, textarea, tr} from "../../../../../../gen/components/ReactHelper";
+import {
+    cancelNewCard,
+    createCard,
+    givenOfNewCardChanged, passValueToDictionary, translate,
+    wantedOfNewCardChanged
+} from "../../../../../../gen/card/ActionFunctions";
+import {Texts} from "../../../../../app/Texts";
+import React from "react";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["NEWCARD"]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "given"
-			}, ["GIVEN"]), 
-			input({
-				id: "given",
-				value: attributes.given, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.given])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "wanted"
-			}, ["WANTED"]), 
-			input({
-				id: "wanted",
-				value: attributes.wanted, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.wanted])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "index"
-			}, ["INDEX"]), 
-			input({
-				id: "index",
-				value: attributes.index, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.index])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "image"
-			}, ["IMAGE"]), 
-			input({
-				id: "image",
-				value: attributes.image, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.image])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "file"
-			}, ["FILE"]), 
-			input({
-				id: "file",
-				value: attributes.file, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.file])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "displaySpinner"
-			}, ["DISPLAYSPINNER"]), 
-			input({
-				id: "displaySpinner",
-				value: attributes.displaySpinner, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.displaySpinner])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "displayTranslateSpinner"
-			}, ["DISPLAYTRANSLATESPINNER"]), 
-			input({
-				id: "displayTranslateSpinner",
-				value: attributes.displayTranslateSpinner, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.displayTranslateSpinner])
-		])
-	]);
-}
 
+    const onAltKeyUp = (e) => {
+        e.preventDefault();
+        if (e.keyCode === 13 && e.altKey && isValid()) {
+            onCreate();
+        }
+        if (e.keyCode === 27) {
+            onCancel();
+        }
+    }
+
+    const onCreate = () => {
+        createCard();
+        document.getElementById(attributes.naturalInputOrder === true ? "given" : "wanted").focus();
+    }
+
+    const onCancel = () => {
+        cancelNewCard();
+        document.getElementById(attributes.naturalInputOrder === true ? "given" : "wanted").focus();
+    }
+
+    const onBlurGiven = () => {
+        if (attributes.naturalInputOrder === true && !!attributes.dictionaryLookup && (!attributes.wanted || attributes.wanted.length === 0)) {
+            passValueToDictionary();
+        }
+        if (attributes.naturalInputOrder === true && attributes.dictionaryLookup === true) {
+            translate();
+        }
+    }
+
+    const onBlurWanted = () => {
+        if (attributes.naturalInputOrder === false && !!attributes.dictionaryLookup && (!attributes.given || attributes.given.length === 0)) {
+            passValueToDictionary();
+        }
+        if (attributes.naturalInputOrder === false && attributes.dictionaryLookup === true) {
+            translate();
+        }
+    }
+
+    const renderGiven = () => {
+        return td({class: "textarea input"}, [
+            textarea({
+                onChange: (event) => givenOfNewCardChanged(event.target.value),
+                autoComplete: "off",
+                value: attributes.given,
+                placeholder: `${Texts.cardList.given[attributes.language]} ${attributes.dictionaryLookup ? "(" + Texts.categoryList.languages[attributes.givenLanguage][attributes.language] + ")" : ""}`,
+                onKeyUp: onAltKeyUp,
+                onBlur: onBlurGiven,
+                id: "given"
+            })
+        ]);
+    }
+
+    const renderWanted = () => {
+        return td({class: "textarea input"}, [
+            textarea({
+                onChange: (event) => wantedOfNewCardChanged(event.target.value),
+                autoComplete: "off",
+                value: attributes.wanted,
+                placeholder: `${Texts.cardList.wanted[attributes.language]} ${attributes.dictionaryLookup ? "(" + Texts.categoryList.languages[attributes.wantedLanguage][attributes.language] + ")" : ""}`,
+                onKeyUp: onAltKeyUp,
+                onBlur: onBlurWanted,
+                id: "wanted"
+            })
+        ]);
+    }
+
+    const isValid = () => {
+        return attributes.given && attributes.given.length > 0 && (attributes.wanted && attributes.wanted.length > 0 || attributes.image.length > 0);
+    }
+
+    return tr({class: "notPrinted inputRow"}, [
+        td(),
+        attributes.naturalInputOrder === true ? renderGiven() : renderWanted(),
+        attributes.naturalInputOrder === true ? renderWanted() : renderGiven(),
+        td(),
+        td({class: "noBreak input"}, [
+            button({
+                disabled: !isValid(),
+                onClick: () => onCreate()
+            }, [
+                i({class: "fas fa-check"})
+            ]),
+            button({
+                onClick: () => onCancel()
+            }, [
+                i({class: "fas fa-times"})
+            ])
+        ]),
+    ]);
+}
 
 
 /******* S.D.G. *******/

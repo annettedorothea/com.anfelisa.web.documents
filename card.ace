@@ -20,7 +20,6 @@ ACE
 	 	fromAppState (
 	 		common.rootContainer.mainView.authorView.cardView.newCard.wanted,
 	 		common.rootContainer.mainView.authorView.cardView.newCard.given,
-	 		common.rootContainer.mainView.authorView.cardView.newCard.image,
 	 		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId
 	 	)
 	 	call com.anfelisa.card.CreateCard
@@ -32,7 +31,6 @@ ACE
 	 	fromAppState (
 	 		common.rootContainer.mainView.authorView.cardView.editedCard.wanted,
 	 		common.rootContainer.mainView.authorView.cardView.editedCard.given,
-	 		common.rootContainer.mainView.authorView.cardView.editedCard.image,
 	 		common.rootContainer.mainView.authorView.cardView.editedCard.cardId
 	 	)
 	 	call com.anfelisa.card.UpdateCard
@@ -40,11 +38,10 @@ ACE
 		on ok ( set common.rootContainer.mainView.authorView.cardView.editedCard )
 		triggers (LoadCards)
 	
-	UpdateCardPriority(cardId, priority, actualPriority)
+	UpdateCardPriority(cardId, priority)
 	 	call com.anfelisa.card.UpdateCardPriority
 		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (LoadCards)
-	
 	
 	DeleteCard 
 	 	fromAppState ( common.rootContainer.mainView.authorView.cardView.deleteCard.cardId )
@@ -55,10 +52,14 @@ ACE
 		) triggers (LoadCards)
 
 	GivenOfNewCardChanged ( given )
-		on ok (merge common.rootContainer.mainView.authorView.cardView.newCard)
+		on ok (
+			merge common.rootContainer.mainView.authorView.cardView.newCard
+		) triggers ( delayInMillis 1000 takeLatest SearchDuplicateCards )
 	
 	WantedOfNewCardChanged ( wanted )
-		on ok (merge common.rootContainer.mainView.authorView.cardView.newCard)
+		on ok (
+			merge common.rootContainer.mainView.authorView.cardView.newCard
+		)triggers ( delayInMillis 1000 takeLatest SearchDuplicateCards )
 	
 	CancelNewCard 
 		on ok (set common.rootContainer.mainView.authorView.cardView.newCard)
@@ -75,7 +76,9 @@ ACE
 	
 	EditCard ( cardId )
 		fromAppState (common.rootContainer.mainView.authorView.cardView.cardList)
-		on ok (set common.rootContainer.mainView.authorView.cardView.editedCard)
+		on ok (
+			set common.rootContainer.mainView.authorView.cardView.editedCard
+		)
 	
 	DeleteCardClick ( cardId )
 		on ok (set common.rootContainer.mainView.authorView.cardView.deleteCard)
@@ -95,18 +98,6 @@ ACE
 		fromAppState (common.rootContainer.mainView.authorView.cardView.naturalInputOrder)
 		on ok (set common.rootContainer.mainView.authorView.cardView.naturalInputOrder)
 	
-	
-	LoadWantedImageOfNewCard ( image )
-		on ok ( set common.rootContainer.mainView.authorView.cardView.newCard.image )
-	
-	LoadWantedImageOfEditedCard ( image )
-		on ok ( set common.rootContainer.mainView.authorView.cardView.editedCard.image )
-	
-	RemoveNewCardImage 
-		on ok ( set common.rootContainer.mainView.authorView.cardView.newCard.image )
-	
-	RemoveEditedCardImage 
-		on ok ( set common.rootContainer.mainView.authorView.cardView.editedCard.image )
 	
 	ToggleScheduleCardSelection ( cardId )
 		fromAppState (common.rootContainer.mainView.authorView.cardView.selectedCardIds)
@@ -187,8 +178,8 @@ ACE
 			common.rootContainer.mainView.authorView.cardView.naturalInputOrder,
 			common.rootContainer.mainView.authorView.cardView.newCard.given,
 			common.rootContainer.mainView.authorView.cardView.newCard.wanted,
-			common.rootContainer.mainView.authorView.categoryTree.selectedCategory.givenLanguage,
-			common.rootContainer.mainView.authorView.categoryTree.selectedCategory.wantedLanguage
+			common.rootContainer.mainView.authorView.categoryTree.rootCategory.givenLanguage,
+			common.rootContainer.mainView.authorView.categoryTree.rootCategory.wantedLanguage
 		)
 		call com.anfelisa.card.GetTranslation
 		loadingFlag common.rootContainer.mainView.authorView.cardView.newCard.displayTranslateSpinner 

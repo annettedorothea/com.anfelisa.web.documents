@@ -23,10 +23,6 @@ import CancelDeleteCardOkEvent from "./events/CancelDeleteCardOkEvent";
 import FilterCardsOkEvent from "./events/FilterCardsOkEvent";
 import PassValueToDictionaryOkEvent from "./events/PassValueToDictionaryOkEvent";
 import ToggleInputOrderOkEvent from "./events/ToggleInputOrderOkEvent";
-import LoadWantedImageOfNewCardOkEvent from "./events/LoadWantedImageOfNewCardOkEvent";
-import LoadWantedImageOfEditedCardOkEvent from "./events/LoadWantedImageOfEditedCardOkEvent";
-import RemoveNewCardImageOkEvent from "./events/RemoveNewCardImageOkEvent";
-import RemoveEditedCardImageOkEvent from "./events/RemoveEditedCardImageOkEvent";
 import ToggleScheduleCardSelectionOkEvent from "./events/ToggleScheduleCardSelectionOkEvent";
 import ToggleAllScheduleCardSelectionOkEvent from "./events/ToggleAllScheduleCardSelectionOkEvent";
 import MoveCardsStartedOkEvent from "./events/MoveCardsStartedOkEvent";
@@ -75,14 +71,6 @@ export default class EventFactoryRegistrationCard {
 			(eventData) => new PassValueToDictionaryOkEvent(eventData));
 		ACEController.registerFactory('card.ToggleInputOrderOkEvent', 
 			(eventData) => new ToggleInputOrderOkEvent(eventData));
-		ACEController.registerFactory('card.LoadWantedImageOfNewCardOkEvent', 
-			(eventData) => new LoadWantedImageOfNewCardOkEvent(eventData));
-		ACEController.registerFactory('card.LoadWantedImageOfEditedCardOkEvent', 
-			(eventData) => new LoadWantedImageOfEditedCardOkEvent(eventData));
-		ACEController.registerFactory('card.RemoveNewCardImageOkEvent', 
-			(eventData) => new RemoveNewCardImageOkEvent(eventData));
-		ACEController.registerFactory('card.RemoveEditedCardImageOkEvent', 
-			(eventData) => new RemoveEditedCardImageOkEvent(eventData));
 		ACEController.registerFactory('card.ToggleScheduleCardSelectionOkEvent', 
 			(eventData) => new ToggleScheduleCardSelectionOkEvent(eventData));
 		ACEController.registerFactory('card.ToggleAllScheduleCardSelectionOkEvent', 

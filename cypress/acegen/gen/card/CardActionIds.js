@@ -39,14 +39,6 @@ export let passValueToDictionary = "card_passValueToDictionary";
 
 export let toggleInputOrder = "card_toggleInputOrder";
 
-export let loadWantedImageOfNewCard = "card_loadWantedImageOfNewCard";
-
-export let loadWantedImageOfEditedCard = "card_loadWantedImageOfEditedCard";
-
-export let removeNewCardImage = "card_removeNewCardImage";
-
-export let removeEditedCardImage = "card_removeEditedCardImage";
-
 export let toggleScheduleCardSelection = "card_toggleScheduleCardSelection";
 
 export let toggleAllScheduleCardSelection = "card_toggleAllScheduleCardSelection";

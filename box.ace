@@ -102,7 +102,7 @@ ACE
 		)
 	
 	DisplayWanted ( wantedItemsLength )
-		fromAppState ( common.rootContainer.mainView.queryCardView.index, common.rootContainer.mainView.queryCardView.image)
+		fromAppState ( common.rootContainer.mainView.queryCardView.index)
 		on ok (
 			merge common.rootContainer.mainView.queryCardView
 		)

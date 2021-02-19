@@ -222,7 +222,6 @@ ui React_16.8 rootContainer {
 				cardId
 				given
 				wanted
-				image
 				cardAuthor
 				cardIndex
 				categoryId
@@ -260,7 +259,6 @@ ui React_16.8 rootContainer {
 			categoryName
 			count
 			given
-			image
 			lastQuality
 			rootCategoryId
 			scheduledCardId
@@ -291,9 +289,6 @@ ui React_16.8 rootContainer {
 					categoryIndex
 					empty
 					parentCategoryId
-					dictionaryLookup
-					givenLanguage
-					wantedLanguage
 					rootCategoryId
 					List childCategories
 					nonScheduledCount
@@ -353,7 +348,6 @@ ui React_16.8 rootContainer {
 					cardId
 					given
 					wanted
-					image
 					cardAuthor
 					cardIndex
 					categoryId
@@ -362,23 +356,30 @@ ui React_16.8 rootContainer {
 		        }
 		        naturalInputOrder
 		        filter
-		        editedCard {
+		        noComponent editedCard {
 		        	cardId
 		        	given
 		        	wanted
 		        	index
-		        	image
 		        }
 		        newCard {
 		        	given
 		        	wanted
 		        	index
-		        	image
-		        	file
 		        	displaySpinner
 		        	displayTranslateSpinner
 		        }
-		        List cardDuplicates
+		        List cardDuplicates {
+					cardId
+					given
+					wanted
+					cardAuthor
+					cardIndex
+					categoryId
+					rootCategoryId
+		        	next
+		        	categoryName
+		        }
 		        deleteCard {
 		        	confirmDelete
 		        	cardId

@@ -18,7 +18,6 @@ export default class AbstractCreateCardCommand extends AsynchronousCommand {
         super(commandData, "card.CreateCardCommand");
         this.commandData.wanted = AppState.get_rootContainer_authorView_cardView_newCard_wanted();
         this.commandData.given = AppState.get_rootContainer_authorView_cardView_newCard_given();
-        this.commandData.image = AppState.get_rootContainer_authorView_cardView_newCard_image();
         this.commandData.categoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
         this.commandData.outcomes = [];
     }
@@ -42,7 +41,6 @@ export default class AbstractCreateCardCommand extends AsynchronousCommand {
 	    	let payload = {
 	    		wanted : this.commandData.wanted,
 	    		given : this.commandData.given,
-	    		image : this.commandData.image,
 	    		categoryId : this.commandData.categoryId
 	    	};
 	

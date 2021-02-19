@@ -9,9 +9,9 @@ import {
     loadWantedImageOfNewCard,
     passValueToDictionary,
     removeNewCardImage,
-    wantedOfNewCardChanged,
     searchDuplicateCards,
-    translate
+    translate,
+    wantedOfNewCardChanged
 } from "../../../gen/card/ActionFunctions";
 
 export default class NewCard extends React.Component {

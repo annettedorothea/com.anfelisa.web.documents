@@ -49,7 +49,6 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 				this.commandData.categoryId = data.categoryId;
 				this.commandData.count = data.count;
 				this.commandData.given = data.given;
-				this.commandData.image = data.image;
 				this.commandData.lastQuality = data.lastQuality;
 				this.commandData.rootCategoryId = data.rootCategoryId;
 				this.commandData.scheduledCardId = data.scheduledCardId;

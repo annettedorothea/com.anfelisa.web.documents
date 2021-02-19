@@ -6,7 +6,9 @@
 
 
 import SynchronousCommand from "../../../gen/ace/SynchronousCommand";
+import TriggerAction from "../../../gen/ace/TriggerAction";
 import WantedOfNewCardChangedOkEvent from "../../../gen/card/events/WantedOfNewCardChangedOkEvent";
+import SearchDuplicateCardsAction from "../../../src/card/actions/SearchDuplicateCardsAction";
 
 export default class AbstractWantedOfNewCardChangedCommand extends SynchronousCommand {
     constructor(commandData) {
@@ -21,6 +23,7 @@ export default class AbstractWantedOfNewCardChangedCommand extends SynchronousCo
     publishEvents() {
 		if (this.commandData.outcomes.includes("ok")) {
 			new WantedOfNewCardChangedOkEvent(this.commandData).publish();
+			new TriggerAction(new SearchDuplicateCardsAction()).publishWithDelayTakeLatest(1000);
 		}
     }
 }

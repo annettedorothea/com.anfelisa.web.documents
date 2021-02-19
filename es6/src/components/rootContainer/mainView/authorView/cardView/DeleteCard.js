@@ -5,41 +5,40 @@
 
 
 
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../../../gen/components/ReactHelper";
+import {
+	div,
+	h1,
+	label,
+	input,
+	table,
+	tbody,
+	ul,
+	li,
+	tr,
+	td,
+	h2,
+	button
+} from "../../../../../../gen/components/ReactHelper";
+import {Texts} from "../../../../../app/Texts";
+import {cancelDeleteCategory, deleteCategory} from "../../../../../../gen/category/ActionFunctions";
+import {cancelDeleteCard, deleteCard} from "../../../../../../gen/card/ActionFunctions";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["DELETECARD"]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "confirmDelete"
-			}, ["CONFIRMDELETE"]), 
-			input({
-				id: "confirmDelete",
-				value: attributes.confirmDelete, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.confirmDelete])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "cardId"
-			}, ["CARDID"]), 
-			input({
-				id: "cardId",
-				value: attributes.cardId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.cardId])
-		])
-	]);
-}
+	if (attributes.confirmDelete === true) {
+		return div({class: "modal"}, [
+			div({class: "modalContent"}, [
+				h2({}, [Texts.cardList.confirmDelete.title[attributes.language]]),
+				div({class: "message"}, [Texts.cardList.confirmDelete.message[attributes.language]]),
+				button({
+					class: "yes danger",
+					onClick: () => deleteCard()
+				}, [Texts.cardList.confirmDelete.ok[attributes.language]]),
+				button({
+					onClick: () => cancelDeleteCard()}, [Texts.cardList.confirmDelete.cancel[attributes.language]])
+			])
+		]);
+	}
+	return null;}
 
 
 

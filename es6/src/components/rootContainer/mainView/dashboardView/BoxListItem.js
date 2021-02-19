@@ -3,11 +3,10 @@
  ********************************************************************************/
 
 
-import {a, br, div, h2, i} from "../../../../../gen/components/ReactHelper";
+import {a, br, div, h2, i, span} from "../../../../../gen/components/ReactHelper";
 import {route} from "../../../../../gen/common/ActionFunctions";
 import {Texts} from "../../../../app/Texts";
 import {deleteBoxClick} from "../../../../../gen/box/ActionFunctions";
-import CardsNextDaysItem from "../../../../web/Box/CardsNextDaysItem";
 import React from "react";
 
 export function uiElement(attributes) {
@@ -65,7 +64,8 @@ export function uiElement(attributes) {
                     Texts.box.deleteTitleShared[attributes.language] :
                     Texts.box.deleteTitle[attributes.language]
             })
-        ])
+        ]),
+        attributes.openTodaysCards > 0 ? span({class: "badge"}, [attributes.openTodaysCards]) : null
     ]);
 }
 

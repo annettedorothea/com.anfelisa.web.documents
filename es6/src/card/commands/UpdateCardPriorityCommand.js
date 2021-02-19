@@ -10,9 +10,6 @@ import AbstractUpdateCardPriorityCommand from "../../../gen/card/commands/Abstra
 export default class UpdateCardPriorityCommand extends AbstractUpdateCardPriorityCommand {
 
     validateCommandData() {
-        if (this.commandData.priority === this.commandData.actualPriority) {
-            this.commandData.priority = null;
-        }
     	return true;
     }
 

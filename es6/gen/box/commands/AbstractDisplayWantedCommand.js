@@ -14,7 +14,6 @@ export default class AbstractDisplayWantedCommand extends SynchronousCommand {
         super(commandData, "box.DisplayWantedCommand");
         this.commandData.outcomes = [];
         this.commandData.index = AppState.get_rootContainer_queryCardView_index();
-        this.commandData.image = AppState.get_rootContainer_queryCardView_image();
     }
 
 	addOkOutcome() {

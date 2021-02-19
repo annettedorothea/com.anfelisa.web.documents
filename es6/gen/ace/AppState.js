@@ -35,7 +35,6 @@ import { setCategoryDialogState } from "../components/rootContainer/mainView/aut
 import { setInviteUserDialogState } from "../components/rootContainer/mainView/authorView/categoryTree/InviteUserDialogComponent";
 import { setDeleteCategoryDialogState } from "../components/rootContainer/mainView/authorView/categoryTree/DeleteCategoryDialogComponent";
 import { setCardViewState } from "../components/rootContainer/mainView/authorView/CardViewComponent";
-import { setEditedCardState } from "../components/rootContainer/mainView/authorView/cardView/EditedCardComponent";
 import { setNewCardState } from "../components/rootContainer/mainView/authorView/cardView/NewCardComponent";
 import { setDeleteCardState } from "../components/rootContainer/mainView/authorView/cardView/DeleteCardComponent";
 
@@ -2343,9 +2342,6 @@ export function merge_rootContainer_queryCardView(eventData) {
 	if (eventData.given !== undefined) {
 		appState.rootContainer.mainView.given = eventData.given;
 	}
-	if (eventData.image !== undefined) {
-		appState.rootContainer.mainView.image = eventData.image;
-	}
 	if (eventData.lastQuality !== undefined) {
 		appState.rootContainer.mainView.lastQuality = eventData.lastQuality;
 	}
@@ -2529,34 +2525,6 @@ export function set_rootContainer_queryCardView_given(eventData) {
 		};
 	}
 	appState.rootContainer.mainView.given = eventData.given;
-	const newAppState = getAppState();
-	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_rootContainer_queryCardView_image() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isQueryCardView !== true) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.image;
-}
-
-export function set_rootContainer_queryCardView_image(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
-		appState.rootContainer.mainView = {
-			isQueryCardView : true
-		};
-	}
-	appState.rootContainer.mainView.image = eventData.image;
 	const newAppState = getAppState();
 	setQueryCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView));
 	AppUtils.stateUpdated(newAppState);
@@ -3314,15 +3282,6 @@ export function merge_rootContainer_authorView_categoryTree_selectedCategory(eve
 	if (eventData.parentCategoryId !== undefined) {
 		appState.rootContainer.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
 	}
-	if (eventData.dictionaryLookup !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
-	}
-	if (eventData.givenLanguage !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
-	}
-	if (eventData.wantedLanguage !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
-	}
 	if (eventData.rootCategoryId !== undefined) {
 		appState.rootContainer.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
 	}
@@ -3535,126 +3494,6 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_paren
 		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
 	appState.rootContainer.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
-	const newAppState = getAppState();
-	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_rootContainer_authorView_categoryTree_selectedCategory_dictionaryLookup() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isAuthorView !== true) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.categoryTree) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.categoryTree.selectedCategory.dictionaryLookup;
-}
-
-export function set_rootContainer_authorView_categoryTree_selectedCategory_dictionaryLookup(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
-		appState.rootContainer.mainView = {
-			isAuthorView : true
-		};
-	}
-	if (!appState.rootContainer.mainView.categoryTree) {
-		appState.rootContainer.mainView.categoryTree = {};
-	}
-	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
-	}
-	appState.rootContainer.mainView.categoryTree.selectedCategory.dictionaryLookup = eventData.dictionaryLookup;
-	const newAppState = getAppState();
-	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_rootContainer_authorView_categoryTree_selectedCategory_givenLanguage() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isAuthorView !== true) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.categoryTree) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.categoryTree.selectedCategory.givenLanguage;
-}
-
-export function set_rootContainer_authorView_categoryTree_selectedCategory_givenLanguage(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
-		appState.rootContainer.mainView = {
-			isAuthorView : true
-		};
-	}
-	if (!appState.rootContainer.mainView.categoryTree) {
-		appState.rootContainer.mainView.categoryTree = {};
-	}
-	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
-	}
-	appState.rootContainer.mainView.categoryTree.selectedCategory.givenLanguage = eventData.givenLanguage;
-	const newAppState = getAppState();
-	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_rootContainer_authorView_categoryTree_selectedCategory_wantedLanguage() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isAuthorView !== true) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.categoryTree) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.categoryTree.selectedCategory.wantedLanguage;
-}
-
-export function set_rootContainer_authorView_categoryTree_selectedCategory_wantedLanguage(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
-		appState.rootContainer.mainView = {
-			isAuthorView : true
-		};
-	}
-	if (!appState.rootContainer.mainView.categoryTree) {
-		appState.rootContainer.mainView.categoryTree = {};
-	}
-	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
-	}
-	appState.rootContainer.mainView.categoryTree.selectedCategory.wantedLanguage = eventData.wantedLanguage;
 	const newAppState = getAppState();
 	setCategoryTreeState(AppUtils.deepCopy(appState.rootContainer.mainView.categoryTree));
 	AppUtils.stateUpdated(newAppState);
@@ -5704,7 +5543,7 @@ export function set_rootContainer_authorView_cardView_editedCard(eventData) {
 	}
 	appState.rootContainer.mainView.cardView.editedCard = eventData.editedCard;
 	const newAppState = getAppState();
-	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5733,11 +5572,8 @@ export function merge_rootContainer_authorView_cardView_editedCard(eventData) {
 	if (eventData.index !== undefined) {
 		appState.rootContainer.mainView.cardView.editedCard.index = eventData.index;
 	}
-	if (eventData.image !== undefined) {
-		appState.rootContainer.mainView.cardView.editedCard.image = eventData.image;
-	}
 	const newAppState = getAppState();
-	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5777,7 +5613,7 @@ export function set_rootContainer_authorView_cardView_editedCard_cardId(eventDat
 	}
 	appState.rootContainer.mainView.cardView.editedCard.cardId = eventData.cardId;
 	const newAppState = getAppState();
-	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5817,7 +5653,7 @@ export function set_rootContainer_authorView_cardView_editedCard_given(eventData
 	}
 	appState.rootContainer.mainView.cardView.editedCard.given = eventData.given;
 	const newAppState = getAppState();
-	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5857,7 +5693,7 @@ export function set_rootContainer_authorView_cardView_editedCard_wanted(eventDat
 	}
 	appState.rootContainer.mainView.cardView.editedCard.wanted = eventData.wanted;
 	const newAppState = getAppState();
-	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5897,47 +5733,7 @@ export function set_rootContainer_authorView_cardView_editedCard_index(eventData
 	}
 	appState.rootContainer.mainView.cardView.editedCard.index = eventData.index;
 	const newAppState = getAppState();
-	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_rootContainer_authorView_cardView_editedCard_image() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isAuthorView !== true) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.cardView) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.cardView.editedCard) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.cardView.editedCard.image;
-}
-
-export function set_rootContainer_authorView_cardView_editedCard_image(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
-		appState.rootContainer.mainView = {
-			isAuthorView : true
-		};
-	}
-	if (!appState.rootContainer.mainView.cardView) {
-		appState.rootContainer.mainView.cardView = {};
-	}
-	if (!appState.rootContainer.mainView.cardView.editedCard) {
-		appState.rootContainer.mainView.cardView.editedCard = {};
-	}
-	appState.rootContainer.mainView.cardView.editedCard.image = eventData.image;
-	const newAppState = getAppState();
-	setEditedCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.editedCard));
+	setCardViewState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView));
 	AppUtils.stateUpdated(newAppState);
 }
 
@@ -5999,12 +5795,6 @@ export function merge_rootContainer_authorView_cardView_newCard(eventData) {
 	}
 	if (eventData.index !== undefined) {
 		appState.rootContainer.mainView.cardView.newCard.index = eventData.index;
-	}
-	if (eventData.image !== undefined) {
-		appState.rootContainer.mainView.cardView.newCard.image = eventData.image;
-	}
-	if (eventData.file !== undefined) {
-		appState.rootContainer.mainView.cardView.newCard.file = eventData.file;
 	}
 	if (eventData.displaySpinner !== undefined) {
 		appState.rootContainer.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
@@ -6137,86 +5927,6 @@ export function set_rootContainer_authorView_cardView_newCard_index(eventData) {
 	AppUtils.stateUpdated(newAppState);
 }
 
-export function get_rootContainer_authorView_cardView_newCard_image() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isAuthorView !== true) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.cardView) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.cardView.newCard) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.cardView.newCard.image;
-}
-
-export function set_rootContainer_authorView_cardView_newCard_image(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
-		appState.rootContainer.mainView = {
-			isAuthorView : true
-		};
-	}
-	if (!appState.rootContainer.mainView.cardView) {
-		appState.rootContainer.mainView.cardView = {};
-	}
-	if (!appState.rootContainer.mainView.cardView.newCard) {
-		appState.rootContainer.mainView.cardView.newCard = {};
-	}
-	appState.rootContainer.mainView.cardView.newCard.image = eventData.image;
-	const newAppState = getAppState();
-	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_rootContainer_authorView_cardView_newCard_file() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isAuthorView !== true) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.cardView) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.cardView.newCard) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.cardView.newCard.file;
-}
-
-export function set_rootContainer_authorView_cardView_newCard_file(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
-		appState.rootContainer.mainView = {
-			isAuthorView : true
-		};
-	}
-	if (!appState.rootContainer.mainView.cardView) {
-		appState.rootContainer.mainView.cardView = {};
-	}
-	if (!appState.rootContainer.mainView.cardView.newCard) {
-		appState.rootContainer.mainView.cardView.newCard = {};
-	}
-	appState.rootContainer.mainView.cardView.newCard.file = eventData.file;
-	const newAppState = getAppState();
-	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
-	AppUtils.stateUpdated(newAppState);
-}
-
 export function get_rootContainer_authorView_cardView_newCard_displaySpinner() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -6310,7 +6020,10 @@ export function get_rootContainer_authorView_cardView_cardDuplicates() {
 	if (!appState.rootContainer.mainView.cardView) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.cardView.cardDuplicates;
+	if (!appState.rootContainer.mainView.cardView.cardDuplicates) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.cardView.cardDuplicates);
 }
 
 export function set_rootContainer_authorView_cardView_cardDuplicates(eventData) {

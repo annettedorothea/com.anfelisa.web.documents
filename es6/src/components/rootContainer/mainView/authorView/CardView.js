@@ -3,97 +3,134 @@
  ********************************************************************************/
 
 
-
-
-import { div, h1, label, input, table, tbody, ul, li, tr, td, cardListItem, editedCard, newCard, deleteCard } from "../../../../../gen/components/ReactHelper";
+import {
+    button, cardDuplicatesItem,
+    cardListItem,
+    deleteCard,
+    div,
+    h1,
+    i,
+    input,
+    newCard,
+    table,
+    tbody,
+    th,
+    thead,
+    tr,td
+} from "../../../../../gen/components/ReactHelper";
+import {Texts} from "../../../../app/Texts";
+import {
+    filterCards,
+    scheduleSelectedCards,
+    sortSelectedCardsOut,
+    toggleAllScheduleCardSelection,
+    toggleInputOrder
+} from "../../../../../gen/card/ActionFunctions";
+import React from "react";
+import DuplicateCardItem from "../../../../web/CardList/DuplicateCardItem";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["CARDVIEW"]),
-		div({}, [
-			table({class: ""}, [
-				tbody({}, [
-					attributes.cardList ? attributes.cardList.map((item) => cardListItem()) : []
-				])
-			])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "naturalInputOrder"
-			}, ["NATURALINPUTORDER"]), 
-			input({
-				id: "naturalInputOrder",
-				value: attributes.naturalInputOrder, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.naturalInputOrder])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "filter"
-			}, ["FILTER"]), 
-			input({
-				id: "filter",
-				value: attributes.filter, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.filter])
-		]),
-		editedCard(),
-		newCard(),
-		div({}, [
-			ul({class: ""}, [
-				attributes.cardDuplicates ? attributes.cardDuplicates.map((item) => li({}, [item])) : []
-			])
-		]),
-		deleteCard(),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "dictionaryValue"
-			}, ["DICTIONARYVALUE"]), 
-			input({
-				id: "dictionaryValue",
-				value: attributes.dictionaryValue, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.dictionaryValue])
-		]),
-		div({}, [
-			ul({class: ""}, [
-				attributes.selectedCardIds ? attributes.selectedCardIds.map((item) => li({}, [item])) : []
-			])
-		]),
-		div({}, [
-			ul({class: ""}, [
-				attributes.movedCardIds ? attributes.movedCardIds.map((item) => li({}, [item])) : []
-			])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "dragTargetCardId"
-			}, ["DRAGTARGETCARDID"]), 
-			input({
-				id: "dragTargetCardId",
-				value: attributes.dragTargetCardId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.dragTargetCardId])
-		])
-	]);
-}
+    if (!attributes.categoryTree || !attributes.cardList) {
+        return null;
+    }
+    const editable = attributes.categoryTree.rootCategory.editable;
+    const cardItems = attributes.cardList.filter((card) => (card.given.indexOf(attributes.filter) >= 0 || card.wanted.indexOf(attributes.filter) >= 0)).map((card) => {
+        return cardListItem({
+            ...card,
+            id: card.cardId,
+            selectedCardIds: attributes.selectedCardIds,
+            dragTargetCardId: attributes.dragTargetCardId,
+            language: attributes.language,
+            naturalInputOrder: attributes.naturalInputOrder,
+            editable,
+            editedCard: attributes.editedCard,
+            dictionaryLookup: attributes.categoryTree.selectedCategory.dictionaryLookup,
+            givenLanguage: attributes.categoryTree.selectedCategory.givenLanguage,
+            wantedLanguage: attributes.categoryTree.selectedCategory.wantedLanguage,
+        })
+    });
+    const duplicateCards = attributes.cardDuplicates.map((card) => {
+        return cardDuplicatesItem({
+            ...card,
+            id: card.cardId,
+            naturalInputOrder: attributes.naturalInputOrder,
+        })
+    });
 
+    if (editable) {
+        cardItems.push(
+            newCard({
+                id: "new",
+                dictionaryLookup: attributes.categoryTree.selectedCategory.dictionaryLookup,
+                givenLanguage: attributes.categoryTree.selectedCategory.givenLanguage,
+                wantedLanguage: attributes.categoryTree.selectedCategory.wantedLanguage,
+                language: attributes.language,
+                naturalInputOrder: attributes.naturalInputOrder,
+            })
+        );
+    }
+    return div({}, [
+        h1({}, [
+            attributes.categoryTree.selectedCategory.categoryName,
+            attributes.reverse === true ? i({class: "fas fa-arrows-alt-h"}) : null,
+        ]),
+        deleteCard({...attributes.deleteCard, language: attributes.language}),
+        attributes.deleteCard.confirmDelete === true && editable ? div() : null,
+        table({class: "cardTable"}, [
+            thead({}, [
+                tr({class: "notPrinted"}, [
+                    th({colSpan: 4}, [
+                        button({
+                            title: Texts.cardList.toggleInputOrder[attributes.language],
+                            onClick: () => toggleInputOrder()
+                        }, [
+                            i({class: "fas fa-arrows-alt-h"})
+                        ]),
+                        input({
+                            type: "text",
+                            onChange: (event) => filterCards(event.target.value),
+                            autoComplete: "off",
+                            value: attributes.filter,
+                            placeholder: Texts.cardList.filterCards[attributes.language]
+                        }),
+                    ]),
+                ]),
+                tr({class: "notPrinted"}, [
+                    th({}, [
+                        input({
+                            type: "checkbox",
+                            onChange: () => toggleAllScheduleCardSelection(),
+                            checked: attributes.cardList.length > 0 && attributes.selectedCardIds.length === attributes.cardList.length,
+                        }),
+                    ]),
+                    th({colSpan: 4}, [
+                        button({
+                            disabled: attributes.selectedCardIds.length === 0,
+                            onClick: () => scheduleSelectedCards()
+                        }, [
+                            Texts.cardList.scheduleSelectedCards[attributes.language]
+                        ]),
+                        button({
+                            disabled: attributes.selectedCardIds.length === 0,
+                            onClick: () => sortSelectedCardsOut()
+                        }, [
+                            Texts.cardList.sortSelectedCardsOut[attributes.language]
+                        ]),
+                    ]),
+                ]),
+            ]),
+            tbody({}, [
+                ...cardItems,
+                duplicateCards.length > 0 && editable ? tr({}, [
+                    td(),
+                    td({colSpan: 5}, [Texts.cardList.duplicateCards[attributes.language]]),
+                ]): null,
+                ...duplicateCards
+            ]),
+        ]),
+        
+    ]);
+}
 
 
 /******* S.D.G. *******/

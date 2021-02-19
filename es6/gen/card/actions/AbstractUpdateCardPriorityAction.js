@@ -11,8 +11,8 @@ import * as AppState from "../../ace/AppState";
 
 export default class AbstractUpdateCardPriorityAction extends Action {
 
-    constructor( cardId, priority, actualPriority) {
-        super({cardId, priority, actualPriority}, 'card.UpdateCardPriorityAction');
+    constructor( cardId, priority) {
+        super({cardId, priority}, 'card.UpdateCardPriorityAction');
 		this.postCall = this.postCall.bind(this);
 	}
 		

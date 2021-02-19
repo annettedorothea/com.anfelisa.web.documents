@@ -26,6 +26,19 @@ export default class TriggerAction extends Event {
 		}, delayInMillis);
 	}
 
+	publishWithDelayTakeLatest(delayInMillis) {
+		const existingTimeout = ACEController.delayedActions[this.eventData.actionName];
+		if (existingTimeout) {
+			clearTimeout(existingTimeout);
+		}
+		const timeout = setTimeout(() => {
+			ACEController.delayedActions[this.eventData.actionName] = undefined;
+			ACEController.addItemToTimeLine({event: this});
+			this.notifyListeners();
+		}, delayInMillis);
+		ACEController.delayedActions[this.eventData.actionName] = timeout;
+	}
+
 	replay() {
 	}
 	

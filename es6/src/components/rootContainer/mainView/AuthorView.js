@@ -13,7 +13,8 @@ export function uiElement(attributes) {
         }),
         cardView(
             {
-                language: attributes.language
+                language: attributes.language,
+                categoryTree: attributes.categoryTree
             })
     ]);
 }

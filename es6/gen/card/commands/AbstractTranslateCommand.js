@@ -20,8 +20,8 @@ export default class AbstractTranslateCommand extends AsynchronousCommand {
         this.commandData.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
         this.commandData.given = AppState.get_rootContainer_authorView_cardView_newCard_given();
         this.commandData.wanted = AppState.get_rootContainer_authorView_cardView_newCard_wanted();
-        this.commandData.givenLanguage = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_givenLanguage();
-        this.commandData.wantedLanguage = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_wantedLanguage();
+        this.commandData.givenLanguage = AppState.get_rootContainer_authorView_categoryTree_rootCategory_givenLanguage();
+        this.commandData.wantedLanguage = AppState.get_rootContainer_authorView_categoryTree_rootCategory_wantedLanguage();
         this.commandData.outcomes = [];
     }
 

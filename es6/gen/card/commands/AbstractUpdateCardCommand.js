@@ -18,7 +18,6 @@ export default class AbstractUpdateCardCommand extends AsynchronousCommand {
         super(commandData, "card.UpdateCardCommand");
         this.commandData.wanted = AppState.get_rootContainer_authorView_cardView_editedCard_wanted();
         this.commandData.given = AppState.get_rootContainer_authorView_cardView_editedCard_given();
-        this.commandData.image = AppState.get_rootContainer_authorView_cardView_editedCard_image();
         this.commandData.cardId = AppState.get_rootContainer_authorView_cardView_editedCard_cardId();
         this.commandData.outcomes = [];
     }
@@ -42,7 +41,6 @@ export default class AbstractUpdateCardCommand extends AsynchronousCommand {
 	    	let payload = {
 	    		cardId : this.commandData.cardId,
 	    		given : this.commandData.given,
-	    		image : this.commandData.image,
 	    		wanted : this.commandData.wanted
 	    	};
 	

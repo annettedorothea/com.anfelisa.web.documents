@@ -22,10 +22,6 @@ import CancelDeleteCardAction from "../../src/card/actions/CancelDeleteCardActio
 import FilterCardsAction from "../../src/card/actions/FilterCardsAction";
 import PassValueToDictionaryAction from "../../src/card/actions/PassValueToDictionaryAction";
 import ToggleInputOrderAction from "../../src/card/actions/ToggleInputOrderAction";
-import LoadWantedImageOfNewCardAction from "../../src/card/actions/LoadWantedImageOfNewCardAction";
-import LoadWantedImageOfEditedCardAction from "../../src/card/actions/LoadWantedImageOfEditedCardAction";
-import RemoveNewCardImageAction from "../../src/card/actions/RemoveNewCardImageAction";
-import RemoveEditedCardImageAction from "../../src/card/actions/RemoveEditedCardImageAction";
 import ToggleScheduleCardSelectionAction from "../../src/card/actions/ToggleScheduleCardSelectionAction";
 import ToggleAllScheduleCardSelectionAction from "../../src/card/actions/ToggleAllScheduleCardSelectionAction";
 import ScheduleSelectedCardsAction from "../../src/card/actions/ScheduleSelectedCardsAction";
@@ -50,8 +46,8 @@ export function updateCard() {
     new UpdateCardAction().apply();
 }
 
-export function updateCardPriority(cardId, priority, actualPriority) {
-    new UpdateCardPriorityAction(cardId, priority, actualPriority).apply();
+export function updateCardPriority(cardId, priority) {
+    new UpdateCardPriorityAction(cardId, priority).apply();
 }
 
 export function deleteCard() {
@@ -104,22 +100,6 @@ export function passValueToDictionary() {
 
 export function toggleInputOrder() {
     new ToggleInputOrderAction().apply();
-}
-
-export function loadWantedImageOfNewCard(image) {
-    new LoadWantedImageOfNewCardAction(image).apply();
-}
-
-export function loadWantedImageOfEditedCard(image) {
-    new LoadWantedImageOfEditedCardAction(image).apply();
-}
-
-export function removeNewCardImage() {
-    new RemoveNewCardImageAction().apply();
-}
-
-export function removeEditedCardImage() {
-    new RemoveEditedCardImageAction().apply();
 }
 
 export function toggleScheduleCardSelection(cardId) {

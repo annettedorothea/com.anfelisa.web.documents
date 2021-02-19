@@ -36,8 +36,8 @@ import { InviteUserDialogComponent } from "./rootContainer/mainView/authorView/c
 import { DeleteCategoryDialogComponent } from "./rootContainer/mainView/authorView/categoryTree/DeleteCategoryDialogComponent";
 import { CardViewComponent } from "./rootContainer/mainView/authorView/CardViewComponent";
 import { CardListItemComponent } from "./rootContainer/mainView/authorView/cardView/CardListItemComponent";
-import { EditedCardComponent } from "./rootContainer/mainView/authorView/cardView/EditedCardComponent";
 import { NewCardComponent } from "./rootContainer/mainView/authorView/cardView/NewCardComponent";
+import { CardDuplicatesItemComponent } from "./rootContainer/mainView/authorView/cardView/CardDuplicatesItemComponent";
 import { DeleteCardComponent } from "./rootContainer/mainView/authorView/cardView/DeleteCardComponent";
 
 const normalize = (options) => {
@@ -167,6 +167,14 @@ export const option = (options, children) => {
     return generic("option", options, children);
 }
 
+export const img = (options, children) => {
+    return generic("img", options, children);
+}
+
+export const textarea = (options) => {
+    return generic("textarea", options);
+}
+
 export const input = (options) => {
     return <input {...normalize(options)}/>
 }
@@ -273,6 +281,9 @@ export const editedCard = (options) => {
 }
 export const newCard = (options) => {
     return <NewCardComponent {...normalize(options)}/>
+}
+export const cardDuplicatesItem = (options) => {
+    return <CardDuplicatesItemComponent {...normalize(options)}/>
 }
 export const deleteCard = (options) => {
     return <DeleteCardComponent {...normalize(options)}/>

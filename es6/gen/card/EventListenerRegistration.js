@@ -28,10 +28,6 @@ export default class EventListenerRegistrationCard {
 		ACEController.registerListener('card.FilterCardsOkEvent', AppState.set_rootContainer_authorView_cardView_filter);
 		ACEController.registerListener('card.PassValueToDictionaryOkEvent', AppState.set_rootContainer_authorView_cardView_dictionaryValue);
 		ACEController.registerListener('card.ToggleInputOrderOkEvent', AppState.set_rootContainer_authorView_cardView_naturalInputOrder);
-		ACEController.registerListener('card.LoadWantedImageOfNewCardOkEvent', AppState.set_rootContainer_authorView_cardView_newCard_image);
-		ACEController.registerListener('card.LoadWantedImageOfEditedCardOkEvent', AppState.set_rootContainer_authorView_cardView_editedCard_image);
-		ACEController.registerListener('card.RemoveNewCardImageOkEvent', AppState.set_rootContainer_authorView_cardView_newCard_image);
-		ACEController.registerListener('card.RemoveEditedCardImageOkEvent', AppState.set_rootContainer_authorView_cardView_editedCard_image);
 		ACEController.registerListener('card.ToggleScheduleCardSelectionOkEvent', AppState.set_rootContainer_authorView_cardView_selectedCardIds);
 		ACEController.registerListener('card.ToggleAllScheduleCardSelectionOkEvent', AppState.set_rootContainer_authorView_cardView_selectedCardIds);
 		ACEController.registerListener('card.MoveCardsStartedOkEvent', AppState.set_rootContainer_authorView_cardView_movedCardIds);
