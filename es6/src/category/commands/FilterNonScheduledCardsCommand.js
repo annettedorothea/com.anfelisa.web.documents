@@ -10,7 +10,6 @@ import AbstractFilterNonScheduledCardsCommand from "../../../gen/category/comman
 export default class FilterNonScheduledCardsCommand extends AbstractFilterNonScheduledCardsCommand {
     execute() {
         this.commandData.filterNonScheduled = !this.commandData.filterNonScheduled;
-        this.commandData.selectedCategoryId = this.commandData.selectedCategory ? this.commandData.selectedCategory.categoryId : undefined;
         this.addOkOutcome();
     }
 }

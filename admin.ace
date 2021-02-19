@@ -6,20 +6,20 @@ ACE
 
 	GetAllUsers 
 		call com.anfelisa.user.GetAllUsers
-		loadingFlag common.rootContainer.spinner
+		loadingFlag common.rootContainer.spinner.display
 		on ok ( 
 			set common.rootContainer.mainView.userListView
 		)
 	
 	SaveRole ( editedUserId, newRole )
 		call com.anfelisa.user.ChangeUserRole
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (GetAllUsers)
 	
 	DeleteUser
 		fromAppState ( common.rootContainer.mainView.userListView.usernameToBeDeleted )
 		call com.anfelisa.user.DeleteUser
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers ( GetAllUsers )
 		on error (
 			set common.rootContainer.mainView.userListView.usernameToBeDeleted 

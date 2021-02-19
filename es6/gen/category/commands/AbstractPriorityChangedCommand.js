@@ -15,9 +15,7 @@ export default class AbstractPriorityChangedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.PriorityChangedCommand");
         this.commandData.outcomes = [];
-        this.commandData.filterNonScheduled = AppState.get_rootContainer_authorView_filterNonScheduled();
-        this.commandData.actualPriority = AppState.get_rootContainer_authorView_priority();
-        this.commandData.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
+        this.commandData.selectedCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
     }
 
 	addOkOutcome() {

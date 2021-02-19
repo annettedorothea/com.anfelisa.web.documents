@@ -5,12 +5,12 @@ box
 ACE 
 	InitBoxesForDay
 		call com.anfelisa.box.InitMyBoxesForDay
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (LoadBoxes) 
 				
 	LoadBoxes 
 		call com.anfelisa.box.GetBoxes
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok ( 
 			set common.rootContainer.mainView.dashboardView
 		) triggers (LoadBoxStatistics)
@@ -18,7 +18,7 @@ ACE
 	LoadBoxStatistics 
 		fromAppState ( common.rootContainer.mainView.dashboardView.boxList )
 		call com.anfelisa.box.GetBoxStatistics
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok ( 
 			set common.rootContainer.mainView.dashboardView.boxList
 		)
@@ -26,7 +26,7 @@ ACE
 	LoadActiveCards
 		fromAppState (common.rootContainer.mainView.allActiveCardsView.boxId)
 		call com.anfelisa.box.LoadAllActiveCards
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok ( 
 			set common.rootContainer.mainView.allActiveCardsView.activeCardList
 			set common.rootContainer.mainView.allActiveCardsView.selectedCardIds
@@ -50,7 +50,7 @@ ACE
 			common.rootContainer.mainView.allActiveCardsView.boxId
 		) 
 	 	call com.anfelisa.box.ScheduleCards
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on noFilter triggers (LoadActiveCards)
 	
 	SortSelectedCardsOut 
@@ -59,12 +59,12 @@ ACE
 			common.rootContainer.mainView.allActiveCardsView.boxId
 		) 
 	 	call com.anfelisa.box.SortCardsOut
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (LoadActiveCards)
 		
 	UpdateCardPriority(cardId, priority, actualPriority)
 	 	call com.anfelisa.card.UpdateCardPriority
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (LoadActiveCards)
 
 	DeleteBoxClick ( boxId )
@@ -79,7 +79,7 @@ ACE
 	DeleteBox
 		fromAppState ( common.rootContainer.mainView.dashboardView.deleteBox.boxId )
 		call com.anfelisa.box.DeleteBox
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok (
 			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
 			set common.rootContainer.mainView.dashboardView.deleteBox.confirmDelete
@@ -92,7 +92,7 @@ ACE
 	LoadNextCard
 		fromAppState (common.rootContainer.mainView.queryCardView.boxId)
 	 	call com.anfelisa.box.LoadNextCard
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok (
 			merge common.rootContainer.mainView.queryCardView
 		)
@@ -110,13 +110,13 @@ ACE
 	ScoreCard ( scoredCardQuality )
 		fromAppState ( common.rootContainer.mainView.queryCardView.scheduledCardId )
 	 	call com.anfelisa.box.ScoreCard
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (InitBoxesForDayDuringScore)
 	
 	ScoreReinforceCard ( keep )
 		fromAppState (common.rootContainer.mainView.queryCardView.reinforceCardId)
 	 	call com.anfelisa.box.ScoreReinforceCard
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	SortCardOut
@@ -125,18 +125,18 @@ ACE
 			common.rootContainer.mainView.queryCardView.boxId
 		)
 	 	call com.anfelisa.box.SortCardsOut
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	InitBoxesForDayDuringScore
 		call com.anfelisa.box.InitMyBoxesForDay
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (LoadNextCard) 
 				
 	LoadSettings
 		fromAppState (common.rootContainer.mainView.boxSettingsView.boxId)
 	 	call com.anfelisa.box.GetBoxSettings
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok (	merge common.rootContainer.mainView.boxSettingsView )
 			triggers (TooManyCardsStatus)
 		
@@ -152,7 +152,7 @@ ACE
 			common.rootContainer.mainView.boxSettingsView.wantedLanguage
 		)
 	 	call com.anfelisa.box.UpdateBox
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (common.Route)
 	
 
@@ -195,7 +195,7 @@ ACE
 			common.rootContainer.mainView.boxSettingsView.wantedLanguage
 		)
 		call com.anfelisa.box.CreateBox
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (common.Route)
 	
 	CategoryNameChanged ( categoryName )

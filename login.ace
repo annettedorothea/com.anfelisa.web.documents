@@ -30,7 +30,7 @@ ACE
 	
 	GetRole 
 	 	call com.anfelisa.user.GetRole
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok (
 			set common.rootContainer.role
 		) triggers ( common.Route )

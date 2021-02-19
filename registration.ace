@@ -38,13 +38,13 @@ RegisterUser
 		common.rootContainer.mainView.registrationView.password
 	)
 	call com.anfelisa.user.RegisterUser
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok triggers ( common.DisplayToast Login)
 	on error triggers (common.DisplayToast) 
 
 ConfirmEmail ( username, token )
 	call com.anfelisa.user.ConfirmEmail
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok triggers ( common.DisplayToast common.Route)
 
 Login ( password  )

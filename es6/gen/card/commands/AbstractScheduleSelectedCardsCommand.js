@@ -18,7 +18,7 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
         super(commandData, "card.ScheduleSelectedCardsCommand");
         this.commandData.cardIds = AppState.get_rootContainer_authorView_cardView_selectedCardIds();
         this.commandData.boxId = AppState.get_rootContainer_authorView_boxId();
-        this.commandData.filterNonScheduled = AppState.get_rootContainer_authorView_filterNonScheduled();
+        this.commandData.filterNonScheduled = AppState.get_rootContainer_authorView_categoryTree_filterNonScheduled();
         this.commandData.outcomes = [];
     }
 

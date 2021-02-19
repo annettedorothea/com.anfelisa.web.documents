@@ -17,8 +17,8 @@ export default class AbstractReloadCategoryTreeCommand extends AsynchronousComma
     constructor(commandData) {
         super(commandData, "category.ReloadCategoryTreeCommand");
         this.commandData.previousRootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
-        this.commandData.filterNonScheduled = AppState.get_rootContainer_authorView_filterNonScheduled();
-        this.commandData.priority = AppState.get_rootContainer_authorView_priority();
+        this.commandData.filterNonScheduled = AppState.get_rootContainer_authorView_categoryTree_filterNonScheduled();
+        this.commandData.priority = AppState.get_rootContainer_authorView_categoryTree_priority();
         this.commandData.reverse = AppState.get_rootContainer_authorView_reverse();
         this.commandData.outcomes = [];
     }

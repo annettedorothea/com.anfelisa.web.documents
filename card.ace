@@ -7,12 +7,12 @@ ACE
 		fromAppState (
 			common.rootContainer.mainView.authorView.categoryTree.selectedCategory, 
 			common.rootContainer.mainView.authorView.cardView.naturalInputOrder,
-			common.rootContainer.mainView.authorView.filterNonScheduled,
-			common.rootContainer.mainView.authorView.priority,
+			common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled,
+			common.rootContainer.mainView.authorView.categoryTree.priority,
 			common.rootContainer.mainView.authorView.reverse
 		)
 		call com.anfelisa.card.GetCards
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok ( merge common.rootContainer.mainView.authorView.cardView )
 		on noCategorySelected ( set common.rootContainer.mainView.authorView.cardView.cardList )
 	
@@ -24,7 +24,7 @@ ACE
 	 		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId
 	 	)
 	 	call com.anfelisa.card.CreateCard
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok ( set common.rootContainer.mainView.authorView.cardView.newCard )
 		triggers (LoadCards)
 	
@@ -36,20 +36,20 @@ ACE
 	 		common.rootContainer.mainView.authorView.cardView.editedCard.cardId
 	 	)
 	 	call com.anfelisa.card.UpdateCard
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok ( set common.rootContainer.mainView.authorView.cardView.editedCard )
 		triggers (LoadCards)
 	
 	UpdateCardPriority(cardId, priority, actualPriority)
 	 	call com.anfelisa.card.UpdateCardPriority
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (LoadCards)
 	
 	
 	DeleteCard 
 	 	fromAppState ( common.rootContainer.mainView.authorView.cardView.deleteCard.cardId )
 	 	call com.anfelisa.card.DeleteCard
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok ( 
 			set common.rootContainer.mainView.authorView.cardView.deleteCard
 		) triggers (LoadCards)
@@ -123,10 +123,10 @@ ACE
 		fromAppState (
 			common.rootContainer.mainView.authorView.cardView.selectedCardIds as cardIds,
 			common.rootContainer.mainView.authorView.boxId,
-			common.rootContainer.mainView.authorView.filterNonScheduled
+			common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled
 		) 
 	 	call com.anfelisa.box.ScheduleCards
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on noFilter triggers (LoadCards)
 		on filter triggers (category.ReloadCategoryTree)
 			
@@ -137,7 +137,7 @@ ACE
 			common.rootContainer.mainView.authorView.boxId
 		) 
 	 	call com.anfelisa.box.SortCardsOut
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (LoadCards)
 		
 	MoveCardsStarted
@@ -151,7 +151,7 @@ ACE
 			common.rootContainer.mainView.authorView.categoryTree.rootCategory
 		)
 	 	call com.anfelisa.card.MoveCards
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok (
 			set common.rootContainer.mainView.authorView.cardView.movedCardIds
 		) triggers (category.ReloadCategoryTree)
@@ -160,7 +160,7 @@ ACE
 	ChangeCardOrder ( cardId )
 		fromAppState ( common.rootContainer.mainView.authorView.cardView.movedCardIds	)
 	 	call com.anfelisa.card.ChangeOrder
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok (
 			set common.rootContainer.mainView.authorView.cardView.movedCardIds
 		) triggers (LoadCards)

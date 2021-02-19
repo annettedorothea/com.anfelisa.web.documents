@@ -9,10 +9,6 @@ import AbstractPriorityChangedCommand from "../../../gen/category/commands/Abstr
 
 export default class PriorityChangedCommand extends AbstractPriorityChangedCommand {
     execute() {
-        if (this.commandData.priority === this.commandData.actualPriority) {
-            this.commandData.priority = null;
-        }
-        this.commandData.selectedCategoryId = this.commandData.selectedCategory ? this.commandData.selectedCategory.categoryId : undefined;
     	this.addOkOutcome();
     }
 }

@@ -13,7 +13,6 @@ export default class EventListenerRegistrationCategory {
 	static init() {
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_categoryTree);
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_cardView);
-		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_reverseBoxExists);
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_boxId);
 		ACEController.registerListener('category.ReloadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_categoryTree_rootCategory);
 		ACEController.registerListener('category.ReloadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_categoryTree_selectedCategory);
@@ -46,8 +45,8 @@ export default class EventListenerRegistrationCategory {
 		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropTargetCategoryId);
 		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropAllowed);
 		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_movedCategory);
-		ACEController.registerListener('category.FilterNonScheduledCardsOkEvent', AppState.set_rootContainer_authorView_filterNonScheduled);
-		ACEController.registerListener('category.PriorityChangedOkEvent', AppState.set_rootContainer_authorView_priority);
+		ACEController.registerListener('category.FilterNonScheduledCardsOkEvent', AppState.set_rootContainer_authorView_categoryTree_filterNonScheduled);
+		ACEController.registerListener('category.PriorityChangedOkEvent', AppState.set_rootContainer_authorView_categoryTree_priority);
 	}
 
 }

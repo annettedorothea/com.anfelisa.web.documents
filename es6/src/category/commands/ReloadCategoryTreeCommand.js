@@ -13,12 +13,6 @@ export default class ReloadCategoryTreeCommand extends AbstractReloadCategoryTre
             return false;
         }
         this.commandData.rootCategoryId = this.commandData.previousRootCategory.categoryId;
-        if (this.commandData.filterNonScheduled === undefined) {
-            this.commandData.filterNonScheduled = null;
-        }
-        if (this.commandData.priority === undefined) {
-            this.commandData.priority = null;
-        }
         return true;
     }
 

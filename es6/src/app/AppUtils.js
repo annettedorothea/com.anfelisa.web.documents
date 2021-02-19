@@ -104,7 +104,8 @@ export default class AppUtils {
 
     static createInitialAppState() {
         const initialAppState = {
-            message: null
+            message: null,
+            spinner: {}
         };
         AppState.setInitialAppState(initialAppState);
     }
@@ -151,7 +152,6 @@ export default class AppUtils {
                 response.text().then((text) => {
                     if (response.status >= 300) {
                         const error = AppUtils.createError(text, response.statusText, response.status);
-                        console.log("response.status >= 300", error);
                         reject(error);
                     } else {
                         let data = {};
@@ -162,7 +162,6 @@ export default class AppUtils {
                     }
                 });
             }).catch(function (error) {
-                console.log("catch", error);
                 reject(AppUtils.createError(error, error));
             });
         });

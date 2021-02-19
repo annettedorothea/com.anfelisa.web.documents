@@ -6,7 +6,7 @@ ACE
 	LoadUser 
 		fromAppState (common.rootContainer.role)
 		call com.anfelisa.user.GetUserProfile
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok (
 			set common.rootContainer.mainView.profileView
 		)
@@ -14,7 +14,7 @@ ACE
 	DeleteUser
 		fromAppState (common.rootContainer.mainView.profileView.username)
 		call com.anfelisa.user.DeleteUser
-		loadingFlag common.rootContainer.spinner 
+		loadingFlag common.rootContainer.spinner.display 
 		on ok ( set common.rootContainer.mainView.profileView.showDeleteUserDialog ) triggers ( common.Logout )
 		on error ( set common.rootContainer.mainView.profileView.showDeleteUserDialog ) triggers (LoadUser common.DisplayToast common.Logout)
 	

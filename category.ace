@@ -6,27 +6,25 @@ ACE
 
 LoadCategoryTree ( rootCategoryId, selectedCategoryId )
 	fromAppState (
-		common.rootContainer.mainView.authorView.filterNonScheduled,
 		common.rootContainer.mainView.authorView.reverse
 	)
 	call com.anfelisa.category.GetCategoryTree
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display
 	on ok ( 
 		set common.rootContainer.mainView.authorView.categoryTree
 		set common.rootContainer.mainView.authorView.cardView
-		set common.rootContainer.mainView.authorView.reverseBoxExists
 		set common.rootContainer.mainView.authorView.boxId
 	) triggers (card.LoadCards)
 
 ReloadCategoryTree ( selectedCategoryId, categoryIdToBeExpanded )
 	fromAppState (
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory as previousRootCategory, 
-		common.rootContainer.mainView.authorView.filterNonScheduled,
-		common.rootContainer.mainView.authorView.priority,
+		common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled,
+		common.rootContainer.mainView.authorView.categoryTree.priority,
 		common.rootContainer.mainView.authorView.reverse
 	)
 	call com.anfelisa.category.GetCategoryTree
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok ( 
 		set common.rootContainer.mainView.authorView.categoryTree.rootCategory
 		set common.rootContainer.mainView.authorView.categoryTree.selectedCategory
@@ -76,7 +74,7 @@ CreateCategory
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId
 	)
 	call com.anfelisa.category.CreateCategory
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok (
 		set common.rootContainer.mainView.authorView.categoryTree.categoryDialog
 	) triggers ( ReloadCategoryTree )
@@ -95,7 +93,7 @@ UpdateCategory
 		common.rootContainer.mainView.authorView.categoryTree.categoryDialog.categoryName
 	)
 	call com.anfelisa.category.UpdateCategory
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok (
 		set common.rootContainer.mainView.authorView.categoryTree.categoryDialog
 	) triggers (ReloadCategoryTree)
@@ -126,13 +124,13 @@ SearchUsername
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId
 	)
 	call com.anfelisa.category.SearchUsernameForInvitation
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok (set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog.usernames)
 
 InviteUser (invitedUsername)
 	fromAppState (common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId)
 	call com.anfelisa.category.InviteUserToCategory
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok (
 		set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog
 	)
@@ -154,7 +152,7 @@ DeleteCategory
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId
 	)
 	call com.anfelisa.category.DeleteCategory
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok (
 		set common.rootContainer.mainView.authorView.categoryTree.deleteCategoryDialog
 	) triggers (ReloadCategoryTree)
@@ -189,7 +187,7 @@ MoveCategory
 		common.rootContainer.mainView.authorView.categoryTree.movedCategory.categoryId as movedCategoryId
 	)
  	call com.anfelisa.category.MoveCategory
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok ( 
 		set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
 		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
@@ -204,7 +202,7 @@ ChangeOrderCategory
 		common.rootContainer.mainView.authorView.categoryTree.movedCategory.categoryId as movedCategoryId
 	)
  	call com.anfelisa.category.ChangeOrderCategory
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok ( 
 		set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
 		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
@@ -213,30 +211,30 @@ ChangeOrderCategory
 
 FilterNonScheduledCards
 	fromAppState (
-		common.rootContainer.mainView.authorView.filterNonScheduled, 
-		common.rootContainer.mainView.authorView.categoryTree.selectedCategory
+		common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled, 
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId as selectedCategoryId
 	)
 	on ok (
-		set common.rootContainer.mainView.authorView.filterNonScheduled
-	) triggers (ReloadCategoryTree)
+		set common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled
+	) triggers (category.ReloadCategoryTree)
 
 PriorityChanged(priority)
 	fromAppState (
-		common.rootContainer.mainView.authorView.filterNonScheduled, 
-		common.rootContainer.mainView.authorView.priority as actualPriority,
-		common.rootContainer.mainView.authorView.categoryTree.selectedCategory
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId as selectedCategoryId
 	)
-	on ok (set common.rootContainer.mainView.authorView.priority)
-	triggers (ReloadCategoryTree)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.priority
+	) triggers (category.ReloadCategoryTree)
 	
 CreateReverseBox
 	fromAppState (
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory.rootCategoryId
 	)
 	call com.anfelisa.box.CreateReverseBox
-	loadingFlag common.rootContainer.spinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok triggers (common.Route)
 	
+
 
 		
 

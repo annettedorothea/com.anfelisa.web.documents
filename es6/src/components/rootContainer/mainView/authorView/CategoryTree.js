@@ -8,16 +8,16 @@ import {
     categoryDialog,
     deleteCategoryDialog,
     div,
-    i,
-    inviteUserDialog,
-    rootCategory
+    i, input,
+    inviteUserDialog, label,
+    rootCategory, span
 } from "../../../../../gen/components/ReactHelper";
 import {
     createReverseBox,
     deleteCategoryClick,
-    editCategoryClick,
+    editCategoryClick, filterNonScheduledCards,
     inviteUserClick,
-    newCategoryClick
+    newCategoryClick, priorityChanged
 } from "../../../../../gen/category/ActionFunctions";
 import {route} from "../../../../../gen/common/ActionFunctions";
 import React from "react";
@@ -27,6 +27,29 @@ export function uiElement(attributes) {
 
     if (!attributes.rootCategory) {
         return null;
+    }
+
+    const filterPriority = (priority) => {
+        const priorityClass = (index) => {
+            if (priority && index <= priority) {
+                return "fa fa-star";
+            }
+            return "far fa-star";
+        }
+        return span({class: "priority noBreak"}, [
+            i({
+                class: priorityClass(1),
+                onClick: () => priorityChanged(priority === 1 ? null: 1)
+            }),
+            i({
+                class: priorityClass(2),
+                onClick: () => priorityChanged(priority === 2 ? null: 2)
+            }),
+            i({
+                class: priorityClass(3),
+                onClick: () => priorityChanged(priority === 3 ? null: 3)
+            }),
+        ]);
     }
 
     return div({class: "categoryTree"}, [
@@ -85,6 +108,20 @@ export function uiElement(attributes) {
                     i({class: "fas fa-plus-circle"})
                 ]) :
                 null,
+        ]),
+        
+        div({class:"form"}, [
+            input({
+                type: "checkbox",
+                onClick: (event) => filterNonScheduledCards(event.target.value),
+                value: attributes.filterNonScheduled,
+                id: "filterNonScheduled"
+            }),
+            label({
+                htmlFor:"filterNonScheduled"}, [
+                Texts.categoryTree.filterNonScheduled[attributes.language]
+            ]),
+            attributes.filterNonScheduled === true ? filterPriority(attributes.priority) : null
         ]),
 
         div({class: "categoryTreeItems"}, [

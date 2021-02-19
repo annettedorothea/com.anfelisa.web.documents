@@ -9,10 +9,7 @@ import React from "react";
 export function uiElement(attributes) {
     return div({class: "categoryCardSplitView"}, [
         categoryTree({
-            language: attributes.language,
-            filterNonScheduled: attributes.filterNonScheduled,
-            priority: attributes.priority,
-            reverseBoxExists: attributes.reverseBoxExists
+            language: attributes.language
         }),
         cardView(
             {

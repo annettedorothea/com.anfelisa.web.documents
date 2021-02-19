@@ -67,7 +67,7 @@ Route ( hash )
 	
 InitialLogin
 	call com.anfelisa.user.GetRole
-	loadingFlag rootContainer.spinner 
+	loadingFlag rootContainer.spinner.display 
 	on ok (
 		set rootContainer.role
 	) triggers ( RouteChanged )
@@ -277,13 +277,14 @@ ui React_16.8 rootContainer {
 			reverse
 		}
 		authorView {
-	        filterNonScheduled
-	        reverse
-			reverseBoxExists
+
 			boxId
+	        reverse
 			
-	        priority
 			categoryTree {
+		        filterNonScheduled
+				reverseBoxExists
+		        priority
 				noComponent selectedCategory {
 					categoryId
 					categoryName

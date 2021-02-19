@@ -21,11 +21,11 @@ export default class AbstractDeleteBoxAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_rootContainer_spinner({spinner: true});
+		AppState.set_rootContainer_spinner_display({display: true});
 	}
 	
 	postCall() {
-		AppState.set_rootContainer_spinner({spinner: false});
+		AppState.set_rootContainer_spinner_display({display: false});
 	}
 
 }
