@@ -11,8 +11,8 @@ import * as AppState from "../../ace/AppState";
 
 export default class AbstractChangeCardOrderAction extends Action {
 
-    constructor( cardId) {
-        super({cardId}, 'card.ChangeCardOrderAction');
+    constructor() {
+        super({}, 'card.ChangeCardOrderAction');
 		this.postCall = this.postCall.bind(this);
 	}
 		

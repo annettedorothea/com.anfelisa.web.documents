@@ -10,16 +10,20 @@ export default class CheckDropAllowedCommand extends AbstractCheckDropAllowedCom
             dropTarget = findCategory(this.commandData.rootCategory.childCategories, this.commandData.categoryId);
         }
         this.commandData.dropTargetCategoryId = dropTarget.categoryId;
-        if (this.commandData.altKey === true) {
-            this.commandData.dropAllowed =
-                dropTarget.parentCategoryId === this.commandData.movedCategory.parentCategoryId
-                && dropTarget.categoryId !== this.commandData.movedCategory.categoryId;
-        } else {
-            this.commandData.dropAllowed =
-                this.commandData.rootCategory.categoryId !== this.commandData.movedCategory.categoryId
-                && dropTarget.categoryId !== this.commandData.movedCategory.categoryId
-                && dropTarget.categoryId !== this.commandData.movedCategory.parentCategoryId
-                && !isCategoryChildOfParent(this.commandData.movedCategory, dropTarget.categoryId);
+        if (this.commandData.movedCategory) {
+            if (this.commandData.altKey === true) {
+                this.commandData.dropAllowed =
+                    dropTarget.parentCategoryId === this.commandData.movedCategory.parentCategoryId
+                    && dropTarget.categoryId !== this.commandData.movedCategory.categoryId;
+            } else {
+                this.commandData.dropAllowed =
+                    this.commandData.rootCategory.categoryId !== this.commandData.movedCategory.categoryId
+                    && dropTarget.categoryId !== this.commandData.movedCategory.categoryId
+                    && dropTarget.categoryId !== this.commandData.movedCategory.parentCategoryId
+                    && !isCategoryChildOfParent(this.commandData.movedCategory, dropTarget.categoryId);
+            }
+        } else if (this.commandData.movedCardIds) {
+            this.commandData.dropAllowed = this.commandData.selectedCategory.categoryId !== dropTarget.categoryId;
         }
         this.addOkOutcome();
     }

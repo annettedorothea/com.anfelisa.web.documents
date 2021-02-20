@@ -10,27 +10,35 @@ import TriggerAction from "../../../gen/ace/TriggerAction";
 import * as AppState from "../../ace/AppState";
 import MoveCardsAction from "../../../src/card/actions/MoveCardsAction";
 import MoveCategoryAction from "../../../src/category/actions/MoveCategoryAction";
+import ChangeOrderCategoryAction from "../../../src/category/actions/ChangeOrderCategoryAction";
 
 export default class AbstractItemDroppedCommand extends SynchronousCommand {
     constructor(commandData) {
         super(commandData, "category.ItemDroppedCommand");
         this.commandData.outcomes = [];
         this.commandData.movedCategory = AppState.get_rootContainer_authorView_categoryTree_movedCategory();
+        this.commandData.movedCardIds = AppState.get_rootContainer_authorView_cardView_movedCardIds();
     }
 
 	addCardOutcome() {
 		this.commandData.outcomes.push("card");
 	}
-	addCategoryOutcome() {
-		this.commandData.outcomes.push("category");
+	addMoveCategoryOutcome() {
+		this.commandData.outcomes.push("moveCategory");
+	}
+	addChangeCategoryOrderOutcome() {
+		this.commandData.outcomes.push("changeCategoryOrder");
 	}
 
     publishEvents() {
 		if (this.commandData.outcomes.includes("card")) {
 			new TriggerAction(new MoveCardsAction()).publish();
 		}
-		if (this.commandData.outcomes.includes("category")) {
+		if (this.commandData.outcomes.includes("moveCategory")) {
 			new TriggerAction(new MoveCategoryAction()).publish();
+		}
+		if (this.commandData.outcomes.includes("changeCategoryOrder")) {
+			new TriggerAction(new ChangeOrderCategoryAction()).publish();
 		}
     }
 }

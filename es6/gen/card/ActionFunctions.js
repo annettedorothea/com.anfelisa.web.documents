@@ -126,8 +126,8 @@ export function moveCards() {
     new MoveCardsAction().apply();
 }
 
-export function changeCardOrder(cardId) {
-    new ChangeCardOrderAction(cardId).apply();
+export function changeCardOrder() {
+    new ChangeCardOrderAction().apply();
 }
 
 export function onDragEnter(dragTargetCardId) {

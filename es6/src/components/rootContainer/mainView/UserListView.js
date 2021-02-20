@@ -5,47 +5,11 @@
 
 
 
-import { div, h1, label, input, table, tbody, ul, li, tr, td, userListItem } from "../../../../gen/components/ReactHelper";
+import { pre, userListItem } from "../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["USERLISTVIEW"]),
-		div({}, [
-			table({class: ""}, [
-				tbody({}, [
-					attributes.userList ? attributes.userList.map((item) => userListItem()) : []
-				])
-			])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "showDeleteUserDialog"
-			}, ["SHOWDELETEUSERDIALOG"]), 
-			input({
-				id: "showDeleteUserDialog",
-				value: attributes.showDeleteUserDialog, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.showDeleteUserDialog])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "usernameToBeDeleted"
-			}, ["USERNAMETOBEDELETED"]), 
-			input({
-				id: "usernameToBeDeleted",
-				value: attributes.usernameToBeDeleted, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.usernameToBeDeleted])
-		])
-	]);
+	const json = JSON.stringify(attributes, null, '\t');
+	return pre({}, [json]);
 }
 
 

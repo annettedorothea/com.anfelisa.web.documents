@@ -15,6 +15,7 @@ export default class AbstractCheckDropAllowedCommand extends SynchronousCommand 
         this.commandData.outcomes = [];
         this.commandData.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
         this.commandData.movedCategory = AppState.get_rootContainer_authorView_categoryTree_movedCategory();
+        this.commandData.movedCardIds = AppState.get_rootContainer_authorView_cardView_movedCardIds();
         this.commandData.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
     }
 

@@ -32,7 +32,10 @@ export default class EventListenerRegistrationCard {
 		ACEController.registerListener('card.ToggleAllScheduleCardSelectionOkEvent', AppState.set_rootContainer_authorView_cardView_selectedCardIds);
 		ACEController.registerListener('card.MoveCardsStartedOkEvent', AppState.set_rootContainer_authorView_cardView_movedCardIds);
 		ACEController.registerListener('card.MoveCardsOkEvent', AppState.set_rootContainer_authorView_cardView_movedCardIds);
+		ACEController.registerListener('card.MoveCardsOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropTargetCategoryId);
+		ACEController.registerListener('card.MoveCardsOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropAllowed);
 		ACEController.registerListener('card.ChangeCardOrderOkEvent', AppState.set_rootContainer_authorView_cardView_movedCardIds);
+		ACEController.registerListener('card.ChangeCardOrderOkEvent', AppState.set_rootContainer_authorView_cardView_dragTargetCardId);
 		ACEController.registerListener('card.OnDragEnterOkEvent', AppState.set_rootContainer_authorView_cardView_dragTargetCardId);
 		ACEController.registerListener('card.OnDragExitOkEvent', AppState.set_rootContainer_authorView_cardView_dragTargetCardId);
 		ACEController.registerListener('card.SearchDuplicateCardsOkEvent', AppState.set_rootContainer_authorView_cardView_cardDuplicates);

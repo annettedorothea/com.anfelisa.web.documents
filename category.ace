@@ -161,6 +161,7 @@ CheckDropAllowed ( categoryId, altKey, depth )
 	fromAppState (
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory,
 		common.rootContainer.mainView.authorView.categoryTree.movedCategory,
+		common.rootContainer.mainView.authorView.cardView.movedCardIds,
 		common.rootContainer.mainView.authorView.categoryTree.selectedCategory
 	)
 	on ok (
@@ -168,10 +169,14 @@ CheckDropAllowed ( categoryId, altKey, depth )
 		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
 	)
 
-ItemDropped
-	fromAppState (common.rootContainer.mainView.authorView.categoryTree.movedCategory)
+ItemDropped (alt)
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.movedCategory,
+		common.rootContainer.mainView.authorView.cardView.movedCardIds
+	)
 	on card triggers (card.MoveCards)
-	on category triggers (MoveCategory)
+	on moveCategory triggers ( MoveCategory )
+	on changeCategoryOrder triggers ( ChangeOrderCategory )
 
 MoveCategoryStarted ( movedCategoryId )
 	fromAppState(common.rootContainer.mainView.authorView.categoryTree.rootCategory)

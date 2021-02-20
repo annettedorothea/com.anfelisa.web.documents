@@ -6,15 +6,17 @@
 import {button, i, input, pre, td, textarea, tr} from "../../../../../../gen/components/ReactHelper";
 import {
     cancelEditCard,
-    cancelNewCard,
-    changeCardOrder, createCard,
+    changeCardOrder,
     deleteCardClick,
-    editCard, givenOfEditedCardChanged, givenOfNewCardChanged,
+    editCard,
+    givenOfEditedCardChanged,
     moveCardsStarted,
     onDragEnter,
     onDragExit,
-    toggleScheduleCardSelection, updateCard,
-    updateCardPriority, wantedOfEditedCardChanged
+    toggleScheduleCardSelection,
+    updateCard,
+    updateCardPriority,
+    wantedOfEditedCardChanged
 } from "../../../../../../gen/card/ActionFunctions";
 import React from "react";
 import {Texts} from "../../../../../app/Texts";
@@ -33,8 +35,7 @@ export function uiElement(attributes) {
     const onDrop = (event) => {
         if (attributes.editable) {
             event.preventDefault();
-            onDragExit(attributes.cardId);
-            changeCardOrder(attributes.cardId);
+            changeCardOrder();
         }
     }
 
@@ -186,7 +187,7 @@ export function uiElement(attributes) {
                         id: attributes.cardId,
                         class: "fas fa-align-justify",
                         draggable: "true",
-                        onDragStart: (event) => this.onDragStart(event)
+                        onDragStart: (event) => onDragStart(event)
                     }) :
                     null
             ]) :

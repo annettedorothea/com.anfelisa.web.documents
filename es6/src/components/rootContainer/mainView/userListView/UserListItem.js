@@ -5,95 +5,11 @@
 
 
 
-import { div, h1, label, input, table, tbody, ul, li, tr, td } from "../../../../../gen/components/ReactHelper";
+import { pre } from "../../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
-	return tr({class: ""}, [
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "userId"
-			}, ["USERID"]), 
-			input({
-				id: "userId",
-				value: attributes.userId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.userId])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "username"
-			}, ["USERNAME"]), 
-			input({
-				id: "username",
-				value: attributes.username, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.username])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "password"
-			}, ["PASSWORD"]), 
-			input({
-				id: "password",
-				value: attributes.password, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.password])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "email"
-			}, ["EMAIL"]), 
-			input({
-				id: "email",
-				value: attributes.email, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.email])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "role"
-			}, ["ROLE"]), 
-			input({
-				id: "role",
-				value: attributes.role, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.role])
-		]),
-		td({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "emailConfirmed"
-			}, ["EMAILCONFIRMED"]), 
-			input({
-				id: "emailConfirmed",
-				value: attributes.emailConfirmed, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.emailConfirmed])
-		])
-	]);
+	const json = JSON.stringify(attributes, null, '\t');
+	return pre({}, [json]);
 }
 
 

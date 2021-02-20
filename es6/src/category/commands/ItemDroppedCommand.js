@@ -3,7 +3,11 @@ import AbstractItemDroppedCommand from "../../../gen/category/commands/AbstractI
 export default class ItemDroppedCommand extends AbstractItemDroppedCommand {
     execute() {
         if (this.commandData.movedCategory) {
-            this.addCategoryOutcome();
+            if (this.commandData.alt === false) {
+                this.addMoveCategoryOutcome()
+            } else {
+                this.addChangeCategoryOrderOutcome()
+            }
         } else {
             this.addCardOutcome();
         }

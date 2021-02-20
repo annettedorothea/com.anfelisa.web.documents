@@ -64,8 +64,8 @@ export function uiElement(attributes) {
                 dictionaryLookup: attributes.categoryTree.selectedCategory.dictionaryLookup,
                 givenLanguage: attributes.categoryTree.selectedCategory.givenLanguage,
                 wantedLanguage: attributes.categoryTree.selectedCategory.wantedLanguage,
-                language: attributes.language,
                 naturalInputOrder: attributes.naturalInputOrder,
+                language: attributes.language
             })
         );
     }

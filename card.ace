@@ -145,15 +145,21 @@ ACE
 		loadingFlag common.rootContainer.spinner.display 
 		on ok (
 			set common.rootContainer.mainView.authorView.cardView.movedCardIds
+			set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
+			set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
 		) triggers (category.ReloadCategoryTree)
 		
 		
-	ChangeCardOrder ( cardId )
-		fromAppState ( common.rootContainer.mainView.authorView.cardView.movedCardIds	)
+	ChangeCardOrder 
+		fromAppState ( 
+			common.rootContainer.mainView.authorView.cardView.movedCardIds,
+			common.rootContainer.mainView.authorView.cardView.dragTargetCardId as cardId
+		)
 	 	call com.anfelisa.card.ChangeOrder
 		loadingFlag common.rootContainer.spinner.display 
 		on ok (
 			set common.rootContainer.mainView.authorView.cardView.movedCardIds
+			set common.rootContainer.mainView.authorView.cardView.dragTargetCardId
 		) triggers (LoadCards)
 	
 	OnDragEnter ( dragTargetCardId )

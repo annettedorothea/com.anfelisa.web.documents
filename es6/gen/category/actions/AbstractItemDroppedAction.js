@@ -10,8 +10,8 @@ import ItemDroppedCommand from "../../../src/category/commands/ItemDroppedComman
 
 export default class AbstractItemDroppedAction extends Action {
 
-    constructor() {
-        super({}, 'category.ItemDroppedAction');
+    constructor( alt) {
+        super({alt}, 'category.ItemDroppedAction');
 	}
 		
 	getCommand() {

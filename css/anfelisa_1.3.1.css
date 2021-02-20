@@ -889,6 +889,11 @@ a:hover.tile h2 {
     }
 }
 
+.categoryCardSplitView td.top {
+    vertical-align: top;
+}
+
+
 .categoryCardSplitView tr.clickable:hover {
     color: #337ab7;
 }

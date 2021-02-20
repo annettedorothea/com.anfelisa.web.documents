@@ -3,52 +3,13 @@
  ********************************************************************************/
 
 
-import {activeCardListItem, div, h1, input, label, li, table, tbody, ul} from "../../../../gen/components/ReactHelper";
+
+
+import { pre, activeCardListItem } from "../../../../gen/components/ReactHelper";
 
 export function uiElement(attributes) {
-	return div({}, [
-		h1({}, ["ALLACTIVECARDSVIEW"]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "boxId"
-			}, ["BOXID"]), 
-			input({
-				id: "boxId",
-				value: attributes.boxId, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.boxId])
-		]),
-		div({class: ""}, [
-			label({
-				class: "",
-				htmlFor: "editable"
-			}, ["EDITABLE"]), 
-			input({
-				id: "editable",
-				value: attributes.editable, 
-				class: "", 
-				onChange:(e) => console.log(e.target.value),
-				type: "text"
-			}), 
-			div({class: ""}, [attributes.editable])
-		]),
-		div({}, [
-			table({class: ""}, [
-				tbody({}, [
-					attributes.activeCardList ? attributes.activeCardList.map((item) => activeCardListItem()) : []
-				])
-			])
-		]),
-		div({}, [
-			ul({class: ""}, [
-				attributes.selectedCardIds ? attributes.selectedCardIds.map((item) => li({}, [item])) : []
-			])
-		])
-	]);
+	const json = JSON.stringify(attributes, null, '\t');
+	return pre({}, [json]);
 }
 
 

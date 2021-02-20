@@ -118,8 +118,8 @@ export function checkDropAllowed(categoryId, altKey, depth) {
     new CheckDropAllowedAction(categoryId, altKey, depth).apply();
 }
 
-export function itemDropped() {
-    new ItemDroppedAction().apply();
+export function itemDropped(alt) {
+    new ItemDroppedAction(alt).apply();
 }
 
 export function moveCategoryStarted(movedCategoryId) {

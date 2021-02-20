@@ -36,6 +36,7 @@ export function uiElement(attributes) {
     }
 
     const onBlurGiven = () => {
+        console.log("onBlurGiven", attributes);
         if (attributes.naturalInputOrder === true && !!attributes.dictionaryLookup && (!attributes.wanted || attributes.wanted.length === 0)) {
             passValueToDictionary();
         }
@@ -64,6 +65,7 @@ export function uiElement(attributes) {
                 onBlur: onBlurGiven,
                 id: "given"
             })
+
         ]);
     }
 
@@ -77,7 +79,7 @@ export function uiElement(attributes) {
                 onKeyUp: onAltKeyUp,
                 onBlur: onBlurWanted,
                 id: "wanted"
-            })
+            }),
         ]);
     }
 
@@ -89,7 +91,9 @@ export function uiElement(attributes) {
         td(),
         attributes.naturalInputOrder === true ? renderGiven() : renderWanted(),
         attributes.naturalInputOrder === true ? renderWanted() : renderGiven(),
-        td(),
+        td({class: "top"}, [
+            attributes.displaySpinner || attributes.displayTranslateSpinner ? i({class: "fas fa-cog fa-spin"}) : null
+        ]),
         td({class: "noBreak input"}, [
             button({
                 disabled: !isValid(),

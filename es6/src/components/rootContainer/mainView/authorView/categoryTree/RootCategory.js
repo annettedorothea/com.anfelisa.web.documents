@@ -68,11 +68,7 @@ const selectableCategoryItem = (attributes) => {
 
     const drop = (event) => {
         event.preventDefault();
-        if (event.altKey === false) {
-            itemDropped();
-        } else {
-            changeOrderCategory();
-        }
+        itemDropped(event.altKey);
     }
 
     const onDragOver = (event) => {
