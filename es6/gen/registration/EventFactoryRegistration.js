@@ -6,6 +6,7 @@
 
 
 import ACEController from "../ace/ACEController";
+import CheckUsernameEmptyEvent from "./events/CheckUsernameEmptyEvent";
 import CheckUsernameOkEvent from "./events/CheckUsernameOkEvent";
 import UsernameChangedOkEvent from "./events/UsernameChangedOkEvent";
 import EmailChangedOkEvent from "./events/EmailChangedOkEvent";
@@ -16,6 +17,8 @@ import LoginOkEvent from "./events/LoginOkEvent";
 export default class EventFactoryRegistrationRegistration {
 
 	static init() {
+		ACEController.registerFactory('registration.CheckUsernameEmptyEvent', 
+			(eventData) => new CheckUsernameEmptyEvent(eventData));
 		ACEController.registerFactory('registration.CheckUsernameOkEvent', 
 			(eventData) => new CheckUsernameOkEvent(eventData));
 		ACEController.registerFactory('registration.UsernameChangedOkEvent', 

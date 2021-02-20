@@ -7,7 +7,7 @@ CheckUsername
 	fromAppState (common.rootContainer.mainView.registrationView.username)
 	call com.anfelisa.user.UsernameAvailable
 	loadingFlag common.rootContainer.mainView.registrationView.displayUsernameSpinner 
-	on empty
+	on empty ( set common.rootContainer.mainView.registrationView.available )
 	on ok ( set common.rootContainer.mainView.registrationView.available )
 
 UsernameChanged ( username )

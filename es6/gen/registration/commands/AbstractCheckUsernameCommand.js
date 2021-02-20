@@ -9,6 +9,7 @@ import AsynchronousCommand from "../../../gen/ace/AsynchronousCommand";
 import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
+import CheckUsernameEmptyEvent from "../../../gen/registration/events/CheckUsernameEmptyEvent";
 import CheckUsernameOkEvent from "../../../gen/registration/events/CheckUsernameOkEvent";
 
 export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
@@ -28,6 +29,9 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
     publishEvents() {
 		let promises = [];
 	    
+		if (this.commandData.outcomes.includes("empty")) {
+			promises.push(new CheckUsernameEmptyEvent(this.commandData).publish());
+		}
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new CheckUsernameOkEvent(this.commandData).publish());
 		}

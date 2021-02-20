@@ -11,6 +11,7 @@ import * as AppState from "../ace/AppState";
 export default class EventListenerRegistrationRegistration {
 
 	static init() {
+		ACEController.registerListener('registration.CheckUsernameEmptyEvent', AppState.set_rootContainer_registrationView_available);
 		ACEController.registerListener('registration.CheckUsernameOkEvent', AppState.set_rootContainer_registrationView_available);
 		ACEController.registerListener('registration.UsernameChangedOkEvent', AppState.set_rootContainer_registrationView_username);
 		ACEController.registerListener('registration.EmailChangedOkEvent', AppState.set_rootContainer_registrationView_emailInvalid);
