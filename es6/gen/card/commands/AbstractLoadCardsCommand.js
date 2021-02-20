@@ -10,7 +10,6 @@ import Utils from "../../ace/Utils";
 import AppUtils from "../../../src/app/AppUtils";
 import * as AppState from "../../ace/AppState";
 import LoadCardsOkEvent from "../../../gen/card/events/LoadCardsOkEvent";
-import LoadCardsNoCategorySelectedEvent from "../../../gen/card/events/LoadCardsNoCategorySelectedEvent";
 
 export default class AbstractLoadCardsCommand extends AsynchronousCommand {
     constructor(commandData) {
@@ -26,18 +25,12 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
 	addOkOutcome() {
 		this.commandData.outcomes.push("ok");
 	}
-	addNoCategorySelectedOutcome() {
-		this.commandData.outcomes.push("noCategorySelected");
-	}
 
     publishEvents() {
 		let promises = [];
 	    
 		if (this.commandData.outcomes.includes("ok")) {
 			promises.push(new LoadCardsOkEvent(this.commandData).publish());
-		}
-		if (this.commandData.outcomes.includes("noCategorySelected")) {
-			promises.push(new LoadCardsNoCategorySelectedEvent(this.commandData).publish());
 		}
 		return Promise.all(promises);
     }

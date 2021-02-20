@@ -7,7 +7,6 @@
 
 import ACEController from "../ace/ACEController";
 import LoadCardsOkEvent from "./events/LoadCardsOkEvent";
-import LoadCardsNoCategorySelectedEvent from "./events/LoadCardsNoCategorySelectedEvent";
 import CreateCardOkEvent from "./events/CreateCardOkEvent";
 import UpdateCardOkEvent from "./events/UpdateCardOkEvent";
 import DeleteCardOkEvent from "./events/DeleteCardOkEvent";
@@ -39,8 +38,6 @@ export default class EventFactoryRegistrationCard {
 	static init() {
 		ACEController.registerFactory('card.LoadCardsOkEvent', 
 			(eventData) => new LoadCardsOkEvent(eventData));
-		ACEController.registerFactory('card.LoadCardsNoCategorySelectedEvent', 
-			(eventData) => new LoadCardsNoCategorySelectedEvent(eventData));
 		ACEController.registerFactory('card.CreateCardOkEvent', 
 			(eventData) => new CreateCardOkEvent(eventData));
 		ACEController.registerFactory('card.UpdateCardOkEvent', 

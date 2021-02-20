@@ -13,8 +13,9 @@ ACE
 		)
 		call com.anfelisa.card.GetCards
 		loadingFlag common.rootContainer.spinner.display 
-		on ok ( merge common.rootContainer.mainView.authorView.cardView )
-		on noCategorySelected ( set common.rootContainer.mainView.authorView.cardView.cardList )
+		on ok ( 
+			merge common.rootContainer.mainView.authorView.cardView
+		)
 	
 	CreateCard 
 	 	fromAppState (
@@ -90,8 +91,14 @@ ACE
 		on ok (set common.rootContainer.mainView.authorView.cardView.filter)
 	
 	PassValueToDictionary 
-		fromAppState (common.rootContainer.mainView.authorView.cardView.naturalInputOrder, common.rootContainer.mainView.authorView.cardView.newCard.given, common.rootContainer.mainView.authorView.cardView.newCard.wanted)
-		on ok (set common.rootContainer.mainView.authorView.cardView.dictionaryValue)
+		fromAppState (
+			common.rootContainer.mainView.authorView.cardView.naturalInputOrder, 
+			common.rootContainer.mainView.authorView.cardView.newCard.given, 
+			common.rootContainer.mainView.authorView.cardView.newCard.wanted
+		)
+		on ok (
+			set common.rootContainer.mainView.authorView.cardView.dictionaryValue
+		)
 	
 	
 	ToggleInputOrder

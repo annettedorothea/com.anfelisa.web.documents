@@ -12,7 +12,6 @@ export default class EventListenerRegistrationCard {
 
 	static init() {
 		ACEController.registerListener('card.LoadCardsOkEvent', AppState.merge_rootContainer_authorView_cardView);
-		ACEController.registerListener('card.LoadCardsNoCategorySelectedEvent', AppState.set_rootContainer_authorView_cardView_cardList);
 		ACEController.registerListener('card.CreateCardOkEvent', AppState.set_rootContainer_authorView_cardView_newCard);
 		ACEController.registerListener('card.UpdateCardOkEvent', AppState.set_rootContainer_authorView_cardView_editedCard);
 		ACEController.registerListener('card.DeleteCardOkEvent', AppState.set_rootContainer_authorView_cardView_deleteCard);

@@ -175,6 +175,10 @@ export const textarea = (options) => {
     return generic("textarea", options);
 }
 
+export const iframe = (options) => {
+    return generic("iframe", options);
+}
+
 export const input = (options) => {
     return <input {...normalize(options)}/>
 }

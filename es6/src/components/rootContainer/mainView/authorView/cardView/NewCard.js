@@ -7,7 +7,9 @@ import {button, i, td, textarea, tr} from "../../../../../../gen/components/Reac
 import {
     cancelNewCard,
     createCard,
-    givenOfNewCardChanged, passValueToDictionary, translate,
+    givenOfNewCardChanged,
+    passValueToDictionary,
+    translate,
     wantedOfNewCardChanged
 } from "../../../../../../gen/card/ActionFunctions";
 import {Texts} from "../../../../../app/Texts";
@@ -36,7 +38,6 @@ export function uiElement(attributes) {
     }
 
     const onBlurGiven = () => {
-        console.log("onBlurGiven", attributes);
         if (attributes.naturalInputOrder === true && !!attributes.dictionaryLookup && (!attributes.wanted || attributes.wanted.length === 0)) {
             passValueToDictionary();
         }

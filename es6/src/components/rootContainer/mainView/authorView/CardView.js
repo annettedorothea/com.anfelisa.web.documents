@@ -4,19 +4,22 @@
 
 
 import {
-    button, cardDuplicatesItem,
+    button,
+    cardDuplicatesItem,
     cardListItem,
     deleteCard,
     div,
     h1,
     i,
+    iframe,
     input,
     newCard,
     table,
     tbody,
+    td,
     th,
     thead,
-    tr,td
+    tr
 } from "../../../../../gen/components/ReactHelper";
 import {Texts} from "../../../../app/Texts";
 import {
@@ -27,7 +30,6 @@ import {
     toggleInputOrder
 } from "../../../../../gen/card/ActionFunctions";
 import React from "react";
-import DuplicateCardItem from "../../../../web/CardList/DuplicateCardItem";
 
 export function uiElement(attributes) {
     if (!attributes.categoryTree || !attributes.cardList) {
@@ -69,6 +71,37 @@ export function uiElement(attributes) {
             })
         );
     }
+
+    const dictionary = () => {
+        const setFocus = () => {
+            document.getElementById(attributes.naturalInputOrder === true ? "wanted" : "given").focus();
+        }
+
+        const value = attributes.dictionaryValue;
+
+        if (!value || value.length === 0) {
+            return div({class: "iframePlaceholder"}, []);
+        }
+
+        const languageMap = {
+            "de": "deutsch",
+            "fr": "franzoesisch",
+            "en": "englisch"
+        };
+        const sourceLanguage = attributes.naturalInputOrder === true ? attributes.givenLanguage : attributes.wantedLanguage;
+        const targetLanguage = attributes.naturalInputOrder === true ? attributes.wantedLanguage : attributes.givenLanguage;
+
+        const src = `https://www.linguee.de/${languageMap[sourceLanguage]}-${languageMap[targetLanguage]}/search?source=${languageMap[sourceLanguage]}&query=${value}`;
+        return div({class: "dictionaryWrapper"}, [
+            iframe({
+                src,
+                frameBorder: 0,
+                onLoad: setFocus
+            })
+        ]);
+    }
+
+
     return div({}, [
         h1({}, [
             attributes.categoryTree.selectedCategory.categoryName,
@@ -124,12 +157,15 @@ export function uiElement(attributes) {
                 duplicateCards.length > 0 && editable ? tr({}, [
                     td(),
                     td({colSpan: 5}, [Texts.cardList.duplicateCards[attributes.language]]),
-                ]): null,
+                ]) : null,
                 ...duplicateCards
             ]),
         ]),
-        
+        dictionary()
+
     ]);
+
+
 }
 
 
