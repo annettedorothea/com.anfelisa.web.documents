@@ -3,7 +3,7 @@
  ********************************************************************************/
 
 
-import {button, div, h1, i, pre, span} from "../../../../gen/components/ReactHelper";
+import {button, div, h1, i, pre, span, a} from "../../../../gen/components/ReactHelper";
 import {route} from "../../../../gen/common/ActionFunctions";
 import {displayWanted, scoreCard, scoreReinforceCard, sortCardOut} from "../../../../gen/box/ActionFunctions";
 import {Texts} from "../../../app/Texts";
@@ -142,6 +142,11 @@ export function uiElement(attributes) {
                             onClick: () => sortCardOut()
                         }, [Texts.queryCards.sortOut[attributes.language]])
                     ])
+                ]),
+                div({class: "categoryLink"}, [
+                    a({
+                        onClick: () => route(`#categories/${attributes.rootCategoryId}${attributes.categoryId !== attributes.rootCategoryId ? "/" + attributes.categoryId : ""}${attributes.reverse === true ? "/reverse" : ""}`)
+                    }, [Texts.queryCards.category[attributes.language]])
                 ])
 
         ]);
