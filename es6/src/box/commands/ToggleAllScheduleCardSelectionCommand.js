@@ -10,8 +10,8 @@ import AbstractToggleAllScheduleCardSelectionCommand from "../../../gen/box/comm
 export default class ToggleAllScheduleCardSelectionCommand extends AbstractToggleAllScheduleCardSelectionCommand {
     execute() {
         let selectedCardIds = [];
-        if (this.commandData.selectedCardIds.length < this.commandData.cardList.length) {
-            this.commandData.cardList.forEach(card => {
+        if (this.commandData.selectedCardIds.length < this.commandData.activeCardList.length) {
+            this.commandData.activeCardList.forEach(card => {
                 selectedCardIds.push(card.cardId)
             });
         }

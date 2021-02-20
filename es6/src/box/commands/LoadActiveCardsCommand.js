@@ -16,6 +16,7 @@ export default class LoadActiveCardsCommand extends AbstractLoadActiveCardsComma
     handleResponse(resolve, reject) {
     	this.addOkOutcome();
     	this.commandData.selectedCardIds = [];
+    	this.commandData.activeCardList = this.commandData.cardList;
     	resolve();
     }
     handleError(resolve, reject) {

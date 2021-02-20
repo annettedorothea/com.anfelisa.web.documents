@@ -3,15 +3,73 @@
  ********************************************************************************/
 
 
-
-
-import { pre, activeCardListItem } from "../../../../gen/components/ReactHelper";
+import {
+    activeCardListItem,
+    button,
+    div,
+    input,
+    pre,
+    table,
+    tbody,
+    th,
+    thead,
+    tr
+} from "../../../../gen/components/ReactHelper";
+import {
+    scheduleSelectedCards,
+    sortSelectedCardsOut,
+    toggleAllScheduleCardSelection
+} from "../../../../gen/box/ActionFunctions";
+import {Texts} from "../../../app/Texts";
 
 export function uiElement(attributes) {
-	const json = JSON.stringify(attributes, null, '\t');
-	return pre({}, [json]);
-}
 
+    if (!attributes.activeCardList || !attributes.selectedCardIds) {
+        return null;
+    }
+    const cardItems = attributes.activeCardList.map((card, index) => {
+        return activeCardListItem({
+            ...card,
+            key: `card_${index}`,
+            selectedCardIds: attributes.selectedCardIds,
+            editable: attributes.editable,
+            language: attributes.language
+        })
+    });
+    const json = JSON.stringify(attributes, null, '\t');
+    return div({class: "allActiveCards"}, [
+        table({ class: "cardTable"}, [
+            thead({}, [
+                tr({class: "notPrinted"}, [
+                    th({}, [
+                        input({
+                            type: "checkbox",
+                            onChange: () => toggleAllScheduleCardSelection(),
+                            checked: attributes.activeCardList.length > 0 && attributes.selectedCardIds.length === attributes.activeCardList.length
+                        })
+                    ]),
+                    th({
+                        colSpan: 4
+                    }, [
+                        button({
+                            onClick:() => scheduleSelectedCards(),
+                            disabled: attributes.selectedCardIds.length === 0
+                        }, [
+                            Texts.allActiveCards.scheduleSelectedCards[attributes.language]
+                        ]),
+                        button({
+                            onClick:() => sortSelectedCardsOut(),
+                            disabled: attributes.selectedCardIds.length === 0
+                        }, [
+                            Texts.allActiveCards.sortSelectedCardsOut[attributes.language]
+                        ]),
+                    ])
+                ])
+            ]),
+            tbody({}, [cardItems])
+        ]),
+    ])
+}
 
 
 /******* S.D.G. *******/

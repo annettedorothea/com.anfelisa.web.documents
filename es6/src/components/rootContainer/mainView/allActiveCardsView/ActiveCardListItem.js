@@ -3,15 +3,91 @@
  ********************************************************************************/
 
 
-
-
-import { pre } from "../../../../../gen/components/ReactHelper";
+import {div, input, pre, td, tr, i} from "../../../../../gen/components/ReactHelper";
+import {toggleScheduleCardSelection, updateCardPriority} from "../../../../../gen/box/ActionFunctions";
+import {Texts} from "../../../../app/Texts";
 
 export function uiElement(attributes) {
-	const json = JSON.stringify(attributes, null, '\t');
-	return pre({}, [json]);
-}
+    const priority = () => {
+        const priorityChanged = (priority) => {
+            if (attributes.editable) {
+                updateCardPriority(attributes.cardId, priority);
+            }
+        }
+        const priorityClass = (index) => {
+            if (attributes.priority && index <= attributes.priority) {
+                return "fa fa-star";
+            }
+            return "far fa-star";
+        }
+        return td({class: "priority noBreak"}, [
+            i({
+                class: priorityClass(1),
+                onClick: attributes.editable ? () => priorityChanged(attributes.priority === 1 ? null : 1) : () => {
+                }
+            }),
+            i({
+                class: priorityClass(2),
+                onClick: attributes.editable ? () => priorityChanged(attributes.priority === 2 ? null : 2) : () => {
+                }
+            }),
+            i({
+                class: priorityClass(3),
+                onClick: attributes.editable ? () => priorityChanged(attributes.priority === 3 ? null : 3) : () => {
+                }
+            }),
+        ]);
+    }
 
+    const thumbsUp = () => {
+        if (attributes.ef > 2.5) {
+            return div({}, [
+                i({class: "far fa-thumbs-up"}),
+                i({class: "far fa-thumbs-up"}),
+                i({class: "far fa-thumbs-up"}),
+            ]);
+        }
+        if (attributes.ef > 2.0) {
+            return div({}, [
+                i({class: "far fa-thumbs-up"}),
+                i({class: "far fa-thumbs-up"}),
+            ]);
+        }
+        return div({}, [
+            i({class: "far fa-thumbs-up"}),
+        ]);
+    }
+    return tr({}, [
+        td({class: "notPrinted"}, [
+            input({
+                type: "checkbox",
+                onChange: () => toggleScheduleCardSelection(attributes.cardId),
+                checked: attributes.selectedCardIds.indexOf(attributes.cardId) >= 0
+            })
+        ]),
+        td({class: "visibleMobile"}, [
+            pre({}, [attributes.given])
+        ]),
+        td({class: "visibleMobile"}, [
+            pre({}, [attributes.wanted])
+        ]),
+        priority(),
+        td({class: "noBreak visibleMobile alignRight"}, [
+            attributes.next ? new Date(attributes.next).toLocaleDateString() : ""
+        ]),
+        td({class: `visibleMobile noBreak thumbsUp quality_${attributes.lastQuality}`}, [
+            thumbsUp()
+        ]),
+        td({class: "noBreak visibleMobile alignRight"}, [
+            Texts.allActiveCards.count[attributes.language].replace("{0}", attributes.count)
+        ]),
+        td({class: "noBreak visibleMobile alignRight"}, [
+            attributes.interval === 1 ?
+                Texts.allActiveCards.intervalOne[attributes.language] :
+                Texts.allActiveCards.interval[attributes.language].replace("{0}", attributes.interval)
+        ]),
+    ])
+}
 
 
 /******* S.D.G. *******/

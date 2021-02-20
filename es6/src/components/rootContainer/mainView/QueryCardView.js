@@ -152,7 +152,6 @@ export function uiElement(attributes) {
         ]);
     }
 
-    const json = JSON.stringify(attributes, null, '\t');
     return div({class: "box"}, [
         h1({}, [
             button({
@@ -169,7 +168,6 @@ export function uiElement(attributes) {
         ]),
         progress(),
         attributes.openTodaysCards > 0 ? card() : null,
-        pre({}, [json])
     ]);
 }
 
