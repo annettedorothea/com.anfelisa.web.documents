@@ -3,15 +3,170 @@
  ********************************************************************************/
 
 
-
-
-import { pre } from "../../../../gen/components/ReactHelper";
+import {button, div, h1, i, pre, span} from "../../../../gen/components/ReactHelper";
+import {route} from "../../../../gen/common/ActionFunctions";
+import {displayWanted, scoreCard, scoreReinforceCard, sortCardOut} from "../../../../gen/box/ActionFunctions";
+import {Texts} from "../../../app/Texts";
 
 export function uiElement(attributes) {
-	const json = JSON.stringify(attributes, null, '\t');
-	return pre({}, [json]);
-}
 
+    const progress = () => {
+        const open = Math.round(attributes.openTodaysCards / attributes.allTodaysCards * 100);
+        const done = 100 - open;
+        return div({class: "progress"}, [
+            div({
+                class: `${done === 100 ? 'all-done' : 'done'}`,
+                style: {width: `${done}%`}
+            }),
+            div({
+                class: `${open === 100 ? 'all-open' : 'open'}`,
+                style: {width: `${open}%`}
+            }),
+        ]);
+    }
+
+    const card = () => {
+        const given = () => {
+            let lines = [];
+            if (attributes.given.length > 0) {
+                lines = attributes.given.split("\n");
+            }
+
+            let lineItems = [];
+            for (let i = 0; i < lines.length; i++) {
+                lineItems.push(div({id: `line${i}`}, [lines[i]]))
+            }
+            return div({
+                class: `given lastQuality_${attributes.lastQuality}`
+            }, [
+                div({class: "given-word"}, lineItems),
+                attributes.scheduledDate ? div({class: "small-info"}, [
+                    `${Texts.queryCards.scheduledDate[attributes.language]} ${new Date(attributes.scheduledDate).toLocaleDateString()}`
+                ]) : null,
+                div({class: "small-info"}, [
+                    attributes.count === 0 ?
+                        Texts.queryCards.never[attributes.language] :
+                        Texts.queryCards.count[attributes.language].replace("{0}", attributes.count)
+                ]),
+                attributes.scoredDate ? div({class: "small-info"}, [
+                    `${Texts.queryCards.scoredDate[attributes.language]} ${new Date(attributes.scoredDate).toLocaleDateString()}`
+                ]) : null,
+            ]);
+
+        }
+
+        const wanted = () => {
+            let lines = [];
+            if (attributes.wanted.length > 0) {
+                lines = attributes.wanted.split("\n");
+            }
+
+            const onClick = () => {
+                const wantedItemsLength = lines.length;
+                displayWanted(wantedItemsLength);
+            }
+
+            let lineItems = [];
+            for (let i = 0; i < lines.length; i++) {
+                lineItems.push(div({
+                    id: `line${i}`,
+                    class: i < attributes.index ? "" : "hidden"
+                }, [lines[i]]))
+            }
+            return div({
+                class: `wanted lastQuality_${attributes.lastQuality}`,
+                onClick
+            }, [
+                div({class: "wanted-word"}, lineItems)
+            ]);
+        }
+
+        const scoreButtonClick = (quality) => {
+            if (attributes.scheduledCardId) {
+                scoreCard(quality);
+            } else {
+                scoreReinforceCard(quality);
+            }
+        }
+
+        const scoreButton = (quality) => {
+            return button({
+                onClick: () => scoreButtonClick(quality),
+                disabled: !attributes.enableScoreButtons,
+                className: `quality_${quality}`,
+            }, [
+                Texts.queryCards.scoreButtons[quality][attributes.language]
+            ]);
+        }
+
+        const reinforceButton = (keep) => {
+            return button({
+                onClick: () => scoreReinforceCard(keep),
+                disabled: !attributes.enableScoreButtons,
+                className: `keep_${keep}`,
+            }, [
+                Texts.queryCards.reinforceButtons[keep][attributes.language]
+            ]);
+        }
+
+        return div({}, [
+            given(),
+            wanted(),
+            attributes.scheduledCardId ?
+                div({class: "scoreButtons"}, [
+                    div({}, [
+                        scoreButton(5),
+                        scoreButton(2),
+                    ]),
+                    div({}, [
+                        scoreButton(4),
+                        scoreButton(1),
+                    ]),
+                    div({}, [
+                        scoreButton(3),
+                        scoreButton(0),
+                    ]),
+                    div({}, [
+                        button({
+                            onClick: () => sortCardOut()
+                        }, [Texts.queryCards.sortOut[attributes.language]])
+                    ])
+                ]) :
+                div({class: "scoreButtons"}, [
+                    div({}, [
+                        reinforceButton(false),
+                        reinforceButton(true),
+                    ]),
+                    div({}, [
+                        button({
+                            onClick: () => sortCardOut()
+                        }, [Texts.queryCards.sortOut[attributes.language]])
+                    ])
+                ])
+
+        ]);
+    }
+
+    const json = JSON.stringify(attributes, null, '\t');
+    return div({class: "box"}, [
+        h1({}, [
+            button({
+                class: "backButton",
+                onClick: () => route("#dashboard")
+            }, [
+                i({class: "fa fa-arrow-left"})
+            ]),
+            span({}, [
+                attributes.categoryName,
+                attributes.reverse === true ?
+                    i({class: "fas fa-arrows-alt-h withmarginleft"}) : null
+            ])
+        ]),
+        progress(),
+        attributes.openTodaysCards > 0 ? card() : null,
+        pre({}, [json])
+    ]);
+}
 
 
 /******* S.D.G. *******/

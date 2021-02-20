@@ -409,6 +409,12 @@ table td.priority i {
     margin-bottom: 20px;
 }
 
+i.withmarginleft {
+    margin-left: 10px;
+}
+
+
+
 /* toast */
 
 .toastContainer {

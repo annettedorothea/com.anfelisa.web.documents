@@ -37,7 +37,7 @@ export function uiElement(attributes) {
     }, [
         h2({}, [
             attributes.categoryName,
-            attributes.reverse ? i({class: "fas fa-arrows-alt-h"}) : null
+            attributes.reverse ? i({class: "fas fa-arrows-alt-h withmarginleft"}) : null
         ]),
         statistics(attributes),
         br(),

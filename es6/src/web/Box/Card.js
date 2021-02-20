@@ -19,7 +19,7 @@ export default class Card extends React.Component {
         if (this.props.scheduledCardId) {
             scoreCard(quality);
         } else {
-            scoreReinforceCard(quality);s
+            scoreReinforceCard(quality);
         }
     }
 
