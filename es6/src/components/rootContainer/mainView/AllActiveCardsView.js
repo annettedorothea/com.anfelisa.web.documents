@@ -36,7 +36,6 @@ export function uiElement(attributes) {
             language: attributes.language
         })
     });
-    const json = JSON.stringify(attributes, null, '\t');
     return div({class: "allActiveCards"}, [
         table({ class: "cardTable"}, [
             thead({}, [
