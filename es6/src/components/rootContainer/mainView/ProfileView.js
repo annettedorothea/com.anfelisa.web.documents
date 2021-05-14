@@ -3,86 +3,84 @@
  ********************************************************************************/
 
 
-import {button, div, h1, h2, i, input, label} from "../../../../gen/components/ReactHelper";
+import React from "react";
 import {Texts} from "../../../app/Texts";
 import {deleteUser, deleteUserCancel, deleteUserClick} from "../../../../gen/profile/ActionFunctions";
 import {route} from "../../../../gen/common/ActionFunctions";
 
-export function uiElement(attributes) {
-    if (attributes.role === undefined) {
+export function uiElement(props) {
+    if (props.role === undefined) {
         return null;
     }
-    return div({class: "center-wide"}, [
-        attributes.showDeleteUserDialog === true ?
-            div({class: "modal"}, [
-                div({class: "modalContent"}, [
-                    h2({}, [Texts.profile.confirmDelete.title[attributes.language]]),
-                    div({class: "message"}, [Texts.profile.confirmDelete.message[attributes.language]]),
-                    button({
-                        class: "yes",
-                        onClick: () => deleteUser()
-                    }, [Texts.profile.confirmDelete.ok[attributes.language]]),
-                    button({onClick: () => deleteUserCancel()}, [Texts.profile.confirmDelete.cancel[attributes.language]])
-                ])
-            ]) :
-            null,
-        div({class: "form"}, [
-            h1({}, [
-                button(
-                    {
-                        onClick: () => route("#dashboard")
-                    }, [
-                        i({class: "fa fa-arrow-left"})
-                    ]),
-                Texts.profile.title[attributes.language]
-            ]),
-            div({class: "line"}, [
-                label({htmlFor: "username"}, [Texts.profile.username[attributes.language]]),
-                div({class: "inputContainer"}, [
-                    input(
-                        {
-                            type: "text",
-                            value: attributes.username,
-                            id: "username",
-                            readOnly: true
-                        }
-                    )
-                ])
-            ]),
-            div({class: "line"}, [
-                label({htmlFor: "email"}, [Texts.profile.email[attributes.language]]),
-                div({class: "inputContainer"}, [
-                    input(
-                        {
-                            type: "text",
-                            value: attributes.email,
-                            id: "email",
-                            readOnly: true
-                        }
-                    )
-                ])
-            ]),
-            div({class: "line"}, [
-                label({htmlFor: "role"}, [Texts.profile.role[attributes.language]]),
-                div({class: "inputContainer"}, [
-                    input(
-                        {
-                            type: "text",
-                            value: Texts.profile.role[attributes.role][attributes.language],
-                            id: "role",
-                            readOnly: true
-                        }
-                    )
-                ])
-            ]),
-            div({class: "moreMarginLine hCenter"}, [
-                button({
-                    class:"danger",
-                    onClick: () => deleteUserClick()
-                }, [Texts.profile.delete[attributes.language]]),
-            ])
-        ])
-    ]);
+    return <div className="center-wide">
+        {props.showDeleteUserDialog === true ?
+            <div className="modal">
+                <div className="modalContent danger">
+                    <h2>{Texts.profile.confirmDelete.title[props.language]}</h2>
+                    <div className="message">{Texts.profile.confirmDelete.message[props.language]}</div>
+                    <button
+                        className="yes"
+                        onClick={deleteUser}
+                    >
+                        {Texts.profile.confirmDelete.ok[props.language]}
+                    </button>
+                    <button
+                        onClick={deleteUserCancel}
+                    >
+                        {Texts.profile.confirmDelete.cancel[props.language]}
+                    </button>
+                </div>
+            </div> :
+            null
+        }
+        <div className="form">
+            <h1>
+                <button onClick={() => route("#dashboard")}><i className="fa fa-arrow-left"/></button>
+                {Texts.profile.title[props.language]}
+            </h1>
+            <div className="line">
+                <label htmlFor="username">{Texts.profile.username[props.language]}</label>
+                <div className="inputContainer">
+                    <input
+                        type="text"
+                        value={props.username}
+                        id="username"
+                        readOnly={true}
+                    />
+                </div>
+            </div>
+            <div className="line">
+                <label htmlFor="email">{Texts.profile.email[props.language]}</label>
+                <div className="inputContainer">
+                    <input
+                        type="text"
+                        value={props.email}
+                        id="email"
+                        readOnly={true}
+                    />
+                </div>
+            </div>
+            <div className="line">
+                <label htmlFor="role">{Texts.profile.role[props.language]}</label>
+                <div className="inputContainer">
+                    <input
+                        type="text"
+                        value={Texts.profile.role[props.role][props.language]}
+                        id="role"
+                        readOnly={true}
+                    />
+                </div>
+            </div>
+            <div className="moreMarginLine hCenter">
+                <button
+                    className="danger"
+                    onClick={deleteUserClick}
+                >
+                    {Texts.profile.delete[props.language]}
+                </button>
+            </div>
+        </div>
+    </div>
 }
 
 

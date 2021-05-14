@@ -175,6 +175,8 @@ ui React_16.8 rootContainer {
 		}
 		resetPasswordView {
 			token
+			password
+			passwordRepetition
 			passwordMismatch
 		}
 		dashboardView {
@@ -211,6 +213,7 @@ ui React_16.8 rootContainer {
 			givenLanguage
 			wantedLanguage
 			categoryId
+			shared
 			
 			allActiveCards
 			allCards

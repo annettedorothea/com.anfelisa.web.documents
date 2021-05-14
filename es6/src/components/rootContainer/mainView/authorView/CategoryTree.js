@@ -4,15 +4,6 @@
 
 
 import {
-    button,
-    categoryDialog,
-    deleteCategoryDialog,
-    div,
-    i, input,
-    inviteUserDialog, label,
-    rootCategory, span
-} from "../../../../../gen/components/ReactHelper";
-import {
     createReverseBox,
     deleteCategoryClick,
     editCategoryClick, filterNonScheduledCards,
@@ -22,10 +13,14 @@ import {
 import {route} from "../../../../../gen/common/ActionFunctions";
 import React from "react";
 import {Texts} from "../../../../app/Texts";
+import {CategoryDialogComponent} from "../../../../../gen/components/rootContainer/mainView/authorView/categoryTree/CategoryDialogComponent";
+import {InviteUserDialogComponent} from "../../../../../gen/components/rootContainer/mainView/authorView/categoryTree/InviteUserDialogComponent";
+import {DeleteCategoryDialogComponent} from "../../../../../gen/components/rootContainer/mainView/authorView/categoryTree/DeleteCategoryDialogComponent";
+import {RootCategoryComponent} from "../../../../../gen/components/rootContainer/mainView/authorView/categoryTree/RootCategoryComponent";
 
-export function uiElement(attributes) {
+export function uiElement(props) {
 
-    if (!attributes.rootCategory) {
+    if (!props.rootCategory) {
         return null;
     }
 
@@ -36,104 +31,107 @@ export function uiElement(attributes) {
             }
             return "far fa-star";
         }
-        return span({class: "priority noBreak"}, [
-            i({
-                class: priorityClass(1),
-                onClick: () => priorityChanged(priority === 1 ? null: 1)
-            }),
-            i({
-                class: priorityClass(2),
-                onClick: () => priorityChanged(priority === 2 ? null: 2)
-            }),
-            i({
-                class: priorityClass(3),
-                onClick: () => priorityChanged(priority === 3 ? null: 3)
-            }),
-        ]);
+        return <span className="priority noBreak">
+            <i
+                className={priorityClass(1)}
+                onClick={() => priorityChanged(priority === 1 ? null: 1)}
+            />
+            <i
+                className={priorityClass(2)}
+                onClick={() => priorityChanged(priority === 2 ? null: 1)}
+            />
+            <i
+                className={priorityClass(3)}
+                onClick={() => priorityChanged(priority === 3 ? null: 1)}
+            />
+        </span>
     }
 
-    return div({class: "categoryTree"}, [
-        categoryDialog({...attributes.categoryDialog, language: attributes.language}),
-        inviteUserDialog({...attributes.inviteUserDialog, language: attributes.language}),
-        deleteCategoryDialog({...attributes.deleteCategoryDialog, language: attributes.language}),
-
-        div({}, [
-            button({
-                onClick: () => route("#dashboard"),
-                title: Texts.categoryTree.back[attributes.language]
-            }, [
-                i({class: "fa fa-arrow-left"})
-            ]),
-            attributes.rootCategory.editable ?
-                button({
-                    disabled: !attributes.selectedCategory,
-                    onClick: () => newCategoryClick(),
-                    title: Texts.categoryTree.newCategory.newChildCategory[attributes.language]
-                }, [
-                    i({class: "fas fa-plus"})
-                ]) :
-                null,
-            attributes.rootCategory.editable ?
-                button({
-                    disabled: !attributes.selectedCategory,
-                    onClick: () => editCategoryClick(),
-                    title: Texts.categoryTree.editCategory.title[attributes.language]
-                }, [
-                    i({class: "fas fa-pen"})
-                ]) :
-                null,
-            attributes.rootCategory.editable ?
-                button({
-                    disabled: !attributes.selectedCategory,
-                    onClick: () => inviteUserClick(),
-                    title: Texts.categoryTree.inviteUser.title[attributes.language]
-                }, [
-                    i({class: "fas fa-share"})
-                ]) :
-                null,
-            attributes.rootCategory.editable ?
-                button({
-                    disabled: !attributes.selectedCategory || !attributes.selectedCategory.empty || attributes.rootCategory.categoryId === attributes.selectedCategory.categoryId,
-                    onClick: () => deleteCategoryClick(),
-                    title: Texts.categoryTree.delete[attributes.language]
-                }, [
-                    i({class: "far fa-trash-alt"})
-                ]) :
-                null,
-            attributes.reverseBoxExists === false ?
-                button({
-                    onClick: () => createReverseBox(),
-                    title: Texts.categoryTree.createReverseBox[attributes.language]
-                }, [
-                    i({class: "fas fa-plus-circle"})
-                ]) :
-                null,
-        ]),
-        
-        div({class:"form"}, [
-            input({
-                type: "checkbox",
-                onClick: (event) => filterNonScheduledCards(event.target.value),
-                value: attributes.filterNonScheduled,
-                id: "filterNonScheduled"
-            }),
-            label({
-                htmlFor:"filterNonScheduled"}, [
-                Texts.categoryTree.filterNonScheduled[attributes.language]
-            ]),
-            attributes.filterNonScheduled === true ? filterPriority(attributes.priority) : null
-        ]),
-
-        div({class: "categoryTreeItems"}, [
-            rootCategory({
-                ...attributes.rootCategory,
-                selectedCategory: attributes.selectedCategory,
-                language: attributes.language,
-                dropAllowed: attributes.dropAllowed && attributes.rootCategory.editable,
-                dropTargetCategoryId: attributes.dropTargetCategoryId,
-            })
-        ]),
-    ]);
+    return <div className="categoryTree">
+        <CategoryDialogComponent {...props.categoryDialog} language={props.language} />
+        <InviteUserDialogComponent {...props.inviteUserDialog} language={props.language} />
+        <DeleteCategoryDialogComponent {...props.deleteCategoryDialog} language={props.language} />
+        <div>
+            <button
+                onClick={() => route("#dashboard")}
+                title={Texts.categoryTree.back[props.language]}
+            >
+                <i className="fa fa-arrow-left"/>
+            </button>
+            {props.rootCategory.editable ?
+                <button
+                    disabled={!props.selectedCategory}
+                    onClick={newCategoryClick}
+                    title={Texts.categoryTree.newCategory.newChildCategory[props.language]}
+                >
+                    <i className="fas fa-plus"/>
+                </button> :
+                null
+            }
+            {props.rootCategory.editable ?
+                <button
+                    disabled={!props.selectedCategory}
+                    onClick={editCategoryClick}
+                    title={Texts.categoryTree.editCategory.title[props.language]}
+                >
+                    <i className="fas fa-pen"/>
+                </button> :
+                null
+            }
+            {props.rootCategory.editable ?
+                <button
+                    disabled={!props.selectedCategory}
+                    onClick={inviteUserClick}
+                    title={Texts.categoryTree.inviteUser.title[props.language]}
+                >
+                    <i className="fas fa-share"/>
+                </button> :
+                null
+            }
+            {props.rootCategory.editable ?
+                <button
+                    disabled={
+                        !props.selectedCategory ||
+                        props.selectedCategory.empty === false ||
+                        props.rootCategory.categoryId === props.selectedCategory.categoryId
+                    }
+                    onClick={deleteCategoryClick}
+                    title={Texts.categoryTree.delete[props.language]}
+                >
+                    <i className="far fa-trash-alt"/>
+                </button> :
+                null
+            }
+            {props.reverseBoxExists === false ?
+                <button
+                    onClick={createReverseBox}
+                    title={Texts.categoryTree.createReverseBox[props.language]}
+                >
+                    <i className="fas fa-plus-circle"/>
+                </button> :
+                null
+            }
+        </div>
+        <div className="form">
+            <input
+                type="checkbox"
+                onClick={(event) => filterNonScheduledCards(event.target.value)}
+                value={props.filterNonScheduled}
+                id="filterNonScheduled"
+            />
+            <label htmlFor="filterNonScheduled">{Texts.categoryTree.filterNonScheduled[props.language]}</label>
+            {props.filterNonScheduled === true ? filterPriority(props.priority) : null}
+        </div>
+        <div className="categoryTreeItems">
+            <RootCategoryComponent
+                {...props.rootCategory}
+                selectedCategory={props.selectedCategory}
+                language={props.language}
+                dropAllowed={props.dropAllowed && props.rootCategory.editable}
+                dropTargetCategoryId={props.dropTargetCategoryId}
+            />
+        </div>
+    </div>
 }
 
 

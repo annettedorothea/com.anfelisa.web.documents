@@ -3,13 +3,13 @@
  ********************************************************************************/
 
 
-import {div, i} from "../../../gen/components/ReactHelper";
+import React from "react";
 
-export function uiElement(attributes) {
-    if (attributes.display === true) {
-        return div({class: "spinner"}, [
-            i({class: "fas fa-cog fa-spin"})
-        ]);
+export function uiElement(props) {
+    if (props.display === true) {
+        return <div className="spinner">
+            <i className="fas fa-cog fa-spin"/>
+        </div>
     }
     return null;
 }

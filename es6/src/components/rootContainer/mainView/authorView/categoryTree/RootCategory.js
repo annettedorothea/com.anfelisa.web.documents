@@ -3,9 +3,7 @@
  ********************************************************************************/
 
 
-import {div, i, span} from "../../../../../../gen/components/ReactHelper";
 import {
-    changeOrderCategory,
     checkDropAllowed,
     collapseTreeItem,
     expandTreeItem,
@@ -16,54 +14,57 @@ import {
 import React from "react";
 import {Texts} from "../../../../../app/Texts";
 
-const categoryItem = (attributes) => {
-    const selected = attributes.selectedCategory && attributes.selectedCategory.categoryId === attributes.categoryId;
-    const dropAllowed = attributes.dropAllowed && attributes.selectedCategory.editable;
-    return div({class: `categoryItem depth_${attributes.depth}`}, [
-        attributes.expanded === true ?
+const categoryItem = (props) => {
+    const selected = props.selectedCategory && props.selectedCategory.categoryId === props.categoryId;
+    const dropAllowed = props.dropAllowed && props.selectedCategory.editable;
+    return <div
+        className={`categoryItem depth_${props.depth}`}
+        key={props.categoryId}
+    >
+        {props.expanded === true ?
             expandedCategoryItem({
-                ...attributes,
+                ...props,
                 selected,
-                depth: attributes.depth + 1,
+                depth: props.depth + 1,
                 dropAllowed
             }) :
             collapsedCategoryItem({
-                ...attributes,
+                ...props,
                 selected,
                 dropAllowed,
-                depth: attributes.depth + 1
+                depth: props.depth + 1
+            })}
+    </div>
+}
+
+const collapsedCategoryItem = (props) => {
+    return <div className="collapsedCategoryItem">
+        {props.empty === false ?
+            <i
+                className="fas fa-caret-right"
+                onClick={() => expandTreeItem(props.categoryId)}
+            /> :
+            <i className="fas fa-caret-right disabled"/>
+        }
+        {
+            selectableCategoryItem({
+                selected: props.selected,
+                categoryName: props.categoryName,
+                nonScheduledCount: props.nonScheduledCount,
+                categoryId: props.categoryId,
+                dropAllowed: props.dropAllowed,
+                dropTargetCategoryId: props.dropTargetCategoryId,
+                depth: props.depth,
+                language: props.language,
             })
-    ]);
+        }
+    </div>
 }
 
-const collapsedCategoryItem = (attributes) => {
-    return div({class: "collapsedCategoryItem"}, [
-        attributes.empty === false ?
-            i({
-                class: "fas fa-caret-right",
-                onClick: () => expandTreeItem(attributes.categoryId)
-            }) :
-            i({
-                class: "fas fa-caret-right disabled"
-            }),
-        selectableCategoryItem({
-            selected: attributes.selected,
-            categoryName: attributes.categoryName,
-            nonScheduledCount: attributes.nonScheduledCount,
-            categoryId: attributes.categoryId,
-            dropAllowed: attributes.dropAllowed,
-            dropTargetCategoryId: attributes.dropTargetCategoryId,
-            depth: attributes.depth,
-            language: attributes.language,
-        })
-
-    ]);
-}
-
-const selectableCategoryItem = (attributes) => {
+const selectableCategoryItem = (props) => {
     const onDragStart = (event) => {
-        event.dataTransfer.setData('Text', attributes.categoryName);
-        moveCategoryStarted(attributes.categoryId)
+        event.dataTransfer.setData('Text', props.categoryName);
+        moveCategoryStarted(props.categoryId)
     }
 
     const drop = (event) => {
@@ -72,76 +73,76 @@ const selectableCategoryItem = (attributes) => {
     }
 
     const onDragOver = (event) => {
-        if (!!attributes.dropAllowed) {
+        if (!!props.dropAllowed) {
             event.preventDefault();
         }
     }
 
     const onDragEnter = (event) => {
-        checkDropAllowed(attributes.categoryId, event.altKey);
+        checkDropAllowed(props.categoryId, event.altKey);
     }
-
-    return span({
-        draggable: true,
-        onDragStart: (event) => onDragStart(event),
-        onDragEnter: (event) => onDragEnter(event),
-        onDragOver: onDragOver,
-        onDrop: drop
-    }, [
-        span({
-            class: `item ${attributes.selected ? "selected" : "notSelected"} ${attributes.dropAllowed && attributes.dropTargetCategoryId === attributes.categoryId ? "dropAllowed" : ""}`,
-            onClick: () => attributes.selected ? "" : selectTreeItem(attributes.categoryId)
-        }, [
-            attributes.categoryName,
-            attributes.nonScheduledCount === 0 ?
-                span({class: "nonScheduledCount"}, [
-                    Texts.categoryList.nonScheduledNone[attributes.language]
-                ]) : null,
-            attributes.nonScheduledCount === 1 ?
-                span({class: "nonScheduledCount"}, [
-                    Texts.categoryList.nonScheduledSingular[attributes.language]
-                ]) : null,
-            attributes.nonScheduledCount > 1 ?
-                span({class: "nonScheduledCount"}, [
-                    Texts.categoryList.nonScheduled[attributes.language].replace("{0}", attributes.nonScheduledCount)
-                ]) : null,
-        ])
-    ]);
+    return <span
+        draggable={true}
+        onDragStart={(event) => onDragStart(event)}
+        onDragEnter={(event) => onDragEnter(event)}
+        onDragOver={onDragOver}
+        onDrop={drop}
+    >
+        <span
+            className={`item ${props.selected ? "selected" : "notSelected"} ${props.dropAllowed && props.dropTargetCategoryId === props.categoryId ? "dropAllowed" : ""}`}
+            onClick={() => props.selected ? "" : selectTreeItem(props.categoryId)}
+        >
+            {props.categoryName}
+            {props.nonScheduledCount === 0 ?
+                <span className="nonScheduledCount">{Texts.categoryList.nonScheduledNone[props.language]}</span> : null
+            }
+            {props.nonScheduledCount === 1 ?
+                <span
+                    className="nonScheduledCount">{Texts.categoryList.nonScheduledSingular[props.language]}</span> : null
+            }
+            {props.nonScheduledCount > 1 ?
+                <span
+                    className="nonScheduledCount">{Texts.categoryList.nonScheduled[props.language].replace("{0}", props.nonScheduledCount)}</span> : null
+            }
+        </span>
+    </span>
 }
 
-const expandedCategoryItem = (attributes) => {
+const expandedCategoryItem = (props) => {
     let children = [];
-    if (attributes.childCategories) {
-        children = attributes.childCategories.map((category) => {
+    if (props.childCategories) {
+        children = props.childCategories.map((category) => {
             return categoryItem({
                 ...category,
-                depth: attributes.depth,
-                language: attributes.language,
-                selectedCategory: attributes.selectedCategory,
-                dropAllowed: attributes.dropAllowed,
-                dropTargetCategoryId: attributes.dropTargetCategoryId
+                depth: props.depth,
+                language: props.language,
+                selectedCategory: props.selectedCategory,
+                dropAllowed: props.dropAllowed,
+                dropTargetCategoryId: props.dropTargetCategoryId
             });
         });
     }
-    return div({class: "expandedCategoryItem"}, [
-        attributes.depth > 1 ? i({
-            class: "fas fa-caret-down",
-            onClick: () => collapseTreeItem(attributes.categoryId)
-        }) : null,
-        selectableCategoryItem({...attributes}),
-        div({}, children)
-    ]);
+    return <div className="expandedCategoryItem">
+        {props.depth > 1 ?
+            <i
+                className="fas fa-caret-down"
+                onClick={() => collapseTreeItem(props.categoryId)}
+            /> : null
+        }
+        {selectableCategoryItem({...props})}
+        <div>{children}</div>
+    </div>
 }
 
-export function uiElement(attributes) {
-    const selected = attributes.selectedCategory && attributes.selectedCategory.categoryId === attributes.categoryId;
-    return div({class: "categoryItem depth_1"}, [
-        expandedCategoryItem({
-            ...attributes,
+export function uiElement(props) {
+    const selected = props.selectedCategory && props.selectedCategory.categoryId === props.categoryId;
+    return <div className="categoryItem depth_1">
+        {expandedCategoryItem({
+            ...props,
             selected,
             depth: 1
-        }),
-    ]);
+        })}
+    </div>
 }
 
 

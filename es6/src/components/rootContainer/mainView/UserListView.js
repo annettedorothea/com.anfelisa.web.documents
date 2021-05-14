@@ -4,12 +4,11 @@
 
 
 
+import React from "react";
 
-import { pre, userListItem } from "../../../../gen/components/ReactHelper";
-
-export function uiElement(attributes) {
-	const json = JSON.stringify(attributes, null, '\t');
-	return pre({}, [json]);
+export function uiElement(props) {
+	const json = JSON.stringify(props, null, '\t');
+	return <pre>{json}</pre>
 }
 
 

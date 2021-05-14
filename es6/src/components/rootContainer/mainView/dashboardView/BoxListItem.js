@@ -3,14 +3,13 @@
  ********************************************************************************/
 
 
-import {a, br, div, h2, i, span} from "../../../../../gen/components/ReactHelper";
 import {route} from "../../../../../gen/common/ActionFunctions";
 import {Texts} from "../../../../app/Texts";
 import {deleteBoxClick} from "../../../../../gen/box/ActionFunctions";
 import React from "react";
 
-export function uiElement(attributes) {
-    const categoryRoute = `#categories/${attributes.categoryId}${attributes.reverse ? "/reverse" : ""}`;
+export function uiElement(props) {
+    const categoryRoute = `#categories/${props.categoryId}${props.reverse ? "/reverse" : ""}`;
 
     const onEditClick = (e) => {
         e.stopPropagation();
@@ -19,93 +18,98 @@ export function uiElement(attributes) {
 
     const onSettingsClick = (e) => {
         e.stopPropagation();
-        route(`#box/settings/${attributes.boxId}`);
+        route(`#box/settings/${props.boxId}`);
     }
 
     const onDeleteClick = (e) => {
         e.stopPropagation();
-        if (attributes.reverse || !attributes.shared) {
-            deleteBoxClick(attributes.boxId);
+        if (props.reverse || !props.shared) {
+            deleteBoxClick(props.boxId);
         }
     }
 
-    return a({
-        class: "tile",
-        onClick: () => attributes.openTodaysCards > 0 ?
-            route(`#box/${attributes.boxId}`) :
-            route(categoryRoute)
-    }, [
-        h2({}, [
-            attributes.categoryName,
-            attributes.reverse ? i({class: "fas fa-arrows-alt-h withmarginleft"}) : null
-        ]),
-        statistics(attributes),
-        br(),
-        cardsNextDays(attributes),
-        div({class: "buttons button1"}, [
-            i({
-                class: "fas fa-edit",
-                onClick: (e) => onEditClick(e),
-                title: Texts.box.edit[attributes.language]
-            })
-        ]),
-        div({class: "buttons button2"}, [
-            i({
-                class: "fas fa-cog",
-                onClick: (e) => onSettingsClick(e),
-                title: Texts.box.settings[attributes.language]
-            })
-        ]),
-        div({class: "buttons button3"}, [
-            i({
-                class: `far fa-trash-alt ${attributes.shared && !attributes.reverse ? "disabled" : "danger"}`,
-                onClick: (e) => onDeleteClick(e),
-                title: attributes.shared && !attributes.reverse ?
-                    Texts.box.deleteTitleShared[attributes.language] :
-                    Texts.box.deleteTitle[attributes.language]
-            })
-        ]),
-        attributes.openTodaysCards > 0 ? span({class: "badge"}, [attributes.openTodaysCards]) : null
-    ]);
+    return <a
+        className="tile"
+        onClick={() => props.openTodaysCards > 0 ?
+            route(`#box/${props.boxId}`) :
+            route(categoryRoute)}
+    >
+        <h2>
+            {!props.editable ?
+                Texts.box.sharedTitle[props.language].replace("{0}", props.categoryName).replace("{1}", props.categoryAuthor) :
+                props.categoryName}
+            {props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
+        </h2>
+        {statistics(props)}
+        <br/>
+        {cardsNextDays(props)}
+        <div className="buttons button1">
+            <i
+                className="fas fa-edit"
+                onClick={(e) => onEditClick(e)}
+                title={Texts.box.edit[props.language]}
+            />
+        </div>
+        <div className="buttons button2">
+            <i
+                className="fas fa-cog"
+                onClick={(e) => onSettingsClick(e)}
+                title={Texts.box.settings[props.language]}
+            />
+        </div>
+        <div className="buttons button3">
+            <i
+                className={`far fa-trash-alt ${props.shared && !props.reverse ? "disabled" : "danger"}`}
+                onClick={(e) => onDeleteClick(e)}
+                title={props.shared && !props.reverse ?
+                    Texts.box.deleteTitleShared[props.language] :
+                    Texts.box.deleteTitle[props.language]}
+            />
+        </div>
+        {props.openTodaysCards > 0 ? <span className="badge">{props.openTodaysCards}</span> : null}
+    </a>
 }
 
-const cardsNextDays = (attributes) => {
+const cardsNextDays = (props) => {
     const onClick = (e) => {
         e.stopPropagation();
-        route(`#box/active-cards/${attributes.boxId}`);
+        route(`#box/active-cards/${props.boxId}`);
     }
-    if (attributes.countsPerDayNextWeek && attributes.countsPerDayNextWeek.length === 7 && attributes.maxCardsPerDay && attributes.maxCardsPerDay > 0) {
+    if (props.countsPerDayNextWeek && props.countsPerDayNextWeek.length === 7 && props.maxCardsPerDay && props.maxCardsPerDay > 0) {
         let index = 0;
-        let items = attributes.countsPerDayNextWeek.map((count) => {
+        let items = props.countsPerDayNextWeek.map((count) => {
             index++;
             let date = new Date();
             date.setDate(date.getDate() + index);
             date.setHours(0, 0, 0, 0);
             const day = date.getDay();
             return cardsNextDaysItem({
-                key: day,
-                maxCardsPerDay: attributes.maxCardsPerDay,
+                maxCardsPerDay: props.maxCardsPerDay,
                 count,
                 day,
-                language: attributes.language,
+                language: props.language,
                 rounded: index === 1 ? "rounded-left" : index === 7 ? "rounded-right" : ""
             });
         });
-        return div(
-            {
-                class: "cards-next-days",
-                onClick: (e) => onClick(e)
-            }, items);
+        return <div
+            className="cards-next-days"
+            onClick={(e) => onClick(e)}
+        >
+            {items}
+        </div>
     }
     return null;
 }
 
 const cardsNextDaysItem = (item) => {
     const toDoFactor = item.count * 1.0 / item.maxCardsPerDay;
-    return div(
-        {class: `${item.rounded} cards-next-days-item`,
-            style: {background: `rgba(192, 192, 192, ${toDoFactor})`}
-        }, [item.count]);
+    return <div
+        key={item.day}
+        className={`${item.rounded} cards-next-days-item`}
+        style={{background: `rgba(192, 192, 192, ${toDoFactor})`}}
+    >
+        {item.count}
+    </div>
 }
 
 const rounded = (width, elementWidthBefore, elementWidthAfter) => {
@@ -120,39 +124,39 @@ const rounded = (width, elementWidthBefore, elementWidthAfter) => {
     }
 }
 
-const statistics = (attributes) => {
+const statistics = (props) => {
     const all =
-        attributes.quality0Count +
-        attributes.quality1Count +
-        attributes.quality2Count +
-        attributes.quality3Count +
-        attributes.quality4Count +
-        attributes.quality5Count;
+        props.quality0Count +
+        props.quality1Count +
+        props.quality2Count +
+        props.quality3Count +
+        props.quality4Count +
+        props.quality5Count;
     if (all > 0) {
         let qualityMap = [];
         qualityMap[0] = {
             key: 0,
-            value: attributes.quality0Count
+            value: props.quality0Count
         };
         qualityMap[1] = {
             key: 1,
-            value: attributes.quality1Count
+            value: props.quality1Count
         };
         qualityMap[2] = {
             key: 2,
-            value: attributes.quality2Count
+            value: props.quality2Count
         };
         qualityMap[3] = {
             key: 3,
-            value: attributes.quality3Count
+            value: props.quality3Count
         };
         qualityMap[4] = {
             key: 4,
-            value: attributes.quality4Count
+            value: props.quality4Count
         };
         qualityMap[5] = {
             key: 5,
-            value: attributes.quality5Count
+            value: props.quality5Count
         };
         qualityMap.sort((a, b) => {
             return a.value - b.value;
@@ -174,32 +178,32 @@ const statistics = (attributes) => {
         const width4 = qualityMap.find(e => e.key === 4).percentage;
         const width5 = qualityMap.find(e => e.key === 5).percentage;
 
-        return div({class: "statistics"}, [
-            div({
-                class: `${rounded(width5, 0, width4 + width3 + width2 + width1 + width0)} quality5`,
-                style: {width: `${width5}%`}
-            }),
-            div({
-                class: `${rounded(width4, width5, width3 + width2 + width1 + width0)} quality4`,
-                style: {width: `${width4}%`}
-            }),
-            div({
-                class: `${rounded(width3, width5 + width4, width2 + width1 + width0)} quality3`,
-                style: {width: `${width3}%`}
-            }),
-            div({
-                class: `${rounded(width2, width5 + width4 + width3, width1 + width0)} quality2`,
-                style: {width: `${width2}%`}
-            }),
-            div({
-                class: `${rounded(width1, width5 + width4 + width3 + width2, width0)} quality1`,
-                style: {width: `${width1}%`}
-            }),
-            div({
-                class: `${rounded(width0, width5 + width4 + width3 + width2 + width1, 0)} quality0`,
-                style: {width: `${width0}%`}
-            })
-        ])
+        return <div className="statistics">
+            <div
+                className={`${rounded(width5, 0, width4 + width3 + width2 + width1 + width0)} quality5`}
+                style={{width: `${width5}%`}}
+            />
+            <div
+                className={`${rounded(width4, width5, width3 + width2 + width1 + width0)} quality4`}
+                style={{width: `${width4}%`}}
+            />
+            <div
+                className={`${rounded(width3, width5 + width4, width2 + width1 + width0)} quality3`}
+                style={{width: `${width3}%`}}
+            />
+            <div
+                className={`${rounded(width2, width5 + width4 + width3, width1 + width0)} quality2`}
+                style={{width: `${width2}%`}}
+            />
+            <div
+                className={`${rounded(width1, width5 + width4 + width3 + width2, width0)} quality1`}
+                style={{width: `${width1}%`}}
+            />
+            <div
+                className={`${rounded(width0, width5 + width4 + width3 + width2 + width1, 0)} quality0`}
+                style={{width: `${width0}%`}}
+            />
+        </div>
     }
     return null;
 }

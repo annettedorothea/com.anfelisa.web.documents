@@ -3,27 +3,32 @@
  ********************************************************************************/
 
 
-import {button, div, h2} from "../../../gen/components/ReactHelper";
 import {Texts} from "../../app/Texts";
 import {cancelVersionMismatchDialog} from "../../../gen/common/ActionFunctions";
+import React from "react";
 
-export function uiElement(attributes) {
-    if (attributes.display === true) {
-        return div({class: "modal"}, [
-            div({class: "modalContent"}, [
-                h2({}, [Texts.container.versionMismatch[attributes.language]]),
-                div({class: "message"}, [Texts.container.versionMismatchMessage[attributes.language]]),
-                button({
-                    class: "yes",
-                    onClick: () => window.location.reload(true)
-                }, [Texts.container.yes[attributes.language]]),
-                button({onClick: () => cancelVersionMismatchDialog()}, [Texts.container.no[attributes.language]])
-            ])
-        ]);
+export function uiElement(props) {
+    if (props.display === true) {
+        return <div className="modal">
+            <div className="modalContent">
+                <h2>{Texts.container.versionMismatch[props.language]}</h2>
+                <div className="message">{Texts.container.versionMismatchMessage[props.language]}</div>
+                <button
+                    className="yes"
+                    onClick={() => window.location.reload(true)}
+                >
+                    Texts.container.yes[props.language]
+                </button>
+                <button
+                    onClick={() => cancelVersionMismatchDialog()}
+                >
+                    Texts.container.no[props.language]
+                </button>
+            </div>
+        </div>
     }
     return null;
 }
-
 
 /******* S.D.G. *******/
 

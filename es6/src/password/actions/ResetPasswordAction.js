@@ -3,6 +3,7 @@ import AbstractResetPasswordAction from "../../../gen/password/actions/AbstractR
 export default class ResetPasswordAction extends AbstractResetPasswordAction {
 
     initActionData() {
+        console.log("ResetPasswordAction");
     }
 
 }

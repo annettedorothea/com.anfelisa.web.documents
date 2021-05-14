@@ -19,6 +19,7 @@ LoadCategoryTree ( rootCategoryId, selectedCategoryId )
 ReloadCategoryTree ( selectedCategoryId, categoryIdToBeExpanded )
 	fromAppState (
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory as previousRootCategory, 
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory as selectedCategory, 
 		common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled,
 		common.rootContainer.mainView.authorView.categoryTree.priority,
 		common.rootContainer.mainView.authorView.reverse

@@ -3,20 +3,29 @@
  ********************************************************************************/
 
 
-import {button, div, h2} from "../../../../../gen/components/ReactHelper";
 import {Texts} from "../../../../app/Texts";
 import {cancelDeleteBox, deleteBox} from "../../../../../gen/box/ActionFunctions";
+import React from "react";
 
-export function uiElement(attributes) {
-	if (attributes.confirmDelete === true) {
-		return div({class: "modal"}, [
-			div({class: "modalContent"}, [
-				h2({}, [Texts.box.confirmDelete.title[attributes.language]]),
-				div({class: "message"}, [Texts.box.confirmDelete.message[attributes.language]]),
-				button({class: "yes danger", onClick: () => deleteBox()}, [Texts.box.confirmDelete.ok[attributes.language]]),
-				button({onClick: () => cancelDeleteBox()}, [Texts.box.confirmDelete.cancel[attributes.language]])
-			])
-		]);
+export function uiElement(props) {
+	if (props.confirmDelete === true) {
+		return <div className="modal">
+			<div className="modalContent">
+				<h2>{Texts.box.confirmDelete.title[props.language]}</h2>
+				<div className="message">{Texts.box.confirmDelete.message[props.language]}</div>
+				<button
+					className="yes danger"
+					onClick={deleteBox}
+				>
+					{Texts.box.confirmDelete.ok[props.language]}
+				</button>
+				<button
+					onClick={cancelDeleteBox}
+				>
+					{Texts.box.confirmDelete.cancel[props.language]}
+				</button>
+			</div>
+		</div>
 	}
 	return null;
 }

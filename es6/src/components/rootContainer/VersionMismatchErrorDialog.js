@@ -3,21 +3,23 @@
  ********************************************************************************/
 
 
-import {button, div, h2} from "../../../gen/components/ReactHelper";
+import React from "react";
 import {Texts} from "../../app/Texts";
 
-export function uiElement(attributes) {
-    if (attributes.display === true) {
-        return div({class: "modal"}, [
-            div({class: "modalContent danger"}, [
-                h2({}, [Texts.container.versionMismatchError[attributes.language]]),
-                div({class: "message"}, [Texts.container.versionMismatchErrorMessage[attributes.language]]),
-                button({
-                    class: "yes",
-                    onClick: () => window.location.reload(true)
-                }, [Texts.container.yes[attributes.language]])
-            ])
-        ]);
+export function uiElement(props) {
+    if (props.display === true) {
+        return <div className="modal">
+            <div className="modalContent danger">
+                <h2>{Texts.container.versionMismatchError[props.language]}</h2>
+                <div className="message">{Texts.container.versionMismatchErrorMessage[props.language]}</div>
+                <button
+                    className="yes"
+                    onClick={() => window.location.reload(true)}
+                >
+                    Texts.container.yes[props.language]
+                </button>
+            </div>
+        </div>
     }
     return null;
 }

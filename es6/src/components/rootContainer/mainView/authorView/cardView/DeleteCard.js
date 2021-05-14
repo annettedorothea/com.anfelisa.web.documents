@@ -3,43 +3,32 @@
  ********************************************************************************/
 
 
-
-
-import {
-	div,
-	h1,
-	label,
-	input,
-	table,
-	tbody,
-	ul,
-	li,
-	tr,
-	td,
-	h2,
-	button
-} from "../../../../../../gen/components/ReactHelper";
 import {Texts} from "../../../../../app/Texts";
-import {cancelDeleteCategory, deleteCategory} from "../../../../../../gen/category/ActionFunctions";
 import {cancelDeleteCard, deleteCard} from "../../../../../../gen/card/ActionFunctions";
+import React from "react";
 
-export function uiElement(attributes) {
-	if (attributes.confirmDelete === true) {
-		return div({class: "modal"}, [
-			div({class: "modalContent"}, [
-				h2({}, [Texts.cardList.confirmDelete.title[attributes.language]]),
-				div({class: "message"}, [Texts.cardList.confirmDelete.message[attributes.language]]),
-				button({
-					class: "yes danger",
-					onClick: () => deleteCard()
-				}, [Texts.cardList.confirmDelete.ok[attributes.language]]),
-				button({
-					onClick: () => cancelDeleteCard()}, [Texts.cardList.confirmDelete.cancel[attributes.language]])
-			])
-		]);
+export function uiElement(props) {
+	if (props.confirmDelete === true) {
+		return <div className="modal">
+			<div className="modalContent">
+				<h2>{Texts.cardList.confirmDelete.title[props.language]}</h2>
+				<div className="message">{Texts.cardList.confirmDelete.message[props.language]}</div>
+				<button
+					className="yes danger"
+					onClick={deleteCard}
+				>
+					{Texts.cardList.confirmDelete.ok[props.language]}
+				</button>
+				<button
+					onClick={cancelDeleteCard}
+				>
+					{Texts.cardList.confirmDelete.cancel[props.language]}
+				</button>
+			</div>
+		</div>
 	}
-	return null;}
-
+	return null;
+}
 
 
 /******* S.D.G. *******/

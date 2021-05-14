@@ -3,60 +3,60 @@
  ********************************************************************************/
 
 
-import {
-    privacyPolicyView,
-    loginView,
-    registrationView,
-    forgotPasswordView,
-    resetPasswordView,
-    dashboardView,
-    boxSettingsView,
-    allActiveCardsView,
-    profileView,
-    userListView,
-    queryCardView,
-    authorView
-} from "../../../gen/components/ReactHelper";
+import React from "react";
+import {PrivacyPolicyViewComponent} from "../../../gen/components/rootContainer/mainView/PrivacyPolicyViewComponent";
+import {LoginViewComponent} from "../../../gen/components/rootContainer/mainView/LoginViewComponent";
+import {RegistrationViewComponent} from "../../../gen/components/rootContainer/mainView/RegistrationViewComponent";
+import {ForgotPasswordViewComponent} from "../../../gen/components/rootContainer/mainView/ForgotPasswordViewComponent";
+import {ResetPasswordViewComponent} from "../../../gen/components/rootContainer/mainView/ResetPasswordViewComponent";
+import {DashboardViewComponent} from "../../../gen/components/rootContainer/mainView/DashboardViewComponent";
+import {BoxSettingsViewComponent} from "../../../gen/components/rootContainer/mainView/BoxSettingsViewComponent";
+import {AllActiveCardsViewComponent} from "../../../gen/components/rootContainer/mainView/AllActiveCardsViewComponent";
+import {ProfileViewComponent} from "../../../gen/components/rootContainer/mainView/ProfileViewComponent";
+import {UserListViewComponent} from "../../../gen/components/rootContainer/mainView/UserListViewComponent";
+import {QueryCardViewComponent} from "../../../gen/components/rootContainer/mainView/QueryCardViewComponent";
+import {AuthorViewComponent} from "../../../gen/components/rootContainer/mainView/AuthorViewComponent";
 
-export function uiElement(attributes) {
-    if (attributes.isPrivacyPolicyView === true) {
-        return privacyPolicyView({language: attributes.language});
+export function uiElement(props) {
+    // TODO check role?
+    if (props.isPrivacyPolicyView === true) {
+        return <PrivacyPolicyViewComponent language={props.language}/>
     }
-    if (attributes.isLoginView === true) {
-        return loginView({language: attributes.language});
+    if (props.isLoginView === true) {
+        return <LoginViewComponent language={props.language}/>
     }
-    if (attributes.isRegistrationView === true) {
-        return registrationView({language: attributes.language});
+    if (props.isRegistrationView === true) {
+        return <RegistrationViewComponent language={props.language}/>
     }
-    if (attributes.isForgotPasswordView === true) {
-        return forgotPasswordView({language: attributes.language});
+    if (props.isForgotPasswordView === true) {
+        return <ForgotPasswordViewComponent language={props.language}/>
     }
-    if (attributes.isResetPasswordView === true) {
-        return resetPasswordView({language: attributes.language});
+    if (props.isResetPasswordView === true) {
+        return <ResetPasswordViewComponent language={props.language}/>
     }
-    if (attributes.isDashboardView === true) {
-        return dashboardView({
-            language: attributes.language,
-            role: attributes.role
-        });
+    if (props.isDashboardView === true) {
+        return <DashboardViewComponent
+            language={props.language}
+            role={props.role}
+        />
     }
-    if (attributes.isBoxSettingsView === true) {
-        return boxSettingsView({language: attributes.language});
+    if (props.isBoxSettingsView === true) {
+        return <BoxSettingsViewComponent language={props.language}/>
     }
-    if (attributes.isAllActiveCardsView === true) {
-        return allActiveCardsView({language: attributes.language});
+    if (props.isAllActiveCardsView === true) {
+        return <AllActiveCardsViewComponent language={props.language}/>
     }
-    if (attributes.isProfileView === true) {
-        return profileView({language: attributes.language});
+    if (props.isProfileView === true) {
+        return <ProfileViewComponent language={props.language}/>
     }
-    if (attributes.isUserListView === true) {
-        return userListView({language: attributes.language});
+    if (props.isUserListView === true) {
+        return <UserListViewComponent language={props.language}/>
     }
-    if (attributes.isQueryCardView === true) {
-        return queryCardView({language: attributes.language});
+    if (props.isQueryCardView === true) {
+        return <QueryCardViewComponent language={props.language}/>
     }
-    if (attributes.isAuthorView === true) {
-        return authorView({language: attributes.language});
+    if (props.isAuthorView === true) {
+        return <AuthorViewComponent language={props.language}/>
     }
     return null;
 }

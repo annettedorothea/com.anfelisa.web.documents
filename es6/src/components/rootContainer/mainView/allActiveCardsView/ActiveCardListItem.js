@@ -3,90 +3,100 @@
  ********************************************************************************/
 
 
-import {div, input, pre, td, tr, i} from "../../../../../gen/components/ReactHelper";
 import {toggleScheduleCardSelection, updateCardPriority} from "../../../../../gen/box/ActionFunctions";
 import {Texts} from "../../../../app/Texts";
+import React from "react";
 
-export function uiElement(attributes) {
+export function uiElement(props) {
     const priority = () => {
         const priorityChanged = (priority) => {
-            if (attributes.editable) {
-                updateCardPriority(attributes.cardId, priority);
+            if (props.editable) {
+                updateCardPriority(props.cardId, priority);
             }
         }
         const priorityClass = (index) => {
-            if (attributes.priority && index <= attributes.priority) {
+            if (props.priority && index <= props.priority) {
                 return "fa fa-star";
             }
             return "far fa-star";
         }
-        return td({class: "priority noBreak"}, [
-            i({
-                class: priorityClass(1),
-                onClick: attributes.editable ? () => priorityChanged(attributes.priority === 1 ? null : 1) : () => {
+        return <td className="priority noBreak">
+            <i
+                className={priorityClass(1)}
+                onClick={props.editable ?
+                    () => priorityChanged(props.priority === 1 ? null : 1) :
+                    () => {
+                    }
                 }
-            }),
-            i({
-                class: priorityClass(2),
-                onClick: attributes.editable ? () => priorityChanged(attributes.priority === 2 ? null : 2) : () => {
+            />
+            <i
+                className={priorityClass(2)}
+                onClick={props.editable ?
+                    () => priorityChanged(props.priority === 2 ? null : 2) :
+                    () => {
+                    }
                 }
-            }),
-            i({
-                class: priorityClass(3),
-                onClick: attributes.editable ? () => priorityChanged(attributes.priority === 3 ? null : 3) : () => {
+            />
+            <i
+                className={priorityClass(3)}
+                onClick={props.editable ?
+                    () => priorityChanged(props.priority === 3 ? null : 3) :
+                    () => {
+                    }
                 }
-            }),
-        ]);
+            />
+        </td>
     }
 
     const thumbsUp = () => {
-        if (attributes.ef > 2.5) {
-            return div({}, [
-                i({class: "far fa-thumbs-up"}),
-                i({class: "far fa-thumbs-up"}),
-                i({class: "far fa-thumbs-up"}),
-            ]);
+        if (props.ef > 2.5) {
+            return <div>
+                <i className="far fa-thumbs-up"/>
+                <i className="far fa-thumbs-up"/>
+                <i className="far fa-thumbs-up"/>
+            </div>
         }
-        if (attributes.ef > 2.0) {
-            return div({}, [
-                i({class: "far fa-thumbs-up"}),
-                i({class: "far fa-thumbs-up"}),
-            ]);
+        if (props.ef > 2.0) {
+            return <div>
+                <i className="far fa-thumbs-up"/>
+                <i className="far fa-thumbs-up"/>
+            </div>
         }
-        return div({}, [
-            i({class: "far fa-thumbs-up"}),
-        ]);
+        return <div>
+            <i className="far fa-thumbs-up"/>
+        </div>
     }
-    return tr({}, [
-        td({class: "notPrinted"}, [
-            input({
-                type: "checkbox",
-                onChange: () => toggleScheduleCardSelection(attributes.cardId),
-                checked: attributes.selectedCardIds.indexOf(attributes.cardId) >= 0
-            })
-        ]),
-        td({class: "visibleMobile"}, [
-            pre({}, [attributes.given])
-        ]),
-        td({class: "visibleMobile"}, [
-            pre({}, [attributes.wanted])
-        ]),
-        priority(),
-        td({class: "noBreak visibleMobile alignRight"}, [
-            attributes.next ? new Date(attributes.next).toLocaleDateString() : ""
-        ]),
-        td({class: `visibleMobile noBreak thumbsUp quality_${attributes.lastQuality}`}, [
-            thumbsUp()
-        ]),
-        td({class: "noBreak visibleMobile alignRight"}, [
-            Texts.allActiveCards.count[attributes.language].replace("{0}", attributes.count)
-        ]),
-        td({class: "noBreak visibleMobile alignRight"}, [
-            attributes.interval === 1 ?
-                Texts.allActiveCards.intervalOne[attributes.language] :
-                Texts.allActiveCards.interval[attributes.language].replace("{0}", attributes.interval)
-        ]),
-    ])
+    return <tr key={props.cardId}>
+        <td className="notPrinted">
+            <input
+                type="checkbox"
+                onChange={() => toggleScheduleCardSelection(props.cardId)}
+                checked={props.selectedCardIds.indexOf(props.cardId) >= 0}
+            />
+        </td>
+        <td className="visibleMobile">
+            <pre>{props.given}</pre>
+        </td>
+        <td className="visibleMobile">
+            <pre>{props.wanted}</pre>
+        </td>
+        {priority()}
+        <td className="noBreak visibleMobile alignRight">
+            {props.next ? new Date(props.next).toLocaleDateString() : ""}
+        </td>
+        <td className={`visibleMobile noBreak thumbsUp quality_${props.lastQuality}`}>
+            {thumbsUp()}
+        </td>
+        <td className="noBreak visibleMobile alignRight">
+            {Texts.allActiveCards.count[props.language].replace("{0}", props.count)}
+        </td>
+        <td className="noBreak visibleMobile alignRight">
+            {props.interval === 1 ?
+                Texts.allActiveCards.intervalOne[props.language] :
+                Texts.allActiveCards.interval[props.language].replace("{0}", props.interval)
+            }
+        </td>
+    </tr>
 }
 
 

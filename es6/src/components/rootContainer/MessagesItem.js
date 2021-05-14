@@ -3,19 +3,18 @@
  ********************************************************************************/
 
 
-import {div} from "../../../gen/components/ReactHelper";
+import React from "react";
 import AppUtils from "../../app/AppUtils";
 import {destroyToast} from "../../../gen/common/ActionFunctions";
 
-export function uiElement(attributes) {
-    const text = AppUtils.getMessageText(attributes, attributes.language);
-    return div({
-        class: `toastWrapper ${attributes.visible === false ? "fadeOut" : ""}`,
-        onClick: () => destroyToast(attributes.id),
-        id: `#toast_${attributes.id}`
-    }, [
-        div({class: `toast ${attributes.type}`}, [text])
-    ])
+export function uiElement(props) {
+    const text = AppUtils.getMessageText(props, props.language);
+    return <div
+        className={`toastWrapper ${props.visible === false ? "fadeOut" : ""}`}
+        onClick={() => destroyToast(props.id)}
+    >
+        <div className={`toast ${props.type}`}>{text}</div>
+    </div>
 }
 
 

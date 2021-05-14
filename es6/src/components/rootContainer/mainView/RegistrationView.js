@@ -3,7 +3,6 @@
  ********************************************************************************/
 
 
-import {div, h1, label, input, i, button, table, tbody, ul, li, tr, td} from "../../../../gen/components/ReactHelper";
 import {Texts} from "../../../app/Texts";
 import {
     usernameChanged,
@@ -16,89 +15,92 @@ import React from "react";
 import {route} from "../../../../gen/common/ActionFunctions";
 import CryptoJS from "crypto-js";
 
-export function uiElement(attributes) {
-    return div({class: "center"}, [
-        div({class: "form"}, [
-            h1({}, [Texts.registration.title[attributes.language]]),
-            div({class: "line"}, [
-                label({htmlFor: "username"}, [Texts.registration.username[attributes.language]]),
-                div({class: "inputContainer"}, [
-                    input(
-                        {
-                            type: "text",
-                            onChange: (e) => usernameChanged(e.target.value),
-                            autoComplete: "new-password",
-                            value: attributes.username,
-                            id: "username"
-                        }
-                    ),
-                    attributes.displayUsernameSpinner === true ? i({class: "fas fa-cog fa-spin inside"}) : null,
-                    attributes.available === true ? i({class: "fas fa-check outside success"}) : null,
-                    attributes.available === false ? i({class: "fas fa-times outside error"}) : null
-                ])
-            ]),
-            div({class: "line"}, [
-                label({htmlFor: "password"}, [Texts.registration.password[attributes.language]]),
-                div({class: "inputContainer"}, [
-                    input(
-                        {
-                            type: "password",
-                            onChange: (e) => passwordChanged(CryptoJS.MD5(e.target.value).toString()),
-                            autoComplete: "new-password",
-                            id: "password"
-                        }
-                    )
-                ])
-            ]),
-            div({class: "line"}, [
-                label({htmlFor: "passwordRepetition"}, [Texts.registration.passwordRepetition[attributes.language]]),
-                div({class: "inputContainer"}, [
-                    input(
-                        {
-                            type: "password",
-                            onChange: (e) => passwordRepetitionChanged(CryptoJS.MD5(e.target.value).toString()),
-                            autoComplete: "new-password",
-                            id: "passwordRepetition"
-                        }
-                    ),
-                    attributes.passwordMismatch === true ? i({class: "fas fa-times outside error"}) : null,
-                ])
-            ]),
-            div({class: "line"}, [
-                label({htmlFor: "email"}, [Texts.registration.email[attributes.language]]),
-                div({class: "inputContainer"}, [
-                    input(
-                        {
-                            type: "text",
-                            onChange: (e) => emailChanged(e.target.value),
-                            autoComplete: "off",
-                            value: attributes.email,
-                            id: "email"
-                        }
-                    ),
-                    attributes.emailInvalid === true && attributes.email.length > 0 ? i({class: "fas fa-times outside error"}) : null,
-                ])
-            ]),
-            div({class: "moreMarginLine hCenter"}, [
-                button({
-                    onClick: () => registerUser(),
-                    disabled:
-                        attributes.usernameAvailable === false ||
-                        attributes.emailInvalid === true ||
-                        attributes.passwordMismatch === true ||
-                        (!attributes.username || attributes.username && attributes.username.length === 0) ||
-                        (!attributes.email || attributes.email && attributes.email.length === 0) ||
-                        (!attributes.password || attributes.password && attributes.password.length === 0)
-                }, [Texts.registration.register[attributes.language]]),
-                button({
-                    onClick: () => route("#")
-                }, [Texts.registration.cancel[attributes.language]])
-            ])
-        ]),
-        div({class: "line"}, [
-            div({class: "small-font"}, [Texts.registration.terms[attributes.language]])
-        ])
-    ]);
+export function uiElement(props) {
+    if (props.username === undefined) {
+        return null;
+    }
+    return (
+        <div className="center">
+            <div className="form">
+                <h1>{Texts.registration.title[props.language]}</h1>
+                <div className="line">
+                    <label>{Texts.registration.username[props.language]}</label>
+                    <div className="inputContainer">
+                        <input
+                            type={"text"}
+                            onChange={(e) => usernameChanged(e.target.value)}
+                            autoComplete="off"
+                            value={props.username}
+                            id="username"
+                        />
+                        {props.displayUsernameSpinner === true &&
+                        <i className="fas fa-cog fa-spin inside"/>}
+                        {props.available === true && props.username.length > 0 &&
+                        <i className="fas fa-check outside success"/>}
+                        {props.available === false && props.username.length > 0 &&
+                        <i className="fas fa-times outside error"/>}
+                    </div>
+                </div>
+                <div className="line">
+                    <label>{Texts.registration.password[props.language]}</label>
+                    <div className="inputContainer">
+                        <input
+                            type={"password"}
+                            onChange={(e) => passwordChanged(CryptoJS.MD5(e.target.value).toString())}
+                            autoComplete="off"
+                            id="password"
+                        />
+                    </div>
+                </div>
+                <div className="line">
+                    <label>{Texts.registration.passwordRepetition[props.language]}</label>
+                    <div className="inputContainer">
+                        <input
+                            type={"password"}
+                            onChange={(e) => passwordRepetitionChanged(CryptoJS.MD5(e.target.value).toString())}
+                            autoComplete="off"
+                            id="passwordRepetition"
+                        />
+                        {props.passwordMismatch === true &&
+                        <i className="fas fa-times outside error"/>}
+                    </div>
+                </div>
+                <div className="line">
+                    <label>{Texts.registration.email[props.language]}</label>
+                    <div className="inputContainer">
+                        <input
+                            type={"text"}
+                            onChange={(e) => emailChanged(e.target.value)}
+                            autoComplete="off"
+                            value={props.email}
+                            id="email"
+                        />
+                        {props.emailInvalid === true && props.email.length > 0 &&
+                        <i className="fas fa-times outside error"/>}
+                    </div>
+                </div>
+                <div className="moreMarginLine hCenter">
+                    <button onClick={registerUser}
+                            disabled={
+                                props.available === false ||
+                                props.emailInvalid === true ||
+                                props.passwordMismatch === true ||
+                                (!props.username || props.username && props.username.length === 0) ||
+                                (!props.email || props.email && props.email.length === 0) ||
+                                (!props.password || props.password && props.password.length === 0)
+                            }>
+                        {Texts.registration.register[props.language]}
+                    </button>
+                    <button
+                        onClick={() => route("#")}>{Texts.registration.cancel[props.language]}</button>
+                </div>
+                <div className="line">
+                    <div
+                        className="small-font">{Texts.registration.terms[props.language]}</div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 

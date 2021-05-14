@@ -5,8 +5,8 @@
   "repository": "https://github.com/annettedorothea/com.anfelisa.client",
   "scripts": {
     "uglify": "uglifyjs lib/anfelisa_1.3.2.js --compress --mangle --output lib/anfelisa_1.3.2.min.js",
-    "build": "browserify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.3.2.js --debug --standalone Anfelisa",
-    "start": "watchify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.3.2.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_1.3.2.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:9876/api/' --browser='Google Chrome'"
+    "build": "NODE_PATH=./src/components:./src NODE_ENV=production browserify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.3.2.js --standalone Anfelisa",
+    "start": "watchify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.3.2.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_1.3.2.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --browser='Google Chrome'"
   },
   "author": "Annette Pohl",
   "license": "ISC",
@@ -17,14 +17,14 @@
     "react-dom": "^16.14.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-react": "^7.12.10",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
     "babelify": "^10.0.0",
     "browserify": "^16.5.2",
-    "cypress": "^6.5.0",
+    "cypress": "^6.8.0",
     "live-server": "^1.2.1",
-    "uglify-js": "^3.12.5",
+    "uglify-js": "^3.13.3",
     "watchify": "^3.11.1"
   }
 }

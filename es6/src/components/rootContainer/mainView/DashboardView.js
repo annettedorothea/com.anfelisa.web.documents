@@ -3,25 +3,32 @@
  ********************************************************************************/
 
 
-import {a, boxListItem, deleteBox, div, i} from "../../../../gen/components/ReactHelper";
 import {route} from "../../../../gen/common/ActionFunctions";
+import React from "react";
+import {DeleteBoxComponent} from "../../../../gen/components/rootContainer/mainView/dashboardView/DeleteBoxComponent";
+import {BoxListItemComponent} from "../../../../gen/components/rootContainer/mainView/dashboardView/BoxListItemComponent";
 
-export function uiElement(attributes) {
-    return div({}, [
-        div({class: "bottomMargin"}, []),
-        deleteBox({language: attributes.language}),
-        div({}, [
-            attributes.boxList ? attributes.boxList.map((item) => boxListItem({...item, language: attributes.language})) : []
-        ]),
-        a({
-            class: "tile box-create",
-            onClick: () => route("#box/create")
-        }, [
-            div({class: "text-center"}, [
-                i({class: "fas fa-plus-circle fa-2x"})
-            ])
-        ])
-    ]);
+export function uiElement(props) {
+    return <div>
+        <div className="bottomMargin">
+            <DeleteBoxComponent language={props.language}/>
+            <div>
+                {
+                    props.boxList ?
+                        props.boxList.map((item) => <BoxListItemComponent key={item.boxId}  {...item} language={props.language}/>) :
+                        []
+                }
+            </div>
+            <a
+                className="tile box-create"
+                onClick={() => route("#box/create")}
+            >
+                <div className="text-center">
+                    <i className="fas fa-plus-circle fa-2x"/>
+                </div>
+            </a>
+        </div>
+    </div>
 }
 
 

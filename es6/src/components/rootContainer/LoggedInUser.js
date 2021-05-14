@@ -3,16 +3,16 @@
  ********************************************************************************/
 
 
-import {a, button, div} from "../../../gen/components/ReactHelper";
 import {logout, route} from "../../../gen/common/ActionFunctions";
 import {Texts} from "../../app/Texts";
+import React from "react";
 
-export function uiElement(attributes) {
-    if (attributes.role) {
-        return div({class: "logout"}, [
-            a({onClick: () => route("#profile")}, [attributes.username]),
-            button({onClick: () => logout()}, [Texts.logout.signout[attributes.language]])
-        ])
+export function uiElement(props) {
+    if (props.role) {
+        return <div className="logout">
+            <a onClick={() => route("#profile")}>{props.username}</a>
+            <button onClick={logout}>{Texts.logout.signout[props.language]}</button>
+        </div>
     }
     return null;
 }

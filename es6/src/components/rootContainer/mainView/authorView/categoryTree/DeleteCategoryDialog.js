@@ -3,24 +3,29 @@
  ********************************************************************************/
 
 
-import {button, div, h2} from "../../../../../../gen/components/ReactHelper";
 import {Texts} from "../../../../../app/Texts";
 import {cancelDeleteCategory, deleteCategory} from "../../../../../../gen/category/ActionFunctions";
+import React from "react";
 
-export function uiElement(attributes) {
-    if (attributes.display === true) {
-        return div({class: "modal"}, [
-            div({class: "modalContent"}, [
-                h2({}, [Texts.categoryTree.confirmDelete.title[attributes.language]]),
-                div({class: "message"}, [Texts.categoryTree.confirmDelete.message[attributes.language]]),
-                button({
-                    class: "yes danger",
-                    onClick: () => deleteCategory()
-                }, [Texts.categoryTree.confirmDelete.ok[attributes.language]]),
-                button({
-                    onClick: () => cancelDeleteCategory()}, [Texts.categoryTree.confirmDelete.cancel[attributes.language]])
-            ])
-        ]);
+export function uiElement(props) {
+    if (props.display === true) {
+        return <div className="modal">
+            <div className="modalContent">
+                <h2>{Texts.categoryTree.confirmDelete.title[props.language]}</h2>
+                <div className="message">{Texts.categoryTree.confirmDelete.message[props.language]}</div>
+                <button
+                    className="yes danger"
+                    onClick={deleteCategory}
+                >
+                    {Texts.categoryTree.confirmDelete.ok[props.language]}
+                </button>
+                <button
+                    onClick={cancelDeleteCategory}
+                >
+                    {Texts.categoryTree.confirmDelete.cancel[props.language]}
+                </button>
+            </div>
+        </div>
     }
     return null;
 }

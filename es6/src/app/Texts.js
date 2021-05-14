@@ -47,6 +47,9 @@ export const Texts = {
         },
         settings: {
             de: "Einstellungen"
+        },
+        sharedTitle: {
+            de: "{0} von {1}"
         }
     },
     boxSettings : {
@@ -93,10 +96,10 @@ export const Texts = {
             de: "Einstellungen"
         },
         tooManyCardsWarning: {
-            de: "In diese Box passen mit deinen Einstellungen {0} Karten. Du hast aber {1} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maxiamlen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
+            de: "In diese Box passen mit deinen Einstellungen {0} Karten. Du hast aber {1} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maximalen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
         },
         tooManyCardsWarningOne: {
-            de: "In diese Box passt mit deinen Einstellungen eine Karte. Du hast aber {0} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maxiamlen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
+            de: "In diese Box passt mit deinen Einstellungen eine Karte. Du hast aber {0} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maximalen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
         },
         languages: {
             de: {

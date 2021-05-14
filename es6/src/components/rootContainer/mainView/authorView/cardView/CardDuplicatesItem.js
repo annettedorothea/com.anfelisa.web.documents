@@ -3,58 +3,35 @@
  ********************************************************************************/
 
 
-import {
-    div,
-    h1,
-    label,
-    input,
-    table,
-    tbody,
-    ul,
-    li,
-    tr,
-    td, a,
-    button, i, textarea, pre
-} from "../../../../../../gen/components/ReactHelper";
-import {
-    deleteCardClick,
-    editCard,
-    givenOfEditedCardChanged,
-    toggleScheduleCardSelection, wantedOfEditedCardChanged
-} from "../../../../../../gen/card/ActionFunctions";
-import {Texts} from "../../../../../app/Texts";
 import React from "react";
 import {route} from "../../../../../../gen/common/ActionFunctions";
 
-export function uiElement(attributes) {
+export function uiElement(props) {
     const renderGiven = () => {
-        return td({}, [
-            pre({}, [attributes.given])
-        ]);
+        return <td>
+            <pre>{props.given}</pre>
+        </td>
     }
 
     const renderWanted = () => {
-        return td({}, [
-            pre({}, [attributes.wanted])
-        ]);
+        return <td>
+            <pre>{props.wanted}</pre>
+        </td>
     }
     const renderPath = () => {
-        return td({colSpan: "2"}, [
-            a({
-                onClick: () => route(`#categories/${attributes.rootCategoryId}/${attributes.categoryId}`)
-            }, [attributes.categoryName]),
-        ]);
+        return <td colSpan={2}>
+            <a onClick={() => route(`#categories/${props.rootCategoryId}/${props.categoryId}`)}>
+                {props.categoryName}
+            </a>
+        </td>
     }
 
-
-    return tr({
-        class: "notPrinted"
-    }, [
-        td({}),
-        attributes.naturalInputOrder === true ? renderGiven() : renderWanted(),
-        attributes.naturalInputOrder === true ? renderWanted() : renderGiven(),
-        renderPath()
-    ]);
+    return <tr className="notPrinted">
+        <td/>
+        {props.naturalInputOrder === true ? renderGiven() : renderWanted()}
+        {props.naturalInputOrder === true ? renderWanted() : renderGiven()}
+        {renderPath()}
+    </tr>
 }
 
 

@@ -3,11 +3,6 @@ import AbstractLoadCardsCommand from "../../../gen/card/commands/AbstractLoadCar
 export default class LoadCardsCommand extends AbstractLoadCardsCommand {
 
     validateCommandData() {
-        if (!this.commandData.selectedCategory) {
-            this.commandData.cardList = undefined;
-            this.addNoCategorySelectedOutcome();
-            return false;
-        }
         this.commandData.categoryId = this.commandData.selectedCategory.categoryId;
         return true;
     }

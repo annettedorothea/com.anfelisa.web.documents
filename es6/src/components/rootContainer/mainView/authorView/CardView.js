@@ -3,24 +3,6 @@
  ********************************************************************************/
 
 
-import {
-    button,
-    cardDuplicatesItem,
-    cardListItem,
-    deleteCard,
-    div,
-    h1,
-    i,
-    iframe,
-    input,
-    newCard,
-    table,
-    tbody,
-    td,
-    th,
-    thead,
-    tr
-} from "../../../../../gen/components/ReactHelper";
 import {Texts} from "../../../../app/Texts";
 import {
     filterCards,
@@ -30,57 +12,61 @@ import {
     toggleInputOrder
 } from "../../../../../gen/card/ActionFunctions";
 import React from "react";
+import {CardListItemComponent} from "../../../../../gen/components/rootContainer/mainView/authorView/cardView/CardListItemComponent";
+import {CardDuplicatesItemComponent} from "../../../../../gen/components/rootContainer/mainView/authorView/cardView/CardDuplicatesItemComponent";
+import {NewCardComponent} from "../../../../../gen/components/rootContainer/mainView/authorView/cardView/NewCardComponent";
+import {DeleteCardComponent} from "../../../../../gen/components/rootContainer/mainView/authorView/cardView/DeleteCardComponent";
 
-export function uiElement(attributes) {
-    if (!attributes.categoryTree || !attributes.cardList) {
+export function uiElement(props) {
+    if (!props.categoryTree || !props.cardList) {
         return null;
     }
-    const editable = attributes.categoryTree.rootCategory.editable;
-    const cardItems = attributes.cardList.filter((card) => (card.given.indexOf(attributes.filter) >= 0 || card.wanted.indexOf(attributes.filter) >= 0)).map((card) => {
-        return cardListItem({
-            ...card,
-            id: card.cardId,
-            selectedCardIds: attributes.selectedCardIds,
-            dragTargetCardId: attributes.dragTargetCardId,
-            language: attributes.language,
-            naturalInputOrder: attributes.naturalInputOrder,
-            editable,
-            editedCard: attributes.editedCard,
-            dictionaryLookup: attributes.categoryTree.selectedCategory.dictionaryLookup,
-            givenLanguage: attributes.categoryTree.selectedCategory.givenLanguage,
-            wantedLanguage: attributes.categoryTree.selectedCategory.wantedLanguage,
-        })
+    const editable = props.categoryTree.rootCategory.editable;
+    const cardItems = props.cardList.filter((card) => (card.given.indexOf(props.filter) >= 0 || card.wanted.indexOf(props.filter) >= 0)).map((card) => {
+        return <CardListItemComponent
+            {...card}
+            key={card.cardId}
+            selectedCardIds={props.selectedCardIds}
+            dragTargetCardId={props.dragTargetCardId}
+            language={props.language}
+            naturalInputOrder={props.naturalInputOrder}
+            editable={editable}
+            editedCard={props.editedCard}
+            dictionaryLookup={props.categoryTree.selectedCategory.dictionaryLookup}
+            givenLanguage={props.categoryTree.selectedCategory.givenLanguage}
+            wantedLanguage={props.categoryTree.selectedCategory.wantedLanguage}
+        />
     });
-    const duplicateCards = attributes.cardDuplicates.map((card) => {
-        return cardDuplicatesItem({
-            ...card,
-            id: card.cardId,
-            naturalInputOrder: attributes.naturalInputOrder,
-        })
+    const duplicateCards = props.cardDuplicates.map((card) => {
+        return <CardDuplicatesItemComponent
+            {...card}
+            key={card.cardId}
+            naturalInputOrder={props.naturalInputOrder}
+        />
     });
 
     if (editable) {
         cardItems.push(
-            newCard({
-                id: "new",
-                dictionaryLookup: attributes.categoryTree.selectedCategory.dictionaryLookup,
-                givenLanguage: attributes.categoryTree.selectedCategory.givenLanguage,
-                wantedLanguage: attributes.categoryTree.selectedCategory.wantedLanguage,
-                naturalInputOrder: attributes.naturalInputOrder,
-                language: attributes.language
-            })
+            <NewCardComponent
+                key={"new"}
+                dictionaryLookup={props.categoryTree.selectedCategory.dictionaryLookup}
+                givenLanguage={props.categoryTree.selectedCategory.givenLanguage}
+                wantedLanguage={props.categoryTree.selectedCategory.wantedLanguage}
+                naturalInputOrder={props.naturalInputOrder}
+                language={props.language}
+            />
         );
     }
 
     const dictionary = () => {
         const setFocus = () => {
-            document.getElementById(attributes.naturalInputOrder === true ? "wanted" : "given").focus();
+            document.getElementById(props.naturalInputOrder === true ? "wanted" : "given").focus();
         }
 
-        const value = attributes.dictionaryValue;
+        const value = props.dictionaryValue;
 
         if (!value || value.length === 0) {
-            return div({class: "iframePlaceholder"}, []);
+            return <div className="iframePlaceholder"/>
         }
 
         const languageMap = {
@@ -88,83 +74,84 @@ export function uiElement(attributes) {
             "fr": "franzoesisch",
             "en": "englisch"
         };
-        const sourceLanguage = attributes.naturalInputOrder === true ? attributes.givenLanguage : attributes.wantedLanguage;
-        const targetLanguage = attributes.naturalInputOrder === true ? attributes.wantedLanguage : attributes.givenLanguage;
+        const sourceLanguage = props.naturalInputOrder === true ? props.givenLanguage : props.wantedLanguage;
+        const targetLanguage = props.naturalInputOrder === true ? props.wantedLanguage : props.givenLanguage;
 
         const src = `https://www.linguee.de/${languageMap[sourceLanguage]}-${languageMap[targetLanguage]}/search?source=${languageMap[sourceLanguage]}&query=${value}`;
-        return div({class: "dictionaryWrapper"}, [
-            iframe({
-                src,
-                frameBorder: 0,
-                onLoad: setFocus
-            })
-        ]);
+        return <div className="dictionaryWrapper">
+            <iframe
+                src={src}
+                frameBorder={0}
+                onLoad={setFocus}
+            />
+        </div>
     }
 
-
-    return div({}, [
-        h1({}, [
-            attributes.categoryTree.selectedCategory.categoryName,
-            attributes.reverse === true ? i({class: "fas fa-arrows-alt-h"}) : null,
-        ]),
-        deleteCard({...attributes.deleteCard, language: attributes.language}),
-        attributes.deleteCard.confirmDelete === true && editable ? div() : null,
-        table({class: "cardTable"}, [
-            thead({}, [
-                tr({class: "notPrinted"}, [
-                    th({colSpan: 4}, [
-                        button({
-                            title: Texts.cardList.toggleInputOrder[attributes.language],
-                            onClick: () => toggleInputOrder()
-                        }, [
-                            i({class: "fas fa-arrows-alt-h"})
-                        ]),
-                        input({
-                            type: "text",
-                            onChange: (event) => filterCards(event.target.value),
-                            autoComplete: "off",
-                            value: attributes.filter,
-                            placeholder: Texts.cardList.filterCards[attributes.language]
-                        }),
-                    ]),
-                ]),
-                tr({class: "notPrinted"}, [
-                    th({}, [
-                        input({
-                            type: "checkbox",
-                            onChange: () => toggleAllScheduleCardSelection(),
-                            checked: attributes.cardList.length > 0 && attributes.selectedCardIds.length === attributes.cardList.length,
-                        }),
-                    ]),
-                    th({colSpan: 4}, [
-                        button({
-                            disabled: attributes.selectedCardIds.length === 0,
-                            onClick: () => scheduleSelectedCards()
-                        }, [
-                            Texts.cardList.scheduleSelectedCards[attributes.language]
-                        ]),
-                        button({
-                            disabled: attributes.selectedCardIds.length === 0,
-                            onClick: () => sortSelectedCardsOut()
-                        }, [
-                            Texts.cardList.sortSelectedCardsOut[attributes.language]
-                        ]),
-                    ]),
-                ]),
-            ]),
-            tbody({}, [
-                ...cardItems,
-                duplicateCards.length > 0 && editable ? tr({}, [
-                    td(),
-                    td({colSpan: 5}, [Texts.cardList.duplicateCards[attributes.language]]),
-                ]) : null,
-                ...duplicateCards
-            ]),
-        ]),
-        dictionary()
-
-    ]);
-
+    return <div>
+        <h1>
+            {props.categoryTree.selectedCategory.categoryName}
+            {props.reverse === true ? i({class: "fas fa-arrows-alt-h"}) : null}
+        </h1>
+        <DeleteCardComponent
+            {...props.deleteCard}
+            language={props.language}
+        />
+        {props.deleteCard.confirmDelete === true && editable ? <div/> : null}
+        <table>
+            <thead>
+            <tr className="notPrinted">
+                <th colSpan={4}>
+                    <button
+                        title={Texts.cardList.toggleInputOrder[props.language]}
+                        onClick={toggleInputOrder}
+                    >
+                        <i className="fas fa-arrows-alt-h"/>
+                    </button>
+                    <input
+                        type="text"
+                        onChange={(event) => filterCards(event.target.value)}
+                        autoComplete="off"
+                        value={props.filter}
+                        placeholder={Texts.cardList.filterCards[props.language]}
+                    />
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <input
+                        type="checkbox"
+                        onChange={toggleAllScheduleCardSelection}
+                        checked={props.cardList.length > 0 && props.selectedCardIds.length === props.cardList.length}
+                    />
+                </th>
+                <th colSpan={4}>
+                    <button
+                        disabled={props.selectedCardIds.length === 0}
+                        onClick={scheduleSelectedCards}
+                    >
+                        {Texts.cardList.scheduleSelectedCards[props.language]}
+                    </button>
+                    <button
+                        disabled={props.selectedCardIds.length === 0}
+                        onClick={sortSelectedCardsOut}
+                    >
+                        {Texts.cardList.sortSelectedCardsOut[props.language]}
+                    </button>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {cardItems}
+            {duplicateCards.length > 0 && editable ?
+                <tr>
+                    <td/>
+                    <td colSpan={5}>{Texts.cardList.duplicateCards[props.language]}</td>
+                </tr> : null}
+            {duplicateCards}
+            </tbody>
+        </table>
+        {dictionary()}
+    </div>
 
 }
 

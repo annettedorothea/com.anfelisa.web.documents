@@ -7,9 +7,12 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             this.commandData.username = hashes[1];
             this.commandData.token = hashes[2];
             this.addConfirmEmailOutcome();
-        } else if (this.commandData.hash.startsWith("#resetpassword" && hashes.length >= 1 && hashes[1])) {
+        } else if (this.commandData.hash.startsWith("#resetpassword") && hashes.length >= 1 && hashes[1]) {
             this.commandData.resetPasswordView = {
-                token: hashes[1]
+                token: hashes[1],
+                passwordMismatch: false,
+                password: "",
+                passwordRepetition: ""
             };
             this.addResetPasswordOutcome();
         } else if (this.commandData.hash === "#dashboard" && this.isUserLoggedIn()) {

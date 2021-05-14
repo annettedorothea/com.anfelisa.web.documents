@@ -5,11 +5,11 @@
 
 
 
-import { pre } from "../../../../../gen/components/ReactHelper";
+import React from "react";
 
-export function uiElement(attributes) {
-	const json = JSON.stringify(attributes, null, '\t');
-	return pre({}, [json]);
+export function uiElement(props) {
+	const json = JSON.stringify(props, null, '\t');
+	return <pre>{json}</pre>
 }
 
 

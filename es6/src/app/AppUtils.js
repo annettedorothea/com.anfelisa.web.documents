@@ -39,7 +39,7 @@ import EventListenerRegistrationPassword from "../../gen/password/EventListenerR
 import EventFactoryRegistrationPassword from "../../gen/password/EventFactoryRegistration";
 
 export function dumpAppState() {
-    console.log(AppState.getAppState());
+    console.info(AppState.getAppState());
 }
 
 export default class AppUtils {
@@ -88,7 +88,7 @@ export default class AppUtils {
                     displayVersionMismatchDialog();
                 }
             });
-        }, 60 * 1000);
+        }, 180 * 1000);
     }
 
     static loadActualClientVersion() {
@@ -273,8 +273,6 @@ export default class AppUtils {
         }
     }
 
-    static renderNewState(appState) {
-    }
 }
 
 /*       S.D.G.       */

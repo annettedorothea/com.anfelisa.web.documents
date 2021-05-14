@@ -3,71 +3,61 @@
  ********************************************************************************/
 
 
-import {
-    activeCardListItem,
-    button,
-    div,
-    input,
-    pre,
-    table,
-    tbody,
-    th,
-    thead,
-    tr
-} from "../../../../gen/components/ReactHelper";
+import React from "react";
 import {
     scheduleSelectedCards,
     sortSelectedCardsOut,
     toggleAllScheduleCardSelection
 } from "../../../../gen/box/ActionFunctions";
 import {Texts} from "../../../app/Texts";
+import {ActiveCardListItemComponent} from "../../../../gen/components/rootContainer/mainView/allActiveCardsView/ActiveCardListItemComponent";
 
-export function uiElement(attributes) {
+export function uiElement(props) {
 
-    if (!attributes.activeCardList || !attributes.selectedCardIds) {
+    if (!props.activeCardList || !props.selectedCardIds) {
         return null;
     }
-    const cardItems = attributes.activeCardList.map((card, index) => {
-        return activeCardListItem({
-            ...card,
-            key: `card_${index}`,
-            selectedCardIds: attributes.selectedCardIds,
-            editable: attributes.editable,
-            language: attributes.language
-        })
+    const cardItems = props.activeCardList.map((card, index) => {
+        return <ActiveCardListItemComponent
+            {...card}
+            key={`card_${index}`}
+            selectedCardIds={props.selectedCardIds}
+            editable={props.editable}
+            language={props.language}
+        />
     });
-    return div({class: "allActiveCards"}, [
-        table({ class: "cardTable"}, [
-            thead({}, [
-                tr({class: "notPrinted"}, [
-                    th({}, [
-                        input({
-                            type: "checkbox",
-                            onChange: () => toggleAllScheduleCardSelection(),
-                            checked: attributes.activeCardList.length > 0 && attributes.selectedCardIds.length === attributes.activeCardList.length
-                        })
-                    ]),
-                    th({
-                        colSpan: 4
-                    }, [
-                        button({
-                            onClick:() => scheduleSelectedCards(),
-                            disabled: attributes.selectedCardIds.length === 0
-                        }, [
-                            Texts.allActiveCards.scheduleSelectedCards[attributes.language]
-                        ]),
-                        button({
-                            onClick:() => sortSelectedCardsOut(),
-                            disabled: attributes.selectedCardIds.length === 0
-                        }, [
-                            Texts.allActiveCards.sortSelectedCardsOut[attributes.language]
-                        ]),
-                    ])
-                ])
-            ]),
-            tbody({}, [cardItems])
-        ]),
-    ])
+    return <div className="allActiveCards">
+        <table>
+            <thead>
+            <tr className="notPrinted">
+                <th>
+                    <input
+                        type="checkbox"
+                        onChange={toggleAllScheduleCardSelection}
+                        checked={props.activeCardList.length > 0 && props.selectedCardIds.length === props.activeCardList.length}
+                    />
+                </th>
+                <th colSpan={4}>
+                    <button
+                        onClick={scheduleSelectedCards}
+                        disabled={props.selectedCardIds.length === 0}
+                    >
+                        {Texts.allActiveCards.scheduleSelectedCards[props.language]}
+                    </button>
+                    <button
+                        onClick={sortSelectedCardsOut}
+                        disabled={props.selectedCardIds.length === 0}
+                    >
+                        {Texts.allActiveCards.sortSelectedCardsOut[props.language]}
+                    </button>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {cardItems}
+            </tbody>
+        </table>
+    </div>
 }
 
 
