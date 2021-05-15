@@ -78,7 +78,7 @@ Logout
 		set rootContainer.loggedInUser
 		set rootContainer.username
 		set rootContainer.password
-	) triggers ( Route RouteChanged )
+	) triggers ( Route )
 	
 DisplayToast ( message ) 
 	fromAppState( rootContainer.language, rootContainer.messages)

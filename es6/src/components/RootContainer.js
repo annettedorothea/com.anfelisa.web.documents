@@ -68,7 +68,10 @@ export function uiElement(props) {
             <div className="content">{content(props)}</div>
         </div>
     }
-    return <div>{content(props)}</div>
+    return <div>
+        <LoggedInUserComponent />
+        {content(props)}
+    </div>
 }
 
 

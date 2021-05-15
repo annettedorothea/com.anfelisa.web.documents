@@ -37,6 +37,7 @@ import EventFactoryRegistrationLogin from "../../gen/login/EventFactoryRegistrat
 
 import EventListenerRegistrationPassword from "../../gen/password/EventListenerRegistration";
 import EventFactoryRegistrationPassword from "../../gen/password/EventFactoryRegistration";
+import {dumpTimeline} from "../../gen/ace/Timeline";
 
 export function dumpAppState() {
     console.info(AppState.getAppState());
@@ -206,6 +207,8 @@ export default class AppUtils {
     static displayUnexpectedError(error) {
         console.error("unexpected error", error);
         const currentVersion = Utils.settings.clientVersion;
+        dumpAppState();
+        dumpTimeline();
         AppUtils.loadActualClientVersion().then((actualClientVersion) => {
             if (actualClientVersion !== currentVersion) {
                 displayVersionMismatchErrorDialog();
