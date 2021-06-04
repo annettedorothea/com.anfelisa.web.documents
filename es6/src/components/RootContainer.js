@@ -55,7 +55,7 @@ const content = (props) => (
 
 export function uiElement(props) {
     if (props.loggedInUser) {
-        return <div className="wrapper">
+        return <div id="rootContainer" className="wrapper">
             <div className="header">
                 <a
                     onClick={() => route("#dashboard")}
@@ -68,7 +68,7 @@ export function uiElement(props) {
             <div className="content">{content(props)}</div>
         </div>
     }
-    return <div>
+    return <div id="rootContainer">
         <LoggedInUserComponent />
         {content(props)}
     </div>

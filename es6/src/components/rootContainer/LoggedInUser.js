@@ -11,7 +11,7 @@ export function uiElement(props) {
     if (props.role) {
         return <div className="logout">
             <a onClick={() => route("#profile")}>{props.username}</a>
-            <button onClick={logout}>{Texts.logout.signout[props.language]}</button>
+            <button id="logout" onClick={logout}>{Texts.logout.signout[props.language]}</button>
         </div>
     }
     return null;

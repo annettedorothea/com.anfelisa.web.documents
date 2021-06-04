@@ -92,7 +92,9 @@ export function uiElement(props) {
                         {Texts.registration.register[props.language]}
                     </button>
                     <button
-                        onClick={() => route("#")}>{Texts.registration.cancel[props.language]}</button>
+                        id="register"
+                        onClick={() => route("#")}>{Texts.registration.cancel[props.language]}
+                    </button>
                 </div>
                 <div className="line">
                     <div

@@ -20,7 +20,7 @@ export function uiElement(attributes) {
                 type="text"
                 onChange={(e) => usernameChanged(e.target.value)}
             />
-            <a onClick={() => route("#registration")}>{Texts.login.registration[attributes.language]}</a>
+            <a id="registration" onClick={() => route("#registration")}>{Texts.login.registration[attributes.language]}</a>
         </div>
         <div className="line">
             <label htmlFor="password">
@@ -47,6 +47,7 @@ export function uiElement(attributes) {
         <div className="moreMarginLine hCenter">
             <button
                 className="primary"
+                id="login"
                 onClick={login}
             >
                 {Texts.login.signin[attributes.language]}

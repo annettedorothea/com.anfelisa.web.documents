@@ -2,8 +2,8 @@ HttpClient commonscenarios
 
 scenarios 
 
-A_NoUser 
-	WHEN common.Init delayInMillis 1000
+Init 
+	WHEN common.Init
 	THEN expectedState 
 		loggedInUser common.rootContainer.loggedInUser shouldBe null
 		language common.rootContainer.language shouldBe "de"
@@ -14,8 +14,8 @@ A_NoUser
 
 
 
-B_HideToast
-	GIVEN loginscenarios.G_LoginUnauthorized 
+HideToast
+	GIVEN loginscenarios.LoginUnauthorized 
 	WHEN delayInMillis 5000
 	THEN expectedState 
 		errorHidden common.rootContainer.messages shouldBe [
@@ -29,14 +29,14 @@ B_HideToast
 				}
 			]
 		
-C_DestroyToast
-	GIVEN loginscenarios.G_LoginUnauthorized 
-	WHEN delayInMillis 7000
+DestroyToast
+	GIVEN loginscenarios.LoginUnauthorized 
+	WHEN delayInMillis 8000
 	THEN expectedState 
 		errorDestroyed common.rootContainer.messages shouldBe []
 		
-D_Logout
-	GIVEN registrationscenarios.I_Register
+Logout
+	GIVEN registrationscenarios.Register
 	WHEN common.Logout delayInMillis 1000
 	THEN expectedState
 		loggedInUser common.rootContainer.loggedInUser shouldBe null

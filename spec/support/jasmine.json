@@ -1,11 +1,11 @@
 {
-  "spec_dir": "es6/scenarios",
+  "spec_dir": "spec",
   "spec_files": [
     "**/*.scenario.js"
   ],
   "helpers": [
     "helpers/**/*.js"
   ],
-  "stopSpecOnExpectationFailure": false,
-  "random": false
+  "stopSpecOnExpectationFailure": true,
+  "random": true
 }

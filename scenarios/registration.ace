@@ -2,8 +2,8 @@ HttpClient registrationscenarios
 
 scenarios
 
-A_RouteToRegistration
-	GIVEN commonscenarios.A_NoUser
+RouteToRegistration
+	GIVEN commonscenarios.Init
 	WHEN common.Route (hash: "#registration")
 	THEN
 		expectedState 
@@ -17,8 +17,8 @@ A_RouteToRegistration
 		verifications
 			registerDisabled
 
-B_UsernameChanged
-	GIVEN A_RouteToRegistration
+UsernameChanged
+	GIVEN RouteToRegistration
 	WHEN registration.UsernameChanged(username: "username-${testId}")
 	THEN 
 		expectedState 
@@ -26,8 +26,8 @@ B_UsernameChanged
 		verifications
 			registerDisabled
 			
-C_PasswordChanged
-	GIVEN B_UsernameChanged
+PasswordChanged
+	GIVEN UsernameChanged
 	WHEN registration.PasswordChanged(password: "pas")
 	THEN 
 		expectedState 
@@ -36,8 +36,8 @@ C_PasswordChanged
 		verifications
 			registerDisabled
 
-D_PasswordRepetitionChangedMismatch
-	GIVEN C_PasswordChanged
+PasswordRepetitionChangedMismatch
+	GIVEN PasswordChanged
 	WHEN registration.PasswordRepetitionChanged(passwordRepetition: "password")
 	THEN 
 		expectedState 
@@ -47,8 +47,8 @@ D_PasswordRepetitionChangedMismatch
 		verifications
 			registerDisabled
 
-E_PasswordRepetitionChanged
-	GIVEN D_PasswordRepetitionChangedMismatch
+PasswordRepetitionChanged
+	GIVEN PasswordRepetitionChangedMismatch
 	WHEN registration.PasswordRepetitionChanged(passwordRepetition: "pas")
 	THEN 
 		expectedState 
@@ -58,8 +58,8 @@ E_PasswordRepetitionChanged
 		verifications
 			registerDisabled
 
-F_PasswordChangedMatch
-	GIVEN D_PasswordRepetitionChangedMismatch
+PasswordChangedMatch
+	GIVEN PasswordRepetitionChangedMismatch
 	WHEN registration.PasswordChanged(password: "password")
 	THEN 
 		expectedState 
@@ -69,8 +69,8 @@ F_PasswordChangedMatch
 		verifications
 			registerDisabled
 			
-G_EmailChanged
-	GIVEN F_PasswordChangedMatch
+EmailChanged
+	GIVEN PasswordChangedMatch
 	WHEN registration.EmailChanged(email: "info@anfelisa.de")
 	THEN 
 		expectedState 
@@ -79,8 +79,8 @@ G_EmailChanged
 		verifications
 			registerEnabled
 			
-H_EmailChangedInvalid
-	GIVEN F_PasswordChangedMatch
+EmailChangedInvalid
+	GIVEN PasswordChangedMatch
 	WHEN registration.EmailChanged(email: "email")
 	THEN 
 		expectedState 
@@ -90,8 +90,8 @@ H_EmailChangedInvalid
 			registerDisabled
 
 
-I_Register
-	GIVEN G_EmailChanged
+Register
+	GIVEN EmailChanged
 	WHEN registration.RegisterUser
 		nonDeterministicValues {
 			uuid "uuid-${testId}"
@@ -116,8 +116,8 @@ I_Register
 		verifications
 			loginDataWasNotSetInLocalStorage
 
-J_ConfirmEmail
-	GIVEN I_Register
+ConfirmEmail
+	GIVEN Register
 	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "${testId}-TOKEN")
 	THEN 
 		expectedState 
@@ -142,8 +142,8 @@ J_ConfirmEmail
 			role common.rootContainer.role shouldBe "STUDENT"
 			
 
-K_ConfirmEmailTokenDoesNotExist
-	GIVEN I_Register
+ConfirmEmailTokenDoesNotExist
+	GIVEN Register
 	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "XXX")
 	THEN 
 		expectedState 

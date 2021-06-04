@@ -3,38 +3,38 @@ HttpClient loginscenarios
 scenarios
 
 
-A_UsernameChanged
-	GIVEN commonscenarios.A_NoUser
+UsernameChanged
+	GIVEN commonscenarios.Init
 	WHEN login.UsernameChanged(username: "username-${testId}")
 	THEN 
 		expectedState 
 			username common.rootContainer.mainView.loginView.username shouldBe "username-${testId}"
 			
-B_PasswordChanged
-	GIVEN A_UsernameChanged
+PasswordChanged
+	GIVEN UsernameChanged
 	WHEN login.PasswordChanged(password: "password")
 	THEN 
 		expectedState 
 			password common.rootContainer.mainView.loginView.password shouldBe "5f4dcc3b5aa765d61d8327deb882cf99"
 			
-C_ToggleSaveInLocalStorage
-	GIVEN B_PasswordChanged
+ToggleSaveInLocalStorage
+	GIVEN PasswordChanged
 	WHEN login.ToggleSaveInLocalStorage()
 	THEN 
 		expectedState 
 			saveInLocalStorageIsTrue common.rootContainer.mainView.loginView.saveInLocalStorage shouldBe true
 			
-D_ToggleSaveInLocalStorageTwice
-	GIVEN C_ToggleSaveInLocalStorage
+ToggleSaveInLocalStorageTwice
+	GIVEN ToggleSaveInLocalStorage
 	WHEN login.ToggleSaveInLocalStorage()
 	THEN 
 		expectedState 
 			saveInLocalStorageIsFalse common.rootContainer.mainView.loginView.saveInLocalStorage shouldBe false
 			
-E_Login
+Login
 	GIVEN 
-		commonscenarios.D_Logout
-		B_PasswordChanged
+		commonscenarios.Logout
+		PasswordChanged
 	WHEN login.Login
 	THEN 
 		expectedState 
@@ -46,10 +46,10 @@ E_Login
 		verifications
 			loginDataWasNotSetInLocalStorage
 			
-F_LoginWithSaveInLocalStorage
+LoginWithSaveInLocalStorage
 	GIVEN 
-		commonscenarios.D_Logout
-		C_ToggleSaveInLocalStorage
+		commonscenarios.Logout
+		ToggleSaveInLocalStorage
 	WHEN login.Login
 	THEN 
 		expectedState 
@@ -61,8 +61,8 @@ F_LoginWithSaveInLocalStorage
 		verifications
 			loginDataWasSetInLocalStorage
 			
-G_LoginUnauthorized
-	GIVEN B_PasswordChanged
+LoginUnauthorized
+	GIVEN PasswordChanged
 	WHEN login.Login
 	THEN 
 		expectedState 
@@ -80,8 +80,8 @@ G_LoginUnauthorized
 				}
 			]
 			
-H_LoginUnauthorizedSecondTime
-	GIVEN G_LoginUnauthorized
+LoginUnauthorizedSecondTime
+	GIVEN LoginUnauthorized
 	WHEN login.Login
 	THEN 
 		expectedState 
