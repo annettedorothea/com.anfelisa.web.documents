@@ -1,5 +1,4 @@
 import AppUtils from "./AppUtils";
-import * as AppState from "../../gen/ace/AppState";
 
 import {RootContainerComponent} from "../../gen/components/RootContainerComponent";
 
@@ -8,6 +7,7 @@ import ReactDOM from "react-dom";
 
 export * from "../../gen/ace/Timeline";
 export {dumpAppState} from "./AppUtils";
+export {getAppState} from "./AppUtils";
 
 AppUtils.createInitialAppState();
 

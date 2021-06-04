@@ -6,7 +6,8 @@
   "scripts": {
     "uglify": "uglifyjs lib/anfelisa_1.3.2.js --compress --mangle --output lib/anfelisa_1.3.2.min.js",
     "build": "NODE_PATH=./src/components:./src NODE_ENV=production browserify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.3.2.js --standalone Anfelisa",
-    "start": "watchify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.3.2.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_1.3.2.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --browser='Google Chrome'"
+    "start": "watchify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.3.2.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_1.3.2.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --browser='Google Chrome'",
+    "test": "jasmine"
   },
   "author": "Annette Pohl",
   "license": "ISC",
@@ -22,8 +23,11 @@
     "@babel/preset-react": "^7.13.13",
     "babelify": "^10.0.0",
     "browserify": "^16.5.2",
-    "cypress": "^6.8.0",
+    "chromedriver": "^91.0.0",
+    "geckodriver": "^2.0.0",
+    "jasmine": "^3.7.0",
     "live-server": "^1.2.1",
+    "selenium-webdriver": "^4.0.0-beta.3",
     "uglify-js": "^3.13.3",
     "watchify": "^3.11.1"
   }

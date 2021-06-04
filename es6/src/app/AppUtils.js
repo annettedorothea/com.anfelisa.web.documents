@@ -43,6 +43,10 @@ export function dumpAppState() {
     console.info(AppState.getAppState());
 }
 
+export function getAppState() {
+    return AppState.getAppState();
+}
+
 export default class AppUtils {
 
     static initEventListenersAndActionFactories() {
@@ -104,11 +108,7 @@ export default class AppUtils {
     }
 
     static createInitialAppState() {
-        const initialAppState = {
-            message: null,
-            spinner: {}
-        };
-        AppState.setInitialAppState(initialAppState);
+        AppState.setInitialAppState({});
     }
 
     static createHeaders(authorize) {
@@ -214,7 +214,7 @@ export default class AppUtils {
                 displayVersionMismatchErrorDialog();
             } else {
                 if (typeof error !== "object") {
-                    displayToast(AppUtils.createError("unknownError", error ));
+                    displayToast(AppUtils.createError("unknownError", error));
                 } else {
                     displayToast(error);
                 }
@@ -240,7 +240,7 @@ export default class AppUtils {
     }
 
     static isUnauthorized(message) {
-        return (message && message.code && message.code === 401 );
+        return (message && message.code && message.code === 401);
     }
 
     static getMessageText(message, language) {
