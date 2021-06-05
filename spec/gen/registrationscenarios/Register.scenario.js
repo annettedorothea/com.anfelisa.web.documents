@@ -10,21 +10,20 @@ const RegistrationActionIds  = require("../../gen/actionIds/registration/Registr
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
 const Verifications = require("../../src/registrationscenarios/RegisterVerifications");
 const { Builder } = require('selenium-webdriver');
-require('chromedriver');
-require('geckodriver');
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 20 * 1000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
 const testId = ScenarioUtils.generateTestId();
 
-const driver = new Builder()
-    .forBrowser('firefox')
-    .build();
+let driver;
+
+let appState;
     
-describe("Register", function () {
-    beforeEach(async function () {
-    	let nonDeterministicValues;
-    	let nonDeterministicValue;
+describe("registrationscenarios.Register", function () {
+    beforeAll(async function () {
+    	driver = new Builder()
+    			    .forBrowser(ScenarioUtils.browserName)
+    			    .build();
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.usernameChanged, [`username-${testId}`]);
@@ -32,32 +31,35 @@ describe("Register", function () {
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordRepetitionChanged, [`password`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`password`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.emailChanged, [`info@anfelisa.de`]);
-    });
-    afterEach(async function () {
-        await driver.quit();
-    });
 
-    it("userLoggedIn role infoShown loginDataWasNotSetInLocalStorage", async function () {
-		let nonDeterministicValue;
-		nonDeterministicValues = JSON.parse(localStorage.getItem('nonDeterministicValues'));
-		if (!nonDeterministicValues) {
-			nonDeterministicValues = [];
-		}
-		nonDeterministicValue = {
-			uuid: `uuid-${testId}`
-		};
-		nonDeterministicValues.push(nonDeterministicValue);
-		AppUtils.httpPut(`/api/test/non-deterministic/value?uuid=uuid-${testId}&key=token&value=${testId}-TOKEN`);
-		localStorage.setItem('nonDeterministicValues', JSON.stringify(nonDeterministicValues));
+		await ScenarioUtils.addNonDeterministicValueClient(
+			driver,
+			{
+				uuid: `uuid-${testId}`
+			}
+		);
+		await ScenarioUtils.addNonDeterministicValueServer(driver, `uuid-${testId}`, "token", `${testId}-TOKEN`);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.registerUser);
 		await ScenarioUtils.waitInMillis(1000);
-		const appState = await ScenarioUtils.getAppState(driver);
+		
+		appState = await ScenarioUtils.getAppState(driver);
+    });
+
+    afterAll(async function () {
+        await ScenarioUtils.tearDown(driver);
+    });
+    
+	it("userLoggedIn", async () => {
 		expect(appState.rootContainer.loggedInUser, "userLoggedIn").toEqual({ 
 			password : `5f4dcc3b5aa765d61d8327deb882cf99`,
 			username : `username-${testId}`
 		}
 		)
+	});
+	it("role", async () => {
 		expect(appState.rootContainer.role, "role").toEqual(`STUDENT`)
+	});
+	it("infoShown", async () => {
 		expect(appState.rootContainer.messages, "infoShown").toEqual([
 			{ 
 				textKey : `confirmEmail`,
@@ -67,8 +69,12 @@ describe("Register", function () {
 			}
 		]
 		)
-		Verifications.loginDataWasNotSetInLocalStorage(driver, testId);
 	});
+    
+	it("loginDataWasNotSetInLocalStorage", async () => {
+		await Verifications.loginDataWasNotSetInLocalStorage(driver, testId);
+	});
+    
 });
 
 

@@ -10,34 +10,40 @@ const RegistrationActionIds  = require("../../gen/actionIds/registration/Registr
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
 const Verifications = require("../../src/registrationscenarios/UsernameChangedVerifications");
 const { Builder } = require('selenium-webdriver');
-require('chromedriver');
-require('geckodriver');
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 20 * 1000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
 const testId = ScenarioUtils.generateTestId();
 
-const driver = new Builder()
-    .forBrowser('firefox')
-    .build();
+let driver;
+
+let appState;
     
-describe("UsernameChanged", function () {
-    beforeEach(async function () {
-    	let nonDeterministicValues;
-    	let nonDeterministicValue;
+describe("registrationscenarios.UsernameChanged", function () {
+    beforeAll(async function () {
+    	driver = new Builder()
+    			    .forBrowser(ScenarioUtils.browserName)
+    			    .build();
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);
-    });
-    afterEach(async function () {
-        await driver.quit();
+
+		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.usernameChanged, [`username-${testId}`]);
+		
+		appState = await ScenarioUtils.getAppState(driver);
     });
 
-    it("username registerDisabled", async function () {
-		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.usernameChanged, [`username-${testId}`]);
-		const appState = await ScenarioUtils.getAppState(driver);
+    afterAll(async function () {
+        await ScenarioUtils.tearDown(driver);
+    });
+    
+	it("username", async () => {
 		expect(appState.rootContainer.mainView.username, "username").toEqual(`username-${testId}`)
-		Verifications.registerDisabled(driver, testId);
 	});
+    
+	it("registerDisabled", async () => {
+		await Verifications.registerDisabled(driver, testId);
+	});
+    
 });
 
 

@@ -31,7 +31,7 @@ HideToast
 		
 DestroyToast
 	GIVEN loginscenarios.LoginUnauthorized 
-	WHEN delayInMillis 8000
+	WHEN delayInMillis 7000
 	THEN expectedState 
 		errorDestroyed common.rootContainer.messages shouldBe []
 		

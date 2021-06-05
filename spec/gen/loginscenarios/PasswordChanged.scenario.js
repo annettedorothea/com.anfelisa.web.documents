@@ -9,33 +9,37 @@ const ScenarioUtils = require("../../src/ScenarioUtils");
 const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
 const { Builder } = require('selenium-webdriver');
-require('chromedriver');
-require('geckodriver');
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 20 * 1000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
 const testId = ScenarioUtils.generateTestId();
 
-const driver = new Builder()
-    .forBrowser('firefox')
-    .build();
+let driver;
+
+let appState;
     
-describe("PasswordChanged", function () {
-    beforeEach(async function () {
-    	let nonDeterministicValues;
-    	let nonDeterministicValue;
+describe("loginscenarios.PasswordChanged", function () {
+    beforeAll(async function () {
+    	driver = new Builder()
+    			    .forBrowser(ScenarioUtils.browserName)
+    			    .build();
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
-    });
-    afterEach(async function () {
-        await driver.quit();
+
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
+		
+		appState = await ScenarioUtils.getAppState(driver);
     });
 
-    it("password ", async function () {
-		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
-		const appState = await ScenarioUtils.getAppState(driver);
+    afterAll(async function () {
+        await ScenarioUtils.tearDown(driver);
+    });
+    
+	it("password", async () => {
 		expect(appState.rootContainer.mainView.password, "password").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
+    
+    
 });
 
 

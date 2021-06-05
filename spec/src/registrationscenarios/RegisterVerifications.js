@@ -3,11 +3,13 @@
  ********************************************************************************/
 
 
+const ScenarioUtils = require("../ScenarioUtils");
 
 
 module.exports = {
-	loginDataWasNotSetInLocalStorage: function(testId) {
-		fail("loginDataWasNotSetInLocalStorage not implemented");
+	loginDataWasNotSetInLocalStorage: async function(driver, testId) {
+		expect(await ScenarioUtils.getValueFromLocalStorage(driver, "username")).toBeNull();
+		expect(await ScenarioUtils.getValueFromLocalStorage(driver, "password")).toBeNull();
 	}
 }
 

@@ -8,6 +8,9 @@ import ReactDOM from "react-dom";
 export * from "../../gen/ace/Timeline";
 export {dumpAppState} from "./AppUtils";
 export {getAppState} from "./AppUtils";
+export {addNonDeterministicValueClient} from "./AppUtils";
+export {addNonDeterministicValueServer} from "./AppUtils";
+export {getValueFromLocalStorage} from "./AppUtils";
 
 AppUtils.createInitialAppState();
 

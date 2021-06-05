@@ -9,21 +9,20 @@ const ScenarioUtils = require("../../src/ScenarioUtils");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
 const RegistrationActionIds  = require("../../gen/actionIds/registration/RegistrationActionIds");
 const { Builder } = require('selenium-webdriver');
-require('chromedriver');
-require('geckodriver');
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 20 * 1000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
 const testId = ScenarioUtils.generateTestId();
 
-const driver = new Builder()
-    .forBrowser('firefox')
-    .build();
+let driver;
+
+let appState;
     
-describe("Logout", function () {
-    beforeEach(async function () {
-    	let nonDeterministicValues;
-    	let nonDeterministicValue;
+describe("commonscenarios.Logout", function () {
+    beforeAll(async function () {
+    	driver = new Builder()
+    			    .forBrowser(ScenarioUtils.browserName)
+    			    .build();
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.usernameChanged, [`username-${testId}`]);
@@ -31,29 +30,31 @@ describe("Logout", function () {
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordRepetitionChanged, [`password`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`password`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.emailChanged, [`info@anfelisa.de`]);
-		nonDeterministicValues = JSON.parse(localStorage.getItem('nonDeterministicValues'));
-		if (!nonDeterministicValues) {
-			nonDeterministicValues = [];
-		}
-		nonDeterministicValue = {
-			uuid: `uuid-${testId}`
-		};
-		nonDeterministicValues.push(nonDeterministicValue);
-		AppUtils.httpPut(`/api/test/non-deterministic/value?uuid=uuid-${testId}&key=token&value=${testId}-TOKEN`);
-		localStorage.setItem('nonDeterministicValues', JSON.stringify(nonDeterministicValues));
+		await ScenarioUtils.addNonDeterministicValueClient(
+			driver,
+			{
+				uuid: `uuid-${testId}`
+			}
+		);
+		await ScenarioUtils.addNonDeterministicValueServer(driver, `uuid-${testId}`, "token", `${testId}-TOKEN`);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.registerUser);
 		await ScenarioUtils.waitInMillis(1000);
-    });
-    afterEach(async function () {
-        await driver.quit();
-    });
 
-    it("loggedInUser ", async function () {
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.logout);
 		await ScenarioUtils.waitInMillis(1000);
-		const appState = await ScenarioUtils.getAppState(driver);
+		
+		appState = await ScenarioUtils.getAppState(driver);
+    });
+
+    afterAll(async function () {
+        await ScenarioUtils.tearDown(driver);
+    });
+    
+	it("loggedInUser", async () => {
 		expect(appState.rootContainer.loggedInUser, "loggedInUser").toEqual(null)
 	});
+    
+    
 });
 
 

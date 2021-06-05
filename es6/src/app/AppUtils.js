@@ -43,10 +43,6 @@ export function dumpAppState() {
     console.info(AppState.getAppState());
 }
 
-export function getAppState() {
-    return AppState.getAppState();
-}
-
 export default class AppUtils {
 
     static initEventListenersAndActionFactories() {
@@ -277,6 +273,29 @@ export default class AppUtils {
     }
 
 }
+
+// for Selenium tests
+export function getAppState() {
+    return AppState.getAppState();
+}
+
+export function addNonDeterministicValueClient(value) {
+    let nonDeterministicValues = JSON.parse(localStorage.getItem('nonDeterministicValues'));
+    if (!nonDeterministicValues) {
+        nonDeterministicValues = [];
+    }
+    nonDeterministicValues.push(JSON.parse(value));
+    localStorage.setItem('nonDeterministicValues', JSON.stringify(nonDeterministicValues));
+}
+
+export function addNonDeterministicValueServer(uuid, key, value) {
+    AppUtils.httpPut(`/api/test/non-deterministic/value?uuid=${uuid}&key=${key}&value=${value}`);
+}
+
+export function getValueFromLocalStorage(key) {
+    return localStorage.getItem(key);
+}
+
 
 /*       S.D.G.       */
 

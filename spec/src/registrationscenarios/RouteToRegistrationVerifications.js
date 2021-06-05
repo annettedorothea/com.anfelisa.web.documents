@@ -3,12 +3,11 @@
  ********************************************************************************/
 
 
+const {registerDisabled} = require("./Utils");
 
 
 module.exports = {
-	registerDisabled: function(testId) {
-		fail("registerDisabled not implemented");
-	}
+	registerDisabled: registerDisabled
 }
 
 

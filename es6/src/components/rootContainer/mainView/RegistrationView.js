@@ -80,19 +80,20 @@ export function uiElement(props) {
                     </div>
                 </div>
                 <div className="moreMarginLine hCenter">
-                    <button onClick={registerUser}
-                            disabled={
-                                props.available === false ||
-                                props.emailInvalid === true ||
-                                props.passwordMismatch === true ||
-                                (!props.username || props.username && props.username.length === 0) ||
-                                (!props.email || props.email && props.email.length === 0) ||
-                                (!props.password || props.password && props.password.length === 0)
-                            }>
+                    <button
+                        id="register"
+                        onClick={registerUser}
+                        disabled={
+                            props.available === false ||
+                            props.emailInvalid === true ||
+                            props.passwordMismatch === true ||
+                            (!props.username || props.username && props.username.length === 0) ||
+                            (!props.email || props.email && props.email.length === 0) ||
+                            (!props.password || props.password && props.password.length === 0)
+                        }>
                         {Texts.registration.register[props.language]}
                     </button>
                     <button
-                        id="register"
                         onClick={() => route("#")}>{Texts.registration.cancel[props.language]}
                     </button>
                 </div>

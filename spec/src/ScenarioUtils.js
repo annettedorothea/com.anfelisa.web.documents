@@ -11,69 +11,60 @@ const LoginActionIds = require("../gen/actionIds/login/LoginActionIds");
 const RegistrationActionIds = require("../gen/actionIds/registration/RegistrationActionIds");
 
 module.exports = {
+	tearDown: async function(driver) {
+		await driver.quit();
+	},
+
 	invokeAction: async function(driver, action, args) {
 		if (CommonActionIds.init === action) {
-			console.log("+ init");
 			await driver.get('http://127.0.0.1:8888/');
 			await driver.wait(until.elementLocated(By.id('username')), 5000);
-			console.log("- init");
 		}
 		if (CommonActionIds.route === action) {
 			if (args[0] === "#registration") {
-				await driver.wait(until.elementLocated(By.id('registration')), 5000);
-				await driver.findElement(By.id('registration')).click();
+				await click(driver, 'registration');
 			}
 		}
 		if (CommonActionIds.logout === action) {
-			await driver.wait(until.elementLocated(By.id('logout')), 5000);
-			await driver.findElement(By.id('logout')).click();
+			await click(driver, 'logout');
 		}
 
 		if (LoginActionIds.usernameChanged === action) {
-			console.log("+ usernameChanged");
-			await driver.wait(until.elementLocated(By.id('username')), 5000);
-			await driver.findElement(By.id('username')).sendKeys(args[0]);
-			console.log("- usernameChanged");
+			await waitClearSendKeys(driver, 'username', args[0]);
 		}
 		if (LoginActionIds.passwordChanged === action) {
-			await driver.wait(until.elementLocated(By.id('password')), 5000);
-			await driver.findElement(By.id('password')).sendKeys(args[0]);
+			await waitClearSendKeys(driver, 'password', args[0]);
 		}
 		if (LoginActionIds.toggleSaveInLocalStorage === action) {
-			await driver.wait(until.elementLocated(By.id('saveInLocalStorage')), 5000);
-			await driver.findElement(By.id('saveInLocalStorage')).click();
+			await click(driver, 'saveInLocalStorage');
 		}
 		if (LoginActionIds.login === action) {
-			await driver.wait(until.elementLocated(By.id('login')), 5000);
-			await driver.findElement(By.id('login')).click();
+			await click(driver, 'login');
+			await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'logout') or (contains(@class,'error'))]")), 5000);
 		}
 
 		if (RegistrationActionIds.usernameChanged === action) {
-			await driver.wait(until.elementLocated(By.id('username')), 5000);
-			await driver.findElement(By.id('username')).sendKeys(args[0]);
+			await waitClearSendKeys(driver, 'username', args[0]);
 		}
 		if (RegistrationActionIds.passwordChanged === action) {
-			await driver.wait(until.elementLocated(By.id('password')), 5000);
-			await driver.findElement(By.id('password')).sendKeys(args[0]);
+			await waitClearSendKeys(driver, 'password', args[0]);
 		}
 		if (RegistrationActionIds.passwordRepetitionChanged === action) {
-			await driver.wait(until.elementLocated(By.id('passwordRepetition')), 5000);
-			await driver.findElement(By.id('passwordRepetition')).sendKeys(args[0]);
+			await waitClearSendKeys(driver, 'passwordRepetition', args[0]);
 		}
 		if (RegistrationActionIds.emailChanged === action) {
-			await driver.wait(until.elementLocated(By.id('email')), 5000);
-			await driver.findElement(By.id('email')).sendKeys(args[0]);
+			await waitClearSendKeys(driver, 'email', args[0]);
 		}
 		if (RegistrationActionIds.registerUser === action) {
-			await driver.wait(until.elementLocated(By.id('register')), 5000);
-			await driver.findElement(By.id('register')).click();
+			await click(driver, 'register');
+			await driver.wait(until.elementLocated(By.id('logout')), 5000);
 		}
 		if (RegistrationActionIds.confirmEmail === action) {
 			await driver.get(`http://127.0.0.1:8888/#confirmemail/${args[0]}/${args[1]}`);
-			await driver.wait(until.elementLocated(By.id('rootContainer')), 5000);
+			await this.waitInMillis(1000);
 		}
 	},
-	
+
 	waitInMillis: async function(millis) {
 		return new Promise(function(resolve){
 			setTimeout(resolve,millis);
@@ -83,7 +74,20 @@ module.exports = {
 	getAppState: async function(driver) {
 		return await driver.executeScript('return Anfelisa.getAppState()');
 	},
-	
+
+	getValueFromLocalStorage: async function(driver, key) {
+		return await driver.executeScript(`return Anfelisa.getValueFromLocalStorage('${key}')`);
+	},
+
+	addNonDeterministicValueClient: async function(driver, value) {
+		const jsonValue = JSON.stringify(value);
+		await driver.executeScript(`Anfelisa.addNonDeterministicValueClient('${jsonValue}')`);
+	},
+
+	addNonDeterministicValueServer: async function(driver, uuid, key, value) {
+		await driver.executeScript(`Anfelisa.addNonDeterministicValueServer("${uuid}", "${key}", "${value}")`);
+	},
+
 	generateTestId: function() {
 	    let d = new Date().getTime();
 	    return 'xxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -91,7 +95,23 @@ module.exports = {
 	        d = Math.floor(d / 16);
 	        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
 	    });
-	}
+	},
+
+	defaultTimeout: 30 * 1000,
+
+	browserName: "firefox"
+
+}
+
+async function waitClearSendKeys(driver, id, value) {
+	await driver.wait(until.elementLocated(By.id(id)), 5000);
+	await driver.findElement(By.id(id)).clear();
+	await driver.findElement(By.id(id)).sendKeys(value);
+}
+
+async function click(driver, id) {
+	await driver.wait(until.elementLocated(By.id(id)), 5000);
+	await driver.findElement(By.id(id)).click();
 }
 
 

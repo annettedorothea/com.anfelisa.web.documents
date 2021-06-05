@@ -9,32 +9,36 @@ const ScenarioUtils = require("../../src/ScenarioUtils");
 const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
 const { Builder } = require('selenium-webdriver');
-require('chromedriver');
-require('geckodriver');
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 20 * 1000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
 const testId = ScenarioUtils.generateTestId();
 
-const driver = new Builder()
-    .forBrowser('firefox')
-    .build();
+let driver;
+
+let appState;
     
-describe("UsernameChanged", function () {
-    beforeEach(async function () {
-    	let nonDeterministicValues;
-    	let nonDeterministicValue;
+describe("loginscenarios.UsernameChanged", function () {
+    beforeAll(async function () {
+    	driver = new Builder()
+    			    .forBrowser(ScenarioUtils.browserName)
+    			    .build();
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
-    });
-    afterEach(async function () {
-        await driver.quit();
+
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
+		
+		appState = await ScenarioUtils.getAppState(driver);
     });
 
-    it("username ", async function () {
-		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
-		const appState = await ScenarioUtils.getAppState(driver);
+    afterAll(async function () {
+        await ScenarioUtils.tearDown(driver);
+    });
+    
+	it("username", async () => {
 		expect(appState.rootContainer.mainView.username, "username").toEqual(`username-${testId}`)
 	});
+    
+    
 });
 
 

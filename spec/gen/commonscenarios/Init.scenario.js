@@ -8,38 +8,52 @@
 const ScenarioUtils = require("../../src/ScenarioUtils");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
 const { Builder } = require('selenium-webdriver');
-require('chromedriver');
-require('geckodriver');
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 20 * 1000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
 const testId = ScenarioUtils.generateTestId();
 
-const driver = new Builder()
-    .forBrowser('firefox')
-    .build();
+let driver;
+
+let appState;
     
-describe("Init", function () {
-    beforeEach(async function () {
-    	let nonDeterministicValues;
-    	let nonDeterministicValue;
-    });
-    afterEach(async function () {
-        await driver.quit();
+describe("commonscenarios.Init", function () {
+    beforeAll(async function () {
+    	driver = new Builder()
+    			    .forBrowser(ScenarioUtils.browserName)
+    			    .build();
+
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
+		
+		appState = await ScenarioUtils.getAppState(driver);
     });
 
-    it("loggedInUser language messages username password saveInLocalStorage ", async function () {
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
-		const appState = await ScenarioUtils.getAppState(driver);
+    afterAll(async function () {
+        await ScenarioUtils.tearDown(driver);
+    });
+    
+	it("loggedInUser", async () => {
 		expect(appState.rootContainer.loggedInUser, "loggedInUser").toEqual(null)
+	});
+	it("language", async () => {
 		expect(appState.rootContainer.language, "language").toEqual(`de`)
+	});
+	it("messages", async () => {
 		expect(appState.rootContainer.messages, "messages").toEqual([
 		]
 		)
+	});
+	it("username", async () => {
 		expect(appState.rootContainer.mainView.username, "username").toEqual(``)
+	});
+	it("password", async () => {
 		expect(appState.rootContainer.mainView.password, "password").toEqual(``)
+	});
+	it("saveInLocalStorage", async () => {
 		expect(appState.rootContainer.mainView.saveInLocalStorage, "saveInLocalStorage").toEqual(false)
 	});
+    
+    
 });
 
 

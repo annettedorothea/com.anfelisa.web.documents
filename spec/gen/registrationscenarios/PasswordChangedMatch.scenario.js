@@ -10,39 +10,49 @@ const RegistrationActionIds  = require("../../gen/actionIds/registration/Registr
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
 const Verifications = require("../../src/registrationscenarios/PasswordChangedMatchVerifications");
 const { Builder } = require('selenium-webdriver');
-require('chromedriver');
-require('geckodriver');
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 20 * 1000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
 const testId = ScenarioUtils.generateTestId();
 
-const driver = new Builder()
-    .forBrowser('firefox')
-    .build();
+let driver;
+
+let appState;
     
-describe("PasswordChangedMatch", function () {
-    beforeEach(async function () {
-    	let nonDeterministicValues;
-    	let nonDeterministicValue;
+describe("registrationscenarios.PasswordChangedMatch", function () {
+    beforeAll(async function () {
+    	driver = new Builder()
+    			    .forBrowser(ScenarioUtils.browserName)
+    			    .build();
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.usernameChanged, [`username-${testId}`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`pas`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordRepetitionChanged, [`password`]);
-    });
-    afterEach(async function () {
-        await driver.quit();
+
+		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`password`]);
+		
+		appState = await ScenarioUtils.getAppState(driver);
     });
 
-    it("password passwordRepetition passwordMatch registerDisabled", async function () {
-		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`password`]);
-		const appState = await ScenarioUtils.getAppState(driver);
+    afterAll(async function () {
+        await ScenarioUtils.tearDown(driver);
+    });
+    
+	it("password", async () => {
 		expect(appState.rootContainer.mainView.password, "password").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
-		expect(appState.rootContainer.mainView.passwordRepetition, "passwordRepetition").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
-		expect(appState.rootContainer.mainView.passwordMismatch, "passwordMatch").toEqual(false)
-		Verifications.registerDisabled(driver, testId);
 	});
+	it("passwordRepetition", async () => {
+		expect(appState.rootContainer.mainView.passwordRepetition, "passwordRepetition").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
+	});
+	it("passwordMatch", async () => {
+		expect(appState.rootContainer.mainView.passwordMismatch, "passwordMatch").toEqual(false)
+	});
+    
+	it("registerDisabled", async () => {
+		await Verifications.registerDisabled(driver, testId);
+	});
+    
 });
 
 

@@ -5,12 +5,12 @@
 
 
 
-module.exports = {
-	registerEnabled: function(testId) {
-		fail("registerEnabled not implemented");
-	}
-}
+const {registerEnabled} = require("./Utils");
 
+
+module.exports = {
+	registerEnabled: registerEnabled
+}
 
 
 /******* S.D.G. *******/
