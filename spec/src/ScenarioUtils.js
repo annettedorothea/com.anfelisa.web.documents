@@ -16,17 +16,23 @@ module.exports = {
 	},
 
 	invokeAction: async function(driver, action, args) {
+		//console.log("invokeAction", action);
 		if (CommonActionIds.init === action) {
 			await driver.get('http://127.0.0.1:8888/');
-			await driver.wait(until.elementLocated(By.id('username')), 5000);
+			await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'logout') or (contains(@id,'username'))]")), 5000);
 		}
 		if (CommonActionIds.route === action) {
 			if (args[0] === "#registration") {
 				await click(driver, 'registration');
+			} else if (args[0] === "#box/create") {
+				await clickByClass(driver, 'box-create');
 			}
 		}
 		if (CommonActionIds.logout === action) {
 			await click(driver, 'logout');
+		}
+		if (CommonActionIds.hideToast === action) {
+			await clickByClass(driver, 'toast');
 		}
 
 		if (LoginActionIds.usernameChanged === action) {
@@ -112,6 +118,11 @@ async function waitClearSendKeys(driver, id, value) {
 async function click(driver, id) {
 	await driver.wait(until.elementLocated(By.id(id)), 5000);
 	await driver.findElement(By.id(id)).click();
+}
+
+async function clickByClass(driver, className) {
+	await driver.wait(until.elementLocated(By.css(`.${className}`)), 5000);
+	await driver.findElement(By.css(`.${className}`)).click();
 }
 
 

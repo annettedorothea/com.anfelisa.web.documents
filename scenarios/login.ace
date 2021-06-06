@@ -2,7 +2,6 @@ HttpClient loginscenarios
 
 scenarios
 
-
 UsernameChanged
 	GIVEN commonscenarios.Init
 	WHEN login.UsernameChanged(username: "username-${testId}")

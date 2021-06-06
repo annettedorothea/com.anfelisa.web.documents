@@ -12,7 +12,18 @@ Init
 		password common.rootContainer.mainView.loginView.password shouldBe ""
 		saveInLocalStorage common.rootContainer.mainView.loginView.saveInLocalStorage shouldBe false
 
-
+InitWithInitialLogin 
+	GIVEN loginscenarios.LoginWithSaveInLocalStorage
+	WHEN common.Init
+	THEN 
+		expectedState 
+			userLoggedIn common.rootContainer.loggedInUser shouldBe {
+				password: "5f4dcc3b5aa765d61d8327deb882cf99",
+				username: "username-${testId}"
+			}
+			role common.rootContainer.role shouldBe "STUDENT"
+		verifications
+			loginDataWasSetInLocalStorage
 
 HideToast
 	GIVEN loginscenarios.LoginUnauthorized 
@@ -35,11 +46,20 @@ DestroyToast
 	THEN expectedState 
 		errorDestroyed common.rootContainer.messages shouldBe []
 		
+HideToastClick
+	GIVEN loginscenarios.LoginUnauthorized 
+	WHEN common.HideToast
+	THEN expectedState 
+		errorDestroyed common.rootContainer.messages shouldBe []
+		
 Logout
 	GIVEN registrationscenarios.Register
 	WHEN common.Logout delayInMillis 1000
 	THEN expectedState
 		loggedInUser common.rootContainer.loggedInUser shouldBe null
+		
+		
+
 		
 
 		

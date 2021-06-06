@@ -1,0 +1,28 @@
+HttpClient boxscenarios
+
+scenarios 
+
+RouteToBoxCreate
+	GIVEN registrationscenarios.Register
+	WHEN common.Route(hash: "#box/create")
+	THEN 
+		expectedState
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe undefined
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe undefined
+			tooManyCardsStatus common.rootContainer.mainView.boxSettingsView.tooManyCardsStatus shouldBe undefined
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe undefined
+			boxId common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			maxInterval common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			categoryName common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			givenLanguage common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			wantedLanguage common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			categoryId common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			shared common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			allActiveCards common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			allCards common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			
+			
+			
+	
