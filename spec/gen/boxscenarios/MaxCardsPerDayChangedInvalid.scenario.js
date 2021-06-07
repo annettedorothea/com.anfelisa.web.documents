@@ -6,9 +6,10 @@
 
 
 const ScenarioUtils = require("../../src/ScenarioUtils");
+const BoxActionIds  = require("../../gen/actionIds/box/BoxActionIds");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
 const RegistrationActionIds  = require("../../gen/actionIds/registration/RegistrationActionIds");
-const Verifications = require("../../src/boxscenarios/RouteToBoxCreateVerifications");
+const Verifications = require("../../src/boxscenarios/MaxCardsPerDayChangedInvalidVerifications");
 const { Builder } = require('selenium-webdriver');
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
@@ -19,7 +20,7 @@ let driver;
 
 let appState;
     
-describe("boxscenarios.RouteToBoxCreate", function () {
+describe("boxscenarios.MaxCardsPerDayChangedInvalid", function () {
     beforeAll(async function () {
     	driver = new Builder()
     			    .forBrowser(ScenarioUtils.browserName)
@@ -40,8 +41,10 @@ describe("boxscenarios.RouteToBoxCreate", function () {
 		await ScenarioUtils.addNonDeterministicValueServer(driver, `uuid-${testId}`, "token", `${testId}-TOKEN`);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.registerUser);
 		await ScenarioUtils.waitInMillis(1000);
-
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#box/create`]);
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.categoryNameChanged, [`categoryName`]);
+
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.maxCardsPerDayChanged, [`0`]);
 		
 		appState = await ScenarioUtils.getAppState(driver);
     });
@@ -50,50 +53,11 @@ describe("boxscenarios.RouteToBoxCreate", function () {
         await ScenarioUtils.tearDown(driver);
     });
     
-	it("allActiveCards", async () => {
-		expect(appState.rootContainer.mainView.allActiveCards, "allActiveCards").toEqual(undefined)
-	});
-	it("allCards", async () => {
-		expect(appState.rootContainer.mainView.allCards, "allCards").toEqual(undefined)
-	});
-	it("dictionaryLookup", async () => {
-		expect(appState.rootContainer.mainView.dictionaryLookup, "dictionaryLookup").toEqual(false)
-	});
-	it("dictionaryLookupInvalid", async () => {
-		expect(appState.rootContainer.mainView.dictionaryLookupInvalid, "dictionaryLookupInvalid").toEqual(undefined)
-	});
-	it("boxId", async () => {
-		expect(appState.rootContainer.mainView.boxId, "boxId").toEqual(``)
-	});
-	it("categoryName", async () => {
-		expect(appState.rootContainer.mainView.categoryName, "categoryName").toEqual(``)
-	});
-	it("categoryId", async () => {
-		expect(appState.rootContainer.mainView.categoryId, "categoryId").toEqual(undefined)
-	});
-	it("givenLanguage", async () => {
-		expect(appState.rootContainer.mainView.givenLanguage, "givenLanguage").toEqual(``)
-	});
 	it("maxCardsPerDay", async () => {
-		expect(appState.rootContainer.mainView.maxCardsPerDay, "maxCardsPerDay").toEqual(8)
+		expect(appState.rootContainer.mainView.maxCardsPerDay, "maxCardsPerDay").toEqual(`0`)
 	});
 	it("maxCardsPerDayInvalid", async () => {
-		expect(appState.rootContainer.mainView.maxCardsPerDayInvalid, "maxCardsPerDayInvalid").toEqual(undefined)
-	});
-	it("maxInterval", async () => {
-		expect(appState.rootContainer.mainView.maxInterval, "maxInterval").toEqual(``)
-	});
-	it("maxIntervalInvalid", async () => {
-		expect(appState.rootContainer.mainView.maxIntervalInvalid, "maxIntervalInvalid").toEqual(undefined)
-	});
-	it("shared", async () => {
-		expect(appState.rootContainer.mainView.shared, "shared").toEqual(undefined)
-	});
-	it("tooManyCardsStatus", async () => {
-		expect(appState.rootContainer.mainView.tooManyCardsStatus, "tooManyCardsStatus").toEqual(undefined)
-	});
-	it("wantedLanguage", async () => {
-		expect(appState.rootContainer.mainView.wantedLanguage, "wantedLanguage").toEqual(``)
+		expect(appState.rootContainer.mainView.maxCardsPerDayInvalid, "maxCardsPerDayInvalid").toEqual(true)
 	});
     
 	it("saveDisabled", async () => {

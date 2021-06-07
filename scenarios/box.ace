@@ -7,22 +7,101 @@ RouteToBoxCreate
 	WHEN common.Route(hash: "#box/create")
 	THEN 
 		expectedState
-			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe undefined
-			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe undefined
-			tooManyCardsStatus common.rootContainer.mainView.boxSettingsView.tooManyCardsStatus shouldBe undefined
+			allActiveCards common.rootContainer.mainView.boxSettingsView.allActiveCards shouldBe undefined
+			allCards common.rootContainer.mainView.boxSettingsView.allCards shouldBe undefined
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe false
 			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe undefined
 			boxId common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
-			maxInterval common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
-			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
-			categoryName common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
-			dictionaryLookup common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
-			givenLanguage common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
-			wantedLanguage common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
-			categoryId common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
-			shared common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
-			allActiveCards common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
-			allCards common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			categoryName common.rootContainer.mainView.boxSettingsView.categoryName shouldBe ""
+			categoryId common.rootContainer.mainView.boxSettingsView.categoryId shouldBe undefined
+			givenLanguage common.rootContainer.mainView.boxSettingsView.givenLanguage shouldBe ""
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe 8
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe undefined
+			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe ""
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe undefined
+			shared common.rootContainer.mainView.boxSettingsView.shared shouldBe undefined
+			tooManyCardsStatus common.rootContainer.mainView.boxSettingsView.tooManyCardsStatus shouldBe undefined
+			wantedLanguage common.rootContainer.mainView.boxSettingsView.wantedLanguage shouldBe ""
+		verifications
+			saveDisabled
 			
 			
-			
-	
+CategoryNameChanged
+	GIVEN RouteToBoxCreate
+	WHEN box.CategoryNameChanged( categoryName: "categoryName" )
+	THEN 
+		expectedState
+			categoryName common.rootContainer.mainView.boxSettingsView.categoryName shouldBe "categoryName"
+		verifications
+			saveEnabled
+		
+MaxCardsPerDayChanged
+	GIVEN CategoryNameChanged
+	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: 12 )
+	THEN 
+		expectedState
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe "12"
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe false
+		verifications
+			saveEnabled
+		
+MaxCardsPerDayChangedEmpty
+	GIVEN CategoryNameChanged
+	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: "" )
+	THEN 
+		expectedState
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe ""
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe true
+		verifications
+			saveDisabled
+		
+MaxCardsPerDayChangedNaN
+	GIVEN CategoryNameChanged
+	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: "xxx" )
+	THEN 
+		expectedState
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe "xxx"
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe true
+		verifications
+			saveDisabled
+		
+MaxCardsPerDayChangedInvalid
+	GIVEN CategoryNameChanged
+	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: "0" )
+	THEN 
+		expectedState
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe "0"
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe true
+		verifications
+			saveDisabled
+		
+MaxIntervalChanged
+	GIVEN MaxCardsPerDayChanged
+	WHEN box.MaxIntervalChanged( maxInterval: 30 )
+	THEN 
+		expectedState
+			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe "30"
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe false
+		verifications
+			saveEnabled
+		
+MaxIntervalChangedNaN
+	GIVEN CategoryNameChanged
+	WHEN box.MaxIntervalChanged( maxInterval: "NaN" )
+	THEN 
+		expectedState
+			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe "NaN"
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe true
+		verifications
+			saveDisabled
+		
+MaxIntervalChangedInvalid
+	GIVEN CategoryNameChanged
+	WHEN box.MaxIntervalChanged( maxInterval: "0" )
+	THEN 
+		expectedState
+			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe "0"
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe true
+		verifications
+			saveDisabled
+		

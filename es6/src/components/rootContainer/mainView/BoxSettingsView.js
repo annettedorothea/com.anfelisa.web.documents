@@ -153,6 +153,7 @@ export function uiElement(props) {
             </div>
             <div className="moreMarginLine hCenter">
                 <button
+                    id="save"
                     onClick={() => props.boxId ? saveBoxSettings() : createRootCategory()}
                     disabled={(props.maxCardsPerDayInvalid ||
                         props.maxIntervalInvalid ||

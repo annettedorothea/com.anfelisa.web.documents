@@ -9,6 +9,7 @@ const { By, until } = require('selenium-webdriver');
 const CommonActionIds = require("../gen/actionIds/common/CommonActionIds");
 const LoginActionIds = require("../gen/actionIds/login/LoginActionIds");
 const RegistrationActionIds = require("../gen/actionIds/registration/RegistrationActionIds");
+const BoxActionIds = require("../gen/actionIds/box/BoxActionIds");
 
 module.exports = {
 	tearDown: async function(driver) {
@@ -69,6 +70,17 @@ module.exports = {
 			await driver.get(`http://127.0.0.1:8888/#confirmemail/${args[0]}/${args[1]}`);
 			await this.waitInMillis(1000);
 		}
+
+		if (BoxActionIds.categoryNameChanged === action) {
+			await waitClearSendKeys(driver, 'categoryName', args[0]);
+		}
+		if (BoxActionIds.maxCardsPerDayChanged === action) {
+			await waitClearSendKeys(driver, 'maxCardsPerDay', args[0]);
+		}
+		if (BoxActionIds.maxIntervalChanged === action) {
+			await waitClearSendKeys(driver, 'maxInterval', args[0]);
+		}
+
 	},
 
 	waitInMillis: async function(millis) {
