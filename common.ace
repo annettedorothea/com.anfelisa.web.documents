@@ -193,6 +193,9 @@ ui React_16.8 rootContainer {
 				quality5Count
 				List countsPerDayNextWeek
 				maxCardsPerDay
+				categoryAuthor
+				editable
+				reverse
 	    	}
 	        deleteBox {
 	            confirmDelete

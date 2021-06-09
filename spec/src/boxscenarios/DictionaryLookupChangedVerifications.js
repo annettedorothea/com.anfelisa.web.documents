@@ -3,15 +3,14 @@
  ********************************************************************************/
 
 
-const {saveDisabled, givenLanguageDisabled, wantedLanguageDisabled} = require("./Utils");
+const {saveDisabled, givenLanguageEnabled, wantedLanguageEnabled} = require("./Utils");
 
 
 module.exports = {
 	saveDisabled: saveDisabled,
-	givenLanguageDisabled: givenLanguageDisabled,
-	wantedLanguageDisabled: wantedLanguageDisabled,
+	givenLanguageEnabled: givenLanguageEnabled,
+	wantedLanguageEnabled: wantedLanguageEnabled,
 }
-
 
 
 /******* S.D.G. *******/

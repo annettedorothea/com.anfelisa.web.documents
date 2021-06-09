@@ -24,6 +24,8 @@ RouteToBoxCreate
 			wantedLanguage common.rootContainer.mainView.boxSettingsView.wantedLanguage shouldBe ""
 		verifications
 			saveDisabled
+			givenLanguageDisabled
+			wantedLanguageDisabled
 			
 			
 CategoryNameChanged
@@ -104,4 +106,111 @@ MaxIntervalChangedInvalid
 			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe true
 		verifications
 			saveDisabled
+		
+DictionaryLookupChanged
+	GIVEN CategoryNameChanged
+	WHEN box.DictionaryLookupChanged
+	THEN 
+		expectedState
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe true
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe true
+		verifications
+			saveDisabled
+			givenLanguageEnabled
+			wantedLanguageEnabled
+		
+		
+GivenLanguageChanged
+	GIVEN DictionaryLookupChanged
+	WHEN box.GivenLanguageChanged(givenLanguage: "de")
+	THEN 
+		expectedState
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe true
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe true
+			givenLanguage common.rootContainer.mainView.boxSettingsView.givenLanguage shouldBe "de"
+			wantedLanguage common.rootContainer.mainView.boxSettingsView.wantedLanguage shouldBe ""
+		verifications
+			saveDisabled
+			givenLanguageEnabled
+			wantedLanguageEnabled
+		
+WantedLanguageChanged
+	GIVEN GivenLanguageChanged
+	WHEN box.WantedLanguageChanged(wantedLanguage: "en")
+	THEN 
+		expectedState
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe true
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe false
+			givenLanguage common.rootContainer.mainView.boxSettingsView.givenLanguage shouldBe "de"
+			wantedLanguage common.rootContainer.mainView.boxSettingsView.wantedLanguage shouldBe "en"
+		verifications
+			saveEnabled
+			givenLanguageEnabled
+			wantedLanguageEnabled
+		
+CreateRootCategory
+	GIVEN WantedLanguageChanged
+	WHEN box.CreateRootCategory
+		nonDeterministicValues {
+			uuid "box-${testId}"
+		}
+	THEN 
+		expectedState 
+			boxList common.rootContainer.mainView.dashboardView.boxList shouldBe [
+				{
+					boxId: "box-${testId}",
+					categoryId: "box-${testId}",
+					categoryName: "categoryName",
+					countsPerDayNextWeek: [
+						0,0,0,0,0,0,0		
+					],
+					maxCardsPerDay: 8,
+					openTodaysCards: 0,
+					quality0Count: 0,
+					quality1Count: 0,
+					quality2Count: 0,
+					quality3Count: 0,
+					quality4Count: 0,
+					quality5Count: 0,
+					categoryAuthor: "username-${testId}",
+					reverse: false,
+					editable: true
+				}
+			]
+			deleteBox common.rootContainer.mainView.dashboardView.deleteBox shouldBe {
+				confirmDelete: false
+			}
+		
+CreateRootCategoryWithDefault
+	GIVEN CategoryNameChanged
+	WHEN box.CreateRootCategory
+		nonDeterministicValues {
+			uuid "box-${testId}"
+		}
+	THEN 
+		expectedState 
+			boxList common.rootContainer.mainView.dashboardView.boxList shouldBe [
+				{
+					boxId: "box-${testId}",
+					categoryId: "box-${testId}",
+					categoryName: "categoryName",
+					countsPerDayNextWeek: [
+						0,0,0,0,0,0,0		
+					],
+					maxCardsPerDay: 8,
+					openTodaysCards: 0,
+					quality0Count: 0,
+					quality1Count: 0,
+					quality2Count: 0,
+					quality3Count: 0,
+					quality4Count: 0,
+					quality5Count: 0,
+					categoryAuthor: "username-${testId}",
+					reverse: false,
+					editable: true
+				}
+			]
+			deleteBox common.rootContainer.mainView.dashboardView.deleteBox shouldBe {
+				confirmDelete: false
+			}
 		

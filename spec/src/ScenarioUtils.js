@@ -20,7 +20,7 @@ module.exports = {
 		//console.log("invokeAction", action);
 		if (CommonActionIds.init === action) {
 			await driver.get('http://127.0.0.1:8888/');
-			await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'logout') or (contains(@id,'username'))]")), 5000);
+			await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'dashboard') or (contains(@id,'username'))]")), 5000);
 		}
 		if (CommonActionIds.route === action) {
 			if (args[0] === "#registration") {
@@ -47,7 +47,7 @@ module.exports = {
 		}
 		if (LoginActionIds.login === action) {
 			await click(driver, 'login');
-			await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'logout') or (contains(@class,'error'))]")), 5000);
+			await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'dashboard') or (contains(@class,'error'))]")), 5000);
 		}
 
 		if (RegistrationActionIds.usernameChanged === action) {
@@ -64,7 +64,7 @@ module.exports = {
 		}
 		if (RegistrationActionIds.registerUser === action) {
 			await click(driver, 'register');
-			await driver.wait(until.elementLocated(By.id('logout')), 5000);
+			await driver.wait(until.elementLocated(By.id('dashboard')), 5000);
 		}
 		if (RegistrationActionIds.confirmEmail === action) {
 			await driver.get(`http://127.0.0.1:8888/#confirmemail/${args[0]}/${args[1]}`);
@@ -79,6 +79,19 @@ module.exports = {
 		}
 		if (BoxActionIds.maxIntervalChanged === action) {
 			await waitClearSendKeys(driver, 'maxInterval', args[0]);
+		}
+		if (BoxActionIds.dictionaryLookupChanged === action) {
+			await click(driver, 'dictionaryLookupEditCheckbox');
+		}
+		if (BoxActionIds.givenLanguageChanged === action) {
+			await driver.findElement(By.xpath(`//select[@id='givenLanguage']/option[@value='${args[0]}']`)).click();
+		}
+		if (BoxActionIds.wantedLanguageChanged === action) {
+			await driver.findElement(By.xpath(`//select[@id='wantedLanguage']/option[@value='${args[0]}']`)).click();
+		}
+		if (BoxActionIds.createRootCategory === action) {
+			await click(driver, 'save');
+			await driver.wait(until.elementLocated(By.css('.box')), 5000);
 		}
 
 	},

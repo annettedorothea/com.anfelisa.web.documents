@@ -9,7 +9,7 @@ import {DeleteBoxComponent} from "../../../../gen/components/rootContainer/mainV
 import {BoxListItemComponent} from "../../../../gen/components/rootContainer/mainView/dashboardView/BoxListItemComponent";
 
 export function uiElement(props) {
-    return <div>
+    return <div id="dashboard">
         <div className="bottomMargin">
             <DeleteBoxComponent language={props.language}/>
             <div>

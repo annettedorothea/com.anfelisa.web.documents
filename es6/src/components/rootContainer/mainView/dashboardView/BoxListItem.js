@@ -29,7 +29,7 @@ export function uiElement(props) {
     }
 
     return <a
-        className="tile"
+        className="tile box"
         onClick={() => props.openTodaysCards > 0 ?
             route(`#box/${props.boxId}`) :
             route(categoryRoute)}

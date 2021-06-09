@@ -133,6 +133,7 @@ export function uiElement(props) {
                     onChange={(e) => givenLanguageChanged(e.target.value)}
                     value={props.givenLanguage}
                     disabled={!props.dictionaryLookup || props.shared}
+                    id="givenLanguage"
                 >
                     <option value="">{Texts.boxSettings.languages.emtpyFrom[props.language]}</option>
                     <option value="de">{Texts.boxSettings.languages.de[props.language]}</option>
@@ -143,6 +144,7 @@ export function uiElement(props) {
                     onChange={(e) => wantedLanguageChanged(e.target.value)}
                     value={props.wantedLanguage}
                     disabled={!props.dictionaryLookup || props.shared}
+                    id="wantedLanguage"
                 >
                     <option value="">{Texts.boxSettings.languages.emtpyFrom[props.language]}</option>
                     <option value="de">{Texts.boxSettings.languages.de[props.language]}</option>
