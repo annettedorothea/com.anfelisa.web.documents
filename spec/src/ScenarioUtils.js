@@ -27,6 +27,9 @@ module.exports = {
 				await click(driver, 'registration');
 			} else if (args[0] === "#box/create") {
 				await clickByClass(driver, 'box-create');
+			} else if (args[0] === "#dashboard") {
+				await click(driver, 'cancel');
+				await this.waitInMillis(1000);
 			}
 		}
 		if (CommonActionIds.logout === action) {

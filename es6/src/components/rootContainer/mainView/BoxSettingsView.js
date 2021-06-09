@@ -166,6 +166,7 @@ export function uiElement(props) {
                     {Texts.boxSettings.save[props.language]}
                 </button>
                 <button
+                    id="cancel"
                     onClick={() => route("#dashboard")}>{Texts.boxSettings.cancel[props.language]}</button>
             </div>
         </div>

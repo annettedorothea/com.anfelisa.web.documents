@@ -28,6 +28,16 @@ RouteToBoxCreate
 			wantedLanguageDisabled
 			
 			
+CancelCreateBox
+	GIVEN RouteToBoxCreate
+	WHEN common.Route( hash: "#dashboard" )
+	THEN 
+		expectedState 
+			boxList common.rootContainer.mainView.dashboardView.boxList shouldBe []
+			deleteBox common.rootContainer.mainView.dashboardView.deleteBox shouldBe {
+				confirmDelete: false
+			}
+		
 CategoryNameChanged
 	GIVEN RouteToBoxCreate
 	WHEN box.CategoryNameChanged( categoryName: "categoryName" )
