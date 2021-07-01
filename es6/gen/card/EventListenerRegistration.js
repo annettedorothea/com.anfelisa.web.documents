@@ -38,8 +38,6 @@ export default class EventListenerRegistrationCard {
 		ACEController.registerListener('card.OnDragEnterOkEvent', AppState.set_rootContainer_authorView_cardView_dragTargetCardId);
 		ACEController.registerListener('card.OnDragExitOkEvent', AppState.set_rootContainer_authorView_cardView_dragTargetCardId);
 		ACEController.registerListener('card.SearchDuplicateCardsOkEvent', AppState.set_rootContainer_authorView_cardView_cardDuplicates);
-		ACEController.registerListener('card.TranslateWantedFetchedEvent', AppState.merge_rootContainer_authorView_cardView_newCard);
-		ACEController.registerListener('card.TranslateGivenFetchedEvent', AppState.merge_rootContainer_authorView_cardView_newCard);
 	}
 
 }

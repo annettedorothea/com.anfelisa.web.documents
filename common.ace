@@ -373,7 +373,6 @@ ui React_16.8 rootContainer {
 		        	wanted
 		        	index
 		        	displaySpinner
-		        	displayTranslateSpinner
 		        }
 		        List cardDuplicates {
 					cardId

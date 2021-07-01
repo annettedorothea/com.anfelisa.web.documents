@@ -146,7 +146,7 @@ export function uiElement(props) {
                     disabled={!props.dictionaryLookup || props.shared}
                     id="wantedLanguage"
                 >
-                    <option value="">{Texts.boxSettings.languages.emtpyFrom[props.language]}</option>
+                    <option value="">{Texts.boxSettings.languages.emtpyTo[props.language]}</option>
                     <option value="de">{Texts.boxSettings.languages.de[props.language]}</option>
                     <option value="en">{Texts.boxSettings.languages.en[props.language]}</option>
                     <option value="fr">{Texts.boxSettings.languages.fr[props.language]}</option>

@@ -93,9 +93,9 @@ EmailChangedInvalid
 Register
 	GIVEN EmailChanged
 	WHEN registration.RegisterUser
-		nonDeterministicValues {
+		squishyValues {
 			uuid "uuid-${testId}"
-			nonDeterministic com.anfelisa.user.ConfirmEmail.token : "${testId}-TOKEN"
+			squishy com.anfelisa.user.ConfirmEmail.token : "${testId}-TOKEN"
 		}
 		delayInMillis 1000
 	THEN 

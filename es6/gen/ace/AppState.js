@@ -5892,9 +5892,6 @@ export function merge_rootContainer_authorView_cardView_newCard(eventData) {
 	if (eventData.displaySpinner !== undefined) {
 		appState.rootContainer.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
 	}
-	if (eventData.displayTranslateSpinner !== undefined) {
-		appState.rootContainer.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
-	}
 	const newAppState = getAppState();
 	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);
@@ -6055,46 +6052,6 @@ export function set_rootContainer_authorView_cardView_newCard_displaySpinner(eve
 		appState.rootContainer.mainView.cardView.newCard = {};
 	}
 	appState.rootContainer.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
-	const newAppState = getAppState();
-	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
-	AppUtils.stateUpdated(newAppState);
-}
-
-export function get_rootContainer_authorView_cardView_newCard_displayTranslateSpinner() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isAuthorView !== true) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.cardView) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView.cardView.newCard) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.cardView.newCard.displayTranslateSpinner;
-}
-
-export function set_rootContainer_authorView_cardView_newCard_displayTranslateSpinner(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
-		appState.rootContainer.mainView = {
-			isAuthorView : true
-		};
-	}
-	if (!appState.rootContainer.mainView.cardView) {
-		appState.rootContainer.mainView.cardView = {};
-	}
-	if (!appState.rootContainer.mainView.cardView.newCard) {
-		appState.rootContainer.mainView.cardView.newCard = {};
-	}
-	appState.rootContainer.mainView.cardView.newCard.displayTranslateSpinner = eventData.displayTranslateSpinner;
 	const newAppState = getAppState();
 	setNewCardState(AppUtils.deepCopy(appState.rootContainer.mainView.cardView.newCard));
 	AppUtils.stateUpdated(newAppState);

@@ -161,7 +161,7 @@ WantedLanguageChanged
 CreateRootCategory
 	GIVEN WantedLanguageChanged
 	WHEN box.CreateRootCategory
-		nonDeterministicValues {
+		squishyValues {
 			uuid "box-${testId}"
 		}
 	THEN 
@@ -194,7 +194,7 @@ CreateRootCategory
 CreateRootCategoryWithDefault
 	GIVEN CategoryNameChanged
 	WHEN box.CreateRootCategory
-		nonDeterministicValues {
+		squishyValues {
 			uuid "box-${testId}"
 		}
 	THEN 

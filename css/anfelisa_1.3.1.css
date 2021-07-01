@@ -548,10 +548,9 @@ a:hover.tile {
 
 .tile h2 {
     text-align: center;
-    max-height: 18px;
+    max-height: 24px;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 0 24px;
 }
 
 a:hover.tile h2 {
@@ -814,7 +813,6 @@ a:hover.tile h2 {
 }
 
 .box h2 {
-    margin-bottom: 20px;
     font-size: 20px;
 }
 

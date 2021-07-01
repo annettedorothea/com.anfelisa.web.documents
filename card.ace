@@ -186,20 +186,5 @@ ACE
 		loadingFlag common.rootContainer.mainView.authorView.cardView.newCard.displaySpinner 
 		on ok ( set common.rootContainer.mainView.authorView.cardView.cardDuplicates )
 		
-	Translate 
-		fromAppState (
-			common.rootContainer.mainView.authorView.cardView.naturalInputOrder,
-			common.rootContainer.mainView.authorView.cardView.newCard.given,
-			common.rootContainer.mainView.authorView.cardView.newCard.wanted,
-			common.rootContainer.mainView.authorView.categoryTree.rootCategory.givenLanguage,
-			common.rootContainer.mainView.authorView.categoryTree.rootCategory.wantedLanguage
-		)
-		call com.anfelisa.card.GetTranslation
-		loadingFlag common.rootContainer.mainView.authorView.cardView.newCard.displayTranslateSpinner 
-		on wantedFetched (merge common.rootContainer.mainView.authorView.cardView.newCard ) triggers (SearchDuplicateCards)
-		on givenFetched (merge common.rootContainer.mainView.authorView.cardView.newCard ) triggers (SearchDuplicateCards)
-		on error
-		on empty
-		on targetNotEmtpy
 	
 	

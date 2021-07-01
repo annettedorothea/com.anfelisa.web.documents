@@ -59,7 +59,11 @@ export function uiElement(props) {
     }
 
     const dictionary = () => {
+        if (!props.categoryTree.selectedCategory.givenLanguage || !props.categoryTree.selectedCategory.wantedLanguage) {
+            return null;
+        }
         const setFocus = () => {
+            console.log("setFocus", document.getElementById(props.naturalInputOrder === true ? "wanted" : "given"));
             document.getElementById(props.naturalInputOrder === true ? "wanted" : "given").focus();
         }
 
@@ -74,10 +78,10 @@ export function uiElement(props) {
             "fr": "franzoesisch",
             "en": "englisch"
         };
-        const sourceLanguage = props.naturalInputOrder === true ? props.givenLanguage : props.wantedLanguage;
-        const targetLanguage = props.naturalInputOrder === true ? props.wantedLanguage : props.givenLanguage;
+        const sourceLanguage = props.naturalInputOrder === true ? props.categoryTree.selectedCategory.givenLanguage : props.categoryTree.selectedCategory.wantedLanguage;
+        const targetLanguage = props.naturalInputOrder === true ? props.categoryTree.selectedCategory.wantedLanguage : props.categoryTree.selectedCategory.givenLanguage;
 
-        const src = `https://www.linguee.de/${languageMap[sourceLanguage]}-${languageMap[targetLanguage]}/search?source=${languageMap[sourceLanguage]}&query=${value}`;
+        const src = `https://www.linguee.de/${languageMap[sourceLanguage]}-${languageMap[targetLanguage]}/search?query=${value}`;
         return <div className="dictionaryWrapper">
             <iframe
                 src={src}

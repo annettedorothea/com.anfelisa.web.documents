@@ -30,8 +30,6 @@ import ChangeCardOrderOkEvent from "./events/ChangeCardOrderOkEvent";
 import OnDragEnterOkEvent from "./events/OnDragEnterOkEvent";
 import OnDragExitOkEvent from "./events/OnDragExitOkEvent";
 import SearchDuplicateCardsOkEvent from "./events/SearchDuplicateCardsOkEvent";
-import TranslateWantedFetchedEvent from "./events/TranslateWantedFetchedEvent";
-import TranslateGivenFetchedEvent from "./events/TranslateGivenFetchedEvent";
 
 export default class EventFactoryRegistrationCard {
 
@@ -84,10 +82,6 @@ export default class EventFactoryRegistrationCard {
 			(eventData) => new OnDragExitOkEvent(eventData));
 		ACEController.registerFactory('card.SearchDuplicateCardsOkEvent', 
 			(eventData) => new SearchDuplicateCardsOkEvent(eventData));
-		ACEController.registerFactory('card.TranslateWantedFetchedEvent', 
-			(eventData) => new TranslateWantedFetchedEvent(eventData));
-		ACEController.registerFactory('card.TranslateGivenFetchedEvent', 
-			(eventData) => new TranslateGivenFetchedEvent(eventData));
 	}
 
 }
