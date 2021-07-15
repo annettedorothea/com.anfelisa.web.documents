@@ -2,10 +2,11 @@ import AbstractLoadBoxesAction from "../../../gen/box/actions/AbstractLoadBoxesA
 
 export default class LoadBoxesAction extends AbstractLoadBoxesAction {
 
-    initActionData() {
+    initActionData(data) {
         let date = new Date();
         date.setHours(0,0,0,0);
-        this.actionData.todayAtMidnightInUTC = date.toISOString();
+        data.todayAtMidnightInUTC = date.toISOString();
+        return data;
     }
 
 }

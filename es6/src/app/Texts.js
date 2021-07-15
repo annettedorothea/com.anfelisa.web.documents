@@ -495,7 +495,7 @@ export const Texts = {
             de: "Zugriff verweigert."
         },
         unknown: {
-            de: "Es ist etwas komisches passiert..."
+            de: "Unerwarteter Fehler."
         },
         unknownError: {
             de: "Fehler: {0}"

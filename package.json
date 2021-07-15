@@ -5,8 +5,8 @@
   "repository": "https://github.com/annettedorothea/com.anfelisa.client",
   "scripts": {
     "uglify": "uglifyjs lib/anfelisa_1.3.2.js --compress --mangle --output lib/anfelisa_1.3.2.min.js",
-    "build": "NODE_PATH=./src/components:./src NODE_ENV=production browserify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.3.2.js --standalone Anfelisa",
-    "start": "watchify --entry es6/src/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.3.2.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_1.3.2.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --browser='Google Chrome'",
+    "build": "browserify --entry es6/gen/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.3.2.js --standalone Anfelisa",
+    "start": "watchify --entry es6/gen/app/App.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.3.2.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_1.3.2.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --browser='Google Chrome'",
     "test": "jasmine"
   },
   "author": "Annette Pohl",

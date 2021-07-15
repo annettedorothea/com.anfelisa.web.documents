@@ -1,3 +1,4 @@
+
 HttpClient
 
 profile
@@ -12,7 +13,7 @@ ACE
 		)
 	
 	DeleteUser
-		fromAppState (common.rootContainer.mainView.profileView.username)
+		fromAppState (common.rootContainer.mainView.profileView.username as usernameToBeDeleted)
 		call com.anfelisa.user.DeleteUser
 		loadingFlag common.rootContainer.spinner.display 
 		on ok ( set common.rootContainer.mainView.profileView.showDeleteUserDialog ) triggers ( common.Logout )

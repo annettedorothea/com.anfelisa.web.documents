@@ -2,10 +2,10 @@ import AbstractLoadNextCardAction from "../../../gen/box/actions/AbstractLoadNex
 
 export default class LoadNextCardAction extends AbstractLoadNextCardAction {
 
-    initActionData() {
+    initActionData(data) {
         let date = new Date();
         date.setHours(0, 0, 0, 0);
-        this.actionData.todayAtMidnightInUTC = date.toISOString();
+        data.todayAtMidnightInUTC = date.toISOString();
     }
 
 }

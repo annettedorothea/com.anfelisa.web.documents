@@ -2,6 +2,7 @@ HttpClient common
 
 
 
+
 ACE 
 Init 
 	fromAppState (rootContainer.username, rootContainer.password )
@@ -14,7 +15,9 @@ Init
 		set rootContainer.loggedInUser 
 		set rootContainer.language
 		set rootContainer.messages
-	) triggers ( RouteChanged )
+	) triggers ( 
+		RouteChanged
+	)
 
 RouteChanged
 	fromAppState ( rootContainer.hash, rootContainer.loggedInUser ) 
@@ -27,7 +30,9 @@ RouteChanged
 	on registration ( 
 		set rootContainer.mainView.registrationView
 	)
-	on confirmEmail triggers (registration.ConfirmEmail)
+	on confirmEmail triggers (
+		registration.ConfirmEmail
+	)
 	on forgotPassword ( 
 		set rootContainer.mainView.forgotPasswordView 
 	)
@@ -36,29 +41,40 @@ RouteChanged
 	)
 	on dashboard (
 		set rootContainer.mainView.dashboardView
-	) triggers (box.InitBoxesForDay)
+	) triggers (
+		box.InitBoxesForDay
+	)
 	on categories (
 		set rootContainer.mainView.authorView
-	) triggers (category.LoadCategoryTree )
+	) triggers (
+		category.LoadCategoryTree
+	)
 	on profile (
 		set rootContainer.mainView.profileView
-	) triggers ( profile.LoadUser )
-	on userList (
-		set rootContainer.mainView.userListView
-	) triggers (admin.GetAllUsers) 
+	) triggers ( 
+		profile.LoadUser
+	)
 	on nextCard (
 		set rootContainer.mainView.queryCardView
-	) triggers (box.LoadNextCard)
+	) triggers (
+		box.LoadNextCard
+	)
 	on boxSettings (
 		set rootContainer.mainView.boxSettingsView
-	) triggers (box.LoadSettings)
+	) triggers (
+		box.LoadSettings
+	)
 	on allActiveCards (
 		set rootContainer.mainView.allActiveCardsView
-	) triggers (box.LoadActiveCards)
+	) triggers (
+		box.LoadActiveCards
+	)
 	on boxCreate ( 
 		set rootContainer.mainView.boxSettingsView
 	)
-	on invalid triggers (Route)
+	on invalid triggers (
+		Route
+	)
 	
 	
 	
@@ -121,7 +137,7 @@ HideSaveBugDialog
 
 
 
-ui React_16.8 rootContainer {
+ui JSX rootContainer {
 	loggedInUser {
 		username
 		password
@@ -247,18 +263,6 @@ ui React_16.8 rootContainer {
 			role
 			showDeleteUserDialog
 		}
-		userListView {
-			List userList {
-				userId 
-				username
-				password
-				email
-				role
-				emailConfirmed
-			} 
-			showDeleteUserDialog 
-			usernameToBeDeleted
-		}
 		queryCardView {
 			cardId
 			categoryId
@@ -276,7 +280,6 @@ ui React_16.8 rootContainer {
 			allTodaysCards
 			index
 			enableScoreButtons
-			displayImage
 			boxId
 			reverse
 		}
